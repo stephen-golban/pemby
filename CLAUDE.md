@@ -7,7 +7,7 @@ Decisions: `docs/PLAN.md`. Phase rules: `docs/phases/_COMMON.md`. Conventions: `
 
 ```sh
 pnpm install
-pnpm dev                 # turbo: web (3000), bot (3001), worker
+pnpm dev                 # turbo: web (3000), bot (3001), worker; needs PRIVATE_CONFIG_DIR (see docs/conventions.md)
 pnpm dev:staging         # same, with Railway staging variables injected (scripts/dev-staging.sh)
 pnpm typecheck           # turbo: tsc --noEmit everywhere (web runs next typegen first)
 pnpm lint                # turbo: eslint . everywhere

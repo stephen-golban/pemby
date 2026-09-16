@@ -58,7 +58,10 @@ supply-chain policy (minimum release age) applies; prefer an older patch over ex
 
 ## Local development gets env from Railway
 
+- `turbo.json` sets `"envMode": "loose"` because turbo's strict mode only forwards vars listed in `env`/`globalEnv`, which would drop `PRIVATE_CONFIG_DIR`, `APP_ENV`, and every Railway-injected variable from `dev` tasks.
 - Values live in Railway variables, per environment. There are no secret `.env` files to share.
+- Without Railway access, run against the placeholder config instead:
+  `PRIVATE_CONFIG_DIR=./private-config.example pnpm dev` (development only, not for staging/production).
 - `scripts/dev-staging.sh <command>` wraps
   `railway run --environment staging --service "${RAILWAY_SERVICE:-web}"` and points
   `DATABASE_URL` at `DATABASE_PUBLIC_URL`, so a laptop can reach the staging database.

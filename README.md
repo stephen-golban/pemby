@@ -31,7 +31,7 @@ Requires Node 24 and pnpm (the version is pinned in `package.json`; Corepack or 
 
 ```sh
 pnpm install
-pnpm dev            # all apps, no external services
+PRIVATE_CONFIG_DIR=./private-config.example pnpm dev   # all apps, placeholder config, development only
 pnpm typecheck
 pnpm lint
 pnpm build
