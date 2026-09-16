@@ -1,0 +1,14 @@
+{
+  "version": "placeholder-1",
+  "components": {
+    "embeddingSimilarity": 0.2,
+    "skillOverlap": 0.2,
+    "domain": 0.2,
+    "timezoneOverlap": 0.2,
+    "companyFit": 0.2
+  },
+  "thresholds": {
+    "match": 80,
+    "nearMissMin": 65
+  }
+}

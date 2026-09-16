@@ -20,7 +20,10 @@
     "typecheck": "turbo run typecheck",
     "lint": "turbo run lint",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "db:generate": "pnpm --filter @pemby/db db:generate",
+    "db:migrate": "pnpm --filter @pemby/db migrate",
+    "db:seed": "pnpm --filter @pemby/db seed"
   },
   "devDependencies": {
     "@eslint/js": "9.39.5",
