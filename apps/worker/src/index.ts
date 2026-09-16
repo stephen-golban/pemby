@@ -3,8 +3,12 @@ import { PrivateConfigError, loadPrivateConfig } from "@pemby/core/private-confi
 import { createDb } from "@pemby/db";
 import { PgBoss } from "pg-boss";
 import { readWorkerEnv } from "./env";
-import { SYNC_COMPANIES_QUEUE } from "./ingest/queues";
-import { createIngestQueues, scheduleIngestJobs, startIngestWorkers } from "./ingest/workers";
+import {
+  createIngestQueues,
+  runCompanySync,
+  scheduleIngestJobs,
+  startIngestWorkers,
+} from "./ingest/workers";
 
 const appEnv = process.env.APP_ENV ?? "development";
 
@@ -70,14 +74,15 @@ async function shutdown(signal: NodeJS.Signals): Promise<void> {
 process.on("SIGTERM", (s) => void shutdown(s));
 process.on("SIGINT", (s) => void shutdown(s));
 
+let deps: Parameters<typeof runCompanySync>[0];
 try {
   await boss.start();
   await createIngestQueues(boss);
-  await scheduleIngestJobs(boss, env);
+  const { version } = await loadPrivateConfig();
+  await scheduleIngestJobs(boss, env, version.id);
   // One HTTP client for the process, so per-host limits hold across concurrent board reads.
-  await startIngestWorkers({ boss, db, http: createAtsHttpClient(), env });
-  // Company sync at boot; it also enqueues boards that were never read.
-  await boss.send(SYNC_COMPANIES_QUEUE, {});
+  deps = { boss, db, http: createAtsHttpClient(), env };
+  await startIngestWorkers(deps);
 } catch (error) {
   console.error(
     `worker boot failed: ${error instanceof Error ? `${error.name}: ${error.message}` : "error"}`,
@@ -85,6 +90,17 @@ try {
   await boss.stop({ graceful: false, close: true }).catch(() => undefined);
   await db.$client.end().catch(() => undefined);
   process.exit(1);
+}
+
+// Company sync at boot runs here, in this process, with the config this process loaded. Sending it
+// through the queue let an old container (still up during a deploy, with its older config) take
+// the job. A failure only logs: the daily schedule retries.
+try {
+  await runCompanySync(deps, "boot");
+} catch (error) {
+  console.error(
+    `sync-companies: boot sync failed: ${error instanceof Error ? `${error.name}: ${error.message}` : "error"}`,
+  );
 }
 
 console.log(

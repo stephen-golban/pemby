@@ -1,6 +1,6 @@
 // Registers queues, schedules and handlers for ingestion on one pg-boss instance.
 import type { HttpClient } from "@pemby/ats";
-import { ATS_KINDS, type AtsKind } from "@pemby/core/private-config";
+import { ATS_KINDS, loadPrivateConfig, type AtsKind } from "@pemby/core/private-config";
 import type { Db } from "@pemby/db";
 import type { PgBoss } from "pg-boss";
 import type { WorkerEnv } from "../env";
@@ -60,7 +60,11 @@ const SCHEDULE_OPTIONS = { tz: "UTC", missed: "once" } as const;
 const LARGE_PAYLOAD_ATS: ReadonlySet<AtsKind> = new Set(["greenhouse", "lever", "ashby"]);
 
 /** Cron schedules, UTC. `schedule` upserts by name, so a changed interval replaces the old one. */
-export async function scheduleIngestJobs(boss: PgBoss, env: WorkerEnv): Promise<void> {
+export async function scheduleIngestJobs(
+  boss: PgBoss,
+  env: WorkerEnv,
+  configId: string,
+): Promise<void> {
   await boss.schedule(
     SCHEDULE_INGEST_QUEUE,
     `0 */${env.ingestIntervalHours} * * *`,
@@ -68,8 +72,40 @@ export async function scheduleIngestJobs(boss: PgBoss, env: WorkerEnv): Promise<
     { tz: "UTC" },
   );
   await boss.schedule(VERIFY_LIVE_QUEUE, "15 * * * *", {}, SCHEDULE_OPTIONS);
-  await boss.schedule(SYNC_COMPANIES_QUEUE, "30 3 * * *", {}, SCHEDULE_OPTIONS);
+  await boss.schedule(
+    SYNC_COMPANIES_QUEUE,
+    "30 3 * * *",
+    { configId } satisfies SyncCompaniesJobData,
+    SCHEDULE_OPTIONS,
+  );
   await boss.schedule(SOURCE_HEALTH_QUEUE, "45 * * * *", {}, SCHEDULE_OPTIONS);
+}
+
+export interface SyncCompaniesJobData {
+  /** Private config `version.id` of the process that registered the schedule. */
+  configId?: string;
+}
+
+/** Company sync plus a read of boards never read yet, with the usual log lines. */
+export async function runCompanySync(
+  deps: IngestDeps,
+  trigger: "boot" | "scheduled",
+): Promise<void> {
+  const { boss, db, env } = deps;
+  const r = await syncCompanies(db, env.sourceLists);
+  const config = `config=${r.configId.slice(0, 12)} trigger=${trigger}`;
+  if (r.skipped) {
+    console.warn(
+      `sync-companies: skipped, lists found=${r.listsRead} entries=${r.entries} (nothing disabled) ${config}`,
+    );
+  } else {
+    console.log(
+      `sync-companies: lists=${r.listsRead} entries=${r.entries} upserted=${r.upserted} disabled=${r.disabled} jobsClosed=${r.jobsClosed} ${config}`,
+    );
+    if (r.disableSkipped) console.warn(`sync-companies: disable step skipped: ${r.disableSkipped}`);
+  }
+  const unread = await ingestUnreadBoards(boss, db, env);
+  console.log(`sync-companies: unread boards=${unread.considered} enqueued=${unread.enqueued}`);
 }
 
 export async function startIngestWorkers(deps: IngestDeps): Promise<void> {
@@ -133,22 +169,23 @@ export async function startIngestWorkers(deps: IngestDeps): Promise<void> {
     }
   });
 
-  await boss.work(SYNC_COMPANIES_QUEUE, MAINTENANCE_WORK_OPTIONS, async () => {
-    const r = await syncCompanies(db, env.sourceLists);
-    if (r.skipped) {
-      console.warn(
-        `sync-companies: skipped, lists found=${r.listsRead} entries=${r.entries} (nothing disabled)`,
-      );
-    } else {
-      console.log(
-        `sync-companies: lists=${r.listsRead} entries=${r.entries} upserted=${r.upserted} disabled=${r.disabled} jobsClosed=${r.jobsClosed}`,
-      );
-      if (r.disableSkipped)
-        console.warn(`sync-companies: disable step skipped: ${r.disableSkipped}`);
-    }
-    const unread = await ingestUnreadBoards(boss, db, env);
-    console.log(`sync-companies: unread boards=${unread.considered} enqueued=${unread.enqueued}`);
-  });
+  await boss.work<SyncCompaniesJobData>(
+    SYNC_COMPANIES_QUEUE,
+    MAINTENANCE_WORK_OPTIONS,
+    async ([job]) => {
+      // The schedule carries the config id of the process that registered it last (the newest
+      // boot). A process holding a different config (an old container during a deploy) skips.
+      const expected = job?.data?.configId;
+      const { version } = await loadPrivateConfig();
+      if (expected && expected !== version.id) {
+        console.warn(
+          `sync-companies: skipped, loaded config=${version.shortId} differs from scheduled config=${expected.slice(0, 12)}`,
+        );
+        return;
+      }
+      await runCompanySync(deps, "scheduled");
+    },
+  );
 
   await boss.work(SOURCE_HEALTH_QUEUE, MAINTENANCE_WORK_OPTIONS, async () => {
     await logSourceHealth(db);

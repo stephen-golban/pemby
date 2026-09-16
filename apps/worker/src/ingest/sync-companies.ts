@@ -15,6 +15,8 @@ export interface SyncCompaniesResult {
   disabled: number;
   jobsClosed: number;
   skipped: boolean;
+  /** `version.id` of the private config this sync read. */
+  configId: string;
   /** Why the disable step did not run, when it did not. */
   disableSkipped?: string;
 }
@@ -44,7 +46,7 @@ export async function syncCompanies(
   db: Db,
   listNames: readonly string[],
 ): Promise<SyncCompaniesResult> {
-  const { sourceLists } = await loadPrivateConfig();
+  const { sourceLists, version } = await loadPrivateConfig();
 
   // Later lists do not override earlier ones: the first list naming a board owns it.
   const wanted = new Map<string, { entry: SourceEntry; list: string }>();
@@ -66,6 +68,7 @@ export async function syncCompanies(
     disabled: 0,
     jobsClosed: 0,
     skipped: false,
+    configId: version.id,
   };
 
   // A missing or empty list is far more likely a config mistake than every board going away, so
