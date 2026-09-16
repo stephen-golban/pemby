@@ -1,0 +1,20 @@
+{
+  "name": "@pemby/bot",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "tsx src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "tsx": "4.23.13"
+  },
+  "devDependencies": {
+    "@types/node": "24.13.4",
+    "eslint": "9.39.5",
+    "typescript": "6.0.3"
+  }
+}

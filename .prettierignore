@@ -1,0 +1,11 @@
+docs/
+.impeccable/
+PRODUCT.md
+LICENSE
+pnpm-lock.yaml
+node_modules/
+.next/
+.turbo/
+dist/
+coverage/
+next-env.d.ts

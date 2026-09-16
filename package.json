@@ -1,0 +1,35 @@
+{
+  "name": "pemby",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "AI job-matching software; you apply yourself.",
+  "license": "AGPL-3.0-only",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stephen-golban/pemby.git"
+  },
+  "packageManager": "pnpm@12.4.2",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "dev:staging": "./scripts/dev-staging.sh pnpm dev",
+    "typecheck": "turbo run typecheck",
+    "lint": "turbo run lint",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@eslint/js": "9.39.5",
+    "@types/node": "24.13.4",
+    "eslint": "9.39.5",
+    "globals": "17.12.0",
+    "prettier": "3.9.6",
+    "turbo": "2.10.13",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.70.0"
+  }
+}
