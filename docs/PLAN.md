@@ -154,7 +154,7 @@ phase file path. Every phase follows `docs/phases/_COMMON.md` and ends with a ha
 | 01 | `docs/phases/01-foundation.md` | Monorepo, schema v1, auth, Railway prod + staging, CI, progress page | 00 (partial is fine) | **done 2026-09-16** (staging only; OAuth, magic link, Sentry, PostHog deferred) — `docs/phases/handoffs/01-handoff.md` |
 | 02 | `docs/phases/02-product-context-and-landing-direction.md` | PRODUCT.md, landing direction round, approved landing comp | 01 (ran first; 00 and 01 still pending) | **done 2026-09-16** — `docs/phases/handoffs/02-handoff.md` |
 | 03 | `docs/phases/03-landing-legal-pricing.md` | Landing, pricing, Terms, Privacy, Refund live on pemby.app; DESIGN.md | 02 | not started |
-| 04 | `docs/phases/04-job-ingestion.md` | ATS connectors, company seed list, freshness checks, dedupe | 01 | not started |
+| 04 | `docs/phases/04-job-ingestion.md` | ATS connectors, company seed list, freshness checks, dedupe | 01 | **done on staging 2026-09-16** (6 of 7 ATS: SmartRecruiters awaits permission; production ingestion and 24h run pending) — `docs/phases/handoffs/04-handoff.md` |
 | 05 | `docs/phases/05-ai-enrichment-eligibility.md` | AI layer, job enrichment, eligibility engine, eval check, model picks | 04 | not started |
 | 06 | `docs/phases/06-cv-drop-onboarding.md` | Anonymous CV drop, parsing, teaser, signup, 3-step onboarding | 03, 05 | not started |
 | 07 | `docs/phases/07-matching-brief.md` | Matcher, near misses, Brief UI, juniors, programs calendar | 06 | not started |
@@ -192,3 +192,5 @@ estimates, employer "hires globally" badge, Redact PII masking before OpenRouter
 - Eligibility accuracy. Mitigation: the eval check, flags, user outcome reports.
 - Claude subscription token for the GitHub Action may not fit "ordinary individual usage". Mitigation: label-gated runs only; API key fallback.
 - Items marked UNVERIFIED in research must be confirmed by the phase that relies on them.
+- Recruitee's public API needs a per-employer token from 10 Feb 2027 (research 15). Mitigation: revisit in January 2027; 25 of 300 seed boards depend on it.
+- SmartRecruiters is excluded until it grants written permission (its robots.txt allows only LinkedInBot). Mitigation: permission request; the connector is built and switched off.
