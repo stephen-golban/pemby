@@ -1,0 +1,268 @@
+/*
+ * The band. Card tilt is a landing-page flourish and lives only here (brief correction 7);
+ * app screens never rotate cards.
+ */
+
+.band {
+  --band-overlap: 40px;
+
+  position: relative;
+  isolation: isolate;
+  margin-block-start: calc(var(--rhythm-action-field) - var(--band-overlap));
+  padding: 0 var(--gutter) 56px;
+}
+
+/* The field: a full-bleed surface that shows above the card row's gaps, between the cards,
+   at both sides and well below them (brief correction 6). */
+.field {
+  position: absolute;
+  inset: var(--band-overlap) 0 0;
+  z-index: -1;
+  border-radius: var(--radius-field) var(--radius-field) 0 0;
+  background: var(--color-field);
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  --tilt: 0deg;
+
+  flex: 0 1 320px;
+  min-inline-size: 280px;
+  aspect-ratio: 320 / 424;
+  transform: rotate(var(--tilt));
+  border-radius: 30px;
+  box-shadow: var(--shadow-card);
+}
+
+.card:nth-child(1) {
+  --tilt: -5.5deg;
+}
+
+.card:nth-child(2) {
+  --tilt: -1.5deg;
+
+  translate: 0 -6px;
+}
+
+.card:nth-child(3) {
+  --tilt: 3deg;
+}
+
+.card:nth-child(4) {
+  --tilt: 5.7deg;
+}
+
+.cardInner {
+  position: relative;
+  block-size: 100%;
+  overflow: hidden;
+  padding: var(--card-pad-top, 44px) 24px 0 32px;
+  border-radius: inherit;
+  background: var(--card-fill);
+  color: var(--card-ink);
+}
+
+.plum {
+  --card-fill: var(--color-plum);
+  --card-ink: var(--color-on-plum);
+  --card-chip: var(--color-plum-chip);
+}
+
+.ochre {
+  --card-pad-top: 42px;
+  --card-fill: var(--color-ochre);
+  --card-ink: var(--color-on-ochre);
+  --card-chip: var(--color-ochre-chip);
+}
+
+.inkblue {
+  --card-fill: var(--color-inkblue);
+  --card-ink: var(--color-on-inkblue);
+  --card-chip: var(--color-inkblue-chip);
+}
+
+.silence {
+  --card-fill: var(--color-paper-card);
+  --card-ink: var(--color-ink);
+}
+
+.silence .cardInner {
+  padding: 70px 36px 0;
+  border: 1.5px solid var(--color-line-strong);
+}
+
+.role {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-display);
+  font-size: var(--text-title);
+  font-weight: var(--weight-title);
+  line-height: var(--leading-title);
+  letter-spacing: var(--tracking-title);
+  text-wrap: balance;
+}
+
+.meta {
+  position: relative;
+  z-index: 1;
+  margin-block-start: 8px;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+
+.criteria {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 8px;
+  margin-block-start: 22px;
+  padding: 0;
+  list-style: none;
+}
+
+.criterion {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.875rem;
+  line-height: 1.35;
+}
+
+.tick {
+  flex: none;
+  inline-size: 15px;
+  block-size: 15px;
+}
+
+.tickBox {
+  fill: var(--card-ink);
+}
+
+.tickMark {
+  stroke: var(--card-fill);
+}
+
+.photo {
+  position: absolute;
+  inset: auto 0 0;
+  block-size: 58%;
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 34%);
+}
+
+.photo img {
+  object-fit: cover;
+  object-position: center top;
+}
+
+.silenceBody {
+  margin-block-start: 14px;
+  max-inline-size: 16em;
+  font-size: var(--text-small);
+  line-height: 1.5;
+}
+
+.doodle {
+  position: absolute;
+  inset-inline-start: 118px;
+  inset-block-start: 210px;
+  inline-size: 152px;
+  block-size: auto;
+}
+
+.doodleDark {
+  display: none;
+}
+
+:global(:root[data-theme="dark"]) .doodleLight {
+  display: none;
+}
+
+:global(:root[data-theme="dark"]) .doodleDark {
+  display: block;
+}
+
+@media (prefers-color-scheme: dark) {
+  :global(:root:not([data-theme="light"])) .doodleLight {
+    display: none;
+  }
+
+  :global(:root:not([data-theme="light"])) .doodleDark {
+    display: block;
+  }
+}
+
+/* Bottom-left stamp stack: the EXAMPLE marker above the eligibility tag (brief correction 4). */
+.stamps {
+  position: absolute;
+  inset-inline-start: 22px;
+  inset-block-end: var(--tag-bottom, 20px);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.tag {
+  padding: 9px 12px 8px;
+  border-radius: 10px;
+  background: var(--card-chip);
+  color: var(--color-on-chip);
+  font-size: 0.875rem;
+  font-weight: var(--weight-mono-strong);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.example {
+  padding: 6px 9px 5px;
+  border: 1px solid rgb(247 241 230 / 0.5);
+  border-radius: 7px;
+  background: rgb(20 17 13 / 0.86);
+  color: #f7f1e6;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.footnote {
+  margin-block-start: 56px;
+  color: var(--color-on-field);
+  font-size: var(--text-label);
+  font-weight: var(--weight-mono-strong);
+  line-height: 1.5;
+  letter-spacing: 0.12em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+@media (max-width: 1180px) {
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 320px));
+    gap: 40px 28px;
+  }
+}
+
+@media (max-width: 680px) {
+  .cards {
+    grid-template-columns: minmax(0, 320px);
+  }
+
+  .card:nth-child(n) {
+    --tilt: 0deg;
+
+    translate: none;
+  }
+}

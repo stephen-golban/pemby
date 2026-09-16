@@ -1,0 +1,87 @@
+/* Landing page: top bar and first-viewport hero. Rhythm comes from the shared tokens. */
+
+.page {
+  min-height: 100dvh;
+  overflow-x: clip;
+  background: var(--color-ground);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  padding: var(--rhythm-top) var(--gutter) 0;
+}
+
+.wordmark {
+  font-size: var(--text-heading);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 41px;
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 0;
+  list-style: none;
+}
+
+.navLink {
+  display: inline-block;
+  padding: 10px 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-body);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.navLink:hover {
+  text-decoration: underline;
+}
+
+.toggle {
+  margin-inline-end: -2px;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--rhythm-lead) var(--gutter) 0;
+  text-align: center;
+}
+
+.headline {
+  max-inline-size: 7.4em;
+  font-family: var(--font-display);
+  font-size: var(--text-display);
+  font-weight: var(--weight-display);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  text-wrap: balance;
+  color: var(--color-ink);
+}
+
+.subline {
+  max-inline-size: 680px;
+  margin-block-start: var(--rhythm-headline-sub);
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  letter-spacing: -0.01em;
+  line-height: var(--leading-body);
+  color: var(--color-ink);
+  text-wrap: pretty;
+}
+
+.action {
+  inline-size: min(100%, 560px);
+  margin-block-start: var(--rhythm-sub-action);
+}

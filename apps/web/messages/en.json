@@ -12,9 +12,6 @@
     "forbiddenTitle": "Access restricted",
     "notFoundTitle": "Page not found"
   },
-  "Home": {
-    "tagline": "Pemby — AI job-matching software; you apply yourself. Coming soon."
-  },
   "ComingSoon": {
     "body": "This page is coming soon.",
     "backHome": "Back to the home page"
@@ -64,5 +61,60 @@
   "Proxy": {
     "authRequired": "Authentication required.",
     "unavailable": "Temporarily unavailable."
+  },
+  "Landing": {
+    "brand": "Pemby",
+    "nav": {
+      "label": "Main",
+      "howItWorks": "How it works",
+      "pricing": "Pricing",
+      "about": "About",
+      "telegram": "Telegram"
+    },
+    "themeToggle": "Dark theme",
+    "headline": "Jobs that can actually hire you.",
+    "subline": "Pemby watches companies’ own careers pages and tells you the moment one appears that can hire you where you live. No feed. You apply yourself.",
+    "drop": {
+      "title": "Drop your CV",
+      "caption": "No account. Anonymous. Deleted in 24 hours.",
+      "dragging": "Let go to drop it here",
+      "pendingTitle": "CV reading opens with the beta",
+      "pendingBody": "Nothing was uploaded, and your file was not read.",
+      "pendingLink": "Follow Pemby on Telegram to hear when it opens",
+      "pendingBack": "Back"
+    },
+    "band": {
+      "label": "Example matches",
+      "example": "Example",
+      "footnote": "Example matches. Every company, role and reason is invented.",
+      "criteriaLabel": "Why it can hire you"
+    },
+    "cards": {
+      "platform": {
+        "role": "Platform Engineer",
+        "meta": "Northward – contractor, Georgia",
+        "criterion1": "Contractors in Georgia",
+        "criterion2": "European timezone overlap",
+        "tag": "Hires from Georgia"
+      },
+      "backend": {
+        "role": "Senior Backend Engineer",
+        "meta": "Kestrel Systems – B2B contractor",
+        "criterion1": "B2B contracts in Moldova",
+        "criterion2": "European timezone overlap",
+        "tag": "Hires from Moldova"
+      },
+      "data": {
+        "role": "Data Engineer",
+        "meta": "Pinecone – EOR employment",
+        "criterion1": "EOR available in Armenia",
+        "criterion2": "European timezone overlap",
+        "tag": "Hires from Armenia"
+      },
+      "silence": {
+        "title": "Nothing today",
+        "body": "6 near misses, grouped by what blocked them"
+      }
+    }
   }
 }
