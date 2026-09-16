@@ -50,6 +50,9 @@ export const atsType = pgEnum("ats_type", [
   "other",
 ]);
 
+/** Board state recorded by ingestion (company_source_health). */
+export const boardStatus = pgEnum("board_status", ["active", "empty", "not-found", "erroring"]);
+
 export const jobStatus = pgEnum("job_status", ["open", "closed", "quarantined", "merged"]);
 
 export const cvParseStatus = pgEnum("cv_parse_status", ["pending", "parsed", "failed"]);

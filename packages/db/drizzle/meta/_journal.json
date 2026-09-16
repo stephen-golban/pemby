@@ -15,6 +15,20 @@
       "when": 1789562013620,
       "tag": "0001_schema_v1",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1789576614301,
+      "tag": "0002_ingestion_sources_health",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1789578299351,
+      "tag": "0003_source_health_not_found_since",
+      "breakpoints": true
     }
   ]
 }

@@ -26,3 +26,13 @@ export type Payment = typeof s.payments.$inferSelect;
 export type Referral = typeof s.referrals.$inferSelect;
 export type Channel = typeof s.channels.$inferSelect;
 export type DeliveryLog = typeof s.deliveryLog.$inferSelect;
+export type CompanySourceHealth = typeof s.companySourceHealth.$inferSelect;
+
+export {
+  countOpenJobsByRoleFamily,
+  getSourceHealth,
+  type BoardStatus,
+  type SourceHealth,
+  type SourceHealthRow,
+  type SourceHealthTotals,
+} from "./queries/source-health";

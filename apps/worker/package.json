@@ -6,11 +6,17 @@
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "start": "tsx src/index.ts",
+    "ingest:once": "tsx src/scripts/ingest-once.ts",
+    "health": "tsx src/scripts/health.ts",
     "typecheck": "tsc --noEmit",
     "lint": "eslint ."
   },
   "dependencies": {
+    "@pemby/ats": "workspace:*",
     "@pemby/core": "workspace:*",
+    "@pemby/db": "workspace:*",
+    "drizzle-orm": "0.45.2",
+    "pg-boss": "12.32.0",
     "tsx": "4.23.13"
   },
   "devDependencies": {

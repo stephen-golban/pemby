@@ -5,7 +5,14 @@ import { user } from "./auth";
 import { passes, payments, referrals } from "./billing";
 import { channels, deliveryLog } from "./delivery";
 import { eligibilityEvidence, flags } from "./flags";
-import { companies, jobEligibility, jobEmbeddings, jobEnrichment, jobs } from "./jobs";
+import {
+  companies,
+  companySourceHealth,
+  jobEligibility,
+  jobEmbeddings,
+  jobEnrichment,
+  jobs,
+} from "./jobs";
 import { applications, kits, matches } from "./matching";
 import { cvFiles, profileEmbeddings, profiles } from "./profiles";
 
@@ -33,9 +40,17 @@ export const cvFilesRelations = relations(cvFiles, ({ one }) => ({
   user: one(user, { fields: [cvFiles.userId], references: [user.id] }),
 }));
 
-export const companiesRelations = relations(companies, ({ many }) => ({
+export const companiesRelations = relations(companies, ({ one, many }) => ({
   jobs: many(jobs),
   evidence: many(eligibilityEvidence),
+  sourceHealth: one(companySourceHealth),
+}));
+
+export const companySourceHealthRelations = relations(companySourceHealth, ({ one }) => ({
+  company: one(companies, {
+    fields: [companySourceHealth.companyId],
+    references: [companies.id],
+  }),
 }));
 
 export const jobsRelations = relations(jobs, ({ one, many }) => ({

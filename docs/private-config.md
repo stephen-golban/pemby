@@ -79,8 +79,9 @@ Required prompt names: `job-enrichment`, `cv-parse`, `application-kit` (`REQUIRE
 `timezoneOverlap` and `companyFit`, each 0 to 1, summing to 1. `thresholds.match` and
 `thresholds.nearMissMin` are integers 0 to 100 with `nearMissMin < match`.
 
-**Source lists.** `{ "version": "...", "entries": [{ "ats", "boardToken", "companyName"?, "domain"? }] }`
+**Source lists.** `{ "version": "...", "entries": [{ "ats", "boardToken", "companyName"?, "domain"?, "region"? }] }`
 where `ats` is one of greenhouse, lever, ashby, workable, smartrecruiters, recruitee, personio.
+`region` is `us` or `eu` and selects the vendor's API host for that board; leave it out for `us`.
 
 The zod schemas are in `packages/core/src/private-config/schemas.ts`.
 

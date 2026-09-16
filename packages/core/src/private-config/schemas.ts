@@ -90,6 +90,10 @@ export const ATS_KINDS = [
 ] as const;
 export type AtsKind = (typeof ATS_KINDS)[number];
 
+/** Vendor data region of a board. Absent in a source entry means "us". */
+export const ATS_REGIONS = ["us", "eu"] as const;
+export type AtsRegion = (typeof ATS_REGIONS)[number];
+
 export const sourceListNameSchema = promptNameSchema;
 
 export const sourceEntrySchema = z.object({
@@ -97,6 +101,7 @@ export const sourceEntrySchema = z.object({
   boardToken: z.string().min(1).max(200),
   companyName: z.string().min(1).max(200).optional(),
   domain: z.string().min(1).max(253).optional(),
+  region: z.enum(ATS_REGIONS).optional(),
 });
 export type SourceEntry = z.infer<typeof sourceEntrySchema>;
 
