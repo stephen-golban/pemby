@@ -38,12 +38,19 @@
   --color-paper-card: #fbf8f2;
   --color-on-chip: #14110d;
 
+  /* Colour: eligibility tiers (D2). Always paired with a text label, never colour alone. */
+  --color-tier-green: #56733c;
+  --color-tier-yellow: #d1a432;
+  --color-tier-white: #fbf8f2;
+  --color-tier-red: #a54a3b;
+
   /* Type families. The app sets --font-grotesk-src and --font-mono-src through next/font. */
   --font-display: var(--font-grotesk-src), "Rethink Sans", ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-mono-src), "Source Code Pro", ui-monospace, "SFMono-Regular", monospace;
 
   /* Type scale */
   --text-display: clamp(3.25rem, 1.2rem + 5.4vw, 6.3125rem);
+  --text-section: clamp(2.5rem, 1.1rem + 3.6vw, 4.75rem);
   --text-title: 2.125rem;
   --text-heading: 1.8125rem;
   --text-body: 1rem;
@@ -83,6 +90,7 @@
   --space-8: 64px;
   --space-9: 96px;
   --gutter: clamp(16px, 3.4vw, 52px);
+  --content-max: 1344px;
 
   /* Vertical rhythm (brief correction 1): the named gaps of the first viewport */
   --rhythm-top: 40px; /* above the top bar */
@@ -91,6 +99,7 @@
   --rhythm-sub-action: 80px; /* sub-line to primary action */
   --rhythm-action-field: 130px; /* primary action to colour field */
   --rhythm-section: 150px; /* between sections */
+  --rhythm-heading-body: 36px; /* section heading to its body: less than the space above it */
 
   /* Motion */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -122,6 +131,10 @@
     --color-inkblue-chip: #152532;
     --color-paper-card: #211c16;
     --color-on-chip: #f7f1e6;
+    --color-tier-green: #86a468;
+    --color-tier-yellow: #dcb452;
+    --color-tier-white: #2c261f;
+    --color-tier-red: #c86a57;
     --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.3), 0 10px 30px -18px rgb(0 0 0 / 0.6);
     --shadow-card: 0 2px 6px rgb(0 0 0 / 0.35), 0 34px 60px -24px rgb(0 0 0 / 0.8);
   }
@@ -150,6 +163,10 @@
   --color-inkblue-chip: #152532;
   --color-paper-card: #211c16;
   --color-on-chip: #f7f1e6;
+  --color-tier-green: #86a468;
+  --color-tier-yellow: #dcb452;
+  --color-tier-white: #2c261f;
+  --color-tier-red: #c86a57;
   --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.3), 0 10px 30px -18px rgb(0 0 0 / 0.6);
   --shadow-card: 0 2px 6px rgb(0 0 0 / 0.35), 0 34px 60px -24px rgb(0 0 0 / 0.8);
 }

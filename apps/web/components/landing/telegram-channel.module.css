@@ -1,0 +1,154 @@
+/* Telegram: one wide ink-blue panel with a channel post leaning out of it. */
+
+.panel {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: var(--space-7);
+  align-items: center;
+  padding: 72px 72px 72px 64px;
+  border-radius: 44px;
+  background: var(--color-inkblue);
+  color: var(--color-on-inkblue);
+}
+
+.title {
+  max-inline-size: 12em;
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 1.2rem + 2.6vw, 3.75rem);
+  font-weight: var(--weight-display);
+  line-height: 0.94;
+  letter-spacing: var(--tracking-display);
+  text-wrap: balance;
+}
+
+.body {
+  max-inline-size: 46ch;
+  margin-block-start: var(--space-6);
+  font-size: var(--text-small);
+  line-height: var(--leading-body);
+}
+
+.action {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-block-size: 52px;
+  margin-block-start: var(--space-6);
+  padding: 0 24px;
+  border-radius: var(--radius-full);
+  background: var(--color-on-inkblue);
+  color: #14110d;
+  font-family: var(--font-display);
+  font-size: 1.1875rem;
+  font-weight: var(--weight-title);
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.action:hover {
+  transform: translateY(-2px);
+}
+
+.action:focus-visible {
+  outline-color: var(--color-on-inkblue);
+}
+
+.action svg {
+  inline-size: 18px;
+  block-size: 18px;
+}
+
+.post {
+  justify-self: end;
+  inline-size: min(100%, 380px);
+  margin: -120px 0 -120px;
+  padding: 24px 26px 22px;
+  border-radius: 26px 26px 26px 8px;
+  background: var(--color-paper-card);
+  color: var(--color-ink);
+  box-shadow: var(--shadow-card);
+  font-size: var(--text-label);
+  line-height: 1.45;
+  rotate: 3deg;
+}
+
+.postHead {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.channel {
+  font-weight: 600;
+}
+
+.role {
+  margin-block-start: var(--space-4);
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: var(--weight-title);
+  line-height: 1;
+  letter-spacing: var(--tracking-title);
+}
+
+.company {
+  margin-block-start: 4px;
+  font-size: var(--text-small);
+}
+
+.facts {
+  display: grid;
+  gap: 6px;
+  margin-block-start: var(--space-4);
+  padding: 0;
+  list-style: none;
+}
+
+.green {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: var(--weight-mono-strong);
+}
+
+.swatch {
+  flex: none;
+  inline-size: 12px;
+  block-size: 12px;
+  border-radius: 50%;
+  background: var(--color-tier-green);
+}
+
+.late {
+  margin-block-start: var(--space-4);
+  padding-block-start: var(--space-3);
+  border-block-start: 1px dashed var(--color-line);
+}
+
+.stamp {
+  margin-block-start: var(--space-4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .action {
+    transition: none;
+  }
+
+  .action:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 1000px) {
+  .panel {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 48px 28px;
+  }
+
+  .post {
+    justify-self: start;
+    margin: 0;
+    rotate: none;
+  }
+}

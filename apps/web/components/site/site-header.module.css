@@ -1,0 +1,46 @@
+/* Shared top bar. Rhythm comes from the shared tokens. */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  padding: var(--rhythm-top) var(--gutter) 0;
+}
+
+.wordmark {
+  font-size: var(--text-heading);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 41px;
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 0;
+  list-style: none;
+}
+
+.navLink {
+  display: inline-block;
+  padding: 10px 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-body);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.navLink:hover {
+  text-decoration: underline;
+}
+
+.toggle {
+  margin-inline-end: -2px;
+}

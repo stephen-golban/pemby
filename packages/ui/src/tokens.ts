@@ -24,6 +24,10 @@ export const tokens = {
     inkblueChip: "var(--color-inkblue-chip)",
     paperCard: "var(--color-paper-card)",
     onChip: "var(--color-on-chip)",
+    tierGreen: "var(--color-tier-green)",
+    tierYellow: "var(--color-tier-yellow)",
+    tierWhite: "var(--color-tier-white)",
+    tierRed: "var(--color-tier-red)",
   },
   font: {
     display: "var(--font-display)",
@@ -48,6 +52,7 @@ export const tokens = {
     subAction: "var(--rhythm-sub-action)",
     actionField: "var(--rhythm-action-field)",
     section: "var(--rhythm-section)",
+    headingBody: "var(--rhythm-heading-body)",
   },
 } as const;
 

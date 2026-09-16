@@ -1,0 +1,88 @@
+/*
+ * Shared grammar for the landing sections below the band: one container, one heading voice,
+ * one rhythm. More space above a heading (--rhythm-section) than below it (--rhythm-heading-body).
+ */
+
+.section {
+  max-inline-size: calc(var(--content-max) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding: var(--rhythm-section) var(--gutter) 0;
+  scroll-margin-block-start: calc(var(--space-7) - var(--rhythm-section));
+}
+
+.title {
+  max-inline-size: 15em;
+  font-family: var(--font-display);
+  font-size: var(--text-section);
+  font-weight: var(--weight-display);
+  line-height: 0.92;
+  letter-spacing: var(--tracking-display);
+  text-wrap: balance;
+  color: var(--color-ink);
+}
+
+.intro {
+  max-inline-size: 58ch;
+  margin-block-start: var(--rhythm-heading-body);
+  font-size: var(--text-small);
+  line-height: var(--leading-body);
+  text-wrap: pretty;
+}
+
+/* The unmissable synthetic-content marker, the same stamp the band's cards carry. */
+.example {
+  display: inline-block;
+  padding: 6px 9px 5px;
+  border: 1px solid rgb(247 241 230 / 0.5);
+  border-radius: 7px;
+  background: rgb(20 17 13 / 0.86);
+  color: #f7f1e6;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.textLink {
+  font-weight: var(--weight-mono-strong);
+  text-decoration: underline;
+}
+
+/* A pill-shaped action link in the display face. */
+.action {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-block-size: 52px;
+  padding: 0 24px;
+  border-radius: var(--radius-full);
+  background: var(--color-ink);
+  color: var(--color-ground);
+  font-family: var(--font-display);
+  font-size: 1.1875rem;
+  font-weight: var(--weight-title);
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.action:hover {
+  transform: translateY(-2px);
+}
+
+.action svg {
+  inline-size: 18px;
+  block-size: 18px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .action {
+    transition: none;
+  }
+
+  .action:hover {
+    transform: none;
+  }
+}

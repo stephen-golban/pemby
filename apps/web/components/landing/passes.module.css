@@ -1,0 +1,136 @@
+/* Passes teaser: a compact beat. Free on the ground, Pass on an ochre card with its prices. */
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--space-8);
+  align-items: center;
+}
+
+.link {
+  margin-block-start: var(--space-6);
+}
+
+.plans {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  align-items: stretch;
+}
+
+.free {
+  padding: 32px 40px 32px 32px;
+  margin-block: 28px;
+  border: 1.5px solid var(--color-line-strong);
+  border-inline-end: 0;
+  border-radius: 30px 0 0 30px;
+}
+
+.pass {
+  --card-ink: var(--color-on-ochre);
+
+  padding: 36px 32px 30px;
+  border-radius: 30px;
+  background: var(--color-ochre);
+  color: var(--card-ink);
+  box-shadow: var(--shadow-card);
+  rotate: 1.4deg;
+}
+
+.planName {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  font-family: var(--font-display);
+  font-size: var(--text-title);
+  font-weight: var(--weight-display);
+  line-height: 1;
+  letter-spacing: var(--tracking-title);
+}
+
+.freePrice {
+  font-size: 1.5rem;
+  font-weight: var(--weight-title);
+}
+
+.items {
+  display: grid;
+  gap: 10px;
+  margin-block-start: var(--space-5);
+  padding: 0;
+  list-style: none;
+  font-size: var(--text-small);
+  line-height: 1.4;
+}
+
+.items li {
+  padding-inline-start: 18px;
+  text-indent: -18px;
+}
+
+.items li::before {
+  content: "–";
+  display: inline-block;
+  inline-size: 18px;
+  text-indent: 0;
+}
+
+.prices {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-block-start: var(--space-6);
+  padding: 0;
+  list-style: none;
+}
+
+.price {
+  display: grid;
+  gap: 4px;
+  padding: 14px 14px 12px;
+  border: 1.5px solid currentColor;
+  border-radius: var(--radius-lg);
+}
+
+.price[data-highlighted] {
+  border-color: #14110d;
+  background: #14110d;
+  color: #f7f1e6;
+}
+
+.amount {
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  font-weight: var(--weight-display);
+  line-height: 1;
+  letter-spacing: var(--tracking-title);
+}
+
+.term {
+  font-size: var(--text-label);
+  line-height: 1.3;
+}
+
+@media (max-width: 1100px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 680px) {
+  .plans {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .free {
+    margin-block: 0 -12px;
+    padding-block-end: 44px;
+    border-inline-end: 1.5px solid var(--color-line-strong);
+    border-block-end: 0;
+    border-radius: 30px 30px 0 0;
+  }
+
+  .pass {
+    rotate: none;
+  }
+}

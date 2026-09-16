@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import type { DragEvent } from "react";
 import styles from "./drop-zone.module.css";
 
@@ -21,6 +21,8 @@ export function DropZone({ className }: { className?: string }) {
   const pendingHeading = useRef<HTMLParagraphElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
   const returning = useRef(false);
+  // The zone appears twice on the landing page (hero and close), so its ids must be unique.
+  const captionId = useId();
 
   useEffect(() => {
     if (mode === "pending") pendingHeading.current?.focus();
@@ -102,7 +104,7 @@ export function DropZone({ className }: { className?: string }) {
           ref={trigger}
           type="button"
           className={styles.trigger}
-          aria-describedby="drop-caption"
+          aria-describedby={captionId}
           onClick={() => setMode("pending")}
         >
           <svg className={styles.glyph} viewBox="0 0 32 32" aria-hidden="true" focusable="false">
@@ -116,7 +118,7 @@ export function DropZone({ className }: { className?: string }) {
             />
           </svg>
           <span className={styles.title}>{mode === "dragging" ? t("dragging") : t("title")}</span>
-          <span id="drop-caption" className={styles.caption}>
+          <span id={captionId} className={styles.caption}>
             {t("caption")}
           </span>
         </button>
