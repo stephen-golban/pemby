@@ -1,8 +1,8 @@
+import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
-import { getNamespaceTranslations } from "@/i18n/namespaces";
 import styles from "./pricing.module.css";
 
 const EMAIL = "hello@pemby.app";
@@ -17,7 +17,6 @@ const COMPARE_ROWS = [
   { key: "kits", free: "text", pass: "text" },
   { key: "green", free: "yes", pass: "yes" },
   { key: "yellow", free: "no", pass: "text" },
-  { key: "extension", free: "no", pass: "text" },
   { key: "guarantee", free: "no", pass: "yes" },
 ] as const satisfies readonly { key: string; free: Cell; pass: Cell }[];
 
@@ -100,7 +99,7 @@ function PlusIcon() {
 }
 
 export async function PricingPage() {
-  const t = await getNamespaceTranslations("Pricing");
+  const t = await getTranslations("Pricing");
   const email = (chunks: ReactNode) => (
     <a className={styles.inlineLink} href={`mailto:${EMAIL}`}>
       {chunks}

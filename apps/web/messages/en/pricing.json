@@ -1,9 +1,5 @@
 {
   "Pricing": {
-    "meta": {
-      "title": "Pricing",
-      "description": "Pemby is free to start. Passes of 1, 3 or 6 months add instant matches and unlimited application kits. One-time payment, no auto-renew, 14-day refunds."
-    },
     "hero": {
       "title": "Free to start. A pass when you want matches the moment they appear.",
       "lede": "Pemby is AI job-matching software. It finds jobs that can hire you from your country and sends them to you. You apply yourself.",
@@ -43,10 +39,6 @@
           "feature": "Yellow matches: likely hires from your country",
           "pass": "Optional, you turn it on"
         },
-        "extension": {
-          "feature": "Chrome extension that fills forms in your browser, you click submit",
-          "pass": "Included when it is released"
-        },
         "guarantee": {
           "feature": "No-match guarantee"
         }
@@ -63,28 +55,28 @@
         "name": "1 month",
         "price": "$5",
         "duration": "30 days of access",
-        "perMonth": "$5 per month"
+        "perMonth": "$5 once"
       },
       "threeMonths": {
         "badge": "Recommended",
         "name": "3 months",
         "price": "$10",
         "duration": "90 days of access",
-        "perMonth": "About $3.33 per month"
+        "perMonth": "$10 once, about $3.33 a month"
       },
       "sixMonths": {
         "name": "6 months",
         "price": "$18",
         "duration": "180 days of access",
-        "perMonth": "$3 per month"
+        "perMonth": "$18 once, $3 a month"
       },
       "includes": "Instant delivery, unlimited kits, yellow matches if you want them, and the no-match guarantee.",
       "oneTime": "One-time payment. No auto-renew."
     },
     "cta": {
       "buy": "Buy {duration}",
-      "notOpen": "Passes open with the beta",
-      "notOpenDetail": "Checkout is not open yet. Nobody is charged until it opens.",
+      "notOpen": "Not on sale yet",
+      "notOpenDetail": "Passes cannot be bought on this site yet. Nobody is charged.",
       "startFree": "Start free with your CV"
     },
     "how": {

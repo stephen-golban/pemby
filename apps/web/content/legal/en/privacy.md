@@ -115,7 +115,7 @@ We share personal data only with providers that help us run Pemby, and only what
 | Telegram                                           | Delivering bot messages, if you connect Telegram                         | Chat ID, username, message content                            |
 | Our payment provider, acting as merchant of record | Checkout, payment, tax, invoices and refunds                             | Checkout details, payment data, billing country               |
 
-The payment provider is the seller of your pass. It processes payment data under its own privacy policy as a separate controller. We will name the provider here once passes go on sale.
+The payment provider is the seller of your pass. It processes payment data under its own privacy policy as a separate controller. Payments are processed by Dodo Payments or Paddle, acting as merchant of record.
 
 We do not use analytics, session recording or advertising tools today. If we add one, we will update this policy before we do.
 

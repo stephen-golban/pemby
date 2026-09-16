@@ -1,6 +1,8 @@
 /* Shared top bar. Rhythm comes from the shared tokens. */
 
 .header {
+  position: relative;
+  z-index: 20;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -9,13 +11,21 @@
 }
 
 .wordmark {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 44px;
   font-size: var(--text-heading);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 41px;
 }
 
 .nav {
   display: flex;
   align-items: center;
-  gap: 41px;
 }
 
 .navList {
@@ -27,14 +37,16 @@
 }
 
 .navLink {
-  display: inline-block;
-  padding: 10px 0;
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 44px;
   font-family: var(--font-mono);
   font-size: var(--text-body);
   line-height: 1;
   letter-spacing: -0.01em;
   color: var(--color-ink);
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .navLink:hover {
@@ -43,4 +55,86 @@
 
 .toggle {
   margin-inline-end: -2px;
+}
+
+/* The disclosure only exists on narrow screens. */
+.menuButton {
+  display: none;
+}
+
+.menuIcon {
+  inline-size: 18px;
+  block-size: 18px;
+}
+
+@media (max-width: 719px) {
+  .actions {
+    gap: var(--space-2);
+  }
+
+  .menuButton {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-block-size: 44px;
+    padding: 0 16px;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-full);
+    background: transparent;
+    color: var(--color-ink);
+    font-family: var(--font-mono);
+    font-size: var(--text-body);
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color var(--duration-fast) var(--ease-out);
+  }
+
+  .menuButton:hover,
+  .menuButton[aria-expanded="true"] {
+    background: color-mix(in srgb, var(--color-ink) 8%, transparent);
+  }
+
+  .menuIcon path {
+    transition: d var(--duration-fast) var(--ease-out);
+  }
+
+  .menuButton[aria-expanded="true"] .menuIcon path {
+    d: path("M5 5l10 10M15 5L5 15");
+  }
+
+  /* The panel drops below the bar, inside the page gutters. */
+  .navList {
+    display: none;
+    position: absolute;
+    inset-block-start: calc(100% + var(--space-2));
+    inset-inline: var(--gutter);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    background: var(--color-ground);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .nav[data-open] .navList {
+    display: flex;
+  }
+
+  .navList li + li {
+    border-block-start: 1px solid var(--color-line);
+  }
+
+  .navLink {
+    display: flex;
+    min-block-size: 52px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menuButton,
+  .menuIcon path {
+    transition: none;
+  }
 }

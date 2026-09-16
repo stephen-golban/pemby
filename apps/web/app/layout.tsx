@@ -7,6 +7,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getTranslations } from "next-intl/server";
 import { Rethink_Sans, Source_Code_Pro } from "next/font/google";
 import type { ReactNode } from "react";
+import { SITE_URL } from "@/i18n/page-metadata";
 import { Providers } from "./providers";
 
 // Display grotesk: Rethink Sans, the owner's pick (2026-09-16) from a measured proof sheet against
@@ -27,10 +28,17 @@ const mono = Source_Code_Pro({
 });
 
 export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("Metadata");
+  const t = await getTranslations("Seo");
+  const siteName = t("siteName");
+  const title = t("pages.home.title");
+  const description = t("pages.home.description");
   return {
-    title: { default: t("siteName"), template: `%s · ${t("siteName")}` },
-    description: t("description"),
+    metadataBase: new URL(SITE_URL),
+    title: { default: title, template: `%s · ${siteName}` },
+    description,
+    applicationName: siteName,
+    openGraph: { title, description, siteName, type: "website", locale: "en_US" },
+    twitter: { card: "summary_large_image", title, description },
   };
 }
 

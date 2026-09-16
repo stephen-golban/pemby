@@ -18,17 +18,16 @@ Source copy for `/pricing`. Each line is `key`, then the English string. Keys fo
 - `compare.colFree`: Free
 - `compare.colPass`: Pass
 
-| key                       | Feature                                                             | Free                           | Pass                         |
-| ------------------------- | ------------------------------------------------------------------- | ------------------------------ | ---------------------------- |
-| `compare.rows.cvParse`    | CV reading and profile                                              | Yes                            | Yes                          |
-| `compare.rows.onboarding` | Onboarding in three steps                                           | Yes                            | Yes                          |
-| `compare.rows.brief`      | Your Brief, with near misses and what blocked them                  | Yes                            | Yes                          |
-| `compare.rows.delivery`   | Match delivery on Telegram, email and web push                      | 24 hours after the job appears | The moment it appears        |
-| `compare.rows.kits`       | Application kits: CV bullets, cover letter, screening answers       | 3 per month                    | Unlimited                    |
-| `compare.rows.green`      | Green matches: hires from your country                              | Yes                            | Yes                          |
-| `compare.rows.yellow`     | Yellow matches: likely hires from your country                      | No                             | Optional, you turn it on     |
-| `compare.rows.extension`  | Chrome extension that fills forms in your browser, you click submit | No                             | Included when it is released |
-| `compare.rows.guarantee`  | No-match guarantee                                                  | No                             | Yes                          |
+| key                       | Feature                                                       | Free                           | Pass                     |
+| ------------------------- | ------------------------------------------------------------- | ------------------------------ | ------------------------ |
+| `compare.rows.cvParse`    | CV reading and profile                                        | Yes                            | Yes                      |
+| `compare.rows.onboarding` | Onboarding in three steps                                     | Yes                            | Yes                      |
+| `compare.rows.brief`      | Your Brief, with near misses and what blocked them            | Yes                            | Yes                      |
+| `compare.rows.delivery`   | Match delivery on Telegram, email and web push                | 24 hours after the job appears | The moment it appears    |
+| `compare.rows.kits`       | Application kits: CV bullets, cover letter, screening answers | 3 per month                    | Unlimited                |
+| `compare.rows.green`      | Green matches: hires from your country                        | Yes                            | Yes                      |
+| `compare.rows.yellow`     | Yellow matches: likely hires from your country                | No                             | Optional, you turn it on |
+| `compare.rows.guarantee`  | No-match guarantee                                            | No                             | Yes                      |
 
 - `compare.freeNote`: Free matches arrive 24 hours late, and each late message says so.
 - `compare.quietNote`: Your quiet hours apply on Free and on a pass. Messages wait until quiet hours end.
@@ -45,7 +44,7 @@ Source copy for `/pricing`. Each line is `key`, then the English string. Keys fo
 - `passes.oneMonth.name`: 1 month
 - `passes.oneMonth.price`: $5
 - `passes.oneMonth.duration`: 30 days of access
-- `passes.oneMonth.perMonth`: $5 per month
+- `passes.oneMonth.perMonth`: $5 once
 
 ### 3 months, highlighted
 
@@ -55,14 +54,14 @@ Source copy for `/pricing`. Each line is `key`, then the English string. Keys fo
 - `passes.threeMonths.name`: 3 months
 - `passes.threeMonths.price`: $10
 - `passes.threeMonths.duration`: 90 days of access
-- `passes.threeMonths.perMonth`: About $3.33 per month
+- `passes.threeMonths.perMonth`: $10 once, about $3.33 a month
 
 ### 6 months
 
 - `passes.sixMonths.name`: 6 months
 - `passes.sixMonths.price`: $18
 - `passes.sixMonths.duration`: 180 days of access
-- `passes.sixMonths.perMonth`: $3 per month
+- `passes.sixMonths.perMonth`: $18 once, $3 a month
 
 ### Shared pass lines
 
@@ -75,8 +74,8 @@ Source copy for `/pricing`. Each line is `key`, then the English string. Keys fo
 
 > `cta.buy` is for phase 10, when checkout exists. Until then, render the button disabled with `cta.notOpen` and `cta.notOpenDetail` under it. The free button stays live and leads to the CV drop, or to the landing page stand-in until phase 06 wires the CV drop.
 
-- `cta.notOpen`: Passes open with the beta
-- `cta.notOpenDetail`: Checkout is not open yet. Nobody is charged until it opens.
+- `cta.notOpen`: Not on sale yet
+- `cta.notOpenDetail`: Passes cannot be bought on this site yet. Nobody is charged.
 - `cta.startFree`: Start free with your CV
 
 ## How passes work

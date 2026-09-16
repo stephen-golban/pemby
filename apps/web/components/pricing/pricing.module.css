@@ -63,8 +63,8 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-block-start: var(--space-4);
-  padding-block: 6px;
+  min-block-size: 44px;
+  margin-block-start: var(--space-3);
   font-weight: var(--weight-mono-strong);
   text-decoration: underline;
   text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);

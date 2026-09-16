@@ -1,5 +1,4 @@
-import type { Metadata } from "next";
-import { getLocale } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import type { ComponentPropsWithoutRef } from "react";
 import Markdown from "react-markdown";
 import type { Options } from "react-markdown";
@@ -8,18 +7,9 @@ import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
 import { EFFECTIVE_DATE } from "@/content/legal/meta";
 import type { LegalDocument } from "@/content/legal/meta";
-import { getNamespaceTranslations } from "@/i18n/namespaces";
 import styles from "./legal.module.css";
 import { loadLegalDocument } from "./markdown";
 import { rehypeLegal } from "./rehype-legal";
-
-export async function legalMetadata(doc: LegalDocument): Promise<Metadata> {
-  const t = await getNamespaceTranslations("Legal");
-  return {
-    title: t(`${doc}.title`),
-    description: t(`${doc}.description`),
-  };
-}
 
 function LinkIcon() {
   return (
@@ -43,7 +33,7 @@ function LinkIcon() {
 
 export async function LegalPage({ doc }: { doc: LegalDocument }) {
   const locale = await getLocale();
-  const t = await getNamespaceTranslations("Legal");
+  const t = await getTranslations("Legal");
   const { title, body, toc } = await loadLegalDocument(locale, doc);
   const anchorLabel = t("anchor");
 

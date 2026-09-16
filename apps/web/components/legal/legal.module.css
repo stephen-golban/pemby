@@ -95,6 +95,16 @@
   text-decoration: none;
 }
 
+/* Touch screens, and the inline disclosure on narrow ones, get 44px targets. */
+@media (pointer: coarse), (max-width: 1023px) {
+  .tocLink {
+    display: flex;
+    align-items: center;
+    min-block-size: 44px;
+    padding-block: 4px;
+  }
+}
+
 .tocLink:hover {
   color: var(--color-ink);
   text-decoration: underline;
@@ -359,5 +369,16 @@
   .anchor,
   .tocSummary::after {
     transition: none;
+  }
+}
+
+/* Section anchors on touch screens and narrow layouts: 44px targets that keep the line height. */
+@media (pointer: coarse), (max-width: 1023px) {
+  .anchor {
+    inline-size: 44px;
+    block-size: 44px;
+    margin-block: -6px;
+    margin-inline-start: 0;
+    vertical-align: -10px;
   }
 }

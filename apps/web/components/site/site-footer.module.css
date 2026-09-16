@@ -26,7 +26,10 @@
 }
 
 .wordmark {
+  display: inline-flex;
+  align-items: center;
   justify-self: start;
+  min-block-size: 44px;
   font-size: 3.5rem;
   color: var(--color-on-field);
 }
@@ -54,15 +57,17 @@
 
 .links {
   display: grid;
-  gap: 2px;
-  margin-block-start: var(--space-3);
+  gap: 0;
+  margin-block-start: var(--space-2);
   padding: 0;
   list-style: none;
 }
 
+/* 44px tap targets: the padding carries the height, the type stays small. */
 .link {
-  display: inline-block;
-  padding-block: 6px;
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 44px;
   font-size: var(--text-small);
   line-height: 1.4;
   color: var(--color-on-field);

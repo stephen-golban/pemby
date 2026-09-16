@@ -93,13 +93,23 @@
   --content-max: 1344px;
 
   /* Vertical rhythm (brief correction 1): the named gaps of the first viewport */
-  --rhythm-top: 40px; /* above the top bar */
-  --rhythm-lead: 150px; /* top bar to headline */
-  --rhythm-headline-sub: 56px; /* headline to sub-line */
-  --rhythm-sub-action: 80px; /* sub-line to primary action */
-  --rhythm-action-field: 130px; /* primary action to colour field */
-  --rhythm-section: 150px; /* between sections */
-  --rhythm-heading-body: 36px; /* section heading to its body: less than the space above it */
+  /* The named values hold at the comp's 1536x1024 frame and ease down on shorter or narrower
+     viewports, so the band still shows in the first viewport from 1280 to 1600 wide. */
+  --rhythm-top: clamp(16px, 2.6vw, 40px); /* above the top bar */
+  --rhythm-lead: clamp(64px, min(14.65vh, 10vw), 150px); /* top bar to headline */
+  --rhythm-headline-sub: clamp(28px, min(5.47vh, 3.65vw), 56px); /* headline to sub-line */
+  --rhythm-sub-action: clamp(40px, min(7.8vh, 5.2vw), 80px); /* sub-line to primary action */
+  --rhythm-action-field: clamp(
+    72px,
+    min(12.7vh, 8.5vw),
+    130px
+  ); /* primary action to colour field */
+  --rhythm-section: clamp(88px, 9.8vw, 150px); /* between sections */
+  --rhythm-heading-body: clamp(
+    24px,
+    2.35vw,
+    36px
+  ); /* section heading to its body: less than the space above it */
 
   /* Motion */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);

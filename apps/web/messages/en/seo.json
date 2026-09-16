@@ -1,0 +1,34 @@
+{
+  "Seo": {
+    "siteName": "Pemby",
+    "image": {
+      "alt": "Pemby. Jobs that can actually hire you. AI job-matching software; you apply yourself.",
+      "headline": "Jobs that can actually hire you.",
+      "line": "AI job-matching software. You apply yourself.",
+      "domain": "pemby.app",
+      "iconLetter": "P"
+    },
+    "pages": {
+      "home": {
+        "title": "Pemby: jobs that can actually hire you",
+        "description": "AI job-matching software. Pemby watches companies' own careers pages and tells you when a job appears that can hire you where you live. You apply yourself."
+      },
+      "pricing": {
+        "title": "Pricing",
+        "description": "Pemby is free to start. Passes of 1, 3 or 6 months add instant matches and unlimited application kits. One-time payment, no auto-renew, 14-day refunds."
+      },
+      "terms": {
+        "title": "Terms of service",
+        "description": "The agreement between you and the company that runs Pemby, AI job-matching software where you apply yourself: passes, refunds, acceptable use and your rights."
+      },
+      "privacy": {
+        "title": "Privacy policy",
+        "description": "What personal data Pemby collects, why, who handles it, how long we keep it, and how to export or delete it."
+      },
+      "refunds": {
+        "title": "Refund policy",
+        "description": "Full refunds within 14 days of buying a Pemby pass. Passes are one-time payments that never renew, so there is nothing to cancel."
+      }
+    }
+  }
+}

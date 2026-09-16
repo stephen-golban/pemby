@@ -10,7 +10,7 @@ import { getDisplayName } from "@/lib/profile";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("Metadata");
-  return { title: t("appTitle") };
+  return { title: t("appTitle"), robots: { index: false, follow: false } };
 }
 
 export default async function AppPage() {

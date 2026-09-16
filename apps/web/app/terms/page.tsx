@@ -1,8 +1,9 @@
-import type { Metadata } from "next";
-import { LegalPage, legalMetadata } from "@/components/legal/legal-page";
+import type { Metadata, ResolvingMetadata } from "next";
+import { LegalPage } from "@/components/legal/legal-page";
+import { pageMetadata } from "@/i18n/page-metadata";
 
-export function generateMetadata(): Promise<Metadata> {
-  return legalMetadata("terms");
+export function generateMetadata(_props: unknown, parent: ResolvingMetadata): Promise<Metadata> {
+  return pageMetadata("terms", parent);
 }
 
 export default function Page() {

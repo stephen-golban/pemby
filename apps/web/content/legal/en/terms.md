@@ -64,10 +64,9 @@ A pass adds:
 
 - instant delivery of matches;
 - unlimited application kits, subject to the fair use rules in section 13;
-- the option to also receive yellow matches, where the post suggests the employer likely hires from your country;
-- the Chrome extension, when it is released. The extension fills forms in your own browser, and you click submit.
+- the option to also receive yellow matches, where the post suggests the employer likely hires from your country.
 
-Features may change as Pemby grows. We will not remove a feature listed above from a pass you have already bought while that pass runs.
+We may add features to passes later. We will not remove a feature listed above from a pass you have already bought while that pass runs.
 
 ## 8. How passes work
 

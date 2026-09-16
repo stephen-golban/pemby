@@ -3,18 +3,6 @@
     "effective": "Effective {date}",
     "toc": "On this page",
     "anchor": "Link to this section",
-    "documents": "Legal documents",
-    "terms": {
-      "title": "Terms of service",
-      "description": "The agreement between you and the company that runs Pemby, AI job-matching software where you apply yourself: passes, refunds, acceptable use and your rights."
-    },
-    "privacy": {
-      "title": "Privacy policy",
-      "description": "What personal data Pemby collects, why, who handles it, how long we keep it, and how to export or delete it."
-    },
-    "refunds": {
-      "title": "Refund policy",
-      "description": "Full refunds within 14 days of buying a Pemby pass. Passes are one-time payments that never renew, so there is nothing to cancel."
-    }
+    "documents": "Legal documents"
   }
 }

@@ -8,7 +8,7 @@ import { appEnv } from "@/lib/env";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("Metadata");
-  return { title: t("signInTitle") };
+  return { title: t("signInTitle"), robots: { index: false, follow: false } };
 }
 
 export default async function SignInPage() {

@@ -1,3 +1,4 @@
+import type { Metadata, ResolvingMetadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { About } from "@/components/landing/about";
 import { Close } from "@/components/landing/close";
@@ -11,6 +12,11 @@ import { TelegramChannel } from "@/components/landing/telegram-channel";
 import { Trust } from "@/components/landing/trust";
 import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
+import { pageMetadata } from "@/i18n/page-metadata";
+
+export function generateMetadata(_props: unknown, parent: ResolvingMetadata): Promise<Metadata> {
+  return pageMetadata("home", parent);
+}
 
 export default async function HomePage() {
   const t = await getTranslations("Landing");

@@ -1,20 +1,10 @@
 {
   "Metadata": {
-    "siteName": "Pemby",
-    "description": "AI job-matching software; you apply yourself.",
-    "pricingTitle": "Pricing",
-    "termsTitle": "Terms of service",
-    "privacyTitle": "Privacy policy",
-    "refundsTitle": "Refund policy",
     "signInTitle": "Sign in",
     "signUpTitle": "Create an account",
     "appTitle": "Your Pemby",
     "forbiddenTitle": "Access restricted",
     "notFoundTitle": "Page not found"
-  },
-  "ComingSoon": {
-    "body": "This page is coming soon.",
-    "backHome": "Back to the home page"
   },
   "Auth": {
     "email": "Email",
@@ -30,7 +20,7 @@
     "signOut": "Sign out",
     "failed": "That didn't work. Check your details and try again.",
     "passwordHint": "At least 8 characters.",
-    "signUpClosed": "Pemby is not open for sign-ups yet.",
+    "signUpClosed": "Pemby does not take sign-ups on this site right now.",
     "signUpClosedHeading": "Sign-ups are closed"
   },
   "App": {
@@ -67,10 +57,10 @@
     "themeToggle": "Dark theme",
     "nav": {
       "label": "Main",
+      "menu": "Menu",
       "howItWorks": "How it works",
       "pricing": "Pricing",
-      "about": "About",
-      "telegram": "Telegram"
+      "about": "About"
     },
     "footer": {
       "label": "Site",
@@ -80,7 +70,7 @@
       "contactHeading": "Contact",
       "howItWorks": "How it works",
       "pricing": "Pricing",
-      "telegram": "Telegram channel",
+      "telegram": "Example matches on Telegram",
       "terms": "Terms",
       "privacy": "Privacy",
       "refunds": "Refunds",
@@ -92,14 +82,14 @@
   },
   "Landing": {
     "headline": "Jobs that can actually hire you.",
-    "subline": "Pemby watches companies’ own careers pages and tells you the moment one appears that can hire you where you live. No feed. You apply yourself.",
+    "subline": "Pemby watches companies’ own careers pages and tells you when one appears that can hire you where you live. No feed. You apply yourself.",
     "drop": {
       "title": "Drop your CV",
-      "caption": "No account. Anonymous. Deleted in 24 hours.",
+      "caption": "No account needed. Deleted after 24 hours unless you sign up.",
       "dragging": "Let go to drop it here",
-      "pendingTitle": "CV reading opens with the beta",
+      "pendingTitle": "CV reading is not switched on here yet",
       "pendingBody": "Nothing was uploaded, and your file was not read.",
-      "pendingLink": "Follow Pemby on Telegram to hear when it opens",
+      "pendingLink": "See example matches on Telegram",
       "pendingBack": "Back"
     },
     "band": {
@@ -125,7 +115,7 @@
       },
       "data": {
         "role": "Data Engineer",
-        "meta": "Pinecone – EOR employment",
+        "meta": "Tarnwick – EOR employment",
         "criterion1": "EOR available in Armenia",
         "criterion2": "European timezone overlap",
         "tag": "Hires from Armenia"
@@ -157,7 +147,7 @@
           "card3Value": "Backend, senior"
         },
         "deliver": {
-          "title": "Hear the moment a match appears",
+          "title": "Hear when a match appears",
           "body": "Only jobs that pass every check, one message per job, on Telegram, by email or as a web push. Quiet hours are yours to set.",
           "channel": "Telegram",
           "time": "09:14",
@@ -172,7 +162,7 @@
         },
         "apply": {
           "title": "Apply yourself, with a kit",
-          "body": "A cover letter, CV bullets matched to the job and answers to its screening questions, ready to paste in about a minute. The application is yours.",
+          "body": "Drafts of a cover letter, CV bullets for this job and screening answers, based on your own CV. You read, edit and send them.",
           "kit1": "Cover letter",
           "kit2": "CV bullets for this job",
           "kit3": "Screening answers",
@@ -300,8 +290,7 @@
         "items": {
           "one": "Every match the moment it appears",
           "two": "Unlimited application kits",
-          "three": "“Likely” matches, if you want them",
-          "four": "The Chrome extension, when it ships"
+          "three": "“Likely” matches, if you want them"
         }
       },
       "prices": {
@@ -325,17 +314,17 @@
     "about": {
       "title": "Built by an engineer who was underpaid by middlemen.",
       "body1": "Stephen Golban is a Moldovan software engineer with 7 years of experience. He was underpaid by middlemen.",
-      "body2": "Pemby is the software he wanted: it watches companies’ own careers pages for jobs that can hire you where you live, and then gets out of the way. You apply yourself.",
+      "body2": "Pemby watches companies’ own careers pages for jobs that can hire you where you live. You apply yourself.",
       "operator": "Pemby is operated by his company, <link>Syncra Studio</link>.",
       "code": "The code is public, under AGPL-3.0, <link>on GitHub</link>.",
       "signature": "Stephen Golban"
     },
     "telegram": {
-      "title": "Not ready to drop a CV? Watch the channel.",
-      "body": "The public Pemby channel posts green jobs 24 hours after they appear. No account, no CV.",
-      "link": "Open the channel",
+      "title": "Not ready to drop a CV? See example matches.",
+      "body": "The public Pemby channel posts example green matches 24 hours after they appear, so you can see what Pemby finds. No account, no CV.",
+      "link": "See examples on Telegram",
       "example": "Example",
-      "channel": "Pemby jobs",
+      "channel": "Pemby examples",
       "role": "Data Engineer",
       "company": "Saltmarsh Analytics",
       "hires": "Hires from Armenia, Georgia, Moldova",

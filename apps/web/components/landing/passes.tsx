@@ -3,7 +3,8 @@ import Link from "next/link";
 import styles from "./passes.module.css";
 import s from "./sections.module.css";
 
-const ITEMS = ["one", "two", "three", "four"] as const;
+const FREE_ITEMS = ["one", "two", "three", "four"] as const;
+const PASS_ITEMS = ["one", "two", "three"] as const;
 const PRICES = [
   { key: "one", highlighted: false },
   { key: "three", highlighted: true },
@@ -50,7 +51,7 @@ export async function Passes() {
               <span className={styles.freePrice}>{t("free.price")}</span>
             </h3>
             <ul className={styles.items}>
-              {ITEMS.map((item) => (
+              {FREE_ITEMS.map((item) => (
                 <li key={item}>{t(`free.items.${item}`)}</li>
               ))}
             </ul>
@@ -59,7 +60,7 @@ export async function Passes() {
           <div className={styles.pass}>
             <h3 className={styles.planName}>{t("pass.name")}</h3>
             <ul className={styles.items}>
-              {ITEMS.map((item) => (
+              {PASS_ITEMS.map((item) => (
                 <li key={item}>{t(`pass.items.${item}`)}</li>
               ))}
             </ul>

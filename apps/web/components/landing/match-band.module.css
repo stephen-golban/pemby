@@ -25,7 +25,7 @@
 .cards {
   display: flex;
   justify-content: center;
-  gap: 32px;
+  gap: clamp(20px, 2.1vw, 32px);
   padding: 0;
   list-style: none;
 }
@@ -33,8 +33,11 @@
 .card {
   --tilt: 0deg;
 
+  /* Every measurement inside a card is in container units, so the composition scales as one
+     piece: a card 280px wide is the 320px card at 7/8 scale, never a reflowed one. */
+  container-type: inline-size;
   flex: 0 1 320px;
-  min-inline-size: 280px;
+  min-inline-size: 272px;
   aspect-ratio: 320 / 424;
   transform: rotate(var(--tilt));
   border-radius: 30px;
@@ -63,7 +66,7 @@
   position: relative;
   block-size: 100%;
   overflow: hidden;
-  padding: var(--card-pad-top, 44px) 24px 0 32px;
+  padding: var(--card-pad-top, 13.75cqi) 7.5cqi 0 10cqi;
   border-radius: inherit;
   background: var(--card-fill);
   color: var(--card-ink);
@@ -76,7 +79,7 @@
 }
 
 .ochre {
-  --card-pad-top: 42px;
+  --card-pad-top: 13.125cqi;
   --card-fill: var(--color-ochre);
   --card-ink: var(--color-on-ochre);
   --card-chip: var(--color-ochre-chip);
@@ -94,7 +97,7 @@
 }
 
 .silence .cardInner {
-  padding: 70px 36px 0;
+  padding: 21.875cqi 11.25cqi 0;
   border: 1.5px solid var(--color-line-strong);
 }
 
@@ -102,7 +105,7 @@
   position: relative;
   z-index: 1;
   font-family: var(--font-display);
-  font-size: var(--text-title);
+  font-size: 10.625cqi;
   font-weight: var(--weight-title);
   line-height: var(--leading-title);
   letter-spacing: var(--tracking-title);
@@ -112,18 +115,19 @@
 .meta {
   position: relative;
   z-index: 1;
-  margin-block-start: 8px;
-  font-size: 0.875rem;
+  margin-block-start: 2.5cqi;
+  font-size: 4.375cqi;
   line-height: 1.4;
   letter-spacing: -0.02em;
+  white-space: nowrap;
 }
 
 .criteria {
   position: relative;
   z-index: 1;
   display: grid;
-  gap: 8px;
-  margin-block-start: 22px;
+  gap: 2.5cqi;
+  margin-block-start: 6.875cqi;
   padding: 0;
   list-style: none;
 }
@@ -131,15 +135,16 @@
 .criterion {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 0.875rem;
+  gap: 3.125cqi;
+  font-size: 4.375cqi;
   line-height: 1.35;
+  white-space: nowrap;
 }
 
 .tick {
   flex: none;
-  inline-size: 15px;
-  block-size: 15px;
+  inline-size: 4.7cqi;
+  block-size: 4.7cqi;
 }
 
 .tickBox {
@@ -150,10 +155,12 @@
   stroke: var(--card-fill);
 }
 
+/* The photo takes the lower part of the card and starts below the text block, so no role,
+   company or criterion row ever sits over the image. */
 .photo {
   position: absolute;
   inset: auto 0 0;
-  block-size: 58%;
+  block-size: 50%;
   mask-image: linear-gradient(to bottom, transparent 0%, #000 34%);
 }
 
@@ -163,17 +170,17 @@
 }
 
 .silenceBody {
-  margin-block-start: 14px;
+  margin-block-start: 4.375cqi;
   max-inline-size: 16em;
-  font-size: var(--text-small);
+  font-size: 4.6875cqi;
   line-height: 1.5;
 }
 
 .doodle {
   position: absolute;
-  inset-inline-start: 118px;
-  inset-block-start: 210px;
-  inline-size: 152px;
+  inset-inline-start: 36.875cqi;
+  inset-block-start: 65.625cqi;
+  inline-size: 47.5cqi;
   block-size: auto;
 }
 
@@ -202,21 +209,21 @@
 /* Bottom-left stamp stack: the EXAMPLE marker above the eligibility tag (brief correction 4). */
 .stamps {
   position: absolute;
-  inset-inline-start: 22px;
-  inset-block-end: var(--tag-bottom, 20px);
+  inset-inline-start: 6.875cqi;
+  inset-block-end: var(--tag-bottom, 6.25cqi);
   z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 6px;
+  gap: 1.875cqi;
 }
 
 .tag {
-  padding: 9px 12px 8px;
-  border-radius: 10px;
+  padding: 2.8cqi 3.75cqi 2.5cqi;
+  border-radius: 3.125cqi;
   background: var(--card-chip);
   color: var(--color-on-chip);
-  font-size: 0.875rem;
+  font-size: 4.375cqi;
   font-weight: var(--weight-mono-strong);
   line-height: 1;
   letter-spacing: 0.02em;
@@ -224,12 +231,12 @@
 }
 
 .example {
-  padding: 6px 9px 5px;
+  padding: 1.875cqi 2.8cqi 1.5cqi;
   border: 1px solid rgb(247 241 230 / 0.5);
-  border-radius: 7px;
+  border-radius: 2.2cqi;
   background: rgb(20 17 13 / 0.86);
   color: #f7f1e6;
-  font-size: 0.75rem;
+  font-size: max(0.75rem, 3.75cqi);
   font-weight: 600;
   line-height: 1;
   letter-spacing: var(--tracking-label);
