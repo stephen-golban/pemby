@@ -25,3 +25,6 @@
 
 # --- OS noise ---
 .DS_Store
+
+# Third-party reference screenshots (kept local, never published)
+docs/research/desertant/

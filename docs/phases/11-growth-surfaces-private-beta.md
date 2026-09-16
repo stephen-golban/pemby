@@ -25,7 +25,7 @@ bringing people in.
    previews and not the job's own detail page, don't add JobPosting structured data; confirm this against
    Google's current job posting guidelines first. Use normal page metadata instead. Only pages with
    enough real jobs get indexed; thin pages are `noindex`. Sitemap updates.
-2. **Public Telegram channel** per country (start with Moldova): the worker posts a small daily sample
+2. **Public Telegram channel**, one brand channel with country hashtags on each post (PLAN D27, amended 2026-09-16): the worker posts a small daily sample
    of green jobs that are at least 24h old, each linking to the bot for personal instant matches.
    Respect channel posting limits. Before shipping items 1 and 2, run a review of both surfaces
    against `docs/research/14-mor-acceptable-use.md`.
