@@ -43,7 +43,8 @@ fixed it minutes later and CI cancelled the broken run.
 - `pemby.app` attached to production `web` (port 8080). Cloudflare: `CNAME @ uugvmwfw.up.railway.app`
   DNS only, plus the `_railway-verify` TXT. Certificate issued within minutes.
 - `www`: owner chose a Cloudflare-side redirect (proxied `A www 192.0.2.1` plus a 301 redirect rule to the
-  apex). At close-out it returned Cloudflare 522 (rule not matching); the owner is fixing the rule.
+  apex, `https://www.pemby.app/*` to `https://pemby.app/${1}`, query string kept) and "Always Use HTTPS"
+  on. Verified: http and https www requests end at `https://pemby.app/<path>?<query>` (200).
 - Verified live: `/`, `/pricing`, `/terms`, `/privacy`, `/refunds` 200 with no auth; `/legal/terms` 308;
   `/app` 307 to `/sign-in`; `robots.txt` allows indexing with `Sitemap: https://pemby.app/sitemap.xml`;
   sitemap lists 5 `https://pemby.app` URLs; `POST /api/auth/sign-up/email` and anonymous sign-in return
@@ -52,8 +53,7 @@ fixed it minutes later and CI cancelled the broken run.
 - Hardening (owner-approved): production Postgres TCP proxy removed and `DATABASE_PUBLIC_URL` deleted
   from production `web`. Running a one-off script against production (for example `create-owner`) now
   needs a temporary TCP proxy again; remove it afterwards.
-- The temporary `web-production-df922.up.railway.app` domain was gone after the custom domain was
-  attached; the Railway audit log does not say when or why. Owner chose to leave it removed.
+- The temporary `*.up.railway.app` domain vanished around the attach (audit log silent); left removed.
 - Next: phase 05 (depends on 04, done on staging). Phase 06 needs 03 and 05.
 
 ## Production (created this phase)
