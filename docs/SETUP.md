@@ -26,7 +26,7 @@ What exists outside this repo, who owns it, and which environment variables it p
 | 6 | Resend | done | domain `pemby.app`, region eu-west-1; owner reports verified; DKIM, `send.` and DMARC records resolve | `RESEND_API_KEY` (different per env, sending access only) | Railway, per env |
 | 7 | GitHub + Google OAuth apps | **deferred** | owner decision 2026-09-16: after trying the product | `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET`, `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` (planned) | none |
 | 8 | Sentry, PostHog | **deferred** | same decision; add one at a time later | `NEXT_PUBLIC_SENTRY_DSN`, `SENTRY_AUTH_TOKEN`, `SENTRY_ORG`, `SENTRY_PROJECT`, `NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN`, `NEXT_PUBLIC_POSTHOG_HOST` (planned) | none |
-| 9 | Dodo + Paddle pre-clearance emails | **pending** | owner sends; drafts in `docs/phases/00-founder-setup.md`; needs SRL legal name, signer, sending address | none | none |
+| 9 | Dodo + Paddle pre-clearance | **sent 2026-09-16, awaiting replies** | owner, from `hello@syncra.studio`. Dodo: email to `compliance@dodopayments.com` (the route in Dodo's merchant acceptance policy), sent 2026-09-16. Paddle: no email route for prospective sellers; request submitted through the paddle.com/demo form on 2026-09-16 ("Launch a new product with payments built in", team "Just me"); the pre-clearance text goes in the reply to Paddle's sales email | none | none |
 | 10 | Accountant call (IT Park, CAEM 58.29 / 63.11) | **pending** | owner; questions at the end of `docs/research/11-it-park-eligibility.md` | none | none |
 | 11 | rabota.md / DOU partnership emails | **pending** (optional) | owner | none | none |
 
@@ -63,4 +63,4 @@ service). Private config: `PRIVATE_CONFIG_TOKEN` (fine-grained, Contents read-on
 `stephen-golban/pemby-private`, expires in about a year), `PRIVATE_CONFIG_REPO`, `PRIVATE_CONFIG_REF`.
 Better Auth routes live under `/api/auth/*`; OAuth callbacks will be `/api/auth/callback/<provider>`.
 
-**Payment provider approvals**: none yet. Phase 10 needs one recorded here before passes go live.
+**Payment provider approvals**: none yet. Pre-clearance sent to Dodo and Paddle on 2026-09-16 (row 9); applications wait until pemby.app is live with pricing, terms, privacy and refund pages. Phase 10 needs one approval recorded here before passes go live.
