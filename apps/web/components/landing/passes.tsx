@@ -3,7 +3,7 @@ import Link from "next/link";
 import styles from "./passes.module.css";
 import s from "./sections.module.css";
 
-const FREE_ITEMS = ["one", "two", "three", "four"] as const;
+const FREE_ITEMS = ["one", "two", "three"] as const;
 const PASS_ITEMS = ["one", "two", "three"] as const;
 const PRICES = [
   { key: "one", highlighted: false },

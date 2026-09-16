@@ -9,7 +9,7 @@ Source copy for `/pricing`. Each line is `key`, then the English string. Keys fo
 - `hero.eyebrow`: Pricing
 - `hero.title`: Free to start. A pass when you want matches the moment they appear.
 - `hero.lede`: Pemby is AI job-matching software. It finds jobs that can hire you from your country and sends them to you. You apply yourself.
-- `hero.noteOneTime`: One-time payment. No auto-renew. No subscription to cancel.
+- `hero.noteOneTime`: Free costs nothing. A pass is a one-time payment: no auto-renew, no subscription to cancel.
 
 ## Free vs Pass
 

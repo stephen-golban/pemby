@@ -152,11 +152,16 @@
   text-wrap: pretty;
 }
 
+/* The re-check log is the one small artefact below the band that keeps the world's devices:
+   a slight tilt, a deep diffuse shadow, and a loose hand-drawn underline under the closure. */
 .log {
   margin: 0;
   padding: 24px 28px 10px;
   border: 1.5px solid var(--color-line-strong);
   border-radius: var(--radius-xl);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+  rotate: -1deg;
 }
 
 .logList {
@@ -177,11 +182,20 @@
 }
 
 .logState {
+  position: relative;
+  justify-self: start;
   font-weight: var(--weight-mono-strong);
 }
 
-.logRow[data-closed] .logState {
+.underline {
+  position: absolute;
+  inset-block-start: calc(100% - 1px);
+  inset-inline-start: -3px;
+  inline-size: 62px;
+  block-size: 13px;
   color: var(--color-tier-red);
+  rotate: -2deg;
+  pointer-events: none;
 }
 
 @media (max-width: 1100px) {

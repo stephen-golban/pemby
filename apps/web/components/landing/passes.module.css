@@ -2,7 +2,7 @@
 
 .layout {
   display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
   gap: var(--space-8);
   align-items: center;
 }
@@ -13,12 +13,12 @@
 
 .plans {
   display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  grid-template-columns: minmax(0, 9fr) minmax(0, 10fr);
   align-items: stretch;
 }
 
 .free {
-  padding: 32px 40px 32px 32px;
+  padding: 32px 20px 32px 28px;
   margin-block: 28px;
   border: 1.5px solid var(--color-line-strong);
   border-inline-end: 0;
@@ -28,7 +28,7 @@
 .pass {
   --card-ink: var(--color-on-ochre);
 
-  padding: 36px 32px 30px;
+  padding: 36px 28px 30px;
   border-radius: 30px;
   background: var(--color-ochre);
   color: var(--card-ink);

@@ -59,6 +59,7 @@ export async function HowItWorks() {
                   {t("steps.drop.fileState")}
                 </span>
               </div>
+              {example}
             </div>
           </li>
 

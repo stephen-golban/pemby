@@ -132,6 +132,7 @@
   font-size: var(--text-label);
   letter-spacing: 0.02em;
   color: var(--color-ink-soft);
+  text-wrap: balance;
 }
 
 /* Free vs Pass */

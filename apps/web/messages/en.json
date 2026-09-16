@@ -279,10 +279,9 @@
         "name": "Free",
         "price": "$0",
         "items": {
-          "one": "CV reading and onboarding",
-          "two": "Your Brief, with near misses",
-          "three": "Every match, 24 hours late",
-          "four": "3 application kits a month"
+          "one": "CV reading, Brief, near misses",
+          "two": "Every match, 24 hours late",
+          "three": "3 application kits a month"
         }
       },
       "pass": {
@@ -290,7 +289,7 @@
         "items": {
           "one": "Every match the moment it appears",
           "two": "Unlimited application kits",
-          "three": "“Likely” matches, if you want them"
+          "three": "“Likely” matches if you want them"
         }
       },
       "prices": {

@@ -1,0 +1,985 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-16T21:10:29.348Z",
+  "title": "Design System: Pemby",
+  "extensions": {
+    "colorMeta": {
+      "ground": {
+        "role": "neutral",
+        "displayName": "Warm Ground",
+        "canonical": "#faf6f0",
+        "oklch": "oklch(97.5% 0.009 78.3)",
+        "tonalRamp": [
+          "oklch(15% 0.009 78.3)",
+          "oklch(26% 0.009 78.3)",
+          "oklch(38% 0.009 78.3)",
+          "oklch(50% 0.009 78.3)",
+          "oklch(62% 0.009 78.3)",
+          "oklch(74% 0.009 78.3)",
+          "oklch(85% 0.009 78.3)",
+          "oklch(95% 0.009 78.3)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Raised Cream",
+        "canonical": "#f4eee4",
+        "oklch": "oklch(95.1% 0.015 80.7)",
+        "tonalRamp": [
+          "oklch(15% 0.015 80.7)",
+          "oklch(26% 0.015 80.7)",
+          "oklch(38% 0.015 80.7)",
+          "oklch(50% 0.015 80.7)",
+          "oklch(62% 0.015 80.7)",
+          "oklch(74% 0.015 80.7)",
+          "oklch(85% 0.015 80.7)",
+          "oklch(95% 0.015 80.7)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Warm Ink",
+        "canonical": "#14110d",
+        "oklch": "oklch(18.0% 0.009 75.0)",
+        "tonalRamp": [
+          "oklch(15% 0.009 75.0)",
+          "oklch(26% 0.009 75.0)",
+          "oklch(38% 0.009 75.0)",
+          "oklch(50% 0.009 75.0)",
+          "oklch(62% 0.009 75.0)",
+          "oklch(74% 0.009 75.0)",
+          "oklch(85% 0.009 75.0)",
+          "oklch(95% 0.009 75.0)"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Soft Ink",
+        "canonical": "#3b342b",
+        "oklch": "oklch(32.9% 0.018 74.0)",
+        "tonalRamp": [
+          "oklch(15% 0.018 74.0)",
+          "oklch(26% 0.018 74.0)",
+          "oklch(38% 0.018 74.0)",
+          "oklch(50% 0.018 74.0)",
+          "oklch(62% 0.018 74.0)",
+          "oklch(74% 0.018 74.0)",
+          "oklch(85% 0.018 74.0)",
+          "oklch(95% 0.018 74.0)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "rgb(20 17 13 / 0.28)"
+      },
+      "line-strong": {
+        "role": "neutral",
+        "displayName": "Strong Line",
+        "canonical": "#14110d",
+        "oklch": "oklch(18.0% 0.009 75.0)",
+        "tonalRamp": [
+          "oklch(15% 0.009 75.0)",
+          "oklch(26% 0.009 75.0)",
+          "oklch(38% 0.009 75.0)",
+          "oklch(50% 0.009 75.0)",
+          "oklch(62% 0.009 75.0)",
+          "oklch(74% 0.009 75.0)",
+          "oklch(85% 0.009 75.0)",
+          "oklch(95% 0.009 75.0)"
+        ]
+      },
+      "focus": {
+        "role": "neutral",
+        "displayName": "Focus Ring",
+        "canonical": "#2c4a5e",
+        "oklch": "oklch(39.5% 0.049 238.9)",
+        "tonalRamp": [
+          "oklch(15% 0.049 238.9)",
+          "oklch(26% 0.049 238.9)",
+          "oklch(38% 0.049 238.9)",
+          "oklch(50% 0.049 238.9)",
+          "oklch(62% 0.049 238.9)",
+          "oklch(74% 0.049 238.9)",
+          "oklch(85% 0.049 238.9)",
+          "oklch(95% 0.049 238.9)"
+        ]
+      },
+      "selection": {
+        "role": "neutral",
+        "displayName": "Selection",
+        "canonical": "#efcf8f",
+        "oklch": "oklch(86.7% 0.089 84.1)",
+        "tonalRamp": [
+          "oklch(15% 0.089 84.1)",
+          "oklch(26% 0.089 84.1)",
+          "oklch(38% 0.089 84.1)",
+          "oklch(50% 0.089 84.1)",
+          "oklch(62% 0.089 84.1)",
+          "oklch(74% 0.089 84.1)",
+          "oklch(85% 0.089 84.1)",
+          "oklch(95% 0.089 84.1)"
+        ]
+      },
+      "field": {
+        "role": "primary",
+        "displayName": "Deep Olive Field",
+        "canonical": "#2b3323",
+        "oklch": "oklch(30.8% 0.030 129.6)",
+        "tonalRamp": [
+          "oklch(15% 0.030 129.6)",
+          "oklch(26% 0.030 129.6)",
+          "oklch(38% 0.030 129.6)",
+          "oklch(50% 0.030 129.6)",
+          "oklch(62% 0.030 129.6)",
+          "oklch(74% 0.030 129.6)",
+          "oklch(85% 0.030 129.6)",
+          "oklch(95% 0.030 129.6)"
+        ]
+      },
+      "on-field": {
+        "role": "neutral",
+        "displayName": "Cream on Field",
+        "canonical": "#f7f1e6",
+        "oklch": "oklch(96.0% 0.016 82.8)",
+        "tonalRamp": [
+          "oklch(15% 0.016 82.8)",
+          "oklch(26% 0.016 82.8)",
+          "oklch(38% 0.016 82.8)",
+          "oklch(50% 0.016 82.8)",
+          "oklch(62% 0.016 82.8)",
+          "oklch(74% 0.016 82.8)",
+          "oklch(85% 0.016 82.8)",
+          "oklch(95% 0.016 82.8)"
+        ]
+      },
+      "plum": {
+        "role": "secondary",
+        "displayName": "Muted Plum",
+        "canonical": "#875a70",
+        "oklch": "oklch(52.3% 0.066 348.9)",
+        "tonalRamp": [
+          "oklch(15% 0.066 348.9)",
+          "oklch(26% 0.066 348.9)",
+          "oklch(38% 0.066 348.9)",
+          "oklch(50% 0.066 348.9)",
+          "oklch(62% 0.066 348.9)",
+          "oklch(74% 0.066 348.9)",
+          "oklch(85% 0.066 348.9)",
+          "oklch(95% 0.066 348.9)"
+        ]
+      },
+      "on-plum": {
+        "role": "secondary",
+        "displayName": "Cream on Plum",
+        "canonical": "#f7f1e6",
+        "oklch": "oklch(96.0% 0.016 82.8)",
+        "tonalRamp": [
+          "oklch(15% 0.016 82.8)",
+          "oklch(26% 0.016 82.8)",
+          "oklch(38% 0.016 82.8)",
+          "oklch(50% 0.016 82.8)",
+          "oklch(62% 0.016 82.8)",
+          "oklch(74% 0.016 82.8)",
+          "oklch(85% 0.016 82.8)",
+          "oklch(95% 0.016 82.8)"
+        ]
+      },
+      "plum-chip": {
+        "role": "secondary",
+        "displayName": "Plum Chip",
+        "canonical": "#d4b3c3",
+        "oklch": "oklch(80.0% 0.043 347.3)",
+        "tonalRamp": [
+          "oklch(15% 0.043 347.3)",
+          "oklch(26% 0.043 347.3)",
+          "oklch(38% 0.043 347.3)",
+          "oklch(50% 0.043 347.3)",
+          "oklch(62% 0.043 347.3)",
+          "oklch(74% 0.043 347.3)",
+          "oklch(85% 0.043 347.3)",
+          "oklch(95% 0.043 347.3)"
+        ]
+      },
+      "ochre": {
+        "role": "secondary",
+        "displayName": "Warm Ochre",
+        "canonical": "#d6a24a",
+        "oklch": "oklch(74.4% 0.121 78.1)",
+        "tonalRamp": [
+          "oklch(15% 0.120 78.1)",
+          "oklch(26% 0.120 78.1)",
+          "oklch(38% 0.120 78.1)",
+          "oklch(50% 0.120 78.1)",
+          "oklch(62% 0.120 78.1)",
+          "oklch(74% 0.120 78.1)",
+          "oklch(85% 0.120 78.1)",
+          "oklch(95% 0.120 78.1)"
+        ]
+      },
+      "on-ochre": {
+        "role": "secondary",
+        "displayName": "Ink on Ochre",
+        "canonical": "#14110d",
+        "oklch": "oklch(18.0% 0.009 75.0)",
+        "tonalRamp": [
+          "oklch(15% 0.009 75.0)",
+          "oklch(26% 0.009 75.0)",
+          "oklch(38% 0.009 75.0)",
+          "oklch(50% 0.009 75.0)",
+          "oklch(62% 0.009 75.0)",
+          "oklch(74% 0.009 75.0)",
+          "oklch(85% 0.009 75.0)",
+          "oklch(95% 0.009 75.0)"
+        ]
+      },
+      "ochre-chip": {
+        "role": "secondary",
+        "displayName": "Ochre Chip",
+        "canonical": "#ebc07c",
+        "oklch": "oklch(83.1% 0.099 78.2)",
+        "tonalRamp": [
+          "oklch(15% 0.099 78.2)",
+          "oklch(26% 0.099 78.2)",
+          "oklch(38% 0.099 78.2)",
+          "oklch(50% 0.099 78.2)",
+          "oklch(62% 0.099 78.2)",
+          "oklch(74% 0.099 78.2)",
+          "oklch(85% 0.099 78.2)",
+          "oklch(95% 0.099 78.2)"
+        ]
+      },
+      "inkblue": {
+        "role": "secondary",
+        "displayName": "Ink Blue",
+        "canonical": "#2c4a5e",
+        "oklch": "oklch(39.5% 0.049 238.9)",
+        "tonalRamp": [
+          "oklch(15% 0.049 238.9)",
+          "oklch(26% 0.049 238.9)",
+          "oklch(38% 0.049 238.9)",
+          "oklch(50% 0.049 238.9)",
+          "oklch(62% 0.049 238.9)",
+          "oklch(74% 0.049 238.9)",
+          "oklch(85% 0.049 238.9)",
+          "oklch(95% 0.049 238.9)"
+        ]
+      },
+      "on-inkblue": {
+        "role": "secondary",
+        "displayName": "Cream on Ink Blue",
+        "canonical": "#f7f1e6",
+        "oklch": "oklch(96.0% 0.016 82.8)",
+        "tonalRamp": [
+          "oklch(15% 0.016 82.8)",
+          "oklch(26% 0.016 82.8)",
+          "oklch(38% 0.016 82.8)",
+          "oklch(50% 0.016 82.8)",
+          "oklch(62% 0.016 82.8)",
+          "oklch(74% 0.016 82.8)",
+          "oklch(85% 0.016 82.8)",
+          "oklch(95% 0.016 82.8)"
+        ]
+      },
+      "inkblue-chip": {
+        "role": "secondary",
+        "displayName": "Ink Blue Chip",
+        "canonical": "#bfd4e6",
+        "oklch": "oklch(86.0% 0.034 244.0)",
+        "tonalRamp": [
+          "oklch(15% 0.034 244.0)",
+          "oklch(26% 0.034 244.0)",
+          "oklch(38% 0.034 244.0)",
+          "oklch(50% 0.034 244.0)",
+          "oklch(62% 0.034 244.0)",
+          "oklch(74% 0.034 244.0)",
+          "oklch(85% 0.034 244.0)",
+          "oklch(95% 0.034 244.0)"
+        ]
+      },
+      "paper-card": {
+        "role": "neutral",
+        "displayName": "Paper Card",
+        "canonical": "#fbf8f2",
+        "oklch": "oklch(98.0% 0.009 84.6)",
+        "tonalRamp": [
+          "oklch(15% 0.009 84.6)",
+          "oklch(26% 0.009 84.6)",
+          "oklch(38% 0.009 84.6)",
+          "oklch(50% 0.009 84.6)",
+          "oklch(62% 0.009 84.6)",
+          "oklch(74% 0.009 84.6)",
+          "oklch(85% 0.009 84.6)",
+          "oklch(95% 0.009 84.6)"
+        ]
+      },
+      "on-chip": {
+        "role": "neutral",
+        "displayName": "Ink on Chip",
+        "canonical": "#14110d",
+        "oklch": "oklch(18.0% 0.009 75.0)",
+        "tonalRamp": [
+          "oklch(15% 0.009 75.0)",
+          "oklch(26% 0.009 75.0)",
+          "oklch(38% 0.009 75.0)",
+          "oklch(50% 0.009 75.0)",
+          "oklch(62% 0.009 75.0)",
+          "oklch(74% 0.009 75.0)",
+          "oklch(85% 0.009 75.0)",
+          "oklch(95% 0.009 75.0)"
+        ]
+      },
+      "tier-green": {
+        "role": "tertiary",
+        "displayName": "Tier Green",
+        "canonical": "#56733c",
+        "oklch": "oklch(51.9% 0.087 131.6)",
+        "tonalRamp": [
+          "oklch(15% 0.087 131.6)",
+          "oklch(26% 0.087 131.6)",
+          "oklch(38% 0.087 131.6)",
+          "oklch(50% 0.087 131.6)",
+          "oklch(62% 0.087 131.6)",
+          "oklch(74% 0.087 131.6)",
+          "oklch(85% 0.087 131.6)",
+          "oklch(95% 0.087 131.6)"
+        ]
+      },
+      "tier-yellow": {
+        "role": "tertiary",
+        "displayName": "Tier Yellow",
+        "canonical": "#d1a432",
+        "oklch": "oklch(74.1% 0.135 86.0)",
+        "tonalRamp": [
+          "oklch(15% 0.120 86.0)",
+          "oklch(26% 0.120 86.0)",
+          "oklch(38% 0.120 86.0)",
+          "oklch(50% 0.120 86.0)",
+          "oklch(62% 0.120 86.0)",
+          "oklch(74% 0.120 86.0)",
+          "oklch(85% 0.120 86.0)",
+          "oklch(95% 0.120 86.0)"
+        ]
+      },
+      "tier-white": {
+        "role": "tertiary",
+        "displayName": "Tier White",
+        "canonical": "#fbf8f2",
+        "oklch": "oklch(98.0% 0.009 84.6)",
+        "tonalRamp": [
+          "oklch(15% 0.009 84.6)",
+          "oklch(26% 0.009 84.6)",
+          "oklch(38% 0.009 84.6)",
+          "oklch(50% 0.009 84.6)",
+          "oklch(62% 0.009 84.6)",
+          "oklch(74% 0.009 84.6)",
+          "oklch(85% 0.009 84.6)",
+          "oklch(95% 0.009 84.6)"
+        ]
+      },
+      "tier-red": {
+        "role": "tertiary",
+        "displayName": "Tier Red",
+        "canonical": "#a54a3b",
+        "oklch": "oklch(52.3% 0.124 31.2)",
+        "tonalRamp": [
+          "oklch(15% 0.120 31.2)",
+          "oklch(26% 0.120 31.2)",
+          "oklch(38% 0.120 31.2)",
+          "oklch(50% 0.120 31.2)",
+          "oklch(62% 0.120 31.2)",
+          "oklch(74% 0.120 31.2)",
+          "oklch(85% 0.120 31.2)",
+          "oklch(95% 0.120 31.2)"
+        ]
+      },
+      "ground-dark": {
+        "role": "neutral",
+        "displayName": "Warm Ground (dark)",
+        "canonical": "#191510",
+        "oklch": "oklch(19.9% 0.012 73.2)",
+        "tonalRamp": [
+          "oklch(15% 0.012 73.2)",
+          "oklch(26% 0.012 73.2)",
+          "oklch(38% 0.012 73.2)",
+          "oklch(50% 0.012 73.2)",
+          "oklch(62% 0.012 73.2)",
+          "oklch(74% 0.012 73.2)",
+          "oklch(85% 0.012 73.2)",
+          "oklch(95% 0.012 73.2)"
+        ]
+      },
+      "surface-dark": {
+        "role": "neutral",
+        "displayName": "Raised Cream (dark)",
+        "canonical": "#221d17",
+        "oklch": "oklch(23.4% 0.014 72.2)",
+        "tonalRamp": [
+          "oklch(15% 0.014 72.2)",
+          "oklch(26% 0.014 72.2)",
+          "oklch(38% 0.014 72.2)",
+          "oklch(50% 0.014 72.2)",
+          "oklch(62% 0.014 72.2)",
+          "oklch(74% 0.014 72.2)",
+          "oklch(85% 0.014 72.2)",
+          "oklch(95% 0.014 72.2)"
+        ]
+      },
+      "ink-dark": {
+        "role": "neutral",
+        "displayName": "Warm Ink (dark)",
+        "canonical": "#f7f1e6",
+        "oklch": "oklch(96.0% 0.016 82.8)",
+        "tonalRamp": [
+          "oklch(15% 0.016 82.8)",
+          "oklch(26% 0.016 82.8)",
+          "oklch(38% 0.016 82.8)",
+          "oklch(50% 0.016 82.8)",
+          "oklch(62% 0.016 82.8)",
+          "oklch(74% 0.016 82.8)",
+          "oklch(85% 0.016 82.8)",
+          "oklch(95% 0.016 82.8)"
+        ]
+      },
+      "ink-soft-dark": {
+        "role": "neutral",
+        "displayName": "Soft Ink (dark)",
+        "canonical": "#ddd4c6",
+        "oklch": "oklch(87.3% 0.021 79.1)",
+        "tonalRamp": [
+          "oklch(15% 0.021 79.1)",
+          "oklch(26% 0.021 79.1)",
+          "oklch(38% 0.021 79.1)",
+          "oklch(50% 0.021 79.1)",
+          "oklch(62% 0.021 79.1)",
+          "oklch(74% 0.021 79.1)",
+          "oklch(85% 0.021 79.1)",
+          "oklch(95% 0.021 79.1)"
+        ]
+      },
+      "line-dark": {
+        "role": "neutral",
+        "displayName": "Hairline (dark)",
+        "canonical": "rgb(247 241 230 / 0.34)"
+      },
+      "line-strong-dark": {
+        "role": "neutral",
+        "displayName": "Strong Line (dark)",
+        "canonical": "#f7f1e6",
+        "oklch": "oklch(96.0% 0.016 82.8)",
+        "tonalRamp": [
+          "oklch(15% 0.016 82.8)",
+          "oklch(26% 0.016 82.8)",
+          "oklch(38% 0.016 82.8)",
+          "oklch(50% 0.016 82.8)",
+          "oklch(62% 0.016 82.8)",
+          "oklch(74% 0.016 82.8)",
+          "oklch(85% 0.016 82.8)",
+          "oklch(95% 0.016 82.8)"
+        ]
+      },
+      "focus-dark": {
+        "role": "neutral",
+        "displayName": "Focus Ring (dark)",
+        "canonical": "#efcf8f",
+        "oklch": "oklch(86.7% 0.089 84.1)",
+        "tonalRamp": [
+          "oklch(15% 0.089 84.1)",
+          "oklch(26% 0.089 84.1)",
+          "oklch(38% 0.089 84.1)",
+          "oklch(50% 0.089 84.1)",
+          "oklch(62% 0.089 84.1)",
+          "oklch(74% 0.089 84.1)",
+          "oklch(85% 0.089 84.1)",
+          "oklch(95% 0.089 84.1)"
+        ]
+      },
+      "selection-dark": {
+        "role": "neutral",
+        "displayName": "Selection (dark)",
+        "canonical": "#6a4658",
+        "oklch": "oklch(44.1% 0.056 348.2)",
+        "tonalRamp": [
+          "oklch(15% 0.056 348.2)",
+          "oklch(26% 0.056 348.2)",
+          "oklch(38% 0.056 348.2)",
+          "oklch(50% 0.056 348.2)",
+          "oklch(62% 0.056 348.2)",
+          "oklch(74% 0.056 348.2)",
+          "oklch(85% 0.056 348.2)",
+          "oklch(95% 0.056 348.2)"
+        ]
+      },
+      "field-dark": {
+        "role": "primary",
+        "displayName": "Deep Olive Field (dark)",
+        "canonical": "#272d20",
+        "oklch": "oklch(28.7% 0.024 128.0)",
+        "tonalRamp": [
+          "oklch(15% 0.024 128.0)",
+          "oklch(26% 0.024 128.0)",
+          "oklch(38% 0.024 128.0)",
+          "oklch(50% 0.024 128.0)",
+          "oklch(62% 0.024 128.0)",
+          "oklch(74% 0.024 128.0)",
+          "oklch(85% 0.024 128.0)",
+          "oklch(95% 0.024 128.0)"
+        ]
+      },
+      "plum-dark": {
+        "role": "secondary",
+        "displayName": "Muted Plum (dark)",
+        "canonical": "#6a4658",
+        "oklch": "oklch(44.1% 0.056 348.2)",
+        "tonalRamp": [
+          "oklch(15% 0.056 348.2)",
+          "oklch(26% 0.056 348.2)",
+          "oklch(38% 0.056 348.2)",
+          "oklch(50% 0.056 348.2)",
+          "oklch(62% 0.056 348.2)",
+          "oklch(74% 0.056 348.2)",
+          "oklch(85% 0.056 348.2)",
+          "oklch(95% 0.056 348.2)"
+        ]
+      },
+      "plum-chip-dark": {
+        "role": "secondary",
+        "displayName": "Plum Chip (dark)",
+        "canonical": "#3f2a35",
+        "oklch": "oklch(31.4% 0.036 346.6)",
+        "tonalRamp": [
+          "oklch(15% 0.036 346.6)",
+          "oklch(26% 0.036 346.6)",
+          "oklch(38% 0.036 346.6)",
+          "oklch(50% 0.036 346.6)",
+          "oklch(62% 0.036 346.6)",
+          "oklch(74% 0.036 346.6)",
+          "oklch(85% 0.036 346.6)",
+          "oklch(95% 0.036 346.6)"
+        ]
+      },
+      "ochre-dark": {
+        "role": "secondary",
+        "displayName": "Warm Ochre (dark)",
+        "canonical": "#b98a3a",
+        "oklch": "oklch(66.4% 0.112 77.8)",
+        "tonalRamp": [
+          "oklch(15% 0.112 77.8)",
+          "oklch(26% 0.112 77.8)",
+          "oklch(38% 0.112 77.8)",
+          "oklch(50% 0.112 77.8)",
+          "oklch(62% 0.112 77.8)",
+          "oklch(74% 0.112 77.8)",
+          "oklch(85% 0.112 77.8)",
+          "oklch(95% 0.112 77.8)"
+        ]
+      },
+      "ochre-chip-dark": {
+        "role": "secondary",
+        "displayName": "Ochre Chip (dark)",
+        "canonical": "#5a4219",
+        "oklch": "oklch(39.7% 0.066 78.1)",
+        "tonalRamp": [
+          "oklch(15% 0.066 78.1)",
+          "oklch(26% 0.066 78.1)",
+          "oklch(38% 0.066 78.1)",
+          "oklch(50% 0.066 78.1)",
+          "oklch(62% 0.066 78.1)",
+          "oklch(74% 0.066 78.1)",
+          "oklch(85% 0.066 78.1)",
+          "oklch(95% 0.066 78.1)"
+        ]
+      },
+      "inkblue-dark": {
+        "role": "secondary",
+        "displayName": "Ink Blue (dark)",
+        "canonical": "#22394a",
+        "oklch": "oklch(33.3% 0.042 241.6)",
+        "tonalRamp": [
+          "oklch(15% 0.042 241.6)",
+          "oklch(26% 0.042 241.6)",
+          "oklch(38% 0.042 241.6)",
+          "oklch(50% 0.042 241.6)",
+          "oklch(62% 0.042 241.6)",
+          "oklch(74% 0.042 241.6)",
+          "oklch(85% 0.042 241.6)",
+          "oklch(95% 0.042 241.6)"
+        ]
+      },
+      "inkblue-chip-dark": {
+        "role": "secondary",
+        "displayName": "Ink Blue Chip (dark)",
+        "canonical": "#152532",
+        "oklch": "oklch(25.7% 0.033 244.1)",
+        "tonalRamp": [
+          "oklch(15% 0.033 244.1)",
+          "oklch(26% 0.033 244.1)",
+          "oklch(38% 0.033 244.1)",
+          "oklch(50% 0.033 244.1)",
+          "oklch(62% 0.033 244.1)",
+          "oklch(74% 0.033 244.1)",
+          "oklch(85% 0.033 244.1)",
+          "oklch(95% 0.033 244.1)"
+        ]
+      },
+      "paper-card-dark": {
+        "role": "neutral",
+        "displayName": "Paper Card (dark)",
+        "canonical": "#211c16",
+        "oklch": "oklch(23.0% 0.014 72.1)",
+        "tonalRamp": [
+          "oklch(15% 0.014 72.1)",
+          "oklch(26% 0.014 72.1)",
+          "oklch(38% 0.014 72.1)",
+          "oklch(50% 0.014 72.1)",
+          "oklch(62% 0.014 72.1)",
+          "oklch(74% 0.014 72.1)",
+          "oklch(85% 0.014 72.1)",
+          "oklch(95% 0.014 72.1)"
+        ]
+      },
+      "on-chip-dark": {
+        "role": "neutral",
+        "displayName": "Ink on Chip (dark)",
+        "canonical": "#f7f1e6",
+        "oklch": "oklch(96.0% 0.016 82.8)",
+        "tonalRamp": [
+          "oklch(15% 0.016 82.8)",
+          "oklch(26% 0.016 82.8)",
+          "oklch(38% 0.016 82.8)",
+          "oklch(50% 0.016 82.8)",
+          "oklch(62% 0.016 82.8)",
+          "oklch(74% 0.016 82.8)",
+          "oklch(85% 0.016 82.8)",
+          "oklch(95% 0.016 82.8)"
+        ]
+      },
+      "tier-green-dark": {
+        "role": "tertiary",
+        "displayName": "Tier Green (dark)",
+        "canonical": "#86a468",
+        "oklch": "oklch(68.1% 0.090 130.1)",
+        "tonalRamp": [
+          "oklch(15% 0.090 130.1)",
+          "oklch(26% 0.090 130.1)",
+          "oklch(38% 0.090 130.1)",
+          "oklch(50% 0.090 130.1)",
+          "oklch(62% 0.090 130.1)",
+          "oklch(74% 0.090 130.1)",
+          "oklch(85% 0.090 130.1)",
+          "oklch(95% 0.090 130.1)"
+        ]
+      },
+      "tier-yellow-dark": {
+        "role": "tertiary",
+        "displayName": "Tier Yellow (dark)",
+        "canonical": "#dcb452",
+        "oklch": "oklch(78.7% 0.125 86.9)",
+        "tonalRamp": [
+          "oklch(15% 0.120 86.9)",
+          "oklch(26% 0.120 86.9)",
+          "oklch(38% 0.120 86.9)",
+          "oklch(50% 0.120 86.9)",
+          "oklch(62% 0.120 86.9)",
+          "oklch(74% 0.120 86.9)",
+          "oklch(85% 0.120 86.9)",
+          "oklch(95% 0.120 86.9)"
+        ]
+      },
+      "tier-white-dark": {
+        "role": "tertiary",
+        "displayName": "Tier White (dark)",
+        "canonical": "#2c261f",
+        "oklch": "oklch(27.3% 0.015 71.4)",
+        "tonalRamp": [
+          "oklch(15% 0.015 71.4)",
+          "oklch(26% 0.015 71.4)",
+          "oklch(38% 0.015 71.4)",
+          "oklch(50% 0.015 71.4)",
+          "oklch(62% 0.015 71.4)",
+          "oklch(74% 0.015 71.4)",
+          "oklch(85% 0.015 71.4)",
+          "oklch(95% 0.015 71.4)"
+        ]
+      },
+      "tier-red-dark": {
+        "role": "tertiary",
+        "displayName": "Tier Red (dark)",
+        "canonical": "#c86a57",
+        "oklch": "oklch(62.9% 0.124 32.6)",
+        "tonalRamp": [
+          "oklch(15% 0.120 32.6)",
+          "oklch(26% 0.120 32.6)",
+          "oklch(38% 0.120 32.6)",
+          "oklch(50% 0.120 32.6)",
+          "oklch(62% 0.120 32.6)",
+          "oklch(74% 0.120 32.6)",
+          "oklch(85% 0.120 32.6)",
+          "oklch(95% 0.120 32.6)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The landing headline and closing headline; one per page, centred, two lines."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section titles and secondary page heroes."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Step titles, drop-zone title, plan names."
+      },
+      "heading": {
+        "displayName": "Heading",
+        "purpose": "The wordmark in the top bar."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Long prose: legal pages and about text, 70ch measure."
+      },
+      "body-small": {
+        "displayName": "Body small",
+        "purpose": "Default paragraph size: sub-lines, intros, step bodies, table cells."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Uppercase mono micro-labels: table heads, footer group heads, card tags, EXAMPLE stamp."
+      }
+    },
+    "shadows": [
+      {
+        "name": "shadow-soft",
+        "value": "0 1px 2px rgb(20 17 13 / 0.04), 0 10px 30px -18px rgb(20 17 13 / 0.18)",
+        "dark": "0 1px 2px rgb(0 0 0 / 0.3), 0 10px 30px -18px rgb(0 0 0 / 0.6)",
+        "purpose": "Drop zone, mobile menu panel, small preview cards and message bubbles."
+      },
+      {
+        "name": "shadow-card",
+        "value": "0 2px 6px rgb(20 17 13 / 0.12), 0 34px 60px -24px rgb(20 17 13 / 0.55)",
+        "dark": "0 2px 6px rgb(0 0 0 / 0.35), 0 34px 60px -24px rgb(0 0 0 / 0.8)",
+        "purpose": "Colour cards, pass cards, specimen card, Telegram post, re-check log."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The only easing: state transitions and the signature settle."
+      },
+      {
+        "name": "duration-fast",
+        "value": "160ms",
+        "purpose": "Hover lifts, background fills, menu icon morph."
+      },
+      {
+        "name": "duration-base",
+        "value": "320ms",
+        "purpose": "Drop-zone scale, glyph lift, theme-toggle rotation, disclosure icon."
+      },
+      {
+        "name": "signature-settle",
+        "value": "settle 1100ms ease-out, stagger 240ms + 90ms per chip; rise 600-700ms; doze 1400ms",
+        "purpose": "The single orchestrated motion: the honest-silence card assembling once on first scroll-in. Skipped under prefers-reduced-motion."
+      },
+      {
+        "name": "hover-lift",
+        "value": "translateY(-2px)",
+        "purpose": "Pill actions on hover; removed under reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "phone",
+        "value": "680px",
+        "purpose": "Single-column cards; tilt removed; tables stack."
+      },
+      {
+        "name": "nav-disclosure",
+        "value": "720px",
+        "purpose": "Top-bar links collapse into the Menu disclosure (max-width 719px)."
+      },
+      {
+        "name": "footer-stack",
+        "value": "820px",
+        "purpose": "Footer collapses to one column."
+      },
+      {
+        "name": "tablet",
+        "value": "1100px",
+        "purpose": "Asymmetric two-column passages collapse to one column."
+      },
+      {
+        "name": "band-grid",
+        "value": "1180px",
+        "purpose": "Match band switches from a row of four to a 2-up grid."
+      }
+    ],
+    "focus": {
+      "value": "outline: 2px solid var(--color-focus); outline-offset: 3px",
+      "purpose": "Global :focus-visible ring; on colour fills and the field it takes the surface's ink."
+    },
+    "scope": {
+      "landingOnly": [
+        "card rotation / tilt",
+        "hand-drawn marks (doodle, closure underline)",
+        "colour-graded photographic cards"
+      ],
+      "appInherits": [
+        "tokens",
+        "type",
+        "components",
+        "ledger lists",
+        "EXAMPLE stamp"
+      ]
+    }
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Round ink pill in the grotesk; the main action on any surface.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">See pricing <svg viewBox=\"0 0 18 18\" width=\"18\" height=\"18\" aria-hidden=\"true\"><path d=\"M3 9h11M10 5l4 4-4 4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a>",
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;gap:10px;min-block-size:52px;padding:0 24px;border-radius:var(--radius-full,999px);background:var(--color-ink,#14110d);color:var(--color-ground,#faf6f0);font-family:var(--font-display,'Rethink Sans',sans-serif);font-size:1.1875rem;font-weight:700;letter-spacing:-0.01em;text-decoration:none;transition:transform 160ms cubic-bezier(0.16,1,0.3,1)}.ds-btn-primary:hover{transform:translateY(-2px)}.ds-btn-primary:focus-visible{outline:2px solid var(--color-focus,#2c4a5e);outline-offset:3px}@media (prefers-reduced-motion:reduce){.ds-btn-primary{transition:none}.ds-btn-primary:hover{transform:none}}"
+    },
+    {
+      "name": "Outline Pill",
+      "kind": "button",
+      "refersTo": "button-outline-pill",
+      "description": "Secondary action in mono: near-miss fixes, Copy, Start over. The Operate-screen workhorse.",
+      "html": "<button class=\"ds-btn-outline\" type=\"button\">Show them</button>",
+      "css": ".ds-btn-outline{padding:7px 14px;border:1.5px solid var(--color-line-strong,#14110d);border-radius:var(--radius-full,999px);background:transparent;color:var(--color-ink,#14110d);font-family:var(--font-mono,'Source Code Pro',monospace);font-size:0.8125rem;font-weight:500;line-height:1;white-space:nowrap;cursor:pointer;transition:background-color 160ms cubic-bezier(0.16,1,0.3,1)}.ds-btn-outline:hover{background:color-mix(in srgb,var(--color-ink,#14110d) 8%,transparent)}.ds-btn-outline:focus-visible{outline:2px solid var(--color-focus,#2c4a5e);outline-offset:3px}"
+    },
+    {
+      "name": "CV Drop Zone",
+      "kind": "custom",
+      "refersTo": "drop-zone",
+      "description": "The product's primary action: drop a CV, no account.",
+      "html": "<div class=\"ds-drop\"><button class=\"ds-drop-trigger\" type=\"button\"><svg class=\"ds-drop-glyph\" viewBox=\"0 0 34 34\" aria-hidden=\"true\"><path d=\"M17 22V8M11 14l6-6 6 6M8 22v4h18v-4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg><span class=\"ds-drop-title\">Drop your CV</span><span class=\"ds-drop-caption\">No account needed. Deleted after 24 hours unless you sign up.</span></button></div>",
+      "css": ".ds-drop{max-inline-size:560px;border:1.5px dashed var(--color-line,rgb(20 17 13/.28));border-radius:var(--radius-xl,28px);background:var(--color-surface,#f4eee4);box-shadow:var(--shadow-soft,0 1px 2px rgb(20 17 13/.04),0 10px 30px -18px rgb(20 17 13/.18));transition:border-color 160ms cubic-bezier(0.16,1,0.3,1)}.ds-drop:hover{border-color:color-mix(in srgb,var(--color-ink,#14110d) 55%,transparent)}.ds-drop-trigger{display:flex;flex-direction:column;align-items:center;inline-size:100%;min-block-size:156px;padding:20px 24px 24px;border:0;border-radius:inherit;background:transparent;color:var(--color-ink,#14110d);font:inherit;cursor:pointer}.ds-drop-trigger:focus-visible{outline:2px solid var(--color-focus,#2c4a5e);outline-offset:4px}.ds-drop-glyph{inline-size:34px;block-size:34px;transition:transform 320ms cubic-bezier(0.16,1,0.3,1)}.ds-drop:hover .ds-drop-glyph{transform:translateY(-3px)}.ds-drop-title{margin-top:12px;font-family:var(--font-display,'Rethink Sans',sans-serif);font-size:2.125rem;font-weight:700;line-height:1;letter-spacing:-0.035em}.ds-drop-caption{margin-top:5px;font-family:var(--font-mono,'Source Code Pro',monospace);font-size:0.875rem;line-height:1.5;text-wrap:balance}"
+    },
+    {
+      "name": "Match Card (app, untilted)",
+      "kind": "card",
+      "refersTo": "card-plum",
+      "description": "A match as a colour card: grotesk role, mono meta, filled ticked criteria, tag and EXAMPLE stamp. No tilt outside the landing page.",
+      "html": "<article class=\"ds-card\"><h3 class=\"ds-card-role\">Platform Engineer</h3><p class=\"ds-card-meta\">Northwind · contractor, Georgia</p><ul class=\"ds-card-criteria\"><li><svg viewBox=\"0 0 15 15\" width=\"15\" height=\"15\" aria-hidden=\"true\"><rect width=\"15\" height=\"15\" rx=\"3\" fill=\"currentColor\"/><path d=\"M4 7.5l2.4 2.4L11 5.3\" fill=\"none\" stroke=\"var(--color-plum,#875a70)\" stroke-width=\"1.8\"/></svg>B2B contractors in Georgia</li><li><svg viewBox=\"0 0 15 15\" width=\"15\" height=\"15\" aria-hidden=\"true\"><rect width=\"15\" height=\"15\" rx=\"3\" fill=\"currentColor\"/><path d=\"M4 7.5l2.4 2.4L11 5.3\" fill=\"none\" stroke=\"var(--color-plum,#875a70)\" stroke-width=\"1.8\"/></svg>European timezone overlap</li></ul><div class=\"ds-card-stamps\"><span class=\"ds-stamp\">Example</span><span class=\"ds-card-tag\">Hires from Georgia</span></div></article>",
+      "css": ".ds-card{max-inline-size:320px;padding:36px 32px 24px;border-radius:30px;background:var(--color-plum,#875a70);color:var(--color-on-plum,#f7f1e6);box-shadow:var(--shadow-card,0 2px 6px rgb(20 17 13/.12),0 34px 60px -24px rgb(20 17 13/.55))}.ds-card-role{margin:0;font-family:var(--font-display,'Rethink Sans',sans-serif);font-size:2.125rem;font-weight:700;line-height:.88;letter-spacing:-0.035em}.ds-card-meta{margin:8px 0 0;font-family:var(--font-mono,'Source Code Pro',monospace);font-size:0.875rem;letter-spacing:-0.02em}.ds-card-criteria{display:grid;gap:8px;margin:22px 0 0;padding:0;list-style:none;font-family:var(--font-mono,'Source Code Pro',monospace);font-size:0.875rem}.ds-card-criteria li{display:flex;align-items:center;gap:10px}.ds-card-stamps{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin-top:28px}.ds-card-tag{padding:9px 12px 8px;border-radius:10px;background:var(--color-plum-chip,#d4b3c3);color:var(--color-on-chip,#14110d);font-family:var(--font-mono,'Source Code Pro',monospace);font-size:0.875rem;font-weight:500;line-height:1;letter-spacing:.02em;text-transform:uppercase}.ds-stamp{padding:6px 9px 5px;border:1px solid rgb(247 241 230/.5);border-radius:7px;background:rgb(20 17 13/.86);color:#f7f1e6;font-family:var(--font-mono,'Source Code Pro',monospace);font-size:.75rem;font-weight:600;line-height:1;letter-spacing:.14em;text-transform:uppercase}"
+    },
+    {
+      "name": "Tier Verdict",
+      "kind": "chip",
+      "refersTo": "chip-job",
+      "description": "Eligibility as a dot plus its words; never colour alone.",
+      "html": "<span class=\"ds-verdict\"><span class=\"ds-verdict-dot\" style=\"background:var(--color-tier-green,#56733c)\"></span>Hires from Moldova</span> <span class=\"ds-verdict\"><span class=\"ds-verdict-dot\" style=\"background:var(--color-tier-white,#fbf8f2);box-shadow:inset 0 0 0 1.5px var(--color-line-strong,#14110d)\"></span>Unclear</span> <span class=\"ds-chip\">Staff Engineer, Northwind</span>",
+      "css": ".ds-verdict{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono,'Source Code Pro',monospace);font-size:.9375rem;font-weight:500;white-space:nowrap;color:var(--color-ink,#14110d)}.ds-verdict-dot{inline-size:14px;block-size:14px;border-radius:50%}.ds-chip{display:inline-block;padding:8px 12px;border-radius:var(--radius-sm,8px);background:var(--color-surface,#f4eee4);box-shadow:inset 0 0 0 1px var(--color-line,rgb(20 17 13/.28));font-family:var(--font-mono,'Source Code Pro',monospace);font-size:.8125rem;line-height:1.3;color:var(--color-ink,#14110d)}"
+    },
+    {
+      "name": "Ledger List",
+      "kind": "custom",
+      "refersTo": "panel-surface",
+      "description": "Hairline-ruled rows on a flat surface panel; the pattern for the Brief, near misses and the tracker.",
+      "html": "<div class=\"ds-ledger\"><div class=\"ds-ledger-head\">Way of working<span>Verdict</span></div><div class=\"ds-ledger-row\"><strong>B2B contractor</strong><span>Hires from Moldova</span></div><div class=\"ds-ledger-row\"><strong>Employee via EOR</strong><span>Likely</span></div></div>",
+      "css": ".ds-ledger{padding:28px 32px 12px;border-radius:var(--radius-xl,28px);background:var(--color-surface,#f4eee4);color:var(--color-ink,#14110d);font-family:var(--font-mono,'Source Code Pro',monospace);font-size:.9375rem;line-height:1.45}.ds-ledger-head,.ds-ledger-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}.ds-ledger-head{padding-bottom:12px;font-size:.8125rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase}.ds-ledger-row{padding:16px 0;border-top:1px solid var(--color-line,rgb(20 17 13/.28))}.ds-ledger-row strong{font-family:var(--font-display,'Rethink Sans',sans-serif);font-size:1.1875rem;font-weight:700;letter-spacing:-0.015em}"
+    },
+    {
+      "name": "Top Bar",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Wordmark alone at left; mono links and theme toggle at right.",
+      "html": "<header class=\"ds-nav\"><a class=\"ds-nav-mark\" href=\"#\">Pemby</a><nav><a class=\"ds-nav-link\" href=\"#\">How it works</a><a class=\"ds-nav-link\" href=\"#\">Pricing</a><a class=\"ds-nav-link\" href=\"#\">About</a></nav></header>",
+      "css": ".ds-nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px;background:var(--color-ground,#faf6f0);color:var(--color-ink,#14110d)}.ds-nav nav{display:flex;gap:22px}.ds-nav-mark{font-family:var(--font-display,'Rethink Sans',sans-serif);font-weight:800;font-size:1.8125rem;line-height:1;letter-spacing:-0.035em;color:inherit;text-decoration:none}.ds-nav-link{display:inline-flex;align-items:center;min-block-size:44px;font-family:var(--font-mono,'Source Code Pro',monospace);font-size:1rem;letter-spacing:-0.01em;color:inherit;text-decoration:none;text-underline-offset:.22em}.ds-nav-link:hover{text-decoration:underline}.ds-nav-link:focus-visible,.ds-nav-mark:focus-visible{outline:2px solid var(--color-focus,#2c4a5e);outline-offset:3px}"
+    },
+    {
+      "name": "Deep Field",
+      "kind": "card",
+      "refersTo": "field-band",
+      "description": "The single olive surface per page; carries cards or closes the page as the footer.",
+      "html": "<section class=\"ds-field\"><p class=\"ds-field-label\">Example matches. Every company, role and reason is invented.</p></section>",
+      "css": ".ds-field{padding:64px 32px;border-radius:var(--radius-field,64px) var(--radius-field,64px) 0 0;background:var(--color-field,#2b3323);color:var(--color-on-field,#f7f1e6)}.ds-field-label{margin:0;text-align:center;font-family:var(--font-mono,'Source Code Pro',monospace);font-size:.8125rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Few Cards on the Table",
+    "overview": "Pemby sends a handful of matches, never a feed, and the visual system is built to look like that: a flat, warm off-white ground, a heavy friendly grotesk set big and tight, monospace for every sentence of evidence, and a small number of physical, earthy-coloured cards that carry the reason each job can hire you. One deep olive field anchors the lower part of a page and closes every page as the footer. The family resemblance to desertant.com is deliberate and binding; its specific signatures (grain-stippled hero words, full-bleed product carousel, top-right tag pill, its exact cream) are not ours.\n\nDensity is low on Persuade surfaces and deliberately opened: the owner's spacing instruction set a generous vertical rhythm, so at least a third of a first viewport is empty ground and there is always more space above a heading than below it. Operate surfaces (onboarding, the Brief, the tracker) keep the same ground, type, colours, radii and ruled-ledger lists, but at working density and with every flourish removed.\n\nThe ground is never pure white and ink is never pure black, and the ground carries no paper, newsprint or printed-document texture. Light and dark are the same design; dark is a token swap only. The lockup is the wordmark alone, with no symbol.",
+    "keyCharacteristics": [
+      "Warm flat ground (never #fff) and warm near-black ink (never #000); no textures, no gradients as decoration.",
+      "Rethink Sans for headlines, role names, buttons and numbers; Source Code Pro for all prose, rows, tags and labels.",
+      "Three earthy card fills (plum, ochre, ink-blue) plus an outlined paper card, each with its own tinted chip.",
+      "Very large soft radii (30px cards, 64px field corners) and deep diffuse warm shadows.",
+      "Landing-only flourishes: card tilt, loose hand-drawn marks, colour-graded photographic cards.",
+      "Eligibility tiers are always a colour dot plus a text label, never colour alone.",
+      "Every demonstration carries an unmissable EXAMPLE stamp."
+    ],
+    "rules": [
+      {
+        "name": "The Token Swap Rule",
+        "body": "Dark mode changes token values and nothing else: same copy, same content, same spacing, same components. A component that needs a dark-only override (the doodle's inverted artwork is the one exception) is a defect.",
+        "section": "colors"
+      },
+      {
+        "name": "The Whole Surface Rule",
+        "body": "Plum, ochre and ink-blue appear as whole card or panel fills with their paired `on-*` ink, never as text colour, borders, icons or accents on the ground.",
+        "section": "colors"
+      },
+      {
+        "name": "The Label Beside Every Colour Rule",
+        "body": "A tier colour always sits beside its words. Colour alone never carries eligibility.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Voices Rule",
+        "body": "Grotesk for claims, names, numbers and button labels; mono for every sentence, row, tag and footnote. Never set a paragraph in the grotesk or a headline in mono.",
+        "section": "typography"
+      },
+      {
+        "name": "The Sentence Case Rule",
+        "body": "Every headline, title and button is sentence case. Uppercase belongs only to small mono labels.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tight Display Rule",
+        "body": "Grotesk sizes above 24px carry negative tracking (-0.015em to -0.035em) and line-height under 1.",
+        "section": "typography"
+      },
+      {
+        "name": "The Opened Rhythm Rule",
+        "body": "More ground, not less. At least a third of a Persuade first viewport is empty ground, and the space above a heading always exceeds the space below it.",
+        "section": "layout"
+      },
+      {
+        "name": "The Objects Lift, Panels Sit Rule",
+        "body": "A shadow means \"this is a thing you could pick up\": a match, a pass, a message. Panels, tables and page sections sit flat on the ground.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do use `ground` for every page background and `ink` for body-critical text in both themes; keep all body text, captions and footnotes at WCAG 2.2 AA contrast.",
+      "Do ship light and dark from the same markup by swapping tokens only.",
+      "Do set headlines, names, numbers and buttons in Rethink Sans, and every sentence, row, tag and footnote in Source Code Pro.",
+      "Do show matches, passes and messages as 30px-corner cards with a paired `on-*` ink and the Card shadow.",
+      "Do build Operate lists (the Brief, near misses, the tracker) as hairline-ruled ledgers with outline-pill secondary actions and flat, untilted cards.",
+      "Do pair every tier colour with its label and reason.",
+      "Do mark every demonstration with the EXAMPLE stamp.",
+      "Do keep hit targets at 44px or taller and the focus ring visible at 2px.",
+      "Do keep the opened rhythm: more space above a heading than below it, and a third of a Persuade first viewport as empty ground.",
+      "Do honour `prefers-reduced-motion` by removing lifts, scales and the settle animation.",
+      "Do use the wordmark alone as the lockup."
+    ],
+    "donts": [
+      "Don't use pure white (#fff) or pure black (#000) surfaces or type, or add paper, grain or newsprint texture to the ground.",
+      "Don't rotate cards, add hand-drawn marks or put photographs in cards outside the landing page; app screens never tilt, because tilt hurts scanning and keyboard use in dense lists.",
+      "Don't add a second orchestrated motion to a page; the settle is the signature.",
+      "Don't use plum, ochre or ink-blue as text, border or icon colours on the ground.",
+      "Don't convey eligibility by colour alone.",
+      "Don't create a dark-only layout, copy or spacing change.",
+      "Don't add a brand symbol beside the wordmark.",
+      "Don't use hard offset shadows, glows or glass blur.",
+      "Don't set small mono labels in sentence case or headlines in uppercase.",
+      "Don't borrow desertant's own signatures: grain-stippled hero words, a full-bleed product carousel, a tag pill in a card's top-right corner, or its exact cream."
+    ]
+  }
+}

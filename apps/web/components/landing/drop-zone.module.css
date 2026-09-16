@@ -67,6 +67,7 @@
   font-size: 0.875rem;
   line-height: 1.5;
   color: var(--color-ink);
+  text-wrap: balance;
 }
 
 .pending {
