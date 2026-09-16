@@ -3,6 +3,7 @@
 export * from "./eligibility";
 export * from "./ways-of-working";
 export * from "./gates";
+export * from "./roles";
 export * from "./scoring";
 export * from "./near-miss";
 export * from "./entitlements";

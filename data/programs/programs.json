@@ -1,0 +1,251 @@
+{
+  "version": "2026-09-16.1",
+  "programs": [
+    {
+      "id": "google-summer-of-code",
+      "name": "Google Summer of Code",
+      "organization": "Google",
+      "kind": "mentorship",
+      "remote": true,
+      "eligibility": {
+        "summary": "18+. Student or open-source beginner (fewer than 10 issues or PRs before applying). Accepted as a GSoC contributor at most once before. Not in a US-embargoed country.",
+        "minAge": 18,
+        "excludedCountries": ["RU", "BY", "UA-occupied DNR/LNR"],
+        "constraints": [
+          "not a regular open-source contributor: fewer than 10 issues or pull requests before applying",
+          "accepted as a GSoC contributor at most once before",
+          "not in a US-embargoed country",
+          "project sized 90, 175 or 350 hours"
+        ]
+      },
+      "stipend": {
+        "kind": "per-country",
+        "currency": "USD",
+        "amount": null,
+        "byCountry": {
+          "MD": 750,
+          "UA": 750,
+          "GE": 750,
+          "AM": 750,
+          "RS": 750,
+          "BR": 750,
+          "NG": 750,
+          "IN": 750
+        },
+        "notes": "PPP-adjusted with a floor. Moldova, Ukraine, Georgia, Armenia, Serbia, Brazil, Nigeria and India all land on the minimum tier shown here ($750). Full tier schedule by project size: $750 for 90 hours (small), $1,500 for 175 hours (medium), $3,000 for 350 hours (large)."
+      },
+      "windows": [
+        {
+          "label": "2026 contributor applications (past)",
+          "opens": "2026-03-16",
+          "closes": "2026-03-31",
+          "starts": "2026-05-25",
+          "ends": "2026-08-24",
+          "recurring": null,
+          "confirmed": true
+        },
+        {
+          "label": "2027 cycle",
+          "opens": null,
+          "closes": null,
+          "starts": null,
+          "ends": null,
+          "recurring": "Orgs usually open in January and are announced in February; 2027 dates not yet published.",
+          "confirmed": false
+        }
+      ],
+      "sourceUrls": [
+        "https://developers.google.com/open-source/gsoc/timeline",
+        "https://developers.google.com/open-source/gsoc/help/student-stipends",
+        "https://developers.google.com/open-source/gsoc/faq"
+      ],
+      "lastChecked": "2026-09-15"
+    },
+    {
+      "id": "lfx-mentorship",
+      "name": "LFX Mentorship",
+      "organization": "Linux Foundation",
+      "kind": "mentorship",
+      "remote": true,
+      "eligibility": {
+        "summary": "Open to anyone except residents of Russia, Belarus and DNR/LNR. Ukraine outside DNR/LNR is eligible.",
+        "minAge": null,
+        "excludedCountries": ["RU", "BY", "UA-occupied DNR/LNR"],
+        "constraints": []
+      },
+      "stipend": {
+        "kind": "per-country",
+        "currency": "USD",
+        "amount": null,
+        "byCountry": {
+          "MD": 2600,
+          "UA": 1600,
+          "GE": 2000,
+          "AM": 2400,
+          "RS": 2600,
+          "IN": 1300,
+          "NG": 1000,
+          "BR": 3100
+        },
+        "notes": "PPP-based: base $6,000, minimum $1,000, maximum $6,600, for programs starting on or after 2026-07-01. Paid 50% at midterm and 50% at completion, via Expensify."
+      },
+      "windows": [
+        {
+          "label": "Spring term",
+          "opens": null,
+          "closes": null,
+          "starts": null,
+          "ends": null,
+          "recurring": "Mentee applications open mid-January; term runs Mar 1 - May 31.",
+          "confirmed": true
+        },
+        {
+          "label": "Summer term",
+          "opens": null,
+          "closes": null,
+          "starts": null,
+          "ends": null,
+          "recurring": "Mentee applications open mid-April; term runs Jun 1 - Aug 31.",
+          "confirmed": true
+        },
+        {
+          "label": "Fall term",
+          "opens": null,
+          "closes": null,
+          "starts": null,
+          "ends": null,
+          "recurring": "Mentee applications open mid-July; term runs Sep 1 - Nov 30.",
+          "confirmed": true
+        },
+        {
+          "label": "Fall 2026 (already started)",
+          "opens": null,
+          "closes": null,
+          "starts": "2026-09-01",
+          "ends": "2026-11-30",
+          "recurring": null,
+          "confirmed": true
+        }
+      ],
+      "sourceUrls": [
+        "https://docs.linuxfoundation.org/lfx/mentorship/mentee-guide/mentee-faqs.md",
+        "https://docs.linuxfoundation.org/lfx/mentorship/mentee-stipends/total-stipend-amount.md",
+        "https://docs.linuxfoundation.org/lfx/mentorship/mentee-guide/introduction.md"
+      ],
+      "lastChecked": "2026-09-15"
+    },
+    {
+      "id": "outreachy",
+      "name": "Outreachy",
+      "organization": "Outreachy",
+      "kind": "internship",
+      "remote": true,
+      "eligibility": {
+        "summary": "Open to applicants around the world. 18+. Essays must show lived experience with underrepresentation, discrimination and systemic bias in the tech industry of the applicant's own country. No prior open-source experience needed.",
+        "minAge": 18,
+        "excludedCountries": [],
+        "constraints": [
+          "30 hours/week for 13 weeks",
+          "no other job or internship during the internship",
+          "never before an Outreachy or GSoC intern"
+        ]
+      },
+      "stipend": {
+        "kind": "flat",
+        "currency": "USD",
+        "amount": 7000,
+        "byCountry": null,
+        "notes": null
+      },
+      "windows": [
+        {
+          "label": "December 2026 cohort",
+          "opens": "2026-08-24",
+          "closes": "2026-08-31",
+          "starts": "2026-12-07",
+          "ends": "2027-03-08",
+          "recurring": null,
+          "confirmed": true
+        },
+        {
+          "label": "May 2027 cohort",
+          "opens": null,
+          "closes": null,
+          "starts": null,
+          "ends": null,
+          "recurring": null,
+          "confirmed": false
+        }
+      ],
+      "sourceUrls": ["https://www.outreachy.org/docs/applicant/"],
+      "lastChecked": "2026-09-15"
+    },
+    {
+      "id": "canonical-graduate-software-engineer",
+      "name": "Graduate Software Engineer (Ubuntu)",
+      "organization": "Canonical",
+      "kind": "graduate-role",
+      "remote": true,
+      "eligibility": {
+        "summary": "Home based - Worldwide. First bachelor's degree completed or expected in 2025 or 2026 in CS, Informatics, Maths or STEM. Exceptional academic track record from both high school and university.",
+        "minAge": null,
+        "excludedCountries": [],
+        "constraints": [
+          "exceptional academic track record from both high school and university",
+          "travel to company events twice a year",
+          "first bachelor's degree completed or expected in 2025 or 2026"
+        ]
+      },
+      "stipend": {
+        "kind": "not-disclosed",
+        "currency": null,
+        "amount": null,
+        "byCountry": null,
+        "notes": "Pay not disclosed; Canonical says it \"considers geographical location\". $2,000 yearly learning budget."
+      },
+      "windows": [
+        {
+          "label": "Rolling",
+          "opens": null,
+          "closes": null,
+          "starts": null,
+          "ends": null,
+          "recurring": "Rolling; posting last updated 2026-08-24.",
+          "confirmed": true
+        }
+      ],
+      "sourceUrls": ["https://job-boards.greenhouse.io/canonical/jobs/8142329"],
+      "lastChecked": "2026-09-15"
+    },
+    {
+      "id": "mlh-fellowship",
+      "name": "MLH Fellowship",
+      "organization": "MLH",
+      "kind": "fellowship",
+      "remote": true,
+      "eligibility": {
+        "summary": "18+, living in a non-embargoed country, English proficiency. Must have joined at least one MLH hackathon or Global Hack Week. About 20 hours/week. The Production Engineering track is limited to the US, Canada and Mexico.",
+        "minAge": 18,
+        "excludedCountries": [],
+        "constraints": [
+          "not in a US-embargoed country",
+          "must have joined at least one MLH hackathon or Global Hack Week",
+          "Production Engineering track is limited to the US, Canada and Mexico"
+        ]
+      },
+      "stipend": {
+        "kind": "education-credit",
+        "currency": null,
+        "amount": null,
+        "byCountry": null,
+        "notes": "University credits or an educational stipend; amount not disclosed in the FAQ."
+      },
+      "windows": [],
+      "sourceUrls": [
+        "https://fellowship.mlh.com/",
+        "https://docs.google.com/document/d/e/2PACX-1vQ4m8tMZKfc9ZvwGXOGJOUkfGHHVpQsaLfwA2Ky1gpjK_8B9jltbs5H8jCfOS_1M-eBGmymiZL_n0TT/pub"
+      ],
+      "lastChecked": "2026-09-15"
+    }
+  ]
+}
