@@ -153,7 +153,7 @@ phase file path. Every phase follows `docs/phases/_COMMON.md` and ends with a ha
 | 00 | `docs/phases/00-founder-setup.md` | Accounts, keys, DNS, pre-clearance emails sent | none | **partial 2026-09-16** (OAuth, Sentry, PostHog deferred; payment emails pending) — `docs/phases/handoffs/00-handoff.md` |
 | 01 | `docs/phases/01-foundation.md` | Monorepo, schema v1, auth, Railway prod + staging, CI, progress page | 00 (partial is fine) | **done 2026-09-16** (staging only; OAuth, magic link, Sentry, PostHog deferred) — `docs/phases/handoffs/01-handoff.md` |
 | 02 | `docs/phases/02-product-context-and-landing-direction.md` | PRODUCT.md, landing direction round, approved landing comp | 01 (ran first; 00 and 01 still pending) | **done 2026-09-16** — `docs/phases/handoffs/02-handoff.md` |
-| 03 | `docs/phases/03-landing-legal-pricing.md` | Landing, pricing, Terms, Privacy, Refund live on pemby.app; DESIGN.md | 02 | not started |
+| 03 | `docs/phases/03-landing-legal-pricing.md` | Landing, pricing, Terms, Privacy, Refund live on pemby.app; DESIGN.md | 02 | **done 2026-09-17** (live on pemby.app; legal drafts await a lawyer's read; payment applications moved to after 06) — `docs/phases/handoffs/03-handoff.md` |
 | 04 | `docs/phases/04-job-ingestion.md` | ATS connectors, company seed list, freshness checks, dedupe | 01 | **done on staging 2026-09-16** (6 of 7 ATS: SmartRecruiters awaits permission; production ingestion and 24h run pending) — `docs/phases/handoffs/04-handoff.md` |
 | 05 | `docs/phases/05-ai-enrichment-eligibility.md` | AI layer, job enrichment, eligibility engine, eval check, model picks | 04 | not started |
 | 06 | `docs/phases/06-cv-drop-onboarding.md` | Anonymous CV drop, parsing, teaser, signup, 3-step onboarding | 03, 05 | not started |

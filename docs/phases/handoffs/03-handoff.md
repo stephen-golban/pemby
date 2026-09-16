@@ -1,7 +1,7 @@
-# Phase 03 handoff: landing, pricing, legal (build done, promotion remaining)
+# Phase 03 handoff: landing, pricing, legal (done, live on pemby.app)
 
-Written 2026-09-17. Everything is built, reviewed and on staging. **Remaining: promote to pemby.app,
-verify, progress page, PLAN status.** The owner said "go" on promotion; a fresh session runs it.
+Written 2026-09-17, promotion recorded the same day. Everything is built, reviewed and live on
+https://pemby.app. See "Promotion" below; the "Remaining work" list is kept as the record of what ran.
 
 ## What shipped (all pushed to `main`, owner-approved)
 
@@ -38,6 +38,24 @@ fixed it minutes later and CI cancelled the broken run.
 5. **Close-out:** `docs/PLAN.md` section 7 status for 03, then owner approval for the commit. Point the
    owner at phase 05 (or 06) per the phase table.
 
+## Promotion (2026-09-17)
+
+- `pemby.app` attached to production `web` (port 8080). Cloudflare: `CNAME @ uugvmwfw.up.railway.app`
+  DNS only, plus the `_railway-verify` TXT. Certificate issued within minutes.
+- `www`: owner chose a Cloudflare-side redirect (proxied `A www 192.0.2.1` plus a 301 redirect rule to the
+  apex). At close-out it returned Cloudflare 522 (rule not matching); the owner is fixing the rule.
+- Verified live: `/`, `/pricing`, `/terms`, `/privacy`, `/refunds` 200 with no auth; `/legal/terms` 308;
+  `/app` 307 to `/sign-in`; `robots.txt` allows indexing with `Sitemap: https://pemby.app/sitemap.xml`;
+  sitemap lists 5 `https://pemby.app` URLs; `POST /api/auth/sign-up/email` and anonymous sign-in return
+  403 `SIGN_UP_CLOSED`; http to https 301; canonical and OG image on `https://pemby.app`; production
+  deploy `263d280`. Owner sign-in is checked by the owner.
+- Hardening (owner-approved): production Postgres TCP proxy removed and `DATABASE_PUBLIC_URL` deleted
+  from production `web`. Running a one-off script against production (for example `create-owner`) now
+  needs a temporary TCP proxy again; remove it afterwards.
+- The temporary `web-production-df922.up.railway.app` domain was gone after the custom domain was
+  attached; the Railway audit log does not say when or why. Owner chose to leave it removed.
+- Next: phase 05 (depends on 04, done on staging). Phase 06 needs 03 and 05.
+
 ## Production (created this phase)
 
 - **Railway project:** `pemby`, environment `production`. Only these services: `Postgres` (18, pgvector) and
@@ -48,7 +66,7 @@ fixed it minutes later and CI cancelled the broken run.
   from `main`, `RAILPACK_NODE_VERSION=24`.
 - **web variables:** `APP_ENV=production`, `OWNER_GATE=on`, `BETTER_AUTH_URL=https://pemby.app` (sign-in
   only works on that origin), `BETTER_AUTH_SECRET` (new, production-only), `PRIVATE_CONFIG_REF=config-v0.1.0`
-  (pinned), `PRIVATE_CONFIG_REPO`, `PRIVATE_CONFIG_TOKEN`, `DATABASE_URL`, `DATABASE_PUBLIC_URL`,
+  (pinned), `PRIVATE_CONFIG_REPO`, `PRIVATE_CONFIG_TOKEN`, `DATABASE_URL` (`DATABASE_PUBLIC_URL` removed at promotion),
   `OWNER_ALLOWLIST_EMAILS=golban.stephen@gmail.com`.
 - **Owner account:** created 2026-09-16 with `create-owner` through `railway run` using
   `DATABASE_PUBLIC_URL`. The script's header comment points at the internal URL; use the public one.
