@@ -152,7 +152,7 @@ phase file path. Every phase follows `docs/phases/_COMMON.md` and ends with a ha
 |---|---|---|---|---|
 | 00 | `docs/phases/00-founder-setup.md` | Accounts, keys, DNS, pre-clearance emails sent | none | not started |
 | 01 | `docs/phases/01-foundation.md` | Monorepo, schema v1, auth, Railway prod + staging, CI, progress page | 00 (partial is fine) | not started |
-| 02 | `docs/phases/02-product-context-and-landing-direction.md` | PRODUCT.md, landing direction round, approved landing comp | 01 | not started |
+| 02 | `docs/phases/02-product-context-and-landing-direction.md` | PRODUCT.md, landing direction round, approved landing comp | 01 (ran first; 00 and 01 still pending) | **done 2026-09-16** — `docs/phases/handoffs/02-handoff.md` |
 | 03 | `docs/phases/03-landing-legal-pricing.md` | Landing, pricing, Terms, Privacy, Refund live on pemby.app; DESIGN.md | 02 | not started |
 | 04 | `docs/phases/04-job-ingestion.md` | ATS connectors, company seed list, freshness checks, dedupe | 01 | not started |
 | 05 | `docs/phases/05-ai-enrichment-eligibility.md` | AI layer, job enrichment, eligibility engine, eval check, model picks | 04 | not started |

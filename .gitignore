@@ -1,0 +1,27 @@
+# --- Secrets (repo is public) ---
+.env
+.env.*
+!.env.example
+
+# --- Impeccable design artifacts ---
+# Only the approved landing comps and their sidecars are tracked.
+# Every other comp is a spent round: kept locally, never in public history.
+.impeccable/mocks/*.png
+!.impeccable/mocks/band-light.png
+!.impeccable/mocks/band-dark.png
+
+# Rejected direction round
+.impeccable/mocks/decision/
+
+# Local decision-page server state (session scratch, not project truth)
+.impeccable/questions/
+
+# Build/review state produced during a comp-led build
+.impeccable/build/
+.impeccable/review/
+
+# Machine-local impeccable overrides
+.impeccable/config.local.json
+
+# --- OS noise ---
+.DS_Store
