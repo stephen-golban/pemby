@@ -1,0 +1,765 @@
+/*
+ * /pricing: Persuade mode inside the landing system. Ground, ink, grotesk headlines, mono prose,
+ * the deep field and earthy pass cards with large radii and deep shadows. No tilt: rotation is a
+ * landing-page flourish only.
+ */
+
+.page {
+  --section-gap: clamp(88px, 10vw, 150px);
+  --content: var(--content-max, 1344px);
+
+  min-height: 100dvh;
+  overflow-x: clip;
+  background: var(--color-ground);
+}
+
+/* Shared section grammar */
+
+.section {
+  max-inline-size: calc(var(--content) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding: var(--section-gap) var(--gutter) 0;
+}
+
+.sectionTitle {
+  max-inline-size: 15em;
+  font-family: var(--font-display);
+  font-size: var(--text-section, clamp(2.5rem, 1.1rem + 3.6vw, 4.75rem));
+  font-weight: var(--weight-display);
+  line-height: 0.92;
+  letter-spacing: var(--tracking-display);
+  text-wrap: balance;
+}
+
+.action {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-block-size: 52px;
+  padding: 0 24px;
+  border-radius: var(--radius-full);
+  background: var(--color-ink);
+  color: var(--color-ground);
+  font-family: var(--font-display);
+  font-size: 1.1875rem;
+  font-weight: var(--weight-title);
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.action:hover {
+  transform: translateY(-2px);
+}
+
+.action svg,
+.textLink svg {
+  inline-size: 18px;
+  block-size: 18px;
+  flex: none;
+}
+
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-block-start: var(--space-4);
+  padding-block: 6px;
+  font-weight: var(--weight-mono-strong);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+}
+
+.textLink:hover {
+  text-decoration-color: currentColor;
+}
+
+.textLink svg {
+  transition: translate var(--duration-fast) var(--ease-out);
+}
+
+.textLink:hover svg {
+  translate: 3px 0;
+}
+
+.inlineLink {
+  font-weight: var(--weight-mono-strong);
+  text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
+}
+
+.inlineLink:hover {
+  text-decoration-color: currentColor;
+}
+
+/* Hero */
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(72px, 9vw, 130px) var(--gutter) 0;
+  text-align: center;
+}
+
+.headline {
+  max-inline-size: 13em;
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 1.1rem + 4.6vw, 5.5rem);
+  font-weight: var(--weight-display);
+  line-height: 0.9;
+  letter-spacing: var(--tracking-display);
+  text-wrap: balance;
+}
+
+.lede {
+  max-inline-size: 640px;
+  margin-block-start: clamp(28px, 4vw, 48px);
+  font-size: var(--text-small);
+  line-height: var(--leading-body);
+  letter-spacing: -0.01em;
+  text-wrap: pretty;
+}
+
+.heroActions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  margin-block-start: clamp(36px, 5vw, 64px);
+}
+
+.heroNote {
+  font-size: var(--text-label);
+  letter-spacing: 0.02em;
+  color: var(--color-ink-soft);
+}
+
+/* Free vs Pass */
+
+.compare {
+  margin-block-start: var(--rhythm-heading-body, 36px);
+  overflow: hidden;
+  border: 1.5px solid var(--color-line-strong);
+  border-radius: 30px;
+  background: var(--color-paper-card);
+}
+
+.compareTable {
+  inline-size: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-small);
+  line-height: 1.45;
+}
+
+.compareTable th,
+.compareTable td {
+  padding: 18px 24px;
+  text-align: start;
+  vertical-align: middle;
+}
+
+.compareTable thead th {
+  padding-block: 22px 18px;
+  font-family: var(--font-display);
+  font-size: 1.625rem;
+  font-weight: var(--weight-display);
+  line-height: 1;
+  letter-spacing: var(--tracking-title);
+}
+
+.compareTable thead .colFeature {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: var(--weight-mono-strong);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+
+.compareTable tbody tr {
+  border-block-start: 1px solid var(--color-line);
+}
+
+.colFeature {
+  inline-size: 46%;
+}
+
+.colFree,
+.free {
+  inline-size: 24%;
+}
+
+.feature {
+  font-weight: var(--weight-body);
+}
+
+.colPass,
+.pass {
+  background: color-mix(in srgb, var(--color-ochre) 30%, var(--color-paper-card));
+}
+
+.pass {
+  font-weight: var(--weight-mono-strong);
+}
+
+.mark {
+  display: inline-grid;
+  place-items: center;
+  inline-size: 28px;
+  block-size: 28px;
+  border-radius: var(--radius-full);
+}
+
+.mark svg {
+  inline-size: 18px;
+  block-size: 18px;
+}
+
+.mark[data-value="yes"] {
+  background: var(--color-ink);
+  color: var(--color-ground);
+}
+
+.mark[data-value="no"] {
+  border: 1.5px solid var(--color-line);
+  color: var(--color-ink-soft);
+}
+
+.compareNotes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-5) var(--space-7);
+  margin-block-start: var(--space-6);
+  padding: 0;
+  list-style: none;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--color-ink-soft);
+}
+
+/* Passes on the deep field */
+
+.field {
+  margin: var(--section-gap) calc(var(--gutter) / 2) 0;
+  border-radius: var(--radius-field);
+  background: var(--color-field);
+  color: var(--color-on-field);
+}
+
+.fieldInner {
+  max-inline-size: calc(var(--content) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding: clamp(64px, 8vw, 112px) calc(var(--gutter) / 2 + var(--gutter)) clamp(56px, 7vw, 96px);
+}
+
+.fieldHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--space-5) var(--space-7);
+}
+
+.fieldLede {
+  max-inline-size: 38ch;
+  font-size: var(--text-small);
+  line-height: var(--leading-body);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(20px, 2.4vw, 36px);
+  align-items: end;
+  margin-block-start: clamp(56px, 7vw, 96px);
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  min-block-size: 400px;
+  padding: 36px 32px 32px;
+  border-radius: 30px;
+  background: var(--card-fill);
+  color: var(--card-ink);
+  box-shadow: var(--shadow-card);
+}
+
+.card[data-tone="plum"] {
+  --card-fill: var(--color-plum);
+  --card-ink: var(--color-on-plum);
+}
+
+.card[data-tone="ochre"] {
+  --card-fill: var(--color-ochre);
+  --card-ink: var(--color-on-ochre);
+}
+
+.card[data-tone="inkblue"] {
+  --card-fill: var(--color-inkblue);
+  --card-ink: var(--color-on-inkblue);
+}
+
+.card[data-recommended] {
+  min-block-size: 456px;
+}
+
+.cardTop {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.cardName {
+  font-family: var(--font-display);
+  font-size: var(--text-title);
+  font-weight: var(--weight-title);
+  line-height: 1;
+  letter-spacing: var(--tracking-title);
+}
+
+.badge {
+  padding: 6px 10px 5px;
+  border-radius: var(--radius-sm);
+  background: var(--card-ink);
+  color: var(--card-fill);
+  font-size: 0.75rem;
+  font-weight: var(--weight-mono-strong);
+  line-height: 1;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.price {
+  margin-block-start: auto;
+  padding-block-start: var(--space-7);
+  font-family: var(--font-display);
+  font-size: clamp(4.5rem, 3rem + 3vw, 6.3125rem);
+  font-weight: var(--weight-display);
+  line-height: 0.84;
+  letter-spacing: var(--tracking-display);
+  font-variant-numeric: tabular-nums;
+}
+
+.duration {
+  margin-block-start: var(--space-4);
+  font-size: var(--text-small);
+  font-weight: var(--weight-mono-strong);
+}
+
+.perMonth {
+  font-size: 0.875rem;
+}
+
+.buy {
+  inline-size: 100%;
+  min-block-size: 52px;
+  margin-block-start: var(--space-6);
+  padding: 10px 18px;
+  border: 1.5px dashed currentColor;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: inherit;
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: var(--weight-title);
+  letter-spacing: -0.01em;
+  cursor: not-allowed;
+}
+
+.buy:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+.fieldNotes {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-2);
+  margin-block-start: clamp(40px, 5vw, 64px);
+  font-size: 0.875rem;
+  line-height: 1.55;
+  text-align: center;
+  text-wrap: pretty;
+}
+
+.checkoutNote {
+  margin-block-end: var(--space-3);
+  padding: 8px 16px;
+  border: 1px solid color-mix(in srgb, var(--color-on-field) 45%, transparent);
+  border-radius: var(--radius-full);
+  font-weight: var(--weight-mono-strong);
+}
+
+/* How passes work */
+
+.timeline {
+  margin-block-start: clamp(48px, 6vw, 80px);
+}
+
+.reminder {
+  margin-inline-start: auto;
+  inline-size: fit-content;
+  margin-inline-end: calc(22% + 16px);
+  padding-block-end: 14px;
+  font-size: var(--text-label);
+  letter-spacing: 0.02em;
+  text-align: end;
+}
+
+.track {
+  display: grid;
+  grid-template-columns: minmax(0, 9fr) minmax(0, 7fr) minmax(0, 4fr);
+  gap: 6px;
+  font-size: 0.875rem;
+  line-height: 1.3;
+}
+
+.track > span {
+  display: flex;
+  align-items: center;
+  min-block-size: 64px;
+  padding: 10px 20px;
+}
+
+.segCurrent {
+  border-radius: var(--radius-full) 8px 8px var(--radius-full);
+  background: var(--color-inkblue);
+  color: var(--color-on-inkblue);
+}
+
+.segNext {
+  position: relative;
+  border-radius: 8px var(--radius-full) var(--radius-full) 8px;
+  background: var(--color-plum);
+  color: var(--color-on-plum);
+}
+
+.reminderTick {
+  position: absolute;
+  inset-block: -14px 0;
+  inset-inline-end: 16%;
+  inline-size: 2px;
+  background: var(--color-ink);
+}
+
+.reminderTick::before {
+  content: "";
+  position: absolute;
+  inset-block-start: -4px;
+  inset-inline-start: -3px;
+  inline-size: 8px;
+  block-size: 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-ink);
+}
+
+.segFree {
+  justify-content: center;
+  border: 1.5px dashed var(--color-line);
+  border-radius: var(--radius-full);
+  text-align: center;
+}
+
+.how {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-6) clamp(32px, 4vw, 64px);
+  margin-block-start: clamp(40px, 5vw, 64px);
+  padding: 0;
+  list-style: none;
+}
+
+.howItem {
+  padding-block-start: var(--space-5);
+  border-block-start: 1.5px solid var(--color-line-strong);
+}
+
+.howTitle {
+  font-family: var(--font-display);
+  font-size: 1.625rem;
+  font-weight: var(--weight-title);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.howBody {
+  margin-block-start: var(--space-3);
+  font-size: var(--text-small);
+  line-height: var(--leading-body);
+  text-wrap: pretty;
+}
+
+/* Refunds, guarantee and pause */
+
+.promise {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--space-4) var(--space-7);
+  padding-block: clamp(32px, 4vw, 48px);
+  border-block-start: 1.5px solid var(--color-line-strong);
+}
+
+.promise:last-child {
+  border-block-end: 1.5px solid var(--color-line-strong);
+}
+
+.promiseTitle {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 1.4rem + 1.8vw, 3.25rem);
+  font-weight: var(--weight-display);
+  line-height: 0.95;
+  letter-spacing: var(--tracking-title);
+  text-wrap: balance;
+}
+
+.promiseBody {
+  max-inline-size: 62ch;
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  text-wrap: pretty;
+}
+
+.fine {
+  margin-block-start: var(--space-3);
+  font-size: 0.875rem;
+  color: var(--color-ink-soft);
+}
+
+/* FAQ */
+
+.faq {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--space-6) var(--space-7);
+  align-items: start;
+}
+
+.faqList {
+  border-block-start: 1.5px solid var(--color-line-strong);
+}
+
+.faqItem {
+  border-block-end: 1px solid var(--color-line);
+}
+
+.faqQuestion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  min-block-size: 64px;
+  padding-block: 18px;
+  font-family: var(--font-display);
+  font-size: 1.3125rem;
+  font-weight: var(--weight-title);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  list-style: none;
+  cursor: pointer;
+}
+
+.faqQuestion::-webkit-details-marker {
+  display: none;
+}
+
+.faqQuestion:hover span {
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.18em;
+}
+
+.faqIcon {
+  flex: none;
+  inline-size: 20px;
+  block-size: 20px;
+}
+
+.faqIconVertical {
+  transform-origin: center;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.faqItem[open] .faqIconVertical {
+  transform: scaleY(0);
+}
+
+.faqAnswer {
+  max-inline-size: 62ch;
+  padding-block-end: var(--space-5);
+  font-size: var(--text-small);
+  line-height: var(--leading-body);
+  text-wrap: pretty;
+}
+
+/* Software, not an agency */
+
+.whatItIs {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--space-5) var(--space-7);
+  align-items: center;
+  padding: clamp(36px, 5vw, 64px);
+  border: 1.5px solid var(--color-line-strong);
+  border-radius: 30px;
+  background: var(--color-paper-card);
+}
+
+.whatTitle {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 1.4rem + 1.8vw, 3.25rem);
+  font-weight: var(--weight-display);
+  line-height: 0.95;
+  letter-spacing: var(--tracking-title);
+  text-wrap: balance;
+}
+
+.whatBody {
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  text-wrap: pretty;
+}
+
+/* Responsive */
+
+@media (max-width: 1023px) {
+  .cards {
+    grid-template-columns: minmax(0, 1fr);
+    max-inline-size: 460px;
+    margin-inline: auto;
+  }
+
+  .card,
+  .card[data-recommended] {
+    min-block-size: 0;
+  }
+
+  .card[data-recommended] {
+    order: -1;
+  }
+
+  .price {
+    padding-block-start: var(--space-6);
+  }
+
+  .how,
+  .compareNotes {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .promise,
+  .faq,
+  .whatItIs {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 639px) {
+  .field {
+    margin-inline: 0;
+    border-radius: 36px;
+  }
+
+  .fieldInner {
+    padding-inline: var(--gutter);
+  }
+
+  .compare {
+    border-radius: var(--radius-lg);
+  }
+
+  .compareTable thead {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .compareTable,
+  .compareTable tbody {
+    display: block;
+  }
+
+  .compareTable tbody tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .compareTable tbody tr:first-child {
+    border-block-start: 0;
+  }
+
+  .compareTable th,
+  .compareTable td {
+    padding: 12px 16px;
+  }
+
+  .feature {
+    grid-column: 1 / -1;
+    padding-block-end: 4px;
+    font-weight: var(--weight-mono-strong);
+  }
+
+  .free,
+  .pass {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    inline-size: auto;
+    font-size: 0.875rem;
+  }
+
+  .free::before,
+  .pass::before {
+    content: attr(data-label);
+    font-size: 0.6875rem;
+    font-weight: var(--weight-mono-strong);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+  }
+
+  .free {
+    padding-block-start: 8px;
+  }
+
+  .reminder {
+    margin-inline-end: 12%;
+  }
+
+  .track {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 5fr) minmax(0, 3fr);
+    font-size: 0.75rem;
+  }
+
+  .track > span {
+    padding: 10px 12px;
+  }
+
+  .faq {
+    gap: var(--space-5);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .action,
+  .textLink svg,
+  .faqIconVertical {
+    transition: none;
+  }
+
+  .action:hover {
+    transform: none;
+  }
+
+  .textLink:hover svg {
+    translate: none;
+  }
+}

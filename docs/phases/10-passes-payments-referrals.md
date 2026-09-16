@@ -29,15 +29,15 @@ product follows the pass. Guarantee extensions, hired pauses, refunds and referr
    kit quota wall. Returns to the app with the pass visible immediately (optimistic, confirmed by webhook).
 3. **Passes ledger.** Purchases stack on remaining time; expiry reminder 5 days before (Telegram and
    email); the no-match guarantee job; "Landed a role?" pause and resume; refunds within the active
-   provider's refund window revoke the pass, with the window stored as a per-provider setting per D14:
-   7 days on Dodo, 14 days on Paddle; idempotent webhook handling.
+   provider's refund window revoke the pass; the window is 14 days on every provider per D14 (amended
+   2026-09-16); idempotent webhook handling.
 4. **Entitlements.** Fill in the real pass logic behind the `packages/core/src/entitlements/` interface
    from phase 07, the single source for instant delivery, kit quota and yellow opt-in. Keep the
    interface unchanged. Earlier phases call only this module, so there are no temporary checks to hunt for.
 5. **Referrals.** Personal link, attribution cookie, rewards per D27 with Turnstile and parsed-CV
    conditions, referral status in the profile.
 6. **Receipts and account page** showing passes, days left and history.
-7. Set the pricing and Refund Policy pages to the active provider's refund window from D14.
+7. Confirm the pricing and Refund Policy pages still state the 14-day window from D14, and name the active provider as merchant of record.
 
 ## Suggested work orders
 

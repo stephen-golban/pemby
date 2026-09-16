@@ -1,0 +1,363 @@
+/*
+ * Legal pages: Read mode inside the landing system. Same ground, ink, grotesk and mono; no field,
+ * no cards, no tilt. Body stays monospace (the system's paragraph voice) with a looser leading and
+ * a 70ch measure so long sections stay comfortable.
+ */
+
+.page {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: clip;
+  background: var(--color-ground);
+}
+
+.main {
+  flex: 1;
+  padding: clamp(56px, 9vw, 120px) var(--gutter) clamp(72px, 10vw, 150px);
+}
+
+.layout,
+.head {
+  --toc-width: 15.5rem;
+  --toc-gap: clamp(48px, 6vw, 96px);
+  --measure: 70ch;
+
+  margin-inline: auto;
+  max-inline-size: calc(var(--toc-width) + var(--toc-gap) + var(--measure));
+}
+
+.head {
+  padding-inline-start: calc(var(--toc-width) + var(--toc-gap));
+}
+
+.title {
+  max-inline-size: 12em;
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 1.7rem + 3.4vw, 4.75rem);
+  font-weight: var(--weight-display);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.effective {
+  margin-block-start: var(--space-5);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: var(--toc-width) minmax(0, var(--measure));
+  column-gap: var(--toc-gap);
+  align-items: start;
+  margin-block-start: clamp(48px, 7vw, 88px);
+}
+
+/* Table of contents: a sticky side list on wide screens, a disclosure on narrow ones. */
+
+.tocSide {
+  position: sticky;
+  inset-block-start: var(--space-6);
+  max-block-size: calc(100dvh - 2 * var(--space-6));
+  overflow-y: auto;
+  padding-inline-end: var(--space-2);
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line) transparent;
+}
+
+.tocTitle {
+  margin-block-end: var(--space-3);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+
+.tocList {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tocLink {
+  display: block;
+  padding: 5px 0;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: var(--color-ink-soft);
+  text-decoration: none;
+}
+
+.tocLink:hover {
+  color: var(--color-ink);
+  text-decoration: underline;
+}
+
+.tocInline {
+  display: none;
+}
+
+/* The document */
+
+.prose {
+  grid-column: 2;
+  min-inline-size: 0;
+  font-size: var(--text-body);
+  line-height: 1.75;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+  text-wrap: pretty;
+}
+
+.prose > :first-child {
+  margin-block-start: 0;
+}
+
+.prose p,
+.prose ul,
+.prose ol {
+  margin-block: 0 1.1em;
+}
+
+.prose > p:first-child {
+  font-size: 1.0625rem;
+}
+
+.prose ul,
+.prose ol {
+  padding-inline-start: 1.4em;
+}
+
+.prose li + li {
+  margin-block-start: 0.45em;
+}
+
+.prose li::marker {
+  color: var(--color-ink-soft);
+}
+
+.prose strong {
+  font-weight: 600;
+}
+
+.prose a {
+  text-decoration-color: color-mix(in srgb, var(--color-ink) 45%, transparent);
+  overflow-wrap: anywhere;
+}
+
+.prose a:hover {
+  text-decoration-color: var(--color-ink);
+  text-decoration-thickness: 2px;
+}
+
+.h2 {
+  position: relative;
+  margin-block: 3.25rem 1rem;
+  padding-block-start: 2rem;
+  border-block-start: 1px solid var(--color-line);
+  font-family: var(--font-display);
+  font-size: 1.625rem;
+  font-weight: var(--weight-title);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  scroll-margin-block-start: var(--space-5);
+}
+
+.anchor {
+  display: inline-grid;
+  place-items: center;
+  inline-size: 32px;
+  block-size: 32px;
+  margin-inline-start: 6px;
+  vertical-align: -4px;
+  border-radius: var(--radius-sm);
+  color: var(--color-ink-soft);
+  opacity: 0;
+  transition: opacity var(--duration-fast) var(--ease-out);
+}
+
+.h2:hover .anchor,
+.anchor:focus-visible {
+  opacity: 1;
+}
+
+.anchor:hover {
+  color: var(--color-ink);
+  background: color-mix(in srgb, var(--color-ink) 7%, transparent);
+}
+
+.anchorIcon {
+  inline-size: 16px;
+  block-size: 16px;
+}
+
+@media (hover: none) {
+  .anchor {
+    opacity: 0.6;
+  }
+}
+
+/* Tables */
+
+.tableWrap {
+  margin-block: 1.5em 1.75em;
+  overflow-x: auto;
+}
+
+.table {
+  inline-size: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  text-align: start;
+}
+
+.table th {
+  padding: 0 var(--space-4) var(--space-3) 0;
+  border-block-end: 1.5px solid var(--color-line-strong);
+  font-size: var(--text-label);
+  font-weight: var(--weight-mono-strong);
+  letter-spacing: 0.06em;
+  text-align: start;
+  text-transform: uppercase;
+  vertical-align: bottom;
+}
+
+.table td {
+  padding: var(--space-3) var(--space-4) var(--space-3) 0;
+  border-block-end: 1px solid var(--color-line);
+  vertical-align: top;
+}
+
+.table td:first-child {
+  font-weight: var(--weight-mono-strong);
+}
+
+@media (max-width: 1023px) {
+  .head {
+    padding-inline-start: 0;
+    max-inline-size: var(--measure);
+  }
+
+  .layout {
+    display: block;
+    max-inline-size: var(--measure);
+  }
+
+  .tocSide {
+    display: none;
+  }
+
+  .tocInline {
+    display: block;
+    margin-block-end: clamp(40px, 8vw, 64px);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+  }
+
+  .tocSummary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    min-block-size: 48px;
+    padding: var(--space-3) var(--space-4);
+    border-radius: inherit;
+    font-size: var(--text-label);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    list-style: none;
+    cursor: pointer;
+  }
+
+  .tocSummary::-webkit-details-marker {
+    display: none;
+  }
+
+  .tocSummary::after {
+    content: "";
+    inline-size: 8px;
+    block-size: 8px;
+    margin-block-start: -4px;
+    border-inline-end: 1.5px solid currentColor;
+    border-block-end: 1.5px solid currentColor;
+    transform: rotate(45deg);
+    transition: transform var(--duration-fast) var(--ease-out);
+  }
+
+  .tocInline[open] .tocSummary::after {
+    margin-block-start: 4px;
+    transform: rotate(-135deg);
+  }
+
+  .tocInline .tocList {
+    padding: 0 var(--space-4) var(--space-4);
+  }
+}
+
+/* Phones: tables stack into labelled rows instead of scrolling sideways. */
+@media (max-width: 639px) {
+  .table thead {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .table,
+  .table tbody,
+  .table tr,
+  .table td {
+    display: block;
+  }
+
+  .table tr {
+    padding-block: var(--space-3);
+    border-block-end: 1px solid var(--color-line);
+  }
+
+  .table tr:first-child {
+    border-block-start: 1.5px solid var(--color-line-strong);
+  }
+
+  .table td {
+    padding: var(--space-1) 0;
+    border: 0;
+  }
+
+  .table td + td::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 0.75rem;
+    font-weight: var(--weight-mono-strong);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-ink-soft);
+  }
+
+  .prose {
+    line-height: 1.7;
+  }
+
+  .h2 {
+    font-size: 1.4375rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anchor,
+  .tocSummary::after {
+    transition: none;
+  }
+}

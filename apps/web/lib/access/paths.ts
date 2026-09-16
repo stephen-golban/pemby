@@ -24,7 +24,8 @@ const METADATA_IMAGE =
   /^\/(?:icon|apple-icon|opengraph-image|twitter-image)\d*(?:\.(?:png|jpe?g|gif|svg|ico|webp))?$/i;
 
 /**
- * Public while the owner-only gate is on: landing, pricing, legal, SEO files, sign-in and sign-up,
+ * Public while the owner-only gate is on: landing, pricing, the legal pages (and the `/legal/*`
+ * paths that redirect to them), SEO files, sign-in and sign-up,
  * auth endpoints and callbacks, webhooks, health, and Next.js assets. Everything else is a product
  * route.
  */
@@ -32,6 +33,9 @@ export function isPublicRoute(pathname: string): boolean {
   return (
     pathname === "/" ||
     under(pathname, "/pricing") ||
+    under(pathname, "/terms") ||
+    under(pathname, "/privacy") ||
+    under(pathname, "/refunds") ||
     under(pathname, "/legal") ||
     under(pathname, "/sign-in") ||
     under(pathname, "/sign-up") ||

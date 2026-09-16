@@ -1,0 +1,175 @@
+{
+  "Pricing": {
+    "meta": {
+      "title": "Pricing",
+      "description": "Pemby is free to start. Passes of 1, 3 or 6 months add instant matches and unlimited application kits. One-time payment, no auto-renew, 14-day refunds."
+    },
+    "hero": {
+      "title": "Free to start. A pass when you want matches the moment they appear.",
+      "lede": "Pemby is AI job-matching software. It finds jobs that can hire you from your country and sends them to you. You apply yourself.",
+      "noteOneTime": "One-time payment. No auto-renew. No subscription to cancel."
+    },
+    "compare": {
+      "title": "What you get",
+      "colFeature": "Feature",
+      "colFree": "Free",
+      "colPass": "Pass",
+      "yes": "Yes",
+      "no": "No",
+      "rows": {
+        "cvParse": {
+          "feature": "CV reading and profile"
+        },
+        "onboarding": {
+          "feature": "Onboarding in three steps"
+        },
+        "brief": {
+          "feature": "Your Brief, with near misses and what blocked them"
+        },
+        "delivery": {
+          "feature": "Match delivery on Telegram, email and web push",
+          "free": "24 hours after the job appears",
+          "pass": "The moment it appears"
+        },
+        "kits": {
+          "feature": "Application kits: CV bullets, cover letter, screening answers",
+          "free": "3 per month",
+          "pass": "Unlimited"
+        },
+        "green": {
+          "feature": "Green matches: hires from your country"
+        },
+        "yellow": {
+          "feature": "Yellow matches: likely hires from your country",
+          "pass": "Optional, you turn it on"
+        },
+        "extension": {
+          "feature": "Chrome extension that fills forms in your browser, you click submit",
+          "pass": "Included when it is released"
+        },
+        "guarantee": {
+          "feature": "No-match guarantee"
+        }
+      },
+      "freeNote": "Free matches arrive 24 hours late, and each late message says so.",
+      "quietNote": "Your quiet hours apply on Free and on a pass. Messages wait until quiet hours end.",
+      "ownKeyNote": "Need more kits without a pass? Connect your own OpenRouter account and pay OpenRouter directly for what you use."
+    },
+    "passes": {
+      "title": "Passes",
+      "lede": "Pick how long you want instant matches. Every pass has the same features.",
+      "currencyNote": "Prices in US dollars. Tax may be added at checkout, depending on where you live.",
+      "oneMonth": {
+        "name": "1 month",
+        "price": "$5",
+        "duration": "30 days of access",
+        "perMonth": "$5 per month"
+      },
+      "threeMonths": {
+        "badge": "Recommended",
+        "name": "3 months",
+        "price": "$10",
+        "duration": "90 days of access",
+        "perMonth": "About $3.33 per month"
+      },
+      "sixMonths": {
+        "name": "6 months",
+        "price": "$18",
+        "duration": "180 days of access",
+        "perMonth": "$3 per month"
+      },
+      "includes": "Instant delivery, unlimited kits, yellow matches if you want them, and the no-match guarantee.",
+      "oneTime": "One-time payment. No auto-renew."
+    },
+    "cta": {
+      "buy": "Buy {duration}",
+      "notOpen": "Passes open with the beta",
+      "notOpenDetail": "Checkout is not open yet. Nobody is charged until it opens.",
+      "startFree": "Start free with your CV"
+    },
+    "how": {
+      "title": "How passes work",
+      "oneTime": {
+        "title": "One payment, fixed time",
+        "body": "A pass is a single payment for 30, 90 or 180 days of access. It never renews. We never charge you again unless you buy another pass."
+      },
+      "stack": {
+        "title": "Renewals stack",
+        "body": "Buy a new pass before your current one ends and the new days are added to the end. You lose no time."
+      },
+      "reminder": {
+        "title": "A reminder before it ends",
+        "body": "We remind you 5 days before your pass ends. When it ends, your account returns to Free. Your profile, matches and kits stay."
+      },
+      "diagram": {
+        "current": "Your pass",
+        "next": "Next pass, added to the end",
+        "reminder": "Reminder, 5 days left",
+        "free": "Free again"
+      }
+    },
+    "refunds": {
+      "title": "14-day refunds",
+      "body": "Changed your mind? Email <email>hello@pemby.app</email> within 14 days of buying a pass and we refund the full price. No reason needed. A refund ends that pass.",
+      "link": "Read the refund policy"
+    },
+    "guarantee": {
+      "title": "No-match guarantee",
+      "body": "If your active pass sends you zero matches for 14 days in a row, we add 14 days to it. You do not need to ask.",
+      "scope": "The guarantee covers pass time. It is not a promise about jobs, interviews or offers."
+    },
+    "landed": {
+      "title": "Landed a role?",
+      "body": "Tell Pemby and pause your pass. The remaining days wait for you until you resume."
+    },
+    "whatItIs": {
+      "title": "Software, not an agency",
+      "body": "Pemby is AI job-matching software. It does not place candidates with employers, it does not apply for you, and employers do not pay us. You decide where to apply and you send every application yourself."
+    },
+    "faq": {
+      "title": "Questions",
+      "subscription": {
+        "q": "Is a pass a subscription?",
+        "a": "No. A pass is a one-time payment for a fixed number of days. It does not renew and there is nothing to cancel."
+      },
+      "ends": {
+        "q": "What happens when my pass ends?",
+        "a": "Your account returns to Free. Matches arrive 24 hours late again and you get 3 kits a month. Nothing is deleted."
+      },
+      "stack": {
+        "q": "Can I buy another pass before mine ends?",
+        "a": "Yes. The new days are added after your current pass, so you lose no time."
+      },
+      "nothing": {
+        "q": "What if Pemby finds nothing for me?",
+        "a": "Pemby tells you plainly and shows what blocked the closest jobs, such as no salary listed or a seniority gap. If this lasts 14 days during an active pass, we add 14 days to the pass."
+      },
+      "outcome": {
+        "q": "Does Pemby get me a job?",
+        "a": "No. Pemby finds jobs that can hire you from your country and helps you prepare your application. The employer decides, and you apply yourself."
+      },
+      "kit": {
+        "q": "What is an application kit?",
+        "a": "Draft CV bullets, a short cover letter and answers to screening questions for one job, based on your own CV. You read, edit and paste them."
+      },
+      "tiers": {
+        "q": "What do green and yellow mean?",
+        "a": "Green means the job post or the company shows it hires from your country. Yellow means it likely does, but the evidence is weaker. Every label shows its reason."
+      },
+      "source": {
+        "q": "Where do the jobs come from?",
+        "a": "From public job posts on company career pages and the applicant tracking systems companies use to publish them. Pemby re-checks each open job at least every 12 hours."
+      },
+      "privacy": {
+        "q": "What happens to my CV?",
+        "a": "Pemby uses it only to match you and draft your kits. AI requests with your data require zero data retention. We never sell it or share it with employers. If you upload without an account and do not sign up, we delete it after 24 hours.",
+        "link": "Read the privacy policy"
+      },
+      "refund": {
+        "q": "How do I ask for a refund?",
+        "a": "Email <email>hello@pemby.app</email> within 14 days of buying the pass, from the email you used at checkout.",
+        "link": "Read the refund policy"
+      }
+    }
+  }
+}
