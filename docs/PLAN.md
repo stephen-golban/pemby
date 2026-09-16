@@ -151,7 +151,7 @@ phase file path. Every phase follows `docs/phases/_COMMON.md` and ends with a ha
 | Phase | File | Outcome | Depends on | Status |
 |---|---|---|---|---|
 | 00 | `docs/phases/00-founder-setup.md` | Accounts, keys, DNS, pre-clearance emails sent | none | **partial 2026-09-16** (OAuth, Sentry, PostHog deferred; payment emails pending) — `docs/phases/handoffs/00-handoff.md` |
-| 01 | `docs/phases/01-foundation.md` | Monorepo, schema v1, auth, Railway prod + staging, CI, progress page | 00 (partial is fine) | not started |
+| 01 | `docs/phases/01-foundation.md` | Monorepo, schema v1, auth, Railway prod + staging, CI, progress page | 00 (partial is fine) | **done 2026-09-16** (staging only; OAuth, magic link, Sentry, PostHog deferred) — `docs/phases/handoffs/01-handoff.md` |
 | 02 | `docs/phases/02-product-context-and-landing-direction.md` | PRODUCT.md, landing direction round, approved landing comp | 01 (ran first; 00 and 01 still pending) | **done 2026-09-16** — `docs/phases/handoffs/02-handoff.md` |
 | 03 | `docs/phases/03-landing-legal-pricing.md` | Landing, pricing, Terms, Privacy, Refund live on pemby.app; DESIGN.md | 02 | not started |
 | 04 | `docs/phases/04-job-ingestion.md` | ATS connectors, company seed list, freshness checks, dedupe | 01 | not started |

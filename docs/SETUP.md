@@ -16,7 +16,7 @@ What exists outside this repo, who owns it, and which environment variables it p
 | # | Service | Status | Owner / location | Env vars provided | Stored in |
 |---|---|---|---|---|---|
 | 1 | GitHub repo | done | `stephen-golban/pemby`, public, `origin` of the local repo | none | none |
-| 2 | Railway | done | project `pemby` in the owner's **Hobby** workspace; environments `production`, `staging`; no services yet | none yet | none |
+| 2 | Railway | done | project `pemby` (Hobby); staging has Postgres 18 + pgvector, bucket `pemby-cvs`, web, worker, bot; production empty | `DATABASE_URL`, `DATABASE_PUBLIC_URL`, bucket credentials (`${{pemby-cvs.*}}`) | Railway staging |
 | 3a | Cloudflare DNS | done | zone `pemby.app` on Cloudflare nameservers | none | none |
 | 3b | Cloudflare Turnstile | done | one widget for `pemby.app`, `staging.pemby.app` | `NEXT_PUBLIC_TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET_KEY` | Railway, both envs |
 | 3c | Cloudflare Email Routing | done | `hello@pemby.app` forwards to the owner's inbox; test mail received 2026-09-16 | none | none |
@@ -56,5 +56,11 @@ channel.
 **OAuth callback URLs** (for when step 7 resumes; phase 01 or later confirms Better Auth's path):
 `https://pemby.app/api/auth/callback/{github,google}` and the same on `staging.pemby.app`. GitHub
 needs a third app for `http://localhost:3000`; one Google client can hold staging and localhost.
+
+**Generated in phase 01 (never seen by anyone):** `BETTER_AUTH_SECRET`, `STAGING_BASIC_AUTH_USER`,
+`STAGING_BASIC_AUTH_PASSWORD` (staging shared variables); `TELEGRAM_WEBHOOK_SECRET` (staging bot
+service). Private config: `PRIVATE_CONFIG_TOKEN` (fine-grained, Contents read-only on
+`stephen-golban/pemby-private`, expires in about a year), `PRIVATE_CONFIG_REPO`, `PRIVATE_CONFIG_REF`.
+Better Auth routes live under `/api/auth/*`; OAuth callbacks will be `/api/auth/callback/<provider>`.
 
 **Payment provider approvals**: none yet. Phase 10 needs one recorded here before passes go live.
