@@ -1,0 +1,68 @@
+{
+  "Metadata": {
+    "siteName": "Pemby",
+    "description": "AI job-matching software; you apply yourself.",
+    "pricingTitle": "Pricing",
+    "termsTitle": "Terms of service",
+    "privacyTitle": "Privacy policy",
+    "refundsTitle": "Refund policy",
+    "signInTitle": "Sign in",
+    "signUpTitle": "Create an account",
+    "appTitle": "Your Pemby",
+    "forbiddenTitle": "Access restricted",
+    "notFoundTitle": "Page not found"
+  },
+  "Home": {
+    "tagline": "Pemby — AI job-matching software; you apply yourself. Coming soon."
+  },
+  "ComingSoon": {
+    "body": "This page is coming soon.",
+    "backHome": "Back to the home page"
+  },
+  "Auth": {
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign in",
+    "signUp": "Create account",
+    "signingIn": "Signing in…",
+    "signingUp": "Creating account…",
+    "haveAccount": "Already have an account?",
+    "noAccount": "No account yet?",
+    "continueAnonymously": "Continue without an account",
+    "startingAnonymous": "Starting…",
+    "signOut": "Sign out",
+    "failed": "That didn't work. Check your details and try again.",
+    "passwordHint": "At least 8 characters.",
+    "signUpClosed": "Pemby is not open for sign-ups yet.",
+    "signUpClosedHeading": "Sign-ups are closed"
+  },
+  "App": {
+    "heading": "Your Pemby",
+    "signedInAs": "Signed in as {email}",
+    "anonymousSession": "Anonymous session",
+    "saveAccount": "Create an account to keep your data",
+    "displayNameLabel": "Display name",
+    "displayNameCurrent": "Current display name: {name}",
+    "displayNameEmpty": "Current display name: not set",
+    "save": "Save",
+    "saving": "Saving…",
+    "saveFailed": "Could not save. Your previous name is back."
+  },
+  "Forbidden": {
+    "heading": "Access restricted",
+    "body": "This part of Pemby is not open yet.",
+    "signIn": "Sign in with a different account"
+  },
+  "NotFound": {
+    "heading": "Page not found",
+    "backHome": "Back to the home page"
+  },
+  "Error": {
+    "heading": "Something went wrong",
+    "retry": "Try again"
+  },
+  "Proxy": {
+    "authRequired": "Authentication required.",
+    "unavailable": "Temporarily unavailable."
+  }
+}

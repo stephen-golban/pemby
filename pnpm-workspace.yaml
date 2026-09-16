@@ -3,6 +3,10 @@ packages:
   - packages/*
 
 # Dependencies allowed to run install scripts. esbuild (used by tsx) verifies its native binary.
+# @parcel/watcher and @swc/core come with next-intl's optional message extractor, which Pemby does
+# not use; their prebuilt binaries install without scripts.
 allowBuilds:
+  "@parcel/watcher": false
+  "@swc/core": false
   esbuild: true
   unrs-resolver: false

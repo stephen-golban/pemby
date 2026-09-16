@@ -77,10 +77,58 @@ supply-chain policy (minimum release age) applies; prefer an older patch over ex
   Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
   ```
 
+## Auth and access
+
+- Better Auth config: `apps/web/lib/auth/server.ts`; access rules: `apps/web/proxy.ts` and
+  `apps/web/lib/access/`. `APP_ENV` is required under `NODE_ENV=production`; `BETTER_AUTH_URL`
+  must be https on staging and production.
+- Production refuses every user creation that arrives over HTTP (email sign-up and anonymous
+  sessions). Staging and development stay open.
+- Create an owner account (email must be in `OWNER_ALLOWLIST_EMAILS` and not exist yet):
+  `railway run --environment production --service web -- pnpm --filter @pemby/web create-owner`.
+  It prompts for the email and a hidden password; non-interactive: `--email <email>` with the
+  password as the first line of stdin.
+- Rate limiting uses Better Auth's memory storage and the `X-Real-IP` header Railway sets. This is
+  only correct with one `web` instance; more instances need `rateLimit.storage: "database"` or
+  secondary storage.
+
 ## i18n
 
-_Placeholder: filled by work order C._
+- Library: `next-intl` (App Router, Server Components and client components, typed keys). English
+  only; the locale is not in the URL (PLAN D22).
+- Messages: `apps/web/messages/en.json`, grouped by namespace (`Auth`, `App`, `Metadata`, ...).
+  `apps/web/global.d.ts` types the keys, so a missing key fails `pnpm typecheck`.
+- Request config: `apps/web/i18n/request.ts` (locale and messages); locale list:
+  `apps/web/i18n/config.ts`. The plugin is wired in `apps/web/next.config.ts`.
+- Server Components, `generateMetadata`, `not-found.tsx`: `await getTranslations("Namespace")` from
+  `next-intl/server`. Client components: `useTranslations("Namespace")`. Outside React (for example
+  `apps/web/proxy.ts`): `createTranslator({ locale, messages, namespace })`.
+- No user-facing string literals in components, metadata, error pages or HTTP bodies people read.
+  API error bodies use stable codes (`{ "error": "forbidden" }`); the client maps codes to messages.
+- Adding Russian: add `"ru"` to `i18n/config.ts`, create `messages/ru.json` with the same keys, and
+  resolve the locale in `i18n/request.ts` (cookie or `Accept-Language`).
+- PLAN D16 wording applies to every message.
 
 ## Optimistic UI
 
-_Placeholder: filled by work order C._
+Every user mutation updates the screen at once and rolls back on failure.
+
+- TanStack Query provider: `apps/web/app/providers.tsx`, mounted in `apps/web/app/layout.tsx`.
+- Helper: `optimisticUpdate(queryKey, apply)` in `apps/web/lib/optimistic.ts`. Spread it into
+  `useMutation`:
+
+  ```ts
+  const save = useMutation({
+    mutationFn: patchDisplayName,
+    ...optimisticUpdate<ProfileResponse, string>(["profile"], (prev, name) => ({ ...prev, displayName: name })),
+  });
+  ```
+
+  `onMutate` cancels in-flight queries for the key, snapshots the cached value and writes the
+  optimistic one; `onError` restores the snapshot; `onSettled` invalidates the key so the cache
+  matches the server.
+- Reference example: `apps/web/components/display-name-form.tsx` (display name on `/app`) against
+  `PATCH /api/profile` (`apps/web/app/api/profile/route.ts`). Outside production, a name containing
+  "fail" returns 500, so the rollback can be watched.
+- Show the error in the UI (`save.isError`) with an i18n message; never leave the optimistic value.
+- For state that lives only in a component (no query cache), React `useOptimistic` is fine.

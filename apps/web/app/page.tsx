@@ -1,3 +1,6 @@
-export default function HomePage() {
-  return <p>Pemby — AI job-matching software; you apply yourself. Coming soon.</p>;
+import { getTranslations } from "next-intl/server";
+
+export default async function HomePage() {
+  const t = await getTranslations("Home");
+  return <p>{t("tagline")}</p>;
 }
