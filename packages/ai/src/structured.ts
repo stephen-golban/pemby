@@ -10,7 +10,21 @@
 // Privacy: nothing here logs. Errors thrown to callers carry task, model, HTTP status and
 // OpenRouter's `error_type` only: never prompt text, input, model output, `requestBodyValues` or
 // `responseBody`, and never the original SDK error as `cause`.
-import { APICallError, generateText, type ModelMessage } from "ai";
+//
+// Streaming (`runStreamingStructuredTask`): one streamed request on the route's primary model,
+// feeding partial objects to the caller. If that request fails or its final object fails the
+// schema, the task falls back to the non-streaming chain above (first call, repair, fallbacks).
+// Every request, streamed or not, is one `ai_usage` row. Response Healing does not apply to
+// streamed responses, which is why an invalid streamed object goes through the repair path.
+import {
+  APICallError,
+  generateText,
+  isDeepEqualData,
+  parsePartialJson,
+  streamText,
+  type ModelMessage,
+  type ProviderMetadata,
+} from "ai";
 import type { AiCallOutcome, AiTask } from "@pemby/core";
 import { loadPrompt, type PromptTemplate, type TaskParams } from "@pemby/core/private-config";
 import { z } from "zod";
@@ -103,6 +117,27 @@ export interface StructuredTaskResult<T> {
   /** Sum over every attempt, from OpenRouter's `usage.cost`. */
   costUsd: number;
   latencyMs: number;
+  /** The upstream provider OpenRouter routed the answering request to, when it reported one. */
+  provider: string | null;
+}
+
+export interface StreamingPartialMeta {
+  /** Milliseconds since the task started. */
+  elapsedMs: number;
+}
+
+export interface StreamingStructuredTaskOptions<T> extends StructuredTaskOptions<T> {
+  /**
+   * Called with each new partial object (parsed from incomplete JSON, not validated), in order and
+   * never concurrently: the stream waits for the returned promise. Throttling is the caller's job.
+   * A throw cancels the request, writes its row, and is rethrown without a fallback.
+   */
+  onPartial: (partial: unknown, meta: StreamingPartialMeta) => void | Promise<void>;
+}
+
+export interface StreamingStructuredTaskResult<T> extends StructuredTaskResult<T> {
+  /** True when the streamed request's own output was used; false when the fallback path answered. */
+  streamed: boolean;
 }
 
 /** Every model in the chain failed. Carries no request or response content. */
@@ -205,6 +240,31 @@ function describeFailure(error: unknown): Failure {
   return { status: null, errorType: "network" };
 }
 
+/**
+ * A streamed error: an SDK error, or the raw `{ code, message, metadata }` object OpenRouter sends
+ * in an SSE chunk after the stream started. Only the numeric code and error type are read.
+ */
+function describeStreamFailure(error: unknown): Failure {
+  if (error instanceof Error || typeof error !== "object" || error === null) {
+    return describeFailure(error);
+  }
+  type ErrorBody = { code?: unknown; type?: unknown; metadata?: { error_type?: unknown } };
+  const body = error as ErrorBody;
+  const status = typeof body.code === "number" ? body.code : null;
+  return {
+    status,
+    errorType:
+      safeToken(body.metadata?.error_type) ??
+      safeToken(body.type) ??
+      (status === null ? "network" : null),
+  };
+}
+
+function openRouterProviderName(metadata: ProviderMetadata | undefined): string | null {
+  const provider = (metadata?.openrouter as { provider?: unknown } | undefined)?.provider;
+  return typeof provider === "string" ? provider : null;
+}
+
 function isConfigError(error: unknown): AiConfigError | null {
   if (error instanceof AiConfigError) return error;
   if (error instanceof Error && error.cause instanceof AiConfigError) return error.cause;
@@ -302,6 +362,7 @@ type Attempt =
       costUsd: number;
       costEstimated: boolean;
       latencyMs: number;
+      provider: string | null;
     }
   | {
       ok: false;
@@ -333,6 +394,28 @@ function contentLength(message: ModelMessage): number {
 export async function runStructuredTask<T>(
   options: StructuredTaskOptions<T>,
 ): Promise<StructuredTaskResult<T>> {
+  return (await prepareRun(options)).chain();
+}
+
+/**
+ * Streams one request on the route's primary model and passes each new partial object to
+ * `onPartial`. The final object is validated with the schema. When the streamed request fails
+ * (HTTP error, mid-stream error, timeout, dropped connection) or its final object is invalid, its
+ * row is written and the task continues exactly as `runStructuredTask` would (first call, one
+ * repair retry, the route's fallbacks), with `streamed: false`. The cap is checked before every
+ * request. Throws what `runStructuredTask` throws, plus whatever `onPartial` throws. The caller's
+ * abort during the stream writes the row and throws without a fallback.
+ */
+export async function runStreamingStructuredTask<T>(
+  options: StreamingStructuredTaskOptions<T>,
+): Promise<StreamingStructuredTaskResult<T>> {
+  const run = await prepareRun(options);
+  const streamedResult = await run.stream(options.onPartial);
+  if (streamedResult) return { ...streamedResult, streamed: true };
+  return { ...(await run.chain()), streamed: false };
+}
+
+async function prepareRun<T>(options: StructuredTaskOptions<T>) {
   const { task, schema, input, ledger, capGuard, context = {}, routeOverride } = options;
   const now = options.now ?? (() => new Date());
   const table = options.table ?? (await loadRoutingTable());
@@ -410,6 +493,76 @@ export async function runStructuredTask<T>(
     if (status.state === "capped") throw new DailyCapReachedError(status, at);
   };
 
+  const callSettings = () => ({
+    instructions: prompt.text,
+    maxRetries: 0,
+    ...(route.params?.temperature === undefined ? {} : { temperature: route.params.temperature }),
+    ...(route.params?.maxOutputTokens === undefined
+      ? {}
+      : { maxOutputTokens: route.params.maxOutputTokens }),
+    providerOptions: { openrouter: providerOptions },
+  });
+
+  /** Cost of an answered request: `usage.cost`, else the generation lookup, else an estimate. */
+  const priceAnswer = async (
+    model: string,
+    answer: {
+      text: string;
+      modelId: string | undefined;
+      responseId: string | undefined;
+      inputTokens: number | undefined;
+      outputTokens: number | undefined;
+      providerMetadata: ProviderMetadata | undefined;
+    },
+    t0: number,
+  ): Promise<Extract<Attempt, { ok: true }>> => {
+    const usage = (
+      answer.providerMetadata?.openrouter as { usage?: { cost?: unknown } } | undefined
+    )?.usage;
+    const answered = answer.modelId || model;
+    const generationId = answer.responseId || null;
+    let inputTokens = answer.inputTokens ?? 0;
+    let outputTokens = answer.outputTokens ?? 0;
+    let costUsd = typeof usage?.cost === "number" ? usage.cost : null;
+    let costEstimated = false;
+    if (costUsd === null && generationId !== null) {
+      const looked = await lookupGenerationUsage(generationId, route.keyClass, {
+        ...keyOptions,
+        ...(options.fetch === undefined ? {} : { fetch: options.fetch }),
+      });
+      if (looked) {
+        costUsd = looked.costUsd;
+        inputTokens = looked.inputTokens ?? inputTokens;
+        outputTokens = looked.outputTokens ?? outputTokens;
+      }
+    }
+    if (costUsd === null) {
+      // Priced by the requested id: the response may drop the `:free` suffix.
+      costUsd = estimateCostUsd(model, inputTokens, outputTokens);
+      costEstimated = true;
+    }
+    return {
+      ok: true,
+      text: answer.text,
+      model: answered,
+      generationId,
+      inputTokens,
+      outputTokens,
+      costUsd,
+      costEstimated,
+      latencyMs: Math.round(performance.now() - t0),
+      provider: openRouterProviderName(answer.providerMetadata),
+    };
+  };
+
+  /** Upper-bound cost of a request that got no usage back. */
+  const estimateFor = (model: string, messages: ModelMessage[]) =>
+    estimateAttemptCost(
+      model,
+      prompt.text.length + messages.reduce((n, m) => n + contentLength(m), 0),
+      route.params?.maxOutputTokens,
+    );
+
   const call = async (model: string, messages: ModelMessage[]): Promise<Attempt> => {
     throwIfAborted(callerSignal);
     await checkCap();
@@ -419,54 +572,22 @@ export async function runStructuredTask<T>(
     try {
       const result = await generateText({
         model: provider.chat(model),
-        instructions: prompt.text,
         messages,
-        maxRetries: 0,
         abortSignal: callerSignal ? AbortSignal.any([callerSignal, timeout]) : timeout,
-        ...(route.params?.temperature === undefined
-          ? {}
-          : { temperature: route.params.temperature }),
-        ...(route.params?.maxOutputTokens === undefined
-          ? {}
-          : { maxOutputTokens: route.params.maxOutputTokens }),
-        providerOptions: { openrouter: providerOptions },
+        ...callSettings(),
       });
-      const usage = (
-        result.providerMetadata?.openrouter as { usage?: { cost?: unknown } } | undefined
-      )?.usage;
-      const answered = result.response.modelId || model;
-      const generationId = result.response.id || null;
-      let inputTokens = result.usage.inputTokens ?? 0;
-      let outputTokens = result.usage.outputTokens ?? 0;
-      let costUsd = typeof usage?.cost === "number" ? usage.cost : null;
-      let costEstimated = false;
-      if (costUsd === null && generationId !== null) {
-        const looked = await lookupGenerationUsage(generationId, route.keyClass, {
-          ...keyOptions,
-          ...(options.fetch === undefined ? {} : { fetch: options.fetch }),
-        });
-        if (looked) {
-          costUsd = looked.costUsd;
-          inputTokens = looked.inputTokens ?? inputTokens;
-          outputTokens = looked.outputTokens ?? outputTokens;
-        }
-      }
-      if (costUsd === null) {
-        // Priced by the requested id: the response may drop the `:free` suffix.
-        costUsd = estimateCostUsd(model, inputTokens, outputTokens);
-        costEstimated = true;
-      }
-      return {
-        ok: true,
-        text: result.text,
-        model: answered,
-        generationId,
-        inputTokens,
-        outputTokens,
-        costUsd,
-        costEstimated,
-        latencyMs: Math.round(performance.now() - t0),
-      };
+      return await priceAnswer(
+        model,
+        {
+          text: result.text,
+          modelId: result.response.modelId,
+          responseId: result.response.id,
+          inputTokens: result.usage.inputTokens,
+          outputTokens: result.usage.outputTokens,
+          providerMetadata: result.providerMetadata,
+        },
+        t0,
+      );
     } catch (error) {
       const config = isConfigError(error);
       if (config) throw config;
@@ -474,14 +595,7 @@ export async function runStructuredTask<T>(
       const aborted = callerSignal?.aborted === true;
       // No HTTP response (timeout, abort, dropped connection): the request may still be billed, and
       // OpenRouter gave us no generation id to look up, so record an upper-bound estimate.
-      const estimate =
-        failure.status === null
-          ? estimateAttemptCost(
-              model,
-              prompt.text.length + messages.reduce((n, m) => n + contentLength(m), 0),
-              route.params?.maxOutputTokens,
-            )
-          : null;
+      const estimate = failure.status === null ? estimateFor(model, messages) : null;
       return {
         ok: false,
         failure: aborted ? { status: null, errorType: "aborted" } : failure,
@@ -535,52 +649,186 @@ export async function runStructuredTask<T>(
     attemptedModels: [...attemptedModels],
     costUsd: totalCost,
     latencyMs: Math.round(performance.now() - started),
+    provider: attempt.provider,
   });
 
-  const chain = [route.model, ...route.fallbackModels];
-  let lastFailure: { model: string; failure: Failure } | null = null;
+  /**
+   * One streamed request. Partials are parsed from the accumulated text and passed on only when
+   * they changed; `onPartial` is awaited inside the read loop, so calls never overlap. A throw from
+   * `onPartial` cancels the request, writes an error row with an estimate, and is rethrown.
+   */
+  const streamCall = async (
+    model: string,
+    messages: ModelMessage[],
+    onPartial: StreamingStructuredTaskOptions<T>["onPartial"],
+  ): Promise<Attempt> => {
+    throwIfAborted(callerSignal);
+    await checkCap();
+    attempts += 1;
+    const t0 = performance.now();
+    const timeout = AbortSignal.timeout(timeoutMs);
+    const cancel = new AbortController();
+    const signals = [cancel.signal, timeout, ...(callerSignal ? [callerSignal] : [])];
 
-  for (const model of chain) {
+    let text = "";
+    let lastPartial: unknown = undefined;
+    let finish: {
+      modelId: string | undefined;
+      responseId: string | undefined;
+      inputTokens: number | undefined;
+      outputTokens: number | undefined;
+      providerMetadata: ProviderMetadata | undefined;
+    } | null = null;
+    let streamError: { error: unknown } | null = null;
+    let abortedPart = false;
+    let callbackError: { error: unknown } | null = null;
+
+    try {
+      const result = streamText({
+        model: provider.chat(model),
+        messages,
+        abortSignal: AbortSignal.any(signals),
+        // The default handler console.errors the SDK error, which can carry the response body.
+        onError: () => undefined,
+        ...callSettings(),
+      });
+      for await (const part of result.stream) {
+        if (part.type === "text-delta") {
+          text += part.text;
+          const { value, state } = await parsePartialJson(text);
+          if (
+            (state === "successful-parse" || state === "repaired-parse") &&
+            typeof value === "object" &&
+            value !== null &&
+            !isDeepEqualData(value, lastPartial)
+          ) {
+            lastPartial = value;
+            try {
+              await onPartial(value, { elapsedMs: Math.round(performance.now() - started) });
+            } catch (error) {
+              callbackError = { error };
+              cancel.abort();
+              break;
+            }
+          }
+        } else if (part.type === "finish-step") {
+          finish = {
+            modelId: part.response.modelId,
+            responseId: part.response.id,
+            inputTokens: part.usage.inputTokens,
+            outputTokens: part.usage.outputTokens,
+            providerMetadata: part.providerMetadata,
+          };
+        } else if (part.type === "error") {
+          streamError ??= { error: part.error };
+        } else if (part.type === "abort") {
+          abortedPart = true;
+        }
+      }
+    } catch (error) {
+      streamError ??= { error };
+    }
+
+    if (streamError) {
+      const config = isConfigError(streamError.error);
+      if (config) throw config;
+    }
+    if (!callbackError && !streamError && !abortedPart && finish !== null) {
+      return priceAnswer(model, { text, ...finish }, t0);
+    }
+
+    const aborted = callerSignal?.aborted === true;
+    const failure: Failure = aborted
+      ? { status: null, errorType: "aborted" }
+      : callbackError
+        ? { status: null, errorType: "callback" }
+        : streamError
+          ? describeStreamFailure(streamError.error)
+          : { status: null, errorType: timeout.aborted ? "timeout" : "network" };
+    // A request that got no usage back may still be billed; once text arrived it certainly is.
+    const estimate =
+      failure.status === null || text.length > 0 ? estimateFor(model, messages) : null;
+    const attempt: Extract<Attempt, { ok: false }> = {
+      ok: false,
+      failure,
+      aborted,
+      estimate,
+      latencyMs: Math.round(performance.now() - t0),
+    };
+    if (callbackError) {
+      await recordFailure(model, attempt);
+      throw callbackError.error;
+    }
+    return attempt;
+  };
+
+  /** The streamed request. Null when the caller should fall back to `chain`; its row is written. */
+  const stream = async (
+    onPartial: StreamingStructuredTaskOptions<T>["onPartial"],
+  ): Promise<StructuredTaskResult<T> | null> => {
+    const model = route.model;
     attemptedModels.push(model);
-    const messages: ModelMessage[] = [{ role: "user", content: input }];
-
-    const first = await call(model, messages);
-    if (!first.ok) {
-      await recordFailure(model, first);
-      lastFailure = { model, failure: first.failure };
-      continue;
+    const attempt = await streamCall(model, [{ role: "user", content: input }], onPartial);
+    if (!attempt.ok) {
+      await recordFailure(model, attempt);
+      return null;
     }
-    const firstCheck = validate(schema, first.text);
-    await recordAnswer(first, firstCheck.ok ? "ok" : "invalid");
-    if (firstCheck.ok) return success(first, firstCheck.data, "ok");
+    const check = validate(schema, attempt.text);
+    await recordAnswer(attempt, check.ok ? "ok" : "invalid");
+    return check.ok ? success(attempt, check.data, "ok") : null;
+  };
 
-    // One repair retry on the same model: its invalid output, then what was wrong with it.
-    const repair = await call(model, [
-      ...messages,
-      { role: "assistant", content: first.text.trim() === "" ? "(empty reply)" : first.text },
-      {
-        role: "user",
-        content: `${firstCheck.feedback}\nReply again with only the corrected JSON, matching the schema exactly.`,
-      },
-    ]);
-    if (!repair.ok) {
-      await recordFailure(model, repair);
-      lastFailure = { model, failure: repair.failure };
-      continue;
-    }
-    const repairCheck = validate(schema, repair.text);
-    await recordAnswer(repair, repairCheck.ok ? "repaired" : "invalid");
-    if (!repairCheck.ok) {
-      throw new AiOutputInvalidError(
-        task,
-        repair.model,
-        repairCheck.issueCount,
-        repairCheck.issuePaths,
-      );
-    }
-    return success(repair, repairCheck.data, "repaired");
-  }
+  /** The non-streaming chain: first call, one repair retry, then each fallback model. */
+  const chain = async (): Promise<StructuredTaskResult<T>> => {
+    // After a streamed attempt the primary model is listed again by the loop below.
+    attemptedModels.length = 0;
+    const models = [route.model, ...route.fallbackModels];
+    let lastFailure: { model: string; failure: Failure } | null = null;
 
-  const last = lastFailure ?? { model: route.model, failure: { status: null, errorType: null } };
-  throw new AiCallError(task, last.model, last.failure, attemptedModels);
+    for (const model of models) {
+      attemptedModels.push(model);
+      const messages: ModelMessage[] = [{ role: "user", content: input }];
+
+      const first = await call(model, messages);
+      if (!first.ok) {
+        await recordFailure(model, first);
+        lastFailure = { model, failure: first.failure };
+        continue;
+      }
+      const firstCheck = validate(schema, first.text);
+      await recordAnswer(first, firstCheck.ok ? "ok" : "invalid");
+      if (firstCheck.ok) return success(first, firstCheck.data, "ok");
+
+      // One repair retry on the same model: its invalid output, then what was wrong with it.
+      const repair = await call(model, [
+        ...messages,
+        { role: "assistant", content: first.text.trim() === "" ? "(empty reply)" : first.text },
+        {
+          role: "user",
+          content: `${firstCheck.feedback}\nReply again with only the corrected JSON, matching the schema exactly.`,
+        },
+      ]);
+      if (!repair.ok) {
+        await recordFailure(model, repair);
+        lastFailure = { model, failure: repair.failure };
+        continue;
+      }
+      const repairCheck = validate(schema, repair.text);
+      await recordAnswer(repair, repairCheck.ok ? "repaired" : "invalid");
+      if (!repairCheck.ok) {
+        throw new AiOutputInvalidError(
+          task,
+          repair.model,
+          repairCheck.issueCount,
+          repairCheck.issuePaths,
+        );
+      }
+      return success(repair, repairCheck.data, "repaired");
+    }
+
+    const last = lastFailure ?? { model: route.model, failure: { status: null, errorType: null } };
+    throw new AiCallError(task, last.model, last.failure, attemptedModels);
+  };
+
+  return { stream, chain };
 }
