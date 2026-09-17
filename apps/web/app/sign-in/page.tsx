@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 import { connection } from "next/server";
 import { AuthForm, ContinueAnonymouslyButton } from "@/components/auth-form";
-import { signUpOpen } from "@/lib/auth/codes";
+import { RESET_PASSWORD_PAGE, signUpOpen } from "@/lib/auth/codes";
 import { appEnv } from "@/lib/env";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -20,6 +20,9 @@ export default async function SignInPage() {
     <main>
       <h1>{t("Metadata.signInTitle")}</h1>
       <AuthForm mode="sign-in" />
+      <p>
+        <Link href={RESET_PASSWORD_PAGE}>{t("Auth.forgotPassword")}</Link>
+      </p>
       {open ? (
         <>
           <p>
