@@ -17,6 +17,13 @@ type ProfilePatch = Partial<typeof profiles.$inferInsert>;
 
 const blank = (value: string | null) => value === null || value.trim() === "";
 
+/**
+ * Longest display name stored from a CV. Matches the limit the profile API accepts
+ * (`displayNameChars` in apps/web/app/api/profile/_lib/view.ts); the worker cannot import web code,
+ * so the number is repeated here on purpose. `normalizeParsedProfile` already trimmed the name.
+ */
+const DISPLAY_NAME_CHARS = 80;
+
 /** Returns the names of the columns it filled. Runs inside the caller's transaction. */
 export async function fillProfileFromCv(
   tx: Tx,
@@ -32,6 +39,11 @@ export async function fillProfileFromCv(
   if (!current) return [];
 
   const patch: ProfilePatch = {};
+  // The whole name as the person wrote it on their own CV; shown back only to them for now.
+  if (blank(current.displayName) && parsed.fullName !== null) {
+    const name = parsed.fullName.trim().slice(0, DISPLAY_NAME_CHARS).trim();
+    if (name !== "") patch.displayName = name;
+  }
   if (current.titles.length === 0 && parsed.titles.length > 0) patch.titles = parsed.titles;
   if (current.seniority === null && parsed.seniority !== null) {
     patch.seniority = toDbSeniority(parsed.seniority);

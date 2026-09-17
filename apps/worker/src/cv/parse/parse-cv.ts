@@ -13,6 +13,7 @@ import {
   AiOutputInvalidError,
   DAILY_CAP_USD,
   DailyCapReachedError,
+  loadPrompt,
   runStreamingStructuredTask,
   type CostLedger,
   type DailyCapGuard,
@@ -29,6 +30,31 @@ const { aiUsage, cvFiles, user } = schema;
 type CvStageTimings = NonNullable<(typeof cvFiles.$inferSelect)["stageTimings"]>;
 
 export const CV_PARSE_ERROR_CODE = "parse_failed";
+
+/**
+ * Lowest `cv-parse` prompt version this job will call a model with. The private repo shipped a
+ * 0.1.0 stub ("Stub prompt, not in use"), and a worker whose PRIVATE_CONFIG_REF still resolves to it
+ * asks the model for the profile schema with no instructions: every answer fails validation, after
+ * three billed attempts. Below this version the job fails the row without calling the model.
+ */
+export const MIN_CV_PARSE_PROMPT_VERSION = "0.2.0";
+
+/** False only for a version we can read as numeric and that is below the minimum. */
+export function isUsableCvParsePromptVersion(
+  version: string,
+  minimum: string = MIN_CV_PARSE_PROMPT_VERSION,
+): boolean {
+  const parts = (v: string) => v.split(".").map((n) => Number(n));
+  const actual = parts(version);
+  const min = parts(minimum);
+  if (actual.length === 0 || actual.some((n) => !Number.isInteger(n))) return true;
+  for (let i = 0; i < min.length; i++) {
+    const a = actual[i] ?? 0;
+    const m = min[i] ?? 0;
+    if (a !== m) return a > m;
+  }
+  return true;
+}
 
 /**
  * Per-day ceiling on `cv-parse` spend, under the global AI cap: anonymous uploads are open to the
@@ -127,10 +153,24 @@ const mergeTimings = (timings: CvStageTimings) =>
 
 export const CV_PARSE_TIMEOUT_CODE = "parse_timeout";
 
-async function markFailed(db: Db, cvId: string, errorCode: string = CV_PARSE_ERROR_CODE) {
+async function markFailed(
+  db: Db,
+  cvId: string,
+  errorCode: string = CV_PARSE_ERROR_CODE,
+  /** Recorded on the failed row so a bad prompt or model is visible without the logs. */
+  attempted: { promptVersion?: string; model?: string } = {},
+) {
   await db
     .update(cvFiles)
-    .set({ parseStatus: "failed", errorCode, parsedPartial: null })
+    .set({
+      parseStatus: "failed",
+      errorCode,
+      parsedPartial: null,
+      ...(attempted.promptVersion === undefined
+        ? {}
+        : { parsePromptVersion: attempted.promptVersion }),
+      ...(attempted.model === undefined ? {} : { parseModel: attempted.model }),
+    })
     .where(and(eq(cvFiles.id, cvId), inArray(cvFiles.parseStatus, ["parsing", "queued"])));
 }
 
@@ -221,6 +261,19 @@ export async function parseCv(
     return { kind: "queued", metrics: metrics(null), error };
   };
 
+  // The prompt this run would use. Loading it here (it is cached for the process) also records its
+  // version on a failed row, which is what tells a stale config apart from a bad CV.
+  const prompt = await loadPrompt("cv-parse");
+  if (!isUsableCvParsePromptVersion(prompt.version)) {
+    await writer.close();
+    await markFailed(db, cvId, CV_PARSE_ERROR_CODE, { promptVersion: prompt.versionId });
+    return {
+      kind: "failed",
+      metrics: metrics(null),
+      reason: `prompt-too-old:${prompt.version}`,
+    };
+  }
+
   // The CV sub-budget, checked like the global cap: nothing has been sent yet.
   const at = new Date();
   const budgetUsd = deps.budgetUsd ?? readCvParseBudgetUsd();
@@ -235,6 +288,7 @@ export async function parseCv(
     result = await runStreamingStructuredTask({
       task: "cv-parse",
       schema: ParsedProfileSchema,
+      prompt,
       schemaName: "parsed_profile",
       input: row.text,
       ledger: deps.ledger,
@@ -248,11 +302,14 @@ export async function parseCv(
     if (error instanceof DailyCapReachedError) return toQueued(error);
     if (error instanceof AiOutputInvalidError) {
       // The chain already made a repair retry on the same model; the same text fails again.
-      await markFailed(db, cvId);
+      await markFailed(db, cvId, CV_PARSE_ERROR_CODE, {
+        promptVersion: prompt.versionId,
+        model: error.model,
+      });
       return { kind: "failed", metrics: metrics(null), reason: error.name };
     }
     if (error instanceof AiCallError && !attempt.mayRetry) {
-      await markFailed(db, cvId);
+      await markFailed(db, cvId, CV_PARSE_ERROR_CODE, { promptVersion: prompt.versionId });
       return { kind: "failed", metrics: metrics(null), reason: error.name };
     }
     // AiCallError with a retry left, an abort, a prompt or config error, a database error: the row
