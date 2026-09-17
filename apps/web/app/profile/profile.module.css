@@ -1,0 +1,116 @@
+/*
+ * /profile: the same Operate ledger as onboarding, all three topics at once, with the strength
+ * meter and the count in the rail. Panels sit flat; only the two decisions — export and delete —
+ * take the outlined paper card (panels.module.css).
+ */
+
+.page {
+  min-block-size: 100dvh;
+  background: var(--color-ground);
+}
+
+.shell {
+  max-inline-size: calc(1100px + 2 * var(--gutter));
+  margin-inline: auto;
+  padding: var(--space-8) var(--gutter) var(--space-9);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+  gap: var(--space-7) var(--space-9);
+  align-items: start;
+}
+
+.main {
+  display: grid;
+  gap: var(--space-8);
+  min-inline-size: 0;
+}
+
+.intro {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.title {
+  max-inline-size: 16ch;
+  font-family: var(--font-display);
+  font-size: 2.125rem;
+  font-weight: var(--weight-title);
+  line-height: 0.92;
+  letter-spacing: var(--tracking-title);
+  text-wrap: balance;
+}
+
+.lead {
+  max-inline-size: 58ch;
+  font-size: var(--text-small);
+  line-height: 1.55;
+}
+
+/* One topic: the heading over its ledger, with more space above than below it. */
+.topic {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.topicTitle {
+  font-family: var(--font-display);
+  font-size: 1.625rem;
+  font-weight: var(--weight-title);
+  line-height: 1;
+  letter-spacing: var(--tracking-title);
+}
+
+.account {
+  display: grid;
+  gap: var(--space-7);
+  padding-block-start: var(--space-5);
+}
+
+.rail {
+  position: sticky;
+  inset-block-start: var(--space-6);
+  display: grid;
+  gap: var(--space-7);
+  justify-items: start;
+}
+
+.alert {
+  max-inline-size: 58ch;
+  padding: 10px 14px;
+  border: 1px solid color-mix(in srgb, var(--color-tier-red) 55%, transparent);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-tier-red) 10%, var(--color-surface));
+  font-size: var(--text-small);
+  line-height: 1.5;
+}
+
+@media (max-width: 1000px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-7);
+  }
+
+  .rail {
+    position: static;
+    order: -1;
+    gap: var(--space-6);
+    inline-size: 100%;
+  }
+}
+
+@media (max-width: 720px) {
+  .shell {
+    padding-block-start: var(--space-5);
+  }
+
+  .title {
+    font-size: 1.8125rem;
+  }
+
+  .main {
+    gap: var(--space-7);
+  }
+}

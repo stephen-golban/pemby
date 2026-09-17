@@ -1,0 +1,282 @@
+/*
+ * The blocks that are not ledger rows: the strength meter, the export panel, the delete panel and
+ * the save-your-work notice. Panels sit flat on the ground (DESIGN.md, "Objects lift, panels sit");
+ * only the two that carry a decision take the outlined paper card.
+ */
+
+.panel {
+  display: grid;
+  gap: var(--space-3);
+  justify-items: start;
+}
+
+.panelTitle {
+  font-family: var(--font-display);
+  font-size: 1.3125rem;
+  font-weight: var(--weight-title);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.body {
+  max-inline-size: 58ch;
+  font-size: var(--text-small);
+  line-height: 1.55;
+}
+
+.note {
+  max-inline-size: 58ch;
+  font-size: var(--text-label);
+  line-height: 1.5;
+  color: var(--color-ink-soft);
+}
+
+.plainList {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--text-label);
+  line-height: 1.5;
+}
+
+.plainList li {
+  padding-inline-start: var(--space-4);
+  text-indent: calc(-1 * var(--space-4));
+}
+
+.plainList li::before {
+  content: "—";
+  margin-inline-end: var(--space-2);
+  color: var(--color-ink-soft);
+}
+
+/* Strength meter --------------------------------------------------------- */
+
+.metric {
+  font-family: var(--font-display);
+  font-size: 3.25rem;
+  font-weight: var(--weight-display);
+  line-height: 0.9;
+  letter-spacing: var(--tracking-title);
+  font-variant-numeric: tabular-nums;
+}
+
+.track {
+  inline-size: 100%;
+  block-size: 8px;
+  border-radius: var(--radius-full);
+  background: color-mix(in srgb, var(--color-ink) 14%, transparent);
+  overflow: hidden;
+}
+
+.fill {
+  block-size: 100%;
+  border-radius: var(--radius-full);
+  background: var(--color-ink);
+  transition: inline-size var(--duration-base) var(--ease-out);
+}
+
+.gaps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gapPill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-block-size: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-full);
+  font-size: var(--text-label);
+  text-decoration: none;
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+.gapPill:hover {
+  border-color: var(--color-ink);
+}
+
+.gapWeight {
+  color: var(--color-ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Outlined cards --------------------------------------------------------- */
+
+.card {
+  display: grid;
+  gap: var(--space-3);
+  justify-items: start;
+  padding: var(--space-6) var(--space-6) var(--space-5);
+  border: 1.5px solid var(--color-line-strong);
+  border-radius: var(--radius-card);
+  background: var(--color-paper-card);
+}
+
+.cardTitle {
+  font-family: var(--font-display);
+  font-size: 1.625rem;
+  font-weight: var(--weight-title);
+  line-height: 1;
+  letter-spacing: var(--tracking-title);
+}
+
+.cardActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-5);
+  align-items: center;
+  margin-block-start: var(--space-2);
+}
+
+/* Controls --------------------------------------------------------------- */
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: var(--weight-mono-strong);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+.pill:hover {
+  border-color: var(--color-ink);
+}
+
+.primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  block-size: 52px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--color-ink);
+  color: var(--color-ground);
+  font-family: var(--font-display);
+  font-size: 1.1875rem;
+  font-weight: var(--weight-title);
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.primary:hover {
+  transform: translateY(-2px);
+}
+
+.textLink {
+  font-size: var(--text-small);
+  text-decoration: underline;
+}
+
+.confirmRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: flex-end;
+  margin-block-start: var(--space-2);
+}
+
+.confirmLabel {
+  display: grid;
+  gap: 6px;
+  font-size: var(--text-label);
+  color: var(--color-ink-soft);
+}
+
+.confirmInput {
+  inline-size: min(16rem, 60vw);
+  min-block-size: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-ground);
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  letter-spacing: 0.08em;
+}
+
+.confirmInput:hover {
+  border-color: var(--color-ink);
+}
+
+/*
+ * The delete action. Ink, not a tier colour: DESIGN.md reserves green / yellow / white / red for
+ * eligibility, always beside their words. Unavailable takes the dashed treatment the design system
+ * already uses for "not yet".
+ */
+.danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: 44px;
+  padding: 0 20px;
+  border: 1.5px solid var(--color-line-strong);
+  border-radius: var(--radius-full);
+  background: var(--color-ink);
+  color: var(--color-ground);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: var(--weight-mono-strong);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.danger:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.danger:disabled {
+  border-style: dashed;
+  border-color: color-mix(in srgb, var(--color-ink) 45%, transparent);
+  background: transparent;
+  color: var(--color-ink-soft);
+  cursor: not-allowed;
+  transform: none;
+}
+
+.error {
+  max-inline-size: 58ch;
+  padding: 10px 14px;
+  border: 1px solid color-mix(in srgb, var(--color-tier-red) 55%, transparent);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-tier-red) 10%, var(--color-surface));
+  font-size: var(--text-small);
+  line-height: 1.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fill {
+    transition: none;
+  }
+
+  .primary:hover,
+  .danger:hover:not(:disabled) {
+    transform: none;
+  }
+}

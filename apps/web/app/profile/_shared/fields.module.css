@@ -1,0 +1,285 @@
+/*
+ * The editable ledger. Same grammar as the read-only one in components/profile/profile.module.css:
+ * a fixed uppercase mono label column, hairline rules, no box around a cell, no tilt, no shadow.
+ * Editing opens inside the row; the row grows, nothing moves out from under the pointer.
+ */
+
+.ledger {
+  display: grid;
+  margin: 0;
+  border-block-start: 1px solid var(--color-line);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 9rem minmax(0, 1fr) auto;
+  gap: var(--space-2) var(--space-5);
+  align-items: baseline;
+  padding-block: var(--space-4);
+  border-block-end: 1px solid var(--color-line);
+  scroll-margin-block-start: var(--space-8);
+}
+
+.row[data-editing] {
+  background: color-mix(in srgb, var(--color-surface) 62%, transparent);
+  box-shadow:
+    -12px 0 0 color-mix(in srgb, var(--color-surface) 62%, transparent),
+    12px 0 0 color-mix(in srgb, var(--color-surface) 62%, transparent);
+}
+
+.label {
+  font-size: var(--text-label);
+  font-weight: var(--weight-mono-strong);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+
+.value,
+.action {
+  margin: 0;
+  min-inline-size: 0;
+  font-size: var(--text-small);
+  line-height: 1.5;
+}
+
+.missing {
+  font-size: var(--text-label);
+  color: var(--color-ink-soft);
+}
+
+.help {
+  max-inline-size: 58ch;
+  margin-block-start: var(--space-2);
+  font-size: var(--text-label);
+  line-height: 1.5;
+  color: var(--color-ink-soft);
+}
+
+/* Chips ------------------------------------------------------------------ */
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chips:empty {
+  display: none;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 6px 5px 10px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-ground);
+  font-size: var(--text-label);
+}
+
+/* A chip with no remove button keeps the symmetric padding of the read-only ledger. */
+.chip:not(:has(.chipRemove)) {
+  padding-inline-end: 10px;
+}
+
+.chipDetail {
+  color: var(--color-ink-soft);
+}
+
+.chipRemove {
+  display: grid;
+  place-items: center;
+  inline-size: 24px;
+  block-size: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: background-color var(--duration-fast) var(--ease-out);
+}
+
+.chipRemove:hover {
+  background: color-mix(in srgb, var(--color-ink) 10%, transparent);
+}
+
+.chipRemove svg {
+  inline-size: 12px;
+  block-size: 12px;
+}
+
+/* Editors ---------------------------------------------------------------- */
+
+.fieldset {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.fieldset > * {
+  flex: 0 1 auto;
+}
+
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  inline-size: 100%;
+}
+
+.choices[data-stacked="true"] {
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.choice {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  min-block-size: 44px;
+  font-size: var(--text-small);
+  cursor: pointer;
+}
+
+.choice[data-stacked="true"] {
+  align-items: flex-start;
+  min-block-size: 0;
+  padding-block: 2px;
+}
+
+.choice input {
+  flex: none;
+  inline-size: 18px;
+  block-size: 18px;
+  margin: 0;
+}
+
+.choice[data-stacked="true"] input {
+  margin-block-start: 3px;
+}
+
+.choiceHelp {
+  display: block;
+  max-inline-size: 52ch;
+  margin-block-start: 2px;
+  font-size: var(--text-label);
+  line-height: 1.45;
+  color: var(--color-ink-soft);
+}
+
+.inlineLabel {
+  display: inline-flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.select,
+.text,
+.number {
+  min-block-size: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-ground);
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+}
+
+.select {
+  max-inline-size: 100%;
+  padding-inline-end: 8px;
+}
+
+.text {
+  inline-size: min(22rem, 100%);
+}
+
+.number {
+  inline-size: 7rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.select:hover,
+.text:hover,
+.number:hover {
+  border-color: var(--color-ink);
+}
+
+.suffix {
+  font-size: var(--text-label);
+  color: var(--color-ink-soft);
+}
+
+.addRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+  inline-size: 100%;
+}
+
+.rate {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+/* The outline pill, the secondary action of every Operate screen. */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: var(--weight-mono-strong);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+.pill:hover:not(:disabled) {
+  border-color: var(--color-ink);
+}
+
+.pill:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+@media (max-width: 720px) {
+  .row {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .label {
+    grid-column: 1 / -1;
+  }
+
+  .value {
+    grid-column: 1;
+  }
+
+  .action {
+    grid-column: 2;
+    align-self: start;
+  }
+}

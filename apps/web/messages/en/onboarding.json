@@ -1,0 +1,214 @@
+{
+  "Onboarding": {
+    "meta": {
+      "title": "Set up your profile",
+      "profileTitle": "Your profile"
+    },
+    "steps": {
+      "label": "Setup progress",
+      "position": "Step {index} of {total}",
+      "eligibility": "Eligibility",
+      "ways": "Ways of working",
+      "role": "Role and money",
+      "done": "done",
+      "current": "in progress",
+      "todo": "not yet"
+    },
+    "step": {
+      "eligibility": {
+        "title": "Where you can work from",
+        "lead": "This is what decides which roles can legally hire you. Pemby read what it could from your CV; correct anything that is wrong."
+      },
+      "ways": {
+        "title": "How you want to be paid and engaged",
+        "lead": "A role has to offer one of these for you to hear about it. Pemby starts you on the usual ones for your level."
+      },
+      "role": {
+        "title": "The work and the floor",
+        "lead": "What you do, and the least you will take for it. Every field here is optional, and leaving one empty only makes the match looser."
+      }
+    },
+    "actions": {
+      "next": "Looks right",
+      "finish": "Finish setup",
+      "skip": "Skip this step",
+      "back": "Back",
+      "edit": "Edit",
+      "editField": "Edit {field}",
+      "done": "Done",
+      "doneField": "Done editing {field}",
+      "add": "Add",
+      "addCountry": "Add a country",
+      "remove": "Remove {value}",
+      "notSet": "Not set",
+      "useBrowserZone": "Use {zone}",
+      "saving": "Saving…",
+      "yes": "Yes",
+      "no": "No"
+    },
+    "fields": {
+      "citizenships": "Citizenships",
+      "residenceCountry": "You work from",
+      "timezone": "Time zone",
+      "minOverlapHours": "Overlap",
+      "hasOwnCompany": "Own company",
+      "permits": "Work permits",
+      "englishLevel": "English",
+      "waysOfWorking": "Ways of working",
+      "employmentTypes": "Employment",
+      "titles": "Titles",
+      "seniority": "Seniority",
+      "stack": "Stack",
+      "minRate": "Minimum rate",
+      "dealbreakers": "Dealbreakers",
+      "hideNoSalary": "Hide roles with no salary"
+    },
+    "help": {
+      "citizenships": "A second passport can open roles that ask for the right to work somewhere.",
+      "residenceCountry": "The country you are physically in when you work. Every eligibility check runs on it.",
+      "timezone": "Used to work out how many hours you and a team share.",
+      "minOverlapHours": "The fewest hours a day you are willing to share with a team, 0 to 12.",
+      "hasOwnCompany": "An IT Park SRL, a PFA, an LLC — anything you can invoice a company from.",
+      "permits": "A permit you already hold. It is not the same as citizenship, and some roles ask for one.",
+      "englishLevel": "Your own estimate. Pemby never tests it.",
+      "waysOfWorking": "A role has to offer at least one of these.",
+      "employmentTypes": "Leave all three off and Pemby will not filter on this at all.",
+      "titles": "What you call your work. Used to decide which role families you are shown.",
+      "seniority": "Pemby shows roles within one level of this.",
+      "stack": "The technologies you want to keep working with.",
+      "minRate": "Roles that state less than this are not sent. Roles that state nothing are unaffected.",
+      "dealbreakers": "Words that rule a role out for you: on-call, crypto, a specific company.",
+      "hideNoSalary": "Most posts state no salary. Turning this on hides all of them."
+    },
+    "empty": {
+      "citizenships": "None listed",
+      "residenceCountry": "Not set — nothing can match without it",
+      "timezone": "Not set",
+      "minOverlapHours": "No floor",
+      "hasOwnCompany": "Not set",
+      "permits": "None listed",
+      "englishLevel": "Not set",
+      "waysOfWorking": "None accepted — nothing can match",
+      "employmentTypes": "Not filtered",
+      "titles": "Not set — every role family is shown",
+      "seniority": "Not set — every level is shown",
+      "stack": "Not set",
+      "minRate": "No floor",
+      "dealbreakers": "None",
+      "hideNoSalary": "Not set"
+    },
+    "units": {
+      "hours": "{count, plural, one {# hour a day} other {# hours a day}}",
+      "hoursSuffix": "hours a day",
+      "rate": "{amount, number} {currency} per {period}"
+    },
+    "values": {
+      "ways": {
+        "b2b-contractor": "B2B contractor",
+        "eor-employee": "Employee through an EOR",
+        "relocation-visa": "Relocation with a visa",
+        "freelance": "Freelance",
+        "local": "Local, in your own country",
+        "paid-program": "Paid programs"
+      },
+      "waysHelp": {
+        "b2b-contractor": "You invoice the company from your own company.",
+        "eor-employee": "The company hires you through an employer of record such as Deel or Remote.",
+        "relocation-visa": "You move, and the company sponsors the visa.",
+        "freelance": "Project work, paid per project or per hour.",
+        "local": "On-site or hybrid work inside the country you live in.",
+        "paid-program": "Paid internships, mentorships and graduate programs."
+      },
+      "employment": {
+        "full-time": "Full-time",
+        "part-time": "Part-time",
+        "contract-to-hire": "Contract to hire"
+      },
+      "permitKinds": {
+        "work-permit": "Work permit",
+        "residence-permit": "Residence permit",
+        "student-permit": "Student permit",
+        "working-holiday": "Working holiday",
+        "other": "Other permit"
+      },
+      "permitCountry": "Country",
+      "permitKind": "Kind of permit",
+      "permitExpires": "Expires on (optional)",
+      "periods": {
+        "hour": "hour",
+        "day": "day",
+        "month": "month",
+        "year": "year"
+      },
+      "rateAmount": "Amount",
+      "rateCurrency": "Currency",
+      "ratePeriod": "Per",
+      "titlePlaceholder": "Backend engineer",
+      "stackPlaceholder": "PostgreSQL",
+      "dealbreakerPlaceholder": "On-call"
+    },
+    "counter": {
+      "note": "Counted from open roles that can hire you from {country}, each one checked on the company's own careers page. Nothing likely, nothing unclear.",
+      "announce": "{count, plural, =0 {No roles from {country} right now.} one {# role hires from {country}.} other {# roles hire from {country}.}}",
+      "noCountryTitle": "Add the country you work from",
+      "noCountryBody": "Every eligibility check runs on it, so there is nothing to count until it is set.",
+      "unsupportedTitle": "Pemby doesn't cover {country} yet",
+      "unsupportedBody": "Pemby starts with the countries remote roles most often leave out, and {country} isn't one of them yet. Your profile is still yours.",
+      "failed": "The count couldn't be loaded"
+    },
+    "blocked": {
+      "residenceCountry": "Set the country you work from before you continue. Every eligibility check runs on it."
+    },
+    "done": {
+      "title": "Your profile is set",
+      "body": "Pemby now knows which roles can legally hire you from where you live, and what you want to do.",
+      "next": "Nothing is delivered yet — sending matches over Telegram, email and web push is still being built. Your profile is saved and you can change any of it whenever you like.",
+      "cta": "See your profile"
+    },
+    "profile": {
+      "title": "Your profile",
+      "lead": "Everything Pemby matches on. Changes save as you make them, and take effect on the next match.",
+      "railLabel": "Profile summary"
+    },
+    "strength": {
+      "title": "Profile strength",
+      "percent": "{percent}%",
+      "complete": "Everything Pemby matches on is answered.",
+      "gapsLead": "{count, plural, one {One field would sharpen your matches} other {# fields would sharpen your matches}}, best first.",
+      "weight": "+{points}",
+      "note": "Counted from the fields the matcher actually reads."
+    },
+    "data": {
+      "title": "Export my data",
+      "body": "A JSON file with everything Pemby holds about you, built when you ask for it.",
+      "includesProfile": "Your profile, exactly as the matcher reads it",
+      "includesParsed": "The profile read out of each CV you dropped",
+      "includesFiles": "The details of each CV: name, type, size, when it arrived, how it was read",
+      "excludes": "Not in the file: any link to the stored CV itself. CV files are private and Pemby never hands out a URL to one.",
+      "cta": "Download my data"
+    },
+    "delete": {
+      "title": "Delete account",
+      "body": "This removes your account and everything attached to it, and signs you out.",
+      "bodyAnonymous": "You have not signed up yet, so this removes the CV and profile held for this browser. They would be deleted within 24 hours anyway.",
+      "removesProfile": "Your profile and everything in it",
+      "removesFiles": "Every CV you dropped, the file and the text read from it",
+      "removesAccount": "Your account, your sign-in and every session",
+      "permanent": "It cannot be undone, and Pemby keeps no copy.",
+      "prompt": "Type {phrase} to confirm",
+      "cta": "Delete my account",
+      "deleting": "Deleting…"
+    },
+    "errors": {
+      "unauthenticated": "Your session ended. Sign in again to keep editing.",
+      "forbidden": "This account can't change that.",
+      "invalid_display_name": "That name is too long. Keep it under 80 characters.",
+      "invalid_profile_patch": "Pemby couldn't save that value. Try a different one.",
+      "invalid_confirmation": "The confirmation didn't match. Type it exactly as shown.",
+      "delete_failed": "Nothing was deleted — something went wrong partway. Try again in a minute.",
+      "unavailable": "Pemby couldn't save that right now. Try again in a few minutes.",
+      "forced_failure": "Pemby couldn't save that right now. Try again in a few minutes.",
+      "network": "Pemby couldn't be reached. Check your connection and try again."
+    }
+  }
+}

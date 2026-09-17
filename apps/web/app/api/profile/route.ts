@@ -1,54 +1,67 @@
 import { appEnv } from "@/lib/env";
-import { getProductAccess } from "@/lib/auth/session";
-import { DISPLAY_NAME_MAX, getDisplayName, setDisplayName } from "@/lib/profile";
-import type { ProfileResponse } from "@/lib/profile";
+import { loadProfileView, patchProfile } from "./_lib/db";
+import { authorize, fail, isAnonymous, json } from "./_lib/http";
+import { parseProfilePatch } from "./_lib/validate";
+import type { ProfileView } from "./_lib/view";
 
-async function authorize(request: Request) {
-  const access = await getProductAccess(request.headers);
-  if (access.status === "unauthenticated") {
-    return { error: Response.json({ error: "unauthenticated" }, { status: 401 }) };
-  }
-  if (access.status === "forbidden") {
-    return { error: Response.json({ error: "forbidden" }, { status: 403 }) };
-  }
-  return { session: access.session };
-}
+/**
+ * The user's own profile (PLAN D5), read and written by `/onboarding` and `/profile`.
+ *
+ * `GET` answers the whole `ProfileView`; `PATCH` takes any subset of its writable keys and answers
+ * the profile as it now stands, so an optimistic client can reconcile in one round trip. The body
+ * still carries `displayName`, which is what `components/display-name-form.tsx` on `/app` reads and
+ * writes, so that reference example keeps working unchanged.
+ */
 
 export async function GET(request: Request): Promise<Response> {
   const auth = await authorize(request);
   if (auth.error) return auth.error;
-  const body: ProfileResponse = { displayName: await getDisplayName(auth.session.user.id) };
-  return Response.json(body);
+  const body: ProfileView = await loadProfileView(auth.session.user.id, isAnonymous(auth.session));
+  return json(body);
+}
+
+/** Outside production, saving this value fails on purpose so the rollback can be watched. */
+const FORCED_FAILURE = "fail";
+
+function forcesFailure(patch: Record<string, unknown>): boolean {
+  if (appEnv() === "production") return false;
+  return Object.values(patch).some((value) => {
+    if (typeof value === "string") return value.toLowerCase().includes(FORCED_FAILURE);
+    if (Array.isArray(value)) {
+      return value.some(
+        (item) => typeof item === "string" && item.toLowerCase() === FORCED_FAILURE,
+      );
+    }
+    return false;
+  });
 }
 
 export async function PATCH(request: Request): Promise<Response> {
   const auth = await authorize(request);
   if (auth.error) return auth.error;
 
-  const input: unknown = await request.json().catch(() => null);
-  const raw =
-    input && typeof input === "object" && "displayName" in input ? input.displayName : undefined;
-  if (typeof raw !== "string") {
-    return Response.json({ error: "invalid_display_name" }, { status: 400 });
-  }
-  const displayName = raw.trim();
-  if (displayName.length === 0 || displayName.length > DISPLAY_NAME_MAX) {
-    return Response.json({ error: "invalid_display_name" }, { status: 400 });
-  }
-
-  // Proof hook for optimistic rollback: outside production, a name containing "fail" errors.
-  if (appEnv() !== "production" && displayName.toLowerCase().includes("fail")) {
-    return Response.json({ error: "forced_failure" }, { status: 500 });
+  const body: unknown = await request.json().catch(() => null);
+  const parsed = parseProfilePatch(body);
+  if (!parsed.ok) {
+    // `invalid_display_name` is kept for the one field that had its own code before this route
+    // grew; every other field reports the generic code with its name.
+    return parsed.field === "displayName"
+      ? fail("invalid_display_name", 400)
+      : fail("invalid_profile_patch", 400, { field: parsed.field });
   }
 
-  let saved: ProfileResponse | null;
+  // Proof hook for optimistic rollback (docs/conventions.md): outside production, any string value
+  // containing "fail" errors, so a rollback can be watched on every editor.
+  if (forcesFailure(parsed.patch)) return fail("forced_failure", 500);
+
+  let saved: ProfileView | null;
   try {
-    saved = await setDisplayName(auth.session.user.id, displayName);
+    saved = await patchProfile(auth.session.user.id, parsed.patch, isAnonymous(auth.session));
   } catch (error) {
-    // 23503: the user row was deleted (claimed) while this write waited on it.
+    // 23503: the user row was deleted (claimed, expired or deleted) while this write waited on it.
     if (error instanceof Error && "code" in error && error.code === "23503") saved = null;
     else throw error;
   }
-  if (!saved) return Response.json({ error: "unauthenticated" }, { status: 401 });
-  return Response.json(saved);
+  if (!saved) return fail("unauthenticated", 401);
+  return json(saved);
 }

@@ -1,0 +1,240 @@
+/*
+ * /onboarding: Operate density inside the landing system. Same ground, type, radii and hairline
+ * ledger rows; every flourish removed. Two columns — the topic on the left, the count and the step
+ * ledger on the right — collapsing to one, with the count pinned above the topic on narrow screens
+ * so an edit's consequence is never scrolled off.
+ */
+
+.page {
+  min-block-size: 100dvh;
+  background: var(--color-ground);
+}
+
+.shell {
+  max-inline-size: calc(1100px + 2 * var(--gutter));
+  margin-inline: auto;
+  padding: var(--space-8) var(--gutter) var(--space-9);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+  gap: var(--space-7) var(--space-9);
+  align-items: start;
+}
+
+.main {
+  display: grid;
+  gap: var(--space-5);
+  justify-items: start;
+}
+
+.title {
+  max-inline-size: 16ch;
+  font-family: var(--font-display);
+  font-size: 2.125rem;
+  font-weight: var(--weight-title);
+  line-height: 0.92;
+  letter-spacing: var(--tracking-title);
+  text-wrap: balance;
+}
+
+.title:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 6px;
+}
+
+.lead {
+  max-inline-size: 58ch;
+  font-size: var(--text-small);
+  line-height: 1.55;
+}
+
+.note {
+  max-inline-size: 58ch;
+  font-size: var(--text-label);
+  line-height: 1.5;
+  color: var(--color-ink-soft);
+}
+
+.main > dl {
+  inline-size: 100%;
+}
+
+/* Rail ------------------------------------------------------------------- */
+
+.rail {
+  position: sticky;
+  inset-block-start: var(--space-6);
+  display: grid;
+  gap: var(--space-5);
+  justify-items: start;
+}
+
+.position {
+  font-size: var(--text-label);
+  font-weight: var(--weight-mono-strong);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+
+.stepList {
+  display: grid;
+  gap: var(--space-3);
+  inline-size: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  font-size: var(--text-small);
+  color: var(--color-ink-soft);
+}
+
+.step[data-state="current"] {
+  color: var(--color-ink);
+}
+
+.step[data-state="done"] {
+  color: var(--color-ink);
+}
+
+/*
+ * The mark vocabulary of the CV panel's step ledger: a filled ticked square for a step that is
+ * done, an outlined one for the step in progress, dashed for a step not reached.
+ */
+.stepMark {
+  flex: none;
+  display: grid;
+  place-items: center;
+  inline-size: 20px;
+  block-size: 20px;
+  border: 1.5px dashed var(--color-line);
+  border-radius: var(--radius-sm);
+  color: var(--color-ground);
+}
+
+.stepMark svg {
+  inline-size: 13px;
+  block-size: 13px;
+  visibility: hidden;
+}
+
+.step[data-state="current"] .stepMark {
+  border-style: solid;
+  border-color: var(--color-ink);
+}
+
+.step[data-state="done"] .stepMark {
+  border-style: solid;
+  border-color: var(--color-ink);
+  background: var(--color-ink);
+}
+
+.step[data-state="done"] .stepMark svg {
+  visibility: visible;
+}
+
+.stepName {
+  min-inline-size: 0;
+}
+
+/* Actions ---------------------------------------------------------------- */
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-5);
+  align-items: center;
+  margin-block-start: var(--space-3);
+}
+
+.primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  block-size: 52px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--color-ink);
+  color: var(--color-ground);
+  font-family: var(--font-display);
+  font-size: 1.1875rem;
+  font-weight: var(--weight-title);
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.primary:hover {
+  transform: translateY(-2px);
+}
+
+.textButton {
+  min-block-size: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
+  cursor: pointer;
+}
+
+.saving {
+  font-size: var(--text-label);
+  color: var(--color-ink-soft);
+}
+
+.alert {
+  max-inline-size: 58ch;
+  padding: 10px 14px;
+  border: 1px solid color-mix(in srgb, var(--color-tier-red) 55%, transparent);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-tier-red) 10%, var(--color-surface));
+  font-size: var(--text-small);
+  line-height: 1.5;
+}
+
+@media (max-width: 1000px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-6);
+  }
+
+  .rail {
+    order: -1;
+    inset-block-start: 0;
+    gap: var(--space-4);
+    inline-size: 100%;
+    padding-block: var(--space-4);
+    border-block-end: 1px solid var(--color-line);
+    background: var(--color-ground);
+    z-index: 1;
+  }
+}
+
+@media (max-width: 720px) {
+  .shell {
+    padding-block-start: var(--space-5);
+  }
+
+  .title {
+    font-size: 1.8125rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .primary:hover {
+    transform: none;
+  }
+}

@@ -1,0 +1,79 @@
+/*
+ * The count line. The counter itself is `components/profile/match-counter.tsx`; what belongs here
+ * is the quiet pending state and the one settled-change moment, neither of which the shared
+ * component owns.
+ */
+
+.line {
+  display: grid;
+  gap: var(--space-3);
+  justify-items: start;
+}
+
+/*
+ * Quiet, not blank: while a new number is being worked out the last one stays legible and the line
+ * dims, so an edit never flashes a count that was never true. `data-pending` is set by MatchCounter.
+ */
+.line :global([data-pending="true"]) {
+  opacity: 0.5;
+  transition: opacity var(--duration-fast) var(--ease-out);
+}
+
+.settle {
+  animation: settle var(--duration-base) var(--ease-out) both;
+}
+
+@keyframes settle {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.quiet {
+  font-family: var(--font-display);
+  font-size: 1.3125rem;
+  font-weight: var(--weight-title);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.note {
+  max-inline-size: 42ch;
+  font-size: var(--text-label);
+  line-height: 1.5;
+  color: var(--color-ink-soft);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: var(--weight-mono-strong);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+.pill:hover {
+  border-color: var(--color-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .settle {
+    animation: none;
+  }
+}
