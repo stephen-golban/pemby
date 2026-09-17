@@ -92,13 +92,7 @@ export function TeaserResults({
           </button>
         </>
       ) : (
-        <MatchCounter
-          as="h3"
-          id={headingId}
-          count={null}
-          pending
-          label={t("checking", { country })}
-        />
+        <MatchCounter as="h3" id={headingId} count={null} country={country} pending />
       );
   } else if (result.basis === "no_country") {
     body = (
@@ -121,20 +115,18 @@ export function TeaserResults({
   } else if (result.count === 0 || result.jobs.length === 0) {
     body = (
       <>
-        <MatchCounter as="h3" id={headingId} count={0} label={t("noneTitle", { country })} />
-        <p className={styles.note}>{t("noneBody", { country })}</p>
+        <MatchCounter as="h3" id={headingId} count={0} country={country} />
+        <p className={styles.note}>{t("counterNote", { country })}</p>
+        <p className={styles.note}>{t("noneBody")}</p>
       </>
     );
   } else {
     body = (
       <>
-        <MatchCounter
-          as="h3"
-          id={headingId}
-          count={result.count}
-          label={t("count", { count: result.count, country })}
-        />
-        <p className={styles.note}>{t("sample", { shown: result.jobs.length })}</p>
+        <MatchCounter as="h3" id={headingId} count={result.count} country={country} />
+        <p className={styles.note}>
+          {t("sample", { shown: result.jobs.length })} {t("counterNote", { country })}
+        </p>
         <ul className={styles.jobs}>
           {result.jobs.map((job) => (
             <TeaserCard key={job.id} job={job} countryLabel={country} />

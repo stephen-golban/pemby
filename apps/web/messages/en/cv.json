@@ -118,13 +118,14 @@
       },
       "reasonFallback": "The post says where this role can be done, and {country} is included.",
       "noneTitle": "roles from {country} right now",
-      "noneBody": "Pemby only counts roles that can hire you from {country}, so this can be zero. Sign up to keep your profile and come back to it.",
+      "noneBody": "Sign up to keep your profile and come back to it.",
       "unsupportedTitle": "Pemby doesn't cover {country} yet",
       "unsupportedBody": "Pemby starts with the countries remote roles most often leave out, and {country} isn't one of them yet. Your profile is still yours to save.",
       "noCountryTitle": "Your CV doesn't say where you live",
       "noCountryBody": "Pemby matches roles by the country you work from. Your CV doesn't name one, so you can add it after you sign up.",
       "failed": "Roles couldn't be loaded right now",
-      "retry": "Try again"
+      "retry": "Try again",
+      "counterNote": "Pemby counts only roles that can hire you from {country}, so this number can be zero."
     },
     "save": {
       "title": "Save your profile",

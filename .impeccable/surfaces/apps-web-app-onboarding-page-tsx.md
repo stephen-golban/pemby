@@ -53,8 +53,8 @@ two plain exits: take the data, or delete the account.
 Left: the step title in grotesk at 34px, one mono sub-line, then the topic as a ledger — uppercase
 mono label, the current value as mono text or chips, and an outline "Edit" pill in a third column
 that opens the editor **in the row**, never in a modal. Under the ledger, one ink pill ("Looks
-right") and, on steps 2 and 3, a quiet text link to skip. Right, sticky from 1000px up and pinned
-above the ledger below it: the count rail — the ink count badge and its grotesk line ("12 roles hire
+right") and, on steps 2 and 3, a quiet text link to skip. Right, sticky from 1000px up and, below
+that, above the ledger and scrolling with it: the count rail — the ink count badge and its grotesk line ("12 roles hire
 from Moldova"), a mono footnote naming the green tier, then the three steps as a small ledger with
 filled / outlined / dashed marks. On `/profile` the rail carries the strength meter instead: a
 grotesk percentage over a 8px hairline-track bar, and the missing fields as outline pills that move

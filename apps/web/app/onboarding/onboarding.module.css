@@ -29,8 +29,14 @@
   justify-items: start;
 }
 
+/*
+ * `width: fit-content` is not cosmetic: the heading takes focus programmatically on every step
+ * change, and a block box would paint the ring across the whole column and read as a stray input.
+ * It sits on the heading rather than on `:focus-visible` so focus never shifts the layout.
+ */
 .title {
-  max-inline-size: 16ch;
+  inline-size: fit-content;
+  max-inline-size: 20ch;
   font-family: var(--font-display);
   font-size: 2.125rem;
   font-weight: var(--weight-title);
@@ -211,15 +217,18 @@
     gap: var(--space-6);
   }
 
+  /*
+   * Above the topic, and not sticky. The rail carries the count, the step ledger and (for a
+   * visitor who has not signed up) the save-your-work card, which on a phone is tall enough that
+   * pinning it painted an opaque band over the rows being edited.
+   */
   .rail {
+    position: static;
     order: -1;
-    inset-block-start: 0;
     gap: var(--space-4);
     inline-size: 100%;
-    padding-block: var(--space-4);
+    padding-block-end: var(--space-4);
     border-block-end: 1px solid var(--color-line);
-    background: var(--color-ground);
-    z-index: 1;
   }
 }
 

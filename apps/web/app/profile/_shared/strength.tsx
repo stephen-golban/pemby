@@ -19,14 +19,17 @@ import styles from "./panels.module.css";
  * `profileStrength`). It is derived, never stored, so the number moves in the same frame as an
  * optimistic edit.
  *
- * The bar is `aria-hidden`: the percentage beside it is the accessible value, and the gap list
- * below it is the accessible detail, so there is nothing a progressbar role would add.
+ * The number and the bar only exist while something is missing. Once everything the matcher reads
+ * is answered there is no distance left to measure, so a 100% and a full bar would be three ways of
+ * saying one thing; one sentence says it once. The bar is `aria-hidden` while it shows: the
+ * percentage beside it is the accessible value and the gap list below it is the accessible detail,
+ * so there is nothing a progressbar role would add.
  */
 export function StrengthMeter({ profile }: { profile: ProfileView }) {
   const t = useTranslations("Onboarding.strength");
   const fields = useTranslations("Onboarding.fields");
-  const percent = profileStrength(profile);
   const gaps = profileGaps(profile);
+  const percent = profileStrength(profile);
 
   return (
     <section
@@ -37,14 +40,14 @@ export function StrengthMeter({ profile }: { profile: ProfileView }) {
       <h2 id="profile-strength-title" className={styles.panelTitle}>
         {t("title")}
       </h2>
-      <p className={styles.metric}>{t("percent", { percent })}</p>
-      <div className={styles.track} aria-hidden="true">
-        <div className={styles.fill} style={{ inlineSize: `${percent}%` }} />
-      </div>
       {gaps.length === 0 ? (
-        <p className={styles.note}>{t("complete")}</p>
+        <p className={styles.settled}>{t("complete")}</p>
       ) : (
         <>
+          <p className={styles.metric}>{t("percent", { percent })}</p>
+          <div className={styles.track} aria-hidden="true">
+            <div className={styles.fill} style={{ inlineSize: `${percent}%` }} />
+          </div>
           <p className={styles.note}>{t("gapsLead", { count: gaps.length })}</p>
           <ul className={styles.gaps}>
             {gaps.map((key) => (

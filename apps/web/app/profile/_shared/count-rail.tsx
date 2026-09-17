@@ -71,19 +71,18 @@ export function MatchCountLine({
     <div className={styles.line} aria-busy={count.pending}>
       {/* Keyed on the number so a settled change replays the one authored moment on this screen. */}
       <div key={value ?? "none"} className={styles.settle}>
+        {/* `country`, never a pre-built label: MatchCounter owns the sentence for every surface
+            that shows this number, so onboarding and the landing teaser cannot drift apart. */}
         <MatchCounter
           as="h2"
           id={headingId}
           count={value}
+          country={country}
           pending={count.pending}
-          label={
-            value === null
-              ? teaser("checking", { country })
-              : teaser("count", { count: value, country })
-          }
         />
       </div>
-      <p className={styles.note}>{t("note", { country })}</p>
+      {/* The shared sentence about what this number counts; it also sits under the landing teaser. */}
+      <p className={styles.note}>{teaser("counterNote", { country })}</p>
       <p className="visually-hidden" role="status" aria-live="polite">
         {count.pending || value === null ? "" : t("announce", { count: value, country })}
       </p>

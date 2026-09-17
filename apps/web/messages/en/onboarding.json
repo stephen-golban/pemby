@@ -148,7 +148,6 @@
       "dealbreakerPlaceholder": "On-call"
     },
     "counter": {
-      "note": "Counted from open roles that can hire you from {country}, each one checked on the company's own careers page. Nothing likely, nothing unclear.",
       "announce": "{count, plural, =0 {No roles from {country} right now.} one {# role hires from {country}.} other {# roles hire from {country}.}}",
       "noCountryTitle": "Add the country you work from",
       "noCountryBody": "Every eligibility check runs on it, so there is nothing to count until it is set.",
@@ -173,10 +172,9 @@
     "strength": {
       "title": "Profile strength",
       "percent": "{percent}%",
-      "complete": "Everything Pemby matches on is answered.",
+      "complete": "Everything Pemby matches on is answered. Nothing here is holding a match back.",
       "gapsLead": "{count, plural, one {One field would sharpen your matches} other {# fields would sharpen your matches}}, best first.",
-      "weight": "+{points}",
-      "note": "Counted from the fields the matcher actually reads."
+      "weight": "+{points}"
     },
     "data": {
       "title": "Export my data",

@@ -288,8 +288,23 @@
     gap: 4px;
   }
 
+  /* Stacked rows: the label sits on its own line and the action stays beside the value's first
+     line, not centred against wrapped help text under it. */
   .row:has(.action) {
     grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .row:has(.action) .label {
+    grid-column: 1 / -1;
+  }
+
+  .row:has(.action) .value {
+    grid-column: 1;
+  }
+
+  .row:has(.action) .action {
+    grid-column: 2;
+    align-self: start;
   }
 
   .counterLabel {

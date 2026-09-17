@@ -24,6 +24,7 @@ import {
 } from "./api";
 import styles from "./cv-drop.module.css";
 import { ensureSession, useHumanCheck } from "./human-check";
+import { IdleFace } from "./idle-face";
 import { PasteForm } from "./paste-form";
 import { ProgressSteps } from "./progress-steps";
 
@@ -339,21 +340,7 @@ export function CvDrop({
             onFocus={human.warm}
             onClick={() => input.current?.click()}
           >
-            <svg className={zone.glyph} viewBox="0 0 32 32" aria-hidden="true" focusable="false">
-              <path
-                d="M16 20V5m0 0-6.5 6.5M16 5l6.5 6.5M5 18.5V25a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2v-6.5"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.4"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <span className={zone.title}>{dragging ? tDrop("dragging") : tDrop("title")}</span>
-            <span className={styles.choose}>{tDrop("liveChoose")}</span>
-            <span id={captionId} className={zone.caption}>
-              {tDrop("liveCaption")}
-            </span>
+            <IdleFace captionId={captionId} dragging={dragging} />
           </button>
           {idleError ? (
             <p className={styles.error} role="alert">

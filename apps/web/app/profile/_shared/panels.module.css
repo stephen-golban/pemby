@@ -54,6 +54,13 @@
 
 /* Strength meter --------------------------------------------------------- */
 
+/* The complete state carries itself in one sentence: no number, no bar, nothing to measure. */
+.settled {
+  max-inline-size: 42ch;
+  font-size: var(--text-small);
+  line-height: 1.55;
+}
+
 .metric {
   font-family: var(--font-display);
   font-size: 3.25rem;
