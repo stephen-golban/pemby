@@ -7,7 +7,8 @@
 // --discover-only fetches pages and calls no model (implies --dry-run). --cache-dir keeps HTTP
 // responses on disk and replays them, so repeated runs send no requests. --dump-dir writes each
 // company's pages and statements as JSON for hand checking.
-// Needs DATABASE_URL, the private config (prompt `company-evidence`) and OPENROUTER_PUBLIC_API_KEY.
+// Needs DATABASE_URL, the private config (prompt `company-evidence`) and OPENROUTER_KEY_PUBLIC.
+// Write mode also rebuilds the company's job eligibility from the new evidence, as the queue does.
 import { createDailyCapGuard, type RouteOverride } from "@pemby/ai";
 import { createAiUsageLedger, createDb, schema } from "@pemby/db";
 import { createHash } from "node:crypto";
@@ -23,6 +24,7 @@ import {
 import { discoverCompanyPages, normalizeDomain } from "../company-evidence/discover";
 import { COMPANY_PAGE_MAX_RAW_BYTES, readCapped } from "../company-evidence/fetch";
 import { pinnedTransport, type Transport } from "../company-evidence/net";
+import { recomputeEligibilityForCompany } from "../enrich";
 
 const { companies } = schema;
 
@@ -287,6 +289,11 @@ try {
       if (!dryRun) {
         await persistCompanyEvidence(db, result);
         console.log(`  written: ${rows.length} rows, status ${status}`);
+        // As the queue handler: a failed fetch keeps the old evidence, so there is nothing to apply.
+        if (status !== "fetch-failed") {
+          const { jobs } = await recomputeEligibilityForCompany(db, company.id);
+          console.log(`  recomputed eligibility: ${jobs} jobs`);
+        }
       }
     } catch (error) {
       if (controller.signal.aborted) throw error;

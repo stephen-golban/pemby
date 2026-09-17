@@ -34,9 +34,29 @@ export function hasPolicyLanguage(text: string): boolean {
   return POLICY_PATTERNS.some((re) => re.test(text));
 }
 
-/** An explicit no-country-limit phrase; "anywhere", "remote-first" or "wherever home is" are not. */
+/** An explicit no-country-limit phrase; a bare "anywhere", "remote-first" or "wherever home is" are not. */
 const WORLDWIDE_WORDS =
   /\b(?:anywhere in the world|worldwide|world-wide|globally(?! distributed)|any country|all countries|every country|any location in the world|wherever you are in the world|regardless of (?:your )?(?:location|country|geography|where you live))\b/i;
+
+/** Words between a hiring or working phrase and a worldwide phrase: up to three, no customers. */
+const PEOPLE_GAP = String.raw`(?:\s+(?!(?:customers|clients|users|partners|companies|businesses|brands|organi[sz]ations|merchants|players|patients|audiences)\b)[\w'’-]+){0,3}?\s+`;
+
+/**
+ * Looser worldwide phrases, counted only right after hiring, working or living wording: "hiring and
+ * working from all over the world", "team members from around the world". "From anywhere" counts
+ * only after hiring wording ("we can hire from anywhere"), since "work from anywhere" is often a
+ * perk inside one country, and never when a place follows ("from anywhere in the US").
+ */
+const WORLDWIDE_PEOPLE: readonly RegExp[] = [
+  new RegExp(
+    String.raw`\b(?:hir(?:e|es|ed|ing)|employ(?:s|ed|ing)?|engag(?:e|es|ed|ing)|work(?:s|ed|ing)?|live|living|team members|teammates|employees|colleagues)${PEOPLE_GAP}(?:(?:from|in|across)\s+)?(?:all over|around) the (?:world|globe)\b`,
+    "i",
+  ),
+  new RegExp(
+    String.raw`\b(?:hir(?:e|es|ed|ing)|employ(?:s|ed|ing)?|engag(?:e|es|ed|ing))${PEOPLE_GAP}from anywhere\b(?!\s+(?:in|within|across|inside)\s+(?!the world\b))`,
+    "i",
+  ),
+];
 
 /** Phrases that confine a remote arrangement to one country or region. */
 const COUNTRY_LIMIT =
@@ -44,7 +64,10 @@ const COUNTRY_LIMIT =
 
 /** True when the quote names no limit and says worldwide in so many words. */
 export function saysWorldwide(text: string): boolean {
-  return WORLDWIDE_WORDS.test(text) && !COUNTRY_LIMIT.test(text);
+  return (
+    (WORLDWIDE_WORDS.test(text) || WORLDWIDE_PEOPLE.some((re) => re.test(text))) &&
+    !COUNTRY_LIMIT.test(text)
+  );
 }
 
 /** Wording that makes a statement a possibility rather than a practice. */
