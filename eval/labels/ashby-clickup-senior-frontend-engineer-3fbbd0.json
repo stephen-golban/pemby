@@ -1,0 +1,57 @@
+{
+  "id": "ashby-clickup-senior-frontend-engineer-3fbbd0",
+  "jobId": "01a0ab94-b916-7822-8892-8591843fbbd0",
+  "url": "https://jobs.ashbyhq.com/clickup/941d0542-fe1c-45fb-b0d7-1865050f1e7e",
+  "source": "ashby",
+  "snapshot": {
+    "title": "Senior Frontend Engineer",
+    "company": "ClickUp",
+    "locations": ["Poland", "Bulgaria", "Ukraine", "Hungary", "Czechia", "Ireland"],
+    "workplaceType": "remote",
+    "employmentType": "FullTime",
+    "descriptionText": "At ClickUp, we're building the future of work: the first truly converged AI workspace unifying tasks, docs, chat, calendar, and enterprise search, all supercharged by context-driven AI. We are an AI-native company. Every team member is expected to leverage AI daily, and we evaluate AI fluency as part of our hiring process. Join us and help redefine what's possible. 🚀\n\nCollaboration and partnership are vital to how ClickUp operates. A significant portion of your responsibilities will include working closely with members of the backend team and Integrations team to develop features together. Engineers at ClickUp are also responsible for the quality of their own code, so you will work with a QA counterpart to ensure all edge cases are tested. We’re scaling quickly, so we’re recruiting teammates who share our core values, know how to get sh*t done, and add to our very driven culture. You should be proficient in using one or more of the modern JavaScript frameworks (Angular//Vue/etc.) and have a strong understanding of building reusable components and developing for performance.\n\nThe Role:\n\n * Build features in Angular 2+ while collaborating with designers, engineers, and product\n\n * Architect efficient and reusable front-end code that drive the ClickUp user experience\n\n * Manage individual project priorities, deadlines and deliverables\n\n * Identify and resolve performance and scalability issues\n\n * Build and maintain unit and integration tests\n\n * Fixing bugs fast and finding robust solutions to tackle hard problems\n\n * Follow established practices for maintaining state inside ClickUp\n\nQualifications:\n\n * 5+ years working with JavaScript and one or more modern frameworks (Angular 2+ required)\n\n * Experience with Redux style state management NgRx, Typescript, and RxJs\n\n * HTML/CSS experience, including concepts like layout, specificity, cross browser compatibility, and accessibility\n\n * A strong self-starter, operationally-focused; a problem-solver\n\n * Excellent interpersonal, written, and oral communication skills\n\n * You’ve mentored teammates on new ways to deepen their technical craft\n\nEqual Opportunity Employer\n\nClickUp is an Equal Opportunity Employer, and qualified applicants will receive consideration for employment without regard to race, color, religion, sex, sexual orientation, gender identity, or national origin.\n\nPrivacy Notice\n\nClickUp collects and processes personal data in accordance with applicable data protection laws. You can find further details by viewing our Global Candidate Privacy Notice.\n\nIf you are a Philippine Job Applicant, please also see our Philippine Data Privacy Notice for further details.\n\nVisa Sponsorship\n\nPlease note we are unable to sponsor or take over sponsorship of an employment visa for roles outside of engineering and product at this time. Sponsorship for engineering and product roles is not guaranteed, but is instead based on the business needs for that specific role at that time. Please reach out to the recruiter with any questions.\n\nFraud Alert\n\nClickUp Talent Acquisition will only initiate contact via an @clickup.com email or through our official careers portal on clickup.com. We will never request fees, payments, or sensitive personal information. Please disregard any offers received outside these channels and report them to [email].\n\nAI Processing Notice\n\nClickUp may use artificial intelligence and machine learning technologies to help review and screen candidates' employment applications against role-related criteria. These tools support, but do not replace, human decision‑making. If you have questions or need an accommodation in the recruitment process, please contact us at [email].",
+    "capturedAt": "2026-09-16T22:29:48.293Z"
+  },
+  "category": "country-list",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "Country list Poland, Bulgaria, Ukraine, Hungary, Czechia, Ireland excludes it"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "Country list Poland, Bulgaria, Ukraine, Hungary, Czechia, Ireland excludes it"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "green",
+      "note": "Locations list names \"Ukraine\"; no engagement type"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "green",
+      "note": "Locations list names \"Ukraine\"; no engagement type"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "Country list Poland, Bulgaria, Ukraine, Hungary, Czechia, Ireland excludes it"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "Country list Poland, Bulgaria, Ukraine, Hungary, Czechia, Ireland excludes it"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T22:34:41Z",
+  "session": 3
+}

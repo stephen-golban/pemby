@@ -1,0 +1,57 @@
+{
+  "id": "greenhouse-wikimedia-senior-software-engineer-mediawiki-conte-7d689f",
+  "jobId": "01a0ab9c-db5b-7efd-bd42-65547a7d689f",
+  "url": "https://job-boards.greenhouse.io/wikimedia/jobs/8158048",
+  "source": "greenhouse",
+  "snapshot": {
+    "title": "Senior Software Engineer, MediaWiki Content Platform Team",
+    "company": "Wikimedia Foundation",
+    "locations": ["Remote"],
+    "workplaceType": "remote",
+    "employmentType": null,
+    "descriptionText": "Senior Software Engineer, MediaWiki Content Platform Team\n\nSummary\n\nThe Wikimedia Foundation is looking for a software engineer to join our team, reporting to engineering management. As a software engineer, you will be responsible for engineering software that supports our product user experiences. In this role, you will work in a fully-remote environment (with occasional travel for team, department, or organization events), where we value teamwork and a consensus-oriented approach. You get to write open source code for collaborative experiences supporting well over half a billion pages accessed per day, and you get to do it at a place that believes we're all more successful when everyone has a good work-life balance.\n\nOn the Content Platform team, we work to support and evolve all things wikitext, the markup language behind Wikipedia. We aim to make wikitext easier to write, faster to parse, and less error-prone for humans. We also strive to support editing and content analysis tools with structured representations. We also maintain the web services associated with content rendering and transformation.\n\nIn this role, you will work in a mostly-remote environment. To ensure there are enough opportunities to communicate, the preferred timezone for this candidate will be GMT-4 to GMT+2.\n\nYou are responsible for:\n\n * Designing and delivering improvements to Wikipedia's wikitext processing infrastructure, balancing user experience, performance, backwards compatibility, and maintainability\n * Iterating on new features through collaboration with fellow engineers, product managers, designers, client teams, and community members\n * Writing PHP and JavaScript which supports hundreds of world languages\n * Creating and maintaining internet APIs with server scripting languages\n * Instrumenting components to monitor feature and quality characteristics\n * Leveraging caching and persistence technologies\n\nSkills and experience:\n\n * 5+ years of related professional experience in software engineering\n * Experience with one or more of: parser generators, interpreters, language runtimes, compilers, or bringing a language feature through a product cycle\n * Demonstrated ability to own complex technical projects from problem definition through implementation and delivery, including making and communicating architectural decisions and navigating ambiguity\n * Experience designing and maintaining reliable, performant software components used by other teams, products, or large numbers of users\n * Strong engineering practices: you enjoy writing unit and integration tests, proactively addressing security and code review feedback, and balancing architectural tradeoffs\n * Ability to work effectively across team and organizational boundaries, identify and resolve technical dependencies, and bring projects to completion with limited direction\n * Experience mentoring other engineers and raising the technical quality of a team, through code reviews, design discussions, documentation, or direct mentorship\n\nQualities that are important to us:\n\n * A desire to make meaningful contributions to knowledge equity, free culture, and open access\n * An emphasis on communicating clearly in both synchronous and asynchronous channels\n * Self motivated with an ability to navigate through ambiguity and bring a project to completion with limited direction\n\nAdditionally, we'd love it if you have this:\n\n * Familiarity with the HTML5 spec and DOM manipulation\n * Expertise in Node.js and related technologies\n * Familiarity with Wikipedia/wikitext/markdown editing or content management systems (e.g., MediaWiki, Drupal, WordPress). We grow and care for MediaWiki and Wikimedia specific services. MediaWiki is an open source, PHP, MySQL, and JavaScript web application that powers Wikipedia and other Wikimedia Foundation websites. It has been incrementally developed for many years to become a richly featured wiki engine and the basis for hundreds of extensions and skins, and has a vibrant volunteer community.\n * A history of open source contribution\n * Bachelor's, master's, or doctorate degree in computer science, software engineering, or other STEM field (or equivalent certification)\n\nAbout the Wikimedia Foundation\n\nThe Wikimedia Foundation is the nonprofit organization that operates Wikipedia and the other Wikimedia free knowledge projects. Our vision is a world in which every single human can freely share in the sum of all knowledge. We believe that everyone has the potential to contribute something to our shared knowledge, and that everyone should be able to access that knowledge freely. We host Wikipedia and the Wikimedia projects, build software experiences for reading, contributing, and sharing Wikimedia content, support the volunteer communities and partners who make Wikimedia possible, and advocate for policies that enable Wikimedia and free knowledge to thrive.\n\nThe Wikimedia Foundation is a charitable, not-for-profit organization that relies on donations. We receive donations from millions of individuals around the world, with an average donation of about $15. We also receive donations through institutional grants and gifts. The Wikimedia Foundation is a United States 501(c)(3) tax-exempt organization with offices in San Francisco, California, USA.\n\nAs an equal opportunity employer, the Wikimedia Foundation values having a diverse workforce and continuously strives to maintain an inclusive and equitable workplace. We encourage people with a diverse range of backgrounds to apply. We do not discriminate against any person based upon their race, traits historically associated with race, religion, color, national origin, sex, pregnancy or related medical conditions, parental status, sexual orientation, gender identity, gender expression, age, status as a protected veteran, status as an individual with a disability, genetic information, or any other legally protected characteristics.\n\nThe Wikimedia Foundation is a remote-first organization with staff members including contractors based 40+ countries*. Salaries at the Wikimedia Foundation are set in a way that is competitive, equitable, and consistent with our values and culture. The anticipated annual pay range of this position for applicants based within the United States is US$116,633 to US$181,243 with multiple individualized factors, including cost of living in the location, being the determinants of the offered pay. For applicants located outside of the US, the pay range will be adjusted to the country of hire. We neither ask for nor take into consideration the salary history of applicants. The compensation for a successful applicant will be based on their skills, experience and location.\n\n*Please note that we are currently able to hire in the following:\nUS States: Arizona, California, Colorado, Connecticut, District of Columbia*, Florida, Georgia, Idaho, Illinois, Indiana, Iowa, Maryland, Massachusetts, Michigan, Minnesota, Missouri, New Jersey, New Mexico, New York, North Carolina, Ohio, Oklahoma, Oregon, Pennsylvania, Puerto Rico*, Rhode Island, Tennessee, Texas, Utah, Vermont, Virginia, Washington, West Virginia, Wisconsin and Wyoming (*US Territory or Federal District)\n\nCountries: Brazil, Canada, Colombia, Germany, Ghana, India, Indonesia, Italy, Kenya*, Mexico, Morocco, Netherlands, Poland, Singapore*, South Africa, Spain, Switzerland and the United Kingdom. Our non-US employees are hired through a local third party Employer of Record (EOR) and must have current work authorization in their location. (*citizens/permanent residents only)\n\nWe periodically review this list to streamline to ensure alignment with our hiring requirements.\n\nAll applicants can reach out to their recruiter to understand more about the specific pay range for their location during the interview process.\n\nIf you are a qualified applicant requiring assistance or an accommodation to complete any step of the application process due to a disability, you may contact us at [email] or [phone].\n\nMore information\n\nU.S. Benefits & Perks\n\nApplicant Privacy Policy\n\nWikimedia Foundation\n\nWhat does the Wikimedia Foundation do?\n\nWhat makes Wikipedia different from social media platforms?\n\nOur Projects\n\nOur Tech Stack\n\nNews from across the Wikimedia movement\n\nWikimedia Blog\n\nWikimedia 2030",
+    "capturedAt": "2026-09-16T22:29:48.293Z"
+  },
+  "category": "timezone-only",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"able to hire in the following\" countries list excludes it"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"able to hire in the following\" countries list excludes it"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"able to hire in the following\" countries list excludes it"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"able to hire in the following\" countries list excludes it"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"able to hire in the following\" countries list excludes it"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"able to hire in the following\" countries list excludes it"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T22:34:41Z",
+  "session": 3
+}

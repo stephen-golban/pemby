@@ -1,0 +1,68 @@
+{
+  "id": "ashby-nango-77992465-staff-engineer-platform-infrastructure-b9c583",
+  "jobId": "01a0abae-d0a7-7aac-a15c-f88281b9c583",
+  "url": "https://jobs.ashbyhq.com/Nango/09421bc9-987b-4fe3-aeac-bd183afc5b8e",
+  "source": "ashby",
+  "snapshot": {
+    "title": "Staff Engineer, Platform & Infrastructure",
+    "company": "Nango",
+    "locations": [
+      "USA",
+      "Chile",
+      "UK",
+      "Uruguay",
+      "Switzerland",
+      "Brazil",
+      "Canada",
+      "Mexico",
+      "Argentina",
+      "Europe"
+    ],
+    "workplaceType": "remote",
+    "employmentType": "FullTime",
+    "descriptionText": "(Remote - North America, LATAM or Europe)\n\nNango (YC W23) is a developer infrastructure company and the leading provider of API access for agents and apps. It enables AI applications to connect to the real world through integrations.\n\nMore than 400 paying customers rely on Nango today, including Replit, Ramp, Mercor, Vapi, Instantly, and Exa. We are a YC-backed, multi-million ARR company with a team of 14 from AWS, Snyk, GitHub, Okta, Netlify, Uber, Samsara, and more.\n\nWe are hiring a Staff Platform Engineer to own the infrastructure Nango runs on - and increasingly, the infrastructure our customers run Nango on. This is a critical role at the heart of the company: as a product-led business selling to developers, our engineers directly drive the product roadmap, specifications, and execution. You will own our cloud platform end-to-end, lead our BYOC and private cloud deployments, and set the standard for how a small, autonomous team ships quickly and reliably at scale. You'll be the first person here whose primary focus is the platform beneath the product.\n\nWhat You'll Do\n\n * Own and scale the cloud infrastructure behind our open-source platform: compute, networking, and the data layer.\n\n * Lead BYOC: turn customer-cloud deployments into a real product, with provisioning, upgrades, and observability that scale past bespoke work per deal.\n\n * Operationalize and productize our IaC and GitOps foundations so a small team keeps shipping fast as we grow.\n\n * Make reliability a product feature: meaningful SLOs, and an incident process people trust.\n\n * Lead our data layer: Postgres, Redis, Elasticsearch, and ClickHouse at growing scale.\n\n * Own the infrastructure side of security and compliance: SOC 2, GDPR, HIPAA, enterprise security reviews.\n\n * Help shape the roadmap and company strategy with high ownership of key decisions.\n\nWho you are\n\n * 10+ years (staff-level) in platform, infrastructure, DevOps, or SRE roles, with proven ability to run high-traffic systems in production.\n\n * Deep production Kubernetes experience, and opinions about when it's the wrong tool.\n\n * Experience operating software in environments you don't control: BYOC, single-tenant, on-prem, or air-gapped.\n\n * Deep AWS fluency, where we run today; exposure to GCP and Azure helps, since our customers don't all pick the same cloud.\n\n * Terraform as your native mode of working: modules others can use, safe state management, multi-account topologies.\n\n * Databases as a genuine strength, Postgres especially - performance work, migrations under load, replication.\n\n * Real compliance exposure: SOC 2 or ISO audits, pen tests, security reviews. You can tell substance from theatre.\n\n * Product mindset and developer empathy: you can read a customer issue and go build the fix. Our stack is TypeScript and Node.\n\n * Strong communicator, proactive, and reliable in a remote-first environment.\n\n * Pragmatic, positive, and low ego: you step up in incidents and unblock teammates.\n\n * Startup-ready: autonomous, ownership-driven, and able to navigate ambiguity.\n\n * Based in North America, LATAM or Europe.\n\nIf you're a seasoned platform engineer who loves developer infrastructure, thrives on ownership, and wants to shape the future of integrations - we'd love to hear from you.",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "country-list",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"Based in North America, LATAM or Europe\""
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"Based in North America, LATAM or Europe\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"Based in North America, LATAM or Europe\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"Based in North America, LATAM or Europe\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"Based in North America, LATAM or Europe\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"Based in North America, LATAM or Europe\""
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 1
+}

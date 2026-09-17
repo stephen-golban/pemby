@@ -1,0 +1,57 @@
+{
+  "id": "personio-ailylabs-principal-data-scientist-agents-team-bcn-1561d3",
+  "jobId": "01a0ab94-8490-7f16-baa2-d1bf3e1561d3",
+  "url": "https://ailylabs.jobs.personio.de/job/2731141",
+  "source": "personio",
+  "snapshot": {
+    "title": "Principal Data Scientist – Agents Team - BCN/MAD",
+    "company": "Aily Labs",
+    "locations": ["Madrid - Hybrid", "Barcelona - Hybrid"],
+    "workplaceType": "hybrid",
+    "employmentType": "permanent, full-time",
+    "descriptionText": "Mission\n\nAre you ready to take part in the upcoming AI revolution of the business world? If the answer is a resounding \"yes,\" we have an extraordinary opportunity for you!\n\nAbout Us\n\nAily Labs is a B2B SaaS company building an AI-powered decision intelligence app for enterprises. Our mobile-first platform combines company data with advanced machine learning, large language models and agentic AI to give business leaders clear, actionable insights in real time.\n\nInstead of traditional dashboards and reports, Aily delivers simple, personalized recommendations powered by GenAI that help teams decide and act faster across finance, supply chain, R&D, commercial, and more. The app is designed to be intuitive for end users and easy to integrate for IT, so companies can move from analysis and indecision to confident, data-driven decisions every day.\n\nFounded in 2020 in Munich, Aily Labs has grown into a global team of 300+ people across Munich, Barcelona, Madrid, Cluj, and New York. Our mission is to democratize AI in business and enable leaders to Lead Boldly, turning complex data into decisions that drive real, measurable impact.\n\nWe are looking for Principal Data Scientists and AI Engineers who are passionate about the power of AI and who thrive at the intersection of business, analytics, and AI: someone who not only trains models but also deeply understands the business context in which they’re applied. Your job is to make sure AI is solving the right problems, using the right approaches, and driving measurable impact.\n\nAbout this team - Agent Pillar\n\nWe develop the Super Agent – an agentic decision advisor that guides users from questions to decisions through natural dialogue. We also create vertical decision intelligence agents that synthesize insights across domains, helping F500 clients turn complex data into measurable business outcomes. This is all pulled together with the GenAI systems that surface insights and decision triggers to ensure users can respond to risks and opportunities immediately.\n\nWe're building production LLM systems at enterprise scale – which means tackling hard problems in evaluation, reliability, and latency while staying at the research frontier. Our challenges include grounding agents in structured business data, coordinating multi-agent workflows, and ensuring robust performance in high-stakes decision contexts. We pair strong engineering with applied research, contributing to the field through publications and establishing technical differentiation in a fast-moving space.\n\nYour profile\n\nCore responsibilities - 7+ years of experience\n\n * Lead, design, and maintain AI-driven solutions across multiple workstreams to solve complex business challenges.\n\n * Own delivery across several projects: shape the roadmap with PM/Eng, scope initiatives, manage dependencies and risks, and ensure timely, high-quality releases.\n\n * Communicate and align with senior internal and external stakeholders, identifying domain-wide opportunities and influencing strategy.\n\n * Provide leadership for the Data Science team: mentor and manage, define modelling and evaluation standards, and drive impactful cross-functional delivery.\n\nWho we’re looking for\n\n * Someone who thrives at the intersection of business, analytics and AI and wants to ensure AI solves the right problems with measurable impact.\n\n * A scientist and builder: you explore multiple approaches, analyze results and iterate fast, balancing cutting-edge techniques with simple, scalable solutions.\n\n * A strong communicator who adapts the message to different audiences and enjoys working cross-functionally with product, engineering and business stakeholders.\n\n * Someone with a startup mindset: comfortable with ambiguity, proactive and hands-on when something needs fixing or improving.\n\n * Ready to Lead Boldly – helping business leaders make decisive decisions powered by real-time AI insights.\n\n * Applicants must already have the legal right to work in Spain\n\nLocation & details\n\n * Locations: Madrid (MAD), Barcelona (BCN)\n\n * Contract type: Permanent.\n\n * Work policy: hybrid (2 days per week in the office)",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "onsite-hybrid-elsewhere",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"must already have the legal right to work in Spain\"; hybrid"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"must already have the legal right to work in Spain\"; hybrid"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"must already have the legal right to work in Spain\"; hybrid"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"must already have the legal right to work in Spain\"; hybrid"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"must already have the legal right to work in Spain\"; hybrid"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"must already have the legal right to work in Spain\"; hybrid"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 2
+}

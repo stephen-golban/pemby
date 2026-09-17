@@ -1,0 +1,72 @@
+{
+  "id": "lever-diabolocom-senior-backend-software-engineer-core-sq-9fd293",
+  "jobId": "01a0ab9a-07d4-7fa4-8d5d-de90739fd293",
+  "url": "https://jobs.eu.lever.co/diabolocom/be61bf31-394a-40d3-ba9c-5068e9e93c61",
+  "source": "lever",
+  "snapshot": {
+    "title": "Senior Backend Software Engineer, Core Squad",
+    "company": "Diabolocom",
+    "locations": [
+      "Paris",
+      "Barcelona",
+      "Berlin",
+      "Tallinn",
+      "Tbilisi",
+      "Yerevan",
+      "Bucarest",
+      "Zagreb",
+      "Warsaw",
+      "Sarajevo",
+      "Podgorica",
+      "Limassol",
+      "Belgrade",
+      "Lisbon"
+    ],
+    "workplaceType": "remote",
+    "employmentType": "Full-time",
+    "descriptionText": "About Diabolocom\nDiabolocom enables organizations worldwide to build brand loyalty and drive sales growth. Our innovative, cloud-based contact center solution leverages AI-driven technologies to optimize the customer experience. We empower Customer Service and Sales teams to handle inbound and outbound interactions seamlessly across multiple channels, ensuring premium voice quality, real-time analytics, and robust global scalability.\n\nOur platform integrates with leading CRMs and offers a wide range of APIs and services in multiple languages. With offices in Europe, the USA, Brazil, and the UAE, and 350+ clients operating in 60+ countries, we are constantly evolving and seeking talented individuals to join our team.\n\nIn the context of our exponential growth, we are strengthening our internal engineering team and opening a Senior Backend Software Engineer position in our Core Squad.\n\nAbout the Core Squad\nThe Core Squad is responsible for the design and development of all key entities of our product, ensuring proper interaction between other squads and services. We also realize the isolation of entities within our application to achieve the convenience of large customers.\n\nAs part of the Core Squad, you will:\n• Design, build, and optimize back-end services for data gathering, processing, and delivery.\n• Ensure high-quality engineering practices with thorough test coverage, robust metrics, alerts, and clear documentation.\n• Define and maintain service contracts to ensure seamless communication between systems.\n• Work closely with the product team to align technical solutions with customer needs.\n\nTechnical Stack:\n• Languages: Java, Kotlin\n• Framework: Spring Boot\n• Database: PostgreSQL\n• Message Broker: RabbitMQ\n• Caching: Redis\n• Containerization: Docker\n\nOur team currently consists of:\n• 3 QA engineers\n• 2 backend developers\n• 2 frontend engineers (shared between two teams)\n• 1 team lead\n\nWhat We’re Looking For:\n• 7+ years in software development within product-focused companies, with at least 3+ years working extensively in Kotlin (preferred) or Java.\n• Experience working with relational databases (PostgreSQL preferred).\n• Experience in designing and implementing effective distributed systems. Ability to make architectural decisions and evaluate their impact on system performance, scalability, and reliability.\n• Strong autonomy and leadership potential, with a willingness to grow into a lead role.\n• Comfortable working with and improving an existing codebase.\n• Strong engineering culture, attention to the details, business-centric mindset.\n\nWhat We Offer:\n• A collaborative and innovative team environment.\n• The opportunity to work on cutting-edge distributed communication systems.\n• Career growth opportunities within a fast-growing global company.\n• Flexible work arrangements and remote work options.\n\nRecruitment Process:\n• Technical challenge on HackerRank platform\n• Intro call with a Talent Acquisition Manager\n• Live coding challenge\n• Design interview through screen sharing with our Lead Software Engineer\n• Final interview with Alexander, our Head of Software Engineering\nAt Diabolocom, diversity and inclusion are in our DNA. All qualified applicants will receive equal consideration for employment without regard to color, language, religion, sex, sexual orientation, gender identity, national or social origin, opinion disability, age.",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "mentions-target-country",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "City list includes no Moldovan city"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "City list includes no Moldovan city"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "City list includes no Ukrainian city"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "City list includes no Ukrainian city"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "green",
+      "note": "\"Tbilisi\" in remote city list, no engagement type"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "green",
+      "note": "\"Tbilisi\" in remote city list, no engagement type"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 1
+}

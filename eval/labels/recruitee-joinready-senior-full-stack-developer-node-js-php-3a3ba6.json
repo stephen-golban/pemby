@@ -1,0 +1,65 @@
+{
+  "id": "recruitee-joinready-senior-full-stack-developer-node-js-php-3a3ba6",
+  "jobId": "01a0ab9b-9690-7bf4-a9bd-b6a1373a3ba6",
+  "url": "https://joinready.recruitee.com/o/senior-full-stack-developer-nodejs-php",
+  "source": "recruitee",
+  "snapshot": {
+    "title": "Senior Full Stack Developer (Node.js + PHP)",
+    "company": "Join ready",
+    "locations": [
+      "Remote job",
+      "ciudad de mexico, Ciudad de México, Mexico",
+      "Santiago, Región Metropolitana de Santiago, Chile",
+      "bogota, Cundinamarca, Colombia",
+      "Lima, Lima, Peru",
+      "quito, Carchi, Ecuador",
+      "Buenos Aires, Buenos Aires, Argentina"
+    ],
+    "workplaceType": "remote",
+    "employmentType": "fulltime_fixed_term",
+    "descriptionText": "Senior Full Stack Developer (Node .js + PHP)\n\nBuscamos un Senior Full Stack Node .js Developer para participar en la mantención y evolución de plugins compatibles con plataformas de comercio electrónico. La persona será responsable del desarrollo y mejora continua de soluciones para plataformas como PrestaShop, WooCommerce y Jumpseller.\n\nResponsabilidades\n\n 1. Desarrollar y mantener plugins para plataformas de comercio electrónico.\n\n 2. Desarrollar soluciones utilizando Node.js y PHP.\n\n 3. Trabajar con bases de datos MySQL y PostgreSQL.\n\n 4. Implementar nuevas funcionalidades y realizar mejoras sobre soluciones existentes.\n\n 5. Implementar pruebas unitarias para garantizar la calidad del código.\n\n 6. Colaborar con el equipo de desarrollo durante todo el ciclo de vida del software.\n\nConocimientos Técnicos\n\n * Experiencia como Full Stack Developer.\n\n * Experiencia desarrollando con Node.js.\n\n * Experiencia desarrollando con PHP.\n\n * Experiencia trabajando con PrestaShop, WooCommerce o Jumpseller.\n\n * Experiencia con bases de datos MySQL.\n\n * Experiencia con bases de datos PostgreSQL.\n\n * Conocimientos en pruebas unitarias.\n\nCondiciones\n\n * Ubicación: 100% Remoto – LATAM.\n\n * Modalidad de contratación: Freelance (Contractor).\n\n * Duración inicial: 4 meses, con posibilidad de renovación\n\n * Jornada: Full Time.\n\n * Horario: Lunes a viernes de 9:00 a.m. a 6:00 p.m. (hora de Chile).\n\n * Pago: USD Mensual\n\n * El profesional deberá contar con equipo propio (Linux, macOS o Windows) y conexión estable a internet.\n\n * Será necesaria la instalación de herramientas de seguridad corporativa en el equipo de trabajo.",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "country-list",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"Ubicación: 100% Remoto – LATAM\""
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"Ubicación: 100% Remoto – LATAM\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"Ubicación: 100% Remoto – LATAM\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"Ubicación: 100% Remoto – LATAM\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"Ubicación: 100% Remoto – LATAM\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"Ubicación: 100% Remoto – LATAM\""
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 2
+}

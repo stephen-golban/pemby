@@ -1,0 +1,57 @@
+{
+  "id": "ashby-kestra-senior-backend-engineer-ai-orchestration-86d597",
+  "jobId": "01a0ab9f-efe6-7f17-a2f8-6f883486d597",
+  "url": "https://jobs.ashbyhq.com/kestra/811d671f-3f51-4527-95c7-625fc2481fb4",
+  "source": "ashby",
+  "snapshot": {
+    "title": "Senior Backend Engineer, AI Orchestration",
+    "company": "Kestra Technologies",
+    "locations": ["Europe"],
+    "workplaceType": "remote",
+    "employmentType": "FullTime",
+    "descriptionText": "About Kestra\n\nAt Kestra, we’re on a mission to make orchestration and automation simpler for everyone. Our open-source platform helps teams manage complex workflows with confidence, and we’re already making a big impact in businesses around the world. Now, we’re looking for a Full Stack Engineer to help us take things to the next level.\n\nIn March 2026, we closed a $25M Series A led by RTP Global, with participation from Alven, ISAI, and Axeleo – backed by founders from Datadog, dbt Labs, and Hugging Face.\n\nAbout the role\n\nKestra orchestrates workflows across systems and domains. AI agents and LLM-driven workflows are a growing part of that, and this role is about making sure they can run reliably inside the orchestrator. This is not a wrapper around a model API, but a platform orchestrating how agent steps should be run, retried, branched, and kept observable inside the orchestrator. That work happens in the Kestra core, which is Java.\n\nWhat you would do\n\n * Design and build the execution primitives for AI workflows in the Kestra engine\n\n * Build and maintain the plugins that connect Kestra to LLM providers and agent frameworks\n\n * Turn real agent use cases into reusable blueprints, together with the product team\n\n * Keep AI executions observable and debuggable to the same standard as the rest of Kestra\n\nWhat we are looking for\n\n * A strong Java background. You have built and maintained production Java systems, not used Java in passing.\n\n * Hands-on experience with LangChain4j or a comparable Java agent framework\n\n * A clear mental model of how agentic systems are actually run: tool calls, state, retries, failure modes\n\n * Comfort working close to an orchestration engine, where correctness and reliability matter more than demos\n\nOur Tech Stack\n\n * Backend: Java, Micronaut\n\n * Frontend: Vue.js, Bootstrap\n\n * Datastore: Kafka, Elasticsearch, PostgreSQL, MySQL\n\n * Infrastructure: Docker, Kubernetes, Terraform\n\n * Cloud: GCP, AWS, Azure\n\n * Tools: GitHub for repo management, actions, and issues\n\nWe work with a variety of modern technologies, and you’ll get the opportunity to explore new tools and approaches as we grow.\n\nPerks & Benefits\n\n * Work from anywhere: We’re a remote-first company, so you can work from wherever feels like home. Plus, you’ll have access to coworking spaces worldwide if you ever need a change of scenery.\n\n * Health coverage: From medical support, dental, and vision, we've got you covered.\n\n * Home office setup on us: We’ll provide all the equipment you need to work comfortably.\n\nOur Hiring Process\n\nWe aim to move quickly (2-3 weeks), but we can adjust the timeline if needed.\n\n * Intro call with the hiring manager (30 min)\n\n * Technical test (2 hour, homework done in async)\n\n * Team chat with two of your future colleagues (30 min)\n\n * Final discussion with one of our co-founders (30 min)\n\nWe’re here to make the process smooth and transparent for you.\n\nBefore you apply\n\nThis is a Java-first role. The AI ecosystem is mostly Python and we know that. We can work with someone who has built AI systems in Python (or in TypeScript via LangChain.js) and has a solid Java background to grow from. We cannot work with someone who only knows the Python AI stack and does not want to write Java.\n\nWe are also not looking for candidates whose AI experience is a single demo or a personal side project. We want people who have run AI in production, dealt with outages, and learned from the failures that come with it.",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "europe-region",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "Location \"Europe\", region only; no engagement type"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "Location \"Europe\", region only; no engagement type"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "Location \"Europe\", region only; no engagement type"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "Location \"Europe\", region only; no engagement type"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "Location \"Europe\", region only; no engagement type"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "Location \"Europe\", region only; no engagement type"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 1
+}

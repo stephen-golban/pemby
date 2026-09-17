@@ -1,0 +1,57 @@
+{
+  "id": "ashby-posthog-security-engineer-ad0559",
+  "jobId": "01a0ab95-a34f-7fe0-badc-6374c6ad0559",
+  "url": "https://jobs.ashbyhq.com/posthog/36d5ce14-851c-450f-879a-45cbb896225e",
+  "source": "ashby",
+  "snapshot": {
+    "title": "Security Engineer",
+    "company": "PostHog",
+    "locations": ["Remote (EMEA)", "Remote (UK)"],
+    "workplaceType": "remote",
+    "employmentType": "FullTime",
+    "descriptionText": "About PostHog\n\nProduct development used to mean manually writing code, running analysis, diagnosing bugs, and rolling out changes using dozens of tools.\n\nPostHog makes products self-driving. It's the only platform that acts like a co-pilot for you (and your AI agents) to do it all – autonomously.\n\nWe started with open-source product analytics, launched out of Y Combinator's W20 cohort. We've since shipped more than a dozen products, including:\n\n * PostHog Desktop, the only AI devtool that understands your product, not just your codebase.\n\n * A built-in data warehouse, so users can query product and customer data together using custom SQL insights.\n\n * PostHog AI, an AI-powered analyst that answers product questions, helps users find useful session recordings, and writes custom SQL queries.\n\nWe are:\n\n 1. Product-led. More than 450,000 organizations have installed PostHog, mostly driven by word-of-mouth. We have intensely strong product-market fit.\n\n 2. Default alive. Revenue is growing incredibly quickly, and we're very efficient. We raise money to push ambition and grow faster, not to keep the lights on.\n\n 3. Well-funded. We've raised more than $180m from some of the world's top investors. We're set up for a long, ambitious journey.\n\nWe're focused on building an awesome product for end users, hiring exceptional teammates, shipping fast, and being as weird as possible.\n\nThings we care about\n\n * Transparency: Everyone can read about our roadmap, how we pay (or even let go of) people, our strategy, and how we work, in our public company handbook. Internally, we share revenue, notes and slides from board meetings, and fundraising plans, so everyone has the context they need to make good decisions.\n\n * Autonomy: We don’t tell anyone what to do. Everyone chooses what to work on next based on what's going to have the biggest impact on our customers, and what they find interesting and motivating to work on. Engineers lead product teams and make product decisions. Teams are flexible and easy to change when needed.\n\n * Shipping fast: Why not now? We want to build a lot of products; we can't do that shipping at a normal pace. We've built the company around small teams – autonomous, highly-efficient groups of cracked engineers who can outship much larger companies because they own their products end-to-end.\n\n * Time for building: Nothing gets shipped in a meeting. We're a natively remote company. We default to async communication – PRs > Issues > Slack. Tuesdays and Thursdays are meeting-free days, and we prioritize heads down building time over perfect coordination. This will be the most productive job you've ever had.\n\n * Ambition: We want to solve big problems. We strongly believe that aiming for the best possible upside, and sometimes missing, is better than never trying. We're optimistic about what's possible and our ability to get there.\n\n * Being weird: Weird means redesigning an already world-class website for the 5th time. It means shipping literally every product that relates to customer data. It means building an objectively unnecessary developer toy with dubious shareholder value. Doing weird stuff is a competitive advantage. And it's fun.\n\nWho we're looking for\n\nWe are looking for an expert security generalist (in EU/UK) to assist with all things security at PostHog. Someone equally adept (and interested!) in building secure libraries, writing semgrep rules, hardening cloud deployments, improving network observability, and leading incident response.\n\nSomeone to take the reins of our security operations, build out our detection pipelines, and ensure that when something goes bump in the night, we have the observability to know exactly what happened.\n\nWe're a team that's building internal security products and agents - things like agents to automatically triage wiz alerts, automatically review pull requests, automatically assign vulnerability findings to the owning product team.\n\nIn this role you’ll:\n\n * Build from Scratch: You aren't maintaining someone else's legacy SIEM. You are shaping the security team, culture and tooling for a high-growth, open-source company.\n\n * Zero Bureaucracy: We hate meetings. We don't have \"Security Committees.\" You have the autonomy to make changes and move fast.\n\n * Transparency: We work in the open. You’ll be able to see (and contribute to) how we handled past incidents, like this NPM package compromise.\n\n * Direct Impact: Your work directly protects the data of thousands of customers. When you improve our security posture, the whole company (and our community) feels it.\n\nWhat you'll be doing\n\n * Triage and Tune: You’ll own our Wiz alerts. You’ll be responsible for turning \"noise\" into \"actionable findings\" and ensuring we aren't just staring at a dashboard of issues that don't actually matter. We already get relatively few alerts, and we’d like to even further reduce that to just the ones that matter.\n\n * Incident detection, response: You’ll lead the charge on security incidents. Whether it’s a compromised NPM package or a suspicious IAM pattern, you’ll help coordinate the response and lead the post-mortem. You’ll also help build our IR runbooks.\n\n * Build Observability: You’ll build detection pipelines, and close our network-based observability gaps. We want to be able to trace network requests and suspicious activity all the way back to specific code paths.\n\n * Threat Hunting: You’ll proactively hunt for threats in our AWS environment. You won't just wait for an alert; you'll define what \"good\" looks like and build the telemetry to prove it.\n\n * The VDP: You’ll support our Vulnerability Disclosure Program, triaging reports from researchers and eventually transitioning us toward a formal bug bounty program.\n\n * Enable the Team: You’ll support our product squads with threat modeling and secure design reviews. We don't do \"Security says no\"; we do \"Security says 'here is how to do this safely.'\"\n\n * Help build our security culture: Our engineers trust the security team and view security as an enabler. You’ll be a crucial part of helping to continue this excellent (and uncommon) working relationship.\n\nWhile this is not a Corporate security (MDM, endpoint, device trust) or Supply chain/CI-CD hardening role, in true PostHog style, there are opportunities to work on these as well.\n\nRequirements\n\n * Cloud Native: You have 3-5+ years of experience in security engineering with a heavy focus on AWS. You know your way around IAM, VPC logs, and CloudTrail like the back of your hand.\n\n * Detection Specialist: You’ve used CSPM/CNAPP tools (like Wiz or Prisma) and, more importantly, you know how to build detection pipelines that engineers actually trust.\n\n * Battle-Tested: You’ve led incident response before. You’re calm under pressure and know how to coordinate across teams to contain a threat.\n\n * High Autonomy: We don’t have a security SOC. You’ll be building this function from scratch, so you need to be comfortable deciding what’s important and executing on it without a manual.\n\n * Engineering skills: You bring strong engineering experience and next to digging into code to understand an exploit or a vulnerability, you can write code with the same proficiency as our product engineers.\n\n * Communication and attitude: As mentioned before we don't do \"Security says no\", we do \"Security says 'here is how to do this safely.” This is crucial for us, we need people that want to enable engineers and work with them, not limit them.\n\nNice to Have\n\n * Incident management: Strong experience with incident response/incident detection\n\nWe are committed to ensuring a fair and accessible interview process. If you need any accommodations or adjustments, please let us know\n\n#LI-DNI",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "emea",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"expert security generalist (in EU/UK)\""
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"expert security generalist (in EU/UK)\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"expert security generalist (in EU/UK)\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"expert security generalist (in EU/UK)\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"expert security generalist (in EU/UK)\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"expert security generalist (in EU/UK)\""
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 2
+}

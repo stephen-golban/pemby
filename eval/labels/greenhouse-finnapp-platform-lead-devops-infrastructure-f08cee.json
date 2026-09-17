@@ -1,0 +1,57 @@
+{
+  "id": "greenhouse-finnapp-platform-lead-devops-infrastructure-f08cee",
+  "jobId": "01a0ab98-2795-75bb-aa07-d8021ff08cee",
+  "url": "https://job-boards.eu.greenhouse.io/finnapp/jobs/4847316101",
+  "source": "greenhouse",
+  "snapshot": {
+    "title": "Platform Lead (DevOps / Infrastructure)",
+    "company": "FINN",
+    "locations": ["Singapore", "Malaysia", "Philippines", "Thailand"],
+    "workplaceType": "unknown",
+    "employmentType": null,
+    "descriptionText": "Platform Lead (DevOps / Infrastructure)\n\nAbout Us\n\nAre you ready to shape the financial future of a rapidly growing fintech that's transforming lives across Southeast Asia and beyond?\n\nWe're not your typical company — we're a rocketship! At FINN, established in 2022 by experienced serial founders, we're on a mission to transform financial well-being for underbanked employees. Our product provides early wage access, financial education, budgeting tools, part-time job opportunities, and micro-insurances. We've hit product-market fit and are scaling aggressively across multiple markets.\n\nThe Role\n\nWe need a true Platform Lead who stays deep in infrastructure but also guides a small, growing Platform team.\n\nThis is a heavily hands-on role (70–80% technical) with people leadership (20–30% — 1:1s, code-review ownership, tech direction, mentoring, team velocity). If you love architecting production-grade cloud infrastructure yourself and helping engineers around you level up, this is for you.\n\nYou'll own the infrastructure that powers a high-growth fintech with high-throughput production systems, serving hundreds of thousands of users across Southeast Asia and Africa. We're in the middle of a major infrastructure maturity push: closing IaC gaps, hardening CI/CD, improving observability, and preparing our platform for rapid expansion across multiple markets.\n\nThis isn't a role where you manage dashboards or sit in meetings all day. You'll architect, build, and operate critical cloud infrastructure — while setting the technical direction for the Platform squad and growing the team. Future growth into Head of Platform / Infrastructure is realistic for the right person.\n\nWhat You'll Do\n\nTechnical (70–80%)\n\n * Own and operate cloud infrastructure — compute, networking, identity, and security controls — using Infrastructure-as-Code\n * Manage container orchestration workloads, including cluster upgrades, deployment management, and autoscaling\n * Build and maintain CI/CD pipelines — automated testing, deployment automation, and quality gates\n * Drive observability — implement and improve monitoring, alerting, logging, and tracing across all services\n * Harden security posture — cloud security posture management, automated scanning in CI, access policies, network security, and contributing toward industry security certifications\n * Manage multi-cloud infrastructure — we run workloads across multiple cloud providers\n * Operate messaging infrastructure — event-driven architectures, including retry strategies and dead-letter queue management\n * Standardize market launches — build repeatable infrastructure provisioning so new markets can go live in days, not weeks\n * Participate in on-call rotation — respond to production incidents and drive root-cause analysis and prevention\n\nLeadership (20–30%)\n\n * Set technical direction for the Platform squad — define the infrastructure roadmap, make build-vs-buy decisions, and establish engineering standards\n * Run weekly 1:1s with platform engineers — coach, unblock, and help them grow\n * Own code review across the platform domain — ensure quality, share knowledge, and maintain consistency\n * Keep platform velocity high — prioritize work, remove blockers, and ensure the team ships reliably\n * Mentor and develop the team — create an environment where engineers do their best work\n * Support the wider engineering team — be the go-to person for infrastructure questions, unblock developers, and create self-service tooling\n * Collaborate with product and engineering leadership — translate business needs into infrastructure strategy\n * Contribute to hiring — help interview and assess platform engineering candidates as the team grows\n\nMust-Have Experience\n\n * 7+ years in DevOps, SRE, or Platform Engineering roles\n * Team leadership experience — formally or informally leading a small infrastructure/platform team (mentoring, 1:1s, technical direction)\n * Strong cloud infrastructure expertise — compute, networking, identity management, queuing, monitoring, storage (we use AWS primarily)\n * Container orchestration in production — cluster operations, package management, debugging, resource management (we use Kubernetes)\n * Infrastructure-as-Code at scale — writing, reviewing, and managing IaC with proper state management and modularization (we use Terraform)\n * CI/CD pipeline design — deployment automation, testing integration, and deployment strategies (blue-green, canary)\n * Linux systems administration — comfortable debugging at the OS level\n * Monitoring and observability — setting up alerting, dashboards, log aggregation, and incident response\n * Security mindset — experience with access control best practices, network security, secrets management\n * Strong communication — able to explain infrastructure decisions to non-infra engineers, present technical strategies to leadership, and mentor effectively\n * Reliable internet and hardware, able to work ≥35h/week with decent overlap with UTC+8 (Singapore time)\n\nNice-to-Have\n\n * Multi-cloud experience (GCP, Firebase, or similar alongside AWS)\n * GitOps deployment experience (e.g. ArgoCD or similar)\n * Event streaming operations and tuning (e.g. Kafka)\n * Compliance frameworks — ISO 27001, SOC 2, or similar\n * Cost optimization — experience reducing cloud spend without sacrificing reliability\n * Pen testing coordination or security audit experience\n * Experience at a fintech or financial services company\n * Experience with multi-region or multi-market infrastructure\n * Previous experience growing a platform/infrastructure team (hiring, onboarding, defining team processes)\n\nWhat We Use Today\n\nHere's what we work with today — familiarity is a bonus, not a requirement:\n\n * Cloud: AWS (primary) + GCP/Firebase\n * Orchestration: Kubernetes (EKS), Helm, ArgoCD\n * IaC: Terraform\n * CI/CD: GitHub Actions\n * Messaging: Kafka, SQS\n * Monitoring: Grafana, Sentry, CloudWatch\n * Security: Prowler, Trivy, SonarCloud, Cloudflare WAF\n * Backend: Node.js/TypeScript, Firebase Cloud Functions\n * Frontend: Angular, Ionic/Capacitor\n\nWhy Join\n\n * Real ownership — you'll shape the infrastructure and the team that builds it\n * Leadership trajectory — clear path from Platform Lead to Head of Platform/Infrastructure as the company scales\n * Small team, big impact — a growing platform team, no layers of bureaucracy\n * Growth trajectory — rapidly expanding across Southeast Asia and Africa\n * Modern stack — container orchestration, IaC, GitOps, event-driven architecture\n * Fully remote — work from anywhere with good overlap to Asia timezones #EMEA #APJ\n * Competitive salary + meaningful equity (early-stage package)",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "country-list",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"work from anywhere with good overlap to Asia timezones #EMEA\""
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"work from anywhere with good overlap to Asia timezones #EMEA\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"work from anywhere with good overlap to Asia timezones #EMEA\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"work from anywhere with good overlap to Asia timezones #EMEA\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"work from anywhere with good overlap to Asia timezones #EMEA\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"work from anywhere with good overlap to Asia timezones #EMEA\""
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 2
+}

@@ -1,0 +1,57 @@
+{
+  "id": "ashby-linear-senior-staff-product-engineer-4a21b5",
+  "jobId": "01a0ab97-eccc-73db-a660-36b5b14a21b5",
+  "url": "https://jobs.ashbyhq.com/linear/12f8f208-0b9c-4569-bb3d-41c8a197029e",
+  "source": "ashby",
+  "snapshot": {
+    "title": "Senior / Staff Product Engineer",
+    "company": "Linear",
+    "locations": ["North America"],
+    "workplaceType": "remote",
+    "employmentType": "FullTime",
+    "descriptionText": "At Linear, we're building the product development system for teams and agents. AI is fundamentally changing how software gets built, and we’re shaping the tools this new era requires.\n\nFounded in 2019, Linear has become the platform of choice for more than 40,000 companies (including OpenAI, Coinbase, and Ramp) to plan, build, and ship their products. Today, our team is distributed across North America, Europe, and Australia, and we’re continuing to grow internationally. What unites us is relentless focus, fast execution, and a deep care for software craftsmanship.\n\nAs a small team, we’re all generalists that work across the full stack (built in Typescript end-to-end). We’re looking for experienced engineers that thrive in an environment of autonomy and individual responsibility to help us build the future of product development.\n\nLocation & work mode\n\nLinear is a remote-first company, with optional co-working offices in San Francisco, New York, and London. This role is open to candidates based in the US and Europe. You can work from anywhere within these regions. We value deep focus and async collaboration, with intentional moments to connect in person through team off-sites, optional co-working, and occasional travel.\n\nWhat you'll do\n\n * Work closely with founders and design to implement new concepts and ideas\n\n * Build AI-powered functionality into the core of Linear\n\n * Update our realtime collaborative content editor used across all internal surfaces\n\n * Build new user-facing features with beautiful and scalable UI components\n\n * Obsessively improve application performance\n\n * Refine our software development processes to keep the team operating at high velocity\n\nWhat we're looking for\n\n * 5+ years of experience building customer-facing products at a high-quality software company\n\n * Strong React and TypeScript fundamentals, with experience across the full stack (Browser technologies, Node, GraphQL, PostgreSQL)\n\n * Track record of driving complex, end-to-end features (not just incremental improvements and refactors) with visible impact on the product\n\n * Product sensibility: you care about UX, speed, and polish, and you push back when something doesn't feel right\n\n * Comfortable working without heavy PM overhead; you can help to shape the problem, not just implement a solution\n\n * High ownership mentality: self-directed, full-lifecycle builder who takes a feature from idea to shipped\n\n * Thrives in a remote, async-first environment with a lean, high-output team\n\n * Experience at a startup or a company with a genuinely high engineering bar\n\nOur tech\n\nThis stack reflects the systems we build and operate. You’re not expected to have experience with everything listed, but you should be excited to work close to product, performance, and real-world scale.\n\n * Agentic workload system utilizing temporal, operating at production scale\n\n * Proprietary websocket data sync framework built for speed and offline support\n\n * React, MobX, styled-components on the frontend\n\n * Extensive, widely used, GraphQL API and SDK\n\n * Node, Postgres, Temporal, and Redis in the backend\n\n * Hosted on Google Cloud with k8s\n\n * GitHub, Slack, Notion\n\nWhat we offer\n\nWe're a small, focused team that cares deeply about the quality of our work and the people we do it with. Here's what you can expect:\n\n * Competitive salary and equity\n\n * Employee-friendly equity terms including early exercise in the US and extended exercise windows\n\n * Daily meal and coffee stipend on every workday\n\n * Paid co-working space or desk\n\n * Health coverage (based on country requirements)\n\n * 5 weeks paid vacation, plus local statutory holidays\n\n * 4 months paid parental leave\n\n * Paid month off after 4 years & every 2 years thereafter\n\n * Regular team events and off-sites\n\n * Remote-first with no required commute\n\nLearn how we think and work\n\n * Read Me a story about our mission\n\n * Our hiring process: How we hire at Linear\n\n * How we work: Designing remote work at Linear\n\n * Why and how we do work trials Linear blog post\n\n * How we use AI in design feature of Linear's design team\n\n * Scaling our real-time sync engine talk by our cofounder, Tuomas Artman, at Linear's 2023 offsite\n\n * Our recent tender offer: Sharing Linear’s growth with the people building it\n\nLinear is an equal opportunity employer. We do not discriminate based on race, color, religion, gender identity or expression, sexual orientation, national origin, age, disability, veteran status, or any other protected characteristic under applicable law.\n\nA note on recruitment fraud: all official Linear hiring communication comes from an @linear.app email address, and all open roles are listed at linear.app/careers. We never ask candidates for payment or financial information. Suspicious messages can be reported to [email].",
+    "capturedAt": "2026-09-16T22:29:48.293Z"
+  },
+  "category": "latam-or-other-region",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"open to candidates based in the US and Europe\""
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"open to candidates based in the US and Europe\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"open to candidates based in the US and Europe\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"open to candidates based in the US and Europe\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"open to candidates based in the US and Europe\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"open to candidates based in the US and Europe\""
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T22:34:41Z",
+  "session": 3
+}

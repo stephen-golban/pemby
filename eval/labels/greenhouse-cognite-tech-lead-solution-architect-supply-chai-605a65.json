@@ -1,0 +1,57 @@
+{
+  "id": "greenhouse-cognite-tech-lead-solution-architect-supply-chai-605a65",
+  "jobId": "01a0aba5-8efe-792f-a649-a55cff605a65",
+  "url": "https://job-boards.eu.greenhouse.io/cognite/jobs/4908749101",
+  "source": "greenhouse",
+  "snapshot": {
+    "title": "Tech Lead/Solution Architect - Supply Chain, Center of Excellence",
+    "company": "Cognite",
+    "locations": ["Europe; Norway (Oslo)", "Europe", "Norway (remote)"],
+    "workplaceType": "remote",
+    "employmentType": null,
+    "descriptionText": "What Cognite is: Relentless to achieve\n\nCognite operates at the forefront of industrial digitalization, building AI, and data solutions that solve the world’s hardest, highest-impact problems. With unmatched industrial heritage and a comprehensive suite of AI capabilities, including low-code AI agents, Cognite accelerates the digital transformation to drive operational improvements.\n\nWe thrive in challenges. We challenge assumptions. We execute with speed and ownership. If you view obstacles as signals to step forward - not backwards - you’ll feel right at home here.\n\nOur Moonshot is bold: Unlock $100B in customer value by 2035, and redefine how global industry works. Join us in this venture where AI and data meet ingenuity, and together, we will forge the path to a smarter, more connected industrial future.\n\nHow you’ll demonstrate Ownership\n\nAs Tech Lead/Architect for the Supply Chain CoE, you own the technical spine of Cognite's Integrated Supply Chain offering — knowledge graph, generative AI agents, and command-center UX. You'll act as the subject-matter expert across source-make-deliver, modeling customers' supply chains and showing how AI/UI tools turn an integrated graph into deviation triage and resolution. You're equally comfortable in a C-level value conversation and a technical session on data models or agent skills. The bar goes beyond prompting AI: you'll engineer domain expertise into testable, deterministic playbooks — treating CoE knowledge as a rigorous system with guardrails, ground-truth testing, and staged rollouts.\n\nThe Impact you bring to Cognite\n\n * Solution & CoE Strategy: Align the CoE on high-impact use cases (e.g., delayed inbound spare → maintenance delay → order risk) and deploy them as demos or customer solutions.\n * Knowledge-Graph Data Modeling: Lead customer modeling sessions; show how domain data models and complex hierarchies absorb requirements securely and at scale.\n * Data & AI Architecture: Guide customers on adopting our graph/AI/UI stack, including integration patterns (Snowflake, Databricks, ERPs) and why agents must be grounded in deterministic graph paths.\n * AI Skill-System Authorship: Turn domain expertise into structured AI skills with fixed parameters, guardrails, and testable anchors, keeping data models and agent logic aligned.\n * Agentic Tooling & QA: Serve as escalation point for complex graph queries and agent/UI design; own testing and evaluation frameworks, classifying failures rigorously before changing agent logic.\n * Enterprise Architecture & Value Selling: Support end-to-end architecture reviews and quantify commercial impact (orders at risk, delay penalties, landed costs) for executive business cases.\n * Partner Enablement & Documentation: Equip partners with reusable demos and accelerators; maintain clear, consistent terminology across models, docs, and AI logic.\n\nRequired Qualifications\n * Deep knowledge of industrial supply chain planning/execution and its links to production, quality, and maintenance; fluency with ISA-95/88 and SCOR frameworks.\n * 5+ years in industrial supply chain (planning, logistics, inventory) and 5+ years in pre-sales, solution architecture, or delivery for enterprise software.\n * Experience designing industrial information/knowledge-graph data models (temporal relations, typed hierarchies) and integrating structured/unstructured enterprise data.\n * Hands-on proficiency in Python and frontend (TypeScript/React), with strong engineering discipline (ADRs, automated testing, CI/CD).\n * Systemic AI/testing mindset: optimized tool routing, rigorous multi-stage evaluation, root-cause debugging, and graceful handling of edge cases — not just prompting.\n * Excellent client-facing skills, able to translate complex data/AI concepts for audiences from engineers to C-level executives.\n * Familiarity with modern data platforms (Snowflake, Databricks, Spark/SQL), source systems (ERP/MES/WMS/TMS), and agentic AI/LLM workflow design.\n * Prior experience in high-growth (startup/scale-up) environments; Bachelor's degree or equivalent practical experience.\n\nA snapshot of our many perks and benefits as a Cogniter\n\n* Join an organization of 60 different nationalities 🌐 with Diversity, Equality and Inclusion (DEI) in focus 🤝\n* A highly modern and fun working environment with sublime culture across the organization, follow us on Instagram @cognitedata 📷 to know more\n* Flat structure with direct access to decision-makers\n* Opportunity to work with and learn from some of the best people on some of the most ambitious projects found anywhere, across industries, with cutting edge technology\n* Join our HUB 🗣️ to be part of the conversation directly with Cogniters and our partners.\n* Get access to private health services with Cognite Care.\n* Hungry? We’ve got your back. A subsidized lunch at the canteen is delivered by the chefs at Fornebuporten (Aker Tech House)\n* Our own Cognite exclusive coffee bar ☕ with the friendliest baristas is here to brew coffee for coffee lovers, tea for tea lovers, smoothie for smoothie lovers, and the baristas creative concoctions when the mood strikes.\n* We take your mental- and physical health seriously by having a broad health offering and a free membership to our fully-staffed gym on-site.\n* A pet lover? Get the chance to meet Spot at the Robot Garden!\n\nLearn more about us\n\n * Impact 2025\n * Cognite's Industrial AI: Moonshot\n * We’re globally recognized domain experts with an international presence that spans Phoenix, Houston, Oslo Tokyo, Bengaluru, and Abu Dhabi.\n\nEqual Opportunity\nCognite is committed to creating a diverse and inclusive environment at work and is proud to be an equal opportunity employer. All qualified applicants will receive the same level of consideration for employment.",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "europe-region",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "location \"Europe\"; \"Norway (remote)\""
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "location \"Europe\"; \"Norway (remote)\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "location \"Europe\"; \"Norway (remote)\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "location \"Europe\"; \"Norway (remote)\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "location \"Europe\"; \"Norway (remote)\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "location \"Europe\"; \"Norway (remote)\""
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 2
+}

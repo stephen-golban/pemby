@@ -1,0 +1,57 @@
+{
+  "id": "greenhouse-orkes-site-reliability-engineer-501ec3",
+  "jobId": "01a0ab9f-d530-76a2-b243-4e9042501ec3",
+  "url": "https://job-boards.greenhouse.io/orkes/jobs/5221481008",
+  "source": "greenhouse",
+  "snapshot": {
+    "title": "Site Reliability Engineer",
+    "company": "Orkes",
+    "locations": ["Australia and Middle Europe", "Remote, Australia"],
+    "workplaceType": "remote",
+    "employmentType": null,
+    "descriptionText": "Who We Are\n\nBuilding the Backbone of Distributed Applications.\n\nAt Orkes, we are reimagining how developers build reliable, scalable, event-driven applications without wrangling complex infrastructure.\n\nBorn from Netflix's battle-tested open-source project, OSS Conductor, our platform is now powering billions of mission critical workflows across fintech, e-commerce, logistics, healthcare, and more.\n\nOur platform powers billions of mission critical workflows across industries like fintech, e-commerce, logistics, and healthcare helping companies run the core operations of their business with confidence. These are the workflows behind every transaction, every delivery, every patient check-in, quietly orchestrating our digital world.\n\nWe’re solving some of the hardest infrastructure problems: how do you make distributed systems reliable, observable, and scalable – without every team having to reinvent the wheel? We absorb the complexity of distributed systems, letting teams build with confidence.\n\nWe’re hiring a SRE to help us evolve and scale our platform. If you’re passionate about clean, efficient architecture, love solving tough distributed systems challenges, and thrive in an environment where your ideas actually shape the product then we’d love to talk.\n\nAnd the best part is we’re just getting started.\n\nWhat You’ll Do\n\n * Own reliability, availability, and performance of production systems running in cloud environments\n\n * Define and monitor SLIs/SLOs and help manage error budgets across the platform\n\n * Lead incident response efforts including detection, triage, mitigation, and postmortems\n\n * Improve observability through logging, monitoring, alerting, and dashboards\n\n * Automate operational workflows and reduce manual toil wherever possible\n\n * Partner closely with engineering teams to improve system resiliency and scalability\n\n * Assist with capacity planning, infrastructure optimization, and performance tuning\n\n * Build internal tooling, runbooks, and operational best practices\n\n * Support Kubernetes-based infrastructure and distributed systems at scale\n\n * Act as an escalation point for complex production and platform issues\n\n----------------------------------------\n\nWhat We’re Looking For\n\n * 5+ years of experience in Site Reliability Engineering, DevOps, Platform Engineering, or related infrastructure roles\n\n * Strong experience with cloud platforms such as AWS, GCP, or Azure\n\n * Hands-on experience with Kubernetes and containerized environments\n\n * Strong understanding of distributed systems and microservices architecture\n\n * Experience with observability tools such as Prometheus, Grafana, Datadog, ELK, or OpenTelemetry\n\n * Proficiency with infrastructure automation and scripting (Terraform, Python, Bash, etc.)\n\n * Experience managing CI/CD pipelines and deployment automation\n\n * Strong troubleshooting and incident management skills\n\n * Ability to work cross-functionally and communicate effectively during high-pressure situations\n\n----------------------------------------\n\nNice to Have\n\n * Experience supporting large-scale SaaS or cloud-native platforms\n\n * Familiarity with workflow orchestration technologies such as Conductor, Temporal, or Camunda\n\n * Experience with Kafka, messaging systems, or event-driven architectures\n\n * Knowledge of security best practices and cloud infrastructure hardening\n\n * Open-source contributions or strong systems engineering background\n\n----------------------------------------\n\nWhy Join Orkes?\n\n * Work alongside a deeply technical and collaborative engineering team\n\n * Solve complex distributed systems challenges at scale\n\n * High ownership and impact in a fast-growing company\n\n * Remote-friendly culture with strong engineering autonomy\n\n * Opportunity to help shape the future of cloud orchestration and AI workflows\n\nMore Details:\n\nThe base salary for this role is $125,000-250,000 USD. However, pay is variable and when determining compensation, a number of factors will be considered: skills, years of experience, job scope, location/cost of living, and competitive compensation market data for your country/role.\n\n * Start Date: ASAP\n\n * Status: Full-time\n\n * Type: Remote\n\n * Location: Australia, EMEA\n\n * Department: Engineering\n\n * Reports to: Head of Engineering\n\n * Travel: 15-20%\n\nBenefits\n\n * Comprehensive health coverage including medical, dental, and vision\n\n * Flexible PTO\n\n * Support for personal development\n\nAt Orkes, we are committed to building a team that reflects a rich tapestry of perspectives, identities, and professional experiences. We believe that diversity is not just a checkbox, but a driving force behind innovation, creativity, and success. By embracing a variety of backgrounds, we cultivate an inclusive environment where every team member feels valued and empowered to bring their authentic selves to work.\n\nJoin us at Orkes and be a part of a team where your unique perspectives are not only welcomed but celebrated. Together we are shaping the future technology by leveraging the strength that comes from embracing diversity in all its forms. Your Journey with us is an opportunity to contribute to something greater and make a lasting impact.",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "europe-region",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"Location: Australia, EMEA\" (field says \"Middle Europe\")"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"Location: Australia, EMEA\" (field says \"Middle Europe\")"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"Location: Australia, EMEA\" (field says \"Middle Europe\")"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"Location: Australia, EMEA\" (field says \"Middle Europe\")"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"Location: Australia, EMEA\" (field says \"Middle Europe\")"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"Location: Australia, EMEA\" (field says \"Middle Europe\")"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 2
+}

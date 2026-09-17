@@ -1,0 +1,57 @@
+{
+  "id": "ashby-railway-06d8fd61-senior-product-engineer-scalability-590146",
+  "jobId": "01a0aba4-4940-711b-b9a4-3b8b38590146",
+  "url": "https://jobs.ashbyhq.com/Railway/5f51771e-339f-49f9-8da2-e3c7179c7bad",
+  "source": "ashby",
+  "snapshot": {
+    "title": "Senior Product Engineer, Scalability",
+    "company": "Railway",
+    "locations": ["Global"],
+    "workplaceType": "remote",
+    "employmentType": "FullTime",
+    "descriptionText": "Our core mission at Railway is to make software engineers higher leverage. We believe that people should be given powerful tools so that they can spend less time setting up to do, and more time doing. Railway now powers workloads for millions of builders, and the systems underneath — usage metering, billing and payments, fraud and abuse protection, background workers, and the data pipelines that feed them all — have to scale every week.\n\nYou'll be the person who architects that stack: making it fast, correct, and trustworthy at a volume that keeps growing. If you're looking to scale the backbone of an operating system for builders, we'd love to talk with you!\n\nWant to learn about our work culture? Here is a multi-part blog series that will help you see the unique ways our team works (Parts 1, 2, 3, and 4).\n\nAbout the role\n\nThis is a backend-leaning role focused on scaling systems. Billing and fraud will be a focus, but your remit spans every high-throughput system at Railway — workers, queues, event pipelines, and the databases underneath them. You'll own your work end-to-end, including when a feature reaches the UI.\n\nFor this role, you will:\n\n * Architect and scale the pipelines that turn raw usage into accurate, real-time billing — metering, aggregation, rating, and invoicing across millions of events, from ingestion in ClickHouse to the rating engine.\n\n * Build payment flows that are correct under concurrency and partial failure: idempotent charges, retries, reconciliation, and clean handling of provider edge cases (Stripe and beyond).\n\n * Develop fraud and abuse detection — signal collection, real-time scoring, automated mitigation — that protects platform margin without getting in legitimate users' way.\n\n * Scale the systems everything else depends on: Postgres under heavy write load, Node.js services under pressure, and long-running workflows orchestrated with Temporal where exactly-once semantics and durability actually matter.\n\n * Build TypeScript + GraphQL APIs where correctness and auditability are non-negotiable.\n\n * Write Engineering Requirement Documents to take something from idea, to defined tasks, to implementation, to monitoring its success and scaling it further.\n\n * Contribute to our open-source repositories (CLI, Typescript SDK, Railpack, etc.) — Rust experience, or the desire to learn it, helps here.\n\n * Be oncall from time to time.\n\nSome projects this team takes on:\n\n * Re-architect billing end-to-end: per-second usage metering at platform scale, idempotent payment processing that survives provider outages without double-charging, and credit, prepayment, and enterprise-invoicing models that hold up under audit.\n\n * Stand up a fraud-detection service that scores signups and deployments in real time and automatically throttles abuse (crypto mining, free-tier farming, stolen cards).\n\n * Scale our Temporal workloads to orchestrate workflows across millions of deployments.\n\n * Build internal tooling that gives teams across Railway a trustworthy, real-time view into the systems they depend on.\n\nThis is a high impact, high agency role with direct effect on company culture, trajectory, and outcome.\n\nAbout you\n\n * An ability to autonomously lead, design, and implement backend systems where correctness, consistency, and auditability are first-class requirements.\n\n * A track record of scaling systems — you've taken a pipeline, service, or database that was falling over and made it handle 10x, and you know which tools to reach for (and when polling stops being enough).\n\n * Deep expertise in Postgres and relational data modeling — you reach for the right consistency guarantees, understand the cost of getting them wrong, and know how Postgres itself behaves at scale.\n\n * Strong working knowledge of Node.js internals — the event loop, memory behavior, and what to do when a service degrades under load.\n\n * Experience managing complex asynchronous and long-running backend jobs, ideally with a workflow engine like Temporal, for things like billing runs or payment reconciliation.\n\n * Familiarity with the realities of money movement: payment providers, idempotency, retries, reconciliation, and their failure modes. Direct billing, payments, or fraud experience is a strong plus.\n\n * A security and abuse-aware mindset — you instinctively think about how a system can be gamed, and you design accordingly.\n\n * A desire to be a part of the entire project development process, from research gathering and planning, to implementation and monitoring.\n\n * Great written and verbal communication skills for expressing ideas, designs, and potential solutions in a mostly-asynchronous manner.\n\nWe value and love to work with diverse persons from all backgrounds.\n\nThings to know\n\nFor better or worse, we're a startup; our team dynamics are different from companies of different sizes and stages.\n\n * We're globally distributed—and getting more so. Stuff is always happening somewhere.\n\n * We don't expect you to be online all the time, but you'll need to be diligent about your boundaries — your end of day will overlap with someone else's start.\n\n * We're a small, high-ownership team that cares deeply about doing exceptional work. We're scaling quickly, which means we rely on leverage—systems over coordination, judgment over process. Expect ambiguity and a fast-moving environment.\n\n * You'll own real outcomes. That means making decisions, not just executing—and owning the success, or failure, that comes with them.\n\nBenefits and perks\n\nAt Railway, we provide best in class benefits. Great salary, full health benefits including dependents, strong equity grants, equipment stipend, and much more. For more details, check back on the main careers page.\n\nBeyond compensation, there are a few things that we believe make working at Railway truly unique:\n\n * Autonomy: We have very few meetings. Just a Monday and a Friday to go over the Company Board. We think your time is sacred, whether it's at work, or outside of work.\n\n * Ownership: We're a company with a high ownership, high autonomy culture. We hope that you'll come in, help us, and over the course of many years do the best work of your life. When we bring you onboard, we expect you to change the company.\n\n * Novel problems/solutions: We're a startup that's well funded, with cool problems, which lets us implement novel solutions! We abhor \"busywork\" and think, whether it's community, engineering, operations, etc there's always opportunity for creative and high leverage solutions.\n\n * Growth: We want you to grow with us, but we know that talent is loaned, so when you figure out what area you want to grow in next, whether it's at Railway or outside, we'll make sure you land there.\n\nHow we hire\n\nNo tricks. No surprises. Here's the entire process.\n\n1 — Talk with us about the role\n\nThis is completely open ended and we're just trying to see who you are, what you want to do, and where you wanna go.\n\n2 — Work on a small project to discuss in the interview\n\nAsynchronously design a system that scales. You choose the domain — pick whichever shows your thinking best:\n\n * A usage metering and billing pipeline that meters CPU/RAM for millions of workloads and bills accurately (you may depend on third parties such as Stripe), or\n\n * A stream-processing system that ingests high-cardinality observability events in real time, or\n\n *\n\nWhatever you pick, come ready to defend the architecture end-to-end. We'll dig into:\n\n * Polling vs. stream processing, and how you avoid losing data when streaming\n\n * Correctness under concurrency and partial failure: idempotency, retries, reconciliation, what happens when a step fails halfway through\n\n * How you handle cardinality, and which tools you lean on and why\n\n * The scalability of the things you depend on — what happens when Postgres becomes the bottleneck\n\n * Interview Structure to expect (60 Minutes):\n\n   * Prework (submitted before your interview): Your design\n\n   * 0–5 minutes: Introductions\n\n   * 5–35 minutes: Walking through the design and how you'd extend it — new failure modes, 10x load, a fraud signal\n\n   * 35–50 minutes: Noodling on technology, data modeling, and how you think about scale, money-movement, and abuse\n\n   * 50–60 minutes: Time for you to ask your interviewers questions\n\nYou can, and SHOULD! ask us questions ahead of time. Ask away!\n\n3 — Review your solution with the Team\n\nYou'll sit down with someone on the team and go over the above. We'll poke into your solution, as well as get you acquainted with two more members of the team.\n\nLooking for: Learn about your problem solving skills. How you break down a problem and how you present a solution.\n\n4 — Meet the Team\n\nYou'll meet the Team, which will be comprised of 4 people from vastly different sections of the company.\n\nLooking for: How you work with the rest of the team and communicate.\n\n5 — Chat with CEO\n\nSit down with our founder and CEO for 30 minutes. This is a 1:1, open ended conversation.\n\n6 — Offer call\n\nFinally, we will present the offers, hammer out the details about your position, tee up onboarding, and start our journey together.\n\nFinal Note: The interview goes both ways. Once again, please ask us things. Many things! Hard things. That's what we're here for.",
+    "capturedAt": "2026-09-16T22:29:48.293Z"
+  },
+  "category": "timezone-only",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "Location \"Global\", \"globally distributed\"; no engagement type"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "Location \"Global\", \"globally distributed\"; no engagement type"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "Location \"Global\", \"globally distributed\"; no engagement type"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "Location \"Global\", \"globally distributed\"; no engagement type"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "Location \"Global\", \"globally distributed\"; no engagement type"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "Location \"Global\", \"globally distributed\"; no engagement type"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T22:34:41Z",
+  "session": 3
+}

@@ -1,0 +1,57 @@
+{
+  "id": "greenhouse-openzeppelin-lead-blockchain-security-developer-canto-84e6ac",
+  "jobId": "01a0abaa-973a-71b4-afa3-ca7b8a84e6ac",
+  "url": "https://openzeppelin.com/careers/opening/?gh_jid=7742510003",
+  "source": "greenhouse",
+  "snapshot": {
+    "title": "Lead Blockchain Security Developer (Canton)",
+    "company": "OpenZeppelin",
+    "locations": ["Remote"],
+    "workplaceType": "remote",
+    "employmentType": null,
+    "descriptionText": "About us\n\nOpenZeppelin is the security standard onchain finance is built on. Founded in 2015, our mission is to accelerate the world's transition to an open financial system, built on open standards and secured by rigorous research.\n\nOur open-source Contract Libraries have facilitated over $35 trillion in onchain value and are used by 10 of the top 10 tokenized money market funds and 9 of the top 10 stablecoins by market cap.\n\nWe combine AI-native security tooling with deep research and a decade of audit expertise to support leading institutions and crypto-native teams shaping the next generation of digital assets like DTCC, Fidelity, Coinbase, Uniswap, Aave, the Ethereum Foundation, and many more across the full secure development lifecycle.\n\nPlease note: Always refer to OpenZeppelin's official job page for the most accurate information about our open roles, as we have seen multiple third party job sites posting inaccurate information.\n\nThe Secure Development team ❤️\n\nOpenZeppelin is the security partner of choice for the most important protocols in Web3. Our Secure Development team sits at the intersection of building and breaking: we design, implement, and harden production-grade libraries and smart contracts for leading projects across EVM, Starknet, Stellar/Soroban, Arbitrum Stylus, Aptos, and beyond, often as an embedded extension of the client's engineering team.\n\nWe work the way the rest of the industry will five years from now. Every developer on the team is a fully AI-native engineer, supported by outstanding internal AI tooling built for every phase of secure development. Developers own their workstreams end-to-end — agents amplify their effectiveness, and peers, security researchers, and external auditors provide rigorous review on every piece of work that ships.\n\nThe Canton Network engagement\n\nThis role joins us at the start of a groundbreaking 24-month, multi-million-dollar commitment to build the open-source DeFi foundations of the world's most institutional blockchain. You'll deliver production-ready Reference Implementations (privacy-preserving DEX, lending, cross-chain stablecoin settlement, confidential auction launchpad, and more), the OpenZeppelin Contracts Library for Daml that Canton developers will import, and Canton standards implementation.\n\nWithin this, you will:\n\n * Own the development of the OpenZeppelin Contracts Library for Daml end-to-end: vaults, hooks, RBAC, credentials, messaging gateway, accounts, and more. The audited primitives Canton developers will import.\n * Lead the technical design and implementation of the year-1 Reference Implementations: privacy-preserving DEX, lending protocol, cross-chain stablecoin settlement, and confidential auction launchpad.\n * Implement and shepherd the OZ Daml versions of CIP-56, CIP-86, CIP-103, and CIP-104. Coordinate with Digital Asset on spec evolution and with ChainSafe on middleware alignment.\n * Run client-facing roadmap, design, and milestone discussions with Digital Asset, the Canton Foundation, and ChainSafe.\n * Collaborate with OpenZeppelin's auditors and security researchers on threat models, audit prep, and full-stack reviews for every Reference Implementation.\n * Use AI systems as core daily tools. Extend them: build agents, skills, and workflows that compound the team's leverage on the Canton engagement and beyond, including in security practices\n * Contribute developer-experience and security feedback upstream into the Canton protocol, Splice, the Daml SDK, and the Splice Wallet Kernel.\n * Conduct open-ended research around privacy-preserving DeFi, multi-party authorization patterns, and Canton-specific primitives; you'll have time to publish and contribute back to OpenZeppelin's body of knowledge.\n\nLocation\n\nOpenZeppelin is a fully remote organization, however preference is given to candidates located within UTC-8 to UTC+3 time zones to be considered.\n\nYou have\n\n * Production Daml fluency. You understand templates, choices, controllers/observers/signatories, multi-party authorization, sub-transaction views, and propose/accept patterns as first-class primitives. Running an SV, contributing to Splice internals, governance, or Canton Coin tokenomics.\n * 3+ years of experience in UTXO-based protocol development (Canton, Cardano, Midnight, Zcash, Aleo, Mina, or similar).\n * 3+ years of experience on DeFi engineering in production. AMMs, vaults (ERC-4626 or equivalent), lending protocols, cross-chain settlement.\n * A security-first mindset. this is non-negotiable. You have demonstrable experience either auditing, breaking, or hardening production systems — published threat models, audit reports, responsible disclosures, or equivalent output.\n * Library / SDK API design taste. You've built reusable, import-first developer libraries, not just applications. You have opinions on extensibility patterns (hooks, modular components, override points) and on what makes an audited primitive pleasant to consume.\n * Cross-chain interoperability exposure. Production work with at least one major cross-chain messaging protocol (Chainlink CCIP, LayerZero, Wormhole, Axelar, or similar).\n * Institutional / compliance design fluency: You can design with credential gates, multi-party attestation, custody flows, and compliance hooks as native constraints.\n * An AI-native workflow. Claude Code, Cursor, or equivalent is your daily driver. You have measurable productivity gains to show for it and clear opinions on how to use these tools well. You have shipped at least one non-trivial AI-powered tool, agent, or automation pipeline in production using the Anthropic SDK, MCP, custom evals, or comparable. AI is a serious instrument in your security workflows.\n\nNice to have\n\n * Cryptography or financial-engineering background.\n * Institutional finance background. Capital-markets microstructure, custody, compliance flows, RWA tokenization, settlement.\n * Hands-on experience with other non-EVM ecosystems. Starknet, Stellar/Soroban, Arbitrum Stylus, Aptos, Move-based chains.\n * Open-source contributions to widely-used libraries in the smart-contract or AI-tooling space.\n\nLogistics\n\nOur interview process is designed to be fast (we target ~30 days from first call to offer) while still giving both sides a clear \"yes.\" The full process consists of:\n\n * Recruiter interview (30-45 minutes)\n * Manager interview (60 minutes)\n * Team interview (45 minutes)\n * Leadership Interview (30 minutes)\n * Paid technical work trial\n\nPlease let us know if you require any accommodations for the interview process, and we’ll do our best to provide assistance.\n\nBenefits\n\n * Meet your teammates at company gatherings around the world 😎\n * Enjoy the flexibility of fully remote work 🌎\n * Take the time you need with flexible time off 🏝\n * Grow your family with 8 weeks of paid leave for primary caregivers, 4 weeks for secondary caregivers, and a one-time $3,600 baby bonus 💙\n * Build your ideal home office with up to $500 in equipment support 🪑\n * Stay covered with medical insurance 🏥\n * Keep growing with learning and development opportunities 🧠\n * Get a monthly stipend for your preferred co-working space 💻\n\nAt OpenZeppelin, we are an equal opportunity employer and we value different perspectives. We are committed to building a diverse workforce. This includes but is not limited to gender, race, sexual orientation, religion, national origin and other characteristics that make each one of us unique. In this uniqueness, we find the most value. Come join us!\n\nUse of AI as part of the recruiting process\n\nAs part of OpenZeppelin’s recruitment process, we may use automated tools, including artificial intelligence, to assist in reviewing applications and assessing candidate qualifications. These tools are used to support our People team by identifying relevant skills and experience, and are not used to make decisions solely by automated means. All hiring decisions involve human review. Any personal data provided as part of your application will be processed in accordance with OpenZeppelin’s Data Privacy Notice.\n\nIf you have questions about this recruitment process or would like to request human review of your application, please contact us at [email].",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "timezone-only",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"fully remote\"; \"UTC-8 to UTC+3\" band includes country"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"fully remote\"; \"UTC-8 to UTC+3\" band includes country"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"fully remote\"; \"UTC-8 to UTC+3\" band includes country"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"fully remote\"; \"UTC-8 to UTC+3\" band includes country"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"UTC-8 to UTC+3 ... to be considered\"; UTC+4 outside"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"UTC-8 to UTC+3 ... to be considered\"; UTC+4 outside"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 1
+}

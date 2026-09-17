@@ -1,0 +1,57 @@
+{
+  "id": "greenhouse-gitlab-engineering-manager-trusted-agentic-deve-916776",
+  "jobId": "01a0ab22-00b6-7887-9f7b-be33cc916776",
+  "url": "https://job-boards.greenhouse.io/gitlab/jobs/8782040002",
+  "source": "greenhouse",
+  "snapshot": {
+    "title": "Engineering Manager, Trusted Agentic Development",
+    "company": "GitLab",
+    "locations": ["Remote, Poland", "EMEA"],
+    "workplaceType": "remote",
+    "employmentType": null,
+    "descriptionText": "GitLab is the intelligent orchestration platform for DevSecOps. GitLab enables organizations to increase developer productivity, improve operational efficiency, reduce security and compliance risk, and accelerate digital transformation. More than 50 million registered users and more than 50% of the Fortune 100* trust GitLab to ship better, more secure software faster.\n\nThe same principles built into our products are reflected in how our team works: we embrace AI as a core productivity multiplier, with all team members expected to incorporate AI into their daily workflows to drive efficiency, innovation, and impact. GitLab is where careers accelerate, innovation flourishes, and every voice is valued. Our high-performance culture is driven by our values and continuous knowledge exchange, enabling our team members to reach their full potential while collaborating with industry leaders to solve complex problems. Co-create the future with us as we build technology that transforms how the world develops software.\n\n*Fortune 500® is a registered trademark of Fortune Media IP Limited, used under license. Claim based on GitLab data. Fortune 100 refers to the top 20% ranked companies in the 2025 Fortune 500 list, published in June 2025. Fortune and Fortune Media IP Limited are not affiliated with, and do not endorse products or services of GitLab.\n\nAn overview of this role\n\nThe Trusted Agentic Development team sits within GitLab's Developer Experience group and builds the platforms our own engineers rely on every day. GitLab engineers increasingly build software with artificial intelligence (AI) agents. Agents generate code and tests in seconds, so speed is no longer the constraint. Confidence is. Agents can produce a passing test suite for software that doesn't work as intended, and a reviewer may not be able to tell the difference without redoing the work by hand.\n\nAs Engineering Manager, Trusted Agentic Development, you'll build and lead the team that closes this gap. You'll help define what validation means when the author is an agent and make the feedback loop fast, automatic, and trustworthy. You'll point the team at the right version of an open problem and earn adoption across GitLab by building the best path, not by mandating a process.\n\n * Validation that confirms agent-generated code does what was intended, so a passing suite means a working feature and not just a satisfied proxy.\n * Mid-loop feedback that helps an agent self-correct toward working software instead of green assertions.\n * Language-aware approaches under one shared model of what \"trusted\" means, starting with Rust, Ruby, and Go, while allowing the right technique to differ by language.\n * Real measurement of whether engineers trust and adopt the path, with findings fed directly back into the platform.\n\nWhat you'll do\n\n * Build and grow the team by hiring and developing engineers who practice agentic development, and create a culture that treats this as an open problem to solve rather than a process to enforce.\n * Set direction in an undefined space by partnering with your team to shape the technical approach for validating agent-built software.\n * Keep the team focused on the highest-impact version of the problem rather than the easiest one.\n * Earn adoption by building relationships with engineering teams across GitLab, learning how they work with agents today, and creating a platform they choose because it makes them faster and more confident.\n * Measure engineer adoption and trust through real usage, treat adopters as design partners, and use findings to prioritize where confidence is breaking down.\n * Stay close to the technical work by engaging in architecture and design discussions, reviewing proposals, and keeping your judgment current as agentic development changes.\n * Run the team with clear goals, direct feedback, honest performance management, and ownership of complex work from planning through completion without relying on a dedicated program manager.\n\nWhat you'll bring\n\n * Direct experience using AI agents to build software, including lessons from successes and missteps and a clear point of view on why a passing test suite isn't the same as working software.\n * Experience leading engineering teams through ambiguous, early-stage problems where the right approach wasn't yet known.\n * The ability to drive adoption through influence and a useful product rather than through mandate, including partnering across teams you don't manage.\n * Technical depth to engage credibly in architecture and validation strategy discussions and earn the trust of senior engineers.\n * A history of building accountable, high-performing teams, including hiring well, developing team members, and addressing underperformance directly.\n * Strong written communication skills in an all-remote, asynchronous environment.\n * Alignment with GitLab's values, especially collaboration, iteration, and transparency.\n\nThis isn't a quality assurance (QA) or test automation management role. We care far more about your experience leading teams that build with agents than about depth in any particular testing discipline.\n\nAbout the team\n\nThe Trusted Agentic Development team is part of GitLab's Developer Experience group. We build platforms and practices that help GitLab engineers validate agent-generated software with confidence. We work across engineering teams and programming languages to understand how people use agents, test new approaches in real workflows, and create a shared model of trusted agentic development that teams choose to adopt.\n\nPoland base salary range: 296,000 PLN – 444,000 PLN\nThe base salary range for this role’s listed level is currently for residents of the EU, applicable in the specified country or countries only. Sales roles are also eligible for incentive pay targeted at up to 100% of the offered base salary. Grade level and salary ranges are determined through interviews and a review of education, experience, knowledge, skills, abilities of the applicant, equity with other team members, alignment with market data, and geographic location and having regard to any applicable collective agreements. The base salary range does not include bonuses, equity, or benefits.\n\nHow GitLab Supports Full-Time Employees\n\n * Benefits to support your health, finances, and well-being\n * Flexible Paid Time Off\n * Team Member Resource Groups\n * Equity Compensation & Employee Stock Purchase Plan\n * Growth and Development Fund\n * Parental Leave\n\nPlease note that we welcome interest from candidates with varying levels of experience; many successful candidates do not meet every single requirement. Additionally, studies have shown that people from underrepresented groups are less likely to apply to a job unless they meet every single qualification. If you're excited about this role, please apply and allow our recruiters to assess your application.\n\n----------------------------------------\n\nCountry Hiring Guidelines: GitLab hires new team members in countries around the world. All of our roles are remote, however some roles may carry specific location-based eligibility requirements. Our Talent Acquisition team can help answer any questions about location after starting the recruiting process.\n\nPrivacy Policy: Please review our Recruitment Privacy Policy. Your privacy is important to us.\n\nGitLab is proud to be an equal opportunity workplace and is an affirmative action employer. GitLab’s policies and practices relating to recruitment, employment, career development and advancement, promotion, and retirement are based solely on merit, regardless of race, color, religion, ancestry, sex (including pregnancy, lactation, sexual orientation, gender identity, or gender expression), national origin, age, citizenship, marital status, mental or physical disability, genetic information (including family medical history), discharge status from the military, protected veteran status (which includes disabled veterans, recently separated veterans, active duty wartime or campaign badge veterans, and Armed Forces service medal veterans), or any other basis protected by law. GitLab will not tolerate discrimination or harassment based on any of these characteristics. See also GitLab’s EEO Policy and EEO is the Law. If you have a disability or special need that requires accommodation, please let us know during the recruiting process.",
+    "capturedAt": "2026-09-16T22:29:48.293Z"
+  },
+  "category": "emea",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "Locations \"Remote, Poland\" plus \"EMEA\"; EMEA region is yellow"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "Locations \"Remote, Poland\" plus \"EMEA\"; EMEA region is yellow"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "Locations \"Remote, Poland\" plus \"EMEA\"; EMEA region is yellow"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "Locations \"Remote, Poland\" plus \"EMEA\"; EMEA region is yellow"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "Locations \"Remote, Poland\" plus \"EMEA\"; EMEA region is yellow"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "Locations \"Remote, Poland\" plus \"EMEA\"; EMEA region is yellow"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T22:34:41Z",
+  "session": 3
+}

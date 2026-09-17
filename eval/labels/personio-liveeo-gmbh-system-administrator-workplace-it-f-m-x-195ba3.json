@@ -1,0 +1,57 @@
+{
+  "id": "personio-liveeo-gmbh-system-administrator-workplace-it-f-m-x-195ba3",
+  "jobId": "01a0aba3-5ee3-7477-86a8-f79fd2195ba3",
+  "url": "https://liveeo-gmbh.jobs.personio.de/job/2727996",
+  "source": "personio",
+  "snapshot": {
+    "title": "System Administrator - Workplace IT (f/m/x)",
+    "company": "LiveEO GmbH",
+    "locations": ["LiveEO GmbH Berlin (Onsite)"],
+    "workplaceType": "unknown",
+    "employmentType": "permanent, full-time",
+    "descriptionText": "Baue mit LiveEO den Marktführer in der Satellitenanalyse auf\n\nLiveEO uses satellite data to monitor infrastructure at planetary scale: railroads, pipelines, power lines, the works. Our Workplace IT team makes sure the humans behind all that tech have everything they need to do their best work. As our System Administrator, you'll support a small, high-trust team on real projects across device management, identity & access, SaaS operations, and IT security compliance.\n\nDeine Aufgaben\n\nLiveEO is looking for a System Administrator to join our IT team and help run the infrastructure, security, and tooling that keeps a fast-growing satellite intelligence company operating smoothly. You'll work closely with our Workplace IT Lead on everything from identity and device management to network operations and security compliance, in a mixed-OS environment that's predominantly Mac with a strong Linux presence and a handful of Windows users.\n\nThis is a hands-on role for someone who's comfortable owning problems end-to-end from a laptop enrollment issue to a network outage to an access review ahead of an audit.\n\nDue to the nature of this role, we are looking for someone with EU citizenship.\n\n * Administer and maintain our identity provider and mobile device management platform, including user lifecycle, group-based policies, conditional access, and MFA enforcement\n * Support day-to-day operations across our productivity suite (email, calendar, shared drives, admin console policies)\n * Manage team collaboration tools and integrations, including access provisioning and workspace administration\n * Maintain our IT asset management system, keeping hardware inventory, assignments, and lifecycle status accurate\n * Administer our IT service management platform, ticket workflows, request forms, SLAs and our internal knowledge base/documentation space\n * Provide admin support for the engineering team's issue tracker (user provisioning, workflow configuration, integrations)\n * Support cloud infrastructure operations and basic administration within our AWS environment\n * Administer and troubleshoot our network hardware, such as: routers, switches, access points, and VPN across office and remote setups\n * Evaluate, roll out, and manage governance around AI coding and productivity tools used by engineering and other teams\n * Provide hands-on troubleshooting and support across macOS, Linux, and Windows endpoints\n * Contribute to security hardening efforts: patch management, endpoint security, vulnerability remediation, and access reviews\n * Support ongoing SOC 2 and ISO 27001 compliance work, such as evidence collection, control documentation, audit prep, and policy maintenance\n * Help maintain IT documentation, runbooks, and onboarding/offboarding processes\n * Act as an escalation point for IT support tickets and troubleshoot infrastructure issues across the stack\n\nDein Profil\n\n * 3-5 years of experience in a system administration, IT infrastructure, or workplace IT role\n * Solid experience with a cloud-based identity provider and MDM solution (SSO, SCIM, device policies, zero-touch enrolment)\n * Experience administering a major productivity/email suite (Google Workspace or Microsoft 365) at an admin level\n * Comfortable working across macOS, Linux, and Windows in a single environment\n * Working knowledge of AWS or another major cloud provider\n * Experience with networking fundamentals and hands-on management of business-grade network hardware (routers, switches, wireless controllers, VPN)\n * Practical understanding of IT security concepts: endpoint protection, patching, access control, least privilege\n * Familiarity with compliance frameworks such as SOC 2 or ISO 27001, or willingness to learn and own related processes\n * Experience with IT asset management tooling and structured inventory practices\n * Experience administering an ITSM/ticketing and wiki platform (e.g. Jira Service Management and Confluence, or equivalent), workflow setup, permissions, and documentation structure\n * Comfortable administering an engineering-facing issue tracker (e.g. Linear or Jira) — user access, project setup, integrations\n * Interest in or experience with AI-assisted developer tools (e.g. Claude, Cursor) from an admin/governance perspective not coding expertise, but comfort evaluating and rolling out new tools\n * Strong troubleshooting instincts and the ability to work independently on ambiguous problems\n * Clear written communication, you'll be documenting processes and writing for both technical and non-technical audiences\n * Fluent English; German is a big plus but not required\n\nNice To Have:\n\n * Prior experience in a startup or scale-up environment\n * Exposure to compliance audits (SOC 2 Type II, ISO 27001 certification cycles)\n * Scripting ability (Bash, Python, or similar) for automation of routine admin tasks\n\nUnsere Benefits\n\n * The opportunity to create a product that can improve business processes and lives across the globe.\n * We empower employees to drive their own career development, take initiative and have the freedom to be creative and bold.\n * Not an overtime culture - we take care that overtime is done only as a necessity and always offset with time off and rest.\n * A collaborative and learning environment - frequent internal workshops, knowledge sharing sessions, journal clubs and hackathons.\n * Office located in the centre of Berlin Kreuzberg with free fruit, nuts and drinks.\n * Potential to participate in the employee stock option program.\n * Urban Sports membership and BVG subsidy, Jobrad, corporate pension program.\n * A diverse and vibrant international environment of 30+ different nationalities.",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "eu-work-authorization",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"looking for someone with EU citizenship\"; Berlin onsite"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"looking for someone with EU citizenship\"; Berlin onsite"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"looking for someone with EU citizenship\"; Berlin onsite"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"looking for someone with EU citizenship\"; Berlin onsite"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"looking for someone with EU citizenship\"; Berlin onsite"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"looking for someone with EU citizenship\"; Berlin onsite"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 2
+}

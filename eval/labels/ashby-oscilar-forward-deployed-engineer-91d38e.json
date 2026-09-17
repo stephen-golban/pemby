@@ -1,0 +1,57 @@
+{
+  "id": "ashby-oscilar-forward-deployed-engineer-91d38e",
+  "jobId": "01a0aba6-cdd4-7dcb-992a-4ffe1791d38e",
+  "url": "https://jobs.ashbyhq.com/oscilar/58b4c728-4732-4e81-ad7a-c0927190a171",
+  "source": "ashby",
+  "snapshot": {
+    "title": "Forward Deployed Engineer",
+    "company": "Oscilar",
+    "locations": ["Remote"],
+    "workplaceType": "remote",
+    "employmentType": "FullTime",
+    "descriptionText": "At Oscilar, we're building the most advanced AI Risk Decisioning™ Platform. Banks, fintechs, and digitally native organizations rely on us to manage their fraud, credit, and compliance risk with the power of AI. If you're passionate about solving complex problems and making the internet safer for everyone, this is your place.\n\nWhy Join Us?\n\n * Mission-driven teams: Work alongside industry veterans from Meta, Uber, Citi, and Confluent, all united by a shared goal to make the digital world safer.\n\n * Ownership and impact: We believe in extreme ownership. You'll be empowered to take responsibility, move fast, and make decisions that drive our mission forward.\n\n * Innovate at the cutting edge: Your work will shape how modern finance detects fraud and manages risk.\n\nRole Overview:\n\nThe Forward Deployed Engineer (FDE) is the most technically complete role at Oscilar. You sit at the intersection of customer success, platform expertise, and agentic AI deployment. From the first technical conversation with a prospective customer to live production and ongoing expansion, you own the full technical relationship.\n\nThis is not a support role, and it is not a sales role. It is an engineering solutions oriented role with deep customer proximity. You will be embedded with Oscilar's most strategic customers, designing agentic risk systems, driving implementations, and serving as the field intelligence that shapes what Oscilar builds next.\n\nYou operate with the ownership and judgment of a startup CTO — applied to some of the most relevant and consequential decisioning problems in financial services.\n\nWhat You’ll Do:\n\nTechnical Pre-Sales\n\n * Lead technical discovery with prospective customers, uncovering integration requirements, data architecture constraints, and risk decisioning objectives across onboarding, fraud, credit, and compliance use cases.\n\n * Architect and deliver proof-of-concept implementations using Oscilar's platform, solving and showing value of customer’s problem through workflows and agentic solution that demonstrates clear time-to-value.\n\n * Design and present technically rigorous solution architectures tailored to each prospect's environment, including API integration patterns, data pipeline design, and agent workflow configuration.\n\n * Assist in responses to technical sections of RFPs, security questionnaires, and integration feasibility assessments.\n\n * Serve as the primary technical voice during the evaluation process, building credibility and trust with engineering, data, and risk teams on the customer side.\n\nCustomer Implementation & Deployment\n\n * Own the end-to-end technical implementation for new customers partnering with the Technical Account Manager, Account Executive and Sales Engineer, from kickoff through go-live: integration design, data mapping, agent workflow configuration, and UAT support.\n\n * Configure and optimize Oscilar's AI agents and decisioning rules to match each customer's operational context, risk appetite, and regulatory environment.\n\n * Proficient using AI coding tools (Claude, Codex, Cursor, or similar) to rapidly prototype scripts, build workflow automations, parse logs, and debug integrations — you use AI as a force multiplier in your own work, not just in customer deployments.\n\n * Serve as the primary technical point of contact for assigned accounts throughout the customer lifecycle, maintaining trusted advisor relationships with both technical practitioners and executive stakeholders.\n\n * Lead technical health reviews, proactively surface performance gaps, and drive resolution of escalations with urgency and clear ownership.\n\n * Proactively identify upsell and expansion opportunities — recognize when a customer's workflow gaps map to Oscilar capabilities they're not using, and bring a concrete proposal to the AE with enough technical depth to close it. You are a revenue signal, not just a technical resource.\n\n * Lead technical enablement sessions and training to ensure customer teams are confident and self-sufficient operating Oscilar's agentic platform.\n\nAgentic AI Deployment\n\n * Design and deploy multi-step agentic workflows for customers — automating onboarding, fraud investigation, credit decisioning, case management, alert triage, and compliance monitoring end to end.\n\n * Configure agent parameters directly through Oscilar's UI: field mappings, matching logic thresholds, and disposition policies tailored to each customer's operational context.\n\n * Evaluate customer data infrastructure, model outputs, and decisioning logic to tune agent performance and reliability in production environments.\n\n * Craft and refine LLM prompts within agent workflows — structuring prompts effectively to drive accurate, auditable, and compliant agent behavior.\n\n * Participate in agent backtesting sessions — running configuration changes against historical case data to validate performance before production deployment.\n\n * Guide customers in defining their agentic AI strategy for risk operations: which decisions to automate, how to structure human-in-the-loop oversight, and how to measure agent effectiveness.\n\n * Understand and communicate agent evaluation concepts (evals, golden datasets, false positive feedback loops) to customer stakeholders and internal teams.\n\n * Stay at the forefront of agentic AI patterns, tooling, and emerging best practices — and bring that expertise into every customer strategy conversation.\n\nProduct Intelligence\n\n * Synthesize patterns across customer deployments and deliver structured product feedback, feature requests, and gap analyses to Oscilar's product and engineering teams.\n\n * Contribute reusable implementation playbooks, agent workflow templates, and integration accelerators that raise the bar across all customer deployments.\n\n * Participate in roadmap discussions as the voice of the field — your proximity to customers and production deployments makes you uniquely positioned to identify what Oscilar should build next.\n\nWhat You’ll Bring:\n\n * 5+ years in a technical customer-facing role such as Solutions Engineer, Solutions Architect, Technical Account Manager, or Forward Deployed Engineer in an Agentic AI company, B2B SaaS or fintech environment.\n\n * Demonstrated track record of owning technical implementations end-to-end, from initial scoping through production go-live.\n\n * Experience working with financial services customers — ideally across fraud, credit risk, AML/compliance, or payments — is strongly preferred.\n\n * Prior experience deploying or configuring AI/ML platforms, agentic workflows, or LLM-powered systems in an enterprise context is a significant advantage.\n\n * Strong command of REST APIs, webhooks, and data integration patterns (ETL, event streaming, Snowflake and other cloud data warehouses).\n\n * Comfortable reading and writing SQL; able to navigate and interpret data pipelines, model outputs, and feature schemas.\n\n * Fluency with JSON, data schemas, and enterprise integration architectures.\n\n * Hands-on experience using LLMs (Claude, GPT, or similar) for practical problem-solving — including analyzing logs, debugging agent behavior, and structuring prompts for workflow automation.\n\n * Deep hands-on fluency with LLMs — structuring prompts for workflow automation, iteratively refining based on outputs, debugging agent behavior, and translating ambiguous business requirements into precise AI task instructions. You've built things with Claude or GPT, not just used the chat interface.\n\n * Demonstrated ability to craft effective LLM prompts — including prompt structuring, iterative refinement, and translating business requirements into AI task instructions.\n\n * Design creative configurations using Oscilar's AI capabilities — combining prompt-driven logic with rule-based decisioning, chaining AI outputs across workflow steps, and building novel automations that customers wouldn't have imagined on their own.\n\n * Familiarity with agentic AI concepts: agent orchestration, tool use, memory, human-in-the-loop design, and evaluation frameworks.\n\n * Ability to configure and troubleshoot complex software platforms at depth — this role requires engineering-level thinking and platform mastery, not production software development.\n\n * Experience with API testing and prototyping tools (Postman, etc.); ability to independently build and validate lightweight integrations and agent workflow configurations.\n\n * Familiarity with cloud platforms (AWS, GCP, Azure) and comfort operating within cloud-native environments.\n\nBenefits and Other Perks:\n\n * Compensation: Competitive salary and equity packages, including 401(k).\n\n * Health: 100% employer-covered medical, dental, and vision for you and your dependents (U.S.).\n\n * Balance: Unlimited PTO policy.\n\n * Culture: Family-friendly environment with regular team events and offsites.\n\n * Development: Accelerated professional growth alongside industry leaders.\n\n * Impact: Make the digital economy safer by protecting online transactions.",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "bare-remote",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "white",
+      "note": "location \"Remote\"; only \"401(k)\", \"(U.S.)\" benefits hints"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "white",
+      "note": "location \"Remote\"; only \"401(k)\", \"(U.S.)\" benefits hints"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "white",
+      "note": "location \"Remote\"; only \"401(k)\", \"(U.S.)\" benefits hints"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "white",
+      "note": "location \"Remote\"; only \"401(k)\", \"(U.S.)\" benefits hints"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "white",
+      "note": "location \"Remote\"; only \"401(k)\", \"(U.S.)\" benefits hints"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "white",
+      "note": "location \"Remote\"; only \"401(k)\", \"(U.S.)\" benefits hints"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 2
+}

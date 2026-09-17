@@ -1,0 +1,57 @@
+{
+  "id": "ashby-langfuse-senior-backend-engineer-data-infrastruct-5b91db",
+  "jobId": "01a0ab9c-45e7-79d6-ae3b-b0f9145b91db",
+  "url": "https://jobs.ashbyhq.com/langfuse/1225fa3d-d590-41d2-b798-ef927320fb2e",
+  "source": "ashby",
+  "snapshot": {
+    "title": "Senior Backend Engineer (Data Infrastructure)",
+    "company": "Langfuse",
+    "locations": ["Europe", "Zurich", "Munich", "Paris", "Berlin", "London"],
+    "workplaceType": "hybrid",
+    "employmentType": "FullTime",
+    "descriptionText": "About Langfuse\n\nOpen Source LLM Engineering Platform that helps teams build useful AI applications via tracing, evaluation, and prompt management (mission, product). We are now part of ClickHouse.\n\nWe're building the \"Datadog\" of this category; model capabilities continue to improve, but building useful applications is really hard, both in startups and enterprises.\n\nLargest open source solution in this category: trusted by 19 of the Fortune 50, >2k customers, >26M monthly SDK downloads, >6M Docker pulls.\n\nWe joined ClickHouse in January 2026 because LLM observability is fundamentally a data problem and Langfuse already ran on ClickHouse. Together we can move faster on product while staying true to open source and self-hosting, and join forces on GTM and sales to accelerate revenue.\n\nPreviously backed by Y Combinator, Lightspeed, and General Catalyst.\n\nWe're a small, engineering-heavy, and experienced team in Berlin and San Francisco. We are also hiring for engineering in EU timezones and expect one week per month in our Berlin office (how we work).\n\nIn Short: We're looking for a backend/platform engineer to own and scale the infrastructure behind the most widely adopted open source LLM engineering platform — processing terabytes of AI tracing data per day for thousands of AI teams, including 19 of the Fortune 50.\n\nWhy Backend Engineering at Langfuse\n\nYour work will have an outsized impact.\n\nLangfuse ingests terabytes of AI tracing data per day. When a Fortune 50 company instruments their application with Langfuse, they hit the infrastructure you built. Everything you ship is open source and immediately visible.\n\nThe core of your role is making Langfuse fast and affordable at scale: owning the ingestion pipeline, optimizing ClickHouse data models and queries so dashboards load instantly, and building the backend abstractions that let product engineers ship data-heavy features without reinventing the plumbing each time.\n\nYou will also make sure Langfuse runs everywhere. You’ll operate Langfuse Cloud across multiple production environments, and make self-hosting effortless. You will support a single Docker Compose setup to enterprise-grade Helm chart deployment.\n\nYou won’t be solving these problems alone. Langfuse is now part of ClickHouse, which means the people who built the database you’re optimizing are one channel away. Few backend roles give you that kind of access to the internals of your core datastore.\n\nYou will grow at Langfuse by\n\n * Own and optimize our ingestion pipeline: Langfuse ingests massive volumes of tracing data through a pipeline that flows from our API to ClickHouse. You'll work on throughput, latency, reliability, and cost efficiency at every stage of this pipeline.\n\n * Make ClickHouse fast: our tracing data lives in ClickHouse. You'll design schemas, optimize merge strategies, tune batch inserts, write and review analytical queries that power dashboards and the UI. You'll become an expert on ClickHouse internals — and you'll have the ClickHouse database engineering team one channel away.\n\n * Build new infrastructure-heavy features: things like LLM-as-a-Judge (where we post-process large volumes of ingested data asynchronously), alerting at scale, client-code execution, or batch dataset operations. Build the foundation and, if you like, dip your toes into the frontend for those.\n\n * Test with real data in production: when evaluating a new ClickHouse schema, migration, or query optimization, you'll run load tests against production data to validate that changes actually improve things. We don't guess at performance. We prototype new table designs, run them in parallel on real traffic, and compare before committing.\n\n * Scale for what's next: we're growing fast and new product directions like complex long-running agent observability and real-time evaluation push the infrastructure in new ways. You'll be thinking ahead about what breaks at 10x scale.\n\nLearn more about our infrastructure\n\n * From Zero to Scale: Langfuse's Infrastructure Evolution — deep dive into how we went from Postgres to ClickHouse\n\n * Max talking infrastructure at ClickHouse OpenHouse Amsterdam — recording of our CTO walking through the architecture\n\n * Architecture\n\nWhat we're looking for\n\n * Strong backend engineer who gets excited about database internals, query optimization, and distributed systems\n\n * You get excited when working with a ton of data\n\n * Experience with analytical databases, data pipelines, or high-throughput event processing. ClickHouse experience is a big plus but not required\n\n * You organize yourself. You have strong opinions about what to build and how to ship it\n\n * Comfortable reading and writing TypeScript (our backend) and SQL\n\n * Interest in open source software and genuine enjoyment talking to users about their scaling challenges\n\n * Thrives in a small, accountable team where your output is visible and matters\n\n * CS or quantitative degree preferred\n\nBonus points:\n\n * Experience with ClickHouse, other OLAP databases, or observability infrastructure\n\n * Former founder\n\n * Background in building data-intensive systems at scale\n\nProcess\n\nWe can run the full process to your offer letter in less than 7 days (hiring process).\n\nTech Stack\n\nWe run a TypeScript monorepo: Next.js on the frontend, Express workers for background jobs, PostgreSQL for transactional data, ClickHouse for tracing at scale, S3 for file storage, and Redis for queues and caching. You should be familiar with a good chunk of this, but we trust you'll pick up the rest quickly (Stack, Architecture).\n\nHow we ship\n\nLink to handbook\n\n * We trust you to take ownership (ownership overview) for your area. You identify what to build, propose solutions (RFCs), and ship them. Everyone here thinks about the user experience and the technical implementation at the same time. Everyone manages their own Linear.\n\n * You're never alone. Anyone from the team is happy to go into a whiteboard session with you. 15 minutes of shared discussion can very much improve the overall output.\n\n * We implement maker schedule and communication. There are two recurring meetings a week: Monday check-in on priorities (15 min) and a demo session on Fridays (60 min).\n\n * Code reviews are mentorship. New joiners get all PRs reviewed to learn the codebase, patterns, and how the systems work (onboarding guide).\n\n * We use AI as much as possible in our workflows to make our users happy. We encourage everyone to experiment with new tooling and AI workflows.\n\nWhy Langfuse (now part of ClickHouse)\n\n * This role puts you at the forefront of the AI revolution, partnering with engineering teams who are building the technology that will define the next decade(s).\n\n * This is an open-source devtools company. We ship daily, talk to customers constantly, and fight for great DX. Reliability and performance are central requirements.\n\n * Your work ships under your name. You'll appear on changelog posts for the features you build, and during launch weeks, you'll produce videos to announce what you've shipped to the community. You’ll own the full delivery end to end.\n\n * We're solving hard engineering problems: figuring out which features actually help users improve AI product performance, building SDKs developers love, visualizing data-rich traces, rendering massive LLM prompts and completions efficiently in the UI, and processing terabytes of data per day through our ingestion pipeline.\n\n * You'll work closely with the ClickHouse team and learn how they build a world-class infrastructure company. We're in a period of strong growth: Langfuse is growing organically and accelerating through ClickHouse's GTM. (Why we joined ClickHouse)\n\n * If you wonder what to build next, our users are a Slack message or a Github discussions post away.\n\n * You’re on a continuous learning journey. The AI space develops at breakneck speed and our customers are at the forefront. We need to be ready to meet them where they are and deliver the tools they need just-in-time.",
+    "capturedAt": "2026-09-16T22:29:48.293Z"
+  },
+  "category": "europe-region",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "Location \"Europe\"; \"hiring for engineering in EU timezones\""
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "Location \"Europe\"; \"hiring for engineering in EU timezones\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "Location \"Europe\"; \"hiring for engineering in EU timezones\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "Location \"Europe\"; \"hiring for engineering in EU timezones\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"hiring for engineering in EU timezones\" excludes UTC+4, not stated as must"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"hiring for engineering in EU timezones\" excludes UTC+4, not stated as must"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T22:34:41Z",
+  "session": 3
+}

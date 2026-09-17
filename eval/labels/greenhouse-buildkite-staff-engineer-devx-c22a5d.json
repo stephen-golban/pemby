@@ -1,0 +1,57 @@
+{
+  "id": "greenhouse-buildkite-staff-engineer-devx-c22a5d",
+  "jobId": "01a0ab99-8742-7d15-ae93-652bcdc22a5d",
+  "url": "https://job-boards.greenhouse.io/buildkite/jobs/5399250008",
+  "source": "greenhouse",
+  "snapshot": {
+    "title": "Staff Engineer - DevX",
+    "company": "Buildkite",
+    "locations": ["ANZ Region", "Australia"],
+    "workplaceType": "unknown",
+    "employmentType": null,
+    "descriptionText": "We're looking for a Staff Software Engineer to lead Developer Experience at Buildkite, building the compounding, AI-led development loops that lifts the productivity of all our engineers.\n\nWe have a plan to double R&D output per engineer over the next 12 months across a team of around 80 engineers, and this is the role we've created to make that happen. You'll be the person leading it, looking holistically at how software gets shipped here — CI, build tooling, the codebase itself, deployment paths, and how we work with agentic coding tools; and steadily removing everything that slows us down.\n\nHere your work compounds twice. Everything you build to make our engineers faster lands inside a product that engineering teams around the world use to ship, so the change that wins our team back an hour a day doesn't stop with us — it becomes something our customers get too. Very few developer experience roles let you fix a problem once and have it show up in the industry.\n\nAnd if you'd rather fix the pipeline than give the conference talk about it, this is the right seat. This is internal work: the systems our own engineers live in every day, not developer advocacy or external DevEx. Your audience is the engineer whose build you just made two minutes faster, and they will tell you straight away whether it worked.\n\nThis is a fully remote role, open to candidates based in Australia, New Zealand or USA (West Coast only at this stage).\n\n🚀 What You'll Do\n\n * Own the end-to-end developer experience for around 80 engineers, spanning CI, build tooling, codebase health, deployment paths, and the AI-assisted development loop\n * Lead our goal of doubling R&D output per engineer, which includes working out what \"faster\" genuinely means and finding measures that hold up rather than collapsing into a leaderboard for whoever ships the most mediocre code\n * Stay hands-on and ship the work yourself, landing real PRs across languages and services you may never have touched before, and making low-risk, high-leverage changes in unfamiliar code\n * Bring the whole engineering team with you by building the credibility and the relationships that get allow people to genuinely buy into your ideas, and clearing roadblocks for teams you don't own\n * Push the frontier on agentic coding tooling, evaluating it, rolling it out, measuring whether it's actually working, and continually raising the bar for what good looks like\n\n🎨 What You Bring\n\n * A strong software engineering background with real production experience — you're an engineer first, and you're still writing the code\n * Experience inside a platform engineering organisation, or a track record as the person on an engineering team who led the charge on AI and developer tooling\n * Evidence that you've made engineering teams measurably faster, along with a clear point of view on what worked, what didn't, and why\n * Exposure to meaningful scale, so you've seen the problems that only appear once systems and teams get big\n * Real fluency with agentic coding tools, and a good instinct for when to trust them, correct them, or override them entirely\n * The influence skills to lead everyone and manage no one, which means strong relationships, fast buy-in, and the judgement to ask \"is this a terrible idea?\" of the right people before you ship\n * An absolute intolerance for going slowly, paired with a high tolerance for trying new things and taking sensible risks\n * Comfort with ambiguity around measurement, so you can build a compelling case from imperfect signals without gaming them\n\n✨ Additional Experience That's Useful\n\n * Deep CI/CD experience, particularly untangling and speeding up slow pipelines\n * Time in a high-performance engineering environment where pace was a genuine cultural norm rather than an aspiration\n * Breadth across languages and stacks rather than depth in any single one\n * Experience instrumenting and reporting on developer productivity\n\n✨ Why Join Buildkite\n\nThis is a front-row seat to the biggest rate of change that software engineering will most likely ever see. You'll have a direct hand in making a team of around 80 engineers twice as fast, and by extension, making our customers faster too, so the dent you can make in the world through this role is a substantial one.\n\nIf like us you have a low tolerance for moving slowly and a high tolerance for trying things that might not work, which means you'll be trusted to take real swings without waiting for permission, you'll enjoy it here.\n\nAt Buildkite, we value kindness, autonomy, and collaboration. You'll be working on a product used by some of the world's leading engineering teams operating at serious scale, alongside people who care as much as you do about how software gets built.\n\nBenefits\n\n * Work from anywhere in the world for up to 6 weeks a year, on top of a fully remote setup — great work doesn't have to happen from one desk.\n * 20 days paid annual leave plus 10 days sick & carer's leave — actively encouraged, we want you to be at your best and time off is a part of that.\n * 16 weeks paid parental leave for primary carers (6 for secondary) — becoming a parent is life changing and we're committed to supporting you and your family through it.\n * A remote-work allowance for home-office kit, co-working, or working elsewhere — we want you to have everything you need to be set up for success in your role.\n * Confidential EAP & mental health support — sometimes life gets hard. You should be able to access the resources and support you need.\n * Support for learning and growth — with time and budget for conferences, courses, and coaching so you have the opportunity to grow, improve your craft, and build mastery.\n * Retirement and health coverage (based on your region) — build towards your future, your way.\n\nExact benefits may vary slightly by country. We'll walk through the specifics for your location.\n\nWhat Happens Next\n\nEvery application gets a response. We aim to move quickly through our hiring process and make it as stress free as possible for everyone.\n\nIf this sounds like how you already work, apply. If you've got questions first, reach out, we're happy to have the conversation.\n\n🌈 Equal Opportunity Employer\n\nAt Buildkite, we value diversity and celebrate all types of skills, backgrounds, and experiences. We’re dedicated to fostering an inclusive environment and providing reasonable accommodations throughout our recruitment process.\n\nIf you need any accommodations or support during the application or interview process, please reach out to us at [email].",
+    "capturedAt": "2026-09-16T22:29:48.293Z"
+  },
+  "category": "latam-or-other-region",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"open to candidates based in Australia, New Zealand or USA\""
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"open to candidates based in Australia, New Zealand or USA\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"open to candidates based in Australia, New Zealand or USA\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"open to candidates based in Australia, New Zealand or USA\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"open to candidates based in Australia, New Zealand or USA\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"open to candidates based in Australia, New Zealand or USA\""
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T22:34:41Z",
+  "session": 3
+}

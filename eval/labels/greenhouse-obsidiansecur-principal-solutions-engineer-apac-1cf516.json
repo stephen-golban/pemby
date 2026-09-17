@@ -1,0 +1,57 @@
+{
+  "id": "greenhouse-obsidiansecur-principal-solutions-engineer-apac-1cf516",
+  "jobId": "01a0ab9e-00bc-7631-bbda-a90c9d1cf516",
+  "url": "https://job-boards.greenhouse.io/obsidiansecurity/jobs/5286170008",
+  "source": "greenhouse",
+  "snapshot": {
+    "title": "Principal Solutions Engineer - APAC",
+    "company": "Obsidian Security",
+    "locations": ["Remote", "APAC Remote"],
+    "workplaceType": "remote",
+    "employmentType": null,
+    "descriptionText": "Obsidian Security is the leading SaaS security platform, trusted by global enterprises like Snowflake, T-Mobile, and Algolia. We protect 200+ organizations across North America, Europe, the Middle East, Southeast Asia, Australia, and New Zealand, including many of the world’s largest Fortune 1000 and Global 2000 companies.\n\nFounded in 2017 and backed by top investors like Greylock, Obsidian was built to close a critical gap: securing SaaS apps where business happens—Microsoft 365, Salesforce, and hundreds more. The company does this by offering a complete SaaS security platform to reduce risk, detect and respond to threats, and prevent breaches at the source. Obsidian was built by leaders who redefined endpoint and identity security at CrowdStrike, Okta, Cylance, and Carbon Black. Now, they’re transforming how SaaS is secured.\n\nWith AI driving rapid SaaS growth and complexity, agentic AI tools gain privileged access to sensitive data through integrations, creating new risks most security tools miss. Obsidian uniquely detects anomalous OAuth token activity and manages integration risks. Major announcements are on the horizon. Recognizing that SaaS security needs to evolve, Obsidian enables growing organizations to start with a lightweight, prevention-focused browser extension and expand coverage over time.\n\nWith global momentum, a growing partner ecosystem including SentinelOne, Databricks, and Google Cloud, and a major fundraise ahead, Obsidian is scaling rapidly toward long-term growth and IPO readiness.\n\nAbout the Team:\nWe're looking for high energy and ambitious individuals to join our customer-facing teams. You will be the tip of the spear for our technical engagement and will be an ambassador for our company, people, and technology.\n\nAbout the Role:\nWe are hiring a talented Principal Sales Engineer to join our team. If you're excited to be part of a winning team, Obsidian Security is a great place to make an impact. A Principal Sales Engineer is responsible for actively driving and managing the technical evaluation stage of the sales process and mentoring and building the team. You will work with the sales team to technically advise on the sales of Obsidian solutions and is a subject matter expert on SaaS security challenges and solutions. It is the Principal Sales Engineer's responsibility to partner with prospects in a technical and educational capacity throughout the sales cycle and be the advocate for the customer back to product management and engineering. You will work closely with the leadership team to build out the rest of the extended team in the respective regions. The ideal candidate is aggressive, collaborative, and knowledgeable, has worked in an offensive or defensive cybersecurity role, and has strong software engineering abilities.\n\n * Prepare and deliver technical presentations explaining Obsidian solutions to prospective and existing customers.\n * Partner internally and externally to assess security needs and to determine requirements and alignment of Obsidian solutions to prospect pain points.\n * Conduct solution proof-of-value engagements to obtain technical wins.\n * Conduct field reconnaissance to provide feedback and insights to product management and engineering.\n\nQualifications for Principal Sales Engineer:\n\n * A strong blend of communication abilities and technical skills to be the field-facing technical ambassador for Obsidian\n * Expert-level knowledge of cybersecurity, especially Cloud and SaaS security concerns\n * Experience interacting with APIs, integrations, and middle-ware\n * Competitive and market intelligence reconnaissance abilities\n * Understanding of routes to market and ability to represent Obsidian with a wide variety of partnerships\n * Experience with cybersecurity solution stacks and how Obsidian is complementary or competitive\n * Presentation skills for crafting and delivering thought-leadership presentations at security conferences and webinars\n * Willingness to travel depending on customer opportunities and role\n * A strong commitment to the Obsidian Code:\n   * Customers Win, We Win.\n   * One Obsidian, One Score.\n   * Do Great Things Together.\n   * Everyone is a Pioneer.\n\nEmployee Benefits\n\nOur competitive benefits packages are designed to support our employees' well-being, both at work and at home.  Our US based employees enjoy:\n\n * Competitive compensation with equity and 401k\n * Comprehensive healthcare with dental and vision coverage\n * Flexible paid time off and paid holiday time off\n * 12 weeks of new parent or family leave\n * Personal and professional development resources\n\nFor more details on our US benefits, or for information on our international benefits, please see here.\n\nPay Transparancy\n\nPlease note that the base pay range is a guideline and for candidates who receive an offer, the base pay will vary based on factors such as work location, as well as the knowledge, skills and experience of the candidate. In addition to a competitive base salary, this position is eligible for equity awards and may be eligible for sales commission or incentive compensation based on the role or function within the company.\n\nAt Obsidian, we are proud to be an equal-opportunity employer. We value diversity and hire for talent, passion, and compassion. In compliance with federal law, all persons hired will be required to submit satisfactory proof of identity and legal authorization.  If you have a need that requires accommodation, please contact [email]\n\nInformation collected and processed as part of any job applications you choose to submit is subject to Obsidian’s Applicant Privacy Policy.\n\nBase Salary Range\n$228,000—$286,000 AUD",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "latam-or-other-region",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"APAC Remote\"; region excludes MD, UA, GE"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"APAC Remote\"; region excludes MD, UA, GE"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"APAC Remote\"; region excludes MD, UA, GE"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"APAC Remote\"; region excludes MD, UA, GE"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"APAC Remote\"; region excludes MD, UA, GE"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"APAC Remote\"; region excludes MD, UA, GE"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 1
+}

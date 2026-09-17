@@ -1,0 +1,57 @@
+{
+  "id": "greenhouse-hightouch-solutions-engineer-enterprise-emea-97d3aa",
+  "jobId": "01a0aba7-d84a-7bb0-bbfe-ce03b497d3aa",
+  "url": "https://job-boards.greenhouse.io/hightouch/jobs/6182461004",
+  "source": "greenhouse",
+  "snapshot": {
+    "title": "Solutions Engineer, Enterprise, EMEA",
+    "company": "Hightouch",
+    "locations": ["EMEA", "London"],
+    "workplaceType": "unknown",
+    "employmentType": null,
+    "descriptionText": "About Hightouch\n\nHightouch is an Agentic Marketing Platform powered by the industry-leading Composable CDP. With complete brand context, customer data, and performance history in one place, every marketer finally has the power to build and ship end-to-end campaigns themselves. Teams move faster, stay on brand, and get AI marketing that actually works.\n\nFounded in 2019 and headquartered in San Francisco, Hightouch enables marketing teams to analyze performance, brainstorm ideas, and generate creative at a speed and quality that wasn't previously possible.\n\nNamed a Leader in the 2026 Gartner® Magic Quadrant™ for Customer Data Platforms, Hightouch is trusted by leading enterprises like Domino's, Spotify, Aritzia, Cars.com, Ramp, and PetSmart.\n\nAt Hightouch, our mission is to help our customers leverage data and AI to grow their businesses. The team is ambitious, impact-driven, efficient — and we believe humility, kindness, and compassion are essential to our success. If you're energized by velocity, obsessed with raising the bar, and want to build alongside people who care deeply about each other and our customers, we'd love to meet you.\n\nAbout The Role\n\nHave you got a knack for explaining technical concepts? Do you want to work closely with big-name companies to solve some of their toughest problems? We’re looking for a Solutions Engineer who loves teaching people, solving problems, and wants to be a major factor in adding to the list of our biggest customers. You’d be joining a team of talented solutions engineers that love going deep into customer’s problems, finding ways to innovate in the ways customers use data, and making life easier for people. We care deeply about our users and partners, and we judge ourselves on how well we serve them.\n\nWe partner with our Account Executives by removing technical and business-related obstacles in front of a sale, advocating for customer interests to relevant internal teams, and creating compelling technical content.  We get excited talking to data engineers, product managers, marketers, and also know how to distill technical concepts to our buyers. We’re here to make our customers’ lives easier by providing them with the right solutions for their challenges in customer data strategy and architecture.\n\nSolutions Engingeers at Hightouch frequently work with both technical and non-technical stakeholders to understand their problems and craft creative technical solutions with them. We’re open to candidates with a variety of backgrounds.\n\nWhat We're Looking For\n\n * 4+ years sales experience\n * Strong discovery and interpersonal skills\n * Intellectual curiosity, high ambition and humility\n * Experience selling Martech and/or Data Solutions\n * Experience with the following: Cloud Warehouses, Data Engineering, Data Analytics, and Data Modeling, and API's\n\nBonus If You Have\n\n * Experience with Customer Data Platforms\n\nWe are looking for talented, intellectually curious, and motivated individuals who are interested in tackling the problems above. When evaluating compensation we focus on impact and potential for growth more than years of experience. Additionally, we offer meaningful equity compensation in the form of ISO options, and offer early exercise and a 10 year post-termination exercise window.\n\nE-Verify Statement\n\nHightouch participates in E-Verify. After you join the team, we'll verify your eligibility to work in the U.S. by submitting information from your Form I-9 to the Social Security Administration and, if needed, the Department of Homeland Security. This process happens post-hire only — we never use E-Verify to pre-screen applicants.\n\nE-Verify Notice\nE-Verify Notice (Spanish)\nRight to Work Notice\nRight to Work Notice (Spanish)",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "emea",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "location \"EMEA; London\", no blockers stated"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "location \"EMEA; London\", no blockers stated"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "location \"EMEA; London\", no blockers stated"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "location \"EMEA; London\", no blockers stated"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "location \"EMEA; London\", no blockers stated"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "location \"EMEA; London\", no blockers stated"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 2
+}

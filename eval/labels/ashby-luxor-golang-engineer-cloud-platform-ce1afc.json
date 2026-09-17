@@ -1,0 +1,57 @@
+{
+  "id": "ashby-luxor-golang-engineer-cloud-platform-ce1afc",
+  "jobId": "01a0aba1-8a1a-7c5d-adff-611af8ce1afc",
+  "url": "https://jobs.ashbyhq.com/luxor/b2b27de6-07ce-4832-abaf-e00d83b2dc93",
+  "source": "ashby",
+  "snapshot": {
+    "title": "Golang Engineer: Cloud Platform",
+    "company": "Luxor Technology Corporation",
+    "locations": ["Philippines, Remote", "Argentina, Remote", "LATAM, Remote", "APAC, Remote"],
+    "workplaceType": "remote",
+    "employmentType": "FullTime",
+    "descriptionText": "About Tenki\n\nWe started Tenki on the belief that compute is the new digital oil. As global demand for compute power accelerates, scalable and tradable compute is set to become one of the most valuable markets of our lifetime. Our goal is to become the leaders in harnessing, refining, and trading compute-unlocking a new asset class for the world’s most important digital resource.\n\nTenki connects producers of compute with a growing universe of consumers. Producers get transparent pricing, predictable settlement, and access to global demand. Consumers get simple, developer-friendly access to high-quality compute at competitive prices.\n\nWe’re currently building the consumer side, starting with GitHub Actions, enabling developers to offload workflows directly through Tenki. Soon, we’ll expand to a broad suite of cloud services like Virtual Machines, Databases, AI Agents, and more.\n\nAs we expand, our focus will broaden beyond consumers to include the supply side, enabling producers to offer compute through Tenki and later the development of financial instruments that support a more efficient and tradable compute market.\n\nAbout The Role\n\nWe are looking for a Golang Engineer to join a small but talent dense team building the future of compute markets. Although the role is remote, we need team members who can reliably work within our core time zones in LATAM (GMT-3) or the Philippines (GMT+8), and you should be fully comfortable communicating in English across our globally distributed team. This Position will report to the Tenki Engineer Manager.\n\nIn this role, you’ll help build the core infrastructure that powers Tenki’s. You will:\n\n * Architect, maintain, and evolve our core gRPC API services, based on ConnectRPC\n\n * Design and operate a private, programmable microservices fabric that securely connects our microservices across the platform\n\n * Manage identity services on top of the Ory stack: Kratos, Keto, and Hydra\n\n * Develop DDoS mitigation strategies - anticipating and countering adversaries.\n\n * Build high-performance Golang gRPC services from the ground up, built to scale to millions of users - and eventually billions.\n\n * Define and implement infrastructure following immutable principles, enabling full tear-down, failover, and rapid reconstruction.\n\n * Drive ideas from concept to reality by writing clear Engineering Requirement Documents and translating them into actionable plans and measurable outcomes.\n\n * Collaborate with our Applications (TypeScript) and Platform teams to expose robust, well-designed APIs for internal and future external consumers.\n\nAbout You\n\n * You are a proficient Golang engineer: You have deep experience building high-performance, concurrent applications and know how to squeeze performance out of the language when scaling to millions of users.\n\n * You live and breathe APIs: You have a strong track record of architecting and maintaining gRPC services (bonus points for ConnectRPC) and creating robust, documented contracts for internal and external consumers.\n\n * You understand Identity & Auth: You have implemented or managed identity services (Ory stack: Kratos, Keto, Hydra, or similar OIDC/OAuth2 providers) and understand the complexities of securing user data.\n\n * You have a \"Systems\" mindset: You aren’t just an application developer; you understand the underlying overlay networking (e.g., WireGuard, service mesh) that connects microservices securely.\n\n * You build for resilience and security: You have experience anticipating adversarial behavior (DDoS) and implementing mitigation strategies, perhaps leveraging eBPF or traffic shaping techniques.\n\n * You practice Immutable Infrastructure: You design systems where servers are cattle, not pets - enabling full tear-down, failover, and rapid reconstruction without manual intervention.\n\n * You define the standard: You don't just write code; you drive the engineering process by writing clear Engineering Requirement Documents and translating abstract concepts into actionable technical plans.\n\n * You implement with care: You build the monitors, define the error boundaries, and document operational expectations so that the platform remains maintainable by others long after you’ve pushed the code.\n\n * You thrive in ambiguity: You can set direction in an early-stage environment where priorities shift and clarity must be created, not awaited.\n\n * You bring grit and ownership: You dive deep into problems, ship pragmatic solutions, scale them as demand grows, and replace them when the time comes.\n\nWe are building a startup within a startup. Tenki was born within Luxor as we expand our vision from mining compute to generalized compute. Learn more about how we work and our principles here.\n\nAt Tenki we believe that meaningful contributions can be made by anyone. Qualified applicants will receive consideration for employment without regard to race, color, religion, sex, sexual orientation, gender perception or identity, national origin, age, marital status, protected veteran status, or disability status. Tenki welcomes all!\n\nTenki does not accept unsolicited headhunter and agency resumes. Tenki will not pay any third-party agency or company that does not have a signed agreement with Tenki.\n\nHow we use AI in our hiring process\n\nWe use AI tools to support certain parts of our hiring process, and we believe in being transparent about how they’re used.\n\nDuring your application, AI may assist in reviewing CVs, qualifications, and assignments by providing additional insights, but it does not make decisions, every application is evaluated at each step by a member of our hiring team.\n\nWe also use AI to transcribe interviews so our team can stay focused on the conversation rather than note-taking. Any voice recordings are automatically deleted within 15 days.\n\nIn addition, AI helps us keep candidates informed about their application status and helps us understand how our process is working so we can improve it over time.\n\nIn all cases, AI is used to support efficiency and consistency, not to replace human judgment. If you have any questions about how we use these tools or your data, or if you would prefer to opt out of any of these features, please include them in the dedicated section of the application form, and we’ll follow up accordingly.",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "latam-or-other-region",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"core time zones in LATAM (GMT-3) or the Philippines (GMT+8)\""
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"core time zones in LATAM (GMT-3) or the Philippines (GMT+8)\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"core time zones in LATAM (GMT-3) or the Philippines (GMT+8)\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"core time zones in LATAM (GMT-3) or the Philippines (GMT+8)\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"core time zones in LATAM (GMT-3) or the Philippines (GMT+8)\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"core time zones in LATAM (GMT-3) or the Philippines (GMT+8)\""
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 1
+}

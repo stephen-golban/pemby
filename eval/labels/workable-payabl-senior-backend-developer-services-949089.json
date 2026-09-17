@@ -1,0 +1,57 @@
+{
+  "id": "workable-payabl-senior-backend-developer-services-949089",
+  "jobId": "01a0ab96-53d8-78fc-a4c5-bb377c949089",
+  "url": "https://apply.workable.com/j/32C78D50C5",
+  "source": "workable",
+  "snapshot": {
+    "title": "Senior Backend Developer (Services)",
+    "company": "payabl.",
+    "locations": ["Warsaw, Masovian Voivodeship, Poland"],
+    "workplaceType": "remote",
+    "employmentType": null,
+    "descriptionText": "payabl. empowers businesses to grow through payments innovation and banking services. Our ambition is to expand our strong portfolio of global financial services and make them all accessible through our unified platform, payabl.one. As a licensed financial company with principal membership with card schemes, we specialize in global payments and multi-currency banking solutions.\n\nThe role is about:\nWe are looking for a Senior Python Backend Developer (Services) to join our engineering team and contribute to the evolution of our service layer architecture.\n\nThis role is focused on designing and building reliable, scalable microservices while also working with and gradually transforming legacy systems. You will play a key role in extracting business logic from existing codebases and reimplementing it into modern, maintainable Python services.\n\nThis is a hands-on engineering role requiring strong problem-solving skills, attention to detail, and a deep understanding of backend systems reliability. Success in this role means going beyond “it works” — ensuring correctness, resilience, and long-term maintainability.\n\nLocation: Remote from Poland (Contractor arrangement)\nReporting to: Engineering Lead\n\nWhat You’ll Do\n\n * Design, build, and maintain high-performance Python microservices (FastAPI, AsyncIO)\n * Analyze legacy systems and extract business logic into modern architectures\n * Refactor and migrate existing modules into clean, scalable, and maintainable services\n * Ensure system reliability through idempotency, fault tolerance, and robust error handling\n * Design and integrate external APIs, handling edge cases, retries, and failures\n * Implement and manage webhooks, callbacks, and complex retry mechanisms\n * Write high-quality unit and integration tests\n * Collaborate with cross-functional teams to ensure service stability and performance\n * Contribute to architectural discussions and continuous system improvements\n * Take ownership of services end-to-end, from design to production\n\nWhat We’re Looking For\n\n * 5+ years of backend development experience with strong Python expertise\n * Deep knowledge of AsyncIO and FastAPI\n * Experience building non-blocking, high-reliability microservices\n * Strong experience with relational databases (MySQL, PostgreSQL)\n * Solid understanding of API design and third-party integrations\n * Experience implementing webhooks, callbacks, and retry strategies\n * Strong testing practices (unit and integration testing)\n * Ability to work with legacy systems and migrate them into modern architectures\n * Strong analytical and problem-solving skills\n * Ownership mindset and ability to work autonomously within a defined architecture\n\nNice to Have\n\n * Experience with PHP, Perl, or JavaScript\n * Familiarity with Kafka, Redis, or event-driven architectures\n * Exposure to CI/CD pipelines, Docker, and Kubernetes\n * Experience in fintech, payments, or e-commerce domains\n * Knowledge of 3DS, tokenization, or payment gateway integrations\n * Proven experience migrating systems across technologies or paradigms\n\nEngineering Culture & Environment\n\n * Clear architectural direction with full ownership of implementation\n * Strong emphasis on engineering quality, reliability, and accountability\n * Open to new tools, ideas, and technologies that bring measurable value\n * Collaborative environment with room to influence technical decisions\n * Dedicated DevOps support, with opportunities to contribute if desired\n\nWhat to Expect\n\n * A balanced role between building new services and modernizing legacy systems\n * Complex, real-world engineering challenges in a high-reliability environment\n * Opportunity to shape the evolution of a modern service-based architecture\n * A team that values autonomy, ownership, and pragmatic problem-solving\n\nHiring Process\n\n * Step 1 – Thinking in Action (40 minutes) Your first conversation will be with our Talent Acquisition team. We'll explore your background, career journey, motivations, and overall fit for the role. As part of this discussion, you'll also complete a short technical screening that will be reviewed by our engineering team. This stage helps us understand both your experience and how you approach technical challenges.\n * Step 2 – Build in Production (60–90 minutes) Meet with the Team Lead and technical experts for a practical assessment. Depending on the role, this may involve a live coding exercise or a real-world scenario designed to evaluate your technical skills, problem-solving approach, and ability to work through challenges similar to those faced by our teams.\n * Step 3 – Final Interview (45 minutes) The final stage is a group interview with senior members of our Technology squad, which may include the CTO, CPO, and Team Lead. Together, we'll discuss team fit, collaboration style, expectations from both sides, and any remaining questions about the role, team, or technology domain. This is also an opportunity for you to learn more about our culture and ways of working.\n\nWhy Join payabl.?\n\n * Work on high-impact systems in a fast-growing fintech environment\n * Be part of a team that values ownership, adaptability, and engineering excellence\n * Help modernize and scale a platform handling real-world financial operations\n * Contribute to meaningful technical decisions and system evolution\n\nLet's embark on a journey to redefine the landscape of payments together. We're not just offering a role; we're inviting you to be a part of something bigger. Join our team, and let's innovate, disrupt, and lead the future of payments. Together, we can make an impact that resonates. Welcome to the team!\n\nPlease review our Privacy Policy to understand how we process your personal data during the recruitment process:  https://payabl.com/privacy-policy",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "contractors-worldwide",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"Remote from Poland (Contractor arrangement)\""
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"Remote from Poland (Contractor arrangement)\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"Remote from Poland (Contractor arrangement)\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"Remote from Poland (Contractor arrangement)\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"Remote from Poland (Contractor arrangement)\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"Remote from Poland (Contractor arrangement)\""
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 2
+}

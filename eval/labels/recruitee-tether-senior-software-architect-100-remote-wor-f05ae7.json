@@ -1,0 +1,68 @@
+{
+  "id": "recruitee-tether-senior-software-architect-100-remote-wor-f05ae7",
+  "jobId": "01a0aba7-7ec8-78c7-9e5c-130781f05ae7",
+  "url": "https://careers.tether.io/o/senior-software-architect-100-remote-worldwide-10",
+  "source": "recruitee",
+  "snapshot": {
+    "title": "Senior Software Architect (100% Remote - Worldwide)",
+    "company": "Tether Operations Limited",
+    "locations": [
+      "Remote job",
+      "Yamoussoukro, Lacs, Côte d'Ivoire",
+      "Tiranë, Tiranë, Albania",
+      "Andorra la Vella, Andorra la Vella, Andorra",
+      "Buenos Aires, Buenos Aires, Argentina",
+      "Yerevan, Erevan, Armenia",
+      "Brisbane, Queensland, Australia",
+      "Melbourne, Victoria, Australia",
+      "Sydney, New South Wales, Australia",
+      "Wien, Wien, Austria"
+    ],
+    "workplaceType": "remote",
+    "employmentType": "fulltime_permanent",
+    "descriptionText": "Join Tether and Shape the Future of Digital Finance\n\nAt Tether, we’re not just building products, we’re pioneering a global financial revolution. Our cutting-edge solutions empower businesses—from exchanges and wallets to payment processors and ATMs—to seamlessly integrate reserve-backed tokens across blockchains. By harnessing the power of blockchain technology, Tether enables you to store, send, and receive digital tokens instantly, securely, and globally, all at a fraction of the cost. Transparency is the bedrock of everything we do, ensuring trust in every transaction.\n\nInnovate with Tether\n\nTether Finance: Our innovative product suite features the world’s most trusted stablecoin, USDT, relied upon by hundreds of millions worldwide, alongside pioneering digital asset tokenization services.\n\nBut that’s just the beginning:\n\nTether Power: Driving sustainable growth, our energy solutions optimize excess power for Bitcoin mining using eco-friendly practices in state-of-the-art, geo-diverse facilities.\n\nTether Data: Fueling breakthroughs in AI and peer-to-peer technology, we reduce infrastructure costs and enhance global communications with cutting-edge solutions like KEET, our flagship app that redefines secure and private data sharing.\n\nTether Education: Democratizing access to top-tier digital learning, we empower individuals to thrive in the digital and gig economies, driving global growth and opportunity.\n\nTether Evolution: At the intersection of technology and human potential, we are pushing the boundaries of what is possible, crafting a future where innovation and human capabilities merge in powerful, unprecedented ways.\n\nWhy Join Us?\n\nOur team is a global talent powerhouse, working remotely from every corner of the world. If you’re passionate about making a mark in the fintech space, this is your opportunity to collaborate with some of the brightest minds, pushing boundaries and setting new standards. We’ve grown fast, stayed lean, and secured our place as a leader in the industry.\n\nIf you have excellent English communication skills and are ready to contribute to the most innovative platform on the planet, Tether is the place for you.\n\nAre you ready to be part of the future?\n\nAbout the job\n\nAt Tether, we're building Hadron, the enterprise tokenization platform powering the next generation of tokenized assets, stablecoins, securities, funds, commodities, and real-world assets (RWAs).\nHadron enables financial institutions, asset managers, exchanges, governments, and enterprises to issue, manage, and operate regulated digital assets across multiple blockchain networks while integrating compliance, permissions, and operational workflows.\nWe're looking for a Senior Software Engineer to help build the core infrastructure behind Hadron. You will work on tokenization engines, blockchain integrations, permissions frameworks, issuance workflows, compliance tooling, and enterprise APIs used by institutional clients worldwide.\nThis is a hands-on engineering role for someone who enjoys solving complex distributed systems challenges at the intersection of blockchain, financial infrastructure, and enterprise software.\n\nResponsibilities\n\nTokenization Platform Development\n\n * Design, build, and maintain the backend services powering Hadron's tokenization platform\n\n * Develop APIs supporting asset issuance, lifecycle management, corporate actions, and token operations\n\n * Build scalable infrastructure for institutional-grade tokenization workflows\n\n * Contribute to the evolution of Hadron's architecture and core platform capabilities\n\nBlockchain Infrastructure\n\n * Build integrations with Ethereum, EVM-compatible chains, and other supported blockchain networks\n\n * Develop services handling token minting, burning, transfers, permissions, and administrative operations\n\n * Improve blockchain transaction orchestration, signing workflows, and operational reliability\n\n * Contribute to smart contract integrations and blockchain infrastructure\n\nEnterprise Infrastructure\n\n * Build systems supporting role-based permissions, multi-signature approvals, auditability, and operational controls\n\n * Develop integrations with custody providers, identity providers, and compliance services\n\n * Improve scalability, observability, monitoring, and platform reliability\n\n * Support deployment automation and operational tooling\n\nCross-Functional Collaboration\n\n * Work closely with Product, Engineering, Compliance, and Solutions teams\n\n * Translate institutional client requirements into scalable platform capabilities\n\n * Participate in architecture reviews and technical planning\n\n * Contribute to documentation and engineering best practices\n\nCore Skills\n\n * 5+ years of backend software engineering experience\n\n * Strong expertise in Node.js (primary technology stack)\n\n * Experience designing scalable APIs and distributed backend systems\n\n * Strong understanding of cloud-native architectures, microservices, and asynchronous systems\n\n * Experience with relational and NoSQL databases\n\n * Strong debugging, performance optimization, and problem-solving skills\n\n * Excellent English communication skills\n\nBlockchain & Digital Assets\n\n * Experience building blockchain-based applications or infrastructure\n\n * Strong understanding of Ethereum and EVM ecosystems\n\n * Experience interacting with smart contracts and blockchain transaction workflows\n\n * Understanding of wallet architecture, signing flows, and digital asset infrastructure\n\n * Familiarity with token standards such as ERC-20, ERC-721, ERC-1155 or security token standards\n\nNice to Have\n\n * Experience with tokenization platforms or issuance infrastructure\n\n * Familiarity with token standards such as ERC-1400, transfer restrictions, permissions models, and whitelist frameworks\n\n * Experience with institutional digital assets, custody providers, or regulated financial infrastructure\n\n * Experience integrating KYC/AML providers and compliance workflows\n\n * Familiarity with capital markets, securities, funds, stablecoins, or real-world asset tokenization\n\n * Experience working in remote-first engineering organizations",
+    "capturedAt": "2026-09-16T22:29:48.293Z"
+  },
+  "category": "country-list",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"100% Remote - Worldwide\" with no engagement type"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"100% Remote - Worldwide\" with no engagement type"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"100% Remote - Worldwide\" with no engagement type"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"100% Remote - Worldwide\" with no engagement type"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"100% Remote - Worldwide\" with no engagement type"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"100% Remote - Worldwide\" with no engagement type"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T22:34:41Z",
+  "session": 3
+}

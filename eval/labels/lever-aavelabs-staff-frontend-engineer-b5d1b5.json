@@ -1,0 +1,57 @@
+{
+  "id": "lever-aavelabs-staff-frontend-engineer-b5d1b5",
+  "jobId": "01a0ab93-d449-7177-b4cb-8a78c1b5d1b5",
+  "url": "https://jobs.eu.lever.co/aavelabs/6857fd56-b21b-4e43-ab60-2c45ba591070",
+  "source": "lever",
+  "snapshot": {
+    "title": "Staff Frontend Engineer",
+    "company": "Aave Labs",
+    "locations": ["London, England", "Remote, Europe"],
+    "workplaceType": "hybrid",
+    "employmentType": "Full-time",
+    "descriptionText": "About us\n\nAave Labs began with a simple question: how do we make financial services like borrowing, saving, and earning more accessible globally?\n\nWe built the Aave Protocol, now the world’s largest and most trusted onchain lending market, connecting decentralized finance with individuals, traditional finance, and fintech.\n\nToday, we build trusted, high-quality products that expand access to lending, credit, and savings globally\n\nOur culture\n\nWe build trusted products that help people access and discover economic opportunities.\n\nWe hold a high bar for quality and craftsmanship. No detail is too small. Trust depends on it.\n\nWe’re a global team building products people can actually use, turning complex technology into something simple and reliable.\n\nWe stay aligned, move quickly, and think long term, while keeping teams lean and focused on impact.\n\nAbout the Role\n\nWe're looking for a Staff Frontend Engineer who operates across the full picture - someone who deeply understands how great web interfaces are built and how they perform, works autonomously, and translates that knowledge into exceptional web products and design systems.\n\nFinancial products are complex. Our users range from first-timers to power users, and the challenge of making that experience clear, fast, and trustworthy is one we take seriously. At this level, you're not just executing - you're bringing product intuition to the work, identifying where things break down, and making calls that shape the direction of what we build.\n\nHow you can make an impact:\n\n * Work autonomously across our web products, building high-quality UI with a strong point of view on how it should feel, function, and perform\n * Own and evolve complex, reusable components within the Aave design system - setting the standard for quality and consistency\n * Set the bar for frontend performance, from data loading, fetching and caching patterns through to server rendering and streaming\n * Bring product-level thinking to everything you work on - understanding user needs, business context, and technical constraints, whilst balancing them well\n * Collaborate with our talented designers, engineers, and product leads to bring clarity to ambiguous problems\n   Help raise the bar for the team through the quality of your work and the way you approach problems\n\nLet's connect if you have:\n\n * Strong proficiency in React, TypeScript, CSS and system design and architecture\n * Deep experience with frontend performance engineering - measuring it, diagnosing it, and fixing it\n * Strong command of Next.js patterns for data loading, fetching and caching, and experience handling server rendering and streaming data to the frontend\n * Deep experience with component-driven design systems and component design patterns, and building for consistency at scale\n * The product sense to work without a detailed brief - you can identify what needs to be solved, not just how to solve it\n * A demonstrated ability to take complex UX problems - information-dense interfaces, multi-step flows, edge cases - and make them feel resolved and clear\n\nNice to haves:\n\n * An understanding of backend data handling\n * A feel for animation best practices when data is updating, and how that plays out in re-renders across a UI\n * Curiosity about web3 and DeFi is a plus; you don't need to be an expert, but genuine interest in the space goes a long way\n * Curiosity about AI and its use in product engineering and daily workflows\n\nHaven’t quite met all the criteria? Let’s not miss out on the chance to speak. Whilst you might not meet every single requirement, you might bring other, more exciting skills to the companies!\n\nEqual opportunities statement:\n\nAave Labs celebrates diversity and views each and every team member as a separate individual with their own unique identity. No matter your race, religion, gender, ethnicity, age, disability, sexual orientation or even the wallet you use, we welcome you at Aave Labs. As an equal opportunities employer, we take accountability and believe in everyone's potential to build, create and inspire changes. With a mission to build a diverse workforce, we are proud to foster a working environment in which everyone can feel safe and valued for who they are.",
+    "capturedAt": "2026-09-16T22:29:48.293Z"
+  },
+  "category": "europe-region",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"Remote, Europe\"; region alone, no contractor mention"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"Remote, Europe\"; region alone, no contractor mention"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"Remote, Europe\"; region alone, no contractor mention"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"Remote, Europe\"; region alone, no contractor mention"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"Remote, Europe\"; region alone, no contractor mention"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"Remote, Europe\"; region alone, no contractor mention"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T22:34:41Z",
+  "session": 3
+}

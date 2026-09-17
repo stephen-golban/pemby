@@ -1,0 +1,57 @@
+{
+  "id": "greenhouse-grafanalabs-software-engineer-platform-metal-ireland-a16382",
+  "jobId": "01a0ab97-ed93-7a41-958c-f61026a16382",
+  "url": "https://job-boards.greenhouse.io/grafanalabs/jobs/6144061004",
+  "source": "greenhouse",
+  "snapshot": {
+    "title": "Software Engineer - Platform Metal | Ireland | Remote",
+    "company": "Grafana Labs",
+    "locations": ["Republic of Ireland (Remote)", "EMEA"],
+    "workplaceType": "remote",
+    "employmentType": null,
+    "descriptionText": "Grafana Labs is the company behind Grafana Cloud, the fully managed observability platform trusted by more than 10,000 organizations to ensure reliability, resolve incidents faster, and optimize telemetry at scale. Built on open source and open standards and designed for interoperability across any stack, Grafana Cloud brings AI to observability and observability to AI, giving teams (and their agents) unified visibility so they can see, understand, and act on all their disparate data, wherever it lives, and move at the speed of their ambitions. Customers, including Anthropic, Bloomberg, NVIDIA, Microsoft, and Salesforce, rely on Grafana Labs. We are a 100% remote company with team members across 40+ countries, backed by leading investors including Lightspeed Venture Partners, Sequoia Capital, GIC, Coatue, J.P. Morgan, CapitalG, and Lead Edge Capital. Learn more at grafana.com and follow us on LinkedIn and X.\n\nWe’re scaling fast and staying true to what makes us different: an open-source legacy, a global collaborative culture, and a passion for meaningful work. Our team thrives in an innovation-driven environment where transparency, autonomy, and trust fuel everything we do.\n\nYou may not meet every requirement, and that’s okay. If this role excites you, we’d love you to raise your hand for what could be a truly career-defining opportunity.\n\nThis is a remote position. We are looking for candidates in the UK, Spain and Ireland only.\n\nThe Opportunity:\n\nAbout our Platform:\nGrafana Cloud moves millions of metrics, log lines, and traces per second from our customers' environments into a highly available, low-latency stack that processes and stores this data, and serves them to dashboards and alerting tools. We aim to grow this to hundreds of millions per second, and it's critical that as we grow, we improve our performance, increase our reliability, and, of course, do it efficiently and effectively.\n\nThe Internal Engineering Platform (IEP) delivered by the Foundations group provides application engineers with the tools, systems and Kubernetes clusters they need to build, deploy and run their workloads.\n\nWe are hiring an engineer as part of the creation of a new Foundation’s “Metal” squad. This squad will be responsible for building and provisioning resources including storage, networking and Kubernetes clusters in new environments, starting with our own physical hardware. They will provide a Kubernetes control plane and underlying resources, outside public Cloud, to the rest of Engineering.\n\nWhat Makes You a Great Fit:\nYou enjoy working with engineers, as well as with the management structures that are there to support you and enable you and your team to do your very best.\n\nYou are comfortable working in a remote-first company; communication is key. For us, working together means being collaborative, friendly, kind, and respectful. We operate by consensus, you can contribute to a discussion but then commit to the team decision.\n\nAs such, being such a highly distributed company, means we would love someone who is keen on working with distributed systems, too.\n\nYou are eager to learn and grow. There is a lot of room for growth and development, and the team has quite a lot of knowledge to share for those who are wanting to learn.\n\nYou approach development holistically. The team owns the full life cycle of our code; from writing design docs, to looking at developer feedback, and integration testing. We appreciate engineers who enjoy looking at the big picture, and also notice the details of the brush strokes. The Platform team mainly works with Go, Python, and Shell.\n\nYou have experience with operating your code. Since a lot of operators and developers use our software, having some grounding in both of these spaces really helps us with building better platforms for our users.\n\nDatacenter experience.\n\nParticipation in an on-call rotation.\n\nWhat You’ll Be Doing:\n\n * Management of our physical “Metal” environment from bare metal to kubernetes.\n * Management of cluster networking components: load balancing, NAT, DNS, CNIs, cross-cluster communication, Routing protocols, Architecture.\n * Management of scheduling and autoscaling.\n * Maintaining Crossplane compositions and Terraform modules for CSP resources common to our users. As well the management of versioning and compatibility for Crossplane and Terraform core as well as providers.\n * Work with our users (Grafana Cloud application teams) to help understand their needs and ensure we’re investing in the right capabilities.\n\nBonus Points For:\n\n * Experience with Cluster-API, Tinkerbell, Talos and/or Ceph\n * You’ve worked in or on open source, or other community-based projects previously. At Grafana Labs, “OSS is in our DNA”.\n * Experience with a few CSPs. We run Grafana Cloud on AWS, GCP, and Azure using each’s managed Kubernetes service - EKS, GKE, AKS.\n * Experience operating and managing workloads on Kubernetes. We use Tanka for configuration management with Jsonnet.\n * Familiarity with Kubernetes scheduling and projects like Karpenter.\n * Terraform and/or Crossplane experience. We have mixed usage - each has its strengths.\n * Enjoys programming in Go! We love building our own tools, utilities, exporters, etc. that suit our needs and otherwise don’t exist (and open sourcing them).\n\n * Maybe there’s something missing in this job description that you think you might bring to our table? Feel free to let us know!\n\nIn Ireland, the compensation range for this role is €81,600 - €97,920. Actual compensation may vary based on level, experience, and skillset as assessed throughout the interview process. All of our roles include Restricted Stock Units (RSUs), giving every team member ownership in Grafana Labs' success. We believe in shared outcomes—RSUs help us stay aligned and invested as we scale globally.\n\n*Compensation ranges are country specific. If you are applying for this role from a different location than listed above, your recruiter will discuss your specific market’s defined pay range & benefits at the beginning of the process.\n\nWhy You’ll Thrive at Grafana Labs:\n\n * 100% Remote, Global Culture - As a remote-only company, we bring together talent from around the world, united by a culture of collaboration and shared purpose.\n * Scaling Organization – Tackle meaningful work in a high-growth, ever-evolving environment.\n * Transparent Communication – Expect open decision-making and regular company-wide updates.\n * Innovation-Driven – Autonomy and support to ship great work and try new things.\n * Open Source Roots – Built on community-driven values that shape how we work.\n * Empowered Teams – High trust, low ego culture that values outcomes over optics.\n * Career Growth Pathways – Defined opportunities to grow and develop your career.\n * Approachable Leadership – Transparent execs who are involved, visible, and human.\n * Passionate People – Join a team of smart, supportive folks who care deeply about what they do.\n * In-Person onboarding - We want you to thrive from day 1 with your fellow new ‘Grafanistas’ to learn all about what we do and how we do it.\n * Balance is Key - We operate a global annual leave policy of 30 days per annum. 3 days of your annual leave entitlement are reserved for Grafana Shutdown Days to allow the team to really disconnect. *We will comply with local legislation where applicable.\n\nEqual Opportunity Employer: Grafana Labs is an equal opportunities employer. We welcome applications from everyone regardless of race, colour, nationality, origin, caste, sex, gender reassignment identity or expression, sexual orientation, age, religion or belief, disability, veteran status, genetic information, pregnancy, maternity, marital, family or carer status, or any other characteristic which is protected by local law. We believe that equality and diversity build a strong organisation, and we work hard to ensure that is the foundation of our organisation as we grow.\n\nGrafana Labs may utilize AI tools in its recruitment process to assist in matching information provided in CVs to job postings. The recruitment team will continue to review inbound CVs manually to identify alignment with current openings.\n\n#LI-Remote\n\nFor information about how your personal data is used once you’ve applied to a job, check out our privacy policy.",
+    "capturedAt": "2026-09-16T22:29:48.293Z"
+  },
+  "category": "emea",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"candidates in the UK, Spain and Ireland only\""
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"candidates in the UK, Spain and Ireland only\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"candidates in the UK, Spain and Ireland only\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"candidates in the UK, Spain and Ireland only\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"candidates in the UK, Spain and Ireland only\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"candidates in the UK, Spain and Ireland only\""
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T22:34:41Z",
+  "session": 3
+}

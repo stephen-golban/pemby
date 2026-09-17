@@ -1,0 +1,57 @@
+{
+  "id": "workable-devpro-test-engineer-automation-python-career-o-0196e5",
+  "jobId": "01a0ab9c-bc17-7361-b4ab-dd1ec40196e5",
+  "url": "https://apply.workable.com/j/42FE23CCA2",
+  "source": "workable",
+  "snapshot": {
+    "title": "Test Engineer Automation (Python) Career Opportunities at Dev.Pro",
+    "company": "Dev.Pro",
+    "locations": ["Chișinău, Chisinau, Moldova"],
+    "workplaceType": "remote",
+    "employmentType": null,
+    "descriptionText": "Are you interested in building an exciting IT career at Dev.Pro? Join our exclusive screening process to gain valuable career insights and access personalized feedback on your skill set.\n\n🟩 What you’ll get by applying:\n\n * Personalized career growth plan tailored to your aspiration\n * Expert feedback to elevate your skills for lasting success\n * Priority consideration by Dev.Pro for suitable job openings within the company\n * Opportunity to work with top global corporations and participate in industry-shaping projects\n\n   Give us a chance to get to know you better so that when the right position becomes available, you’ll be the first one we reach out to!\n\n✅ Is that you?\n\nAs a Test Engineer Automation, you’ll be a vital part of our dynamic and robust community. You’ll get to work on various exciting and challenging projects across different domains, using your skills and expertise to deliver excellent services and solutions to clients worldwide.\n\n * 4+ years of experience in automation testing of software products, with experience in web, mobile, and API automated testing\n * Strong Python skills\n * Strong C#, Java, Python, or JavaScript skills\n * Experience in developing and implementing test automation frameworks and test tools\n * Familiarity with popular CI/CD tools\n * Experience with version control systems and reporting tools\n * Practical experience with databases and at least one cloud service provider\n * Strong analytical and problem-solving abilities\n * Excellent communication and collaboration skills\n * Upper-Intermediate English level\n\nGet started now:\n\n1. Send us your CV in English.\n2. Schedule a 15-30 minute call with Dev.Pro recruiters.\n3. Participate in a 30-minute experience interview focused on testing your soft skills.\n4. Get a 1-hour online evaluation of your technical skills by our technical experts.\n\nIn under 2 hours, you'll know where you stand in your career and be ready for action when Dev.Pro presents you with an exciting job offer!\n\n🎾 About Dev.Pro\n\nDev.Pro is a US-based outsource company with an ambitious and creative mindset that has been delivering superior software products since 2011. Known for its strong human focus, Dev.Pro promotes a work environment that is fair, inclusive, open-minded, and friendly toward people of every race, religion, gender, cultural background, marital/parental status, etc. By joining Dev.Pro, you'll feel what it's like to grow with professionals who support your journey.\n\nInterested? Find out more:\n\n📋How we hire\n\n💻 LinkedIn Page\n\n📈 Our website\n\n💻IG Page\n\nBy submitting application, I've read and agree to the Dev.Pro Private Policy and Consent on Processing of Personal Data. I agree to have my Personal Data being stored and processed by Dev.Pro.",
+    "capturedAt": "2026-09-16T22:29:48.293Z"
+  },
+  "category": "mentions-target-country",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "green",
+      "note": "Location \"Chișinău, Moldova\"; no engagement type"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "green",
+      "note": "Location \"Chișinău, Moldova\"; no engagement type"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "Only location \"Chișinău, Moldova\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "Only location \"Chișinău, Moldova\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "Only location \"Chișinău, Moldova\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "Only location \"Chișinău, Moldova\""
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T22:34:41Z",
+  "session": 3
+}

@@ -1,0 +1,57 @@
+{
+  "id": "recruitee-transperfect-senior-solutions-architect-usa-205d0d",
+  "jobId": "01a0ab94-f6a9-7665-aa3e-7027c9205d0d",
+  "url": "https://transperfect.com/o/senior-solutions-architect-usa",
+  "source": "recruitee",
+  "snapshot": {
+    "title": "SENIOR SOLUTIONS ARCHITECT (USA)",
+    "company": "TransPerfect",
+    "locations": ["Remote job", "Austin, Texas, United States"],
+    "workplaceType": "remote",
+    "employmentType": "fulltime_permanent",
+    "descriptionText": "As an integral part of Trial Interactive Product initiatives, the Senior Solutions Architect assists the implementation, operations, sales, and product organizations throughout the entire process of understanding the customer's business and technical requirements, collaborating on the sales strategy, delivering strong solution presentations, building a configuration of the product, and ensuring the ultimate success of the customer. Strong teamwork and collaboration with Business Development, Product Management, and Professional Services is required to be effective in this role.\n\nWhat You’ll Do:\n\n * As a member of our Technical Services team, your primary responsibility will be the configuration of Trial Interactive enterprise software and solutions. You will work in concert with operations throughout the implementation cycle\n\n * Design and document new configurations and solutions for Trial Interactive software\n\n * Create and maintain User Requirements Specification and Configuration Specifications for implementing customers\n\n * Act as the product configuration and domain expert in all relevant sales cycles with specific responsibility for demonstrating the product to prospects and existing customers\n\n * Work with sales on software configurations for demonstrations and respond to functional and technical elements of RFIs/RFPs/RFQs\n\n * Act as a conduit between the Sales team and Operations and Product teams. Clearly convey customer/prospects business requirements from the field to the Operations and Product teams\n\n * Develop and script product and solution demonstrations\n\n * Ideally, evangelize the Trial Interactive vision through product demonstrations, webinars/seminars, conferences and account specific initiatives  Participate in SOW reviews and vetting of new business opportunities\n\n * Provide training and mentorship to junior team members including Project Managers, Configuration Specialists, Business Development and Support staff as needed\n\n * Create and maintain SOPs (standard operating procedures) in accordance with QA and departmental guidelines and needs\n\n * Complete all other tasks that are deemed appropriate for this role and assigned by the manager/supervisor\n\nWhat You’ll Need\n\n * Broad knowledge of current technology, tools and techniques for data and system integration\n\n * Minimum bachelor’s degree or its equivalent in years’ experience\n\n * Minimum 5 years’ solutions consulting, software product configuration, or similar experience\n\n * Minimum 5 years’ experience in life sciences, eTMF, clinical operations, regulatory, quality, or content management\n\n * Self-starter with excellent organization and time management skills. Ability to build a deep understanding of a customer’s needs and guide them to a technical solution\n\n * Fundamental understanding of SaaS and Cloud-based technology and business models\n\n * Strong computer skills, including MS Office suite, especially MS Excel\n\n * Comfort with sustained global business travel of up to 10%\n\n * Strong interpersonal communication skills, internally and externally, especially with customers and sales-force\n\n * Experience with GxP and software validation process and regulations\n\n * Experience working with REST API’s, sFTP, JSON, XML, SSO (SAML 2.0) and IDP’s such as Okta\n\n * Previous software development experience in one or more of the following areas desired but not mandatory:\n\n   * Backend (Python, Java, C#, Node.js, PHP)\n\n   * Basic SHELL scripting to assist with automating manual tasks such as search and replace of content within documents, leveraging regular expressions\n\n * 2+ years’ experience in B2B web applications, business to business, and mobile apps a plus",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "us-only",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"SENIOR SOLUTIONS ARCHITECT (USA)\"; Austin, Texas"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"SENIOR SOLUTIONS ARCHITECT (USA)\"; Austin, Texas"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"SENIOR SOLUTIONS ARCHITECT (USA)\"; Austin, Texas"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"SENIOR SOLUTIONS ARCHITECT (USA)\"; Austin, Texas"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"SENIOR SOLUTIONS ARCHITECT (USA)\"; Austin, Texas"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"SENIOR SOLUTIONS ARCHITECT (USA)\"; Austin, Texas"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 2
+}

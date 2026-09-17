@@ -1,0 +1,57 @@
+{
+  "id": "workable-cloudlinux-1-engineering-manager-language-security-re-cad266",
+  "jobId": "01a0ab9a-37a7-78be-bdfa-1d1cb9cad266",
+  "url": "https://apply.workable.com/j/61D7023BA4",
+  "source": "workable",
+  "snapshot": {
+    "title": "Engineering Manager, Language Security (remote work)",
+    "company": "Cloudlinux",
+    "locations": ["Tbilisi, Georgia"],
+    "workplaceType": "remote",
+    "employmentType": "Full-time",
+    "descriptionText": "TuxCare offers a portfolio of security solutions for Linux and open-source software aimed at enterprise organizations. With TuxCare, enterprises can automate live vulnerability patching, minimize downtime, keep their applications secure and compliant, and get support from a team that knows Linux security best – covering the most popular Linux distributions, end-of-life systems, programming languages, and much more.\n\nWe are looking for an experienced Engineering Manager to take ownership of TuxCare's Language Security Research function — a group of four teams responsible for delivering security patches for end-of-life and non-EOL open-source language runtimes and frameworks.\n\nTuxCare's Endless Lifecycle Support (ELS) helps organizations continue using end-of-life software securely. We provide security patches for unsupported versions of Linux distributions and language ecosystems — including Java, JavaScript/Node.js, Python, PHP, Go, Spring, Angular, Django, Flask, and more.\n\nThis is a manager-focused role within a technical delivery environment, where broad language ecosystem expertise and strong engineering leadership are both essential. You will manage four teams (~18 engineers) across Java, JavaScript/Go, Python, and PHP disciplines, setting the technical direction and operational standards for the entire function.\n\nUseful links:\n\n * CVE coverage: https://cve.tuxcare.com/els/cve\n * ELS for Languages documentation: https://docs.tuxcare.com/els-for-languages/\n\nWhat You Will Own\n\nPeople & Teams\n\n * Lead and develop four teams (Java, JavaScript/Go, Python, PHP) totalling ~18 engineers\n * Build a culture of technical excellence, accountability, and continuous improvement\n * Define hiring plans, conduct performance reviews, and drive career development for your reports\n * Manage onboarding and ramp-up of new team members, projects, and libraries into the team's scope\n\nTechnical Direction\n\n * Set and enforce standards for CVE analysis, vulnerability assessment, patch backporting, and security release processes across all language ecosystems\n * Drive consistency in tooling and workflows across teams (CI/CD pipelines, patch delivery, release processes)\n * Evaluate and guide AI-assisted automation for backporting and vulnerability discovery\n * Serve as the final technical escalation point for complex or cross-team security issues\n\nDelivery & Operations\n\n * Own SLA compliance across all language platforms\n * Align team efforts with client expectations and delivery commitments\n * Organise and continuously improve development workflows and engineering processes\n * Coordinate internal documentation and ensure it reflects the actual state of each project\n * Ensure smooth coordination between language teams and OS, Docker, and platform teams\n * Manage scope boundaries and overlap with OS and platform teams, particularly around shared dependencies and cross-ecosystem vulnerabilities\n\nRequirements\n\nMust have:\n\n * Strong background in software development across multiple language ecosystems — at least 6 years of hands-on experience\n * Solid Java experience is required; working knowledge of additional languages such as JavaScript, Go, Python, or PHP is a plus\n * 3+ years of engineering leadership experience (Team Lead or Engineering Manager) in a product company\n * Hands-on experience with security research or vulnerability analysis: CVE triage, patch backporting, or similar\n * Proven experience with technical delivery and accountability for team outcomes\n * Ability to work effectively in distributed teams and within larger organisational structures\n * Strong communication skills — capable of interfacing with stakeholders and meeting external delivery expectations\n * Experience building or improving engineering processes from scratch\n * Experience with CI/CD systems (GitLab CI, Jenkins) and dependency management tooling (Maven/Gradle, npm, pip, Go modules)\n * Upper-intermediate or higher English (written and spoken)\n\nNice to have:\n\n * Hands-on experience identifying and analysing vulnerabilities in language-ecosystem applications\n * Understanding of the security vulnerability lifecycle (CVE, CVSS, CWE, CSAF/VEX)\n * Background in open-source security, supply chain security, or ELS-type products\n * Experience integrating AI tooling into research or patching workflows\n * Knowledge of Docker, Kubernetes, or cloud-native ecosystems\n\nBenefits\n\nWhat's in it for you?\n\n * A strong focus on professional development with opportunities for learning and growth:\n    * Interesting and challenging projects,\n    * Mentor and other knowledge-exchange programs;\n\n * Fully remote work with flexible working hours, that allows you to schedule your day and work from any location worldwide;\n * Paid 24 days of vacation per year, 10 days of national holidays, and unlimited sick leaves to ensure you maintain a healthy work-life balance;\n * Compensation for private medical insurance;\n * Co-working and gym/sports reimbursement;\n * The opportunity to receive a reward for the most innovative idea that the company can patent, fostering a culture of creativity and innovation.\n\nBy applying for this position, you consent to the processing of your personal data as described in our Privacy Policy (https://tuxcare.com/privacy-policies-hub/candidate-privacy-notice/ ), which provides detailed information on how we maintain and handle your data.",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "mentions-target-country",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"work from any location worldwide\", no engagement type"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"work from any location worldwide\", no engagement type"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"work from any location worldwide\", no engagement type"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"work from any location worldwide\", no engagement type"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "green",
+      "note": "Location \"Tbilisi, Georgia\", no engagement type"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "green",
+      "note": "Location \"Tbilisi, Georgia\", no engagement type"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 1
+}

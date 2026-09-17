@@ -1,0 +1,57 @@
+{
+  "id": "lever-aavelabs-protocol-security-researcher-9e2088",
+  "jobId": "01a0ab93-d448-73e8-af97-3c85e29e2088",
+  "url": "https://jobs.eu.lever.co/aavelabs/7af8c122-bfcd-4c62-ab0b-ef9fdd8b8398",
+  "source": "lever",
+  "snapshot": {
+    "title": "Protocol Security Researcher",
+    "company": "Aave Labs",
+    "locations": ["London, England", "Remote, Europe", "Remote, Asia", "Remote, US"],
+    "workplaceType": "hybrid",
+    "employmentType": "Full-time",
+    "descriptionText": "About us\n\nAave Labs began with a simple question: how do we make financial services like borrowing, saving, and earning more accessible globally?\n\nWe built the Aave Protocol, now the world’s largest and most trusted onchain lending market, connecting decentralized finance with individuals, traditional finance, and fintech.\n\nToday, we build trusted, high-quality products that expand access to lending, credit, and savings globally\n\nOur culture\n\nWe build trusted products that help people access and discover economic opportunities.\n\nWe hold a high bar for quality and craftsmanship. No detail is too small. Trust depends on it.\n\nWe’re a global team building products people can actually use, turning complex technology into something simple and reliable.\n\nWe stay aligned, move quickly, and think long term, while keeping teams lean and focused on impact.\n\nAbout the Role\n\nAave is looking for a Protocol Security Researcher to help build its internal protocol security function.\n\nThe role sits at the intersection of smart contract security, protocol design, adversarial research, and AI-assisted review. You will help assess major protocol changes before deployment, maintain security context across Aave’s deployed systems, and reason about the risks introduced by critical dependencies, integrations, and Aave-adjacent infrastructure.\n\nThis is not a narrow audit role. The goal is to improve Aave’s ability to understand and reduce protocol risk continuously.\n\nHow you can make an impact:\n\n * Review major Aave protocol changes before external audit or deployment\n * Perform attacker-driven analysis of smart contracts, protocol mechanisms, and integrations\n * Participate in design and architecture discussions early enough to influence security-relevant decisions\n * Identify risks in Aave-adjacent systems, including assets, bridges, oracles, adapters, and critical dependencies\n * Contribute to AI-assisted security tooling and evaluate its effectiveness in real review workflows\n * Turn review findings into reusable knowledge, invariants, assumptions, and testing or monitoring ideas\n * Work with monitoring and incident response teams when review findings imply operational detection or response needs\n * Collaborate with external auditors by helping define scope, known risks, and areas of concern\n\nLet's connect if you have:\n\n * 5+ years of relevant security experience\n * Strong smart contract security background\n * Ability to independently review complex codebases and reason about protocol-level failure modes\n * Attacker mindset: you can move from “this looks wrong” to “this is how it could be exploited”\n * Strong understanding of DeFi mechanisms, including lending, liquidations, accounting, oracles, collateral, governance, and integrations\n * Evidence that you are actively using AI to improve security research, review quality, or review throughput\n * Clear written communication: you can explain risk, impact, uncertainty, and trade-offs to engineers and non-security stakeholders\n * Good judgment about severity, exploitability, and when a finding matters\n\nNice to haves:\n\n * Experience with formal methods, fuzzing, invariant testing, or custom security tooling\n * Experience building internal tools for security review, code understanding, or knowledge management\n * Experience working with external audit firms or leading audit engagements\n * Familiarity with governance payloads, upgrade systems, permissioning, and incident response\n * Open-source security research, published findings, CTFs, bug bounties, or prior public vulnerability research\n\nHaven’t quite met all the criteria? Let’s not miss out on the chance to speak. Whilst you might not meet every single requirement, you might bring other, more exciting skills to the companies!\n\nEqual opportunities statement:\n\nAave Labs celebrates diversity and views each and every team member as a separate individual with their own unique identity. No matter your race, religion, gender, ethnicity, age, disability, sexual orientation or even the wallet you use, we welcome you at Aave Labs. As an equal opportunities employer, we take accountability and believe in everyone's potential to build, create and inspire changes. With a mission to build a diverse workforce, we are proud to foster a working environment in which everyone can feel safe and valued for who they are.",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "europe-region",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"Remote, Europe\" among London, Asia, US locations"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"Remote, Europe\" among London, Asia, US locations"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"Remote, Europe\" among London, Asia, US locations"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"Remote, Europe\" among London, Asia, US locations"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"Remote, Europe\" among London, Asia, US locations"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"Remote, Europe\" among London, Asia, US locations"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 2
+}

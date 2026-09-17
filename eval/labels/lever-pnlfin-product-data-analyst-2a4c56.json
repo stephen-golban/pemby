@@ -1,0 +1,57 @@
+{
+  "id": "lever-pnlfin-product-data-analyst-2a4c56",
+  "jobId": "01a0aba3-99fa-709c-9ffe-b5b9972a4c56",
+  "url": "https://jobs.eu.lever.co/pnlfin/b3b43fa2-88be-4504-aa11-084a31f7642c",
+  "source": "lever",
+  "snapshot": {
+    "title": "Product Data Analyst",
+    "company": "Finom",
+    "locations": ["Spain", "Cyprus", "United Kingdom", "Poland", "Estonia"],
+    "workplaceType": "remote",
+    "employmentType": "Full Time",
+    "descriptionText": "About Finom\n\nFinom is a European tech startup headquartered in Amsterdam, and we’re on a journey towards revolutionizing the financial landscape for entrepreneurs worldwide. Our mission is to develop an all-in-one financial B2B solution that integrates banking functions, accounting, financial management, and invoicing into a seamless, mobile-first platform.\n\nWe recently closed a €115 million Series C equity round (around $133 million), bringing our total funding to approximately $346 million. This significant investment follows a $105 million growth funding round from General Catalyst, a long-term backer since 2021 known for supporting companies like Airbnb, HubSpot, KAYAK, and Stripe.\n\nFinom's platform goes beyond traditional banking, offering invoicing and a growing suite of features, including AI-enabled accounting, aiming to simplify financial management for entrepreneurs. We're actively expanding our reach across key EU markets like Germany, France, the Netherlands, Italy, and Spain.\n\nAt Finom, we’re not just redefining the entrepreneurial experience — we’re empowering our employees to make a real difference. Your work matters, and your impact extends far beyond product metrics. We nurture innovation and an inspiring work environment where bold ideas thrive, prioritizing thorough research, swift implementation of solutions, and ensuring that every effort we make benefits our users, employees, partners, and our business as a whole.\n\nMaintaining our start-up spirit, we prioritize thorough research, swift implementation of solutions, and ensuring that every effort we make benefits our users, employees, partners, and, of course, our business.\n\nAbout the Role\n\nAt Finom, product decisions are made fast — and we want them made well. As our Senior Product Analyst for Growth & Activation, you'll be the analytical engine behind the squads shaping how new customers discover, adopt, and grow with our product.\n\nYou'll sit embedded inside the Growth & Activation product stream, working shoulder-to-shoulder with Product Managers and cross-functional squads, while reporting functionally to the Head of Product Analytics to keep our metrics rigorous and consistent. Your job is to turn data into insight, hypotheses into experiments, and outcomes into learnings that genuinely move the roadmap.\n\nThis is a builder's role. The data foundations are there, but the metric system around them is yours to design and document. If you've ever wanted a blank canvas to build an analytical setup the way it should be built — without layers of bureaucracy slowing you down — this is that opportunity.\n\nWhat You Will Be Doing\n\n * Be the analytical lead embedded across the four product teams in the Growth & Activation stream, partnering closely with PMs to make their decisions faster, smarter, and measurable.\n * Translate product hypotheses and business problems into clear, measurable analytical questions and scalable models.\n * Design, instrument, and evaluate experiments and A/B tests alongside PMs and Engineers, so every product change can be assessed in real business terms — activation, retention, engagement, or revenue.\n * Monitor product performance, funnel dynamics, and behavioral cohorts to surface early signals of impact, degradation, or new opportunity — and proactively challenge assumptions through opportunity sizing and trade-off analysis.\n * Build decisioning frameworks — from scoring systems and rules to predictive or optimization models — that directly shape product logic and strategy, prototyping in SQL, Python, or notebooks before partnering with Data Science to productionize.\n * Define and maintain success metrics and driver trees for your product area, aligned with our company-wide metric architecture, and automate dashboards for ongoing KPI and experiment visibility.\n * Apply statistical and causal methods (e.g., Bayesian estimation, difference-in-differences, synthetic control, uplift modeling) when clean randomization isn't possible.\n * Collaborate across functions — Data Science, Growth, Marketing Analytics, Finance, and Engineering — on shared models and KPIs such as LTV, CAC payback, and pricing elasticity, and contribute to company-wide frameworks for activation, retention, and monetization.\n\nWho You Are\n\nA cross-functional operator. You have a proven track record of managing competing priorities from multiple demanding stakeholders at once, and you're comfortable saying \"no\" and pushing back when teams pull you in different directions. A strong communicator first. You can take ambiguity, structure it, and explain your reasoning clearly to product, engineering, and business partners. We value this above raw tooling skill. Technically capable. You're fluent in SQL and comfortable prototyping analysis in Python or notebooks. You don't need to be a production ML engineer, but you should be able to validate feasibility yourself. Quantitatively grounded. You hold a Bachelor's or Master's in a natural science, mathematics, or another highly quantitative field, and you have a solid conceptual command of statistics and experimentation. A builder with a structural mindset. You're energized by bootstrapping a data culture from a blank slate, you adapt quickly in a fast-moving environment, and you bring order to undocumented systems rather than waiting for someone to hand you a neatly defined task.\n\nNice to Have\n\nExperience in high-growth FinTech, or in industries with high-frequency, mobile-first metrics such as gaming/gamedev, digital advertising, or e-commerce. Background in banking, finance, or credit/risk analytics. Some leadership or mentoring experience. Hands-on experience with causal inference, event-path analysis, or ML-based clustering in a product context.\nWhat You Will Get In Return\n\nMake a genuine impact on the product\n\nJoin our upward trajectory, and grow with us. We provide the resources and opportunities for continuous personal and professional development, empowering you to make a genuine impact on our evolving product.\n\nWork in the EU\n\nEmbark on this exciting journey with us and enjoy the flexibility of traveling and working remotely or in a hybrid model across Europe.\n\nBecome a stock options holder\n\nUnlock your inner entrepreneur and align your aspirations with ours through our Stock Options Program. This exciting opportunity is available to every team member, from junior team members to our founders.\n\nReceive unwavering support and care\n\nFinom stands by you at every step, embodying our commitment to your well-being and success reflected in our modern, friendly, and eco-conscious corporate culture. We offer constant support and care to ensure your Finom experience is successful and fulfilling.\n\nWork & Swim program\n\nImmerse yourself in our exclusive Work & Swim Program. Spend one month in a comfortable corporate apartment in enchanting Cyprus. It's the ideal opportunity to strike the perfect work-life balance while enjoying breathtaking Mediterranean views.\n\nEqual Opportunity Statement\n\nAt Finom, we're an equal opportunity employer and value diversity at our company. We embrace diversity and invite applications from all walks of life. We do not discriminate based on race, religion, color, national origin, gender, sexual orientation, age, marital status, disability status, or other applicable legally protected characteristics.",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "country-list",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "Countries: Spain, Cyprus, UK, Poland, Estonia; \"Work in the EU\""
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "Countries: Spain, Cyprus, UK, Poland, Estonia; \"Work in the EU\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "Countries: Spain, Cyprus, UK, Poland, Estonia; \"Work in the EU\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "Countries: Spain, Cyprus, UK, Poland, Estonia; \"Work in the EU\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "Countries: Spain, Cyprus, UK, Poland, Estonia; \"Work in the EU\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "Countries: Spain, Cyprus, UK, Poland, Estonia; \"Work in the EU\""
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 1
+}

@@ -1,0 +1,29 @@
+{
+  "name": "@pemby/eval",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Eligibility accuracy check: hand-labeled job posts and a scoring script (PLAN D24).",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "eval:pull": "tsx src/pull-candidates.ts",
+    "eval:sheet": "tsx src/sheet.ts",
+    "eval:import": "tsx src/import-labels.ts",
+    "eval:run": "tsx src/run.ts"
+  },
+  "dependencies": {
+    "@pemby/ai": "workspace:*",
+    "@pemby/core": "workspace:*",
+    "pg": "8.23.0",
+    "prettier": "3.9.6",
+    "tsx": "4.23.13",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@types/node": "24.13.4",
+    "@types/pg": "8.23.1",
+    "eslint": "9.39.5",
+    "typescript": "6.0.3"
+  }
+}

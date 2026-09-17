@@ -1,0 +1,57 @@
+{
+  "id": "lever-picklerobot-senior-perception-software-engineer-0a05ab",
+  "jobId": "01a0abab-6532-79b9-8b02-ceb8c20a05ab",
+  "url": "https://jobs.lever.co/picklerobot/c2f45fac-9720-4045-b242-a556544a1734",
+  "source": "lever",
+  "snapshot": {
+    "title": "Senior Perception Software Engineer",
+    "company": "Pickle Robot Company",
+    "locations": ["Charlestown, MA"],
+    "workplaceType": "onsite",
+    "employmentType": "Full-Time",
+    "descriptionText": "About Us\n\nAt Pickle Robot, we're on a mission to automate global supply chains with Physical AI. Our robots work alongside warehouse teams to unload trucks and containers — one of the toughest, most understaffed jobs in logistics — making the work safer, faster, and more efficient for the people doing it.  Loading trucks comes next, followed by the Dill Autonomy Engine: generalized autonomy that will eventually orchestrate robots across entire logistics processes.\n\nWe're looking for a dynamic, driven Senior Perception Software Engineer to help revolutionize the future of warehouse automation. This role will focus heavily on working with 3D LiDAR and other multi-sensor arrays to tackle complex challenges in state estimation, scene perception, mapping, and localization. You will play a crucial part in writing robust, production-grade software that translates raw sensor data into actionable intelligence for our robots operating in dynamic, real-world unloading docks.\n\nWhat You'll Do\n\nDrive the accuracy and precision of our localization and state estimation pipelines. Ensure reliable pose estimation of the robot's mobile base and scene components.\n\nDevelop advanced obstacle mapping for collision avoidance that thrives in messy environments.\n\nImplement and optimize point cloud processing algorithms tailored for real-time edge compute.\n\nArchitect a robust software stack that efficiently parses and interfaces with the outputs of our machine learning models, integrating novel perception pipelines seamlessly into the core production codebase.\n\nImprove and automate multi-sensor calibration routines. You will manage tolerance stacks and ensure high-fidelity spatial alignment across our sensor suites, guaranteeing a single source of truth for the robot.\n\nWhat You'll Bring\n\n5+ years of experience in robotics software engineering (or an MS with 3+ years of highly relevant industry experience).\n\nExceptional software engineering fundamentals, highly proficient in Python and C++ for production systems.\n\nStrong mathematical foundation in linear algebra, geometry, and probabilistic robotics.\n\nHands-on experience building perception stacks using industry-standard tools and frameworks, including ROS/ROS2, OpenCV, Open3D, Eigen, and Git.\n\nHands-on experience with sensor stacks including 3D LiDARs, IMUs, and cameras.\n\nYou are a \"full-stack\" robotics engineer who cares about accuracy, precision, and edge cases in the physical world and can articulate architectural trade-offs to drive the best system-level decisions.\n\nNice to have: Experience with optimization libraries (Ceres Solver, GTSAM), parallel computing (CUDA), Docker, and PCL.\n\nLocation Requirement: This role is on-site at our HQ, working directly with the physical sensor rigs and robots.\n\nPay at Pickle\n\nAt Pickle Robot Company, we believe transparency builds trust. The salary range listed here is provided in accordance with Massachusetts law and reflects what we reasonably and in good faith expect to offer for this role. We often consider candidates at different levels of seniority, and final compensation will reflect the level at which a candidate is hired, along with factors like experience and location.\n\nPickle Perks\n\nPickle provides best-in-class benefits, including health, dental, and vision insurance; unlimited vacation; paid federal and state holidays; 401(k) contributions of 5% of your salary; company-covered travel expenses; and other perks to make your working life more fun, comfortable, and productive.",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "onsite-hybrid-elsewhere",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"on-site at our HQ\", Charlestown, MA"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"on-site at our HQ\", Charlestown, MA"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"on-site at our HQ\", Charlestown, MA"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"on-site at our HQ\", Charlestown, MA"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"on-site at our HQ\", Charlestown, MA"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"on-site at our HQ\", Charlestown, MA"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 1
+}

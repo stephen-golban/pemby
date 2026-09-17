@@ -1,0 +1,95 @@
+{
+  "id": "recruitee-tether-ai-research-engineer-multi-modal-vision-485e2f",
+  "jobId": "01a0aba7-7ecc-79da-a500-761330485e2f",
+  "url": "https://careers.tether.io/o/ai-research-engineer-multi-modal-vision-100-remote-worldwide",
+  "source": "recruitee",
+  "snapshot": {
+    "title": "AI Research Engineer (Multi-Modal & Vision) - 100% Remote Worldwide",
+    "company": "Tether Operations Limited",
+    "locations": [
+      "Remote job",
+      "United Kindom, Armagh City, Banbridge and Craigavon, United Kingdom",
+      "Buenos Aires, Buenos Aires, Argentina",
+      "Bogotá, Distrito Capital de Bogotá, Colombia",
+      "Sao Paulo, São Paulo, Brazil",
+      "Montevideo, Montevideo, Uruguay",
+      "Bangalore, Karnātaka, India",
+      "Chittagong, Chattogram, Bangladesh",
+      "Karachi, Sindh, Pakistan",
+      "Tokyo, Tokyo, Japan",
+      "Hanoi, Hà Nội, Vietnam",
+      "Taipei, Taipei, Taiwan",
+      "Bangkok, Krung Thep Maha Nakhon, Thailand",
+      "London, Greater London, United Kingdom",
+      "Lugano, Ticino, Switzerland",
+      "Barcelona, Catalunya [Cataluña], Spain",
+      "Dubai, Dubai, United Arab Emirates",
+      "Sofia, Sofia, Bulgaria",
+      "Prague, Praha, Hlavní město, Czechia",
+      "Belgrade, Beograd, Serbia",
+      "Copenhagen, Hovedstaden, Denmark",
+      "Tallinn, Harjumaa, Estonia",
+      "Athens, Attikí, Greece",
+      "Tbilisi, Tbilisi, Georgia",
+      "Budapest, Budapest, Hungary",
+      "Dublin, Leinster, Ireland",
+      "Sliema, Sliema, Malta",
+      "Oslo, Oslo, Norway",
+      "Amsterdam, Noord-Holland, Netherlands",
+      "Warsaw, Mazowieckie, Poland",
+      "Lisbon, Lisboa, Portugal",
+      "Bucharest, București, Romania",
+      "Stockholm, Södermanlands län, Sweden",
+      "Brussels, Brussels, Belgium",
+      "Tel Aviv, Tel Aviv, Israel",
+      "Istambul, İstanbul, Türkiye",
+      "Nicosia, Lefkosia, Cyprus"
+    ],
+    "workplaceType": "remote",
+    "employmentType": "fulltime_permanent",
+    "descriptionText": "Join Tether and Shape the Future of Digital Finance\n\nAt Tether, we’re not just building products, we’re pioneering a global financial revolution. Our cutting-edge solutions empower businesses—from exchanges and wallets to payment processors and ATMs—to seamlessly integrate reserve-backed tokens across blockchains. By harnessing the power of blockchain technology, Tether enables you to store, send, and receive digital tokens instantly, securely, and globally, all at a fraction of the cost. Transparency is the bedrock of everything we do, ensuring trust in every transaction.\n\nInnovate with Tether\n\nTether Finance: Our innovative product suite features the world’s most trusted stablecoin, USDT, relied upon by hundreds of millions worldwide, alongside pioneering digital asset tokenization services.\n\nBut that’s just the beginning:\n\nTether Power: Driving sustainable growth, our energy solutions optimize excess power for Bitcoin mining using eco-friendly practices in state-of-the-art, geo-diverse facilities.\n\nTether Data: Fueling breakthroughs in AI and peer-to-peer technology, we reduce infrastructure costs and enhance global communications with cutting-edge solutions like KEET, our flagship app that redefines secure and private data sharing.\n\nTether Education: Democratizing access to top-tier digital learning, we empower individuals to thrive in the digital and gig economies, driving global growth and opportunity.\n\nTether Evolution: At the intersection of technology and human potential, we are pushing the boundaries of what is possible, crafting a future where innovation and human capabilities merge in powerful, unprecedented ways.\n\nWhy Join Us?\n\nOur team is a global talent powerhouse, working remotely from every corner of the world. If you’re passionate about making a mark in the fintech space, this is your opportunity to collaborate with some of the brightest minds, pushing boundaries and setting new standards. We’ve grown fast, stayed lean, and secured our place as a leader in the industry.\n\nIf you have excellent English communication skills and are ready to contribute to the most innovative platform on the planet, Tether is the place for you.\n\nAre you ready to be part of the future?\n\nAbout the job\n\nAs a member of the AI model team, you will drive innovation in training and optimizing vision-language models with a focus on real-world deployment. Your work will span the full model development lifecycle - from data curation and training pipeline design to model evaluation and optimization - with the goal of building models that are both highly capable and practical to deploy at scale.\n\nYou will work across a wide spectrum of multimodal architectures integrating text and vision, applying state-of-the-art research to improve model quality, efficiency, and domain-specific performance. We expect you to bring a research-driven mindset combined with strong engineering discipline - someone who can identify the right technique for a given problem, implement it rigorously, and measure its impact clearly.\n\nYou will work closely with a small, high-caliber team where your contributions will have direct and meaningful impact. If you are passionate about pushing the boundaries of what multimodal AI can achieve in production environments, this is your opportunity.\n\nResponsibilities\n\n * Conduct end-to-end research and engineering on vision-language models, covering training, evaluation, and optimization across the full model development lifecycle.\n\n * Design and implement post-training pipelines including supervised fine-tuning, knowledge distillation, and reinforcement learning from human feedback.\n\n * Develop and maintain high-quality multimodal datasets, including data curation, filtering, and balancing for domain-specific tasks.\n\n * Drive model efficiency and deployability, adapting models for resource-constrained environments using compression and optimization techniques.\n\n * Design and implement evaluation frameworks and benchmarks to measure model performance, robustness, and real-world task success.\n\n * Build and scale training workflows across distributed GPU infrastructure.\n\n * Identify and resolve bottlenecks in training pipelines to achieve state-of-the-art model quality on target benchmarks.\n\n * Contribute to and leverage open-source ecosystems including models, datasets, and tooling to accelerate development.\n\n * Stay current with the latest research in multimodal learning and vision-language systems, translating relevant findings into practical improvements.\n\n * Publish research findings in top-tier AI conferences and journals where applicable.\n\n * Degree in Computer Science, Machine Learning, or a related field; MS/PhD preferred.\n\n * Strong experience with multimodal post-training workflows including supervised fine-tuning, knowledge distillation, and reinforcement learning from feedback.\n\n * Hands-on experience with parameter-efficient fine-tuning and distributed training frameworks.\n\n * Demonstrated ability to build and improve vision-language models with measurable results on standard benchmarks or real-world tasks.\n\n * Experience adapting models for resource-constrained environments.\n\n * Proven open-source contributions in multimodal AI on GitHub or HuggingFace.\n\n * Publications at top AI conferences (NeurIPS, ICML, ICLR, CVPR, ECCV etc.)\n\nImportant information for candidates\nRecruitment scams have become increasingly common. To protect yourself, please keep the following in mind when applying for roles:\n\n * Apply only through our official channels. We do not use third-party platforms or agencies for recruitment unless clearly stated. All open roles are listed on our official careers page: https://tether.recruitee.com/\n\n * Verify the recruiter’s identity. All our recruiters have verified LinkedIn profiles. If you’re unsure, you can confirm their identity by checking their profile or contacting us through our website.\n\n * Be cautious of unusual communication methods. We do not conduct interviews over WhatsApp, Telegram, or SMS. All communication is done through official company emails and platforms.\n\n * Double-check email addresses. All communication from us will come from emails ending in @tether.to or @tether.io\n\n * We will never request payment or financial details. If someone asks for personal financial information or payment at any point during the hiring process, it is a scam. Please report it immediately.\n\nWhen in doubt, feel free to reach out through our official website.",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "mentions-target-country",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"100% Remote Worldwide\"; location list omits country"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"100% Remote Worldwide\"; location list omits country"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"100% Remote Worldwide\"; location list omits country"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"100% Remote Worldwide\"; location list omits country"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "green",
+      "note": "location list names \"Tbilisi, Tbilisi, Georgia\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "green",
+      "note": "location list names \"Tbilisi, Tbilisi, Georgia\""
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 2
+}

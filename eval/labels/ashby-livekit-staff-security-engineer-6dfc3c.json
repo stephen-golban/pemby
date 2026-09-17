@@ -1,0 +1,57 @@
+{
+  "id": "ashby-livekit-staff-security-engineer-6dfc3c",
+  "jobId": "01a0aba4-840d-72c7-8bf9-8bd4a96dfc3c",
+  "url": "https://jobs.ashbyhq.com/livekit/efc06ff8-37c4-473e-8de8-bbba56cf0479",
+  "source": "ashby",
+  "snapshot": {
+    "title": "Staff Security Engineer",
+    "company": "LiveKit",
+    "locations": ["North America", "APJ", "EMEA"],
+    "workplaceType": "remote",
+    "employmentType": "FullTime",
+    "descriptionText": "About LiveKit\n\nLiveKit is building the infrastructure layer for the agentic era of computing. Our platform gives developers everything they need to build, test, deploy, scale, and observe AI agents in production. Founded in 2021, LiveKit powers voice and agentic AI applications for OpenAI, Salesforce, Spotify, Meta, and tens of thousands of other developers, collectively facilitating billions of calls each year.\n\nAbout This Role\n\nThis isn't one of those roles where \"security\" means running scans or writing policies that gather dust. We're looking for a real engineer — someone who thinks like a builder and a breaker. Someone who gets deep into the stack, whether it's an API endpoint, a container image, or a browser sandbox. You know how things are supposed to work — and what happens when they don't.\n\nWhile some security professionals lean toward policy, compliance, or audits (and we value that too), we're after someone who wants to write code, secure systems, dig into strange bugs, and harden the platform from top to bottom. This is not a role for pointing out what needs to be done. It's for someone who's ready to do it.\n\nYou'll Thrive Here If You:\n\n * think like both a builder and a breaker, and understand security from first principles\n\n * can analyze systems for weaknesses — whether they're in business logic, configuration, or code\n\n * translate security concerns into engineering action without being the \"no\" person\n\n * are an excellent communicator who can document and evangelize best practices across the org\n\n * stay current with security research, tooling, and threats — and put that knowledge into action\n\nWhat You'll Do\n\n * Own security across the stack — applications, services, infrastructure, and developer workflows\n\n * Proactively identify, assess, and mitigate risks in both infrastructure and application codebases\n\n * Lead secure code reviews, architecture discussions, and threat modeling sessions\n\n * Build tooling and automations that help prevent security issues before they reach production\n\n * Harden authentication and access control across internal and external surfaces\n\n * Partner closely with engineers across teams to design secure-by-default APIs, workflows, and deployments\n\n * Investigate vulnerabilities, respond to security incidents, and manage disclosure processes when needed\n\nWho You Are\n\n * 6+ years of experience as a software engineer with a strong interest in security engineering\n\n * You've led or heavily contributed to security engineering efforts across applications, infrastructure, or both\n\n * Experienced with threat modeling, secure coding practices, and vulnerability management\n\n * Worked with CI/CD systems, cloud platforms (AWS, GCP, etc.), and containerized environments\n\n * You've responded to real-world security incidents, led postmortems, or driven remediation efforts\n\nNice to Have\n\n * Experience with security reviews of WebRTC, media pipelines, or real-time systems\n\n * Contributions to open-source security tooling or research\n\n * Hands-on experience with static and dynamic analysis tools, fuzzing, or sandboxing\n\n * You've built (or tried to build) something with LiveKit\n\nOur Commitment to You\n\n * An opportunity to build something truly impactful to the world\n\n * Contribute to open source alongside world-class engineers\n\n * Competitive salary and equity package\n\n * Health, dental, and vision benefits\n\n * Flexible vacation policy\n\nLiveKit is an equal opportunity employer and does not discriminate on the basis of any characteristic protected by applicable law. If you require a reasonable accommodation during the application or interview process, please contact [email].",
+    "capturedAt": "2026-09-16T22:29:48.293Z"
+  },
+  "category": "emea",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "Locations list \"EMEA\"; no contractor mention, B2B capped yellow"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "Locations list \"EMEA\"; no contractor mention, B2B capped yellow"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "Locations list \"EMEA\"; no contractor mention, B2B capped yellow"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "Locations list \"EMEA\"; no contractor mention, B2B capped yellow"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "Locations list \"EMEA\"; no contractor mention, B2B capped yellow"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "Locations list \"EMEA\"; no contractor mention, B2B capped yellow"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T22:34:41Z",
+  "session": 3
+}

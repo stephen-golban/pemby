@@ -1,0 +1,57 @@
+{
+  "id": "greenhouse-amdaris-sre-architect-principal-devops-engineer-b659d3",
+  "jobId": "01a0ab21-46cb-778e-b695-41eb08b659d3",
+  "url": "https://job-boards.eu.greenhouse.io/amdaris/jobs/4960196101",
+  "source": "greenhouse",
+  "snapshot": {
+    "title": "SRE Architect / Principal DevOps Engineer",
+    "company": "Amdaris",
+    "locations": ["Chișinău, Chișinău, Moldova", "Chisinau"],
+    "workplaceType": "unknown",
+    "employmentType": "Full-time",
+    "descriptionText": "We fuse together exceptional talent who deliver outstanding software solutions. Our approach has helped us grow 60% in 2021, 94% in 2022, while in 2023 we joined forces with Insight, a Fortune 500 company and a leading solutions and systems integrator. With exciting growth plans and cutting-edge projects, there has never been a better time to join our incredible team.\n\nAbout the role\n\nWe are looking for a highly experienced SRE Architect / Principal Devops Engineer to help lead the infrastructure and reliability architecture for the technology landscape as we accelerate our modernisation journey.\n\nOur broader architectural direction is already taking shape, including DDD, microfrontends and Backend-for-Frontend (BFF), while our infrastructure direction is standardising around AWS, Terraform, GitHub Actions and ECS/Fargate. However, important decisions remain around areas such as gateways and routing, scalability, observability, resilience, deployment architecture, and how existing systems should progressively move toward the target state.\n\nYour primary responsibility will be to consolidate this direction into a coherent infrastructure and reliability architecture and define a pragmatic path for its adoption.\n\nYou will operate between Enterprise Architecture and SRE/engineering teams, translating broader architectural direction into practical patterns, standards, reference implementations, and modernisation strategies.\n\nThis is a hands on Principal level individual contributor role with significant technical influence across infrastructure. You will be expected to challenge existing decisions where appropriate, validate important architectural choices through proofs of concept and reference implementations, and provide the technical direction that enables engineering teams to implement and adopt the target architecture successfully.\n\nWhat you'll work on\n\nInfrastructure modernisation & target architecture\n\n * Define and evolve the target infrastructure and reliability architecture.\n * Consolidate architectural decisions already underway into a coherent, scalable, and maintainable target state.\n * Define pragmatic modernisation strategies for existing systems, balancing business value, technical risk, cost, and migration effort.\n * Assess systems and recommend whether they should be incrementally modernised, aligned with the target architecture, temporarily retained, or eventually replaced.\n * Define transition patterns that allow teams to modernise without unnecessary large scale rewrites.\n * Establish the target architecture and infrastructure patterns as the default for new modules.\n * Identify architectural gaps, risks, and cross-system dependencies across landscape.\n\nAWS cloud & platform architecture\n\n * Define scalable, resilient, secure, and cost-conscious architectures using AWS.\n * Define approaches to service-to-service communication, external API exposure, routing, and gateway strategy.\n * Guide architectural decisions around scalability, workload and capacity management, fault isolation, availability, and graceful degradation.\n * Define appropriate environment, networking, and deployment strategies for services.\n * Work closely with security and enterprise platform teams to ensure alignment with Pearson-wide standards.\n\nInfrastructure as Code & CI/CD\n\n * Establish Infrastructure as Code standards using Terraform, including reusable patterns, modules, and conventions that engineering teams can adopt consistently.\n * Shape CI/CD architecture using GitHub and GitHub Actions as the standard delivery platform.\n * Define reusable deployment patterns and approaches to environment promotion, rollback, and safe releases.\n * Reduce infrastructure and CI/CD divergence between engineering teams through reusable standards and automation.\n\nReliability, observability & production readiness\n\n * Shape and evolve wide approaches to reliability, resilience, observability, and production readiness.\n * Shape standards for metrics, logs, traces, dashboards, and alerting across distributed systems.\n * Help establish meaningful SLIs, SLOs, and reliability targets where appropriate.\n * Guide architectural approaches to disaster recovery, failure handling, backups, and recovery strategies.\n * Help teams design systems that remain operable and cost-effective as usage and complexity grow.\n\nArchitecture standards & AI-enabled engineering\n\n * Translate infrastructure and SRE architecture decisions into reusable standards, reference implementations, Terraform patterns, and CI/CD practices.\n * Collaborate with teams evolving AI enabled engineering framework so agreed infrastructure patterns and guardrails can be incorporated into engineering workflows.\n * Create clear architecture decision records, reference architectures, and implementation guidance that teams can apply consistently.\n\nTechnical leadership\n\n * Act as a senior technical authority for SRE and infrastructure architecture.\n * Operate as a bridge between Enterprise Architects and the SRE and engineering teams responsible for implementation.\n * Validate important architectural decisions through proofs of concept and reference implementations where appropriate.\n * Review major infrastructure designs and provide technical direction across teams.\n * Mentor senior engineers, Tech Leads, and SREs and help drive alignment on cross-team technical decisions.\n\nRequired skills & experience\n\nArchitecture & technical leadership\n\n * Extensive professional experience designing and operating large-scale distributed systems in production.\n * Strong track record defining cloud and infrastructure architecture across multiple teams or services.\n * Experience leading or shaping modernisation across technology estates containing both legacy and modern systems.\n * Ability to define a target architecture while creating realistic incremental migration paths toward it.\n * Strong architectural judgment and the ability to balance technical quality, delivery speed, risk, cost, and organisational constraints.\n * Strong technical depth and willingness to create prototypes or reference implementations when needed to validate architectural decisions.\n\nAWS, infrastructure & delivery\n\n * Deep expertise in AWS and cloud-native architecture.\n * Strong experience designing and operating containerised workloads on AWS, particularly ECS/Fargate.\n * Strong understanding of AWS networking, load balancing, routing, and secure connectivity.\n * Experience designing scalable API, gateway, and ingress architectures.\n * Strong experience with relational data platforms such as Amazon RDS/Aurora.\n * Good understanding of event-driven and asynchronous architecture patterns.\n * Strong experience with Terraform in production environments.\n * Strong experience with GitHub and GitHub Actions, including reusable CI/CD workflows and deployment automation.\n * Strong understanding of cloud native autoscaling, workload capacity management, and scaling strategies for containerised and event-driven systems.\n\nSRE & reliability engineering\n\n * Strong understanding of Site Reliability Engineering principles.\n * Experience designing observability approaches for distributed production systems.\n * Strong understanding of metrics, logging, tracing, alerting, and production monitoring.\n * Experience working with SLIs, SLOs, reliability targets, and production-readiness practices.\n * Strong knowledge of resilience patterns, failure modes, scalability, and disaster recovery.\n * Ability to reason about trade-offs between reliability, performance, complexity, and cost.\n\nSecurity\n\n * Strong understanding of AWS security fundamentals, including IAM, secrets management, encryption, and secure infrastructure patterns.\n * Ability to work effectively with specialist security teams and translate organisational requirements into practical engineering approaches.\n\nGeneral & soft skills\n\n * Strong technical leadership skills without relying on formal line-management authority.\n * Ability to influence engineering direction across multiple teams and organisational boundaries.\n * Comfortable challenging existing approaches constructively and explaining the trade-offs behind alternative solutions.\n * Pragmatic approach to modernisation, with the judgment to distinguish valuable change from unnecessary technical churn.\n * Excellent communication skills with engineers, Tech Leads, Engineering Managers, Enterprise Architects, and other stakeholders.\n * Ability to turn ambiguous technical problems into clear decisions and actionable next steps.\n\nNice to have\n\n * Experience with Backend-for-Frontend and microfrontend architectures.\n * Experience with event-driven architectures and Kafka/MSK.\n * Experience with OpenTelemetry and modern observability platforms.\n * Experience with progressive delivery approaches such as canary or blue/green deployments.\n * Experience with cloud cost optimisation or FinOps practices.\n * Experience defining architecture standards, paved roads, or engineering golden paths across multiple autonomous teams.\n * Experience working in EdTech, digital learning, or another large global technology organisation.\n\nBENEFITS:\n\n * Opportunities for certification and training\n * Dual monitor setup and high-spec workstations\n * English courses\n * Gym allowance\n * Medical Reimbursement\n * Full salary covered up to 20 days of sickness\n * Flexible working hours\n * Loyalty scheme\n * Team-building activities, special events and conferences\n * UK/EU Travel opportunities\n * Snacks and drinks in the office\n\nTo see more roles, click here.",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "mentions-target-country",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "Location \"Chișinău, Moldova\", no engagement type"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "green",
+      "note": "Location \"Chișinău, Moldova\", no engagement type"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "Office role in \"Chișinău, Moldova\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "Office role in \"Chișinău, Moldova\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "Office role in \"Chișinău, Moldova\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "Office role in \"Chișinău, Moldova\""
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 1
+}

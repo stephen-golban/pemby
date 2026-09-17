@@ -1,0 +1,57 @@
+{
+  "id": "recruitee-redsky-robotic-engineer-robotics-automation-86544f",
+  "jobId": "01a0aba8-2d3b-7e25-a9b5-b9834986544f",
+  "url": "https://redsky.recruitee.com/o/robotic-engineer-robotics-automation",
+  "source": "recruitee",
+  "snapshot": {
+    "title": "Robotic Engineer (Robotics Automation)",
+    "company": "Red Sky",
+    "locations": ["Remote job", "Warszawa, Mazowieckie, Poland"],
+    "workplaceType": "remote",
+    "employmentType": "fulltime_permanent",
+    "descriptionText": "Location: PL\n\nStage: Early-stage startup\n\nProduct: Robotics automation\n\nAbout the role\n\nWe are looking for a Robotic Engineer to co-build a startup focused on developing cutting-edge automation solutions driven by physical AI and robotics.\n\nThis is a highly hands-on technical role, not a corporate executive position. As our resident technical robotics expert, you will be the primary builder in the early days, focusing heavily on designing, sourcing, and adapting the hardware required to unlock physical AI automation. You will play a pivotal role in transforming a bold vision into a functional, scalable product while shaping the company's hardware and technical strategy from the ground up.\n\nWorking in close collaboration with our Lead Physical AI/Machine Learning Engineer, you will seamlessly integrate intelligent software with your hardware solutions to shape the final product. Your mission is to bridge the gap between complex robotics engineering and commercial viability, laying the foundation for a high-performing hardware and engineering culture as the company scales.\n\nYour responsibilities\n\n * Aligning technical strategy with business goals,\n\n * Hands-on development & prototyping: Architecting and building robotics automation solutions, specifically integrating Physical AI intelligence with physical hardware,\n\n * Leveraging Physical AI models to drive process automation, optimizing operational efficiency in real-world, hardware-driven environments,\n\n * Defining the tech stack, software/hardware architecture, and product scalability roadmap,\n\n * Monitoring robotics, AI, and automation trends to maintain a competitive technological edge,\n\n * Translating customer feedback and market needs into robust technical requirements,\n\n * Creating an internal culture focused on code quality, ownership, rapid iteration, and high execution standards,\n\n * Establishing rigorous hardware-software co-development workflows, CI/CD pipelines tailored for robotics (encompassing firmware, ROS/ROS2, and physical AI model deployment), simulation-to-real testing frameworks, and robust safety and data compliance standards.\n\nWho we are looking for (must-have)\n\n * At least 5+ years of experience in robotics or automation companies (e.g., Lead Robotics Engineer, Hardware Lead, Tech Lead, or CTO, Robotic Engineer, Technical Manager),\n\n * At least 3+ years of hands-on expertise in robotics engineering, with a strong focus on designing, prototyping, sourcing, and adapting hardware (mechatronics, kinematics, sensor integration, embedded systems, and control systems),\n\n * Strong background in hardware and robotics engineering, with proven experience in building scalable physical automation platforms and deep-tech architecture from scratch,\n\n * Entrepreneurial mindset - you understand that pragmatic execution, rapid physical prototyping, and shipping fast beat perfect, over-engineered systems in an early-stage setup,\n\n * Strong analytical and problem-solving abilities,\n\n * Fluent Polish and English (spoken and written),\n\n * A university degree (engineering or master's degree) in automation, robotics, or mechatronics,\n\n * Knowledge of the principles of electrical engineering, electronics, and mechanical engineering,\n\n * Ability to write code in dedicated environments.\n\nNice to have\n\n * Deep understanding of Physical AI / Embodied AI, specifically the hardware requirements and challenges of bridging the gap between digital ML models and physical execution (e.g., edge compute constraints, sensor noise, actuator dynamics, and sim-to-real transfer),\n\n * Background in deep-tech, AI, or engineering-driven startups,\n\n * Programming of industrial PLC controllers, HMI panels, and SCADA visualization systems,\n\n * Use of 3D design and robot simulation software (CAD).\n\nWhat we offer\n\n * Opportunity to build a robotics startup from scratch,\n\n * Remuneration: at least PLN 12 000 net B2B + VAT,\n\n * Support from an experienced startup studio and capital group,\n\n * Access to industry experts and startup-building know-how,\n\n * Fast decision-making and a high-impact environment.\n\nRed Sky is conducting this recruitment process. The cooperation concerns a newly established start-up.\n\nRecruitment process\n\n 1. Interview with HR (~45 min)\n\n 2. Tech Interview (~ 60 min.)\n\n 3. Interview with the CEO (~30 min)\n\n 4. Interview with the Investor (~45 min)\n\n 5. Workshops (technical & product alignment)\n\n 6. Agreeing on the terms of cooperation (remuneration )",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "contractors-worldwide",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"Location: PL\"; hands-on hardware, \"Fluent Polish\""
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"Location: PL\"; hands-on hardware, \"Fluent Polish\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"Location: PL\"; hands-on hardware, \"Fluent Polish\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"Location: PL\"; hands-on hardware, \"Fluent Polish\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"Location: PL\"; hands-on hardware, \"Fluent Polish\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"Location: PL\"; hands-on hardware, \"Fluent Polish\""
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 2
+}

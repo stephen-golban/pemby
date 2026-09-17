@@ -1,0 +1,65 @@
+{
+  "id": "recruitee-deephealth-information-security-specialist-b9fa38",
+  "jobId": "01a0aba6-5890-712a-91fc-4fefc5b9fa38",
+  "url": "https://deephealth.recruitee.com/o/information-security-specialist",
+  "source": "recruitee",
+  "snapshot": {
+    "title": "Information Security Specialist",
+    "company": "DeepHealth",
+    "locations": [
+      "Remote job",
+      "N/A, Noord-Holland, Netherlands",
+      "Rotterdam, Noord-Holland, Netherlands",
+      "Amsterdam / Rotterdam, Noord-Holland, Netherlands",
+      "Anywhere, England, United Kingdom",
+      "Anywhere, Noord-Holland, Netherlands",
+      "London, Greater London, United Kingdom"
+    ],
+    "workplaceType": "remote",
+    "employmentType": "fulltime_fixed_term",
+    "descriptionText": "The Information Security Specialist is a strategic role within DeepHealth’s Quality, Regulatory, and Compliance department, responsible for assisting in the development, implementation, and maintenance of comprehensive information security compliance strategies.  This position is critical in protecting organizational data, ensuring regulatory adherence, and mitigating potential security risks in the complex digital health landscape.\n\nDuties and Responsibilities\n\nAs the Information Security Specialist, this position will work with the Information Security Officer, IT Operations, Sec Operations and the broader Compliance team to:\n\nInformation Security Compliance Strategy:\n\n·        Develop and implement holistic security compliance programs\n\n·        Create comprehensive risk management frameworks\n\n·        Design and maintain security policies, procedures, and guidelines\n\n·        Continuously assess and update security strategies\n\n·        Ensure alignment with organizational objectives and regulatory requirements\n\nRegulatory Compliance:\n\n·        Ensure compliance with complex regulatory standards including, but not limited to:\n\no    HIPAA\n\no    GDPR\n\no    CCPA\n\no    ISO 27001\n\no    HITRUST\n\n·        Conduct thorough risk assessments and vulnerability evaluations\n\n·        Prepare detailed compliance reports and documentation\n\n·        Support external and internal audit processes\n\n·        Track and implement regulatory changes\n\nTechnical Security:\n\n·        Perform comprehensive security vulnerability assessment\n\n·        Develop and implement security control frameworks\n\n·        Monitor and analyze security incidents and breaches\n\n·        Design and conduct security awareness training programs\n\n·        Manage access control and identity management systems\n\n·        Evaluate and recommend security technologies and solutions\n\nIncident Response and Management:\n\n·        Develop and maintain incident response plans\n\n·        Coordinate rapid and effective responses to security incidents\n\n·        Conduct pos-incident analysis and implement preventive measures\n\n·        Maintain detailed incident documentation and reporting\n\nInterdepartmental Collaboration:\n\n·        Work closely with IT, Legal, Compliance, and Clinical teams\n\n·        Provide security guidance and recommendations\n\n·        Facilitate cross-functional security awareness and training\n\n·        Support technology implementation and security best practices\n\nPlease Note: This is not an exhaustive list of all duties, responsibilities and requirements of the position described above.  Other functions may be assigned, and management retains the right to add or change duties at any time.\n\nQualifications include:\n\nQualifications include:\n\n● Bachelor’s degree in Cybersecurity, Information Security, Computer Science or related field (or equivalent experience). Master’s degree or advanced security certifications preferred, such as:\n\no CISSP (Certified Information Systems Security Professional)\n\no CISM (Certified Information Security Manager)\n\no CRISC (Certified in Risk and Information Systems Control)\n\n● 3-5 years of progressive experience in security compliance with healthcare, medical technology, or highly regulated industries.\n\n● Proven track record of developing and implementing security strategies.\n\n● Experience with regulatory compliance in complex environments, including:\n\no An advanced understanding of security frameworks and compliance standards\n\no Proficiency in security tools and technologies\n\no Experience with risk assessment and management tools\n\n● Excellent written and oral communication and interpersonal skills with the ability to explain complex security concepts to diverse audiences.\n\n● High level of integrity and confidentiality\n\nWorking conditions\n\n * This position may be based in the European Union in a typical office setting.\n\n * This position will have the ability to work remotely.\n\nPhysical requirements\n\nThis position often requires sitting, standing, walking, bending, twisting, reaching with hands and arms, using hands and fingers, handling, or feeling, speaking, listening, and high-level cognitive thinking. Also, must be able to lift up to 10 pounds occasionally. The position requires the ability to travel (~10% of time), drive a vehicle, and utilize other forms of transportation.\n\nACCOMMODATIONS\nReasonable accommodations may be made to enable people with disabilities to perform the essential functions of the job.\n\nSalary Range:\n\n€65,000 - €75,000 EUR Annually\n\n£55,000 - £65,000 GBP Annually",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "eu-work-authorization",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"may be based in the European Union\"; NL/UK locations only"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"may be based in the European Union\"; NL/UK locations only"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"may be based in the European Union\"; NL/UK locations only"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"may be based in the European Union\"; NL/UK locations only"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"may be based in the European Union\"; NL/UK locations only"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"may be based in the European Union\"; NL/UK locations only"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 1
+}

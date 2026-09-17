@@ -1,0 +1,57 @@
+{
+  "id": "ashby-temporal-senior-software-engineer-open-source-ser-804cd0",
+  "jobId": "01a0abac-4c52-780c-937e-4f80a7804cd0",
+  "url": "https://jobs.ashbyhq.com/temporal/a6db83c0-46c3-415c-8161-621a77781d38",
+  "source": "ashby",
+  "snapshot": {
+    "title": "Senior Software Engineer, Open Source Server",
+    "company": "Temporal Technologies",
+    "locations": ["United States"],
+    "workplaceType": "remote",
+    "employmentType": "FullTime",
+    "descriptionText": "Role Summary\n\nTemporal is looking for a Senior Software Engineer to join the Open Source Server team.\n\nThis team builds and maintains the core Temporal server. Its scope is broad, including Matching, Applications, Foundations, task processing, quotas and throttling, visibility, developer-facing primitives such as standalone activities, schedules, and streaming, and workflow experience improvements such as Continue-As-New, pause, and reset.\n\nWe do not expect one person to cover all of these areas. We're looking for an engineer who is excited to learn the system, contribute across the codebase, and help improve the reliability, performance, operability, and developer experience of Temporal.\n\nThis is a hands-on engineering role where you'll collaborate with experienced engineers to design, build, and operate the core of Temporal's distributed systems platform.\n\nWhat You'll Do\n\n * Design, implement, and ship features for the Temporal server.\n\n * Solve distributed systems challenges across areas such as task matching, scheduling, workflow execution, visibility, quotas, throttling, persistence, developer primitives, and workflow lifecycle features.\n\n * Make thoughtful engineering tradeoffs across developer experience, performance, and operability requirements.\n\n * Partner with engineers, product managers, cloud teams, and customer-facing teams to build scalable technical solutions.\n\n * Improve the reliability and operability of the server through testing, observability, dashboards, alerts, runbooks, and documentation.\n\n * Participate in design discussions and code reviews to help maintain a high-quality codebase.\n\n * Contribute to improving the developer experience for both open source users and enterprise customers.\n\n * Mentor junior engineers and share knowledge with teammates.\n\nWhat You'll Bring\n\n * 5+ years of experience building and operating production distributed systems.\n\n * Strong fundamentals in distributed systems, concurrency, fault tolerance, scheduling, and performance.\n\n * Solid computer science fundamentals in distributed systems concepts including multi-threading and concurrency.\n\n * Experience writing concurrent code in production with languages like Go or Java or other applicable languages with skill level as \"high end of Intermediate\" and/or \"Advanced\" or \"Expert\" levels.\n\n * Experience building high-scale or performance-sensitive backend services, such as request-serving systems, task queues, scheduling systems, streaming or replication pipelines, rate limiting, sharding, load balancing, workflow engines, or orchestration systems.\n\n * Strong debugging, troubleshooting, and operational skills with a focus on reliability and observability.\n\n * Experience designing and building backend APIs or platform services.\n\n * Ability to work collaboratively across engineering teams and contribute to technical discussions.\n\n * Experience with open source software or communities is a plus.\n\n * Experience with AWS, Azure, or GCP is a plus.\n\n * Experience with technologies such as Elasticsearch, OpenSearch, ClickHouse, Cassandra, PostgreSQL, or MySQL is a plus.\n\n * Experience with Kubernetes, CRDs, KEDA, or Argo is a plus.\n\nWhat Makes You a Good Fit\n\n * You enjoy solving challenging distributed systems problems while keeping the developer experience in mind.\n\n * You like learning large codebases and making meaningful technical contributions over time.\n\n * You take ownership of your work and collaborate well with teammates.\n\n * You enjoy balancing technical depth with practical engineering decisions.\n\n * You don't need prior Temporal experience, but you're excited to work on the core of a distributed system used by a large open source community and enterprise customers.\n\nTemporal Technologies is an Equal Opportunity Employer. Temporal Technologies does not discriminate on the basis of race, religion, color, sex, gender identity, sexual orientation, age, non-disqualifying physical or mental disability, national origin, veteran status, or any other basis covered by appropriate law. All employment is decided on the basis of qualifications, merit, and business need. We embrace and celebrate differences and diversity.\n\nTemporal is committed to providing access, equal opportunity, and reasonable accommodation for individuals with disabilities in employment, its services, programs, and activities. If you need to request a reasonable accommodation, please let your Recruiter know so we can assist.",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "us-only",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "Location \"United States\" only"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "Location \"United States\" only"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "Location \"United States\" only"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "Location \"United States\" only"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "Location \"United States\" only"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "Location \"United States\" only"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 1
+}

@@ -1,0 +1,57 @@
+{
+  "id": "greenhouse-algolia-site-reliability-engineer-iaas-95011a",
+  "jobId": "01a0ab9d-50a5-7d52-aebe-bdfef195011a",
+  "url": "https://job-boards.greenhouse.io/algolia/jobs/6194397004",
+  "source": "greenhouse",
+  "snapshot": {
+    "title": "Site Reliability Engineer, IaaS",
+    "company": "Algolia",
+    "locations": ["Paris, France", "EMEA"],
+    "workplaceType": "unknown",
+    "employmentType": null,
+    "descriptionText": "Algolia is the retrieval intelligence layer that turns intent into trusted, decision-grade outcomes. Powering more than 1.7 trillion queries a year for over 18,000 customers with millisecond latency and 99.999% reliability, we are the recognized leader for Search and Product Discovery by top industry analyst firms. The Algolia platform turns a company's products, content, and business rules into data that humans, applications and AI agents can act upon. The result is trusted customer experiences with stronger conversions for measurable business impact.\n\nThe team\n\nThe Infrastructure as a Service team is at the center of one of Algolia’s most consequential engineering transformations.\n\nFor years, Algolia has operated a production fleet of approximately 4,000 bare-metal servers to deliver the reliability, low latency, and scalability that our customers expect. We are now building the foundations of a unified cloud and Kubernetes platform designed to support Algolia’s growth for years to come.\n\n. We are now building the foundations of a unified cloud and Kubernetes platform designed to support Algolia’s growth for years to come.\n\nThis is not a lift-and-shift project. It is an opportunity to rethink how Algolia provisions, secures, operates, observes, upgrades, and scales production infrastructure and to build it as a platform that engineers can safely consume, rather than a queue of manual requests.\n\nThe opportunity\n\nAs a Site Reliability Engineer in IaaS, you will help build the next generation of Algolia’s production infrastructure.\n\nYou will contribute to the cloud baseline and reliable lifecycle capabilities that enable teams to operate and migrate workloads safely on a cloud-native platform. You will work across cloud foundations, Kubernetes, automation, reliability, and large-scale production operations.\n\nAs a P3 engineer, you will be a hands-on contributor. You will build, operate, and improve production infrastructure while developing deep expertise in cloud, Kubernetes, reliability, and automation.\n\nYOU WILL:\n\n * Build and improve Cloud Baseline capabilities, including identity and access, networking, security, resource inventory, tagging, and auditability.\n * Develop and maintain infrastructure as code and automation for cloud environments and Kubernetes infrastructure.\n * Contribute to reliable, repeatable cloud and cluster lifecycle operations.\n * Help build self-service capabilities, reusable modules, and clear documentation that make the safe path the easy path for platform consumers.\n * Reduce manual work and configuration drift through automation, testing, GitOps practices, and standardisation.\n * Use automation and AI-assisted engineering tools where appropriate to improve infrastructure analysis, documentation, and safe, repeatable changes.\n * Improve observability, monitoring, alerting, capacity management, and operational documentation.\n * Investigate production issues, participate in the on-call rotation, and turn lessons learned into lasting improvements.\n * Work with Infrastructure, Security, FinOps, and engineering teams to deliver reliable, secure, and cost-aware platform capabilities.\n\nYOU MIGHT BE A FIT IF YOU HAVE:\n\n * Hands-on production knowledge of AWS or GCP.\n * Practical Kubernetes knowledge and an interest in operating it in production.\n * Familiarity with infrastructure as code, ideally Terraform.\n * Programming or scripting skills in Python, Go, or an equivalent language.\n * Strong Linux and networking fundamentals.\n * A strong interest in reliability, automation, and solving production problems.\n * Comfort adopting AI-assisted engineering tools, with sound judgement for critical production systems.\n * The ability to communicate clearly and work effectively with a distributed team.\n * Excellent spoken and written English skills.\n\nNICE TO HAVE:\n\n * Familiarity with more than one public cloud provider.\n * Knowledge of GitOps or policy-as-code tooling, such as Argo CD, Helm, OPA, or Kyverno.\n * Experience with cloud migration, platform engineering, or large-scale infrastructure transformation.\n\n----------------------------------------\n\nFLEXIBLE WORKPLACE STRATEGY:\n\nAlgolia’s flexible workplace model is designed to empower all Algolians to fulfill our mission to power search and discovery with ease. We place an emphasis on an individual’s impact, contribution, and output, over their physical location. Algolia is a high-trust environment and many of our team members have the autonomy to choose where they want to work and when.\n\nWe have a global presence with offices in Paris, NYC, London, Sydney and Bucharest, however we also offer many of our team members the option to work remotely either as fully remote or hybrid-remote employees. Positions listed as \"Remote\" are only available for remote work within the specified country. Positions listed within a specific city are only available in that location - depending on the role it may be available with either a hybrid-remote or in-office schedule.\n\nWE’RE LOOKING FOR SOMEONE WHO CAN LIVE OUR VALUES:\n\n * GRIT - Problem-solving and perseverance capability in an ever-changing and growing environment.\n * TRUST - Willingness to trust our co-workers and to take ownership.\n * CANDOR - Ability to receive and give constructive feedback.\n * CARE - Genuine care about other team members, our clients and the decisions we make in the company.\n * HUMILITY - Aptitude for learning from others, putting ego aside.\n\nWe’re looking for talented, passionate people to help build the world’s best search and discovery technology. We value autonomy, diversity, and collaboration. We’re committed to creating an inclusive workplace where everyone is respected and supported—regardless of race, age, ancestry, religion, sex, gender identity, sexual orientation, marital status, color, veteran status, disability, or socioeconomic background.\n\nIMPORTANT NOTICE FOR CANDIDATES - Recruitment Fraud Notice\n\nWe’ve recently seen an increase in recruitment scams targeting job seekers. To help protect yourself, please keep the following in mind:\n\n * Our open positions may appear on third-party job boards, but the best way to apply safely is directly through our careers page.\n * All genuine communication from Algolia will come from an @algolia.com email address. If you receive an email from someone claiming to work at Algolia who does not have an @algolia.com email address, please do not respond or share any personal information.\n * We’ll never ask for payments, purchases, or financial details during the hiring process.\n\nREADY TO APPLY?\n\nIf you share our values and our enthusiasm for building the world’s best search & discovery technology, we’d love to review your application!",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "emea",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "Listed \"Paris, France\"; \"city ... only available in that location\""
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "Listed \"Paris, France\"; \"city ... only available in that location\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "Listed \"Paris, France\"; \"city ... only available in that location\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "Listed \"Paris, France\"; \"city ... only available in that location\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "Listed \"Paris, France\"; \"city ... only available in that location\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "Listed \"Paris, France\"; \"city ... only available in that location\""
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 1
+}

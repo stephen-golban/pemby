@@ -1,0 +1,57 @@
+{
+  "id": "greenhouse-gr8tech-senior-java-developer-959f43",
+  "jobId": "01a0ab9e-3af6-7496-9ca1-3b1afd959f43",
+  "url": "https://job-boards.eu.greenhouse.io/gr8tech/jobs/4940611101",
+  "source": "greenhouse",
+  "snapshot": {
+    "title": "Senior Java Developer",
+    "company": "GR8 Tech",
+    "locations": ["Anywhere"],
+    "workplaceType": "remote",
+    "employmentType": null,
+    "descriptionText": "GR8_TECH builds B2B iGaming platforms for operators who play to lead.\n\nWe deliver full-cycle, high-impact tech designed to scale — from seamless integrations and expert consulting to long-term operational support. Our platform powers millions of active players and drives real business growth. Call it what it is: the iGaming Platform for Champions.\n\nWith 1000+ GR8 people across locations and time zones, we don’t just ship technology — we help operators build success stories across brands, markets, and geos.\n\nOur ambition drives us. Our people make it real.\n\nIf you’re a challenger in spirit and a champion in action — join us.\n\nWhy this role exists:\n\nThis role exists to design, build, and maintain backend services across the Casino platform — bonus and promotional mechanics, wallet and transaction flows, game launch and catalog, and game provider integrations — ensuring reliability, correctness, and performance under high load.\n\nWhat you’ll drive:\n\nCasino platform services\n * Design and develop Spring Boot microservices across the casino domain: bonus processing, game launch, lobby and game catalog management.\n * Implement and evolve promotional mechanics end-to-end — from bonus crediting and wagering logic to expiry and settlement — with correctness guarantees on real money.\n * Integrate third-party game providers, game launch, wallet callbacks (bet/win/refund), provider-side bonus features.\n * Build and evolve REST APIs consumed by internal services and external providers, including request signing, authentication, and API versioning.\n\nReliability & correctness\n * Ensure correctness of real-money transaction and bonus flows — idempotency, retries, timeouts, graceful degradation of downstream calls.\n * Work with Redis for caching and session state; tune service performance under production load.\n * Own observability: metrics (Micrometer/Prometheus, Grafana dashboards), structured logging, alerting.\n\nQuality & delivery\n * Write and maintain unit, integration, and functional tests (JUnit 5, Testcontainers).\n * Ship via GitLab CI to Kubernetes; participate in code review and incident investigation.\n\nWhat makes you a GR8 fit:\n\nMust-have\n\n * 5+ years of experience in back end.\n * Commercial experience with strong proficiency in Java (17+) and Spring Boot 3.x (Web, Security, Data, Actuator).\n * Experience building business-critical domain logic (payments, bonuses, billing, or similar money-adjacent flows).\n * Solid experience integrating third-party REST APIs and designing your own.\n * Understanding of distributed systems basics: idempotency, consistency, timeouts, retries, caching.\n * Experience with SQL and at least one NoSQL store (Redis, Cassandra, or Elasticsearch).\n * Upper-intermediate or higher level of English.\n\nNice-to-have\n\n * Scala experience (parts of our wallet platform run on Scala / Play / Akka).\n * Experience with Kafka and event-driven architectures (some of our services use Spring Cloud Stream).\n * Experience running services on Kubernetes; familiarity with GitLab CI.\n * Familiarity with Prometheus and Grafana.\n * iGaming / betting domain experience.\n *\n\nWhy you’ll love working here:\n\nBenefits Cafeteria — annual budget you allocate to:\n\nSports • Medical • Mental health • Home office • Languages.\n\nWork-life & support\n\n * Paid maternity/paternity leave + monthly childcare allowance.\n * 20+ vacation days, unlimited sick leave, emergency time off.\n * Remote-first + tech support + coworking compensation.\n * Team events (online/offline/offsite).\n * Learning culture with internal courses + growth programs.\n\nOur culture & core values:\n\nGR8_TECH culture is how we win — through trust, ownership, and a growth mindset. We move fast, stay curious, and keep it real, with open feedback, room to experiment, and a team that’s got your back.\n\nFUELLED BY TRUST: we’re open, honest, and have each other’s backs.\n\nOWN YOUR GAME: we take initiative and own what we do.\n\nACCELER8: we move fast, focus smart, and keep it simple.\n\nCHALLENGE ACCEPTED: we grow through challenges and stay curious.\n\nBULLETPROOF: we’re resilient, ready, and always have a plan.",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "timezone-only",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "location field \"Anywhere\"; \"Remote-first\"; no engagement type"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "location field \"Anywhere\"; \"Remote-first\"; no engagement type"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "location field \"Anywhere\"; \"Remote-first\"; no engagement type"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "location field \"Anywhere\"; \"Remote-first\"; no engagement type"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "location field \"Anywhere\"; \"Remote-first\"; no engagement type"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "location field \"Anywhere\"; \"Remote-first\"; no engagement type"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 2
+}

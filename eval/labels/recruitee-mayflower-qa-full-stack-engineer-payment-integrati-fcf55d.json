@@ -1,0 +1,57 @@
+{
+  "id": "recruitee-mayflower-qa-full-stack-engineer-payment-integrati-fcf55d",
+  "jobId": "01a0abad-3685-7f03-93ee-928ebefcf55d",
+  "url": "https://mayflower.recruitee.com/o/qa-full-stack-engineer-payment-integrations",
+  "source": "recruitee",
+  "snapshot": {
+    "title": "QA Full-stack Engineer (Payment integrations)",
+    "company": "Mayflower",
+    "locations": ["Limassol, Lemesos, Cyprus"],
+    "workplaceType": "onsite",
+    "employmentType": "fulltime_permanent",
+    "descriptionText": "Our team is developing a payment gateway for accepting funds from users on behalf of merchants, as well as sending funds from merchants to users. The system involves storing user payment data and is subject to PCI DSS compliance. It contains multiple integrations with payment systems, providers, and other gateways and processors, including 3DS.\n\nJob Responsibilities\n\n * Performing quality control of a high-load web project at all stages of development, from requirements analysis to production release;\n\n * Automating API testing using Kotlin/Java and developing auxiliary utilities;\n\n * Automating UI testing using Playwright and developing auxiliary utilities;\n\n * Code reviewing of automated tests;\n\n * Conducting manual testing;\n\n * Building releases, deploying to environments, verifying tasks in production, and ensuring system stability and operability;\n\n * Processing and resolving requests from technical support and users as part of daily duties;\n\n * Monitoring and improving metrics and dashboards (Grafana);\n\n * Analyzing bugs and incidents in production (Kibana);\n\n * Writing detailed and clear bug and incident reports in Jira;\n\n * Creating and maintaining Postman collections;\n\n * Regularly updating and enhancing the overall test plan in Allure TestOps;\n\n * Assisting in onboarding new QA engineers and ensuring test quality;\n\n * Defining technical epics, preparing tasks, and conducting estimations.\n\nYou’ll thrive here if you have\n\n * 3+ years of experience as a QA Engineer;\n\n * Practical experience in test automation using one of the popular programming languages (preferably Kotlin or Java, possibly JavaScript);\n\n * Practical experience in UI test automation using a popular framework (preferably Playwright);\n\n * Practical experience in manual testing;\n\n * Experience testing integrations with external systems;\n\n * Practical experience using AI-assisted coding tools (Copilot, ChatGPT, Codeium, etc.) to improve speed and quality of development;\n\n * Ability to critically review AI-generated code, ensuring production-ready quality and compliance with company standards;\n\n * Knowledge and ability to apply various test design techniques;\n\n * Knowledge of HTTP protocol methods, features, and semantics;\n\n * Knowledge of SQL at the level of writing queries with various JOIN operations and using indexes;\n\n * Ability to work with test management systems (e.g., Allure TestOps);\n\n * Experience with GitLab;\n\n * Experience with Postman;\n\n * Experience analyzing bugs and incidents in production (Kibana);\n\n * Experience working with metrics and dashboards (Grafana);;\n\n * English proficiency at B1 level or higher.\n\nIt can be a plus\n\n * Experience with payment gateways;\n\n * Practical skills with high-load web projects;\n\n * Experience with Jira and Allure TestOps.\n\nConditions\n\nWe know that great talent deserves great conditions, so here's what you can expect when joining us:\n\n * EU-based employment contract and a 3-year Cyprus work visa with full support for your relocation and visa processes, including assistance for your family.\n\n * EU passport. Opportunity to obtain an EU passport after 4 years of residence\n\n * Full relocation package: flights to Limassol for you and your family, a company-covered apartment for the first month, and full relocation support to make your move smooth and hassle-free.\n\n * Provident fund (Cypus): a long-term savings plan co-funded by you and the Company together (available after probation) that grows throughout your time with us in Cyprus.\n\n * Transparent performance reviews twice a year, with bonus opportunities and salary adjustments.\n\n * Private medical insurance for you and your family\n\n * Corporate mobile plan (unlimited in Cyprus with roaming included)\n\n * Mindfulness & well-being support, including psychological assistance with 50% coverage.\n\n * 50% coverage of school and kindergarten fees for your children.\n\n * Fully covered sports benefits, and also access to in-house electric scooters and bike rentals\n\n * Professional growth support: language courses, conferences, training programs, and coaching.\n\n * Peer recognition program: receive and share kudos for great work.\n\n * A fully equipped office in Limassol’s city center, with everything you need for deep work and collaboration.\n\n * Free breakfasts and lunches in the office and an in-house coffee bar with high-quality drinks and a health bar stocked with nutritious snacks.\n\n * A strong engineering culture: international teams, corporate events, team buildings, and hackathons — because great work happens in great communities.\n\nBenefits are provided in accordance with the company’s policies and eligibility criteria.\n\nRecruitment process\n\n * HR interview (40 min);\n\n * Technical interview (1.5 hour);\n\n * Test task;\n\n * Recommendations check;\n\n * Job Offer.",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "eu-work-authorization",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "On-site Limassol, Cyprus with \"3-year Cyprus work visa\" relocation"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "On-site Limassol, Cyprus with \"3-year Cyprus work visa\" relocation"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "On-site Limassol, Cyprus with \"3-year Cyprus work visa\" relocation"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "On-site Limassol, Cyprus with \"3-year Cyprus work visa\" relocation"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "On-site Limassol, Cyprus with \"3-year Cyprus work visa\" relocation"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "On-site Limassol, Cyprus with \"3-year Cyprus work visa\" relocation"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 2
+}

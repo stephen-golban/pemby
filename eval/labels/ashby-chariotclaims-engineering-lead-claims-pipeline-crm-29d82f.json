@@ -1,0 +1,57 @@
+{
+  "id": "ashby-chariotclaims-engineering-lead-claims-pipeline-crm-29d82f",
+  "jobId": "01a0aba6-1e5d-7175-970c-1694bc29d82f",
+  "url": "https://jobs.ashbyhq.com/chariotclaims/f8176e0b-bc96-49c8-b7e6-9f888e617cf3",
+  "source": "ashby",
+  "snapshot": {
+    "title": "Engineering Lead, Claims Pipeline & CRM",
+    "company": "Chariot Claims",
+    "locations": ["United States"],
+    "workplaceType": "remote",
+    "employmentType": "FullTime",
+    "descriptionText": "Location: Remote / Hybrid (NYC/SF)\n\nPosition Type: Full-Time / Contract (Flexible)\n\nAbout the Role\n\nWe're hiring an Engineering Lead to own Chariot's claims pipeline: the backbone that takes a submitted claim through eligibility, verification, and handoff to the firms we work with, plus the systems that connect claimants, law firms, and our team. You'll turn what today are scripts and manual steps into a reliable, observable pipeline, and build the team around it.\n\nWe're building a verticalized factory for claims. The pipeline is the factory floor: it processes claims reliably, verifies them against trusted sources, and gives every other team, and every person we serve, confidence in the outcome.\n\nThis role is perfect for someone who's analytical, creative, and execution-driven. You thrive in fast-paced environments, love rapid experimentation, and know how to take an idea from prototype to a production system the rest of the team can build on.\n\nBonus: if you've worked in a regulated industry such as legal, healthcare, or finance.\n\nAbout Chariot Claims\n\nChariot Claims is an AI claims agent that helps consumers get paid for every corporate violation impacting them: data breaches, privacy violations, antitrust, and more. We've processed 65,000+ claims, with projected consumer recovery of $75M+.\n\nChariot builds technology to challenge the status quo. We take bold swings at the system to ascertain truth from stories, even if that means drawing legal/PR fire from established actors who are territorial and profit from the status quo.\n\nAs operators, we pride ourselves on our ethics, resilience, and humanity. With each turn, we emerge smarter, better prepared, and with more insiders who share our mission to build a better system. We're already working with 20+ law firms, including several among the five most active complex litigation firms in the country.\n\nWhat You'll Own\n\n * Build real-time claims processing: take claim-quality and fraud-detection capabilities from prototype to dependable, production pipeline stages.\n\n * Build the systems that connect claimants and partner law firms, including the claimant-facing dashboard and case handoff.\n\n * Own pipeline reliability and observability as a first-class concern.\n\n * Contribute to shared platform foundations that make the whole team faster, including internal tooling, MCPs, and agent harnesses.\n\n * Recruit, vet, and grow the engineers on this team.\n\nHow You'll Work (AI-Native)\n\n * AI-native, not AI-assisted. You build with coding harnesses and agents in the loop every day, and you push the frontier of what they can do for the team.\n\n * You treat internal tooling as product. You build the MCPs, harnesses, evals, and human interfaces that make the whole team faster, for internal ops and external users alike.\n\n * You make product calls autonomously. You've shipped products end-to-end and can decide what to build and why without waiting to be told, then defend it with evidence.\n\n * Autonomous and collaborative. You run your vertical like an owner and still pull in the same direction as the rest of the company.\n\nWho You Are\n\n * Experience building and shipping production software, at staff-level technical scope.\n\n * A track record of shipping products end-to-end: you've owned the outcome, not just the code.\n\n * Strong product instincts and a bias toward action; comfortable making informed product decisions on your own.\n\n * Early-stage experience (Series A or earlier).\n\n * You've built and grown a team, or are clearly ready to; you'll be hiring and leading from day one.\n\n * Bonus: experience with real-time or event-driven pipelines, workflow orchestration, and third-party API integration; experience building CRM or operational tooling and analytics instrumentation.\n\n * Stack: Go, AWS.\n\nWhy Join Now\n\n * Massive greenfield to own the factory floor: the pipeline and partner systems that move every claim from submission to a paid outcome for everyday people. Help scale holding corporations accountable (in an era of unchecked corporate greed and weakening regulatory oversight).\n\n * Competitive salary, equity, and benefits package in a fast-growing, high-impact startup.\n\n * Collaborative, smart, humble, mission-driven, high-vibes team that loves music.\n\n * 2-4 off-sites per year in beautiful, cultural destinations; expenses covered for you and a +1.",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "us-only",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "location \"United States\"; \"Remote / Hybrid (NYC/SF)\""
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "location \"United States\"; \"Remote / Hybrid (NYC/SF)\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "location \"United States\"; \"Remote / Hybrid (NYC/SF)\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "location \"United States\"; \"Remote / Hybrid (NYC/SF)\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "location \"United States\"; \"Remote / Hybrid (NYC/SF)\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "location \"United States\"; \"Remote / Hybrid (NYC/SF)\""
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 2
+}

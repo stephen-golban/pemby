@@ -1,0 +1,57 @@
+{
+  "id": "ashby-kong-senior-sre-managed-gateways-7acf9c",
+  "jobId": "01a0aba5-33c7-7cdf-89ee-dd22067acf9c",
+  "url": "https://jobs.ashbyhq.com/kong/68655cc7-790e-4f8c-882f-5b00f04d1bab",
+  "source": "ashby",
+  "snapshot": {
+    "title": "Senior SRE, Managed Gateways",
+    "company": "Kong",
+    "locations": ["Washington, United States"],
+    "workplaceType": "remote",
+    "employmentType": "FullTime",
+    "descriptionText": "Are you ready to unlock intelligence?\n\nIf you don’t think you meet all of the criteria below but are still interested in the job, please apply. Nobody checks every box - we’re looking for candidates that are particularly strong in a few areas, and have some interest and capabilities in others.\n\nSenior SRE, Managed Gateways\n\nAbout the Role:\n\nKong's Managed Gateways is the fastest-growing product in the Kong portfolio, a SaaS offering with ARR growing multifold. As a Senior Site Reliability Engineer focused on Managed Gateways, you'll be instrumental in architecting and maintaining the resilient, scalable infrastructure that powers Kong's mission-critical managed services — and you'll be the technical face of that product for the enterprise customers who depend on it, directly ensuring the reliability and performance that lets them build the next generation of connected applications at global scale.\n\nWhat You’ll Do:\n\nCloud Gateways is a complex, multi-cloud problem — supported across AWS, GCP, and Azure — and our enterprise customers run large, often unique topologies. This role carries two equally deep engineering mandates: owning production reliability for the platform, and acting as the senior technical authority who takes an enterprise customer from kickoff to a fully successful, live implementation.\n\nPlatform & Reliability Engineering\n\n * Lead, mentor, and inspire a high-performing team of Site Reliability Engineers dedicated to Kong's Managed Gateway offerings.\n\n * Architect and implement robust, scalable, and fault-tolerant cloud-native systems using technologies like Kubernetes, Golang, and major cloud providers.\n\n * Own the end-to-end operational lifecycle, from proactive monitoring and alerting to incident response and blameless post-mortems, ensuring continuous service improvement.\n\n * Drive a culture of developer delight by implementing automation, self-service tooling, and streamlined workflows for deploying and managing API gateways.\n\n * Define, track, and report on key SLOs and SLIs to ensure optimal performance and reliability of Managed Gateways.\n\n * Champion technical debt prevention and advocate for architectural best practices that enhance system resilience and reduce operational toil.\n\n * Collaborate cross-functionally with Product, engineering, and Customer Success to influence roadmap decisions and ensure operational readiness for new features.\n\nEnterprise Implementation Engineering\n\n * Partner directly with enterprise customers — working alongside Product leadership, Professional Services, and Customer Success — to drive end-to-end onboarding and implementation of Cloud Gateways, and productize recurring implementation patterns into repeatable playbooks and platform capabilities.\n\n * Bring deep, cross-cloud breadth (AWS, GCP, Azure) to handle unique customer topologies and turn complex setups into successful, production-ready deployments.\n\n * Serve as the technical owner of the customer relationship through implementation, primarily supporting our North America customer base, and be the escalation point Customer Success leans on for technically complex accounts.\n\n * Feed real-world implementation patterns and customer constraints back to Product to further contribute the roadmap.\n\nWhat You’ll Bring:\n\nThe Toolkit\n\n * Extensive experience as a Site Reliability Engineer, focusing on highly available and distributed systems.\n\n * Deep expertise with Kubernetes and cloud-native architectures, preferably across multiple public cloud providers (AWS, GCP, Azure).\n\n * Strong proficiency in Golang or similar modern programming languages for automation and tool development.\n\n * Proven track record in building and maintaining CI/CD pipelines and infrastructure as code (Terraform, Ansible).\n\n * In-depth knowledge of monitoring, logging, and alerting systems (e.g., Prometheus, Grafana, ELK stack, Datadog).\n\n * Experience with managed services, API gateways, or similar network infrastructure is highly desirable.\n\nThe Kong DNA\n\n * You take immense ownership of your systems, treating reliability as a first-class feature.\n\n * You operate with a sense of urgency, especially in critical situations, and drive quick, effective resolutions.\n\n * You thrive in a collaborative environment, actively sharing knowledge and elevating the entire team.\n\n * Kong moves fast, and our team's spread across continents and time zones — plans shift mid-flight, and things don't always line up neatly. You don't need everything settled to do good work. You bring your own calm to the noise, figure things out as you go, and help the people around you do the same.\n\nBonus Points:\n\n * Experience with Service Mesh technologies (e.g., Istio, Linkerd).\n\n * Familiarity with database administration for high-throughput systems (PostgreSQL, Cassandra).\n\n * Contributions to open-source SRE tools or projects.\n\n * Relevant cloud certifications (e.g., AWS Certified DevOps Engineer, CKA).\n\n#LI-KC1\n\nAbout Kong:\n\nKong Inc., the AI Connectivity Company, is building the connectivity layer of AI. Trusted by the Fortune 500® and AI-native startups alike, Kong’s unified API and AI platform enables organizations to secure, manage, accelerate, govern, and monetize the flow of intelligence across APIs and AI traffic — on any model, any cloud. For more information, visit www.konghq.com.",
+    "capturedAt": "2026-09-16T22:29:48.293Z"
+  },
+  "category": "us-only",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "Location \"Washington, United States\"; supports North America customers"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "Location \"Washington, United States\"; supports North America customers"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "Location \"Washington, United States\"; supports North America customers"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "Location \"Washington, United States\"; supports North America customers"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "Location \"Washington, United States\"; supports North America customers"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "Location \"Washington, United States\"; supports North America customers"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T22:34:41Z",
+  "session": 3
+}

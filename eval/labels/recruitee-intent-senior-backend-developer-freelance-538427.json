@@ -1,0 +1,57 @@
+{
+  "id": "recruitee-intent-senior-backend-developer-freelance-538427",
+  "jobId": "01a0abab-618a-76ae-acae-f33dc3538427",
+  "url": "https://intent.recruitee.com/o/senior-backend-developer-freelance",
+  "source": "recruitee",
+  "snapshot": {
+    "title": "Senior Backend Developer (freelance)",
+    "company": "intent",
+    "locations": ["Remote job", "Warsaw, Mazowieckie, Poland"],
+    "workplaceType": "remote",
+    "employmentType": "fulltime_fixed_term",
+    "descriptionText": "In short\n\nIf you're a backend engineer who doesn't just build what's asked, but shapes how it's built, we want to talk. We're looking for someone who can own the technical direction of a project end to end: architecture, infrastructure, trade-offs, and the conversations that come with them. You'd join us on a freelance, time & material basis: you're paid for the hours you actually work on real client projects. Full capacity from the start. The first three months are about figuring out if we're a good match. When things work out, and that depends on the work itself, the project pipeline, and business timing, there's a real path to our core team with a permanent contract and full benefits.\n\nWhy intent?\n\nWe've been designing and co-creating connected devices since 2008. Wearables, smart audio, health-tech hardware for clients like Oura and BOSE, backed by investors like a16z and Founders Fund. We're 60+ people, fully remote, and AI-native since before LinkedIn influencers discovered the term. We use AI every day, in actual work, not just in company decks. Our backend isn't generic CRUD: it's the cloud spine of physical devices, the layer where firmware meets data pipelines, and where one bad architectural call shows up in a sensor reading six months later.\n\nWho this role is NOT for\n\nIf your comfort zone is a well-defined Jira board, clear specs, and someone else making the architectural calls, this isn't going to work. We're not hiring a senior developer who executes well. We're hiring someone who decides what gets built, how it gets built, and why. Someone who walks into a room full of ambiguity and starts creating structure, not waiting for it. If you need a ticket to start moving, if \"that's not in the requirements\" is a sentence you use often, or if you'd rather not be the one explaining a technical trade-off to a client, we're probably not your people. We're AI-native and we expect you to treat AI tools as a daily multiplier, not a gimmick.\n\nWhat you'll do\n\n * Own and evolve the backend architecture for IoT projects: data ingestion pipelines, API design, infrastructure decisions\n\n * Make technical trade-off calls and defend them clearly to the team and to clients\n\n * Design and maintain cloud infrastructure on AWS (EKS, Aurora, DynamoDB, Timestream, S3) with production-grade reliability\n\n * Lead technical discussions: RFCs, architecture reviews, post-mortems, because you see the need, not because someone asked\n\n * Mentor other backend engineers, raise the bar on code quality, and set patterns others can follow\n\n * Work side by side with firmware engineers, mobile developers, QA, PMs, and clients\n\n * Use AI tools as part of your daily workflow, not as a party trick\n\n * Challenge product and technical assumptions when something doesn't add up, even when it means a harder conversation\n\nHow we work\n\nFully remote. We have a pet-friendly office in Warsaw and a coworking space in Gdansk if walls and coffee machines motivate you, but nobody will ask why you're not there. Working hours are flexible: most of the team operates between 10:00 and 18:00 CET, and that's when most meetings happen. Evening calls with US-based clients (up to ~20:00) are part of the rhythm, sometimes a couple of times a week, always planned ahead. You'll be part of the Mobile chapter (which covers backend/cloud too) for knowledge-sharing, and at the same time on a project squad led by a PM for day-to-day delivery.\n\nWhat you'll get\n\n * 90-180 PLN/h net B2B, depending on your experience\n\n * Truly flexible hours: you organize your day\n\n * Fully remote, with pet-friendly Warsaw office + Gdansk cowork if you want them\n\n * Access to our internal knowledge-sharing: tech talks, experiments, side projects\n\n * When the first 3 months work out, and that depends on the work, the project pipeline, and business timing, there's a real path to a permanent contract with a fixed monthly salary, 26 days paid leave, 10 sick days, Saltus medical care, and a training budget\n\nNo sugarcoating: during the freelance period there's no paid leave or medical benefits. Those come with the permanent contract, and we're transparent about that upfront.\n\nYour first weeks\n\nWe aim to give you space to ramp up before jumping into live project work, but this is a real company with real deadlines: if the project needs you sooner, we'll make sure you have the support to hit the ground running. You'll get paired with a technical buddy and tackle progressively bigger tasks, so both sides can see how the collaboration feels. Feedback comes early and often, no one waits three months to tell you something isn't working. If it's great, you'll know. If something needs adjusting, you'll hear about it while there's still time to adjust.\n\nRecruitment process\n\nThe entire process is in English. All interviews are recorded for internal evaluation purposes.\n\n 1. Application with a few screening questions\n\n 2. HR call, ~45 min, casual\n\n 3. Technical meeting, ~90 min, with the technical team\n\n 4. Final feedback within a few days\n\nOnce we're in touch, you'll hear from us fast. We don't ghost and we don't drag.\n\nOne more thing\n\nintent is an equal opportunity employer. We care about what you can do, not where you come from. Send us your CV and a few words about why this caught your eye. Bonus points if you share something you've built that made you proud, ideally something where the architecture mattered.\n\nWhat we're looking for\n\n * 7+ years of backend development, with a meaningful chunk spent leading technical direction, not just writing code\n\n * Strong Node.js skills in production systems at scale (not \"I followed a tutorial once\")\n\n * Deep, hands-on AWS expertise: EKS, Aurora, DynamoDB, Timestream, S3\n\n * Kubernetes (EKS), Docker, and Terraform: you've built and maintained real infrastructure, not just clicked through the console\n\n * Solid understanding of distributed systems, event-driven architectures, and data pipelines\n\n * Experience with MQTT or similar IoT messaging protocols\n\n * CI/CD pipelines you've designed yourself (GitHub Actions, GitLab CI, Jenkins)\n\n * English at B2+, written and spoken: you'll be in rooms with US-based clients and you need to hold your own\n\n * The ability to translate business needs into technical decisions and explain those decisions to non-technical stakeholders\n\n * Strong opinions, loosely held: you propose direction, you defend it, and you change your mind when the evidence says you should\n\nNice to have\n\n * Previous IoT or connected device projects, especially anything involving telemetry at scale\n\n * Golang in production (we're adding it alongside Node.js)\n\n * Observability stack experience: tracing, metrics, structured logging\n\n * Security mindset for cloud-connected devices: secrets, mTLS, OTA updates\n\n * Genuine curiosity about the devices your backend talks to, not just the cloud side of the story",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "contractors-worldwide",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "white",
+      "note": "\"freelance ... net B2B\", location \"Warsaw, Poland\", no region"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "white",
+      "note": "B2B freelance only, no employee route stated"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "white",
+      "note": "\"freelance ... net B2B\", location \"Warsaw, Poland\", no region"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "white",
+      "note": "B2B freelance only, no employee route stated"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "white",
+      "note": "\"freelance ... net B2B\", location \"Warsaw, Poland\", no region"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "white",
+      "note": "B2B freelance only, no employee route stated"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 1
+}

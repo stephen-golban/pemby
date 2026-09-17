@@ -1,0 +1,57 @@
+{
+  "id": "recruitee-transperfect-senior-qa-engineer-london-21c0a7",
+  "jobId": "01a0ab94-f6ac-736b-9484-6a455121c0a7",
+  "url": "https://transperfect.com/o/senior-qa-engineer-london",
+  "source": "recruitee",
+  "snapshot": {
+    "title": "Senior QA Engineer | London",
+    "company": "TransPerfect",
+    "locations": ["London, Greater London, United Kingdom"],
+    "workplaceType": "onsite",
+    "employmentType": "fulltime_permanent",
+    "descriptionText": "We are seeking a Senior QA Engineer to establish and lead quality assurance across a large and growing web platform. This is a critical role responsible for introducing structure, consistency, and confidence into the release process.\n\nKey Responsibilities:\n\nQuality Assurance:\n\n * Define and implement QA processes and standards\n\n * Perform manual testing across multiple websites and applications\n\n * Own regression testing for releases, migrations, and new features\n\n * Act as the quality gate before production releases\n\nAutomation & Improvement:\n\n * Define and begin implementing a test automation strategy\n\n * Select tools and identify areas suitable for automation\n\n * Collaborate with developers and DevOps to improve quality practices\n\n * Mentor junior QA engineers as the team grows\n\nQualifications:\n\n * 5+ years of QA experience, primarily web-focused\n\n * Strong background in manual testing\n\n * Experience setting up QA processes from scratch\n\n * Familiarity with modern web stacks and CMS platforms\n\n * Excellent communication and stakeholder management skills\n\nNice to have:\n\n * Automation experience (Cypress, Playwright, Selenium, etc.)\n\n * Experience with accessibility or performance testing\n\n * Previous lead or senior QA role\n\nBy applying, I confirm I have read and accepted TransPerfect's Privacy Policy: https://www.transperfect.com/about/data-privacy-recruiting",
+    "capturedAt": "2026-09-16T22:29:48.293Z"
+  },
+  "category": "onsite-hybrid-elsewhere",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "Onsite \"London, Greater London, United Kingdom\""
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "Onsite \"London, Greater London, United Kingdom\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "Onsite \"London, Greater London, United Kingdom\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "Onsite \"London, Greater London, United Kingdom\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "Onsite \"London, Greater London, United Kingdom\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "Onsite \"London, Greater London, United Kingdom\""
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T22:34:41Z",
+  "session": 3
+}

@@ -1,0 +1,57 @@
+{
+  "id": "greenhouse-godaddy-senior-ceph-storage-engineer-sre-4b075b",
+  "jobId": "01a0aba3-3886-7261-90ab-ee54674b075b",
+  "url": "https://careers.godaddy/jobs?gh_jid=6690965003",
+  "source": "greenhouse",
+  "snapshot": {
+    "title": "Senior Ceph Storage Engineer- SRE",
+    "company": "GoDaddy",
+    "locations": ["United States", "United States - Remote"],
+    "workplaceType": "remote",
+    "employmentType": null,
+    "descriptionText": "Location Details:\n\nAt GoDaddy the future of work looks different for each team. Some teams work in the office full-time; others have a hybrid arrangement (they work remotely some days and in the office some days) and some work entirely remotely.\n\nThis is a remote position, so you’ll be working remotely from your home. You may occasionally visit a GoDaddy office to meet with your team for events or meetings.\n\nJoin Our Team\n\nGoDaddy's Global Storage Engineering team operates one of the largest Ceph environments in the world, delivering the object, block, and file storage platforms that power GoDaddy's hosting infrastructure, internal services, OpenStack environments, and next-generation AI/HPC workloads. If you're passionate about distributed systems, storage architecture, and solving failure scenarios at massive scale, this is an opportunity to work on infrastructure few engineers will experience in their careers.\n\nCeph is a strategic platform at GoDaddy — not an ancillary service. Our global footprint includes 80+ production clusters, 20,000+ OSDs, 1,830 storage nodes, 300 PB of raw capacity, and 69 billion objects spanning five datacenters across three continents. The platform supports RBD, RGW (S3/Swift), and CephFS workloads through more than 1,550 pools, 574,000 placement groups, and 900+ MDS daemons, creating engineering challenges that demand deep expertise in storage architecture, data durability, performance optimization, automation, and observability.\n\nAs a Senior Ceph Storage Engineer, you'll serve as one of the principal technical leaders for GoDaddy's Ceph platform. You'll design the next generation of storage clusters, lead major platform upgrades, drive capacity and hardware strategy, and establish the standards that govern how the platform scales. You'll be the engineer the team turns to for the most complex storage challenges, helping shape multi-quarter architectural direction while mentoring other engineers in advanced Ceph design and operations. This role is ideal for a seasoned storage engineer who wants to influence the future of a globally distributed storage platform serving millions of customers.\n\nWhat You'll Get to Do\n\n * Design and architect large-scale production Ceph clusters, including CRUSH topology, failure-domain modeling, replication and erasure-coding strategies, storage hardware selection, and data placement architecture.\n * Lead fleet-wide capacity planning, performance modeling, and hardware qualification across 80+ production clusters comprising 20,000+ OSDs and 300 PB of raw storage.\n * Own major platform upgrades and migration initiatives, including Ceph releases, OpenStack integrations, and large-scale storage modernization efforts.\n * Drive resolution of the most complex cross-functional production incidents spanning storage, networking, virtualization, and compute systems.\n * Establish automation, operational standards, and reliability practices that improve platform scalability, reduce toil, and increase engineering efficiency across the storage organization.\n\nYour Experience Should Include\n\n * 7+ years designing, operating, and scaling distributed storage platforms, including deep hands-on ownership of production Ceph environments.\n * Expert-level Ceph knowledge including CRUSH maps, placement groups, OSD architecture, MON/MGR/MDS subsystems, RGW, CephFS, RBD, replication, and erasure coding.\n * Proven experience designing storage architectures and performing capacity planning, durability analysis, performance optimization, and failure-domain modeling at scale.\n * Experience leading major storage platform upgrades, migrations, and modernization programs from planning through production execution.\n * Strong automation and software engineering skills using Python and/or Go, combined with Infrastructure-as-Code and orchestration frameworks such as Terraform, SaltStack, and Ansible.\n\nYou Might Also Have\n\n * Deep expertise with advanced Ceph technologies including RGW Multisite, RBD Mirroring, CephFS at scale, BlueStore tuning, and erasure-coding optimization.\n * OpenStack storage architecture experience including Cinder, Swift, Manila, Nova, and Neutron integrations with Ceph.\n * Kubernetes storage expertise involving CSI drivers, stateful workloads, StorageClasses, and Rook-based Ceph deployments.\n * Experience evaluating and integrating large-scale storage technologies such as NetApp, Isilon, Pure, VAST, Weka, DDN, and AI/HPC storage platforms.\n * Contributions to the Ceph community through upstream development, code reviews, bug fixes, architecture discussions, or open-source storage initiatives.\n\nWe encourage you to apply even if your experience or skillset doesn’t align perfectly with every requirement. We value a wide range of backgrounds and transferable skills, and we are excited to support learning and growth.\n\nAbout us...  GoDaddy is empowering everyday entrepreneurs around the world by providing the help and tools to succeed online, making opportunity more inclusive for all. GoDaddy is the place people come to name their idea, build a professional website, attract customers, sell their products and services, and manage their work. Our mission is to give our customers the tools, insights, and people to transform their ideas and personal initiative into success. To learn more about the company, visit About Us.\n\nAt GoDaddy, we know diverse teams build better products—period. Our people and culture reflect and celebrate that sense of diversity and inclusion in ideas, experiences and perspectives. But we also know that’s not enough to build true equity and belonging in our communities. That’s why we prioritize integrating diversity, equity, inclusion and belonging principles into the core of how we work every day—focusing not only on our employee experience, but also our customer experience and operations. It’s the best way to serve our mission of empowering entrepreneurs everywhere, and making opportunity more inclusive for all. To read more about these commitments, as well as our representation and pay equity data, check out our Diversity and Pay Parity annual report which can be found on our Diversity Careers page.\n\nWe also embrace our diverse culture and offer a range of Employee Resource Groups (Culture). Have a side hustle? No problem. We love entrepreneurs! Most importantly, come as you are and make your own way.\n\nGoDaddy is proud to be an equal opportunity employer. GoDaddy will consider for employment qualified applicants with criminal histories in a manner consistent with local and federal requirements. Refer to our full EEO policy.\n\nOur recruiting team is available to assist you in completing your application. If they could be helpful, please reach out to [email].\n\nGoDaddy doesn’t accept unsolicited resumes from recruiters or employment agencies.\n\nCompensation & Benefits:\n\nWhat We Offer:\n\nWorking at GoDaddy offers many benefits, including competitive pay, generous time off, parental and wellness leave, healthcare, retirement savings program, and much more. Offerings vary by location.\n\nThis role is eligible for a comprehensive benefits package, which includes medical, dental, and vision insurance, a 401(k)-retirement plan, paid sick time, paid flexible time off, paid parental leave, life insurance, short- and long-term disability, AD&D insurance, mental health or EAP programs, remote or hybrid work options, paid holidays, paid Wellness days, tuition assistance, adoption, surrogacy, and fertility benefits, dependent daycare and backup care benefits, Employee stock purchase plan, financial education and advice; and other benefits in accordance with GoDaddy’s benefit plans and applicable law.\n\nActual compensation and benefits eligibility will be determined based on permissible, non-discriminatory factors such as skills, experience, and geographic location.\n\nCompensation:\n\nThe estimated pay ranges for this role are listed below. In addition to base pay, this role may be eligible for other forms of compensation, which may include a corporate bonus and/or equity awards, subject to the terms of applicable plans and individual eligibility.\n\nBay Area (Santa Clara, San Francisco) and Los Angeles:\n$154,000—$231,000 USD\nAustin, D.C. Metro, CA (non-Bay Area), HI, IL, MA, NH, OR, VA, WA:\n$133,000—$199,000 USD\nNew York City Metro, Kirkland/Seattle:\n$140,800—$211,200 USD\nAll other US locations not previously listed:\n$118,500—$177,500 USD",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "us-only",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"United States - Remote\"; US pay ranges only"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"United States - Remote\"; US pay ranges only"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"United States - Remote\"; US pay ranges only"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"United States - Remote\"; US pay ranges only"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"United States - Remote\"; US pay ranges only"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"United States - Remote\"; US pay ranges only"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 1
+}

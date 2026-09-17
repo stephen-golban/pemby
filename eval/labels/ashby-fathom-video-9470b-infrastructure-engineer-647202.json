@@ -1,0 +1,57 @@
+{
+  "id": "ashby-fathom-video-9470b-infrastructure-engineer-647202",
+  "jobId": "01a0ab9d-a5f7-7b97-9715-fd8999647202",
+  "url": "https://jobs.ashbyhq.com/fathom.video/7d8d38ec-393d-415d-a559-138fcd22a052",
+  "source": "ashby",
+  "snapshot": {
+    "title": "Infrastructure Engineer",
+    "company": "Fathom",
+    "locations": ["Remote"],
+    "workplaceType": "remote",
+    "employmentType": "FullTime",
+    "descriptionText": "ABOUT FATHOM\n\nWe created Fathom to eliminate the needless overhead of meetings. Our AI assistant captures, summarizes, and organizes the key moments of your calls, so you and your team can stay fully present without sacrificing context or clarity. From instant, searchable call summaries to seamless CRM updates and team-wide sharing, Fathom transforms meetings from a source of friction into a place for alignment and momentum.\n\nWe’re a small company that creates magical experiences through the hard work of focused builders. We try to live our values - Care Deeply, Seek Leverage, Share Ownership, Sustain Urgency, and Be Tenacious - in everything we do, every day.\n\nWe started Fathom to rid us all of the tyranny of note-taking, and people seem to really love what we've built so far:\n\n🥇 #1 Most Used App of the Year on HubSpot for 2025\n\n🔥 #1 Rated on G2 with 4,500+ reviews and a perfect 5/5 rating\n\n🥇 #1 Product of the Day and #2 AI Product of the Year\n\n🚀 Most installed AI meeting assistant on both the Zoom and HubSpot marketplaces\n\n📈 We’re hitting revenue and usage records every week\n\nWe think you’ll be pretty excited about Fathom too if you give it a try. Sign up today (it’s free)!\n\nROLE OVERVIEW\n\nWe are looking for an SRE who is passionate about leveraging data and automation to drive a highly dynamic infrastructure. The role is a unique blend of infrastructure and internal tooling to reduce friction at every step of delivering an amazing customer experience.\n\nAs part of our team, you'll play a pivotal role in scaling our infrastructure, reducing toil through automation, and contributing to our culture of innovation and continuous improvement.\n\nHOW YOU’LL HELP US WIN\n\n * By 30 Days:\n\n   * Use your observability background to help scale our existing tools to new heights as we continue to grow the platform.\n\n   * Enhance our existing automation for scaling our infrastructure and improve the development experience.\n\n * By 90 Days:\n\n   * Play a key role in continuing to diversify and scale our platform across additional regions.\n\n   * Evaluate options to replace our existing real-time data pipeline for enhanced multi-regional capabilities.\n\n   * Provide platform support to all of engineering, using data-driven decision-making.\n\n * By 1 Year:\n\n   * Work with engineering to re-evaluate what observability means for the Fathom platform, and drive improvements to remove friction\n\n   * Help us design and implement improvements to our elastic multi-regional storage platform.\n\n   * Drive platform improvements to enhance reliability and efficiency\n\nREQUIREMENTS\n\nHard Skills:\n\n * Proficiency with and preference for Infrastructure as Code / GitOps tooling.\n\n * Foundation in Observability best practices and implementation.\n\n * Experience in a SaaS or PaaS environment.\n\n * Experience with Google Cloud Platform (GCP) and Google Kubernetes Engine (GKE), including proficiency with GCP/GKE networking\n\n * Familiarity with our tech stack: Message Queues, Prometheus, ClickHouse, ArgoCD, Github Actions, Golang. (Ruby / Rails is a bonus)\n\nSoft Skills:\n\n * Curiosity-driven with a focus on delivering results.\n\n * A generalist mindset with the ability to dive deep into a wide range of challenges.\n\n * Resilience and an ability to grind through complex problems.\n\n * Openness to disagreement and commitment to decisions once made.\n\n * Strong collaborative skills, with the ability to explain complex insights in an accessible manner.\n\n * Independence in managing one’s workload and priorities.\n\nWHAT'S IN IT FOR YOU\n\n * The opportunity to shape the dynamic platform of a growing company.\n\n * A role that balances scaling infrastructure, enabling development teams, and internal tooling development\n\n * A chance to work with a dynamic and collaborative team.\n\n * Competitive compensation and benefits.\n\n * A supportive environment that encourages innovation and personal growth.\n\nWHY YOU SHOULD JOIN US\n\n * Opportunity for impact. We’re established enough to ship instead of fighting fires and early enough that your work will have a real impact.\n\n * Startup experience. You’ll work closely with our CEO, a 2X Founder/CEO with a background in computer science and product design.\n\n * We embrace being fully remote. We schedule meetings sparingly and instead heavily use async comms (Slack, Notion, Loom)\n\nABOUT THE INTERVIEW\n\n * No live coding. We have no idea who thought writing code on whiteboards was a good idea but we hate it. We’re much more interested in what you’ve done and learned.\n\n * You’ll meet the entire team. We think it’s important that you get to meet everyone you’ll be working with.\n\n * No bullshit. Ask us anything you like. We’ve never understood why companies pretend they’re something that they’re not in the hiring process - you’re going to find out eventually so we’d rather you know who we are up front so we can both make sure this is a good fit for all involved.\n\n * Quick turnaround time. We know you have lots of options so we move fast usually in less than a week from start to finish.",
+    "capturedAt": "2026-09-16T22:29:48.293Z"
+  },
+  "category": "bare-remote",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "white",
+      "note": "Only \"Remote\"; no country, region or engagement stated"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "white",
+      "note": "Only \"Remote\"; no country, region or engagement stated"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "white",
+      "note": "Only \"Remote\"; no country, region or engagement stated"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "white",
+      "note": "Only \"Remote\"; no country, region or engagement stated"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "white",
+      "note": "Only \"Remote\"; no country, region or engagement stated"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "white",
+      "note": "Only \"Remote\"; no country, region or engagement stated"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T22:34:41Z",
+  "session": 3
+}

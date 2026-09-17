@@ -1,0 +1,57 @@
+{
+  "id": "greenhouse-planetscale-enterprise-support-engineer-280a57",
+  "jobId": "01a0ab9e-eac9-75f8-a3ae-40ab68280a57",
+  "url": "https://job-boards.greenhouse.io/planetscale/jobs/4009926009",
+  "source": "greenhouse",
+  "snapshot": {
+    "title": "Enterprise Support Engineer",
+    "company": "PlanetScale",
+    "locations": ["Remote - NA, APAC, EMEA", "Remote - APAC", "Remote - EMEA", "Remote - NA"],
+    "workplaceType": "remote",
+    "employmentType": null,
+    "descriptionText": "PlanetScale is growing rapidly and reinventing the database space. The PlanetScale platform offers both Postgres and Vitess clusters. Vitess, an open-source database clustering system for horizontal scaling of MySQL, enables businesses to efficiently handle large-scale data workloads — without sacrificing developer experience.\n\nOur customers entrust us with what is often their most precious digital asset, their data, so the stakes couldn't be higher. We're looking for a Software Engineer to join our core engineering team and help us build the next generation of database infrastructure.\n\nWhat's the job to be done?\n\n * You will advise and handle support requests from enterprise customers on the PlanetScale platform.\n * You will become a customer-facing subject-matter expert for enterprise customers on the PlanetScale platform.\n * You will identify product gaps in a customer-specific context and work with Technical Account Management, Engineering and Sales Engineering teams to prioritize and escalate them.\n * You will be part of an on call rotation for high priority issues.\n\nThese attributes best describe you…\n\n * You are comfortable in front of customers, empathetic but understanding when to push back to help customers become successful on their own.\n * You have excellent debugging and troubleshooting skills; with a mix of enough experience and intuition to zero in on root-causes for bugs that can leave others stumped.\n * You are comfortable stepping outside your comfort zone. Be it delving into unfamiliar code in Vitess, one of its dependencies, or a random MySQL connector, written in a language you may not know (yet!). Working with code as your main source of documentation doesn't fluster you, and you are happy to help add/correct it as necessary where it may be inaccurate.\n * You can operate independently, but you know when you are in too deep and need to ask for help.\n * You know how to work under pressure in times of urgency. We and our customers both take issues with their data platform seriously.\n\nWhat you will need\n\n * Experience supporting production databases and applications, preferably at scale.\n * Experience with database internals and peformance tuning, specifically for PostgreSQL and MySQL databases\n * Working knowledge of Kubernetes.\n * Strong ability to communicate and deal directly with customers, whether in email, Slack, video conference, or in person.\n\nWhat else will help you be successful\n\n * Knowledge of common application deployment platforms and frameworks. Eg Python, Go, Node, PHP\n * Experience with cloud platforms (AWS, GCP, Azure)\n * Knowledge of monitoring, observability, and debugging tools\n * Contributions to open-source projects, especially in the database or infrastructure space\n\nWhy PlanetScale\n\nWe're redefining how high-growth companies manage data at scale—and we work with some of the most exciting brands in gaming, consumer tech, and B2B SaaS. As a Software Engineer, you'll be at the core of building the platform that powers world-class apps used by hundreds of millions of users worldwide. PlanetScale is a profitable company with a philosophy centered around building small teams of p99 individuals and is recognized as one of the fastest growing companies in America.\n\nAt PlanetScale we believe in supporting people to do their best work and thrive no matter the location. Our mission is to build a diverse, equitable, and inclusive company. We strive to build an inclusive environment where all people feel that they are equally respected and valued, whether they are a candidate or an employee. We welcome applicants of any educational background, gender identity and expression, sexual orientation, religion, ethnicity, age, citizenship, socioeconomic status, disability, pregnancy status, and veteran status.\n\nIf you have a disability, please let us know if there's any way we can make the interview process better for you; we're happy to accommodate!\n\nTotal Compensation and Pay Transparency\n\nAn employee's total compensation consists of base salary + variable comp where appropriate + benefits + equity. A member of our Talent Acquisition team will be happy to answer any further questions when we engage with you to begin the interview process.\n\nSalary range: US $120,000 - $200,000",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "emea",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"Remote - EMEA\", region only; employee post, B2B capped"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"Remote - EMEA\", region only; employee post, B2B capped"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"Remote - EMEA\", region only; employee post, B2B capped"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"Remote - EMEA\", region only; employee post, B2B capped"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"Remote - EMEA\", region only; employee post, B2B capped"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"Remote - EMEA\", region only; employee post, B2B capped"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 1
+}

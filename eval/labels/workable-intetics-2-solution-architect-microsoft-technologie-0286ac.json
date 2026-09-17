@@ -1,0 +1,57 @@
+{
+  "id": "workable-intetics-2-solution-architect-microsoft-technologie-0286ac",
+  "jobId": "01a0ab96-1a6e-7030-a31a-8122a10286ac",
+  "url": "https://apply.workable.com/j/A44E4D5494",
+  "source": "workable",
+  "snapshot": {
+    "title": "Solution Architect (Microsoft Technologies) - Part-time opportunity",
+    "company": "Intetics",
+    "locations": ["Poland"],
+    "workplaceType": "remote",
+    "employmentType": null,
+    "descriptionText": "We are looking for an experienced Solution Architect to support a pre-sales engagement for a large-scale enterprise cloud solution. This role involves working closely with technical and business stakeholders to shape the overall solution architecture, define best practices, and support technical discussions during the discovery phase.\n\nPlease note that project requirements may evolve as additional information becomes available.\n\nLocation: Remote\n\nTravel: Occasional short-term business travel within the EU may be required.\n\nResponsibilities\n\n * Design scalable and secure enterprise solution architectures.\n * Translate business needs into technical solutions and architectural recommendations.\n * Define architecture standards, security principles, and technical roadmaps.\n * Collaborate with engineering, product, and security teams throughout the pre-sales process.\n * Support technical workshops, solution discovery sessions, and customer discussions.\n * Ensure proposed solutions follow modern cloud architecture and security best practices.\n\nRequirements\n\nRequirements\n\n * 7+ years of experience in Solution/Enterprise Architecture, including leadership of enterprise-scale SaaS platforms built on the Microsoft technology stack.\n * Experience establishing architecture standards, security governance, and technical roadmaps for large-scale Microsoft-based enterprise solutions.\n * Strong understanding of distributed systems, event-driven integration, microservices, and cloud-native architecture patterns.\n * Deep expertise in Microsoft Azure, Microsoft Dynamics 365, Microsoft Power Platform, Microsoft Dataverse, and Microsoft Entra ID.\n * Proven experience designing secure multi-tenant SaaS architectures, including tenant isolation, data governance, and authorization models, preferably across Dataverse and Microsoft Fabric/OneLake.\n * Strong knowledge of Microsoft identity and access management, including Entra ID, Conditional Access, RBAC, workload identities, managed identities, and Zero Trust principles.\n * Hands-on experience defining enterprise security architecture for cloud-native applications, including secure network boundaries, API security, secrets management, and platform governance.\n * Excellent stakeholder management and ability to drive architectural decisions across product, engineering, security, and platform teams.\n * Fluent English.\n\nNice to Have\n\n * Experience with IoT or edge computing solutions.\n * Experience with EU-based enterprise or critical infrastructure environments.\n * Knowledge of DevSecOps practices and CI/CD pipelines.\n * Experience participating in pre-sales activities, technical consulting, or solution discovery engagements.",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "eu-work-authorization",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "Location field \"Poland\" only; \"travel within the EU\""
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "Location field \"Poland\" only; \"travel within the EU\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "Location field \"Poland\" only; \"travel within the EU\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "Location field \"Poland\" only; \"travel within the EU\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "Location field \"Poland\" only; \"travel within the EU\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "Location field \"Poland\" only; \"travel within the EU\""
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 2
+}

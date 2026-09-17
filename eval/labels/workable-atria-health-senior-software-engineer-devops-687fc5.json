@@ -1,0 +1,57 @@
+{
+  "id": "workable-atria-health-senior-software-engineer-devops-687fc5",
+  "jobId": "01a0aba0-db35-7f88-8808-d4e602687fc5",
+  "url": "https://apply.workable.com/j/3A3F10F0A4",
+  "source": "workable",
+  "snapshot": {
+    "title": "Senior Software Engineer, DevOps",
+    "company": "Atria Health and Research Institute",
+    "locations": ["United States"],
+    "workplaceType": "remote",
+    "employmentType": null,
+    "descriptionText": "About Atria:\n\nThe Atria Health Institute is a membership-based primary and specialty health care practice with a focus on prevention and longevity. We bring together a multidisciplinary team of renowned physicians to provide proactive, preventive, and precision-based care for Atria members and their families. All care, including primary care, advanced screening and diagnostics, urgent care, specialty care, 24/7 home visits, and imaging is included in members’ annual fee.\n\nOur mission is to make healthspan and lifespan equal for all by translating science into medicine in real-time, all while bringing humanity back into health care. Delivering such robust, personalized, and preventive health care is complex and requires a team-wide dedication to excellence.\nAfter successfully opening our flagship Institute in New York in 2022 and expanding to South Florida in 2024, we are now bringing the Atria experience to the West Coast with the launch of our Los Angeles Institute in late spring 2026.\n\nAtria Health is seeking a Senior Software Engineer for our DevOps team to help design, build, and operate the infrastructure, deployment pipelines, and observability that the rest of engineering relies on every day.\n\nThis is an individual contributor role focused on:\n\n * Owning infrastructure, CI/CD, and automation initiatives end to end; from design through rollout, adoption, and iteration\n * Setting the patterns and standards that keep our systems reliable, observable, and secure as we scale\n * Reducing operational toil and raising the bar on developer productivity across engineering\n\nYou'll partner with the Tech Lead and other DevOps engineers to shape our infrastructure-as-code, build and release process, and monitoring and security posture — and you'll help define the standards others build on. You'll work closely with the Platform, Data Engineering, and domain product teams (Clinical Experience, Member Experience, and Care Delivery) to anticipate their needs and make their path to production smoother. You'll care deeply about both how we build and what we achieve, while working to accelerate the work of our client teams.\n\nInfrastructure & Automation\n\n * Design, build, and maintain cloud infrastructure on Google Cloud Platform using Terraform, and help define the patterns and standards the team builds on.\n * Own and improve CI/CD pipelines in GitHub Actions to make deployments fast, safe, and repeatable.\n * Identify and eliminate sources of operational toil, building automation and tooling that scales across engineering.\n\nReliability & Observability\n\n * Establish meaningful monitoring, dashboards, and alerting in Datadog, and drive down alert noise across the team's systems.\n * Lead incident response within the on-call rotation, and drive postmortems and follow-ups that improve uptime for our applications.\n * Define and track Service Level Objectives (SLOs) for our core infrastructure and build systems, and hold the team to them.\n\nDeveloper Enablement\n\n * Partner with product engineering teams on deployment pipelines, environment issues, and build troubleshooting, and proactively remove recurring friction.\n * Own preview and staging environments, including reliable data sync, masking, and cleanup routines so teams can test against realistic data.\n * Improve developer experience through better tooling, clear runbooks, and documentation.\n\nQuality & Collaboration\n\n * Write well-tested, well-reviewed infrastructure code, and lead design reviews and RFCs with a pragmatic, operations-focused perspective.\n * Design systems and changes to meet the team's goals, weighing tradeoffs across reliability, performance, and security.\n * Give thoughtful code reviews and mentor other engineers through pairing, knowledge sharing, and documentation.\n\nTech Stack\n\n * Languages: TypeScript, Python, Bash\n * Infrastructure: Google Cloud Platform, Terraform, Cloudflare\n * CI/CD: GitHub Actions\n * Databases: MySQL, PostgreSQL, Redis\n * Observability & Incident Management: Datadog, Sentry, Rootly\n * Integrations: Athena EMR, wearable platforms, third-party healthcare APIs\n\nRequirements\n\nCore Experience\n\n * ~5+ years of professional experience in DevOps, SRE, infrastructure, or backend engineering in production environments.\n * Hands-on experience designing and operating infrastructure in at least one cloud provider (ideally Google Cloud Platform).\n * Track record of owning and shipping automation, pipelines, or infrastructure that made a team measurably more productive or reliable.\n * An enthusiasm for developer productivity and making our teams as impactful as possible.\n\nTechnical Skills\n\n * Deep experience with infrastructure-as-code (ideally Terraform) and building CI/CD pipelines (ideally GitHub Actions).\n * Proficient software engineering ability, and strong command of Linux.\n * Strong instincts for monitoring and observability, and confident debugging across logs, traces, and metrics.\n * Solid experience with relational databases (MySQL, PostgreSQL) and containerized workloads.\n * Strong grounding in reliability, performance, and security fundamentals, with the judgment to make sound tradeoffs.\n\nNice to Have\n\n * Experience in healthcare, digital health, or other regulated domains (HIPAA, PHI, SOC 2, etc.).\n * Experience with containers and orchestration (Docker, Kubernetes).\n * Exposure to leading incident response, on-call, and postmortem practices.\n * Experience with database migrations or managing multiple environments at scale.",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "us-only",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "location field \"United States\" only"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "location field \"United States\" only"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "location field \"United States\" only"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "location field \"United States\" only"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "location field \"United States\" only"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "location field \"United States\" only"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 2
+}

@@ -1,0 +1,73 @@
+{
+  "id": "lever-quadcode-desktop-ui-developer-ai-software-14ff4a",
+  "jobId": "01a0ab9d-e08e-7e79-9d1d-c82b6d14ff4a",
+  "url": "https://jobs.eu.lever.co/quadcode/33963386-c714-43f1-966f-a8887e4b156a",
+  "source": "lever",
+  "snapshot": {
+    "title": "Desktop UI Developer (AI Software)",
+    "company": "Quadcode",
+    "locations": [
+      "Georgia",
+      "Serbia",
+      "Armenia",
+      "Dubai",
+      "Kazakhstan",
+      "Uzbekistan",
+      "Belarus",
+      "Poland",
+      "Spain",
+      "Greece",
+      "Kyrgyzstan",
+      "Moldova",
+      "Montenegro",
+      "Portugal",
+      "Thailand"
+    ],
+    "workplaceType": "remote",
+    "employmentType": "Remote, Full-time",
+    "descriptionText": "About the Team\n\nWe are Quadcode, a fintech company excelling in financial brokerage activities and delivering advanced financial products to our global clientele. Our flagship product, an internal trading platform, is offered as a Software-as-a-Service (SaaS) solution to other brokers.\n\nQuadcode.ai is an autonomous native AI studio and multi-agent workspace for software development and design.\n\nWe are building a desktop AI IDE that combines specialized AI agents with a rich visual development environment. The product brings together code, visual editors, Live Interfaces, repository-wide RAG, and built-in multimedia capabilities for UI/UX, 3D, video, and audio.\n\nQuadcode.ai can also orchestrate Claude Code and Codex CLI sessions through MCP, allowing different AI agents and development workflows to work together within a single desktop application.\n\nThe interface is a core part of the product. We are building a complex, highly interactive, and visually rich application with multiple views, editors, panels, dynamic states, real-time updates, animations, graphics, and dynamically generated interfaces.\n\nSome parts of the UI are generated dynamically and currently involve JavaScript, while the core application is built with Python, PySide6, C++.\n\nWe are looking for a Desktop UI Developer who enjoys building sophisticated applications and is comfortable working across different technologies to create complex, polished, and highly interactive interfaces.\n\nTasks\n\nDevelop and evolve the UI of the AI IDE. Build complex, interactive UI components, screens, and workflows. Turn product and design concepts into polished, production-ready interfaces. Work with dynamically generated interfaces and integrate UI components implemented with different technologies. Develop custom UI components, interactions, animations, graphics, and visual elements. Work with dynamic data, asynchronous operations, real-time updates, and complex application states. Keep complex interfaces responsive, performant, and maintainable. Contribute to UI architecture and technical decisions. Own UI features end-to-end — from implementation and interaction logic to integration, performance, and final visual polish. Collaborate closely with backend engineers, AI engineers, and product/design specialists to integrate the interface with the underlying systems.\n\nRequirements\n\n3+ years of professional experience developing complex, interactive UI for desktop or other applications, not just websites or simple web interfaces. Strong programming skills in Python and/or C++. Experience with JavaScript. Strong understanding of UI architecture, component design, application state management, and interaction patterns. Experience creating custom UI components, non-standard interactions, animations, graphics, and visual elements. Experience with asynchronous programming, multithreading, and performance optimization in applications. Understanding of UI responsiveness and performance. Strong attention to visual details, usability, and interaction quality. Ability to work with rapidly changing requirements and learn new technologies when needed. Passion for modern AI technologies and interest in AI-powered development tools. English — minimum B1; fluent Russian. Portfolio or examples of complex interfaces you have developed.\n\nNice to have\n\nExperience with Qt / PySide / PyQt. Experience with QML / Qt Quick. Experience with advanced animations and interactive visual elements. Experience with 2D/3D graphics, rendering, visualization, or multimedia. Experience integrating design systems or Figma designs into production applications. Experience with developer tools, IDEs, editors, creative tools, or AI/LLM-powered applications.\n\nWe offer\n\n * Full-time remote work (service provider contract).\n * Competitive compensation (EUR, USD).\n * Flexible working hours.\n * The opportunity to show creativity, generate ideas, and directly influence the architecture of the AI product.\n * Access to cutting-edge AI tools and platforms.\n * A team of professionals specializing in AI.\n * Positive and friendly atmosphere.\n\n   Show us what you have built\n\n   When applying, please provide examples of complex interfaces you have developed. This can include links, screenshots, images, or short video demos of interfaces you have built, as well as relevant GitHub/GitLab projects or published applications.\n\nWith a team of 500+ creative and tech-driven people across the globe, Quadcode is the place where ideas turn into impact, where every project is a chance to grow, innovate, and make your mark.\n\nJoin us today, and let's shape the future of fintech together!\n\nNote: All applications will be treated with strict confidence. We thank all applicants for their interest, however, only those candidates selected for interviews will be contacted.\n\n#LI-JM1",
+    "capturedAt": "2026-09-16T22:29:48.293Z"
+  },
+  "category": "country-list",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "green",
+      "note": "Country listed; \"Full-time remote work (service provider contract)\""
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "Only \"service provider contract\" offered, no employment"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "Country list includes Georgia, Moldova but not Ukraine"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "Country list includes Georgia, Moldova but not Ukraine"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "green",
+      "note": "Country listed; \"Full-time remote work (service provider contract)\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "Only \"service provider contract\" offered, no employment"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T22:34:41Z",
+  "session": 3
+}

@@ -1,0 +1,57 @@
+{
+  "id": "lever-shieldai-sr-staff-engineer-gnc-bluesky-r5798-fb7432",
+  "jobId": "01a0abad-fff9-7eb8-bedc-7c0dc4fb7432",
+  "url": "https://jobs.lever.co/shieldai/b3bb2565-135f-4bb7-93b3-2599bab544dc",
+  "source": "lever",
+  "snapshot": {
+    "title": "Sr. Staff Engineer, GNC - BlueSky (R5798)",
+    "company": "Shield AI",
+    "locations": ["Remote"],
+    "workplaceType": "remote",
+    "employmentType": "Full Time Employee",
+    "descriptionText": "Shield AI is a venture-backed defense-tech company with the mission of protecting service members and civilians with intelligent systems. Its products include Hivemind autonomy software, V-BAT and X-BAT aircraft, and Aechelon simulation and synthetic reality technologies. With offices and facilities across the U.S., Europe, the Middle East, and Asia-Pacific, Shield AI’s technology actively supports operations worldwide. For more information, visit www.shield.ai. Follow Shield AI on LinkedIn, X, Instagram, and YouTube.\n\nThe Guidance Navigation Control engineering team focuses on researching and developing state-of-the-art algorithms that drive high-performance flight for a blue-sky project.. As a GNC Engineer on this team, you’ll work on an agile team grounded in first principles to push the boundaries of the state-of-the-art.\n\nRequired Qualifications:\n\n * BS in Aerospace, Aeronautical, Mechanical, Electrical, or Software Engineering with a focus on Control Systems\n * Minimum of 7 years of related experience with a Bachelor’s degree; or 6 years and a Master’s degree; or 4 years with a PhD; or equivalent work experience in the area of vehicle dynamics modeling, flight controls, or simulation.\n * Experience with C++ in a production environment\n * Experience with Matlab and Simulink\n * Expert knowledge of aircraft dynamics and control, stability, and handling qualities\n * Experience tuning and optimizing control systems in simulation and real-world\n * Passion for solving complex problems in a fast-moving environment\n * Demonstrated record of working hard, strong communication skills, being a trustworthy teammate, and being kind to others\n * Ability to obtain a SECRET clearance\n\nPreferred Qualifications:\n\n * MS or PhD in Aerospace, Aeronautical, Mechanical, Electrical, or Software Engineering with a focus on Control Systems\n * Experience with Modern Control Theory, e.g. LQR/LQG, Adaptive Control, Robust Control, Model Predictive Control (MPC), etc.\n * Proficient with extracting linear aircraft state space models from nonlinear equations of motion\n * Proficient with design or selection of servos, inertial navigation systems, air data units, vision-based navigation systems\n * Familiarity with Kalman Filters\n * Familiarity with system identification techniques\n * Familiarity with git, continuous integration & delivery, etc.\n\n#LI-AD7\n\nFull-time regular employee offer package:\nPay within range listed + Bonus + Benefits + Equity\n\nTemporary employee offer package:\nPay within range listed above + temporary benefits package (applicable after 60 days of employment)\n\nSalary compensation is influenced by a wide array of factors including but not limited to skill set, level of experience, licenses and certifications, and specific work location. All offers are contingent on a cleared background and possible reference check. Military fellows and part-time employees are not eligible for benefits. Please speak to your talent acquisition representative for more information.\n\n###\n\nShield AI is proud to be an equal opportunity workplace and is an affirmative action employer. We are committed to equal employment opportunity regardless of race, color, ancestry, religion, sex, national origin, sexual orientation, age, marital status, disability, gender identity or Veteran status. If you have a disability or special need that requires accommodation, please let us know.",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "bare-remote",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"Ability to obtain a SECRET clearance\""
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"Ability to obtain a SECRET clearance\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"Ability to obtain a SECRET clearance\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"Ability to obtain a SECRET clearance\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"Ability to obtain a SECRET clearance\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"Ability to obtain a SECRET clearance\""
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 2
+}

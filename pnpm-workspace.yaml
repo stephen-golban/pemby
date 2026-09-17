@@ -1,6 +1,7 @@
 packages:
   - apps/*
   - packages/*
+  - eval
 
 # Dependencies allowed to run install scripts. esbuild (used by tsx) verifies its native binary.
 # @parcel/watcher and @swc/core come with next-intl's optional message extractor, which Pemby does

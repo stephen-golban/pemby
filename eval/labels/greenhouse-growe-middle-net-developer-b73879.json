@@ -1,0 +1,57 @@
+{
+  "id": "greenhouse-growe-middle-net-developer-b73879",
+  "jobId": "01a0aba2-cee1-7f8a-92d1-ec8d67b73879",
+  "url": "https://job-boards.eu.greenhouse.io/growe/jobs/4949619101",
+  "source": "greenhouse",
+  "snapshot": {
+    "title": "Middle .NET Developer",
+    "company": "GROWE",
+    "locations": ["Europe", "Anywhere"],
+    "workplaceType": "remote",
+    "employmentType": null,
+    "descriptionText": "Growe welcomes those who are excited to:\n\n * Deliver backend development initiatives;\n\n * Write clean, readable, maintainable, and well-structured code;\n\n * Coordinate cross-team interactions and dependencies within assigned initiatives;\n\n * Take ownership of received initiatives under the Tech Lead’s review;\n\n * Contribute to the reliability, performance, and maintainability of production systems.\n\nWe need your professional experience:\n\n * 3+ years of commercial backend development experience with C# / .NET 6+, .NET Core, and ASP.NET Core;\n\n * Deep understanding of microservices architecture and distributed systems;\n\n * Advanced experience with asynchronous communication and event-driven architecture;\n\n * Experience working with message brokers such as Kafka or similar;\n\n * In-depth knowledge of relational databases, including SQL, transactions, indexing, and performance optimization; PostgreSQL is an advantage;\n\n * Advanced experience with ORM tools, such as Entity Framework;\n\n * Experience writing unit and integration tests;\n\n * Advanced knowledge of authentication and authorization, including OAuth 2.0 and OpenID Connect;\n\n * Understanding of software design principles, including SOLID, separation of concerns, and testability;\n\n * Understanding of observability and monitoring in production systems.\n\nWe appreciate if you have those personal features:\n\n * Strong ownership of assigned initiatives;\n\n * Ability to work independently on both trivial and non-trivial tasks;\n\n * Effective cross-team coordination and collaboration;\n\n * Attention to clean, readable, and maintainable code.\n\nWe are seeking those who align with our core values:\n\n * GROWE TOGETHER: Our team is our main asset. We work together and support each other to achieve our common goals;\n\n * DRIVE RESULT OVER PROCESS: We set ambitious, clear, measurable goals in line with our strategy and driving Growe to success;\n\n * BE READY FOR CHANGE: We see challenges as opportunities to grow and evolve. We adapt today to win tomorrow.",
+    "capturedAt": "2026-09-16T22:29:48.293Z"
+  },
+  "category": "europe-region",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "Locations \"Europe\", \"Anywhere\" with no engagement type"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "Locations \"Europe\", \"Anywhere\" with no engagement type"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "Locations \"Europe\", \"Anywhere\" with no engagement type"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "Locations \"Europe\", \"Anywhere\" with no engagement type"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "Locations \"Europe\", \"Anywhere\" with no engagement type"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "Locations \"Europe\", \"Anywhere\" with no engagement type"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T22:34:41Z",
+  "session": 3
+}

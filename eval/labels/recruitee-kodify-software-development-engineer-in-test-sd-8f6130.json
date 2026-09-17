@@ -1,0 +1,57 @@
+{
+  "id": "recruitee-kodify-software-development-engineer-in-test-sd-8f6130",
+  "jobId": "01a0ab9a-e698-7134-bda1-848eed8f6130",
+  "url": "https://kodify.recruitee.com/o/software-development-engineer-in-test-sdet",
+  "source": "recruitee",
+  "snapshot": {
+    "title": "Software Development Engineer in Test (SDET)",
+    "company": "Kodify",
+    "locations": ["Remote job", "Barcelona, Catalunya [Cataluña], Spain"],
+    "workplaceType": "remote",
+    "employmentType": "fulltime_permanent",
+    "descriptionText": "Who are we, and why are we hiring?\n\nWe're based on over 15 years of success, producing world-class video content and building, developing, and managing a number of high-traffic websites. Our award-winning content and websites are created exclusively by us and directly for the use of millions of users worldwide. At Kodify, we're not just pushing boundaries in online entertainment—we're rewriting the script! Our goal is to empower our people with everything they need to pioneer innovation in our industry. Our culture is our secret sauce, and we're committed to preserving and enhancing it every step of the way.\n\nJoin our crew, where the Kodify team is not just an asset—it's our crown jewel. We prioritize their growth and well-being above all else, ensuring they're set up for success and always inspired to deliver their best work.\n\nAs a rapidly expanding company with diverse hubs across the globe and over 20 vibrant national cultures, working with us means embracing thrilling challenges tailor-made for a star SDET!\n\nYour Role\n\nWe are looking for a Software Developer in Test to join our fully remote QA team (EU-based candidates only). You will contribute to the design, development, and maintenance of automated testing solutions that help ensure the quality, reliability, and scalability of our platforms.\n\nYou’ll work closely with developers, DevOps engineers, and fellow QA engineers to embed automation into our delivery pipelines and continuously improve how we test. This role suits someone who enjoys building solid, maintainable automation and contributing positively to a mature QA practice.\n\nOur environment values planning and quality, while also recognising that priorities can occasionally shift as products evolve. We’re looking for someone who can adapt thoughtfully, stay constructive, and keep quality moving forward.\n\nYour Responsibilities\n\n * Design, develop, maintain, and improve automated test suites for UI and API testing\n\n * Collaborate with developers and QA team members to ensure meaningful, risk-based test coverage\n\n * Integrate and maintain automation within CI/CD pipelines\n\n * Analyse test results, identify trends and risks, and provide actionable feedback to engineering teams\n\n * Contribute to automation strategy, tooling decisions, and continuous improvement initiatives\n\n * Ensure automation is scalable, maintainable, and efficient, identifying opportunities for optimisation\n\n * Balance long-term automation goals with short-term quality needs when required\n\n * Communicate clearly and constructively during code reviews and technical discussions\n\n * Participate actively in Agile ceremonies (planning, stand-ups, retrospectives)\n\n * Stay up to date with modern testing techniques, tools, and engineering best practices\n\nRequirements\n\n * 4+ years of experience in QA automation/SDET or a similar role\n\n * Strong programming experience with JavaScript / TypeScript\n\n * Hands-on experience with modern automation frameworks such as Playwright, Cypress, TestCafe, WebdriverIO, Jest, Mocha, or similar\n\n * Solid understanding of API testing (REST, GraphQL)\n\n * Experience integrating automation into CI/CD pipelines (GitHub Actions, Jenkins, GitLab CI, etc.)\n\n * Working knowledge of microservices architectures and how they impact testing strategies\n\n * Working knowledge of cloud-based and containerised environments (e.g. AWS, Docker, Kubernetes), sufficient to test, debug, and collaborate effectively with engineering teams\n\n * Working knowledge of edge or traffic-layer platforms such as Cloudflare, including how caching, routing, security rules, or rate limiting can impact testing and automation\n\n * Strong understanding of Git-based workflows\n\n * Excellent analytical, debugging, and problem-solving skills\n\n * Ability to work effectively in a remote, distributed team\n\n * Clear communication skills and a collaborative mindset\n\n * A strong sense of ownership and responsibility for quality\n\nBonus Points\n\n * Experience using AI or LLM-based tools (e.g. ChatGPT, Copilot, Claude) to enhance QA or automation workflows — such as test creation, analysis, refactoring, or productivity improvements\n\n * Familiarity with performance testing tools (e.g. Lighthouse, k6, JMeter)\n\n * Basic knowledge or interest in security testing concepts and common web vulnerabilities\n\n * Experience working with high-traffic or large-scale systems\n\n * Prior experience working in fully remote teams\n\nWhere and when:\n\nFrom wherever you want, the position is fully remote in the EU.\n\nWe’re very flexible about when you get your work done, but we do have some core hours where we like to overlap in order to promote collaboration and low-latency communication between team members (10:00 to 15:00 CET).\n\n * Our daily virtual stand-ups are important for us but other than that, you’re free to manage your own time.\n\nYou\n\n * You take a pragmatic, solutions-oriented approach to quality and automation\n\n * You stay calm and constructive when priorities evolve or challenges arise\n\n * You’re comfortable giving and receiving feedback and focus on improving outcomes, not scoring points\n\n * You believe QA exists to enable teams to ship better software, not to gate or block delivery\n\n * You’re curious, adaptable, and motivated to continuously improve both technically and professionally\n\n * You value collaboration, shared ownership, and clear communication\n\nOptional bonus\n\n * If you’ve read this far, feel free to include the word “octopus” somewhere in your application.\n\nWhat we offer:\n\n * Fully remote position or, if preferred, working in our awesome Barcelona office!\n\n * Agile environment\n\n * Top-notch tech stack!\n\n * Upskill Fridays! Developers take time on Fridays to improve your skills, learn and research new trends that will allow us to level up our stack and processes\n\n * Flexible working hours + core hours!\n\n * 10% on top of your salary for learning and development - of your choice!\n\n * Latest MacBook Pro!\n\n * Company Amazon book account!\n\n * Kodify off-sites, on-sites, events, and team activities!\n\n * Amazing international team!\n\n * 1 day off on your birthday\n\n * Generous vacation and personal days\n\n * 1 month paid sabbatical after 3 years\n\n * Extended parental leave\n\n * Health & Wellness budget",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "eu-work-authorization",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"EU-based candidates only\""
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"EU-based candidates only\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"EU-based candidates only\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"EU-based candidates only\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"EU-based candidates only\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"EU-based candidates only\""
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 1
+}

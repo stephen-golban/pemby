@@ -1,0 +1,57 @@
+{
+  "id": "greenhouse-buildkite-staff-engineer-releases-9e51e2",
+  "jobId": "01a0ab99-8743-70ce-b587-b9a8909e51e2",
+  "url": "https://job-boards.greenhouse.io/buildkite/jobs/5169404008",
+  "source": "greenhouse",
+  "snapshot": {
+    "title": "Staff Engineer - Releases",
+    "company": "Buildkite",
+    "locations": ["ANZ region", "Australia"],
+    "workplaceType": "unknown",
+    "employmentType": null,
+    "descriptionText": "Buildkite’s CI platform is trusted by the world’s leading engineering teams, shipping software to over 1,000,000,000 daily users.\n\nJob Overview\n\nWe're looking for a Staff Engineer to join our Releases team. In this role, you'll help solve some of the most challenging technical problems we face as we continue to scale Buildkite's platform. You'll drive architectural decisions, lead technical strategy, and work closely with engineers, designers, and product managers to deliver impactful improvements.\n\nStaff Engineers at Buildkite are hands-on technical leaders. You'll influence how we design, build, and scale systems while supporting other engineers to deliver their best work.\n\n🔧 About the Team\n\nThe Releases team is building Buildkite's release control plane — a foundational layer that gives platform teams one trusted, auditable view of what shipped, where, and whether it met governance requirements.\n\nOur initial focus is designing a canonical release model (service, environment, commit, artefact, actor, status), reliable ingestion from Pipelines and GitHub Deployments, and an immutable evidence trail that powers policy gates and DORA metrics.\n\nBeyond that foundation, the same platform becomes a progressive delivery product: staged rollouts, canary analysis, blue/green deploys, health-based promotion, and automatic rollback. In short, we're moving from observing and governing releases to orchestrating and optimising them — integrating cleanly with existing CD systems rather than forcing a full replacement.\n\n🚀 What You’ll Do\n\nOwn Technical Direction for the Releases Platform\n\n * Design the release architecture and core data model, including the canonical release entity and its relationships across services, environments, artefacts, and actors\n\n * Lead key technical decisions around security, reliability, and scale — particularly for the immutable evidence trail and policy gate infrastructure\n\n * Drive the hardest cross-system integrations, including ingestion from Pipelines and GitHub Deployments\n\n * Ensure the platform is extensible enough to support progressive delivery capabilities (canary analysis, staged rollouts, health-based promotion, automatic rollback) without requiring customers to replace existing CD tooling\n\nBuild and Improve the Releases Platform\n\n * Design, build, and scale tools and systems relied on by some of the best engineering teams in the world\n\n * Solve complex technical challenges around performance, reliability, and scalability\n\n * Work closely with customers and stakeholders to deeply understand their release and governance challenges, and deliver practical, high-impact solutions\n\n * Drive improvements to developer experience through better tooling, automation, and processes\n\nLead and Unblock\n\n * Investigate and resolve complex performance and reliability issues across the stack\n\n * Explore systems at every layer — from infrastructure patterns to backend services and data stores\n\n * Share knowledge and drive engineering best practices across teams through documentation, mentorship, and pairing\n\n * Support the wider engineering organisation by contributing to cross-team tooling, infrastructure, and frameworks\n\n * Communicate trade-offs effectively and build alignment around technical decisions\n\n🎨 Skills & Experience We Value\n\nTechnical Expertise\n\n * Proven experience working in production environments at scale, ideally using Go, Ruby on Rails, or similar languages\n * Experience designing event-driven or audit-log systems — immutable records, event sourcing, or append-only data models are a strong plus\n * Deep understanding of cloud infrastructure and deploying complex, containerised applications (AWS experience preferred)\n * Familiarity with PostgreSQL or similar relational databases, including reasoning about performance and replication\n * Comfortable solving challenges in distributed systems, observability, and infrastructure reliability\n\nDeployment & Release Experience Essential To This Role\n\n * Hands-on experience building or operating deployment and release-orchestration platforms — designing the workflows that carry a change from merge to production safely, and the systems that model and track those deployments\n * Familiarity with CD systems and deployment tooling (e.g. Argo CD / Argo Rollouts, Spinnaker, Flux, or similar), and with the workflow-orchestration engines that coordinate complex, multi-step deploys (e.g. Temporal or comparable)\n * Deep understanding of progressive delivery: canary deployments and canary analysis, blue/green, staged and phased rollouts, feature flags (e.g. LaunchDarkly), health-based promotion, and automated rollback\n * Experience designing unified, self-service deployment workflows relied on across many teams or business units — reducing the toil of shipping while keeping guardrails and governance in place\n * Experience with DORA metrics, release governance, or compliance/audit requirements in regulated or large-scale engineering environments\n * Background integrating with source control and CI/CD platforms (GitHub, GitLab, Buildkite, etc.)\n\nCollaboration and Communication\n\n * Excellent written and verbal communication skills, especially in a remote-first environment\n * Ability to distil complex technical concepts into clear explanations for diverse audiences\n * A collaborative, pragmatic mindset — balancing technical quality with business context\n * Comfortable mentoring engineers and leading technical discussions across teams\n\nAdditional Experience\n\n * Kubernetes, Terraform, or other infrastructure-as-code tools\n * Familiarity with Kafka, Flink, or other streaming/event-driven systems\n * Background in SRE, systems programming, or Linux/Unix internals\n * Understanding of secure system design and cloud security best practices\n\n✨ Why Join Buildkite\n\nAt Buildkite, we value kindness, autonomy, and collaboration. You’ll be joining a remote-first company where your work directly helps some of the world’s best engineering teams build and ship software faster and more safely.\n\n * Competitive compensation, including salary, equity, and benefits package\n * Flexible, remote-first culture (Remote in the ANZ & PST Regions)\n * Meaningful technical challenges at scale\n * Opportunities for professional growth, technical leadership, and cross-team influence\n * A collaborative, inclusive, and innovative culture where your ideas make a real impact\n\n📍 Where you can work\n\nOur engineering teams are based across ANZ and US-Pacific time zones — a conscious decision that lets us move quickly with real overlap and minimise fully async work. So while Buildkite is fully remote, we don't hire everywhere: if you're applying from outside these regions, we're not currently in a position to hire you, and can't offer sponsorship.\n\n🌈 Equal Opportunity Employer\n\nAt Buildkite, we value diversity and celebrate all types of skills, backgrounds, and experiences. We’re dedicated to fostering an inclusive environment and providing reasonable accommodations throughout our recruitment process.\n\nIf you need any accommodations or support during the application or interview process, please reach out to us at [email].",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "latam-or-other-region",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"ANZ and US-Pacific ... we don't hire everywhere\""
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"ANZ and US-Pacific ... we don't hire everywhere\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"ANZ and US-Pacific ... we don't hire everywhere\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"ANZ and US-Pacific ... we don't hire everywhere\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"ANZ and US-Pacific ... we don't hire everywhere\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"ANZ and US-Pacific ... we don't hire everywhere\""
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 2
+}

@@ -1,0 +1,57 @@
+{
+  "id": "greenhouse-datadog-partner-solutions-architect-emea-fbf6f8",
+  "jobId": "01a0aba5-5ea2-7811-8118-3ca2e3fbf6f8",
+  "url": "https://careers.datadoghq.com/detail/7683726/?gh_jid=7683726",
+  "source": "greenhouse",
+  "snapshot": {
+    "title": "Partner Solutions Architect (EMEA)",
+    "company": "Datadog",
+    "locations": ["Paris, France", "Lisbon", "Madrid", "Paris"],
+    "workplaceType": "unknown",
+    "employmentType": null,
+    "descriptionText": "The Team:\n\nWe are Datadog's in-house product experts. The technical solutions team enables Datadog's worldwide growth by educating potential clients and ensuring that existing customers are happy and successful. We share our technical and product expertise with customers through demos, presentations, technical evaluations, and ongoing support. Technical solutions is a growing global team that collaborates constantly to share knowledge and continuously advance our technical skillset.\n\nThe Opportunity:\n\nThe Partner Solution Architect (PSA) is a Datadog expert who will work closely with Datadog’s Director, Adoption Services, and is aligned to our Channels & Alliances business segment. The PSA is responsible for supporting a variety of technical initiatives and activities for our partners (for example: cloud migration, application modernization, DevOps transformation). They are accountable for the outcome of these initiatives, and frequently collaborate with both Datadog and Partner resources to drive success. The PSA is a trusted technical advisor for our Partner channel.\n\nYou Will:\n\n * Ensure the successful onboarding, training, enablement, and certification of partner technical resources;\n * Participate in periodic joint business planning and review sessions to ensure direct alignment between Datadog and Partner technical teams;\n * Collaborate internally to support Partner technical initiatives such as end-customer demonstrations and proofs of value; partner team enablement workshops; assessment, advice, and coaching on lead practices;\n * Advocate on behalf of Partners’ technical concerns (use cases, feature requests, support issues, e.g.) with Datadog internal teams and personnel, helping to bring those concerns to resolution;\n\n * Analyze and understand Partner service offerings on a regular basis and provide recommendations to enhance the value of those services through greater or improved adoption of Datadog features and capabilities;\n * Collaborate with Datadog’s product management, engineering and technical services teams to help identify and prioritize new features and capabilities;\n * Continuously help curate and evolve lead/best practices for Datadog platform adoption and success.\n\nYou Are:\n\n * Possess a solid technical grounding with hands-on experience of IT Development and/or Operations;\n * A demonstrable track-record and never-ending passion for learning;\n * A self-starter, tech-savvy professional with solid business acumen; ability to articulate Datadog value from server room to boardroom;\n * Confident presentation skills;\n * Must be a current EU resident\n * Desired hands-on experience in two or more of the following areas:\n   * Observability: Datadog, Splunk, AppD, New Relic or Dynatrace\n   * Public Cloud: AWS, Azure, GCP, or Alibaba\n   * Containerization: Docker, Kubernetes, OpenShift, Cloud Foundry\n   * Dev/Scripting: Python, Javascript, Ruby, Perl, PHP, Go\n   * Config Mgmt: Terraform, Ansible, Puppet, Chef\n   * CI / CD: Jenkins, Gitlab\n\nBonus Points:\n\n * Previous experience working in a technical role for or supporting channel partners (Systems Integrators, Managed Services Providers, e.g.);\n * Previous experience using Datadog and/or other cloud monitoring tools (APM, Infrastructure, Logs, Synthetics, NPM);\n * Previous experience with root-cause-analysis, troubleshooting, debugging\n\nWhy You Should Apply:\n\n * Generous and competitive global and US benefits\n * New hire stock equity (RSUs) and employee stock purchase plan\n * Continuous career development and pathing opportunities\n * Product training to develop an in-depth understanding of our product and space\n * Best in breed onboarding\n * Internal mentor and buddy program cross-departmentally\n * Friendly and inclusive workplace culture\n\nAbout Datadog:\n\nDatadog is the monitoring and security platform for cloud applications. Our SaaS product is used by organizations of all sizes across a wide range of industries to enable digital transformation, cloud migration, and infrastructure monitoring of our customers’ entire technology stack, allowing for seamless collaboration and problem-solving among Dev, Ops and Security teams globally. Given the resilience of cloud technologies and importance placed today in digital operations and agility, Datadog continues to innovate and is well positioned for the long term.\n\n----------------------------------------\n\nAbout Datadog:\n\nDatadog is the leading observability and security platform for the AI era, providing businesses with unified visibility across the technology stack to manage complexity at scale. It brings applications, infrastructure, data, models, and security into one place, using AI to detect and resolve issues before they impact customers. Trusted globally by Fortune 500 companies and high-growth AI leaders, Datadog enables businesses to move faster with clarity and confidence. Learn more about #DatadogLife on Instagram, LinkedIn, and Datadog Learning Center.\n\n----------------------------------------\n\nEqual Opportunity at Datadog:\n\nDatadog is proud to offer equal employment opportunity to everyone regardless of race, color, ancestry, religion, sex, national origin, sexual orientation, age, citizenship, marital status, disability, gender identity, veteran status, and other characteristics protected by law. We also consider qualified applicants regardless of criminal histories, consistent with legal requirements. Here are our Candidate Legal Notices for your reference.\n\nDatadog endeavors to make our Careers Page accessible to all users. If you would like to contact us regarding the accessibility of our website or need assistance completing the application process, please complete this form. This form is for accommodation requests only and cannot be used to inquire about the status of applications.\n\nPrivacy and AI Guidelines:\n\nAny information you submit to Datadog as part of your application will be processed in accordance with Datadog’s Applicant and Candidate Privacy Notice. For information on our AI policy, please visit Interviewing at Datadog AI Guidelines.",
+    "capturedAt": "2026-09-16T22:29:48.293Z"
+  },
+  "category": "eu-work-authorization",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"Must be a current EU resident\""
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"Must be a current EU resident\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"Must be a current EU resident\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"Must be a current EU resident\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"Must be a current EU resident\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"Must be a current EU resident\""
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T22:34:41Z",
+  "session": 3
+}

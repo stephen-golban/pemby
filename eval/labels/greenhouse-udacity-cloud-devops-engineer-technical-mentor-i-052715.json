@@ -1,0 +1,57 @@
+{
+  "id": "greenhouse-udacity-cloud-devops-engineer-technical-mentor-i-052715",
+  "jobId": "01a0aba9-e78c-73fc-89a7-e5740c052715",
+  "url": "https://job-boards.greenhouse.io/udacity/jobs/5791251002",
+  "source": "greenhouse",
+  "snapshot": {
+    "title": "Cloud DevOps Engineer Technical Mentor - Independent Contractor (US Canada, Europe, MENA, India & APAC Timezones)",
+    "company": "Udacity",
+    "locations": ["Remote"],
+    "workplaceType": "remote",
+    "employmentType": null,
+    "descriptionText": "About Us\n\nUdacity is now an Accenture company, and exciting things are happening! 🚀 We are on a mission of forging futures in tech through radical talent transformation in digital technologies. We offer a unique and immersive online learning platform, powering corporate technical training in fields such as Artificial Intelligence, Machine Learning, Data Science, Autonomous Systems, Cloud Computing and more. Our rapidly growing global organization is revolutionizing how the enterprise market bridges the talent shortage and skills gaps during their digital transformation journey.\n\nRecognized for its innovative impact, Udacity part of Accenture continues to empower people with the skills they need to secure the jobs they want.\n\nwe are committed to providing high-quality upskilling opportunities in this rapidly evolving field. We regularly launch new projects and are seeking experienced mentors to join us as external contractors to support our programs and learners.\n\nAs new initiatives arise, we will reach out to qualified candidates within this talent pool to provide details on project scope, expected timelines, and compensation. If you are passionate about tackling meaningful challenges and making a difference we invite you to apply and explore this opportunity to collaborate with us.\n\nYou’ll be an excellent fit if you have:\n\n * Proven technical expertise with 5+ years of experience in the relevant field\n * A passion for mentoring and helping others succeed in their learning\n * Excellent interpersonal skills. You enjoy building relationships, communicating effectively, and fostering a positive learning environment\n * A deep understanding of the tech industry and emerging trends in AI and related fields\n * The flexibility to work part-time as an external contractor alongside your current commitments\n\nMandatory Technical Skills\n\n * Strong understanding of AWS Cloud fundamentals and core cloud computing concepts\n * Hands-on experience with AWS services including EC2, S3, RDS, Lambda, DynamoDB, VPC, IAM, SNS, and Elastic Beanstalk\n * Knowledge of cloud networking, load balancing, autoscaling, and security best practices\n * Experience with Infrastructure as Code (IaC) using AWS CloudFormation\n * Proficiency in containerization and orchestration tools such as Docker and Kubernetes\n * Experience building and managing CI/CD pipelines using GitHub Actions and deployment automation tools\n * Familiarity with serverless architectures and AWS Lambda-based development\n * Knowledge of monitoring, logging, and observability tools including Amazon CloudWatch\n * Understanding of microservices architecture and scalable cloud deployments\n * Strong troubleshooting, automation, and problem-solving skills\n\nResponsibilities:\n\nYour responsibilities as a technical mentor will be divided into three major tasks.\n\n 1. 1:1 video calls\n 2. Virtual Technical Deep-Dive Sessions\n 3. Group Q&A sessions\n\nPersonal 1:1 Session:\n\n * Provide personalized support by addressing learner questions related to course content and projects.\n * Prior to the call mentors are expected to review the students' previous project submission(s) - provided by the Mentor Success Team when available - and/or any specific areas of the Nanodegree content or project that the student has expressed confusion or difficulty with.\n\nTechnical Deep-Dive Session:\n\n * For concept deep-dives, mentors will come prepared with a slide presentation that reviews a Nanodegree concept in more detail, share different use-cases for the concept to broaden student perspectives and understanding, and hold a Q&A session with the learners.\n * For project walkthroughs, a mentor will come prepared with a slide presentation that outlines each element of the rubric to help learners understand expectations and typical problem areas they may encounter. This can include a mentor “grading” a sample submission to demonstrate what mentors are looking for when reviewing projects.\n\nGroup Q&A Session:\n\n * Host regular sessions (via Slack or video) to address learner queries related to projects and coursework. No prior preparation required.\n\nWhy should you apply?\n\n * Make an impact by mentoring and contributing to a vibrant, global learning community\n * Showcase your expertise and gain recognition for your technical knowledge\n * Learn and network with our global community of mentors while staying ahead of the curve on cutting-edge technologies\n * Earn additional income with the flexibility to work on your own schedule\n\nMentoring at Udacity offers a unique opportunity to make a significant impact on the lives of learners and to contribute to achieving our mission.\n\nIf you're passionate about learning, technology and want to make a positive impact, we encourage you to apply to become a mentor at Udacity part of Accenture.\n\nLet's work together to shape the future of tech education!\n\nCompensation at Udacity, an Accenture company, varies depending on a wide array of factors, which may include but are not limited to location, role, skill set, and level of experience. As required by local law, Udacity, an Accenture company, will provide a reasonable range of compensation.\n\nWe believe that no one should be discriminated against because of their differences. All employment decisions shall be made without regard to age, race, creed, color, religion, sex, national origin, ancestry, disability status, veteran status, sexual orientation, gender identity or expression, genetic information, marital status, citizenship status or any other basis as protected by federal, state, or local law. Our rich diversity makes us more innovative, more competitive, and more creative, which helps us better serve our clients and our communities.\n\n Accenture Equal Opportunity Statement\n\nUdacity, an Accenture company, is an EEO and Affirmative Action Employer of Veterans/Individuals with Disabilities, and is committed to providing veteran employment opportunities to our service men and women.\n\nApplicants for employment in the US must have work authorization that does not now or in the future require sponsorship of a visa for employment authorization in the United States. Candidates who are currently employed by a client of Accenture or an affiliated Accenture business may not be eligible for consideration. Job candidates will not be obligated to disclose sealed or expunged records of conviction or arrest as part of the hiring process. Further, at Accenture a criminal conviction history is not an absolute bar to employment.\n\nUdacity's Values\n\nObsess over Outcomes - Take the Lead - Embrace Curiosity - Celebrate the Assist\n\nUdacity's Terms of Use and Privacy Policy",
+    "capturedAt": "2026-09-16T22:29:48.293Z"
+  },
+  "category": "bare-remote",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"Independent Contractor (... Europe ... Timezones)\"; region band, not worldwide"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "Contractor-only: \"join us as external contractors\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"Independent Contractor (... Europe ... Timezones)\"; region band, not worldwide"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "Contractor-only: \"join us as external contractors\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"Independent Contractor (... MENA ... Timezones)\"; UTC+4 fits MENA band"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "Contractor-only: \"join us as external contractors\""
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T22:34:41Z",
+  "session": 3
+}

@@ -1,0 +1,57 @@
+{
+  "id": "ashby-preply-senior-machine-learning-platform-ops-eng-ce5ed2",
+  "jobId": "01a0ab9e-cba2-7680-9471-3075cece5ed2",
+  "url": "https://jobs.ashbyhq.com/preply/32d99f30-ad00-41ff-87da-f14cc20abe95",
+  "source": "ashby",
+  "snapshot": {
+    "title": "Senior Machine Learning Platform/Ops Engineer",
+    "company": "Preply",
+    "locations": ["Kyiv"],
+    "workplaceType": "hybrid",
+    "employmentType": "FullTime",
+    "descriptionText": "We power people’s progress.\n\nAt Preply, we’re all about creating life-changing learning experiences. We help people discover the magic of the perfect tutor, craft a personalised learning journey, and stay motivated to keep growing. Our approach is human-led, tech-enabled - and it’s creating real impact.\n\nWe’ve just reached unicorn status with a $150M Series D, accelerating our vision to transform education through human-led, AI-enhanced learning. Today, 100,000+ tutors teach 90+ languages to learners in 180 countries - and we’re only getting started. As a category-defining company, we’re shaping what the future of learning looks like at global scale.\n\nEvery Preply lesson sparks change, fuels ambition, and drives progress that matters. Joining Preply means helping define the future of education at global scale, and building something that truly matters for millions of people, every day.\n\nAbout the role\n\nAs Preply scales its AI-powered learning platform, we’re looking for an experienced Senior ML Platform/Ops Engineer to help productionize machine learning systems with high reliability, performance, and observability.\nYou’ll work at the intersection of ML, data engineering, and cloud infrastructure enabling fast, secure, and reproducible model development from training to deployment.\n\nWe’ve reached 90%+ adoption of AI coding tools across engineering, and we’re now moving towards more autonomous, AI-Augmented development at scale. At Preply, engineers have direct access to the best tools available, with the freedom to use them fully and experiment as they build.\n\nYou’ll collaborate closely with ML Scientists, Backend Engineers, and Data Engineers to shape the foundations of our ML lifecycle.\n\nWhat you’ll be doing\n\n * Build and maintain ML pipelines for training, evaluation, and deployment using tools like Databricks, MLFlow, Airflow, DBT, Sagemaker, Tecton\n\n * Support AI scientist creating reproducible, containerized model training environments (on-demand and scheduled), and manage compute at scale (e.g., spot/GPU autoscaling)\n\n * Define and implement observability and alerting for ML systems (model drift, data quality, feature coverage, etc.)\n\n * Design and scale data ingestion and feature transformation flows using batch (e.g., Spark/BigQuery) and streaming (Kafka or equivalent)\n\n * Contribute to internal Python libraries and platform tooling that accelerate experimentation and deployment for all model teams\n\n * Ensure ML services are modular, testable, and monitored from day one\n\n * Exploration and productionization of LLM-based features (e.g., retrieval pipelines, prompt evaluation, model serving)\n\nWhat we’re looking for\n\n * Proven experience designing and deploying ML systems in production (5+ years in relevant roles)\n\n * Proficiency in Python and SQL, and orchestration tools (Airflow, Kubeflow, Dagster, etc.)\n\n * Experience with modern cloud platforms (preferably GCP or AWS), Kubernetes, and CI/CD workflows\n\n * Understanding of ML model lifecycles: training, validation, deployment, and monitoring\n\n * Strong DevOps practices: Git, IaC (Terraform), logging/observability, containerization (Docker/K8s)\n\n * Ability to work independently with ML Scientists and mentor peers in reliability, testing, and delivery. Product impact driven.\n\n * Exposure to LLM serving, vector databases, or GenAI-powered product flows\n\n * Deep, hands-on expertise in AI tools, especially in agentic AI SDLC\n\nWhy you’ll love it at Preply\n\n * An open, collaborative, dynamic and diverse culture;\n\n * A generous monthly allowance for lessons on Preply.com, Learning & Development budget and time off for your self-development;\n\n * A competitive financial package with equity, leave allowance and health insurance;\n\n * Access to free mental health support platforms;\n\n * The opportunity to unlock the potential of learners and tutors through language learning and teaching in 175 countries (and counting!)\n\n#LI-VL1\n\nOur Principles\n\n * Care to change the world - We are passionate about our work and care deeply about its impact to be life changing.\n\n * We do it for learners - For both Preply and tutors, learners are why we do what we do. Every day we focus on empowering tutors to deliver an exceptional learning experience.\n\n * Keep perfecting - To create an outstanding customer experience, we focus on simplicity, smoothness, and enjoyment, continually perfecting it as every detail matters.\n\n * Now is the time - In a fast-paced world, it matters how quickly we act. Now is the time to make great things happen.\n\n * Disciplined execution - What makes us disciplined is the excellence in our execution. We set clear goals, focus on what matters, and utilize our resources efficiently.\n\n * Dive deep - We leverage business acumen and curiosity to investigate disparities between numbers and stories, unlocking meaningful insights to guide our decisions.\n\n * Growth mindset - We proactively seek growth opportunities and believe today's best performance becomes tomorrow's starting point. We humbly embrace feedback and learn from setbacks.\n\n * Raise the bar - We raise our performance standards continuously, alongside each new hire and promotion. We build diverse and high-performing teams that can make a real difference.\n\n * Challenge, disagree and commit - We value open and candid communication, even when we don’t fully agree. We speak our minds, challenge when necessary, and fully commit to decisions once made.\n\n * One Preply - We prioritize collaboration, inclusion, and the success of our team over personal ambitions. Together, we support and celebrate each other's progress.\n\nDiversity, Equity, and Inclusion\n\nPreply.com is committed to creating an inclusive environment where people of diverse backgrounds can thrive. We believe that the presence of different opinions and viewpoints is a key ingredient for our success as a multicultural Ed-Tech company. That means that Preply will consider all applications for employment without regard to race, color, religion, gender identity or expression, sexual orientation, national origin, disability, age or veteran status.",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "mentions-target-country",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "Hybrid role in \"Kyiv\"; on-site abroad"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "Hybrid role in \"Kyiv\"; on-site abroad"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "green",
+      "note": "location \"Kyiv\" (hybrid), no engagement type"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "green",
+      "note": "location \"Kyiv\" (hybrid), no engagement type"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "Hybrid role in \"Kyiv\"; on-site abroad"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "Hybrid role in \"Kyiv\"; on-site abroad"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 2
+}

@@ -1,0 +1,57 @@
+{
+  "id": "recruitee-mayflower-backend-developer-go-and-php-72a3ad",
+  "jobId": "01a0abad-3686-7b13-a8b3-e8695772a3ad",
+  "url": "https://mayflower.recruitee.com/o/backend-developer-go-and-php",
+  "source": "recruitee",
+  "snapshot": {
+    "title": "Backend Developer (Go and PHP)",
+    "company": "Mayflower",
+    "locations": ["Limassol, Lemesos, Cyprus"],
+    "workplaceType": "onsite",
+    "employmentType": "fulltime_permanent",
+    "descriptionText": "Mayflower is a technology company building highload products used by millions of people worldwide. Operating at the scale of one of the world's top-50 websites, we solve complex engineering challenges and create solutions that power real-time entertainment for a global audience.\n\nWe are looking for an experienced backend developer to join our infrastructure team of a highload (200k RPS) project with a modern and evolving technology stack.\n\nJob Responsibilities\n\n * Work on infrastructure tasks;\n\n * Profiling and optimizing solutions;\n\n * Unit and API code coverage with tests;\n\n * Search for scaling solutions.\n\nThe opportunity to apply knowledge to diverse tasks for a high-load product. Several examples of current project evolution tasks include:\n\n * Separation of complex parts of the project into microservices in Golang;\n\n * Implementation of Event sourcing (Kafka);\n\n * Universal implementation of ML/CV.\n\n * At least 5 years of experience in PHP and Go development (the current version of PHP in the project is 8.2);\n\n * Go, PHP, MySQL - fluent;\n\n * REST API - design and implementation;\n\n * Unit and functional tests - understanding why they are needed, the ability and desire to write them;\n\n * Debugging, profiling, optimization of PHP/Go code - practical experience;\n\n * Sharding, replication - understanding the principles, pros and cons;\n\n * Data structures - to be able to choose the right one for solving a specific task.\n\nQualification that can be a plus:\n\n * Experience with microservices, Elasticsearch, Redis.\n\nConditions\n\nWe know that great talent deserves great conditions, so here's what you can expect when joining us:\n\n * EU-based employment contract and a 3-year Cyprus work visa with full support for your relocation and visa processes, including assistance for your family.\n\n * EU passport. Opportunity to obtain an EU passport after 4 years of residence\n\n * Full relocation package: flights to Limassol for you and your family, a company-covered apartment for the first month, and full relocation support to make your move smooth and hassle-free.\n\n * Provident fund (Cypus): a long-term savings plan co-funded by you and the Company together (available after probation) that grows throughout your time with us in Cyprus.\n\n * Transparent performance reviews twice a year, with bonus opportunities and salary adjustments.\n\n * Private medical insurance for you and your family\n\n * Corporate mobile plan (unlimited in Cyprus with roaming included)\n\n * Mindfulness & well-being support, including psychological assistance with 50% coverage.\n\n * 50% coverage of school and kindergarten fees for your children.\n\n * Fully covered sports benefits, and also access to in-house electric scooters and bike rentals\n\n * Professional growth support: language courses, conferences, training programs, and coaching.\n\n * Peer recognition program: receive and share kudos for great work.\n\n * A fully equipped office in Limassol’s city center, with everything you need for deep work and collaboration.\n\n * Free breakfasts and lunches in the office and an in-house coffee bar with high-quality drinks and a health bar stocked with nutritious snacks.\n\n * A strong engineering culture: international teams, corporate events, team buildings, and hackathons — because great work happens in great communities.\n\nRecruitment process\n\n 1. HR interview (45 min);\n\n 2. Technical interview (1,5 hour);\n\n 3. Live-coding (1,5 hour);\n\n 4. Final interview (1 hour).",
+    "capturedAt": "2026-09-16T22:29:48.293Z"
+  },
+  "category": "eu-work-authorization",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "On-site Limassol, Cyprus with relocation and work visa"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "On-site Limassol, Cyprus with relocation and work visa"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "On-site Limassol, Cyprus with relocation and work visa"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "On-site Limassol, Cyprus with relocation and work visa"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "On-site Limassol, Cyprus with relocation and work visa"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "On-site Limassol, Cyprus with relocation and work visa"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T22:34:41Z",
+  "session": 3
+}

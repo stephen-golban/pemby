@@ -1,0 +1,57 @@
+{
+  "id": "lever-skyways-senior-software-engineer-601c9f",
+  "jobId": "01a0ab98-2bbd-7b0b-9f44-1731c5601c9f",
+  "url": "https://jobs.lever.co/skyways/fb1e015f-9278-4b95-9750-24a42488a9d3",
+  "source": "lever",
+  "snapshot": {
+    "title": "Senior Software Engineer",
+    "company": "Skyways",
+    "locations": ["Austin, TX"],
+    "workplaceType": "onsite",
+    "employmentType": "Full-time",
+    "descriptionText": "Skyways designs, builds, and operates fully autonomous long-range cargo aircraft. Founded in 2017, the company has spent the last eight years developing and deploying autonomous logistics systems for real-world operations.\n\nOur V2 aircraft carries 30 lbs up to 500 miles, and V3 has a maximum range of well over 1,000 miles, a maximum useful load of 100 lbs, and a maximum endurance of nearly 20 hours. Both use a hybrid-electric architecture that takes off like a helicopter and cruises like a plane, enabling long-range autonomous delivery without traditional runway infrastructure.\n\nToday, Skyways aircraft operate across three continents in controlled national airspace under FAA oversight and in support of U.S. military operations. We are transitioning from prototype development to full-rate production and scaling toward large autonomous cargo fleets.\n\nBacked by Y Combinator and a $37M AFWERX STRATFI award from the U.S. Air Force, Skyways is creating a new form of transportation to advance our civilization from Austin, Texas.\n\nThe Opportunity\n\nSkyways is hiring a Senior Software Engineer who can move comfortably from a 3D interface in SkyNav, to a high throughput Python service, to C++ running in our ArduPilot fork. You will own capabilities end to end across product, platform, and vehicle software, using modern AI tools and applied AI techniques to accelerate development and improve autonomous operations. This role is ideal for a broad, hands on engineer who wants to ship software that flies.\n\nWhat You'll Do:\n\nOwn and ship capabilities across SkyNav, backend services, telemetry infrastructure, and autonomous aircraft software. Build interactive 3D visualization and mission planning features in SkyNav using JavaScript or TypeScript and modern web graphics. Develop and operate Python services, APIs, data pipelines, and automation that support aircraft and fleet operations. Make safe, production quality changes to our ArduPilot C++ fork and integrate them with avionics, hardware, and higher level autonomy systems. Scale, load balance, and instrument our telemetry hub so real time fleet data remains reliable as aircraft volume grows. Apply AI and machine learning where they create real value, including engineering automation, data analysis, debugging, and operator tools. Partner closely with GNC, robotics, embedded software, flight operations, and hardware teams to validate changes in simulation and flight testing. Raise the engineering bar through thoughtful architecture, testing, code review, CI/CD, observability, and clear technical documentation.\n\nWhat You'll Bring:\n\n5+ years of professional software engineering experience, with a record of shipping production systems. Strong production proficiency in Python, JavaScript or TypeScript, and C++. Demonstrated ability to work across the stack, from user interfaces and 3D experiences to backend services and systems software. Experience designing APIs or distributed services with attention to performance, reliability, load balancing, and observability. Experience in aviation, robotics, autonomous systems, or another environment where software interacts with real world hardware. Strong applied AI fluency, including using modern AI development tools effectively and building AI enabled product or operational capabilities. Ability to debug complex issues across application, network, operating system, and hardware boundaries. A proactive, low ego approach, strong communication, and comfort owning ambiguous problems from concept through deployment.\n\nBonus Points:\n\nExperience with ArduPilot, PX4, or another autopilot stack. Experience with Electron, CesiumJS, Three.js, Babylon.js, WebGL, or similar 3D technologies. Experience with real time telemetry, event streaming, fleet systems, or high availability infrastructure. Experience with embedded Linux, avionics, sensors, or direct hardware communication. Background in GNC, computer vision, autonomy, or flight testing. Knowledge of FAA operations, UAS regulations, defense programs, or export controlled development environments. Experience at an early stage company where engineers move quickly across disciplines.\n\nIn addition to base salary, offers include stock options, so you own part of what you build. Benefits include medical, dental, and vision coverage, paid time off, paid holidays, a 401k, and life insurance.\n\nRelocation assistance is available for candidates moving to Austin.\n\nWant to join our mission? Apply to learn more!\n\nDue to U.S. government contract requirements, this role is limited to U.S. citizens, U.S. permanent residents, or candidates from specific countries authorized under applicable export control regulations.\n\nSkyways is an Equal Opportunity employer committed to diversity in the workplace. All qualified applicants will receive consideration for employment without regard to race, color, religion, age, national origin, sex, sexual orientation, gender identity, disability, protected veteran status or any other factor protected by applicable local, state or federal laws.",
+    "capturedAt": "2026-09-16T22:29:48.293Z"
+  },
+  "category": "onsite-hybrid-elsewhere",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "Austin onsite; \"limited to U.S. citizens, U.S. permanent residents\""
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "Austin onsite; \"limited to U.S. citizens, U.S. permanent residents\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "Austin onsite; \"limited to U.S. citizens, U.S. permanent residents\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "Austin onsite; \"limited to U.S. citizens, U.S. permanent residents\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "Austin onsite; \"limited to U.S. citizens, U.S. permanent residents\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "Austin onsite; \"limited to U.S. citizens, U.S. permanent residents\""
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T22:34:41Z",
+  "session": 3
+}

@@ -1,0 +1,57 @@
+{
+  "id": "ashby-protege-machine-learning-researcher-rl-agentic-s-d5a2ab",
+  "jobId": "01a0ab9c-f62d-73ff-bcb1-f7d342d5a2ab",
+  "url": "https://jobs.ashbyhq.com/protege/fedd9b1f-1e8b-4ecd-84df-b9db6295af12",
+  "source": "ashby",
+  "snapshot": {
+    "title": "Machine Learning Researcher, RL & Agentic Systems",
+    "company": "Protege",
+    "locations": ["Remote"],
+    "workplaceType": "remote",
+    "employmentType": "FullTime",
+    "descriptionText": "Company Overview:\n\nWe are building Protege to solve the biggest unmet need in AI — getting access to the right training data. The process today is time intensive, incredibly expensive, and often ends in failure. The Protege platform facilitates the secure, efficient, and privacy-centric exchange of AI training data.\n\nSolving AI’s data problem is a generational opportunity. We’re backed by world-class investors and already powering partnerships with some of the most ambitious teams in AI. The company that succeeds will be one of the largest in AI — and in tech.\n\nWe’re a lean, fast-moving, high-trust team of builders who are obsessed with velocity and impact. Our culture is built for people who thrive on ambiguity, own outcomes, and want to shape the future of data and AI.\n\nAbout DataLab\n\nDataLab exists because truly useful data is rare — and the frontier of AI development only moves forward when high-quality data makes it possible.\n\nWe believe data is one of the most underdeveloped layers of the AI stack. Our work focuses on building and evaluating high-value datasets grounded in real-world workflows and economically meaningful tasks.\n\nWe work across multiple domains to create safe, high-fidelity datasets that preserve the structure and context needed to train advanced AI systems.\n\nOur research spans data quality, evaluation design, privacy-preserving transformation, workflow reconstruction, and task-grounded AI training data.\n\nAt DataLab, applied research is tightly connected to real-world deployment. Researchers work directly with large-scale datasets, production systems, and frontier AI training problems.\n\nRole Overview\n\nData is the foundation of AI performance, and we believe model quality starts with data quality. As AI systems become more agentic, a critical challenge is understanding which real-world datasets, tasks, and environments actually lead to better model behavior.\n\nWe’re seeking a Machine Learning Researcher focused on RL and agentic systems to help define, design, and evaluate the datasets, tasks, environments, and benchmarks used to assess advanced AI systems. In this role, you’ll work closely with research and engineering teams to translate real-world workflows into high-value datasets and evaluation assets: structured tasks, interactive environments, benchmark suites, and quality scorecards that help us understand how models perform in realistic settings.\n\nYou’ll help define what “high-quality agentic data” means in practice, using statistical, computational, and ML-driven methods to evaluate dataset quality, task design, environment fidelity, and downstream model performance. You’ll work on the core problems of benchmarking real-world data, measuring how well models perform on that data, and designing RL-style or agentic environments that capture the structure of meaningful work.\n\nThis is an ideal role for someone with a strong machine learning background who is excited by reinforcement learning, agentic systems, evaluation, and the role of data in shaping model behavior. You should be excited by the opportunity to build the datasets and benchmarks that help define what high-quality real-world data looks like for frontier AI systems.\n\nWhat You’ll Do\n\nDesign and build datasets, tasks, and environments\n\nDesign and build datasets, tasks, environments, and evaluation assets for benchmarking agentic systems and multi-step model behavior.\n\nTranslate real-world workflows into structured tasks, interaction traces, trajectories, stateful environments, and verifiable outcomes that can be used to evaluate advanced AI systems.\n\nDevelop frameworks for evaluating real-world data quality\n\nDevelop frameworks that assess diversity, realism, coverage, fidelity, informativeness, and downstream usefulness of datasets for agentic systems.\n\nBuild quality scorecards and evaluation methods that make dataset strengths, weaknesses, and failure modes legible across teams.\n\nBenchmark model behavior in RL and agentic settings\n\nEvaluate planning, tool use, robustness, recovery from failure, task completion, and generalization behavior in RL-style or agentic environments.\n\nConnect model failures back to concrete dataset, environment, or task-design gaps and recommend improvements grounded in empirical evidence.\n\nBuild scalable evaluation and validation tooling\n\nContribute to tools and systems that automate dataset validation, environment generation, rollout analysis, benchmark construction, and evaluation workflows.\n\nImprove internal infrastructure for reproducible experimentation, benchmark management, and evaluation quality.\n\nPartner across research, engineering, and product\n\nCollaborate closely with research and engineering teams to identify data bottlenecks, improve evaluation methodology, and shape internal best practices around task-grounded AI training data.\n\nRepresent DataLab’s perspective in cross-functional discussions around dataset quality, benchmark design, and frontier agentic-system evaluation.\n\nWhat Success Looks Like\n\nNear-term: establish a strong evaluation baseline\n\nCreate clear benchmark frameworks, evaluation assets, and dataset-quality scorecards that help Protege reason about how real-world data impacts advanced agentic systems.\n\nUse rigorous evaluation methods to identify meaningful dataset improvements, improve benchmark fidelity, and sharpen the company’s understanding of what high-impact agentic data actually looks like in practice.\n\nWhat You Bring\n\n * PhD or equivalent Master’s Degree + 4+ years industry experience in machine learning, computer science, statistics, engineering, mathematics, economics, or related quantitative fields.\n\n * Strong understanding of AI model training pipelines, evaluation methodology, and the role of data in shaping model performance.\n\n * Experience working with large, unstructured, or semi-structured datasets used to train or evaluate ML systems.\n\n * Experience with reinforcement learning, sequential decision-making, agentic systems, tool-using models, or multi-step model evaluation.\n\n * Experience designing tasks, benchmarks, environments, simulations, or evaluation frameworks for real-world model behavior.\n\n * Strong intuition for realism, coverage, difficulty, fidelity, and meaningful outcome structure in datasets.\n\n * Strong experimental design, evaluation, benchmarking, and data-validation skills.\n\n * High ownership and ability to independently identify and solve high-impact problems.\n\nNice to have\n\n * Experience developing evaluation frameworks or performance metrics for datasets, agentic systems, or training data.\n\n * Experience translating real-world workflows into structured tasks or environments for model evaluation.\n\n * Experience with RLHF, RLAIF, imitation learning, reward modeling, online or offline RL, or related methods.\n\n * Experience with Harbor or other agent evaluation frameworks.\n\n * Publications or open-source contributions in reinforcement learning, agents, evaluation, or data-centric AI.\n\n * Experience collaborating cross-functionally with product, infrastructure, or partnership teams.\n\n * Experience with synthetic data generation, trajectory generation, or simulation-based environments.\n\nProtege's Values\n\nPass the Loved Ones' Test\n\nWe act with integrity and do the right thing - especially when it's hard and no one is watching.\n\nAlways Find a Way\n\nWe are resourceful, resilient builders who solve hard problems and push through obstacles.\n\nGo Fast and Grow Fast\n\nVelocity matters. We move with urgency, learn quickly, and continuously improve as individuals and as a company.\n\nPractice Kindness and Candor\n\nWe communicate directly and respectfully, building trust through honest feedback and genuine care for one another.\n\nDeliver Together\n\nWe win as one team. Collaboration, accountability, and shared ownership drive our success.\n\nOwn the Outcome. Hone the Craft.\n\nWe take pride in our work, sweat the details, and continuously raise the bar for excellence.",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "bare-remote",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "white",
+      "note": "location only \"Remote\"; no geography or engagement stated"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "white",
+      "note": "location only \"Remote\"; no geography or engagement stated"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "white",
+      "note": "location only \"Remote\"; no geography or engagement stated"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "white",
+      "note": "location only \"Remote\"; no geography or engagement stated"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "white",
+      "note": "location only \"Remote\"; no geography or engagement stated"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "white",
+      "note": "location only \"Remote\"; no geography or engagement stated"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 2
+}

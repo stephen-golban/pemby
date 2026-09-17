@@ -1,0 +1,57 @@
+{
+  "id": "personio-workidentity-devops-engineer-gn-full-remote-deutschla-d9f031",
+  "jobId": "01a0abab-9ce2-7abf-98e1-20d8b1d9f031",
+  "url": "https://workidentity.jobs.personio.de/job/2416377",
+  "source": "personio",
+  "snapshot": {
+    "title": "DevOps Engineer (gn) full remote deutschlandweit",
+    "company": "workidentity GmbH",
+    "locations": ["Remote"],
+    "workplaceType": "remote",
+    "employmentType": "permanent, full-time",
+    "descriptionText": "Einleitung\n\nGestalte die Cloud-Welt aktiv mit\nDu hast Erfahrung mit Kubernetes und Cloud-Technologien und möchtest anspruchsvolle Projekte mitgestalten? In einem agilen, inhabergeführten Unternehmen mit modernem Tech-Stack übernimmst du Verantwortung für den Aufbau zukunftsfähiger Cloud-Plattformen und begleitest Kund:innen bei ihrer Cloud Journey – von der ersten Idee bis zum produktiven Betrieb.\n\nDeine Aufgaben\n\n * Aufnahme und Analyse von Kundenanforderungen im Kubernetes-Umfeld\n * Konzeption und Aufbau moderner Entwickler- und Plattformlösungen\n * Durchführung von Workshops und Strategiemeetings zur Weiterentwicklung bestehender Plattformen\n * Beratung zu Architekturentscheidungen rund um Usability, Skalierbarkeit und Betrieb\n * Enge Zusammenarbeit mit interdisziplinären Teams und Integration bestehender Lösungen\n * Langfristige Betreuung und Weiterentwicklung von Kundenumgebungen\n * Implementierung der konzipierten Cloud- und Containerlösungen beim Kunden\n\nDein Profil\n\n * Abgeschlossenes IT-Studium oder Ausbildung im Bereich Fachinformatik (Systemintegration oder verwandte Fachrichtung)\n * Mehrjährige Erfahrung im Aufbau, Betrieb und der Konzeption von Kubernetes-basierten Plattformen (mind. 2-3 Jahre)\n * Sicheres Auftreten mit ausgeprägter Kundenorientierung und analytischem Denken\n * Kenntnisse über Integration von Kubernetes in Enterprise-Umgebungen\n * Erfahrung mit mindestens einem Hyperscaler (AWS, Azure, GCP) und On-Premise-Alternativen\n * Nice-to-have: Erfahrung mit VMware\n * Sehr gute Deutsch- und gute Englischkenntnisse\n\nBenefits\n\n * Full remote-Möglichkeit innerhalb Deutschlands, gelegentliche Kundentermine vor Ort sind ggf. möglich\n * Vertrauensarbeitszeit und 30 Tage Urlaub\n * Offene, moderne Unternehmenskultur mit flachen Hierarchien und Teamspirit\n * Individuelle Einarbeitung, kontinuierliche Weiterbildung inkl. Zertifizierungen und technische Verantwortung ab Tag eins\n * Betriebliche Altersvorsorge mit Zuschuss\n * Jobrad-Leasing und Sachbezugskarte\n * Fitness- und Wellnessangebote über EGYM Wellpass\n * Mitarbeiterevents und Corporate Benefits\n * Bonus- und Prämienmodelle",
+    "capturedAt": "2026-09-16T22:29:48.293Z"
+  },
+  "category": "bare-remote",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"Full remote-Möglichkeit innerhalb Deutschlands\"; very good German required"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"Full remote-Möglichkeit innerhalb Deutschlands\"; very good German required"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"Full remote-Möglichkeit innerhalb Deutschlands\"; very good German required"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"Full remote-Möglichkeit innerhalb Deutschlands\"; very good German required"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"Full remote-Möglichkeit innerhalb Deutschlands\"; very good German required"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"Full remote-Möglichkeit innerhalb Deutschlands\"; very good German required"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T22:34:41Z",
+  "session": 3
+}

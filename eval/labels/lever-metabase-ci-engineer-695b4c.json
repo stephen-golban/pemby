@@ -1,0 +1,57 @@
+{
+  "id": "lever-metabase-ci-engineer-695b4c",
+  "jobId": "01a0ab9c-0fa9-7114-a8d5-35c060695b4c",
+  "url": "https://jobs.lever.co/metabase/ee8203b5-2cf7-4eae-afd6-3f9724761ad9",
+  "source": "lever",
+  "snapshot": {
+    "title": "CI Engineer",
+    "company": "Metabase",
+    "locations": ["Global Remote"],
+    "workplaceType": "remote",
+    "employmentType": "Full-time (remote)",
+    "descriptionText": "Metabase is the easiest way for people to get insights from their data, from tiny startups who get up and running quickly to major corporations with tens of thousands of users. That's why people love us.\n\nWe bring data tools with the elegance and simplicity of consumer products to the crufty world of enterprise business intelligence. We provide an opinionated open source starting point for how companies should measure, analyze and share their data, which is used by tens of thousands of companies.\n\nOur engineering team of ~70 people is fully distributed across the globe, and we work hard to build an async-friendly, shipping-focused engineering culture.\n\nAbout the Role\n\nWe're seeking CI Engineers to join our engineering team and help keep our testing and release infrastructure healthy, fast, and reliable. This is a critical role — our CI and testing systems are complex, deeply relied upon, and continuously evolving.\n\nYou won't be writing product features, and you won't be expected to author new test coverage. Instead, your job is to own the health and reliability of our CI systems end to end. That means supporting the engineers who are writing tests, but it also means taking initiative — spotting problems before they become outages, identifying patterns in flakiness before they erode confidence in the test suite, and proactively improving the release process rather than waiting for things to break. We want someone who feels a genuine sense of ownership over these systems and acts accordingly.\n\nThis is a great role for a self-directed engineer who takes pride in the reliability of the infrastructure others depend on, and who can both identify problems as well as solve them.\n\nWhat You'll Do\n\n * Own and proactively improve our GitHub Actions-based CI pipelines — not just fixing what breaks, but anticipating bottlenecks and reliability issues before they impact the team\n * Triage and resolve flaky tests across a large, multi-layered test suite spanning unit, integration, and end-to-end tests — identifying systemic patterns, not just one-off fixes\n * Support ongoing releases and take ownership of improving the release process over time\n * Act as a first responder to emergent CI infrastructure issues, diagnosing and resolving them quickly and independently\n * Support product engineers who are writing tests using Cypress, Jest, and our home-grown Clojure-based test frameworks\n * Manage test infrastructure across a wide matrix of databases — we test against nearly all major transactional and analytical cloud databases including PostgreSQL, MySQL, Snowflake, BigQuery, Redshift, and more\n * Document and communicate clearly and asynchronously across a globally distributed team — and keep the broader engineering team informed about the state of CI health without being asked, as well as communicating and demonstrating best practices.\n\nWhat We're Looking For\n\n * Demonstrated experience working with CI/CD systems in a professional engineering environment — you don't need to be a 10-year veteran, but you need to have done this work, done it well, and owned it\n * A proactive, ownership-driven mindset — you notice things that are heading in the wrong direction and fix them without waiting to be asked\n * The independence to manage your own priorities and operate effectively without close supervision across a globally distributed team\n * Solid understanding of GitHub Actions or comparable CI platforms\n * Experience with JavaScript testing tools, particularly Cypress and/or Jest\n * Comfort with containerization (Docker) — our database test matrix depends on it\n * Solid shell scripting skills (Bash)\n * Experience diagnosing and fixing flaky tests in large test suites\n * Strong async written communication skills — this is a remote-first, globally distributed team\n * Curiosity and a systematic approach to debugging unfamiliar systems\n\nNice to Have\n\n * Familiarity with Clojure and TypeScript\n * Experience testing against or operating cloud data warehouses or analytical databases\n * Experience building and supporting software release pipelines\n\nWhy This Role\n\n * You'll have real ownership over systems that directly affect the productivity of a 70-person engineering team\n * You'll work on infrastructure that supports widely used open source software\n * Fully remote, any timezone — we're serious about async-first culture\n * You'll have the autonomy to identify and drive improvements rather than just work a ticket queue\n\nCompensation\nThe US base salary range for this role is $116K–$213K annually, plus equity and benefits.\nCompensation is determined by role, level, location, and individual qualifications, including skills, experience, and scope of responsibility. Pay may vary by geographic location and other job-related factors.\n\nBenefits\nWe offer meaningful equity and a comprehensive US benefits package, including fully employer-covered medical, dental, and vision insurance (with 75% coverage for dependents), a 401(k) with employer match available to enroll after the first 30 days, flexible and unlimited paid time off including sick time, and an asynchronous, remote-first environment.\n\nWe're a global team (50% outside the US), fully distributed (from Thailand to California), who get things done asynchronously, with plenty of uninterrupted time, supporting each other to do the best work of our careers. We offer flexibility (define your own schedule and work from wherever you want), autonomy, and an environment that fosters growth, learning, and development. We're relentlessly user-focused and believe in building long-term value, not short-term hacks. And we raised a $30M Series B to take our approach to the next level for years to come.\n\nFor U.S. applicants: Metabase participates in the federal E-Verify program, which confirms employment authorization of newly hired U.S. based employees. E-Verify is not used as a tool to pre-screen candidates and is only initiated upon hire.\n\nE-Verify Participation Notice (English/Spanish)\nRight to Work Notice (English/Spanish)",
+    "capturedAt": "2026-09-16T22:29:48.293Z"
+  },
+  "category": "timezone-only",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"Global Remote\", \"Fully remote, any timezone\"; no engagement type"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"Global Remote\", \"Fully remote, any timezone\"; no engagement type"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"Global Remote\", \"Fully remote, any timezone\"; no engagement type"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"Global Remote\", \"Fully remote, any timezone\"; no engagement type"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"Global Remote\", \"Fully remote, any timezone\"; no engagement type"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"Global Remote\", \"Fully remote, any timezone\"; no engagement type"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T22:34:41Z",
+  "session": 3
+}

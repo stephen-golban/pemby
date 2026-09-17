@@ -1,0 +1,57 @@
+{
+  "id": "ashby-deeter-analytics-head-of-applied-ai-trading-systems-iron-e9bd5b",
+  "jobId": "01a0ab9d-6b7a-721c-9854-05ded4e9bd5b",
+  "url": "https://jobs.ashbyhq.com/deeter-analytics/6e606b5a-fc1a-49a6-b639-2b7f22dd6c62",
+  "source": "ashby",
+  "snapshot": {
+    "title": "Head of Applied AI & Trading Systems (Iron Man Track)",
+    "company": "Deeter Analytics",
+    "locations": ["remote"],
+    "workplaceType": "remote",
+    "employmentType": "FullTime",
+    "descriptionText": "The Gist\n\nDeeter Analytics is a private investment firm managing approximately $500M across public markets, alternatives, and private investments.\n\nWe are small, profitable, and aggressive.\nWe don’t have committees. We have capital, judgment, and a need for speed.\n\nWe are hiring a technical builder to sit directly beside the CIO and architect the firm’s intelligence layer — the system that determines how we see the market.\n\nThis is not a quant role.\nThis is not a reporting role.\nThis is not a research-for-research’s-sake role.\n\nThis is a Human-in-the-Loop AI role: building the Iron Man suit — an exoskeleton that allows a human trader to process 100× more information without losing intuition, discretion, or speed.\n\nThis role sits at the center of our trading advantage.\n\nThe Problem\n\nMarkets are noisy. Alpha comes from synthesis.\n\nWe already have access to the data.\nThe bottleneck is human bandwidth.\n\nToo much time is spent:\n\n * Refreshing feeds\n\n * Reading things that don’t matter\n\n * Manually stitching together signal across sources\n\nLatency kills insight. Insight kills latency.\n\nThe Mission\n\nBuild the nervous system of the firm.\nYou will own the entire loop:\nIngestion → LLM synthesis → Trader decision\n\nYour mandate is simple and brutal:\nReduce time-to-insight across the entire trading operation.\n\nIf you surface a signal 10 minutes faster than the street, we win.\nIf you automate away four hours of reading, we double our capacity.\n\nWhat You Will Own\n\n1. Information Pipelines (Kill the “F5” Key)\n\nYou will design and maintain automated pipelines that ingest, clean, and normalize:\n\n * News, filings, earnings calls, macro releases\n\n * Social and sentiment data\n\n * Alternative and proprietary datasets\n\nYour job is to replace manual refresh workflows with push-based alerts that surface only what matters — mapped directly to:\n\n * Watchlists\n\n * Live positions\n\n * Risk exposure\n\nReliability matters. Latency matters. Silence matters.\n\n2. AI-Augmented Research (A Live Analyst on the Desk)\n\nYou will deploy LLM-powered systems to summarize, extract, compare, and reason over:\n\n * 10-Ks, 10-Qs, earnings calls, central bank minutes\n\n * Sell-side research and internal notes\n\nYou will build “chat with our data” tools that allow traders to query proprietary research in natural language.\n\nExample:\n\n“Summarize the bear case from the last three earnings calls.”\n\nYou will also create tools for fast discretionary back-testing:\n\n“How did this asset behave during the last three macro shocks of this type?”\n\n3. Signal & Noise Filtering (Protect Attention)\n\nYou will build the filters that decide what breaks through.\n\n * Sentiment and relevance scoring\n\n * Entity recognition that maps events to exposure\n\n * Dashboards that surface regimes, anomalies, and dislocations — not vanity metrics\n\nIf something matters, it should scream.\nIf it doesn’t, it should disappear.\n\n4. Infrastructure, Security & Reliability (Own the Stack)\n\nYou own the compute layer that runs the intelligence system.\n\n * Cloud and/or local GPU infrastructure\n\n * Vector databases and retrieval systems\n\n * Data-privacy-first architectures (local models where required)\n\nYou choose the architecture.\nYou ship what runs fastest and breaks least.\n\nOur proprietary data and strategies do not leak. Ever.\n\nWho You Are\n\nYou Are a Founder-Hacker\n\nYou have likely:\n\n * Built your own projects\n\n * Traded your own account\n\n * Worked in a high-stakes startup, prop shop, or family office\n\nYou hate waiting for permission.\nYou like tools that get used today.\n\nYou Speak Python\n\n * Python (Pandas, NumPy) is non-negotiable\n\n * You have hands-on experience with:\n\n   * LLMs and RAG architectures\n\n   * Prompting, evaluation, and failure modes\n\n   * Vector databases (Pinecone, Milvus, FAISS, etc.)\n\n   * Orchestration (LangChain, Airflow, or custom agents)\n\n   * REST & WebSocket APIs (market data, news, internal tools)\n\n   * Lightweight internal UIs (Streamlit, Dash, Retool, etc.)\n\nYou know the difference between an LLM demo and a production system.\nYou care about latency, hallucinations, and context windows.\n\nYou Get Markets (Enough)\nYou don’t need to be a portfolio manager — but you understand that:\n\nFinancial data is messy, adversarial, and time-sensitive\n\nNarratives are not facts\n\nA 10-K is not a blog post\n\nYou are comfortable making judgment calls under uncertainty.\n\nThe Deeter Mindset\n\nCo-Ownership Mentality\n\nThis is not a role for staff augmentation or support work. We are looking for a technical partner who thinks in outcomes, edge, and shared P&L — and wants to win in a competitive, adversarial market.\n\nWe optimize for people who value:\n\nPragmatism over theory\nYou ship things that work by market open — not in six months.\n\nDiscretionary empathy\nHuman judgment is the final decision engine.\nYour systems amplify it; they do not replace it.\n\nFounder-level ownership\nYou treat this system like your P&L depends on it — because it does.\n\nWhy This Role\n\n 1. Zero Latency\n    You sit with the decision-makers. You push code. We use it the same day.\n\n 2. Real Impact\n    You are not optimizing ad clicks. You are building the intelligence engine for a $500M portfolio.\n\n 3. Sovereignty\n    No middle management. No reporting theater. Just results.\n\nTo Apply\n\nDo not send a cover letter.\n\nSend:\n\n * A GitHub\n\n * A project you’re proud of\n\n * Or a short note on how you would architect a real-time news filter for a trading desk\n\nWe care about how you think and what you build.",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "bare-remote",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "white",
+      "note": "location only \"remote\"; no geography or engagement stated"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "white",
+      "note": "location only \"remote\"; no geography or engagement stated"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "white",
+      "note": "location only \"remote\"; no geography or engagement stated"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "white",
+      "note": "location only \"remote\"; no geography or engagement stated"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "white",
+      "note": "location only \"remote\"; no geography or engagement stated"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "white",
+      "note": "location only \"remote\"; no geography or engagement stated"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 2
+}

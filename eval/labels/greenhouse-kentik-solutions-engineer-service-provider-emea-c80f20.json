@@ -1,0 +1,57 @@
+{
+  "id": "greenhouse-kentik-solutions-engineer-service-provider-emea-c80f20",
+  "jobId": "01a0ab99-4c91-7880-ba00-907d28c80f20",
+  "url": "https://www.kentik.com/careers/jobs/4716196005/?gh_jid=4716196005",
+  "source": "greenhouse",
+  "snapshot": {
+    "title": "Solutions Engineer, Service Provider - EMEA",
+    "company": "Kentik",
+    "locations": ["Remote – EMEA", "Kentik"],
+    "workplaceType": "remote",
+    "employmentType": null,
+    "descriptionText": "Who we are\n\nKentik is the network intelligence platform for modern infrastructure teams. Unlike traditional monitoring and observability tools, we demystify complex network operations, enabling organizations to deliver applications and innovation at scale. Built by network experts to make critical insight accessible to every engineer, Kentik is the real-time source of truth that understands every network in context — from data center to cloud to the internet. This single platform unifies and correlates cloud, device, flow, and synthetic data to turn telemetry into action. Market leaders like Akamai, Booking.com, Dropbox, and Zoom rely on Kentik to run, manage, and optimize their networks.\n\nWhat we do\n\nDo you love helping customers implement innovative solutions and solve technical problems? Do you have a passion for learning about the latest technologies? Do you have a knack for helping customers understand the unique business value that a technical solution provides? Are you ready to bring a combination of technical skills, business acumen, and a do-whatever-it-takes attitude to help customers successfully leverage the Kentik solution to transform their businesses?\n\nKentik is looking for a Solutions Engineer to support our growing sales team and help bring the Kentik solution to market. This is an excellent opportunity to join one of Kentik’s most important technical teams, work with some of the best and brightest engineers in the industry, and develop your skills within one of the most innovative companies in the networking space. Solution Engineers at Kentik have the opportunity to help shape our product strategy and enable a broad set of use cases by working directly with our customers.\n\nWhat you'll do\n\n * Manage all technical aspects of the sales journey including product demonstration, proof of concept, and feature requests\n * Respond to RFIs, RFPs, and RFQs\n * Assist marketing in identifying opportunities to expand product marketing collateral to help close sales opportunities\n * Champion of listening to customer requirements to channel product feedback and feature requests to the product management organization\n * In collaboration with Customer Success, post-sales engineering check-ins with customers to maintain high customer success rates, share new features and product roadmap, and help customers\n * integrate with their own in-house tools and systems\n * Work in tandem with account team to meet or exceed monthly, quarterly, and annual booking objectives\n * Attend trade shows, conferences, and meetups\n * Requires frequent travel (30%+), often on short notice, including regular onsite meetings with current and prospective customers\n\nWhat you'll bring\n\nStudies have shown that some candidates tend to apply to jobs only if they meet 100% of the qualifications. We encourage you to apply if you meet most of the criteria - even if you don’t match all of the qualifications, your skills and experience could be valuable in this role!\n\n * 5+ years experience in a high tech sales/solutions engineering or systems/network engineering role\n * Must be located in EMEA region\n * Fluent in English, with excellent written and verbal communication skills\n * Ability to conduct technical conversations with prospects ranging from staff-level engineers and architects to senior executives\n * Experience managing Cisco/Juniper routers and Linux servers\n * Strong understanding of network and application protocols (e.g. Netflow, SNMP, BGP, DNS, TCP/IP, HTTP) and their use for infrastructure design and operations\n * Understanding of DDoS attacks and basic mitigation methods\n\nNice to haves:\n\n * Previous work experience selling to network and systems engineers and architects from Tier 1 and 2 carrier networks.\n * Background or product interest in security, performance, monitoring, and/or infrastructure space\n * Scripting proficiency in Python, Bash, Ansible, or Perl\n * Basic database and/or SQL experience\n * Familiarity with open source technologies such as LibreNMS, Elastic, Grafana, and Prometheus\n * In depth knowledge of one or more public cloud architectures (e.g. AWS, GCP, Azure)\n * Early member of a sales team at a hyper-growth startup\n\nCome work with us\n\nThe true meaning of Kentik is visibility. We’re committed to making sure everyone feels empowered to use their voice, has a sense of belonging, and is represented at Kentik.\n\nWe don’t look for individuals who fit the culture, but those who will continue to add to the culture.\nWe encourage everyone to apply, especially those individuals who are underrepresented in the industry: people of color, LGBTQI+ community, women, individuals with disabilities (both seen and unseen), veterans, and people of any age or family status.\n\nKentik is committed to creating an inclusive interview process. If you require a reasonable accommodation during the application or interview process, please reach out to [email].\n\nCome as you are!\nYou will be working at a fast-growing, well-funded startup alongside industry thought leaders and network aficionados as we build the future of observability and set the high bar for how network operations and digital businesses should run. With a competitive salary and amazing benefits on top of the meaningful and challenging projects you’ll take on, we’re sure you’ll enjoy joining the Kentik team.\n\n#li-remote",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "emea",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"Must be located in EMEA region\""
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"Must be located in EMEA region\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"Must be located in EMEA region\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"Must be located in EMEA region\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"Must be located in EMEA region\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"Must be located in EMEA region\""
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 2
+}

@@ -1,0 +1,57 @@
+{
+  "id": "workable-netguru-backend-kotlin-engineer-freelance-0b8162",
+  "jobId": "01a0aba9-184c-77b2-9ad6-d31ae80b8162",
+  "url": "https://apply.workable.com/j/6382A1AF4D",
+  "source": "workable",
+  "snapshot": {
+    "title": "Backend Kotlin Engineer - Freelance",
+    "company": "Netguru",
+    "locations": ["Poland"],
+    "workplaceType": "remote",
+    "employmentType": null,
+    "descriptionText": "Netguru is a trusted partner in digital commerce. The company helps leading brands modernize B2B solutions, marketplaces, and retail ecosystems. Since 2008, it has empowered businesses with cutting-edge technology, AI-powered personalization, and world-class engineering and design teams. A certified B Corporation®, Netguru is trusted by major brands including IKEA, VW, OLX, Delivery Hero, Żabka, Wolt, Careem, and Vinted.\n\nHow freelancing works at Netguru?\n\nAs a Netguru freelancer, you can choose what works well for you. You decide when, where, and how you work on projects and tasks.\n\nWe match you with work that fits your skills. Plus, you have access to various opportunities across different industries and companies. That means you will not only gain more experience, but also develop various skills.\n\nBut there's more. Netguru freelancers can benefit from full-time collaboration and really be a part of the team.\n\nSo, are you ready to make an impact? Join Netguru, and let's build beautiful software together.\n\nCurrently we are looking for a Backend Kotlin Engineer\n\nSalary range (Regular): from 70 PLN/h\n\nEngagement: fulltime\n\nWorking Hours: CET\n\nStart date: around mid July 2026\n\nProject duration: minimum 6 months\n\nRequirements\n\n * Good command of written and spoken English.\n * Located in European Union\n * Kotlin\n * Kubernetes\n * Event-driven systems (Kafka)\n * CI/CD for mobile and backend applications\n * DevOps collaboration\n * Certification and compliance processes\n\nBenefits\n\nIn return, we offer:\n\n * 100% remote, flexible work.\n\n * Work with an experienced team of developers and continuous development of your hard and soft skills.\n\n * Dev-friendly processes such as Continuous Integration, Continuous Delivery, Code Review and bug bashes.\n\n * Long-term collaboration on challenging products (FinTech, B2B software, E-commerce and more).\n\nHere's what you can expect from the recruitment process:\n\n * First, you'll meet with one of our recruiters to get to know each other better.\n * If everything goes well, you'll have the opportunity to meet with the client during online interviews.\n\nDon't hesitate and apply right away!\n\nAt Netguru, we're committed to creating an inclusive environment for everyone. If you require any disability-related adaptations during the recruitment process, please let us know. We're here to help!",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "eu-work-authorization",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"Located in European Union\" required"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"Located in European Union\" required"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"Located in European Union\" required"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"Located in European Union\" required"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"Located in European Union\" required"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"Located in European Union\" required"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 1
+}

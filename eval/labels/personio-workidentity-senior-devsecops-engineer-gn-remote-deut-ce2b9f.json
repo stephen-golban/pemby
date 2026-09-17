@@ -1,0 +1,57 @@
+{
+  "id": "personio-workidentity-senior-devsecops-engineer-gn-remote-deut-ce2b9f",
+  "jobId": "01a0abab-9ce1-780a-bcc9-674e0ace2b9f",
+  "url": "https://workidentity.jobs.personio.de/job/2479975",
+  "source": "personio",
+  "snapshot": {
+    "title": "(Senior) DevSecOps Engineer (gn) remote - deutschlandweit",
+    "company": "workidentity GmbH",
+    "locations": ["Remote"],
+    "workplaceType": "remote",
+    "employmentType": "permanent, full-or-part-time",
+    "descriptionText": "Einleitung\n\nDu bist in der DevOps-Welt zu Hause und hast gleichzeitig eine Leidenschaft für IT-Security? Dann könnte diese Rolle der nächste Schritt in deiner Karriere sein.\nFür meinen Stammkunden - eine hochmoderne IT-Beratung suche ich einen DevSecOps Engineer (gn) in remote deutschlandweit.\nHier kannst du anspruchsvolle Kundenprojekte in einem motiviertem Team mitgestalten und bist Teil eines agilen, inhabergeführten Unternehmens mit modernem Tech-Stack.\n\nDeine Aufgaben\n\n * Du analysierst Anforderungen und entwickelst sichere Cloud- und Kubernetes-Lösungen\n\n * Du konzipierst, implementierst und betreibst moderne DevSecOps- und Plattform-Architekturen\n\n * Du berätst zu Architektur-, Security- und Betriebsfragen mit Fokus auf Skalierbarkeit und Automatisierung\n\n * Du integrierst Security-Prozesse und -Tools in bestehende CI/CD- und Kubernetes-Umgebungen\n\n * Du automatisierst Security- und Plattformprozesse, z. B. mit Python und APIs\n\n * Du unterstützt bei der Umsetzung von Projekten sowie im laufenden Betrieb\n\n * Du arbeitest eng mit interdisziplinären Teams zusammen und entwickelst Plattformen kontinuierlich weiter\n\nDein Profil\n\n * Du verfügst über mehrere Jahre Berufserfahrung im DevSecOps-, Cloud- oder IT-Security-Umfeld (ca. 3-5 Jahre oder mehr)\n\n * Du bringst sehr gute Kenntnisse in Kubernetes mit und hast idealerweise eine CKA-Zertifizierung\n\n * Du arbeitest sicher mit Linux, Git/GitOps, Terraform, Helm und Python\n\n * Du hast ein gutes Verständnis von Security-Konzepten, Best Practices und modernen Cloud-Architekturen\n\n * Du kommunizierst sicher auf Deutsch (mindestens C1-Niveau) und gut auf Englisch\n\nNice to have\n\n * Zertifizierung als Certified Kubernetes Security Specialist (CKS)\n\n * Erfahrung mit Cloud-Plattformen wie AWS oder Azure sowie mit Security- oder CNAPP-Lösungen (z. B. Aqua Security)\n\n * Kenntnisse gängiger Compliance- und Sicherheitsstandards, z. B. BSI-Grundschutz\n\nBenefits\n\n * Full Remote innerhalb Deutschlands – mit gelegentlichen, planbaren Vor-Ort-Terminen\n\n * Vertrauensarbeitszeit und 30 Tage Urlaub für maximale Flexibilität\n\n * Offene Unternehmenskultur mit flachen Hierarchien, kurzen Entscheidungswegen und echtem Teamspirit\n\n * Strukturierte Einarbeitung und technische Verantwortung ab dem ersten Tag\n\n * Individuelle Weiterbildungsangebote inklusive Trainings, Konferenzen und Zertifizierungen\n\n * Betriebliche Altersvorsorge mit Arbeitgeberzuschuss\n\n * JobRad-Leasing sowie Sachbezugskarte mit monatlichem Guthaben\n\n * Fitness- und Wellnessangebote über EGYM Wellpass\n\n * Regelmäßige Team-Events und attraktive Corporate Benefits\n\n * Leistungsbezogene Bonus- und Prämienmodelle",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "bare-remote",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"Full Remote innerhalb Deutschlands\""
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"Full Remote innerhalb Deutschlands\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"Full Remote innerhalb Deutschlands\""
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"Full Remote innerhalb Deutschlands\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "\"Full Remote innerhalb Deutschlands\""
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "\"Full Remote innerhalb Deutschlands\""
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 1
+}

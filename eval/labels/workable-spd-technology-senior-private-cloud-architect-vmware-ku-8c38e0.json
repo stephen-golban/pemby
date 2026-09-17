@@ -1,0 +1,57 @@
+{
+  "id": "workable-spd-technology-senior-private-cloud-architect-vmware-ku-8c38e0",
+  "jobId": "01a0ab9b-9731-7cf7-b5d6-84b5fc8c38e0",
+  "url": "https://apply.workable.com/j/7512A88C33",
+  "source": "workable",
+  "snapshot": {
+    "title": "Senior Private Cloud Architect (VMware + Kubernetes)",
+    "company": "SPD Technology",
+    "locations": ["Ukraine"],
+    "workplaceType": "remote",
+    "employmentType": null,
+    "descriptionText": "At SPD Technology, we bring together a team of like-minded people who are driven by the desire to bring value through their work, united in their commitment to high performance and delivering custom, cutting-edge tech solutions that drive clients’ growth. We empower our people with a culture of excellence and enable them with the opportunity to uphold their accountability to contribute on each level. We value humanity and collaboration, encourage professional and personal growth, and foster a supportive and flexible work environment where everyone’s contribution is welcomed.\n\nAnd now we are looking for a Senior Private Cloud Architect (VMware & Kubernetes) to join us as part of our team.\n\nAbout the project:\n\nThe project focuses on assessing, designing, and transforming enterprise private and hybrid cloud environments built on VMware and Kubernetes technologies.\n\nIt includes current-state infrastructure and platform assessments, customer discovery workshops, requirements gathering, future-state architecture, networking and security design, automation, migration planning, and operational readiness.\n\nThe architect will design solutions involving VMware Cloud Foundation, vSphere, vSAN, NSX, vDefend, VCF Automation, Supervisor, VKS, and Kubernetes. The project may also include platform installations, migrations, upgrades, patching, disaster recovery, proofs of concept, and cloud-modernization initiatives.\n\nA key objective is to translate technical and business requirements into secure, scalable, and implementation-ready architectures. The architect will present and defend recommendations to engineering teams and customer management before handing the approved design over to delivery teams and providing technical guidance during implementation when required.\n\nOur Tech Stack & Focus Areas\n\n * VMware Cloud Foundation, vSphere, ESXi, and vSAN\n * VMware NSX, vDefend, Edge Nodes, and Tier-0/Tier-1 gateways\n * VCF Automation/VMware Aria Automation and Orchestrator\n * VCF Operations and Operations for Logs\n * VMware Supervisor and VKS\n * Kubernetes\n * BGP, route redistribution, and north-south connectivity\n * Compute, storage, networking, security, and disaster recovery\n * PowerShell, JavaScript, Terraform, and Ansible\n * AWS, Google Cloud Platform, and hybrid cloud\n\nWork Environment\n\nFlexible schedule with participation in team ceremonies and cross-functional collaboration. Time zone: You will be expected to have some overlap with the US east coast time zone.\n\nAs a qualified expert, You will:\n\n * Lead VMware and Kubernetes architecture engagements from discovery through handover\n * Run customer workshops and gather technical, operational, security, migration, and business requirements\n * Assess existing infrastructure, virtualization, networking, security, automation, and Kubernetes environments\n * Design future-state VCF and Kubernetes architectures\n * Create high-level and low-level designs, diagrams, procedures, migration plans, and transformation roadmaps\n * Design NSX and vDefend networking and security solutions, including BGP and Tier-0/Tier-1 routing\n * Define automation and orchestration architectures using VCF/Aria Automation and related technologies\n * Plan installations, migrations, upgrades, patching, disaster recovery, and modernization initiatives\n * Present recommendations, explain trade-offs, and defend architecture decisions\n * Hand over implementation-ready designs and guide delivery teams when required\n * Lead or support proofs of concept and technology evaluations\n * Collaborate with customers, solutions architects, delivery technical leads, and engineers\n * Maintain current technical knowledge through documentation, lab testing, and certification\n\nWe’re looking for you if you have\n\n * Senior-level experience designing enterprise VMware, private cloud, or platform solutions\n * Strong practical architecture expertise in both VMware and Kubernetes\n * Experience assessing current-state environments and designing secure, reliable, and operationally supportable future-state architectures\n * Strong knowledge of VCF, vSphere, vSAN, NSX, vDefend, automation, operations, logging, disaster recovery, Supervisor, and VKS\n * Ability to architect Kubernetes platforms and integrate them with VMware infrastructure, networking, storage, and security\n * Experience with NSX networking, including BGP, Edge Nodes, Tier-0/Tier-1 routing, route redistribution, and north-south connectivity\n * Experience with VMware automation and orchestration, including VCF/Aria Automation\n * Experience developing migration, modernization, and cloud-transformation strategies\n * Proven enterprise consulting or professional services experience\n * Ability to independently lead discovery workshops, gather requirements, and turn findings into an architecture\n * Strong presentation skills and the ability to explain and defend technical trade-offs to engineers and management\n * Strong written documentation skills, including high-level and low-level designs\n * Ability to identify and document risks, constraints, dependencies, and prerequisites\n * Ability to follow industry guidelines and best practices\n * A relevant degree and advanced VMware or Kubernetes certifications are advantageous\n * English — Upper Intermediate or higher\n\nReveal great tech solutions\n\nJoin the team of experts who create custom, cutting-edge tech solutions for world-renowned businesses, fueling client growth. Unleash your potential, tackle new challenges, and be part of a team that values your skills and contributions. Focus on long-term impact and building tailored, long-lasting partnerships with our clients.\n\nExperience an agile and flexible working environment\n\nEnjoy the freedom of fully remote work with a flexible working schedule. Empower yourself with a stable workload and a stable income, supported by provided laptops and licensed software. We focus on lasting cooperation and unite result-oriented individuals who stand on a high-performance approach to work.\n\nEmbrace the opportunity for personal and professional growth\n\nBenefit from performance and merit reviews, elevate your skills with personal development plans, and individual learnings through the corporate library, public speaking support, and more.\n\nBe among like-minded people\n\nWork with a team of one mind who cares about what they do and how they do. Collaborate with top-notch experts who are always ready to help and support you through any challenges. Join company-wide tech and cultural events, and contribute to meaningful CSR initiatives that resonate with your values. Feel supported by your HR, and take advantage of our referral bonus program.\n\nInterview Steps:\n\n 1. Pre-screening with recruiter\n 2. Technical Interview\n 3. Manager Interview\n 4. Final сlient Interview",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "mentions-target-country",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "Location \"Ukraine\" only"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "Location \"Ukraine\" only"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "green",
+      "note": "Location \"Ukraine\", remote, no engagement type"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "green",
+      "note": "Location \"Ukraine\", remote, no engagement type"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "red",
+      "note": "Location \"Ukraine\" only"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "red",
+      "note": "Location \"Ukraine\" only"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 1
+}

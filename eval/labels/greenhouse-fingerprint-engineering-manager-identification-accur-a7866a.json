@@ -1,0 +1,57 @@
+{
+  "id": "greenhouse-fingerprint-engineering-manager-identification-accur-a7866a",
+  "jobId": "01a0aba3-7ebb-7994-b944-b516e1a7866a",
+  "url": "https://fingerprint.com/careers/jobs/apply/?gh_jid=6001325004",
+  "source": "greenhouse",
+  "snapshot": {
+    "title": "Engineering Manager, Identification Accuracy",
+    "company": "Fingerprint",
+    "locations": ["Remote"],
+    "workplaceType": "remote",
+    "employmentType": "Full-time",
+    "descriptionText": "Fingerprint empowers enterprises to detect and stop online fraud with the world’s most accurate device intelligence.  We lead our industry with bleeding-edge identification capabilities and work on turning new ideas and discoveries in the fraud detection space into reality. Our customers range from innovative startups to leading enterprise companies, including Plaid, Dropbox, and Booking.com.\n\nFingerprint is a globally dispersed, 100% remote company. We were named on on the 2026 Forbes Best Startup Employers list and ranked #803 on the 2026 Inc. 5000 list of America’s fastest-growing private companies.\n\nWe have raised $77M and are backed by Craft Ventures (Tesla, Facebook, Airbnb ), Nexus Venture Partners ( Postman, Apollo.io, MinIO, Druva) and Uncorrelated Ventures ( Redis, Rollbar,  Gradle).\n\n----------------------------------------\n\nAbout the Role:\n\nDo you thrive at the intersection of people leadership and applied machine learning? Do you get excited about building and mentoring multidisciplinary teams — ML engineers, data scientists, analysts, and analytics engineers — working together to solve some of the hardest problems in fraud detection?At Fingerprint, the Identification Accuracy team is the engine behind the ML model powering our Identification API — Fingerprint's flagship product. This team is responsible for the accuracy, reliability, and continuous improvement of that model, directly impacting the trust our enterprise customers place in our platform.We are looking for an Engineering Manager to lead this team. In this role, you will foster a culture of high performance and scientific rigor, helping a diverse set of technical contributors grow while driving the roadmap that keeps Fingerprint's identification accuracy best-in-class.\n\nResponsibilities:\n\n * Lead and grow the Identification Accuracy team — a multidisciplinary group of ML Engineers, Data Scientists, Analysts, and Analytics Engineers — fostering psychological safety, technical excellence, and a culture of continuous improvement.\n * Own the team's roadmap in close partnership with senior engineering leadership and cross-functional stakeholders, driving innovative solutions to identification-specific challenges and continuously raising the bar on model quality.\n * Drive model accuracy outcomes by enabling your team to design, train, evaluate, and ship ML models that improve identification accuracy at scale across billions of devices.\n * Build bridges across the organization — partnering closely with the Identification Engineering team (who operates the API your models power) as well as Product, and customer-facing teams to translate customer needs into technical priorities. Communicate effectively across technical and non-technical audiences, translating model performance and roadmap tradeoffs into language that resonates with business stakeholders and executive leadership.\n\nQualifications:\n\n * Minimum of 2 years of experience in a leadership role in a ML or data science team in an agile, fast-paced environment.\n * At least 5 years of professional experience in software engineering, machine learning, or a related technical discipline.\n * Demonstrated ability to lead technical teams that ship production ML systems — from data pipelines and feature engineering through model training, evaluation, and deployment.\n * Proven track record of building and developing high-performing, multidisciplinary teams including engineers, data scientists, and/or analysts.\n * Strong communication skills with the ability to translate complex model behavior, data quality issues, and technical tradeoffs to both technical teammates and non-technical stakeholders.\n * Demonstrated success driving outcomes in fast-moving, scaling environments where priorities evolve and ambiguity is the norm.\n * Experience managing teams that work with large-scale behavioral or event data in a production setting.\n * Familiarity with ML infrastructure and MLOps tooling — experiment tracking (e.g., MLflow), feature stores, model registries, and CI/CD pipelines for ML.\n * Background in fraud detection, identity, or trust & safety domains is a plus but not required.\n * Hands-on experience with data stack technologies such as dbt or similar analytics engineering tooling.\n * Comfort working closely with platform and API engineering teams to understand downstream requirements and latency constraints.\n\n----------------------------------------\n\nCompensation & Transparency\n\nAt Fingerprint, we believe in pay transparency — it's part of how we operate as a distributed, remote-first team.  Salaries are based on function, level, and geographic location, benchmarked against similar stage growth companies.\n\nBecause this role is open across the United States and can be based anywhere our team members work from, the salary range reflects that geographic breadth: $159k - $215k.\n\nSome example salaries for specific locations are below:\n\nNYC:  $187k - $215k\n\nChicago:  $158k - $183k\n\nFinal offer amounts are determined by multiple factors, including the successful candidate's location, experience, and expertise, and may vary from the amounts listed above.\n\nDue to regulatory and security reasons, there’s a small number of countries where we cannot have Fingerprint teammates based. Additionally, because Fingerprint is an all-remote company and people can join our workforce from almost any country, we do not sponsor visas. Fingerprint teammates need to be authorized to work from their home location.\n\nWe are dedicated to creating an inclusive work environment for everyone. We embrace and celebrate the unique experiences, perspectives and cultural backgrounds that each employee brings to our workplace. Fingerprint strives to foster an environment where our employees feel respected, valued and empowered, and our team members are at the forefront in helping us promote and sustain an inclusive workplace. We highly encourage people from underrepresented groups in tech to apply.\n\nIf you are applying as a resident of California, please read our CCPA notice here.\n\nIf you are applying as a resident of the EU, please read our GDPR notice here.\n\n**We have noticed a rise in recruiting impersonations across the industry, where scammers attempt to access candidates' personal and financial information through fake interviews and offers. All Fingerprint recruiting email communications will always come from the @fingerprint.com domain. Any outreach claiming to be from Fingerprint via other sources should be ignored.",
+    "capturedAt": "2026-09-16T21:38:17.616Z"
+  },
+  "category": "bare-remote",
+  "labels": [
+    {
+      "country": "MD",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"join our workforce from almost any country\", no engagement type"
+    },
+    {
+      "country": "MD",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"join our workforce from almost any country\", no engagement type"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"join our workforce from almost any country\", no engagement type"
+    },
+    {
+      "country": "UA",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"join our workforce from almost any country\", no engagement type"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "b2b-contractor",
+      "tier": "yellow",
+      "note": "\"join our workforce from almost any country\", no engagement type"
+    },
+    {
+      "country": "GE",
+      "wayOfWorking": "eor-employee",
+      "tier": "yellow",
+      "note": "\"join our workforce from almost any country\", no engagement type"
+    }
+  ],
+  "labeledBy": "ai-pair+lead",
+  "labeledAt": "2026-09-16T21:59:12Z",
+  "session": 1
+}
