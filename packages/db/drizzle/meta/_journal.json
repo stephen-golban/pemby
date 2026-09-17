@@ -29,6 +29,20 @@
       "when": 1789578299351,
       "tag": "0003_source_health_not_found_since",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1789619071090,
+      "tag": "0004_ai_task_company_evidence",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1789619101265,
+      "tag": "0005_ai_enrichment_eligibility",
+      "breakpoints": true
     }
   ]
 }

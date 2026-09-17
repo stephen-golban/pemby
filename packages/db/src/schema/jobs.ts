@@ -27,6 +27,8 @@ import {
   wayOfWorking,
 } from "./enums";
 
+export type CompanyEvidenceStatus = "found" | "none" | "fetch-failed";
+
 export const companies = pgTable(
   "companies",
   {
@@ -47,6 +49,8 @@ export const companies = pgTable(
     hqCountry: text("hq_country"),
     /** When the company-level hiring-country evidence was last checked (phase 05). */
     evidenceCheckedAt: timestamp("evidence_checked_at", { withTimezone: true }),
+    /** Result of that check: `found` | `none` | `fetch-failed`; null until first checked. */
+    evidenceStatus: text("evidence_status").$type<CompanyEvidenceStatus>(),
     isDemo: boolean("is_demo").notNull().default(false),
     ...timestamps(),
   },
@@ -165,6 +169,28 @@ export const companySourceHealth = pgTable(
   (t) => [index("company_source_health_board_status_idx").on(t.boardStatus)],
 );
 
+export type VisaSponsorship = "yes" | "no" | "unknown";
+
+/**
+ * Structured timezone constraint from the post. Offsets are hours from UTC. `overlapHours` is the
+ * required overlap with the window; `zones` keeps named zones as written ("CET", "US Eastern").
+ */
+export type TimezoneConstraint = {
+  minUtcOffset?: number | null;
+  maxUtcOffset?: number | null;
+  overlapHours?: number | null;
+  zones?: string[];
+  excerpt?: string | null;
+};
+
+/** One item of evidence the eligibility engine used for a `job_eligibility` row. */
+export type EligibilityEvidenceItem = {
+  /** Same values as the `evidence_source` enum. */
+  source: string;
+  excerpt: string | null;
+  url: string | null;
+};
+
 export type EligibilityRule = {
   scope: string;
   waysOfWorking: string[];
@@ -204,6 +230,14 @@ export const jobEnrichment = pgTable(
     salaryCurrency: text("salary_currency"),
     salaryPeriod: payPeriod("salary_period"),
     timezoneRequirement: text("timezone_requirement"),
+    /** Structured form of `timezone_requirement`; null when the post has none. */
+    timezoneConstraint: jsonb("timezone_constraint").$type<TimezoneConstraint>(),
+    /** `yes` | `no` | `unknown`; null for rows enriched before phase 05. */
+    visaSponsorship: text("visa_sponsorship").$type<VisaSponsorship>(),
+    redFlags: text("red_flags")
+      .array()
+      .notNull()
+      .default(sql`'{}'::text[]`),
     /** Raw rules as the model returned them; `job_eligibility` is the queryable expansion. */
     eligibilityRules: jsonb("eligibility_rules").$type<EligibilityRule[]>().notNull().default([]),
     /** Posts asking the candidate for money are blocked (PLAN D11). */
@@ -212,6 +246,12 @@ export const jobEnrichment = pgTable(
     /** `PromptTemplate.versionId` of the `job-enrichment` prompt. */
     promptVersion: text("prompt_version").notNull(),
     keyClass: keyClass("key_class").notNull().default("public"),
+    /** `jobs.content_hash` this enrichment was made from; re-enrich when it differs. */
+    contentHash: text("content_hash"),
+    /** The full validated model output, for audit and for re-running the engine without calls. */
+    output: jsonb("output").$type<Record<string, unknown>>(),
+    /** Version of the deterministic rules that ran alongside the model. */
+    rulesVersion: text("rules_version"),
     enrichedAt: timestamp("enriched_at", { withTimezone: true }).notNull().defaultNow(),
     ...timestamps(),
   },
@@ -236,6 +276,9 @@ export const jobEligibility = pgTable(
     wayOfWorking: wayOfWorking("way_of_working").notNull(),
     tier: eligibilityTier("tier").notNull(),
     reason: text("reason").notNull(),
+    /** Short list of the evidence the engine used for this verdict. */
+    evidence: jsonb("evidence").$type<EligibilityEvidenceItem[]>().notNull().default([]),
+    engineVersion: text("engine_version"),
     ...timestamps(),
   },
   (t) => [

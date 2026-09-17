@@ -46,6 +46,8 @@ Rules the loader enforces:
 - `APP_ENV=production` without `PRIVATE_CONFIG_REF`: error.
 - A prompt the default AI routing needs (`REQUIRED_PROMPTS`: `job-enrichment`, `cv-parse`,
   `application-kit`) is missing: `invalid-layout` error naming the prompt.
+- `routing.json` is present but invalid (unknown task, unknown field such as `keyClass`, bad model
+  id): `invalid-file` error. `@pemby/ai` then refuses a table that changes an embedding model.
 - A config whose `manifest.json` has `"placeholder": true` (the example folder) is refused
   unless `APP_ENV=development`.
 
@@ -53,6 +55,7 @@ Rules the loader enforces:
 
 ```
 manifest.json            { "schemaVersion": 1, "placeholder": false }
+routing.json             optional: model routing overrides per AI task
 prompts/<name>.md        front-matter, then the prompt text
 scoring/weights.json     score weights and thresholds
 sources/<list>.json      job source lists, one file per list
@@ -73,7 +76,42 @@ description: Extract seniority, stack, salary and eligibility from a job post
 ```
 
 Required prompt names: `job-enrichment`, `cv-parse`, `application-kit` (`REQUIRED_PROMPTS` in
-`packages/core/src/private-config/schemas.ts`; `@pemby/ai` routing may only reference these).
+`packages/core/src/private-config/schemas.ts`). The loader refuses a config without them.
+
+Optional prompt names: `company-evidence` (`OPTIONAL_PROMPTS`). The loader accepts a config without
+it, and the task fails when it runs with `AiPromptMissingError` naming `prompts/company-evidence.md`.
+It is optional only until the company evidence job runs in production; then it moves to
+`REQUIRED_PROMPTS` so a service without it fails at boot. `@pemby/ai` routing may reference only
+`ROUTED_PROMPTS` (required plus optional).
+
+**Routing.** `routing.json` is optional. Without it, `@pemby/ai` uses `DEFAULT_ROUTING` in
+`packages/ai/src/routing.ts`. With it, each listed task's `model`, `fallbackModels` and `params`
+replace the defaults; tasks not listed keep theirs.
+
+```json
+{
+  "version": "2026-09-17.1",
+  "tasks": {
+    "job-enrichment": {
+      "model": "openai/gpt-oss-120b",
+      "fallbackModels": ["google/gemini-3.1-flash-lite"],
+      "params": { "temperature": 0, "maxOutputTokens": 6000, "reasoning": { "effort": "low" } }
+    }
+  }
+}
+```
+
+- Task names are `AI_TASKS` in `packages/core/src/ai-contract/index.ts`.
+- `fallbackModels`: up to 4, tried in order after `model` fails (any error, including 402 and 429),
+  must not repeat `model`.
+- `params`: `temperature` (0 to 2), `maxOutputTokens`, `reasoning` with `enabled`, `effort`
+  (`none`, `minimal`, `low`, `medium`, `high`), `maxTokens` and `exclude`. Set `effort` or
+  `maxTokens`, not both.
+- Only models and params are configurable. The key class, personal-data flag, model kind and prompt
+  name stay in code, and the schema rejects any other field. A config therefore cannot move a
+  personal-data task (`cv-parse`, `profile-embedding`, `application-kit`) to the public key.
+- Embedding tasks must keep `qwen/qwen3-embedding-8b`: the stored vectors were built with it.
+- Model ids are public, but the chosen routing is an eval result, so it lives here with the prompts.
 
 **Scoring weights.** `components` has `embeddingSimilarity`, `skillOverlap`, `domain`,
 `timezoneOverlap` and `companyFit`, each 0 to 1, summing to 1. `thresholds.match` and
@@ -86,6 +124,9 @@ where `ats` is one of greenhouse, lever, ashby, workable, smartrecruiters, recru
 The zod schemas are in `packages/core/src/private-config/schemas.ts`.
 
 ## Versions
+
+`loadRoutingConfig()` returns the parsed `routing.json` or null; `loadRoutingTable()` in `@pemby/ai`
+applies it over `DEFAULT_ROUTING`, validates the result and caches it.
 
 `getPrivateConfigVersion()` returns `{ source, ref, id, shortId }`. For GitHub, `id` is the full
 commit sha. For a directory it is `dir-` plus a sha256 of the loaded files.
@@ -149,7 +190,9 @@ file). Code that uses a prompt must not log the prompt text either.
 - The AI SDK's `APICallError` carries `requestBodyValues` and `responseBody`. For `cv-parse`,
   `profile-embedding` and `application-kit` those hold CV and profile text. Scrub them (keep only
   status, model and task) before any logging or Sentry capture, including Sentry's automatic
-  error integration.
+  error integration. `runStructuredTask` in `@pemby/ai` already does this: it throws `AiCallError`
+  with task, model, status and `error_type` only, and never attaches the SDK error as `cause`.
+  Direct users of `languageModelForTask` and `embeddingModelForTask` must still scrub.
 
 ## Never in the public repo
 
@@ -159,4 +202,5 @@ file). Code that uses a prompt must not log the prompt text either.
 - `PRIVATE_CONFIG_TOKEN`, OpenRouter keys or any other secret
 
 `private-config.example/` is public and must stay obviously fake: PLACEHOLDER prompts, equal
-weights, empty lists, `"placeholder": true`.
+weights, empty lists, `"placeholder": true`. Its `routing.json` restates the public default models
+only.

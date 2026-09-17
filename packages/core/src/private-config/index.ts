@@ -6,7 +6,7 @@ import { resolvePrivateConfigSource, type EnvLike } from "./env";
 import { PrivateConfigError } from "./errors";
 import { parsePrivateConfig, type PrivateConfig, type PromptTemplate } from "./parse";
 import { readPrivateConfigFiles, type PrivateConfigVersion } from "./read";
-import type { ScoringWeights, SourceList } from "./schemas";
+import type { RoutingConfig, ScoringWeights, SourceList } from "./schemas";
 
 export { PrivateConfigError, type PrivateConfigErrorCode } from "./errors";
 export {
@@ -26,6 +26,8 @@ export interface PrivateConfigLoader {
   loadPrompt(name: string, version?: string): Promise<PromptTemplate>;
   loadScoringWeights(): Promise<ScoringWeights>;
   loadSourceLists(): Promise<ReadonlyMap<string, SourceList>>;
+  /** `routing.json`, or null when the config has none. */
+  loadRoutingConfig(): Promise<RoutingConfig | null>;
   getVersion(): Promise<PrivateConfigVersion>;
 }
 
@@ -75,6 +77,9 @@ export function createPrivateConfigLoader(env: EnvLike): PrivateConfigLoader {
     async loadSourceLists() {
       return (await load()).sourceLists;
     },
+    async loadRoutingConfig() {
+      return (await load()).routing;
+    },
     async getVersion() {
       return (await load()).version;
     },
@@ -88,4 +93,5 @@ export const loadPrivateConfig = defaultLoader.load;
 export const loadPrompt = defaultLoader.loadPrompt;
 export const loadScoringWeights = defaultLoader.loadScoringWeights;
 export const loadSourceLists = defaultLoader.loadSourceLists;
+export const loadRoutingConfig = defaultLoader.loadRoutingConfig;
 export const getPrivateConfigVersion = defaultLoader.getVersion;

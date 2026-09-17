@@ -505,6 +505,116 @@ The longest-lived current free LLM is `nvidia/nemotron-3-super-120b-a12b:free`, 
 
 ---
 
+## Verified in phase 05
+
+Checked on 2026-09-17 against the live docs (the `.md` form of each page), the public endpoints API and
+the installed package sources (`@openrouter/ai-sdk-provider` 3.0.0, `ai` 7.0.101, read from
+`node_modules`). "Resolves" names the UNVERIFIED item above that the finding settles.
+
+**Request fields** (<https://openrouter.ai/docs/guides/routing/provider-selection>,
+<https://openrouter.ai/docs/api/reference/parameters>)
+
+- `provider.zdr` (boolean): "Restrict routing to only ZDR (Zero Data Retention) endpoints".
+- `provider.data_collection`: `"allow" | "deny"`, default `"allow"`.
+- `provider.require_parameters` (boolean, default `false`): "Only use providers that support all
+  parameters in your request".
+- `max_tokens` (integer ≥ 1), `temperature` (0.0 to 2.0).
+- `reasoning` is an object with `enabled`, `effort`, `max_tokens` and `exclude`
+  (<https://openrouter.ai/docs/guides/best-practices/reasoning-tokens>). `effort` takes `max`, `xhigh`,
+  `high`, `medium`, `low`, `minimal` or `none`; `effort` and `max_tokens` are mutually exclusive.
+  "Reasoning tokens are considered output tokens and charged accordingly." How it maps onto
+  Nemotron's `enable_thinking` on NVIDIA's free endpoint is still UNVERIFIED (§4.1).
+
+**Structured output** (<https://openrouter.ai/docs/guides/features/structured-outputs>)
+
+- `response_format: { type: "json_schema", json_schema: { name, strict, schema } }`. Pair it with
+  `provider.require_parameters: true`. A model without support fails "with an error indicating lack
+  of support". Enforcement still varies by provider, so every response is validated.
+- SDK: `generateText` with `Output.object` sends `json_schema` with `strict: true` and
+  `name: "response"` by default. It throws `NoObjectGeneratedError` on invalid output, and that error
+  carries `usage` but not `providerMetadata`, so the cost of an invalid reply is lost. Pemby's
+  `runStructuredTask` therefore sends `response_format` itself through `providerOptions.openrouter`
+  (the provider spreads that object over the request body) and validates with zod.
+- Endpoints API, 2026-09-17: the only `nvidia/nemotron-3-super-120b-a12b:free` endpoint (Nvidia)
+  lists `structured_outputs`, `response_format` and `reasoning`; `openai/gpt-oss-120b` has 24
+  endpoints, most with `structured_outputs` (Novita and DigitalOcean without).
+
+**Fallbacks** (<https://openrouter.ai/docs/guides/routing/model-fallbacks>)
+
+- Field name `models` (Chat Completions); `fallbacks` is the Anthropic Messages skin only, at most 3
+  entries and not combinable with `models`.
+- "By default, any error can trigger the use of a fallback model, including: Context length
+  validation errors, Moderation flags for filtered models, Rate-limiting, Downtime." "If the fallback
+  model is down or returns an error, OpenRouter will return that error." Pricing uses the model
+  "returned in the `model` attribute of the response body". The page does not list 402 separately.
+- Decision: `runStructuredTask` walks `model` then `fallbackModels` client-side, so each attempt gets
+  its own `ai_usage` row with its status and cost, and `routeOverride` can pin one model.
+  `languageModelForTask` still sends `models` for other callers.
+
+**Usage and cost** (<https://openrouter.ai/docs/guides/guides/usage-accounting>). Resolves the cost
+question in `07` §5.
+
+- "Full usage details are now always included automatically in every response." `usage: { include:
+  true }` and `stream_options.include_usage` "are deprecated and have no effect".
+- Fields: `usage.cost`, `usage.cost_details.upstream_inference_cost`,
+  `usage.prompt_tokens_details.cached_tokens`, `usage.completion_tokens_details.reasoning_tokens`.
+- SDK 3.0.0 (`dist/index.js`, `doGenerate`): cost is at
+  `providerMetadata.openrouter.usage.cost` (only when the response has it), the upstream provider
+  name at `providerMetadata.openrouter.provider`, the generation id at `response.id` and the model
+  that answered at `response.modelId` (the body's `model`). Failed calls throw `APICallError` with
+  `statusCode`, `data` (the parsed `{ error }` body), `requestBodyValues` and `responseBody`; the last
+  two can hold prompt and output text and must never be logged. A 200 whose body has `error` is
+  thrown as `APICallError` with `statusCode: 200` and `data` set to the inner error object.
+
+**Errors** (<https://openrouter.ai/docs/api/reference/errors-and-debugging>)
+
+- Body: `{ error: { code, message, metadata? } }`; `metadata.error_type` is "the field to rely on"
+  across formats.
+- 402 `payment_required`: "The account or API key has insufficient credits." With a negative
+  balance, "you may see 402 errors, including for free models"
+  (<https://openrouter.ai/docs/api/reference/limits>).
+- 429 `rate_limit_exceeded`. Platform-limit 429s carry `X-RateLimit-Limit`, `X-RateLimit-Remaining`,
+  `X-RateLimit-Reset`; 429 and 503 may carry `Retry-After`.
+- 503: "There is no available model provider that meets your routing requirements"; also
+  `provider_overloaded`. The provider-selection page says a request whose `only` list conflicts with
+  account restrictions "fails with a 404".
+- **Dry run, 2026-09-17** (`pnpm --filter @pemby/ai dry:zdr` on the staging worker's keys). Resolves
+  "the exact error is UNVERIFIED" in §3.3: a private-key request to
+  `nvidia/nemotron-3-super-120b-a12b:free` with `provider: { zdr: true, data_collection: "deny" }`
+  gets **HTTP 404**, not 503, with body
+  `{"error":{"message":"No endpoints found matching your data policy (Zero data retention). Configure: https://openrouter.ai/settings/privacy","code":404,"metadata":{"routing_funnel":[{"step":"Initial Endpoints","endpoint_count":1}],"failed_routing_step":"Filter by Data Policy"}}}`.
+  No `error_type` in the metadata. The same model on the public key answered 200, model
+  `nvidia/nemotron-3-super-120b-a12b:free`, cost `0`. This also settles §3.3's training-toggle
+  question for the public key: its free, training NVIDIA endpoint is reachable. A structured call
+  on the public key to `openai/gpt-oss-120b` (`json_schema` strict, `require_parameters`,
+  `reasoning.effort: low`) returned valid JSON first time: 103 in / 71 out tokens,
+  `usage.cost` $0.000015, generation id present, 6.1 s.
+- Endpoints API, 2026-09-17 (<https://openrouter.ai/api/v1/endpoints/zdr>, 872 endpoints): the paid
+  `nvidia/nemotron-3-super-120b-a12b` has ZDR endpoints, the `:free` variant has none. Free ZDR
+  endpoints: `z-ai/glm-5.2:free`, three `inclusionai/ling-3.0-flash-*:free`, and two speech models.
+
+**Free-model quota** (<https://openrouter.ai/docs/api/reference/limits>). Resolves "Scope of the daily
+cap" (§2) and build note 3's reset time.
+
+- "Making additional accounts or API keys will not affect your rate limits, as we govern capacity
+  globally." The tier "is selected by all-time credits purchased". So the daily free quota is per
+  account, not per key: staging, on the production keys, spends production's quota.
+- `GET /api/v1/key` now returns `free_model_daily_requests: { used, limit, remaining }`, counted "in
+  the current UTC day". The counter resets at 00:00 UTC.
+- The higher ceiling (1,000/day) starts one credit below the $10 threshold. Whether `:free` embedding
+  models share the counter remains UNVERIFIED.
+
+**Owner alert channels** (not OpenRouter; checked for order A's cap alert)
+
+- Resend: `POST https://api.resend.com/emails`, `Authorization: Bearer`, body `from`, `to`,
+  `subject`, `text`; optional `Idempotency-Key` header (24 h)
+  (<https://resend.com/docs/api-reference/emails/send-email>).
+- Telegram: `POST https://api.telegram.org/bot<token>/sendMessage` with JSON `chat_id` and `text`;
+  responses are `{ ok, result }` or `{ ok: false, error_code, description }`
+  (<https://core.telegram.org/bots/api>).
+
+---
+
 ## Sources
 
 - OpenRouter API (fetched 2026-09-15):

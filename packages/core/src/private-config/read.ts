@@ -33,7 +33,7 @@ const MAX_UNPACKED_BYTES = 50 * 1024 * 1024;
 const MAX_FILE_BYTES = 2 * 1024 * 1024;
 
 const LAYOUT_PATH =
-  /^(manifest\.json|scoring\/weights\.json|prompts\/[^/]+\.md|sources\/[^/]+\.json)$/;
+  /^(manifest\.json|routing\.json|scoring\/weights\.json|prompts\/[^/]+\.md|sources\/[^/]+\.json)$/;
 
 export function isLayoutPath(path: string): boolean {
   return LAYOUT_PATH.test(path);
@@ -83,6 +83,7 @@ async function readFromDir(dir: string): Promise<RawPrivateConfig> {
   const root = locateDir(dir);
   const candidates = [
     "manifest.json",
+    "routing.json",
     "scoring/weights.json",
     ...(await listFiles(root, "prompts", ".md")),
     ...(await listFiles(root, "sources", ".json")),

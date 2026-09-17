@@ -1,45 +1,64 @@
 // Task routing (PLAN D19). Model ids are public; prompts are private config.
+import { AI_TASKS, EMBEDDING_DIMENSIONS, EMBEDDING_MODEL, type AiTask } from "@pemby/core";
 import {
-  AI_TASKS,
-  EMBEDDING_DIMENSIONS,
-  EMBEDDING_MODEL,
-  REQUIRED_PROMPTS,
-  type AiTask,
-  type RequiredPromptName,
-} from "@pemby/core";
+  ROUTED_PROMPTS,
+  loadRoutingConfig,
+  type RoutedPromptName,
+  type RoutingConfig,
+  type TaskParams,
+} from "@pemby/core/private-config";
+
 import { getOpenRouter, type KeyClass, type OpenRouterOptions } from "./keys";
 
 // Task names are shared with the `ai_task` enum in `@pemby/db`, and the embedding size with its
 // `halfvec` columns, so both live in `@pemby/core`.
 export { AI_TASKS, EMBEDDING_DIMENSIONS, EMBEDDING_MODEL, type AiTask } from "@pemby/core";
+export type { RoutingConfig, TaskParams } from "@pemby/core/private-config";
 
 export type ModelKind = "language" | "embedding";
 
 export interface TaskRoute {
   model: string;
-  /** Sent as OpenRouter `models` so it falls back in order when the primary fails. */
+  /**
+   * Tried in order after `model` fails. `languageModelForTask` sends them as OpenRouter `models`;
+   * `runStructuredTask` walks them client-side so each attempt is metered on its own.
+   */
   fallbackModels: readonly string[];
   keyClass: KeyClass;
   kind: ModelKind;
   /** Personal data (CVs, profiles, kits, CV embeddings) must never use the public key. */
   personalData: boolean;
   /**
-   * Prompt file name in the private config, if the task uses one. Limited to core's
-   * REQUIRED_PROMPTS, which the config loader checks at boot.
+   * Prompt file name in the private config, if the task uses one. Limited to core's ROUTED_PROMPTS:
+   * REQUIRED_PROMPTS are checked at boot, OPTIONAL_PROMPTS when the task runs.
    */
-  promptName: RequiredPromptName | null;
+  promptName: RoutedPromptName | null;
+  /** Temperature, output-token and reasoning settings; from `routing.json` when it sets them. */
+  params?: TaskParams;
 }
 
 export type RoutingTable = Readonly<Record<AiTask, TaskRoute>>;
 
+// Production routing for job-enrichment and company-evidence: owner decision 2026-09-17, from the
+// model comparison in eval/reports/2026-09-17-model-comparison.md. gpt-oss-120b beat the free
+// Nemotron route on accuracy and reliability (Nemotron's free endpoint errored on roughly half the
+// posts) and beat Gemini 3.1 Flash-Lite on yellow-or-better recall at a fraction of the cost, so it
+// is now the job-enrichment primary; Nemotron free is dropped. Company evidence was not covered by
+// that comparison (it is not scored the same way), so the owner picked Gemini 3.1 Flash-Lite as
+// primary there for cost, with gpt-oss-120b as fallback. Both routes share one `reasoning.effort:
+// "low"` param set: `google/gemini-3.1-flash-lite` and `openai/gpt-oss-120b` both list `reasoning`,
+// `reasoning_effort` and `structured_outputs`/`response_format` in the OpenRouter models API
+// (checked 2026-09-17), so `provider.require_parameters: true` accepts the param on whichever model
+// in the chain answers.
 export const DEFAULT_ROUTING = {
   "job-enrichment": {
-    model: "nvidia/nemotron-3-super-120b-a12b:free",
-    fallbackModels: ["openai/gpt-oss-120b"],
+    model: "openai/gpt-oss-120b",
+    fallbackModels: ["google/gemini-3.1-flash-lite"],
     keyClass: "public",
     kind: "language",
     personalData: false,
     promptName: "job-enrichment",
+    params: { temperature: 0, maxOutputTokens: 6000, reasoning: { effort: "low" } },
   },
   "cv-parse": {
     model: "google/gemini-2.5-flash-lite",
@@ -73,6 +92,15 @@ export const DEFAULT_ROUTING = {
     personalData: true,
     promptName: "application-kit",
   },
+  "company-evidence": {
+    model: "google/gemini-3.1-flash-lite",
+    fallbackModels: ["openai/gpt-oss-120b"],
+    keyClass: "public",
+    kind: "language",
+    personalData: false,
+    promptName: "company-evidence",
+    params: { temperature: 0, maxOutputTokens: 6000, reasoning: { effort: "low" } },
+  },
 } as const satisfies RoutingTable;
 
 export class PersonalDataRoutingError extends Error {
@@ -92,16 +120,26 @@ export function assertRouteAllowed(
 
 /**
  * Validates a whole table, e.g. one built from overrides, at boot: key classes, prompt names
- * against core's REQUIRED_PROMPTS, and the embedding model the database vectors were built with.
+ * against core's ROUTED_PROMPTS, and the embedding model the database vectors were built with.
+ * Also refuses a key class that differs from DEFAULT_ROUTING, except "user" (a user's own key).
  */
 export function validateRoutingTable(table: RoutingTable): RoutingTable {
-  const required: readonly string[] = REQUIRED_PROMPTS;
+  const routed: readonly string[] = ROUTED_PROMPTS;
   for (const task of AI_TASKS) {
     const route = table[task];
     assertRouteAllowed(task, route);
-    if (route.promptName !== null && !required.includes(route.promptName)) {
+    const base = DEFAULT_ROUTING[task];
+    if (route.keyClass !== base.keyClass && route.keyClass !== "user") {
       throw new Error(
-        `[ai] Task "${task}" uses prompt "${route.promptName}", not in REQUIRED_PROMPTS.`,
+        `[ai] Task "${task}" must use the ${base.keyClass} key, not ${route.keyClass}.`,
+      );
+    }
+    if (route.personalData !== base.personalData || route.kind !== base.kind) {
+      throw new Error(`[ai] Task "${task}" changes personalData or kind from DEFAULT_ROUTING.`);
+    }
+    if (route.promptName !== null && !routed.includes(route.promptName)) {
+      throw new Error(
+        `[ai] Task "${task}" uses prompt "${route.promptName}", not in ROUTED_PROMPTS.`,
       );
     }
     if (route.kind === "embedding" && route.model !== EMBEDDING_MODEL) {
@@ -111,6 +149,50 @@ export function validateRoutingTable(table: RoutingTable): RoutingTable {
     }
   }
   return table;
+}
+
+/**
+ * DEFAULT_ROUTING with `routing.json` applied. A config sets only `model`, `fallbackModels` and
+ * `params` (core's schema is strict); key class, personal-data flag, kind and prompt always come
+ * from DEFAULT_ROUTING. The result is validated, so an embedding-model change is refused too.
+ * A null config returns DEFAULT_ROUTING.
+ */
+export function applyRoutingConfig(config: RoutingConfig | null): RoutingTable {
+  if (config === null) return DEFAULT_ROUTING;
+  const table = Object.fromEntries(
+    AI_TASKS.map((task) => {
+      const base: TaskRoute = DEFAULT_ROUTING[task];
+      const override = config.tasks[task];
+      if (override === undefined) return [task, base];
+      const route: TaskRoute = {
+        ...base,
+        model: override.model,
+        fallbackModels: override.fallbackModels,
+        ...(override.params === undefined ? {} : { params: override.params }),
+      };
+      return [task, route];
+    }),
+  ) as Record<AiTask, TaskRoute>;
+  return validateRoutingTable(table);
+}
+
+let routingTable: Promise<RoutingTable> | undefined;
+
+/**
+ * The routing table from the process-wide private config (`routing.json`, else DEFAULT_ROUTING),
+ * loaded once. Pass `loadConfig` to read another source. Call at boot so a bad file fails early.
+ */
+export function loadRoutingTable(
+  loadConfig: () => Promise<RoutingConfig | null> = loadRoutingConfig,
+): Promise<RoutingTable> {
+  if (loadConfig !== loadRoutingConfig) return loadConfig().then(applyRoutingConfig);
+  if (!routingTable) {
+    routingTable = loadConfig().then(applyRoutingConfig);
+    routingTable.catch(() => {
+      routingTable = undefined;
+    });
+  }
+  return routingTable;
 }
 
 export interface RouteOptions {

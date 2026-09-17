@@ -9,10 +9,12 @@ import {
   promptFrontMatterSchema,
   promptNameSchema,
   REQUIRED_PROMPTS,
+  routingConfigSchema,
   scoringWeightsSchema,
   sourceListNameSchema,
   sourceListSchema,
   type PrivateConfigManifest,
+  type RoutingConfig,
   type ScoringWeights,
   type SourceList,
 } from "./schemas";
@@ -33,6 +35,8 @@ export interface PrivateConfig {
   prompts: ReadonlyMap<string, PromptTemplate>;
   scoringWeights: ScoringWeights;
   sourceLists: ReadonlyMap<string, SourceList>;
+  /** `routing.json`, or null when the file is absent (then `@pemby/ai` uses DEFAULT_ROUTING). */
+  routing: RoutingConfig | null;
 }
 
 function formatIssues(error: z.ZodError): string {
@@ -108,6 +112,12 @@ export function parsePrivateConfig(raw: RawPrivateConfig): PrivateConfig {
   }
   const scoringWeights = parseJsonFile("scoring/weights.json", weightsText, scoringWeightsSchema);
 
+  const routingText = files.get("routing.json");
+  const routing =
+    routingText === undefined
+      ? null
+      : parseJsonFile("routing.json", routingText, routingConfigSchema);
+
   const prompts = new Map<string, PromptTemplate>();
   const sourceLists = new Map<string, SourceList>();
 
@@ -158,5 +168,5 @@ export function parsePrivateConfig(raw: RawPrivateConfig): PrivateConfig {
     }
   }
 
-  return { version, manifest, prompts, scoringWeights, sourceLists };
+  return { version, manifest, prompts, scoringWeights, sourceLists, routing };
 }

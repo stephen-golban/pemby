@@ -1,0 +1,15 @@
+{
+  "version": "placeholder-1",
+  "tasks": {
+    "job-enrichment": {
+      "model": "openai/gpt-oss-120b",
+      "fallbackModels": ["google/gemini-3.1-flash-lite"],
+      "params": { "temperature": 0, "maxOutputTokens": 6000, "reasoning": { "effort": "low" } }
+    },
+    "company-evidence": {
+      "model": "google/gemini-3.1-flash-lite",
+      "fallbackModels": ["openai/gpt-oss-120b"],
+      "params": { "temperature": 0, "maxOutputTokens": 6000, "reasoning": { "effort": "low" } }
+    }
+  }
+}

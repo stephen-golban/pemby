@@ -1,5 +1,6 @@
-// `@pemby/ai`: server-only. OpenRouter key routing, task routing, cost cap types and
-// prompt loading (prompts come from the private config, never from this repo).
+// `@pemby/ai`: server-only. OpenRouter key routing, task routing (private `routing.json` over
+// DEFAULT_ROUTING), structured task calls, the cost ledger contract, the daily cap and its owner
+// alert, and prompt loading (prompts come from the private config, never from this repo).
 export {
   AiConfigError,
   KEY_CLASSES,
@@ -17,16 +18,20 @@ export {
   EMBEDDING_DIMENSIONS,
   EMBEDDING_MODEL,
   PersonalDataRoutingError,
+  applyRoutingConfig,
   assertRouteAllowed,
   embeddingModelForTask,
   languageModelForTask,
+  loadRoutingTable,
   resolveRoute,
   validateRoutingTable,
   type AiTask,
   type ModelKind,
   type ResolvedRoute,
   type RouteOptions,
+  type RoutingConfig,
   type RoutingTable,
+  type TaskParams,
   type TaskEmbeddingModel,
   type TaskLanguageModel,
   type TaskModelOptions,
@@ -34,11 +39,43 @@ export {
 } from "./routing";
 export {
   DAILY_CAP_USD,
+  DailyCapReachedError,
   countsTowardDailyCap,
+  createDailyCapGuard,
   evaluateDailyCap,
+  nextUtcMidnight,
+  readDailyCapUsd,
+  utcDay,
   type AiUsageEntry,
   type CostLedger,
   type DailyCapGuard,
+  type DailyCapGuardOptions,
   type DailyCapStatus,
 } from "./cost";
+export {
+  AiCallError,
+  AiOutputInvalidError,
+  AiPromptMissingError,
+  runStructuredTask,
+  type RouteOverride,
+  type StructuredTaskContext,
+  type StructuredTaskOptions,
+  type StructuredTaskResult,
+} from "./structured";
+export {
+  estimateAttemptCost,
+  estimateCostUsd,
+  lookupGenerationUsage,
+  type CostEstimate,
+  type GenerationUsage,
+} from "./usage";
+export {
+  alertOwnerCapReached,
+  type CapAlertChannel,
+  type CapAlertClaim,
+  type CapAlertClaimInput,
+  type CapAlertMarkDelivered,
+  type CapAlertOptions,
+  type CapAlertResult,
+} from "./alert";
 export { loadPrompt, type PromptTemplate } from "@pemby/core/private-config";

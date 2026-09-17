@@ -15,12 +15,17 @@ export type NewJob = typeof s.jobs.$inferInsert;
 export type JobEnrichment = typeof s.jobEnrichment.$inferSelect;
 export type JobEligibility = typeof s.jobEligibility.$inferSelect;
 export type EligibilityEvidence = typeof s.eligibilityEvidence.$inferSelect;
+export type NewEligibilityEvidence = typeof s.eligibilityEvidence.$inferInsert;
+export type NewJobEnrichment = typeof s.jobEnrichment.$inferInsert;
+export type NewJobEligibility = typeof s.jobEligibility.$inferInsert;
 export type Match = typeof s.matches.$inferSelect;
 export type NewMatch = typeof s.matches.$inferInsert;
 export type Application = typeof s.applications.$inferSelect;
 export type Flag = typeof s.flags.$inferSelect;
 export type Kit = typeof s.kits.$inferSelect;
 export type AiUsage = typeof s.aiUsage.$inferSelect;
+export type NewAiUsage = typeof s.aiUsage.$inferInsert;
+export type AiCapAlert = typeof s.aiCapAlerts.$inferSelect;
 export type Pass = typeof s.passes.$inferSelect;
 export type Payment = typeof s.payments.$inferSelect;
 export type Referral = typeof s.referrals.$inferSelect;
@@ -36,3 +41,15 @@ export {
   type SourceHealthRow,
   type SourceHealthTotals,
 } from "./queries/source-health";
+
+export {
+  aiUsageTotals,
+  claimCapAlert,
+  createAiUsageLedger,
+  markCapAlertDelivered,
+  type AiUsageLedger,
+  type AiUsageTotalsFilter,
+  type AiUsageTotalsRow,
+  type CapAlertClaim,
+  type CapAlertDelivery,
+} from "./queries/ai-usage";

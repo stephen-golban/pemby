@@ -82,6 +82,10 @@ export const eligibilityEvidence = pgTable(
     excerpt: text("excerpt"),
     sourceUrl: text("source_url"),
     flagId: uuid("flag_id").references(() => flags.id, { onDelete: "set null" }),
+    /** When the source page or post was read. */
+    fetchedAt: timestamp("fetched_at", { withTimezone: true }),
+    /** Version of the rules or prompt that extracted this evidence. */
+    extractorVersion: text("extractor_version"),
     createdAt: createdAt(),
   },
   (t) => [

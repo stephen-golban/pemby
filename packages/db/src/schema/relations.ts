@@ -109,6 +109,8 @@ export const kitsRelations = relations(kits, ({ one }) => ({
 
 export const aiUsageRelations = relations(aiUsage, ({ one }) => ({
   user: one(user, { fields: [aiUsage.userId], references: [user.id] }),
+  job: one(jobs, { fields: [aiUsage.jobId], references: [jobs.id] }),
+  company: one(companies, { fields: [aiUsage.companyId], references: [companies.id] }),
 }));
 
 export const paymentsRelations = relations(payments, ({ one }) => ({

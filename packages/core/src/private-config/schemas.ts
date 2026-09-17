@@ -6,7 +6,10 @@
 //   prompts/<name>.md      front-matter `version: <id>` then the prompt text
 //   scoring/weights.json   ScoringWeights
 //   sources/<list>.json    SourceList
+//   routing.json           RoutingConfig (optional; absent means `@pemby/ai` DEFAULT_ROUTING)
 import { z } from "zod";
+
+import { AI_TASKS } from "../ai-contract";
 
 export const PRIVATE_CONFIG_SCHEMA_VERSION = 1;
 
@@ -33,6 +36,81 @@ export type PromptFrontMatter = z.infer<typeof promptFrontMatterSchema>;
  */
 export const REQUIRED_PROMPTS = ["job-enrichment", "cv-parse", "application-kit"] as const;
 export type RequiredPromptName = (typeof REQUIRED_PROMPTS)[number];
+
+/**
+ * Prompts a routed task uses that the loader does not demand at boot, because the task has not
+ * shipped everywhere yet. A task whose optional prompt is missing fails when it runs, with an error
+ * naming the prompt. Move a name to REQUIRED_PROMPTS once its job runs in production.
+ */
+export const OPTIONAL_PROMPTS = ["company-evidence"] as const;
+export type OptionalPromptName = (typeof OPTIONAL_PROMPTS)[number];
+
+/** Every prompt name `@pemby/ai` routing may reference. */
+export const ROUTED_PROMPTS = [...REQUIRED_PROMPTS, ...OPTIONAL_PROMPTS] as const;
+export type RoutedPromptName = (typeof ROUTED_PROMPTS)[number];
+
+// ---------------------------------------------------------------- routing.json
+
+/** OpenRouter model ids: `vendor/model`, optionally with a `:variant` such as `:free`. */
+export const modelIdSchema = z
+  .string()
+  .regex(
+    /^[a-z0-9][a-z0-9._-]*\/[A-Za-z0-9][A-Za-z0-9._-]*(:[a-z0-9-]+)?$/,
+    "model ids look like vendor/model or vendor/model:variant",
+  );
+
+export const REASONING_EFFORTS = ["none", "minimal", "low", "medium", "high"] as const;
+export type ReasoningEffort = (typeof REASONING_EFFORTS)[number];
+
+/**
+ * Per-task call parameters. `reasoning` maps to OpenRouter's `reasoning` object; `effort` and
+ * `maxTokens` are mutually exclusive there, so the schema allows one of them.
+ */
+export const taskParamsSchema = z
+  .object({
+    temperature: z.number().min(0).max(2).optional(),
+    maxOutputTokens: z.number().int().min(1).max(64_000).optional(),
+    reasoning: z
+      .object({
+        enabled: z.boolean().optional(),
+        effort: z.enum(REASONING_EFFORTS).optional(),
+        maxTokens: z.number().int().min(1).max(64_000).optional(),
+        exclude: z.boolean().optional(),
+      })
+      .strict()
+      .refine((r) => r.effort === undefined || r.maxTokens === undefined, {
+        message: "set reasoning.effort or reasoning.maxTokens, not both",
+      })
+      .optional(),
+  })
+  .strict();
+export type TaskParams = z.infer<typeof taskParamsSchema>;
+
+/**
+ * One task's override. Strict on purpose: only models and parameters are configurable. Key class,
+ * personal-data flag, model kind and prompt name stay in code (`@pemby/ai` DEFAULT_ROUTING), so a
+ * config can never move a personal-data task to the public key.
+ */
+export const taskRoutingOverrideSchema = z
+  .object({
+    model: modelIdSchema,
+    fallbackModels: z.array(modelIdSchema).max(4).default([]),
+    params: taskParamsSchema.optional(),
+  })
+  .strict()
+  .refine((o) => !o.fallbackModels.includes(o.model), {
+    message: "fallbackModels must not repeat model",
+    path: ["fallbackModels"],
+  });
+export type TaskRoutingOverride = z.infer<typeof taskRoutingOverrideSchema>;
+
+export const routingConfigSchema = z
+  .object({
+    version: z.string().min(1).max(64),
+    tasks: z.partialRecord(z.enum(AI_TASKS), taskRoutingOverrideSchema),
+  })
+  .strict();
+export type RoutingConfig = z.infer<typeof routingConfigSchema>;
 
 /** Score components from PLAN section 4. Weights must sum to 1. */
 export const SCORE_COMPONENTS = [

@@ -9,7 +9,8 @@
   "scripts": {
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
-    "check:zdr": "tsx scripts/check-zdr.ts"
+    "check:zdr": "tsx scripts/check-zdr.ts",
+    "dry:zdr": "tsx scripts/dry-zdr.ts"
   },
   "dependencies": {
     "@openrouter/ai-sdk-provider": "3.0.0",

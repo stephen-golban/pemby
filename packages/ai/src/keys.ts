@@ -89,6 +89,22 @@ export interface OpenRouterOptions {
   env?: EnvLike;
 }
 
+/**
+ * The raw OpenRouter key for `keyClass`, for the few calls that do not go through the AI SDK (the
+ * generation lookup). Same rules as `getOpenRouter`. Never log the result.
+ */
+export function openRouterApiKey(keyClass: KeyClass, options: OpenRouterOptions = {}): string {
+  if (keyClass === "user") {
+    const apiKey = options.userApiKey?.trim();
+    if (!apiKey) throw new AiConfigError('keyClass "user" needs the user\'s OpenRouter key.');
+    return apiKey;
+  }
+  return readKey(
+    options.env ?? process.env,
+    keyClass === "public" ? "OPENROUTER_KEY_PUBLIC" : "OPENROUTER_KEY_PRIVATE",
+  );
+}
+
 const cache = new Map<"public" | "private", OpenRouterProvider>();
 
 /** Returns an OpenRouter provider bound to the key for `keyClass`. Never logs keys. */
