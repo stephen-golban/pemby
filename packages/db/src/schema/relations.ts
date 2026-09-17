@@ -14,7 +14,7 @@ import {
   jobs,
 } from "./jobs";
 import { applications, kits, matches } from "./matching";
-import { cvFiles, profileEmbeddings, profiles } from "./profiles";
+import { cvFiles, pendingClaims, profileEmbeddings, profiles } from "./profiles";
 
 export const userDomainRelations = relations(user, ({ one, many }) => ({
   profile: one(profiles, { fields: [user.id], references: [profiles.userId] }),
@@ -38,6 +38,11 @@ export const profileEmbeddingsRelations = relations(profileEmbeddings, ({ one })
 
 export const cvFilesRelations = relations(cvFiles, ({ one }) => ({
   user: one(user, { fields: [cvFiles.userId], references: [user.id] }),
+}));
+
+export const pendingClaimsRelations = relations(pendingClaims, ({ one }) => ({
+  anonymousUser: one(user, { fields: [pendingClaims.anonymousUserId], references: [user.id] }),
+  newUser: one(user, { fields: [pendingClaims.newUserId], references: [user.id] }),
 }));
 
 export const companiesRelations = relations(companies, ({ one, many }) => ({

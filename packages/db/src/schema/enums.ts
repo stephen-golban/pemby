@@ -1,4 +1,10 @@
-import { AI_TASKS, KEY_CLASSES } from "@pemby/core";
+import {
+  AI_TASKS,
+  DB_SENIORITIES,
+  DB_WAYS_OF_WORKING,
+  ENGLISH_LEVELS,
+  KEY_CLASSES,
+} from "@pemby/core";
 import { pgEnum } from "drizzle-orm/pg-core";
 
 // Country codes are stored as upper-case ISO 3166-1 alpha-2 text ("MD", "GE"). Eligibility
@@ -7,15 +13,8 @@ import { pgEnum } from "drizzle-orm/pg-core";
 /** PLAN D2. Red is stored so the matcher can explain exclusions, but never shown. */
 export const eligibilityTier = pgEnum("eligibility_tier", ["green", "yellow", "white", "red"]);
 
-/** PLAN D3. */
-export const wayOfWorking = pgEnum("way_of_working", [
-  "b2b_contractor",
-  "eor_employee",
-  "relocation_visa",
-  "freelance",
-  "local",
-  "paid_program",
-]);
+/** PLAN D3. Core spells these with hyphens; convert only with `toDbWay` / `fromDbWay`. */
+export const wayOfWorking = pgEnum("way_of_working", DB_WAYS_OF_WORKING);
 
 /** PLAN D5 step 2. */
 export const employmentType = pgEnum("employment_type", [
@@ -24,18 +23,11 @@ export const employmentType = pgEnum("employment_type", [
   "contract_to_hire",
 ]);
 
-/** PLAN D10: intern to principal. */
-export const seniority = pgEnum("seniority", [
-  "intern",
-  "junior",
-  "middle",
-  "senior",
-  "lead",
-  "principal",
-]);
+/** PLAN D10: intern to principal. No `staff`: convert with `toDbSeniority` from `@pemby/core`. */
+export const seniority = pgEnum("seniority", DB_SENIORITIES);
 
 /** CEFR levels plus native. */
-export const englishLevel = pgEnum("english_level", ["a1", "a2", "b1", "b2", "c1", "c2", "native"]);
+export const englishLevel = pgEnum("english_level", ENGLISH_LEVELS);
 
 export const payPeriod = pgEnum("pay_period", ["hour", "day", "month", "year"]);
 
@@ -55,7 +47,20 @@ export const boardStatus = pgEnum("board_status", ["active", "empty", "not-found
 
 export const jobStatus = pgEnum("job_status", ["open", "closed", "quarantined", "merged"]);
 
-export const cvParseStatus = pgEnum("cv_parse_status", ["pending", "parsed", "failed"]);
+/**
+ * CV lifecycle (phase 06). `pending` is legacy (pre-phase-06 rows); new rows start at `uploaded`
+ * (file) or `parsing` (pasted text). The new values were added in migration 0006 alone.
+ */
+export const cvParseStatus = pgEnum("cv_parse_status", [
+  "pending",
+  "parsed",
+  "failed",
+  "uploaded",
+  "extracting",
+  "unreadable",
+  "parsing",
+  "queued",
+]);
 
 /** Which key paid for or processed an AI call (PLAN D17). Same values as `@pemby/ai` KeyClass. */
 export const keyClass = pgEnum("key_class", KEY_CLASSES);

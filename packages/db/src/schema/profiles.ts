@@ -1,3 +1,4 @@
+import type { ParsedProfilePartial } from "@pemby/core";
 import { sql } from "drizzle-orm";
 import {
   bigint,
@@ -6,12 +7,13 @@ import {
   integer,
   jsonb,
   pgTable,
+  primaryKey,
   smallint,
   text,
   timestamp,
   uuid,
 } from "drizzle-orm/pg-core";
-import { EMBEDDING_MODEL, embedding, id, timestamps } from "./_shared";
+import { EMBEDDING_MODEL, createdAt, embedding, id, timestamps } from "./_shared";
 import { user } from "./auth";
 import {
   cvParseStatus,
@@ -23,6 +25,19 @@ import {
 } from "./enums";
 
 export type WorkPermit = { country: string; kind: string; expiresOn?: string };
+
+/** `cv_files.source`: an uploaded file or pasted text. */
+export const CV_SOURCES = ["file", "text"] as const;
+export type CvSource = (typeof CV_SOURCES)[number];
+
+/** `cv_files.stage_timings`: ISO timestamps, each set when its stage is reached. */
+export type CvStageTimings = {
+  uploadedAt?: string;
+  extractedAt?: string;
+  parseStartedAt?: string;
+  firstPartialAt?: string;
+  parsedAt?: string;
+};
 
 /** Everything onboarding collects (PLAN D5). One row per user. */
 export const profiles = pgTable(
@@ -123,13 +138,23 @@ export const cvFiles = pgTable(
     userId: text("user_id")
       .notNull()
       .references(() => user.id, { onDelete: "restrict" }),
-    bucketKey: text("bucket_key").notNull().unique(),
+    /** Null for pasted text (`source = 'text'`). */
+    bucketKey: text("bucket_key").unique(),
+    source: text("source").$type<CvSource>().notNull().default("file"),
     fileName: text("file_name").notNull(),
     mimeType: text("mime_type").notNull(),
     sizeBytes: bigint("size_bytes", { mode: "number" }).notNull(),
     sha256: text("sha256").notNull(),
     extractedText: text("extracted_text"),
+    /** Validated, normalized `ParsedProfile` for phase 06 rows; demo and older rows may differ. */
     parsed: jsonb("parsed").$type<Record<string, unknown>>(),
+    /** Latest streamed snapshot while `parse_status = 'parsing'`. */
+    parsedPartial: jsonb("parsed_partial").$type<ParsedProfilePartial>(),
+    /** Stable code for `unreadable` / `failed` (`scanned_or_empty`, `parse_failed`). No text. */
+    errorCode: text("error_code"),
+    /** Set while `parse_status = 'queued'` (AI cap reached): when the parse is retried. */
+    queuedUntil: timestamp("queued_until", { withTimezone: true }),
+    stageTimings: jsonb("stage_timings").$type<CvStageTimings>(),
     parseStatus: cvParseStatus("parse_status").notNull().default("pending"),
     parseModel: text("parse_model"),
     /** `PromptTemplate.versionId` of the `cv-parse` prompt. */
@@ -161,3 +186,29 @@ export const profileEmbeddings = pgTable(
   },
   (t) => [index("profile_embeddings_hnsw_idx").using("hnsw", t.embedding.op("halfvec_cosine_ops"))],
 );
+
+/** Fixed-window counters for CV upload limits (phase 06). One row per key and window start. */
+export const rateLimits = pgTable(
+  "rate_limits",
+  {
+    key: text("key").notNull(),
+    windowStart: timestamp("window_start", { withTimezone: true }).notNull(),
+    count: integer("count").notNull().default(0),
+  },
+  (t) => [primaryKey({ columns: [t.key, t.windowStart] })],
+);
+
+/**
+ * Anonymous user waiting to be claimed by a new, not yet verified account (phase 06). Written at
+ * sign-up; `/verify-email` runs the claim and deletes the row. Either user's deletion removes it.
+ */
+export const pendingClaims = pgTable("pending_claims", {
+  anonymousUserId: text("anonymous_user_id")
+    .primaryKey()
+    .references(() => user.id, { onDelete: "cascade" }),
+  newUserId: text("new_user_id")
+    .notNull()
+    .unique()
+    .references(() => user.id, { onDelete: "cascade" }),
+  createdAt: createdAt(),
+});

@@ -8,6 +8,7 @@ export * from "./scoring";
 export * from "./near-miss";
 export * from "./entitlements";
 export * from "./ai-contract";
+export * from "./profile";
 export {
   ATS_KINDS,
   PRIVATE_CONFIG_SCHEMA_VERSION,
