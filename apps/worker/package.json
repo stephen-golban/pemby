@@ -11,17 +11,21 @@
     "health": "tsx src/scripts/health.ts",
     "company-evidence:once": "tsx src/scripts/company-evidence-once.ts",
     "enrich:once": "tsx src/scripts/enrich-once.ts",
+    "cv:dev": "tsx src/scripts/cv-dev.ts",
     "typecheck": "tsc --noEmit",
     "lint": "eslint ."
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "3.1133.0",
     "@pemby/ai": "workspace:*",
     "@pemby/ats": "workspace:*",
     "@pemby/core": "workspace:*",
     "@pemby/db": "workspace:*",
     "drizzle-orm": "0.45.2",
+    "mammoth": "1.12.3",
     "pg-boss": "12.32.0",
     "tsx": "4.23.13",
+    "unpdf": "1.8.1",
     "zod": "4.6.5"
   },
   "devDependencies": {

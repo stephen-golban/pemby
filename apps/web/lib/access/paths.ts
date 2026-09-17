@@ -25,9 +25,10 @@ const METADATA_IMAGE =
 
 /**
  * Public while the owner-only gate is on: landing, pricing, the legal pages (and the `/legal/*`
- * paths that redirect to them), SEO files, sign-in and sign-up,
- * auth endpoints and callbacks, webhooks, health, and Next.js assets. Everything else is a product
- * route.
+ * paths that redirect to them), SEO files, sign-in, sign-up and email verification,
+ * auth endpoints and callbacks, the anonymous CV drop and teaser APIs (phase 06: they check their
+ * own session and are 404 when the drop is off), webhooks, health, and Next.js assets. Everything
+ * else is a product route.
  */
 export function isPublicRoute(pathname: string): boolean {
   return (
@@ -39,6 +40,9 @@ export function isPublicRoute(pathname: string): boolean {
     under(pathname, "/legal") ||
     under(pathname, "/sign-in") ||
     under(pathname, "/sign-up") ||
+    under(pathname, "/verify-email") ||
+    under(pathname, "/api/cv") ||
+    under(pathname, "/api/teaser") ||
     pathname === "/access-denied" ||
     isStagingAuthExempt(pathname) ||
     under(pathname, "/_next") ||

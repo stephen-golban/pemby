@@ -13,6 +13,7 @@ import {
   scheduleCompanyEvidenceSweep,
   startCompanyEvidenceWorkers,
 } from "./company-evidence";
+import { createCvQueues, readCvEnv, startCvWorkers } from "./cv";
 import { readWorkerEnv } from "./env";
 import {
   createEnrichQueues,
@@ -69,6 +70,14 @@ try {
   console.error(
     `company evidence env invalid: ${error instanceof Error ? error.message : "error"}`,
   );
+  process.exit(1);
+}
+
+let cvEnv: ReturnType<typeof readCvEnv>;
+try {
+  cvEnv = readCvEnv();
+} catch (error) {
+  console.error(`cv env invalid: ${error instanceof Error ? error.message : "error"}`);
   process.exit(1);
 }
 
@@ -149,6 +158,11 @@ try {
   console.log(
     `company-evidence: ${companyEvidenceEnv.enabled ? "enabled" : "disabled"} maxAgeDays=${companyEvidenceEnv.maxAgeDays} sweepLimit=${companyEvidenceEnv.sweepLimit}`,
   );
+
+  // Phase 06 CV drop: cv.extract, cv.parse and the cv.cleanup cron (off in production).
+  await createCvQueues(boss);
+  await startCvWorkers({ boss, db, env: cvEnv });
+  console.log(`cv: ${cvEnv.enabled ? "enabled" : "disabled"} anonTtlHours=${cvEnv.anonTtlHours}`);
 } catch (error) {
   console.error(
     `worker boot failed: ${error instanceof Error ? `${error.name}: ${error.message}` : "error"}`,
