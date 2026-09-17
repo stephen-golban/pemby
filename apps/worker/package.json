@@ -9,16 +9,20 @@
     "ingest:once": "tsx src/scripts/ingest-once.ts",
     "validate:boards": "tsx src/scripts/validate-boards.ts",
     "health": "tsx src/scripts/health.ts",
+    "company-evidence:once": "tsx src/scripts/company-evidence-once.ts",
+    "enrich:once": "tsx src/scripts/enrich-once.ts",
     "typecheck": "tsc --noEmit",
     "lint": "eslint ."
   },
   "dependencies": {
+    "@pemby/ai": "workspace:*",
     "@pemby/ats": "workspace:*",
     "@pemby/core": "workspace:*",
     "@pemby/db": "workspace:*",
     "drizzle-orm": "0.45.2",
     "pg-boss": "12.32.0",
-    "tsx": "4.23.13"
+    "tsx": "4.23.13",
+    "zod": "4.6.5"
   },
   "devDependencies": {
     "@types/node": "24.13.4",

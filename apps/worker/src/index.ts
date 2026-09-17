@@ -1,8 +1,25 @@
+import { loadRoutingTable } from "@pemby/ai";
 import { createAtsHttpClient } from "@pemby/ats";
-import { PrivateConfigError, loadPrivateConfig } from "@pemby/core/private-config";
+import {
+  PrivateConfigError,
+  loadPrivateConfig,
+  loadRoutingConfig,
+} from "@pemby/core/private-config";
 import { createDb } from "@pemby/db";
 import { PgBoss } from "pg-boss";
+import {
+  createCompanyEvidenceQueues,
+  readCompanyEvidenceEnv,
+  scheduleCompanyEvidenceSweep,
+  startCompanyEvidenceWorkers,
+} from "./company-evidence";
 import { readWorkerEnv } from "./env";
+import {
+  createEnrichQueues,
+  readEnrichEnv,
+  scheduleEnrichSweep,
+  startEnrichWorkers,
+} from "./enrich";
 import {
   createIngestQueues,
   runCompanySync,
@@ -37,7 +54,30 @@ try {
   process.exit(1);
 }
 
-const db = createDb(env.databaseUrl, { max: 15, application_name: "pemby-worker" });
+let enrichEnv: ReturnType<typeof readEnrichEnv>;
+try {
+  enrichEnv = readEnrichEnv();
+} catch (error) {
+  console.error(`enrich env invalid: ${error instanceof Error ? error.message : "error"}`);
+  process.exit(1);
+}
+
+let companyEvidenceEnv: ReturnType<typeof readCompanyEvidenceEnv>;
+try {
+  companyEvidenceEnv = readCompanyEvidenceEnv();
+} catch (error) {
+  console.error(
+    `company evidence env invalid: ${error instanceof Error ? error.message : "error"}`,
+  );
+  process.exit(1);
+}
+
+// Phase 05 added two more sweep/handler pairs (enrich, company-evidence) on top of ingest's 7 ATS
+// queues plus 4 maintenance queues, all on this one Drizzle pool. Regular (non-transactional)
+// pg-boss handlers only borrow a pooled connection for their own queries, not for the job's whole
+// duration, so this is sized for default-env concurrency (ingest ~11 + enrich 2 + company-evidence
+// 2 = ~15) with headroom left for the sweep/maintenance queues and the boot company sync.
+const db = createDb(env.databaseUrl, { max: 20, application_name: "pemby-worker" });
 try {
   await db.$client.query("select 1");
   console.log("database connected");
@@ -47,6 +87,12 @@ try {
 }
 
 // pg-boss keeps its tables in schema `pgboss`, which Drizzle migrations never touch.
+//
+// Phase 05 raised the number of registered `boss.work` calls to 15 (7 ATS + 4 ingest maintenance
+// queues + enrich.sweep/enrich.job + company-evidence.check/.sweep), each polling on its own
+// interval (10-60s). None of them run `transactional: true`, so pg-boss only borrows a pooled
+// connection for a fetch/complete/fail call, never for the whole handler run; max 10 stays enough
+// headroom for occasional overlap between polling loops.
 const boss = new PgBoss({
   connectionString: env.databaseUrl,
   max: 10,
@@ -83,6 +129,26 @@ try {
   // One HTTP client for the process, so per-host limits hold across concurrent board reads.
   deps = { boss, db, http: createAtsHttpClient(), env };
   await startIngestWorkers(deps);
+
+  // A bad routing.json crashes the deploy here instead of the first AI call. Model ids are public
+  // but live in the private config, so only whether an override is in effect is logged.
+  await loadRoutingTable();
+  const routingConfig = await loadRoutingConfig();
+  console.log(`routing: ${routingConfig ? routingConfig.version : "default"}`);
+
+  await createEnrichQueues(boss);
+  await startEnrichWorkers({ boss, db, env: enrichEnv });
+  await scheduleEnrichSweep(boss, enrichEnv);
+  console.log(
+    `enrich: ${enrichEnv.enabled ? "enabled" : "disabled"} sweepLimit=${enrichEnv.sweepLimit} concurrency=${enrichEnv.concurrency}${enrichEnv.sampleMaxJobs !== null ? ` sampleMaxJobs=${enrichEnv.sampleMaxJobs}` : ""}`,
+  );
+
+  await createCompanyEvidenceQueues(boss);
+  await startCompanyEvidenceWorkers({ boss, db, env: companyEvidenceEnv });
+  await scheduleCompanyEvidenceSweep(boss, companyEvidenceEnv);
+  console.log(
+    `company-evidence: ${companyEvidenceEnv.enabled ? "enabled" : "disabled"} maxAgeDays=${companyEvidenceEnv.maxAgeDays} sweepLimit=${companyEvidenceEnv.sweepLimit}`,
+  );
 } catch (error) {
   console.error(
     `worker boot failed: ${error instanceof Error ? `${error.name}: ${error.message}` : "error"}`,

@@ -42,3 +42,6 @@ next-env.d.ts
 
 # Agent worktrees (local only)
 .claude/worktrees/
+
+# Eligibility eval: cached candidate pulls and API responses (local only)
+eval/.cache/
