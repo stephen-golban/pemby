@@ -1,0 +1,141 @@
+{
+  "Cv": {
+    "file": {
+      "pasted": "Pasted text",
+      "fallbackName": "Your CV",
+      "startOver": "Start over"
+    },
+    "steps": {
+      "label": "Progress",
+      "upload": "Upload",
+      "read": "Read",
+      "profile": "Profile",
+      "roles": "Roles",
+      "done": "{step}: done",
+      "current": "{step}: in progress",
+      "pending": "{step}: not yet"
+    },
+    "status": {
+      "sending": "Sending your CV",
+      "resuming": "Checking on your CV",
+      "uploaded": "Reading your CV",
+      "extracting": "Reading your CV",
+      "parsing": "Building your profile",
+      "queued": "Your CV is in line",
+      "parsed": "Your profile",
+      "unreadable": "We couldn't read this file",
+      "failed": "Reading your CV didn't finish"
+    },
+    "lead": {
+      "reading": "Pemby reads the text in your file, then builds your profile from it. Fields appear as they are found.",
+      "parsed": "Read from your CV. You can correct anything after you sign up."
+    },
+    "queued": {
+      "body": "Pemby has reached today's limit for reading CVs. Yours keeps its place in line and will be read by {time}.",
+      "bodyNoTime": "Pemby has reached today's limit for reading CVs. Yours keeps its place in line and will be read as soon as reading opens again.",
+      "note": "You can leave this page open, or come back to it in this tab."
+    },
+    "unreadable": {
+      "body": "It looks like a scan or an image, so there is no text in it to read. Paste the text of your CV below instead.",
+      "label": "Text of your CV",
+      "hint": "Copy it from your document. At least 200 characters.",
+      "count": "{count, number} of at least 200 characters",
+      "submit": "Read this text",
+      "sending": "Sending…",
+      "chooseFile": "Try another file"
+    },
+    "failed": {
+      "body": "Something went wrong while building your profile. Try again, or paste the text of your CV.",
+      "retry": "Try again",
+      "paste": "Paste text instead",
+      "chooseFile": "Choose the file again"
+    },
+    "errors": {
+      "cv_too_large": "That file is over 5 MB. Try a PDF or DOCX under 5 MB.",
+      "cv_bad_type": "Pemby reads PDF and DOCX files. Try one of those.",
+      "cv_text_length": "Paste at least 200 characters of your CV.",
+      "turnstile_failed": "We couldn't confirm this is a person and not a bot. Reload the page and try again.",
+      "rate_limited": "Several CVs came from here in a short time. Wait a while and try again.",
+      "unauthenticated": "Your session ended. Try again.",
+      "unavailable": "Pemby can't take CVs right now. Try again in a few minutes.",
+      "not_found": "This CV is no longer here. Unclaimed CVs are deleted after 24 hours. Drop it again to start over.",
+      "network": "Pemby couldn't be reached. Check your connection and try again."
+    },
+    "human": "One quick check that you're a person, then your CV goes up.",
+    "profile": {
+      "fields": {
+        "name": "Name",
+        "titles": "Titles",
+        "seniority": "Seniority",
+        "experience": "Experience",
+        "stack": "Stack",
+        "domains": "Domains",
+        "location": "Location",
+        "languages": "Languages",
+        "links": "Links"
+      },
+      "pending": "not yet",
+      "missing": "Not in your CV",
+      "years": "{years, plural, one {# year} other {# years}}",
+      "timezone": "time zone {zone}",
+      "seniority": {
+        "intern": "Intern",
+        "junior": "Junior",
+        "middle": "Middle",
+        "senior": "Senior",
+        "lead": "Lead",
+        "staff": "Staff",
+        "principal": "Principal"
+      },
+      "levels": {
+        "a1": "A1",
+        "a2": "A2",
+        "b1": "B1",
+        "b2": "B2",
+        "c1": "C1",
+        "c2": "C2",
+        "native": "Native"
+      },
+      "linkKinds": {
+        "github": "GitHub",
+        "linkedin": "LinkedIn",
+        "portfolio": "Portfolio",
+        "other": "Link"
+      }
+    },
+    "teaser": {
+      "yourCountry": "your country",
+      "checking": "Checking which roles can hire you from {country}",
+      "count": "{count, plural, one {role hires} other {roles hire}} from {country}",
+      "sample": "{shown, plural, one {Here is one of them.} other {Here are # of them.}} Each was checked on the company's own careers page.",
+      "tier": "Hires from {country}",
+      "open": "Open the post",
+      "openLabel": "Open the post for {title} at {company}",
+      "reasons": {
+        "country-named": "The post lists {country} among the places for this role.",
+        "worldwide-engagement": "The post says it's open worldwide to {engagement}.",
+        "company-names-country": "The company's careers page names {country}; not confirmed for this role."
+      },
+      "reasonFallback": "The post says where this role can be done, and {country} is included.",
+      "noneTitle": "roles from {country} right now",
+      "noneBody": "Pemby only counts roles that can hire you from {country}, so this can be zero. Sign up to keep your profile and come back to it.",
+      "unsupportedTitle": "Pemby doesn't cover {country} yet",
+      "unsupportedBody": "Pemby starts with the countries remote roles most often leave out, and {country} isn't one of them yet. Your profile is still yours to save.",
+      "noCountryTitle": "Your CV doesn't say where you live",
+      "noCountryBody": "Pemby matches roles by the country you work from. Your CV doesn't name one, so you can add it after you sign up.",
+      "failed": "Roles couldn't be loaded right now",
+      "retry": "Try again"
+    },
+    "save": {
+      "title": "Save your profile",
+      "body": "Your CV and profile are deleted after 24 hours unless you sign up. Signing up keeps them on your account, and you can correct anything in them.",
+      "cta": "Sign up to save",
+      "signIn": "I have an account",
+      "delete": "Delete my CV now"
+    },
+    "announce": {
+      "profileReady": "Your profile is ready.",
+      "teaserReady": "{count, plural, =0 {No roles from {country} right now.} one {# role hires from {country}.} other {# roles hire from {country}.}}"
+    }
+  }
+}

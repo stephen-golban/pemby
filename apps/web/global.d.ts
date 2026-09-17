@@ -1,5 +1,7 @@
 import type messages from "./messages/en.json";
+import type cv from "./messages/en/cv.json";
 import type legal from "./messages/en/legal.json";
+import type onboarding from "./messages/en/onboarding.json";
 import type pricing from "./messages/en/pricing.json";
 import type seo from "./messages/en/seo.json";
 import type { Locale } from "./i18n/config";
@@ -9,6 +11,11 @@ import type { Locale } from "./i18n/config";
 declare module "next-intl" {
   interface AppConfig {
     Locale: Locale;
-    Messages: typeof messages & typeof legal & typeof pricing & typeof seo;
+    Messages: typeof messages &
+      typeof cv &
+      typeof legal &
+      typeof onboarding &
+      typeof pricing &
+      typeof seo;
   }
 }

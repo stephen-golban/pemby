@@ -1,0 +1,356 @@
+/*
+ * CV drop: the idle zone (drop-zone.module.css) grows in place into a working panel. Operate
+ * density inside the landing's world - same ground, type and radii, hairline-ruled sections,
+ * outline-pill secondary actions, nothing tilted and nothing nested in a second card.
+ */
+
+.zone[data-mode="active"] {
+  inline-size: min(100%, 760px);
+  border-style: solid;
+  border-color: color-mix(in srgb, var(--color-ink) 32%, transparent);
+  text-align: start;
+}
+
+.idle {
+  display: flex;
+  flex-direction: column;
+}
+
+.choose {
+  margin-block-start: 6px;
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
+}
+
+.error {
+  margin: var(--space-3) var(--space-5) var(--space-5);
+  padding: 10px 14px;
+  border: 1px solid color-mix(in srgb, var(--color-tier-red) 55%, transparent);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-tier-red) 10%, var(--color-surface));
+  font-size: var(--text-small);
+  line-height: 1.5;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: var(--space-5) var(--space-6) var(--space-6);
+}
+
+/* File row ------------------------------------------------------------- */
+
+.fileRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.fileGlyph svg {
+  inline-size: 22px;
+  block-size: 22px;
+}
+
+.fileName {
+  overflow: hidden;
+  font-size: var(--text-small);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: var(--weight-mono-strong);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+.fileRow .pill {
+  margin-inline-start: auto;
+}
+
+.pill:hover {
+  border-color: var(--color-ink);
+}
+
+/* Steps ---------------------------------------------------------------- */
+
+.steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.stepMark {
+  display: grid;
+  place-items: center;
+  inline-size: 20px;
+  block-size: 20px;
+  border: 1.5px dashed var(--color-line);
+  border-radius: var(--radius-sm);
+  color: var(--color-ground);
+}
+
+.stepMark svg {
+  inline-size: 13px;
+  block-size: 13px;
+}
+
+.step[data-state="done"] .stepMark {
+  border-style: solid;
+  border-color: var(--color-ink);
+  background: var(--color-ink);
+}
+
+.step[data-state="current"] .stepMark {
+  border-style: solid;
+  border-color: var(--color-ink);
+  animation: breathe 1.6s ease-in-out infinite;
+}
+
+.stepLabel {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: var(--weight-mono-strong);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.step[data-state="pending"] .stepLabel {
+  color: var(--color-ink-soft);
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+/* Panel text ----------------------------------------------------------- */
+
+.panelTitle {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: var(--weight-title);
+  line-height: 1.05;
+  letter-spacing: var(--tracking-title);
+}
+
+.panelTitle:focus {
+  outline: none;
+}
+
+.panelTitle:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 4px;
+}
+
+.lead {
+  max-inline-size: 58ch;
+  font-size: var(--text-small);
+  line-height: 1.5;
+}
+
+.note {
+  font-size: var(--text-label);
+  line-height: 1.5;
+  color: var(--color-ink-soft);
+}
+
+.notice {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-block-start: var(--space-4);
+  border-block-start: 1px solid var(--color-line);
+  font-size: var(--text-small);
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-5);
+}
+
+/* Paste fallback ------------------------------------------------------- */
+
+.paste {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.pasteLabel {
+  font-size: var(--text-label);
+  font-weight: var(--weight-mono-strong);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+
+.textarea {
+  inline-size: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-ground);
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  line-height: 1.6;
+  resize: vertical;
+}
+
+.pasteHint {
+  font-size: var(--text-label);
+  color: var(--color-ink-soft);
+}
+
+.count {
+  font-variant-numeric: tabular-nums;
+}
+
+.count[data-short="false"] {
+  color: var(--color-ink);
+}
+
+/* Actions -------------------------------------------------------------- */
+
+.primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  block-size: 52px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--color-ink);
+  color: var(--color-ground);
+  font-family: var(--font-display);
+  font-size: 1.1875rem;
+  font-weight: var(--weight-title);
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.primary:hover {
+  transform: translateY(-2px);
+}
+
+.primary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.textLink {
+  font-size: var(--text-small);
+  text-decoration: underline;
+}
+
+.quiet {
+  align-self: start;
+  min-block-size: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-ink-soft);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
+  cursor: pointer;
+}
+
+.quiet:hover {
+  color: var(--color-ink);
+}
+
+.save {
+  display: grid;
+  gap: var(--space-3);
+  justify-items: start;
+  margin-block-start: var(--space-5);
+  padding-block-start: var(--space-5);
+  border-block-start: 1px solid var(--color-line);
+}
+
+.saveTitle {
+  font-family: var(--font-display);
+  font-size: 1.3125rem;
+  font-weight: var(--weight-title);
+  letter-spacing: -0.02em;
+}
+
+.saveBody {
+  max-inline-size: 58ch;
+  font-size: var(--text-small);
+  line-height: 1.5;
+}
+
+/* Turnstile ------------------------------------------------------------ */
+
+.human {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.human[data-interactive="true"] {
+  padding: 0 var(--space-6) var(--space-5);
+}
+
+@media (max-width: 560px) {
+  .panel {
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-4) var(--space-5);
+  }
+
+  .error {
+    margin: 0 var(--space-4) var(--space-4);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .step[data-state="current"] .stepMark {
+    animation: none;
+  }
+
+  .primary {
+    transition: none;
+  }
+
+  .primary:hover {
+    transform: none;
+  }
+}

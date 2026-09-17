@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import { useEffect, useId, useRef, useState } from "react";
 import type { DragEvent } from "react";
+import { CvDrop } from "@/components/cv-drop/cv-drop";
 import styles from "./drop-zone.module.css";
 
 const TELEGRAM_URL = "https://t.me/pemby_jobs";
@@ -10,11 +11,24 @@ const TELEGRAM_URL = "https://t.me/pemby_jobs";
 type Mode = "idle" | "dragging" | "pending";
 
 /**
- * Stand-in for the CV drop until phase 06. It accepts a click, a key press or a dropped file,
- * but never reads or uploads anything: it only explains, inline, that CV reading opens with the
- * beta. There is no mutation here, so there is nothing to roll back.
+ * The landing page's drop zone. With `live` (the server found the CV drop switched on, see
+ * `DropZoneSlot`) it is the working CV drop: the file is read, the profile fills in, and the
+ * teaser follows. Without it, it is the stand-in: it accepts a click, a key press or a dropped
+ * file but never reads or uploads anything, and says inline that CV reading is not switched on
+ * on this site. The stand-in has no mutation, so there is nothing to roll back.
  */
-export function DropZone({ className }: { className?: string }) {
+export function DropZone({
+  className,
+  live,
+}: {
+  className?: string;
+  live?: { siteKey: string; resume: boolean };
+}) {
+  if (live) return <CvDrop className={className} siteKey={live.siteKey} resume={live.resume} />;
+  return <StandInDropZone className={className} />;
+}
+
+function StandInDropZone({ className }: { className?: string }) {
   const t = useTranslations("Landing.drop");
   const [mode, setMode] = useState<Mode>("idle");
   const depth = useRef(0);

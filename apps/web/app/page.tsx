@@ -2,7 +2,7 @@ import type { Metadata, ResolvingMetadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { About } from "@/components/landing/about";
 import { Close } from "@/components/landing/close";
-import { DropZone } from "@/components/landing/drop-zone";
+import { DropZoneSlot } from "@/components/cv-drop/drop-zone-slot";
 import { HonestSilence } from "@/components/landing/honest-silence";
 import { HowItWorks } from "@/components/landing/how-it-works";
 import styles from "@/components/landing/landing.module.css";
@@ -29,7 +29,7 @@ export default async function HomePage() {
             {t("headline")}
           </h1>
           <p className={styles.subline}>{t("subline")}</p>
-          <DropZone className={styles.action} />
+          <DropZoneSlot className={styles.action} resume />
         </section>
         <MatchBand />
         <HowItWorks />
