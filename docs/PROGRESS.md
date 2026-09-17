@@ -1,7 +1,9 @@
 # Progress
 
-- **Progress page (private claude.ai artifact):** https://claude.ai/artifact/RHdWgXQpDd35nYMcKaodRR
+- **Progress page (private claude.ai artifact):** https://claude.ai/artifact/FEknxetV7BiA58y11fBqDJ
   Every phase lead reads it with the Artifact tool and republishes it with `url` after each work unit.
+  Replaced the phase 01-05 page (`RHdWgXQpDd35nYMcKaodRR`) in phase 06: that one belongs to another
+  Claude account and is unreachable from this one. The old page stays as history.
 - **Staging:** https://staging.pemby.app, behind HTTP basic auth. User and password are the
   `STAGING_BASIC_AUTH_USER` / `STAGING_BASIC_AUTH_PASSWORD` shared variables in Railway (project
   `pemby`, environment staging). Sign-up is open on staging. Demo data is fictional.
