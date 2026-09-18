@@ -19,6 +19,7 @@ import {
   type Seniority,
   type WayOfWorking,
 } from "@pemby/core";
+import { createHash } from "node:crypto";
 import { getDb } from "@pemby/db";
 import {
   ENGLISH_LEVELS,
@@ -338,15 +339,83 @@ export interface CvExportRow {
   created_at: Date;
 }
 
+export interface ChannelExportRow {
+  type: string;
+  address: string;
+  enabled: boolean;
+  verified_at: Date | null;
+  dead_at: Date | null;
+  dead_reason: string | null;
+  quiet_start_minute: number | null;
+  quiet_end_minute: number | null;
+  timezone: string | null;
+  created_at: Date;
+}
+
+/** Lower-case hex SHA-256 of a value, truncated: enough to tell two rows apart, not enough to be one. */
+function fingerprint(value: string): string {
+  return createHash("sha256").update(value).digest("hex").slice(0, 12);
+}
+
 /**
- * Everything "Export my data" hands back: the profile as the product uses it, plus one entry per
- * CV with its metadata and the profile parsed out of it. Deliberately absent: `bucket_key` and any
- * bucket URL (objects are private and no presigned URL is ever handed to a browser) and the raw
- * extracted CV text.
+ * A delivery channel, as the export shows it (phase 08, PLAN D8).
+ *
+ * **The address.** A Telegram chat id and an email address are facts about the person and go out
+ * in full. A web-push endpoint does not: it is a bearer URL minted by a push service, and the row
+ * gives its origin plus a fingerprint instead — enough to tell two browsers apart, which is the
+ * only thing a reader could want from it, and not enough to address either of them.
+ *
+ * **`push_keys` is absent on purpose, and this is the one judgement call in the file.** The
+ * `p256dh` and `auth` pair is not information about the person at all: it is ECDH key material the
+ * browser generated for one transport, and it is the half of the message encryption that is meant
+ * to stay on the two ends. An export is a file people mail to themselves and leave in Downloads;
+ * putting live credentials in it turns a lost laptop into a way to send someone notifications that
+ * look like ours. Nothing is lost by leaving them out — they mean nothing to a reader, they cannot
+ * be imported anywhere, and the subscription they belong to is revoked by switching push off in
+ * the browser that made it. Same reasoning, and the same precedent, as `bucket_key` above.
+ */
+function channelExport(row: ChannelExportRow) {
+  const push = row.type === "push";
+  let address = row.address;
+  if (push) {
+    let origin = "unknown";
+    try {
+      origin = new URL(row.address).origin;
+    } catch {
+      origin = "unknown";
+    }
+    address = `${origin} (${fingerprint(row.address)})`;
+  }
+  return {
+    type: row.type,
+    address,
+    /** True when the browser's encryption keys are held for this channel; the keys are not exported. */
+    hasPushKeys: push,
+    enabled: row.enabled,
+    verifiedAt: row.verified_at?.toISOString() ?? null,
+    deadAt: row.dead_at?.toISOString() ?? null,
+    deadReason: row.dead_reason,
+    quietStartMinute: row.quiet_start_minute,
+    quietEndMinute: row.quiet_end_minute,
+    timezone: row.timezone,
+    createdAt: row.created_at.toISOString(),
+  };
+}
+
+/**
+ * Everything "Export my data" hands back: the profile as the product uses it, one entry per CV with
+ * its metadata and the profile parsed out of it, and the delivery channels the account is reachable
+ * on. Deliberately absent: `bucket_key` and any bucket URL (objects are private and no presigned URL
+ * is ever handed to a browser), the raw extracted CV text, and push subscription keys (see
+ * `channelExport`).
+ *
+ * Deletion needs nothing added for phase 08: `channels.user_id` and `delivery_log.user_id` are both
+ * `ON DELETE cascade` from `user.id` (`packages/db/src/schema/delivery.ts:41,88`, applied in
+ * `packages/db/drizzle/0001_*.sql:434-435`), so `deleteUserAndCvRows` below already takes them.
  */
 export async function loadExport(userId: string, anonymous: boolean) {
   const client = getDb().$client;
-  const [profile, cvs, account] = await Promise.all([
+  const [profile, cvs, account, channels] = await Promise.all([
     loadProfileView(userId, anonymous),
     client.query<CvExportRow>(
       `select id, source, file_name, mime_type, size_bytes, sha256,
@@ -362,6 +431,12 @@ export async function loadExport(userId: string, anonymous: boolean) {
       email_verified: boolean;
       created_at: Date;
     }>(`select id, email, name, email_verified, created_at from "user" where id = $1`, [userId]),
+    client.query<ChannelExportRow>(
+      `select type::text as type, address, enabled, verified_at, dead_at, dead_reason,
+              quiet_start_minute, quiet_end_minute, timezone, created_at
+         from channels where user_id = $1 order by created_at`,
+      [userId],
+    ),
   ]);
 
   const user = account.rows[0];
@@ -394,6 +469,7 @@ export async function loadExport(userId: string, anonymous: boolean) {
       createdAt: row.created_at.toISOString(),
       parsed: row.parsed,
     })),
+    channels: channels.rows.map(channelExport),
   };
 }
 

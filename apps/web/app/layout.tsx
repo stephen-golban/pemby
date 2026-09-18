@@ -37,6 +37,10 @@ export async function generateMetadata(): Promise<Metadata> {
     title: { default: title, template: `%s · ${siteName}` },
     description,
     applicationName: siteName,
+    // The PWA the web-push channel needs (PLAN D8). Saving the site to the Home Screen is the only
+    // way an iPhone can receive push at all (Safari 16.4+), so the manifest link is on every page,
+    // not only on the one that offers to turn push on.
+    manifest: "/manifest.webmanifest",
     openGraph: { title, description, siteName, type: "website", locale: "en_US" },
     twitter: { card: "summary_large_image", title, description },
   };

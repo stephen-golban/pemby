@@ -1,0 +1,31 @@
+{
+  "Delivery": {
+    "meta": {
+      "unsubscribeTitle": "Stop match emails",
+      "flagTitle": "Report a post"
+    },
+    "unsubscribe": {
+      "title": "Stop match emails",
+      "lead": "Pemby stops sending matches to this address. Nothing else changes: your profile stays, your Brief stays, and Telegram and web push carry on if you have them on.",
+      "confirm": "Stop these emails",
+      "working": "Stopping",
+      "done": "Done. No more match emails to this address.",
+      "doneLead": "Turn them back on whenever you like, in your delivery settings.",
+      "failed": "That didn't go through. Press the button again.",
+      "expiredTitle": "This link has expired",
+      "expiredLead": "Links in an email stop working after a while. Open your delivery settings and turn match emails off there.",
+      "settings": "Delivery settings",
+      "brief": "Open your Brief"
+    },
+    "flag": {
+      "title": "Report a post",
+      "lead": "What you pick goes to Pemby, never to the company.",
+      "details": "If a detail is simply wrong — the pay, the level, the location — report it from your Brief, where you can say which one.",
+      "already": "You have already reported this post.",
+      "failed": "That didn't go through. Open your Brief and report it there.",
+      "expiredTitle": "This link has expired",
+      "expiredLead": "Links in an email stop working after a while. You can still report the post from your Brief.",
+      "brief": "Open your Brief"
+    }
+  }
+}

@@ -1,0 +1,104 @@
+/*
+ * /settings: the channels ledger, the quiet window, and the one panel that holds everything.
+ *
+ * Same Operate grammar as /profile and /brief — warm ground, hairline-ruled ledgers, flat panels,
+ * outline pills — in one column rather than two. There is nothing to put in a rail here: every line
+ * on this page is a decision, and a sparse second column beside them would be decoration
+ * (DESIGN.md, Operate surfaces: working density, every flourish removed).
+ */
+
+.page {
+  min-block-size: 100dvh;
+  background: var(--color-ground);
+}
+
+.shell {
+  max-inline-size: calc(820px + 2 * var(--gutter));
+  margin-inline: auto;
+  padding: var(--space-8) var(--gutter) var(--space-9);
+}
+
+.column {
+  display: grid;
+  gap: var(--space-8);
+  min-inline-size: 0;
+}
+
+.intro {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.title {
+  max-inline-size: 16ch;
+  font-family: var(--font-display);
+  font-size: 2.125rem;
+  font-weight: var(--weight-title);
+  line-height: 0.92;
+  letter-spacing: var(--tracking-title);
+  text-wrap: balance;
+}
+
+.lead {
+  max-inline-size: 58ch;
+  font-size: var(--text-small);
+  line-height: 1.55;
+}
+
+/* One topic: the heading over its ledger, with more space above than below it. */
+.topic {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.topicTitle {
+  font-family: var(--font-display);
+  font-size: 1.625rem;
+  font-weight: var(--weight-title);
+  line-height: 1;
+  letter-spacing: var(--tracking-title);
+}
+
+.footnote {
+  max-inline-size: 58ch;
+  font-size: var(--text-label);
+  line-height: 1.5;
+  color: var(--color-ink-soft);
+}
+
+.account {
+  display: grid;
+  gap: var(--space-5);
+  justify-items: start;
+  padding-block-start: var(--space-5);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-5);
+}
+
+.alert {
+  max-inline-size: 58ch;
+  padding: 10px 14px;
+  border: 1px solid color-mix(in srgb, var(--color-tier-red) 55%, transparent);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-tier-red) 10%, var(--color-surface));
+  font-size: var(--text-small);
+  line-height: 1.5;
+}
+
+@media (max-width: 720px) {
+  .shell {
+    padding-block-start: var(--space-5);
+  }
+
+  .title {
+    font-size: 1.8125rem;
+  }
+
+  .column {
+    gap: var(--space-7);
+  }
+}

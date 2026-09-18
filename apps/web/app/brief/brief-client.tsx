@@ -42,6 +42,7 @@ const OPEN_STATES: readonly MatchState[] = ["new", "saved"];
  */
 export function BriefClient({ initial }: { initial: BriefView }) {
   const t = useTranslations("Brief");
+  const settings = useTranslations("Settings");
   const countryName = useCountryName();
   const brief = useBrief(initial);
   const data = brief.brief;
@@ -214,6 +215,13 @@ export function BriefClient({ initial }: { initial: BriefView }) {
 
         <Link className={styles.railLink} href="/profile">
           {t("rail.profile")}
+        </Link>
+
+        {/* Phase 08: the second thing this rail can send you to change — not what reaches you, but
+            where it reaches you (PLAN D8). Same quiet link as its neighbour; its string lives in
+            the Settings namespace with the rest of that surface's copy. */}
+        <Link className={styles.railLink} href="/settings">
+          {settings("railLink")}
         </Link>
       </aside>
     </div>

@@ -1,0 +1,108 @@
+/*
+ * /unsubscribe: one decision on an otherwise empty page.
+ *
+ * An Operate surface reached from an inbox, by someone who may have no session and no intention of
+ * getting one, so it carries the outlined paper card the design reserves for a decision and
+ * nothing else — no rail, no ledger, no second action competing with the first.
+ */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  min-block-size: 100dvh;
+  background: var(--color-ground);
+}
+
+.shell {
+  flex: 1;
+  inline-size: 100%;
+  max-inline-size: calc(640px + 2 * var(--gutter));
+  margin-inline: auto;
+  padding: var(--space-8) var(--gutter) var(--space-9);
+}
+
+.card {
+  display: grid;
+  gap: var(--space-5);
+  background: var(--color-paper-card);
+  border: 1.5px solid var(--color-line-strong);
+  /* 30px is the card corner of DESIGN.md; there is no `--radius-card` token to reach for. */
+  border-radius: 30px;
+  padding: var(--space-7) var(--space-6) var(--space-6);
+}
+
+.title {
+  max-inline-size: 18ch;
+  font-family: var(--font-display);
+  font-size: 2.125rem;
+  font-weight: var(--weight-title);
+  line-height: 0.92;
+  letter-spacing: var(--tracking-title);
+  text-wrap: balance;
+}
+
+.lead {
+  max-inline-size: 58ch;
+  font-size: var(--text-small);
+  line-height: 1.6;
+  color: var(--color-ink-soft);
+}
+
+/* The one primary action: ink pill, 52px, ground-coloured grotesk label. */
+.confirm {
+  justify-self: start;
+  min-block-size: 52px;
+  padding-inline: var(--space-5);
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--color-ink);
+  color: var(--color-ground);
+  font-family: var(--font-display);
+  font-size: 1.1875rem;
+  font-weight: var(--weight-title);
+  cursor: pointer;
+  transition:
+    transform var(--duration-fast) var(--ease-out),
+    opacity var(--duration-fast) var(--ease-out);
+}
+
+.confirm:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.confirm:disabled {
+  cursor: progress;
+  opacity: 0.6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .confirm {
+    transition: none;
+  }
+
+  .confirm:hover:not(:disabled) {
+    transform: none;
+  }
+}
+
+.error {
+  font-size: var(--text-small);
+  color: var(--color-tier-red);
+}
+
+/* The two ways out, as the ledger's hairline-ruled row of quiet links. */
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  border-block-start: 1px solid var(--color-line);
+  padding-block-start: var(--space-5);
+  font-size: var(--text-label);
+}
+
+.links a {
+  min-block-size: 44px;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: underline;
+}

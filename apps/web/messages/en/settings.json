@@ -1,0 +1,100 @@
+{
+  "Settings": {
+    "meta": {
+      "title": "Delivery"
+    },
+    "title": "Delivery",
+    "lead": "Where your matches arrive, and when. Pemby sends them; you apply yourself.",
+    "channels": "Channels",
+    "when": "When",
+    "on": "On",
+    "off": "Off",
+    "footnote": "A match goes out once on every channel that is on. Nothing else is ever sent from here.",
+    "toBrief": "Open your Brief",
+    "toProfile": "Change what you're matched on",
+    "railLink": "Delivery",
+    "anonymous": {
+      "title": "Delivery needs an account",
+      "body": "This session disappears with your CV after 24 hours, so there is nowhere to send anything yet. Create an account and Pemby can reach you on Telegram, by email, or on this browser.",
+      "cta": "Create an account",
+      "signIn": "Sign in"
+    },
+    "telegram": {
+      "label": "Telegram",
+      "help": "Each match as a message you can act on without opening a browser.",
+      "connected": "Connected",
+      "notConnected": "Not connected",
+      "stopped": "Stopped",
+      "connect": "Connect",
+      "minting": "Making a link",
+      "disconnect": "Disconnect",
+      "linkLead": "Open this link on the device your Telegram is on. It works once, and asking for another one replaces it.",
+      "open": "Open Telegram",
+      "copy": "Copy link",
+      "copied": "Copied",
+      "linkExpires": "This link stops working {when}."
+    },
+    "email": {
+      "label": "Email",
+      "help": "One email per match, to the address this account signed in with."
+    },
+    "push": {
+      "label": "Push",
+      "help": "A notification on this browser, even when Pemby is closed.",
+      "checking": "Checking this browser",
+      "onState": "On in this browser",
+      "offState": "Off in this browser",
+      "homeScreenState": "Not available in this tab",
+      "homeScreen": "On iPhone and iPad, push works only for a web app saved to the Home Screen. Open the share menu, choose Add to Home Screen, open Pemby from there, and turn this on.",
+      "unsupportedState": "Not available in this browser",
+      "unsupported": "This browser has no push service. Telegram and email still work.",
+      "blockedState": "Blocked by this browser",
+      "blocked": "Notifications are blocked for this site. Allow them in your browser's site settings, then reload this page.",
+      "unavailableState": "Not available here",
+      "unavailable": "Push is not configured in this environment.",
+      "installed": "Pemby is running as an installed app here, so push will work.",
+      "elsewhere": "{count, plural, one {# other browser is subscribed.} other {# other browsers are subscribed.}}",
+      "forget": "Forget the others"
+    },
+    "quiet": {
+      "label": "Quiet hours",
+      "help": "Nothing is sent inside this window. Anything that would have arrived waits and comes after it ends.",
+      "needsChannel": "Turn on a channel first. Quiet hours are stored with your channels, so there is nowhere to keep them yet.",
+      "none": "Not set",
+      "window": "{from} to {until}",
+      "from": "From",
+      "until": "Until",
+      "zone": "Time zone",
+      "clear": "No quiet hours",
+      "sameTime": "Pick two different times.",
+      "wraps": "This window runs overnight and ends at {until} the next morning."
+    },
+    "pause": {
+      "title": "Hold everything",
+      "body": "Nothing goes out on any channel while delivery is held. Matches keep being made; they wait for you.",
+      "hold": "Hold delivery",
+      "heldTitle": "Delivery is held",
+      "heldBody": "Held {since}. Nothing has gone out on any channel since then.",
+      "heldBodyJustNow": "Held just now. Nothing will go out on any channel until you start it again.",
+      "resume": "Start again"
+    },
+    "dead": {
+      "blocked": "Telegram reports the bot is blocked. Unblock it in Telegram, then connect again.",
+      "chat-not-found": "That Telegram chat no longer exists. Connect again to pick a new one.",
+      "push-expired": "The push service dropped this subscription. Turn push on again in the browser you want it on.",
+      "address-invalid": "Mail to this address was refused for good. Switching email back on tries it again.",
+      "permanent-failure": "This channel stopped working and nothing is being sent on it. Set it up again."
+    },
+    "errors": {
+      "unauthenticated": "You've been signed out. Sign in and try again.",
+      "forbidden": "This account can't change delivery settings.",
+      "invalid_patch": "That setting didn't look right, so nothing was changed.",
+      "invalid_subscription": "This browser's subscription wasn't accepted. Turn push off and on again.",
+      "subscription_taken": "This browser's notifications still belong to another account. Turn push off and on again to claim them.",
+      "telegram_unavailable": "Telegram isn't set up in this environment yet.",
+      "unavailable": "That didn't save. Try again.",
+      "network": "No connection, so nothing was changed.",
+      "push_refused": "This browser didn't allow notifications, so nothing was changed."
+    }
+  }
+}

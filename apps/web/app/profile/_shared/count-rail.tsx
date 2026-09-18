@@ -16,12 +16,19 @@ import styles from "./rail.module.css";
  */
 export function BriefLink() {
   const t = useTranslations("Onboarding.profile");
+  const settings = useTranslations("Settings");
   return (
     <div className={styles.brief}>
       <Link className={panels.primary} href="/brief">
         {t("briefCta")}
       </Link>
       <p className={styles.note}>{t("briefNote")}</p>
+      {/* Phase 08: the other way out of the profile — where those roles are sent (PLAN D8). A quiet
+          text link, not a second primary: the Brief is the one call on this rail. Its string lives
+          in the Settings namespace with the rest of that surface's copy. */}
+      <Link className={panels.textLink} href="/settings">
+        {settings("railLink")}
+      </Link>
     </div>
   );
 }

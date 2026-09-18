@@ -1,0 +1,128 @@
+/*
+ * What the channels ledger needs beyond the row grammar it borrows from
+ * `app/profile/_shared/fields.module.css`: the state line, the quieter note under it, the time
+ * inputs, and the block that shows a minted Telegram link once.
+ *
+ * Nothing new is invented here. Same hairlines, same mono, same outline pill, same tokens
+ * (DESIGN.md, Operate surfaces: the ledger at working density with every flourish removed).
+ */
+
+.state {
+  font-size: var(--text-small);
+  line-height: 1.5;
+}
+
+/* A fact the person did not choose: a blocked bot, a browser that cannot do this, other devices. */
+.note {
+  max-inline-size: 58ch;
+  margin-block-start: var(--space-2);
+  font-size: var(--text-label);
+  line-height: 1.5;
+  color: var(--color-ink-soft);
+}
+
+/* Quiet hours ------------------------------------------------------------ */
+
+.window {
+  font-variant-numeric: tabular-nums;
+}
+
+.zone {
+  margin-inline-start: var(--space-3);
+  color: var(--color-ink-soft);
+}
+
+.timeLabel {
+  font-size: var(--text-label);
+  font-weight: var(--weight-mono-strong);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+
+/* Matches `.select` / `.text` / `.number` in fields.module.css; a time field is the same object. */
+.time {
+  min-block-size: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-ground);
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  font-variant-numeric: tabular-nums;
+}
+
+.time:hover {
+  border-color: var(--color-ink);
+}
+
+/*
+ * The full-width slot under a row's three columns. `1 / -1` rather than a nested element, so the
+ * panel is a grid item of the row itself and starts at the label's own left edge instead of at the
+ * value column's — a long URL indented into the middle of the ledger reads as debris.
+ */
+.full {
+  grid-column: 1 / -1;
+  margin: 0;
+  min-inline-size: 0;
+}
+
+/* Telegram link ---------------------------------------------------------- */
+
+/*
+ * The one-time link. A paper panel rather than a card: it sits flat, like every other panel
+ * (DESIGN.md, "Objects lift, panels sit"), and it is inside a ledger row, so it must not float
+ * above the rules around it.
+ */
+.link {
+  display: grid;
+  gap: var(--space-3);
+  justify-items: start;
+  max-inline-size: 42rem;
+  margin-block-start: var(--space-2);
+  padding: var(--space-4);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.linkLead {
+  max-inline-size: 52ch;
+  font-size: var(--text-small);
+  line-height: 1.5;
+}
+
+/*
+ * The URL itself. It is long, it is a credential, and it is meant to be copied by hand onto a
+ * phone, so it wraps at any character rather than pushing the ledger sideways.
+ */
+.linkUrl {
+  inline-size: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-ground);
+  font-size: var(--text-label);
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+  user-select: all;
+}
+
+.linkActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* Pause ------------------------------------------------------------------ */
+
+.pauseAction {
+  margin-block-start: var(--space-2);
+}
+
+@media (max-width: 720px) {
+  .link {
+    padding: var(--space-3);
+  }
+}
