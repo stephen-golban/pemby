@@ -59,6 +59,27 @@ the bar.
 
 None of this was visible from reading the diffs. Two blind adversarial reviewers found it.
 
+## The shape all of these share
+
+Phase 08's phrasing, and the most transferable thing this phase produced:
+
+> A mechanism reports success about the **work it did** rather than the **outcome it achieved**, and
+> nobody notices because the number that would reveal it is being read as a health metric.
+
+Four instances, three of them in this phase:
+
+- `embed.sweep` completed **4,972 runs** and produced **zero vectors**. The run count looked like throughput.
+- `match.job` completes normally while logging `users=0 … matches=0`. A healthy queue draining into nothing.
+- The reason-table parity was "verified" — once, by hand, at review time — and then written up as an
+  enforced guarantee. A green check that had already expired.
+- (Phase 08's own) `late` derived from the user's tier rather than from whether the message actually
+  waited, so a 48-hour-old message was sent without the D13 disclosure.
+
+The tell is the same every time: a counter that increments on *attempts* sitting where a counter of
+*results* belongs. When reviewing anything in this codebase that reports a number, ask which of the
+two it is. The scorer certifying jobs at 100/100 on one fabricated signal is the same error one level
+down — a confident output measuring how much the code did, not how much it knew.
+
 ## Defects phase 07 shipped and something else caught
 
 Recorded here with provenance, because both were invisible to a reading of the code and both are
