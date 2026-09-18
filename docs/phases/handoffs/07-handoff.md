@@ -13,6 +13,8 @@ Production is untouched.
 | `ef5ae7f` | `packages/ai/src/embeddings.ts` — `runEmbeddingTask` on the private ZDR key, embedding price |
 | `3cedd43` | `apps/worker/src/{embed,match}`, scripts, wiring, `.env.example` |
 | `dc494ec` | `apps/web` — the Brief, its API, the teaser rewrite, the two links |
+| `a2623e9`, `78c6fb8`, `3b072df` | handoff corrections: an overstated parity guarantee, an undercount of the reason tables, and the two defects above |
+| `6aebd58` | migration 0011 and `apps/worker/src/embed/**` — `embed.sweep` converges instead of livelocking |
 
 The work-order contract, the ownership map and the full reasoning behind the scoring model are in
 `docs/phases/07-contract.md`. This file records what shipped, what changed in the plan, and what the
