@@ -101,6 +101,24 @@ export const profiles = pgTable(
       .notNull()
       .default({}),
 
+    /**
+     * Explainable per-user scoring nudges (PLAN D6): every "Not for me" reason moves this one
+     * user's future scores, and nobody else's. Keys are namespaced (`stack:kubernetes`,
+     * `family:qa-sdet`, `company:<uuid>`); values are additive deltas in **score points on the
+     * 0..100 scale**, not a 0..1 fraction.
+     *
+     * `NUDGE_LIMITS` in `@pemby/core` (`scoring/nudges.ts`) is the source of truth for the bounds
+     * and the only place to change them: one "Not for me" removes `step` points from a key, each
+     * key is clamped to `minPerKey`..`maxPerKey`, the sum applied to any one score is clamped to
+     * `minTotal`..`maxTotal`, and a user holds at most `maxKeys` keys, the weakest `|delta|`
+     * evicted first. Nothing here is a global weight.
+     *
+     * The comment in migration 0008 repeats an earlier, wrong "-1..1" range. That file is applied
+     * and the migrator hashes it, so it was left alone deliberately; this comment is the correct
+     * one.
+     */
+    scoringNudges: jsonb("scoring_nudges").$type<Record<string, number>>().notNull().default({}),
+
     referralCode: text("referral_code").unique(),
     onboardingCompletedAt: timestamp("onboarding_completed_at", { withTimezone: true }),
     /** Seeded demo data on staging. */

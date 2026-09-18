@@ -1,0 +1,28 @@
+SET lock_timeout = '5s';--> statement-breakpoint
+-- Phase 07 follow-up. Additive only: one nullable-by-default column on `matches`, no enum change,
+-- no rewrite. The DEFAULT is a constant, so Postgres records it in the catalogue and this statement
+-- does not rewrite the table.
+--
+-- `matches` rows were written and never reconciled. A pair drops out of a re-match for reasons that
+-- have nothing to do with the row — the candidate query narrows on role family, seniority and
+-- freshness, and a profile edit moves all three — so the row stayed at whatever the scorer of the
+-- day had said. When the scorer changed (it had been treating "this post states no time-zone
+-- requirement" as perfect time-zone fit, which let a job reach 100/100 on one fabricated signal),
+-- the rows it had already written kept scores no live scorer would produce, on jobs still open and
+-- fresh, with no path back.
+--
+-- This column is that path: every row now records which generation of the scorer produced it
+-- (`SCORER_VERSION` in packages/core/src/scoring/score.ts). The matcher re-scores what it can reach
+-- and retires the rest (`retireStaleMatches`) — deleting rows that are pure matcher output, and on
+-- a row the person saved, applied to, passed or was sent, withdrawing only the verdict while
+-- `state`, `pass_reason`, `state_changed_at` and every `*_delivered_at` column stay exactly as they
+-- are.
+--
+-- Existing rows take 0, which is "written before there was a marker" and therefore below every
+-- future version: the first matcher run per user or per job re-scores or retires them. That is the
+-- intended effect, not a side effect.
+--
+-- No new index. The retire statements are scoped by `user_id` or `job_id` first, which
+-- `matches_user_kind_state_idx` and `matches_job_idx` already serve; `scorer_version` only narrows
+-- inside that scope.
+ALTER TABLE "matches" ADD COLUMN "scorer_version" smallint DEFAULT 0 NOT NULL;

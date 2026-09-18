@@ -57,6 +57,27 @@
       "when": 1789631806082,
       "tag": "0007_cv_drop_claims",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1789655828873,
+      "tag": "0008_matching_reason_keys",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1789665232520,
+      "tag": "0009_match_reason_keys",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1789667180512,
+      "tag": "0010_match_scorer_version",
+      "breakpoints": true
     }
   ]
 }

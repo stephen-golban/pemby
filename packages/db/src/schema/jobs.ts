@@ -1,3 +1,4 @@
+import type { EngineReasonKey } from "@pemby/core";
 import { sql } from "drizzle-orm";
 import type { AnyPgColumn } from "drizzle-orm/pg-core";
 import {
@@ -278,6 +279,14 @@ export const jobEligibility = pgTable(
     reason: text("reason").notNull(),
     /** Short list of the evidence the engine used for this verdict. */
     evidence: jsonb("evidence").$type<EligibilityEvidenceItem[]>().notNull().default([]),
+    /**
+     * Stable key from `ENGINE_REASONS`; `reason` is only the English rendering of it. Phase 07
+     * renders the key through i18n instead of re-parsing the text. Null for rows written before
+     * migration 0008 and for rows the engine wrote without a key.
+     */
+    reasonKey: text("reason_key").$type<EngineReasonKey>(),
+    /** Params `renderReason` fills into the key's template ({ country: "Moldova" }). */
+    reasonParams: jsonb("reason_params").$type<Record<string, string>>().notNull().default({}),
     engineVersion: text("engine_version"),
     ...timestamps(),
   },

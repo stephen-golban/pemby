@@ -1,5 +1,6 @@
 import {
   AI_TASKS,
+  DB_NEAR_MISS_BLOCKERS,
   DB_SENIORITIES,
   DB_WAYS_OF_WORKING,
   ENGLISH_LEVELS,
@@ -96,17 +97,12 @@ export const matchPassReason = pgEnum("match_pass_reason", [
   "other",
 ]);
 
-/** Hard gates (PLAN D6); a near miss records the one gate it failed, or `score`. */
-export const matchGate = pgEnum("match_gate", [
-  "eligibility",
-  "way_of_working",
-  "freshness",
-  "seniority",
-  "dealbreaker",
-  "salary",
-  "salary_missing",
-  "score",
-]);
+/**
+ * Hard gates (PLAN D6); a near miss records the one gate it failed, or `score`. Wired to
+ * `DB_NEAR_MISS_BLOCKERS` (core's `DB_HARD_GATES` plus `score`, in that order) so the enum and
+ * core cannot drift, exactly as `wayOfWorking` is wired to `DB_WAYS_OF_WORKING`.
+ */
+export const matchGate = pgEnum("match_gate", DB_NEAR_MISS_BLOCKERS);
 
 export const applicationState = pgEnum("application_state", [
   "applied",

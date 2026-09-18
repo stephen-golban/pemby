@@ -6,6 +6,22 @@
 //
 // Usage: RAILWAY_SERVICE=web ./scripts/dev-staging.sh env APP_ENV=staging pnpm --filter @pemby/db seed
 import { createHash } from "node:crypto";
+import {
+  ENGINE_REASONS,
+  SCORER_VERSION,
+  classifyRole,
+  countryName,
+  fromDbGate,
+  fromDbWay,
+} from "@pemby/core";
+import type {
+  CountryCode,
+  EngineReasonKey,
+  GateReasonKey,
+  GateResult,
+  HardGate,
+  RoleFamily,
+} from "@pemby/core";
 import { sql } from "drizzle-orm";
 import { createDb } from "./client";
 import type { Db } from "./client";
@@ -93,7 +109,19 @@ type JobSeed = {
   ge?: Tier;
   salary?: [number, number, "hour" | "month" | "year"];
   status?: "open" | "closed" | "quarantined";
+  /** Hand-written English, stored in `job_eligibility.reason` as the engine would store it. */
   reason: string;
+  /**
+   * Closest `ENGINE_REASONS` key to `reason`, so demo rows render through the same i18n path as
+   * real ones instead of only as stored English. Some of the fictional prose is a little richer
+   * than any one template, so the key is the nearest tier-consistent match, not a translation.
+   */
+  reasonKey: EngineReasonKey;
+  /** Params beyond `country`, which is filled from the scope of the row. */
+  reasonParams?: Record<string, string>;
+  /** When the Georgia verdict needs a different key from the Moldova one. */
+  geReasonKey?: EngineReasonKey;
+  geReasonParams?: Record<string, string>;
 };
 
 const JOBS: JobSeed[] = [
@@ -108,6 +136,7 @@ const JOBS: JobSeed[] = [
     ge: "green",
     salary: [60000, 80000, "year"],
     reason: "Post lists Moldova among contractor countries",
+    reasonKey: "country-named",
   },
   {
     key: "j02",
@@ -120,6 +149,8 @@ const JOBS: JobSeed[] = [
     ge: "green",
     salary: [85000, 110000, "year"],
     reason: "Hires in Europe via an EOR, including non-EU countries",
+    reasonKey: "worldwide-engagement",
+    reasonParams: { engagement: "people employed through an EOR" },
   },
   {
     key: "j03",
@@ -132,6 +163,8 @@ const JOBS: JobSeed[] = [
     ge: "yellow",
     salary: [40000, 55000, "year"],
     reason: "Says 'Europe, remote'; company has hired in non-EU Europe before",
+    reasonKey: "region-includes",
+    reasonParams: { region: "Europe" },
   },
   {
     key: "j04",
@@ -143,6 +176,7 @@ const JOBS: JobSeed[] = [
     md: "green",
     salary: [5000, 6500, "month"],
     reason: "Careers page names Moldova as an EOR country",
+    reasonKey: "company-names-country",
   },
   {
     key: "j05",
@@ -154,6 +188,7 @@ const JOBS: JobSeed[] = [
     md: "white",
     ge: "white",
     reason: "Post says 'remote' with no country list",
+    reasonKey: "no-signal",
   },
   {
     key: "j06",
@@ -165,6 +200,7 @@ const JOBS: JobSeed[] = [
     md: "green",
     salary: [35, 45, "hour"],
     reason: "Post lists Moldova",
+    reasonKey: "country-named",
   },
   {
     key: "j07",
@@ -177,6 +213,8 @@ const JOBS: JobSeed[] = [
     ge: "red",
     salary: [120000, 150000, "year"],
     reason: "US persons only (export control)",
+    reasonKey: "work-authorization",
+    reasonParams: { places: "the United States" },
   },
   {
     key: "j08",
@@ -189,6 +227,8 @@ const JOBS: JobSeed[] = [
     ge: "green",
     salary: [95000, 120000, "year"],
     reason: "Relocation to Dublin with visa sponsorship, any nationality",
+    reasonKey: "worldwide-engagement",
+    reasonParams: { engagement: "people relocating with visa sponsorship" },
   },
   {
     key: "j09",
@@ -199,6 +239,8 @@ const JOBS: JobSeed[] = [
     ways: ["eor_employee"],
     md: "yellow",
     reason: "EMEA remote; EOR coverage for Moldova unconfirmed",
+    reasonKey: "region-includes",
+    reasonParams: { region: "EMEA" },
   },
   {
     key: "j10",
@@ -211,6 +253,7 @@ const JOBS: JobSeed[] = [
     ge: "green",
     salary: [45000, 60000, "year"],
     reason: "Contractors welcome from Eastern Europe and the Caucasus",
+    reasonKey: "country-named",
   },
   {
     key: "j11",
@@ -222,6 +265,7 @@ const JOBS: JobSeed[] = [
     md: "green",
     ge: "green",
     reason: "Contractors welcome from Eastern Europe and the Caucasus",
+    reasonKey: "country-named",
   },
   {
     key: "j12",
@@ -234,6 +278,8 @@ const JOBS: JobSeed[] = [
     ge: "red",
     salary: [2500, 3200, "month"],
     reason: "Hybrid in Warsaw, Polish work permit required",
+    reasonKey: "onsite-elsewhere",
+    reasonParams: { places: "Warsaw" },
   },
   {
     key: "j13",
@@ -245,6 +291,7 @@ const JOBS: JobSeed[] = [
     md: "green",
     salary: [70000, 90000, "year"],
     reason: "Hires anywhere in Europe incl. Moldova via EOR",
+    reasonKey: "country-named",
   },
   {
     key: "j14",
@@ -255,6 +302,7 @@ const JOBS: JobSeed[] = [
     ways: ["eor_employee"],
     md: "white",
     reason: "No location detail in post",
+    reasonKey: "no-signal",
   },
   {
     key: "j15",
@@ -267,6 +315,8 @@ const JOBS: JobSeed[] = [
     ge: "green",
     salary: [110000, 130000, "year"],
     reason: "Relocation to Tallinn, company sponsors permits",
+    reasonKey: "worldwide-engagement",
+    reasonParams: { engagement: "people relocating on a sponsored permit" },
   },
   {
     key: "j16",
@@ -278,6 +328,7 @@ const JOBS: JobSeed[] = [
     md: "yellow",
     ge: "yellow",
     reason: "'Remote within CET ± 2h'; no country list",
+    reasonKey: "timezone-includes",
   },
   {
     key: "j17",
@@ -288,6 +339,8 @@ const JOBS: JobSeed[] = [
     ways: ["eor_employee"],
     md: "red",
     reason: "UK right to work required",
+    reasonKey: "work-authorization",
+    reasonParams: { places: "the United Kingdom" },
   },
   {
     key: "j18",
@@ -299,6 +352,7 @@ const JOBS: JobSeed[] = [
     md: "green",
     salary: [18, 24, "hour"],
     reason: "Post lists Moldova and Romania",
+    reasonKey: "country-named",
   },
   {
     key: "j19",
@@ -311,6 +365,8 @@ const JOBS: JobSeed[] = [
     ge: "green",
     salary: [30, 40, "hour"],
     reason: "Freelance, worldwide",
+    reasonKey: "worldwide-engagement",
+    reasonParams: { engagement: "freelancers" },
   },
   {
     key: "j20",
@@ -322,6 +378,7 @@ const JOBS: JobSeed[] = [
     md: "green",
     salary: [20000, 28000, "year"],
     reason: "Post lists Moldova",
+    reasonKey: "country-named",
   },
   {
     key: "j21",
@@ -333,6 +390,8 @@ const JOBS: JobSeed[] = [
     md: "green",
     ge: "green",
     reason: "Worldwide contractors",
+    reasonKey: "worldwide-engagement",
+    reasonParams: { engagement: "contractors" },
   },
   {
     key: "j22",
@@ -343,6 +402,8 @@ const JOBS: JobSeed[] = [
     ways: ["eor_employee"],
     md: "yellow",
     reason: "Europe remote; EOR partner covers most of Europe",
+    reasonKey: "region-includes",
+    reasonParams: { region: "Europe" },
   },
   {
     key: "j23",
@@ -355,6 +416,8 @@ const JOBS: JobSeed[] = [
     ge: "green",
     salary: [50000, 65000, "year"],
     reason: "Worldwide contractors",
+    reasonKey: "worldwide-engagement",
+    reasonParams: { engagement: "contractors" },
     status: "closed",
   },
   {
@@ -368,6 +431,8 @@ const JOBS: JobSeed[] = [
     ge: "green",
     salary: [3000, 3000, "month"],
     reason: "Program open to students worldwide",
+    reasonKey: "worldwide-engagement",
+    reasonParams: { engagement: "students on the program" },
   },
   {
     key: "j25",
@@ -379,6 +444,8 @@ const JOBS: JobSeed[] = [
     md: "green",
     ge: "green",
     reason: "Program open worldwide",
+    reasonKey: "worldwide-engagement",
+    reasonParams: { engagement: "people on the program" },
   },
   {
     key: "j26",
@@ -390,6 +457,8 @@ const JOBS: JobSeed[] = [
     md: "green",
     ge: "green",
     reason: "Graduate roles hire home-based worldwide",
+    reasonKey: "worldwide-engagement",
+    reasonParams: { engagement: "home-based graduates" },
   },
   {
     key: "j27",
@@ -401,6 +470,7 @@ const JOBS: JobSeed[] = [
     md: "green",
     salary: [1200, 1600, "month"],
     reason: "Hybrid in Chișinău office",
+    reasonKey: "country-named",
   },
   {
     key: "j28",
@@ -412,6 +482,8 @@ const JOBS: JobSeed[] = [
     md: "green",
     ge: "green",
     reason: "Worldwide contractors",
+    reasonKey: "worldwide-engagement",
+    reasonParams: { engagement: "contractors" },
   },
   {
     key: "j29",
@@ -422,6 +494,7 @@ const JOBS: JobSeed[] = [
     ways: ["freelance"],
     md: "white",
     reason: "Asks candidates to pay a starter fee",
+    reasonKey: "no-signal",
     status: "quarantined",
   },
   {
@@ -435,10 +508,41 @@ const JOBS: JobSeed[] = [
     ge: "yellow",
     salary: [65000, 85000, "year"],
     reason: "Contractor countries include Moldova; Georgia unclear",
+    reasonKey: "country-named",
+    geReasonKey: "country-mentioned",
   },
 ];
 
 const jobId = (key: string) => demoId(`job:${key}`);
+
+/**
+ * PLAN D10 family from the same deterministic classifier ingestion runs (`classifyRole`), not from
+ * the title text. Three demo posts are deliberately out of scope for it — the two paid programs
+ * (PLAN D14) and the "pay to start" scam — and the classifier returns no family for them. They
+ * keep `role_family = null`, which is what production holds for a post the role filter dropped;
+ * inventing a family for them would make the demo lie about how the filter behaves.
+ */
+const roleFamilyOf = (j: JobSeed): RoleFamily | null => classifyRole({ title: j.title }).family;
+
+/** The engine version stamped on demo eligibility rows, so they are distinguishable from real ones. */
+const DEMO_ENGINE_VERSION = "demo-v1";
+
+/**
+ * The reason key and params for one demo eligibility row. `country` is filled from the row's own
+ * scope, and only for templates that actually use it, exactly as the engine fills params.
+ */
+function demoReason(
+  j: JobSeed,
+  scope: "MD" | "GE",
+): { reasonKey: EngineReasonKey; reasonParams: Record<string, string> } {
+  const reasonKey = scope === "GE" ? (j.geReasonKey ?? j.reasonKey) : j.reasonKey;
+  const extra = scope === "GE" ? (j.geReasonParams ?? j.reasonParams) : j.reasonParams;
+  const reasonParams: Record<string, string> = { ...extra };
+  if (ENGINE_REASONS[reasonKey].includes("{country}")) {
+    reasonParams.country = countryName(scope as CountryCode) ?? scope;
+  }
+  return { reasonKey, reasonParams };
+}
 
 // --- People --------------------------------------------------------------------------------
 
@@ -619,6 +723,7 @@ async function seed(db: Db) {
             url: `https://${j.company}.example.com/careers/${j.key}`,
             applyUrl: `https://${j.company}.example.com/careers/${j.key}/apply`,
             title: j.title,
+            roleFamily: roleFamilyOf(j),
             locationText: j.ways.includes("local") ? "Hybrid" : "Remote",
             rawText,
             contentHash: hash(rawText),
@@ -642,7 +747,7 @@ async function seed(db: Db) {
       .values(
         JOBS.map((j) => ({
           jobId: jobId(j.key),
-          roleFamily: j.title.replace(/\(.*\)/, "").trim(),
+          roleFamily: roleFamilyOf(j),
           seniority: j.seniority,
           stack: j.stack,
           employmentTypes: ["full_time" as const],
@@ -667,7 +772,15 @@ async function seed(db: Db) {
       .values(
         JOBS.flatMap((j) =>
           j.ways.flatMap((way) => [
-            { jobId: jobId(j.key), scope: "MD", wayOfWorking: way, tier: j.md, reason: j.reason },
+            {
+              jobId: jobId(j.key),
+              scope: "MD",
+              wayOfWorking: way,
+              tier: j.md,
+              reason: j.reason,
+              engineVersion: DEMO_ENGINE_VERSION,
+              ...demoReason(j, "MD"),
+            },
             ...(j.ge
               ? [
                   {
@@ -676,6 +789,8 @@ async function seed(db: Db) {
                     wayOfWorking: way,
                     tier: j.ge,
                     reason: j.reason,
+                    engineVersion: DEMO_ENGINE_VERSION,
+                    ...demoReason(j, "GE"),
                   },
                 ]
               : []),
@@ -761,6 +876,48 @@ async function seed(db: Db) {
       blocker?: "eligibility" | "salary_missing" | "seniority" | "score" | "way_of_working";
       state?: "new" | "saved" | "applied" | "passed";
     };
+    /** Demo users live where their profile says they do; gate reasons name that country. */
+    const HOME: Record<string, CountryCode> = { ana: "MD", ion: "MD", nino: "GE" };
+
+    /**
+     * Gate results in the `@pemby/core` shape: core gate spelling, a stable reason key and the
+     * params that key fills, never rendered English. Exactly the gate named by `blocker` fails, so
+     * every demo near miss reads as one failed gate (PLAN D7); `score` is a blocker, not a gate,
+     * so a `score` near miss has every gate passing.
+     */
+    function demoGateResults(m: M): GateResult[] {
+      const country = countryName(HOME[m.user] ?? "MD") ?? "Moldova";
+      const failed = (gate: HardGate) =>
+        m.blocker !== undefined && m.blocker !== "score" && fromDbGate(m.blocker) === gate;
+      const result = (
+        gate: HardGate,
+        passKey: GateReasonKey,
+        failKey: GateReasonKey,
+        params: Record<string, string>,
+      ): GateResult => ({
+        gate,
+        passed: !failed(gate),
+        reasonKey: failed(gate) ? failKey : passKey,
+        reasonParams: params,
+        notes: [],
+      });
+      return [
+        result("eligibility", "eligibility-allowed", "eligibility-blocked", {
+          tier: m.tier,
+          country,
+        }),
+        result("way-of-working", "way-accepted", "way-not-accepted", { way: fromDbWay(m.way) }),
+        result("freshness", "freshness-ok", "freshness-stale", { hours: "6", limit: "24" }),
+        result("seniority", "seniority-match", "seniority-above", {
+          jobSeniority: "senior",
+          userSeniority: "middle",
+        }),
+        result("dealbreaker", "dealbreaker-none", "dealbreaker-hit", { dealbreaker: "on-call" }),
+        result("salary", "salary-no-floor", "salary-below-floor", {}),
+        result("salary-missing", "salary-listed", "salary-missing-hidden", {}),
+      ];
+    }
+
     const M_ROWS: M[] = [
       {
         user: "ana",
@@ -824,11 +981,15 @@ async function seed(db: Db) {
         gap: "No Rust on your CV",
         blocker: "score",
       },
+      // An eligibility near miss has to be yellow to be demo-worthy at all: PLAN D2 as amended
+      // 2026-09-17 is that white and red never show, so a white or red fixture is a row the
+      // product is forbidden to render, and the one-tap "include the likely ones" fix it is meant
+      // to demonstrate only ever reaches yellow posts.
       {
         user: "ana",
-        job: "j05",
+        job: "j22",
         score: 84,
-        tier: "white",
+        tier: "yellow",
         way: "eor_employee",
         reasons: ["TypeScript matches"],
         blocker: "eligibility",
@@ -924,13 +1085,16 @@ async function seed(db: Db) {
         reasons: ["Timezone fits"],
         blocker: "score",
       },
+      // Was j12, which is red for Georgia — a post the Brief must never name (PLAN D2). j19 is
+      // green there and freelance-only, which Nino does not accept, so the group still
+      // demonstrates exactly one failed gate without putting a red post on screen.
       {
         user: "nino",
-        job: "j12",
-        score: 80,
-        tier: "red",
-        way: "local",
-        reasons: ["SQL, Python match"],
+        job: "j19",
+        score: 74,
+        tier: "green",
+        way: "freelance",
+        reasons: ["Timezone fits"],
         blocker: "way_of_working",
       },
     ];
@@ -952,12 +1116,10 @@ async function seed(db: Db) {
           state: m.state ?? "new",
           passReason: m.state === "passed" ? ("seniority" as const) : null,
           stateChangedAt: m.state ? ago(DAY) : null,
-          gateResults: [
-            { gate: "eligibility", passed: m.blocker !== "eligibility" },
-            { gate: "way_of_working", passed: m.blocker !== "way_of_working" },
-            { gate: "seniority", passed: m.blocker !== "seniority" },
-            { gate: "salary", passed: m.blocker !== "salary_missing" },
-          ],
+          gateResults: demoGateResults(m),
+          // Hand-written fixtures, not an older scorer's leftovers: stamped current so a re-match
+          // for a demo user does not retire the demo Brief out from under the demo.
+          scorerVersion: SCORER_VERSION,
           deliverAfter: m.blocker ? null : ago(2 * HOUR),
           telegramDeliveredAt: !m.blocker && m.user === "ana" ? ago(HOUR) : null,
           emailDeliveredAt: !m.blocker && m.user !== "ana" ? ago(HOUR) : null,
