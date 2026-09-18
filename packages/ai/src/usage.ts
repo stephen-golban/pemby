@@ -1,5 +1,7 @@
 // Cost when a response did not carry `usage.cost`: ask OpenRouter's generation endpoint once, and
 // otherwise estimate from a price table so the daily cap still sees the spend.
+import { EMBEDDING_MODEL } from "@pemby/core";
+
 import type { EnvLike, KeyClass } from "./keys";
 import { openRouterApiKey } from "./keys";
 
@@ -80,6 +82,13 @@ const PRICE_PER_MILLION: Readonly<Record<string, readonly [number, number]>> = {
   "google/gemini-2.5-flash-lite": [0.1, 0.4],
   "mistralai/mistral-small-2603": [0.15, 0.6],
   "anthropic/claude-haiku-4.5": [1, 5],
+  // Embeddings are priced per input token only; every endpoint lists completion at 0, and an
+  // embedding request has no output side, so the output price is 0 and never invents a cost.
+  // OpenRouter lists the model at $0.01 per million input tokens
+  // (`GET /api/v1/models?output_modalities=embeddings`, 2026-09-17); its endpoints are Nebius and
+  // DeepInfra at $0.01 and SiliconFlow at $0.04
+  // (`GET /api/v1/models/qwen/qwen3-embedding-8b/endpoints`). The table keeps the highest of them.
+  [EMBEDDING_MODEL]: [0.04, 0],
 };
 const UNKNOWN_MODEL_PRICE: readonly [number, number] = [1, 5];
 /** Output tokens assumed when the route sets no `maxOutputTokens`. */

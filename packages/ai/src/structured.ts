@@ -206,7 +206,8 @@ export class AiPromptMissingError extends Error {
   }
 }
 
-interface Failure {
+/** Exported inside the package only (not from `index.ts`); `embeddings.ts` reuses it. */
+export interface Failure {
   status: number | null;
   errorType: string | null;
 }
@@ -218,7 +219,7 @@ function safeToken(value: unknown): string | null {
 }
 
 /** Status and error type only; the rest of an SDK error can hold request or response content. */
-function describeFailure(error: unknown): Failure {
+export function describeFailure(error: unknown): Failure {
   if (APICallError.isInstance(error)) {
     // Failed responses parse to `{ error: {...} }`; a 200 carrying an error passes the inner object.
     type ErrorBody = { code?: unknown; type?: unknown; metadata?: { error_type?: unknown } };
@@ -265,7 +266,7 @@ function openRouterProviderName(metadata: ProviderMetadata | undefined): string 
   return typeof provider === "string" ? provider : null;
 }
 
-function isConfigError(error: unknown): AiConfigError | null {
+export function isConfigError(error: unknown): AiConfigError | null {
   if (error instanceof AiConfigError) return error;
   if (error instanceof Error && error.cause instanceof AiConfigError) return error.cause;
   return null;
@@ -373,7 +374,7 @@ type Attempt =
       latencyMs: number;
     };
 
-function throwIfAborted(signal: AbortSignal | undefined): void {
+export function throwIfAborted(signal: AbortSignal | undefined): void {
   if (!signal?.aborted) return;
   const reason: unknown = signal.reason;
   throw reason instanceof Error

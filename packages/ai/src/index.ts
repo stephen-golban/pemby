@@ -53,6 +53,17 @@ export {
   type DailyCapStatus,
 } from "./cost";
 export {
+  AiEmbeddingInvalidError,
+  EMBEDDING_BATCH_SIZE,
+  EMBEDDING_MAX_REQUEST_CHARS,
+  EMBEDDING_MAX_VALUE_CHARS,
+  chunkEmbeddingValues,
+  runEmbeddingTask,
+  type EmbeddingTaskContext,
+  type EmbeddingTaskOptions,
+  type EmbeddingTaskResult,
+} from "./embeddings";
+export {
   AiCallError,
   AiOutputInvalidError,
   AiPromptMissingError,
