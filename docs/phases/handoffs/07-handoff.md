@@ -90,6 +90,22 @@ the same shape: correct in isolation, wrong in composition.
 
 ## Known issues and open items
 
+- **An unembeddable job is now retried every sweep instead of being buried.** A job hitting
+  `AiEmbeddingInvalidError` is logged and returned without writing anything, so it stays a
+  candidate. That was invisible while 3,285 phantom rows crowded the queue; now that the sweep
+  converges it is reached every 15 minutes. **Currently theoretical** — staging has zero
+  `embed.job` failures across 5,132 completions — and if one appeared it would cost about
+  `$0.0000084 x 96 sweeps` = **$0.0008 per job per day**, bounded by `EMBED_DAILY_BUDGET_USD`
+  (0.25). Not escalated to the owner on those numbers. The durable fix is to record the failed
+  attempt so it backs off, which is the same "record what you did" shape as the livelock above.
+
+- **1,946 jobs have a completed `match.job` but no `matches` row**, so `last_matched_at` stays null
+  for ever and the sweep's ordering sorts nulls first — they permanently head the queue and are
+  re-fanned once a day. Harmless at current volume (28,800/day capacity against ~7,300 jobs) and
+  the module's docstring acknowledges it. Fixing it needs a "last fan-out attempt" record, which
+  touches the `matches` write path. Phase 08 reviewed it and assigned it to **phase 09** rather
+  than bolting it onto a phase already at its commit gate.
+
 - **The CV parser extracts no domains.** 27 of 28 parsed CVs on staging have an empty `domains`
   array. This keeps a third score component dark and makes PLAN D6's third reason bullet structurally
   unreachable. It needs a `cv-parse` prompt change in `stephen-golban/pemby-private` and a new tag —
