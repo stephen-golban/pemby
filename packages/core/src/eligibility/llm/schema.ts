@@ -6,7 +6,7 @@
 
 import { z } from "zod";
 
-import { EMPLOYMENT_TYPES, WAYS_OF_WORKING } from "../../ways-of-working";
+import { EMPLOYMENT_TYPES, SENIORITIES, WAYS_OF_WORKING } from "../../ways-of-working";
 import {
   CITIZENSHIP_REQUIREMENTS,
   ENGAGEMENT_MODES,
@@ -14,15 +14,13 @@ import {
   type SignalKind,
 } from "../signals";
 
-/** `job_enrichment.seniority` values (PLAN D10, intern to principal). Core's "staff" is not one. */
-export const ENRICHMENT_SENIORITIES = [
-  "intern",
-  "junior",
-  "middle",
-  "senior",
-  "lead",
-  "principal",
-] as const;
+/**
+ * `job_enrichment.seniority` values (PLAN D10, intern to principal): core's ladder itself, not a
+ * third copy of it. The model may only report a level a row can hold, and the one way to guarantee
+ * that is for this list and the pg enum to be the same list — a copy here was one of the three that
+ * let the ladder the gate compares by drift from the ladder the database holds.
+ */
+export const ENRICHMENT_SENIORITIES = SENIORITIES;
 export type EnrichmentSeniority = (typeof ENRICHMENT_SENIORITIES)[number];
 
 /** Kinds the model may emit: every signal kind except `anchor`, which only structured fields give. */

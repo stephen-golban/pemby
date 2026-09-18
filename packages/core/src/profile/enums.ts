@@ -1,9 +1,10 @@
 // Core <-> database spelling for ways of working, seniority and English level (phase 06 contract,
 // "Enums"). Core spelling (`WAYS_OF_WORKING`, `SENIORITIES`) is canonical in TypeScript; the
-// database uses underscores and has no `staff`. Nothing else converts by hand. `@pemby/db` imports
-// the DB_* lists below for its pg enums, so the two cannot drift. Isomorphic.
+// database uses underscores. Nothing else converts by hand. `@pemby/db` imports the DB_* lists
+// below for its pg enums, so the two cannot drift. Isomorphic.
 
-import type { Seniority, WayOfWorking } from "../ways-of-working";
+import type { WayOfWorking } from "../ways-of-working";
+import { SENIORITIES, type Seniority } from "../ways-of-working";
 
 /** `way_of_working` pg enum values. */
 export const DB_WAYS_OF_WORKING = [
@@ -16,16 +17,19 @@ export const DB_WAYS_OF_WORKING = [
 ] as const;
 export type DbWayOfWorking = (typeof DB_WAYS_OF_WORKING)[number];
 
-/** `seniority` pg enum values (PLAN D10). Core's `staff` has no database value. */
-export const DB_SENIORITIES = [
-  "intern",
-  "junior",
-  "middle",
-  "senior",
-  "lead",
-  "principal",
-] as const;
-export type DbSeniority = (typeof DB_SENIORITIES)[number];
+/**
+ * `seniority` pg enum values (PLAN D10).
+ *
+ * **The same array as core's `SENIORITIES`, deliberately, not a copy of it.** Seniority is the one
+ * enum whose two spellings are identical, so a second list bought nothing and cost correctness: the
+ * copy that used to live here was one value shorter than core's ladder, which left the gate
+ * comparing levels by an index the database could not produce. Aliasing removes the possibility
+ * rather than checking for it — `packages/db` builds `pgEnum("seniority", DB_SENIORITIES)` from
+ * this binding, so adding a rung to the ladder is a schema change drizzle will demand a migration
+ * for, and dropping one is a type error at every `satisfies` below.
+ */
+export const DB_SENIORITIES = SENIORITIES;
+export type DbSeniority = Seniority;
 
 /** `english_level` pg enum values: CEFR levels plus native. Same spelling in core and DB. */
 export const ENGLISH_LEVELS = ["a1", "a2", "b1", "b2", "c1", "c2", "native"] as const;
@@ -49,13 +53,17 @@ const WAY_FROM_DB = {
   paid_program: "paid-program",
 } as const satisfies Record<DbWayOfWorking, WayOfWorking>;
 
+/**
+ * Kept as an explicit table rather than collapsed away: it is what fails to compile on the day the
+ * two spellings stop being identical, and the call sites below stay honest about crossing a
+ * boundary.
+ */
 const SENIORITY_TO_DB = {
   intern: "intern",
   junior: "junior",
   middle: "middle",
   senior: "senior",
   lead: "lead",
-  staff: "lead",
   principal: "principal",
 } as const satisfies Record<Seniority, DbSeniority>;
 
@@ -67,7 +75,7 @@ export function fromDbWay(way: DbWayOfWorking): WayOfWorking {
   return WAY_FROM_DB[way];
 }
 
-/** `staff` is stored as `lead`; the round trip is lossy for `staff` only. */
+/** One ladder, one spelling: the round trip is lossless in both directions. */
 export function toDbSeniority(seniority: Seniority): DbSeniority {
   return SENIORITY_TO_DB[seniority];
 }

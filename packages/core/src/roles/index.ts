@@ -32,6 +32,7 @@
 
 import { ROLE_FAMILIES, type RoleFamily } from "./families";
 import { normalizeTitle, normalizeText } from "./normalize";
+import { COMPATIBLE_FAMILIES } from "./adjacency";
 import {
   EXCLUDE_RULES,
   GENERIC_ENGINEER,
@@ -43,6 +44,7 @@ import {
 } from "./rules";
 
 export { ROLE_FAMILIES, type RoleFamily };
+export { COMPATIBLE_FAMILIES, isCompatibleFamily } from "./adjacency";
 
 export interface RoleFilterInput {
   title: string;
@@ -100,4 +102,26 @@ export function classifyRole(input: RoleFilterInput): RoleFilterResult {
     }
   }
   return result;
+}
+
+/**
+ * Job role families compatible with the person's titles, or null when the role filter is skipped:
+ * no titles, or no title classifies into a D10 family (for example "Co-founder"), where filtering
+ * would hide everything on the strength of a title we cannot read.
+ *
+ * Moved here from `apps/web/lib/teaser/roles.ts` (phase 06), which named this its home.
+ */
+export function compatibleFamilies(titles: readonly string[]): RoleFamily[] | null {
+  const own = new Set<RoleFamily>();
+  for (const title of titles) {
+    const { family } = classifyRole({ title });
+    if (family) own.add(family);
+  }
+  if (own.size === 0) return null;
+  const out = new Set<RoleFamily>();
+  for (const family of own) {
+    out.add(family);
+    for (const other of COMPATIBLE_FAMILIES[family]) out.add(other);
+  }
+  return [...out];
 }

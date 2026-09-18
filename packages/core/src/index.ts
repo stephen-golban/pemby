@@ -2,6 +2,7 @@
 // `@pemby/core/private-config` so browser bundles never pull in node:fs or node:zlib.
 export * from "./eligibility";
 export * from "./ways-of-working";
+export * from "./matching";
 export * from "./gates";
 export * from "./roles";
 export * from "./scoring";
