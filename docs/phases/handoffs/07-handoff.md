@@ -100,8 +100,16 @@ None of this was visible from reading the diffs. Two blind adversarial reviewers
 - Reason rendering is **keys plus params**, not English: `job_eligibility.reason_key`/`reason_params`,
   `matches.reason_keys`/`reason_params`/`gap_key`/`gap_params`. `renderGateReason` and
   `renderScoreReason` in `@pemby/core` are the non-React renderers Telegram and email should use.
-  The English in core and in `apps/web/messages/en/brief.json` must stay **byte-identical** — they are
-  compared programmatically, and ICU plurals are deliberately excluded because the core renderer
-  cannot produce them. Strings are phrased so grammatical number never arises; keep it that way.
+  The English in core and in `apps/web/messages/en/brief.json` must stay **byte-identical**.
+  **Nothing enforces this.** It was verified by hand during phase 07 — the tables were parsed and
+  diffed at review time, 34/34 gate keys and 13/13 score keys with zero drift — but no checker
+  exists in the repo and CI runs only typecheck, lint and build. The parity is held by a code
+  comment and by whoever remembers. An earlier draft of this handoff said the two were "compared
+  programmatically", which overstated an ad-hoc review step as an enforced guarantee; phase 08
+  caught that and is adding the real checker and wiring it into CI. Until it lands, treat any edit
+  to either table as unguarded.
+  ICU plurals are deliberately excluded because the core renderer cannot produce them, so the two
+  renderers would drift in a way no string diff would catch. Strings are phrased so grammatical
+  number never arises; keep it that way.
 - Entitlements is the only module that decides instant vs delayed, kit quota and yellow opt-in
   (`packages/core/src/entitlements/`). Phase 10 flips one line to read the real `passes` row.
