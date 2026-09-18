@@ -15,6 +15,7 @@
     "embed:once": "tsx src/scripts/embed-once.ts",
     "match:once": "tsx src/scripts/match-once.ts",
     "deliver:once": "tsx src/deliver/deliver-once.ts",
+    "deliver:smoke": "tsx src/deliver/smoke.ts",
     "backfill:reasons": "tsx src/scripts/backfill-eligibility-reasons.ts",
     "typecheck": "tsc --noEmit",
     "lint": "eslint ."

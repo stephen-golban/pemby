@@ -8,10 +8,37 @@
 // on a device — so nothing here logs a subscription, and `safeErrorLabel` keeps `WebPushError`'s
 // message (which quotes the endpoint) out of the label.
 import { renderDeliveryString, renderPlainText } from "@pemby/core";
-import { sendNotification, WebPushError } from "web-push";
+import webPush from "web-push";
 import { safeErrorLabel } from "../../cv/workers";
 import { PUSH_REQUEST_TIMEOUT_MS, PUSH_TTL_SECONDS, TokenBucket } from "../limits";
 import type { Sender, SendOutcome, SendRequest } from "./types";
+
+/**
+ * **Both symbols come off the default export, and that is not a style choice.**
+ *
+ * `web-push@3.6.7` is CommonJS and builds its exports at runtime —
+ * `sendNotification: webPush.sendNotification.bind(webPush)` — which Node's `cjs-module-lexer`
+ * cannot see statically. So `import { sendNotification } from "web-push"` throws
+ * `SyntaxError: The requested module 'web-push' does not provide an export named
+ * 'sendNotification'` the moment the module is loaded. That import shape took the whole worker
+ * down on staging: the chain from `src/index.ts` is static and unconditional, so the process died
+ * at boot, before `DELIVER_ENABLED` was ever read, taking ingest, enrich, embed, match and the
+ * owner alerts with it.
+ *
+ * The trap inside the trap is that **`WebPushError` resolves perfectly well as a named export**,
+ * because it is assigned in a shape the lexer does recognise. Fixing only the symbol named in the
+ * stack trace leaves a file that looks repaired, typechecks, and is one `web-push` release away
+ * from the same outage. Both come off the default, together, so neither can drift back.
+ *
+ * `import * as webPush` would **not** work: for a CJS module that gives a namespace built from the
+ * same failed lexer analysis, so `sendNotification` would be `undefined` at call time instead of
+ * throwing at load — a worse failure, because it survives boot.
+ *
+ * TypeScript is no help here and was not: `@types/web-push` declares both as named exports, so the
+ * broken import compiled cleanly. Nothing but loading the real module in a real Node process
+ * catches this, which is why there is one in the proof run.
+ */
+const { sendNotification, WebPushError } = webPush;
 
 export interface PushSenderOptions {
   vapid: { subject: string; publicKey: string; privateKey: string };
