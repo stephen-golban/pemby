@@ -57,6 +57,35 @@ the bar.
 
 None of this was visible from reading the diffs. Two blind adversarial reviewers found it.
 
+## Defects phase 07 shipped and something else caught
+
+Recorded here with provenance, because both were invisible to a reading of the code and both are
+the same shape: correct in isolation, wrong in composition.
+
+- **`entitlementsFor` was called with an incomplete question.** `apps/worker/src/match/map.ts` called
+  it without `testPassHolders`, and `packages/core/src/entitlements/index.ts` computes pass-holder
+  status from exactly that field — so the check was vacuously false for everyone, every user
+  resolved to free tier, and every `deliver_after` became `first_seen_at + 24h`. Instant delivery,
+  one of the three things a pass buys under D13, did not exist. Worse second-order effect: the
+  dispatcher *does* pass the allowlist, so it then judges the resulting 48-hour-old message "not
+  late" and sends it without the D13 disclosure. Found and fixed by phase 08 (shared
+  `readTestPassHolders` parser called by both `deliver/env.ts` and `match/env.ts`).
+  **The durable lesson, which is phase 08's phrasing and better than mine: an optional field on a
+  decision function is a default nobody chose.** PLAN section 5 makes that module the single place
+  these decisions are made, which is precisely what made a caller quietly under-feeding it
+  invisible — everyone correctly believed the decision lived somewhere trustworthy. The defect was
+  in neither the module nor really either caller; it was that the type permitted an incomplete
+  question. The durable fix is a required field; the shared parser is the cheap version.
+
+- **`embed.sweep` could not work through a backlog.** `embedJob` returned `unchanged` without
+  touching `job_embeddings.updated_at`, so content-identical rows stayed candidates for ever. On
+  staging 3,285 such rows sat permanently in the ordering and the sweep completed ~5,000 runs with
+  zero model calls. Because the ordering is `first_seen_at desc`, newly ingested jobs at the head
+  *were* embedded — so this starved a backlog rather than stopping the pipeline outright, which is
+  why it looked healthy. It matters because the matcher refuses to score a job with no vector, so a
+  starved embedder presents as "the matcher finds nothing" and sends you debugging the wrong
+  service. The ~3,900-job gap was only closed because someone ran `embed:once` by hand.
+
 ## Known issues and open items
 
 - **The CV parser extracts no domains.** 27 of 28 parsed CVs on staging have an empty `domains`
