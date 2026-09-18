@@ -14,6 +14,13 @@ import {
   startCompanyEvidenceWorkers,
 } from "./company-evidence";
 import { createCvQueues, readCvEnv, startCvWorkers } from "./cv";
+import {
+  createDeliverQueues,
+  describeDeliverEnv,
+  readDeliverEnv,
+  scheduleDeliverSweep,
+  startDeliverWorkers,
+} from "./deliver";
 import { createEmbedQueues, readEmbedEnv, scheduleEmbedSweep, startEmbedWorkers } from "./embed";
 import { readWorkerEnv } from "./env";
 import {
@@ -99,6 +106,14 @@ try {
   process.exit(1);
 }
 
+let deliverEnv: ReturnType<typeof readDeliverEnv>;
+try {
+  deliverEnv = readDeliverEnv();
+} catch (error) {
+  console.error(`deliver env invalid: ${error instanceof Error ? error.message : "error"}`);
+  process.exit(1);
+}
+
 // Every handler in this process shares this one Drizzle pool. Regular (non-transactional) pg-boss
 // handlers only borrow a pooled connection for their own queries, not for the job's whole duration,
 // so what this has to cover is the number of queries that can be *in flight* at once, not the
@@ -110,14 +125,18 @@ try {
 //   enrich          2   company-evidence 2   cv 3 (extract 1 + parse 2, staging only)
 //   embed           3 (embed.job 2 + embed.profile 1)
 //   match           ~9 (match.job 2 x up to 4 batched reads per page + match.profile 1 + sweep 1)
-// which is ~34 if literally everything overlapped, against the 15 phase 05 sized for. The match
-// fan-out is the new shape here: it issues its per-page similarity, CV-domain and pass reads
-// concurrently, so one handler can hold several connections for a few milliseconds.
+//   deliver         ~7 (deliver.sweep 1 + up to 3 concurrent channel drains, each holding at most
+//                   2 at a time: its two opening reads run together, then one claim/record at a
+//                   time per message)
+// which is ~41 if literally everything overlapped, against the 15 phase 05 sized for. The match
+// fan-out is the shape that set this: it issues its per-page similarity, CV-domain and pass reads
+// concurrently, so one handler can hold several connections for a few milliseconds. Delivery is the
+// opposite shape — long, mostly spent waiting on a provider with no connection held at all.
 //
-// 30 covers the realistic peak (a match fan-out running while ingest reads boards) with headroom;
-// the remainder queues inside node-postgres rather than failing, which is the right behaviour for
-// a burst of short reads. Raised from 20.
-const db = createDb(env.databaseUrl, { max: 30, application_name: "pemby-worker" });
+// 36 covers the realistic peak (a match fan-out running while ingest reads boards and three drains
+// send) with headroom; the remainder queues inside node-postgres rather than failing, which is the
+// right behaviour for a burst of short reads. Raised from 30.
+const db = createDb(env.databaseUrl, { max: 36, application_name: "pemby-worker" });
 try {
   await db.$client.query("select 1");
   console.log("database connected");
@@ -135,14 +154,15 @@ try {
 //   cv.extract, cv.cleanup, cv.parse (staging only)                     =  3
 //   embed.sweep, embed.job, embed.profile                               =  3
 //   match.sweep, match.job, match.profile                               =  3
+//   deliver.sweep, deliver.channel                                      =  2
 //                                                                        ---
-//                                                                         24
+//                                                                         26
 // None of them run `transactional: true`, so pg-boss borrows a pooled connection for a
-// fetch/complete/fail call only, never for the whole handler run. 12 (raised from 10) keeps the
+// fetch/complete/fail call only, never for the whole handler run. 14 (raised from 12) keeps the
 // same roughly-one-connection-per-two-polling-loops headroom the count of 15 had.
 const boss = new PgBoss({
   connectionString: env.databaseUrl,
-  max: 12,
+  max: 14,
   application_name: "pemby-worker-queue",
 });
 boss.on("error", (error) => {
@@ -223,8 +243,20 @@ try {
   await startMatchWorkers({ boss, db, env: matchEnv });
   await scheduleMatchSweep(boss, matchEnv);
   console.log(
-    `match: ${matchEnv.enabled ? "enabled" : "disabled"} sweepLimit=${matchEnv.sweepLimit} concurrency=${matchEnv.concurrency} profileJobLimit=${matchEnv.profileJobLimit}`,
+    // `testPassHolders` is counted, never listed: a user id is personal data. It is reported on the
+    // match line as well as the deliver one because the matcher is where it decides
+    // `matches.deliver_after`, and a zero here is why nobody is being delivered instantly.
+    `match: ${matchEnv.enabled ? "enabled" : "disabled"} sweepLimit=${matchEnv.sweepLimit} concurrency=${matchEnv.concurrency} profileJobLimit=${matchEnv.profileJobLimit} testPassHolders=${matchEnv.testPassHolders.length}`,
   );
+
+  // Phase 08 dispatcher: deliver.channel and the deliver.sweep cron. The sweep releases claims a
+  // crashed dispatcher left behind and then hands each configured channel a drain; a channel whose
+  // credentials are missing is simply never registered, so this is also the line that says which of
+  // Telegram, email and push this deploy can actually reach. No model call, no @pemby/ai.
+  await createDeliverQueues(boss);
+  const deliverChannels = await startDeliverWorkers({ boss, db, env: deliverEnv });
+  await scheduleDeliverSweep(boss, deliverEnv);
+  console.log(describeDeliverEnv(deliverEnv, deliverChannels));
 } catch (error) {
   console.error(
     `worker boot failed: ${error instanceof Error ? `${error.name}: ${error.message}` : "error"}`,

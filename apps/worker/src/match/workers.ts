@@ -63,7 +63,12 @@ export async function startMatchWorkers(deps: MatchWorkerDeps): Promise<void> {
       try {
         // Loaded per run, not per page: the private-config loader caches, so this is one read.
         const weights = await loadScoringWeights();
-        console.log(formatMatchJob(jobId, await matchOneJob({ db, weights }, jobId)));
+        console.log(
+          formatMatchJob(
+            jobId,
+            await matchOneJob({ db, weights, testPassHolders: env.testPassHolders }, jobId),
+          ),
+        );
       } catch (error) {
         // Never rethrow the original: pg-boss stores a failed job's error in `pgboss.job.output`.
         const label = safeErrorLabel(error);
@@ -83,7 +88,7 @@ export async function startMatchWorkers(deps: MatchWorkerDeps): Promise<void> {
       try {
         const weights = await loadScoringWeights();
         const outcome = await matchOneProfile(
-          { db, weights, jobLimit: env.profileJobLimit },
+          { db, weights, jobLimit: env.profileJobLimit, testPassHolders: env.testPassHolders },
           { profileId },
         );
         console.log(formatMatchProfile(profileId, outcome));

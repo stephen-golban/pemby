@@ -220,10 +220,22 @@ interface UserSource {
  * `allowedTiers` and the delivery window come from `entitlementsFor`, the one module that decides
  * them (PLAN section 5). The `passes` row is passed through even though that module does not
  * believe it before phase 10.
+ *
+ * `testPassHolders` has to be passed through too, and its absence here was a real defect: it is the
+ * only thing that makes `entitlementsFor` answer `instant`, `deliverAfter` below is what writes
+ * `matches.deliver_after`, and that column is the only thing `selectDueMatches` gates on. Without
+ * it every row was written at `first_seen_at + 24h` whatever the dispatcher's allowlist said, so no
+ * pass holder was ever delivered instantly — and the dispatcher, reading the same allowlist, then
+ * judged the message not late and left the PLAN D13 disclosure off it.
  */
 export function userFacts(
   source: UserSource,
-  extras: { domains: readonly string[]; pass: ActivePass | null; now: Date },
+  extras: {
+    domains: readonly string[];
+    pass: ActivePass | null;
+    now: Date;
+    testPassHolders?: readonly string[];
+  },
 ): UserFacts | null {
   const country = coreCountry(source.residenceCountry);
   if (country === null) return null;
@@ -233,6 +245,7 @@ export function userFacts(
     pass: extras.pass,
     includeYellow: source.includeYellow,
     now: extras.now,
+    testPassHolders: extras.testPassHolders,
   });
 
   const user: MatchUser = {
@@ -290,10 +303,20 @@ export function candidateSeniorities(seniority: Seniority | null): DbSeniority[]
 
 export const userFactsFromCandidate = (
   candidate: MatchCandidateUser,
-  extras: { domains: readonly string[]; pass: ActivePass | null; now: Date },
+  extras: {
+    domains: readonly string[];
+    pass: ActivePass | null;
+    now: Date;
+    testPassHolders?: readonly string[];
+  },
 ): UserFacts | null => userFacts(candidate, extras);
 
 export const userFactsFromProfile = (
   profile: MatchProfileRow,
-  extras: { domains: readonly string[]; pass: ActivePass | null; now: Date },
+  extras: {
+    domains: readonly string[];
+    pass: ActivePass | null;
+    now: Date;
+    testPassHolders?: readonly string[];
+  },
 ): UserFacts | null => userFacts(profile, extras);

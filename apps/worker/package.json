@@ -14,25 +14,30 @@
     "cv:dev": "tsx src/scripts/cv-dev.ts",
     "embed:once": "tsx src/scripts/embed-once.ts",
     "match:once": "tsx src/scripts/match-once.ts",
+    "deliver:once": "tsx src/deliver/deliver-once.ts",
     "backfill:reasons": "tsx src/scripts/backfill-eligibility-reasons.ts",
     "typecheck": "tsc --noEmit",
     "lint": "eslint ."
   },
   "dependencies": {
     "@aws-sdk/client-s3": "3.1133.0",
+    "@grammyjs/auto-retry": "2.0.2",
     "@pemby/ai": "workspace:*",
     "@pemby/ats": "workspace:*",
     "@pemby/core": "workspace:*",
     "@pemby/db": "workspace:*",
     "drizzle-orm": "0.45.2",
+    "grammy": "1.46.0",
     "mammoth": "1.12.3",
     "pg-boss": "12.32.0",
     "tsx": "4.23.13",
     "unpdf": "1.8.1",
+    "web-push": "3.6.7",
     "zod": "4.6.5"
   },
   "devDependencies": {
     "@types/node": "24.13.4",
+    "@types/web-push": "3.6.4",
     "eslint": "9.39.5",
     "typescript": "6.0.3"
   }

@@ -12,12 +12,25 @@
 //                         5000. This is the only unbounded read in the profile direction, so it is
 //                         a knob rather than a constant; the largest target country holds under a
 //                         hundred rows at green+yellow today.
+//
+// DELIVER_TEST_PASS_HOLDERS is read here as well as by the dispatcher, through the one parser in
+// `../deliver/env.ts`. It is not a matcher knob and it is not named like one on purpose: it is an
+// entitlements input, and `entitlementsFor` is asked the same question in two places. The matcher
+// asks it to write `matches.deliver_after` (`map.ts`), which is the only column `selectDueMatches`
+// gates on; the dispatcher asks it to decide whether the message carries the PLAN D13 note. An
+// allowlist that reached one and not the other would make a pass holder wait the full free-tier
+// delay and then receive the post with no disclosure that it had waited — which is what happened
+// before this line existed.
+
+import { readTestPassHolders } from "../deliver/env";
 
 export interface MatchEnv {
   enabled: boolean;
   sweepLimit: number;
   concurrency: number;
   profileJobLimit: number;
+  /** Until phase 10, the only user ids `entitlementsFor` treats as pass holders. */
+  testPassHolders: readonly string[];
 }
 
 type EnvLike = Record<string, string | undefined>;
@@ -42,5 +55,6 @@ export function readMatchEnv(env: EnvLike = process.env): MatchEnv {
     sweepLimit: int(env, "MATCH_SWEEP_LIMIT", 200, 1, 2000),
     concurrency: int(env, "MATCH_CONCURRENCY", 2, 1, 8),
     profileJobLimit: int(env, "MATCH_PROFILE_JOB_LIMIT", 500, 50, 5000),
+    testPassHolders: readTestPassHolders(env),
   };
 }

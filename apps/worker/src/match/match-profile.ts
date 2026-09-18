@@ -47,6 +47,8 @@ export interface MatchProfileDeps {
    * inspected without being delivered anything.
    */
   includeUnonboarded?: boolean;
+  /** See `MatchJobDeps.testPassHolders`: the allowlist that makes `deliver_after` be `now`. */
+  testPassHolders?: readonly string[];
 }
 
 export type MatchProfileSkip =
@@ -94,6 +96,7 @@ export async function matchOneProfile(
     domains: domains.get(profile.userId) ?? [],
     pass: passes.get(profile.userId) ?? null,
     now,
+    testPassHolders: deps.testPassHolders,
   });
   if (!facts) return { kind: "skipped", reason: "no-country" };
 

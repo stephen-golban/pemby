@@ -55,6 +55,13 @@ export interface MatchJobDeps {
    * handful of finished profiles staging holds.
    */
   includeUnonboarded?: boolean;
+  /**
+   * Until phase 10, the user ids `entitlementsFor` treats as pass holders
+   * (`DELIVER_TEST_PASS_HOLDERS`). It reaches `deliverAfter`, so it is what makes a pass holder's
+   * `matches.deliver_after` be `now` instead of `first_seen_at + 24h`. Optional so the debugging
+   * script keeps compiling; the queue handler always passes it.
+   */
+  testPassHolders?: readonly string[];
 }
 
 export type MatchJobSkip =
@@ -141,6 +148,7 @@ export async function matchOneJob(deps: MatchJobDeps, jobId: string): Promise<Ma
         domains: domains.get(candidate.userId) ?? [],
         pass: passes.get(candidate.userId) ?? null,
         now,
+        testPassHolders: deps.testPassHolders,
       });
       // A profile with no residence country cannot be gated on eligibility at all; the candidate
       // query already requires one, so this is a guard, not a branch anyone reaches.
