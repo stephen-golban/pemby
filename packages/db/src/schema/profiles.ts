@@ -200,6 +200,22 @@ export const profileEmbeddings = pgTable(
     /** Hash of the text that was embedded, to skip unchanged re-embeds. */
     contentHash: text("content_hash").notNull(),
     embedding: embedding(),
+    /**
+     * The recipe generation this vector was last confirmed under: `EMBED_TEXT_VERSION`, and nothing
+     * else, because a profile has no post hash to pin. Its only job is the one
+     * `job_embeddings.source_key` does with its recipe half — make a bump to the embedding recipe
+     * re-embed what is stored, rather than leave vectors built from text no current run would
+     * produce.
+     */
+    sourceKey: text("source_key"),
+    /**
+     * When a run last confirmed this vector against the profile row and the newest parsed CV,
+     * whether it wrote a new vector or found the content hash unchanged. Stamped from the
+     * database's own `now()` and read as `checked_at < greatest(...)`; `job_embeddings.checked_at`
+     * carries the reasoning, including why this is a watermark and not an equality test. Personal
+     * data never lands here: it is a timestamp.
+     */
+    checkedAt: timestamp("checked_at", { withTimezone: true }),
     ...timestamps(),
   },
   (t) => [index("profile_embeddings_hnsw_idx").using("hnsw", t.embedding.op("halfvec_cosine_ops"))],

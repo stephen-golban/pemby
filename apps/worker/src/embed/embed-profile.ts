@@ -7,12 +7,12 @@
 // request goes out on the `profile-embedding` route, which is `personalData: true` on the private
 // key, and `withEnforcedZdr` rewrites the body to `provider: { zdr: true, data_collection: "deny" }`.
 import { EMBEDDING_MODEL, runEmbeddingTask } from "@pemby/ai";
-import { schema } from "@pemby/db";
-import { and, desc, eq } from "drizzle-orm";
+import { schema, type Db } from "@pemby/db";
+import { and, desc, eq, sql } from "drizzle-orm";
 
 import { assertEmbedBudget } from "./budget";
 import type { EmbedDeps, EmbedOutcome } from "./embed-job";
-import { buildProfileEmbeddingText, embeddingContentHash } from "./text";
+import { EMBED_TEXT_VERSION, buildProfileEmbeddingText, embeddingContentHash } from "./text";
 
 const { cvFiles, profileEmbeddings, profiles } = schema;
 
@@ -32,6 +32,21 @@ function numberOrNull(value: unknown): number | null {
 }
 
 /**
+ * Records that this run confirmed the vector against the profile row and the newest parsed CV. The
+ * job-side twin in `embed-job.ts` carries the full reasoning: raw SQL because `updatedAt` has a
+ * drizzle `$onUpdate` hook and `updated_at` means "the vector changed", and a `checked_at` the
+ * database itself produced because it is compared with `<`.
+ */
+async function recordProfileChecked(db: Db, profileId: string, checkedAt: string): Promise<void> {
+  await db.execute(sql`
+    update profile_embeddings
+       set source_key = ${EMBED_TEXT_VERSION},
+           checked_at = ${checkedAt}::timestamptz
+     where profile_id = ${profileId}
+  `);
+}
+
+/**
  * Embeds one profile. Throws `DailyCapReachedError` (global cap or the embed sub-budget; nothing
  * was sent), `AiCallError`, `AiEmbeddingInvalidError`, the caller's abort reason, or a database
  * error. Callers sanitize anything they rethrow.
@@ -45,6 +60,10 @@ export async function embedProfile(deps: EmbedDeps, profileId: string): Promise<
       seniority: profiles.seniority,
       yearsExperience: profiles.yearsExperience,
       stack: profiles.stack,
+      // The database's clock reading from before the sources were read. Kept as text and cast
+      // back on the way in: drizzle's `timestamp` mapper would call `.toISOString()` on it, and the
+      // driver returns a raw `now()` as a string.
+      checkedAt: sql<string>`now()`,
     })
     .from(profiles)
     .where(eq(profiles.id, profileId))
@@ -69,7 +88,10 @@ export async function embedProfile(deps: EmbedDeps, profileId: string): Promise<
     domains: stringList(parsed.domains),
   });
   // Nothing to match on yet: onboarding has not run and no CV has been parsed.
-  if (text === "") return { kind: "skipped", reason: "no-signal" };
+  if (text === "") {
+    await recordProfileChecked(db, profileId, row.checkedAt);
+    return { kind: "skipped", reason: "no-signal" };
+  }
   const contentHash = embeddingContentHash(text);
 
   const [existing] = await db
@@ -78,6 +100,10 @@ export async function embedProfile(deps: EmbedDeps, profileId: string): Promise<
     .where(eq(profileEmbeddings.profileId, profileId))
     .limit(1);
   if (existing && existing.contentHash === contentHash && existing.model === EMBEDDING_MODEL) {
+    // Same bookkeeping as the job side: no model call, but the check itself has to be recorded or
+    // the profile is offered again on every sweep. A profile row is updated for reasons that have
+    // nothing to do with the five embedded fields, and each of those armed it for ever.
+    await recordProfileChecked(db, profileId, row.checkedAt);
     return { kind: "unchanged" };
   }
 
@@ -95,10 +121,24 @@ export async function embedProfile(deps: EmbedDeps, profileId: string): Promise<
 
   await db
     .insert(profileEmbeddings)
-    .values({ profileId, model: EMBEDDING_MODEL, contentHash, embedding })
+    .values({
+      profileId,
+      model: EMBEDDING_MODEL,
+      contentHash,
+      embedding,
+      sourceKey: EMBED_TEXT_VERSION,
+      checkedAt: sql`${row.checkedAt}::timestamptz`,
+    })
     .onConflictDoUpdate({
       target: profileEmbeddings.profileId,
-      set: { model: EMBEDDING_MODEL, contentHash, embedding, updatedAt: new Date() },
+      set: {
+        model: EMBEDDING_MODEL,
+        contentHash,
+        embedding,
+        sourceKey: EMBED_TEXT_VERSION,
+        checkedAt: sql`${row.checkedAt}::timestamptz`,
+        updatedAt: new Date(),
+      },
     });
 
   return {

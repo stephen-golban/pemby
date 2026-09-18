@@ -38,6 +38,7 @@ import {
   type EmbedJobData,
   type EmbedProfileData,
 } from "./queues";
+import { EMBED_TEXT_VERSION } from "./text";
 
 const { cvFiles, jobEmbeddings, jobEnrichment, jobs, profileEmbeddings, profiles } = schema;
 
@@ -82,11 +83,55 @@ function notAlreadyQueued(queue: string, idColumn: ReturnType<typeof sql>) {
 }
 
 /**
- * Open, non-demo, canonical jobs that are enriched and whose vector is missing, was built with
- * another model, or is older than the job row or its enrichment. The exact "did the text change"
- * answer needs the built text, so the handler makes it with the content hash; this only narrows the
- * candidates cheaply. `skipQueued: false` drops the `pgboss.job` check for scripts run without
- * pg-boss.
+ * Open, non-demo, canonical, enriched jobs whose vector is missing, was built with another model,
+ * or has not been confirmed against the post and the enrichment as they stand now.
+ *
+ * **What was wrong.** The predicate used to read
+ * `job_embeddings.updated_at < greatest(jobs.updated_at, job_enrichment.updated_at)` and it never
+ * cleared, because neither side of it was maintained:
+ *
+ *  - Neither timestamp on the right says anything about the embedded text. `verify-live` stamps
+ *    `last_verified_live_at` on every open job every hour and `jobs.updated_at` goes with it; a
+ *    re-enrichment bumps `job_enrichment.updated_at` even when it writes the same five fields.
+ *  - Nothing on the left moved when the answer was "no". The handler asked the real question with
+ *    the content hash, returned `unchanged` — and wrote nothing.
+ *
+ * Measured on staging: 3,285 permanently stale rows, 3,264 of them stale only because of the
+ * liveness touch, the top 50 containing no job that actually lacked a vector, and 4,972 `embed.job`
+ * runs that made no model call and produced no vector.
+ *
+ * **The two terms that replace it.** Each source now gets the tightest marker it has.
+ *
+ *  - The recipe and the post, together in `source_key`: `EMBED_TEXT_VERSION`, a colon, and
+ *    `jobs.content_hash`. The post hash covers title, body, locations, salary and the rest, so it
+ *    covers every `jobs` column the embedding text reads and moves only when the post does;
+ *    `EMBED_TEXT_VERSION` rides along so that bumping the recipe still re-embeds the corpus, which
+ *    is the whole point of that constant and which a test on the post alone would quietly drop.
+ *    Compared with `is distinct from`, exactly as `selectJobsToEnrich` compares
+ *    `job_enrichment.content_hash` against `jobs.content_hash`; the embedder was the one selector
+ *    guessing with timestamps. Text, so unlike a timestamp it survives the driver intact.
+ *  - The enrichment: only a timestamp exists, so the handler records `checked_at` — the database's
+ *    own clock, from before it read — and this compares `checked_at < job_enrichment.updated_at`.
+ *    `<` rather than equality on purpose: a `timestamptz` read into a JS `Date` loses its
+ *    microseconds, so an equality test against a source timestamp is a test many rows can never
+ *    pass. Under `<` that same lost precision only ever buys one more free re-check.
+ *
+ * `coalesce(checked_at, updated_at)` reads a row written before migration 0011 that its backfill
+ * could not prove: those get one re-check each, for a hash and no model call.
+ *
+ * One `jobs` column the embedding text reads is outside `content_hash`: `jobs.role_family`, and
+ * only as the fallback when `job_enrichment.role_family` is null (never, on staging: 0 of 7,505).
+ * It is derived from the title, so a post edit moves it and the post hash catches that; a
+ * reclassification by `classifyRole` alone would wait for the next post edit or re-enrichment.
+ *
+ * **Order.** A backlog is not a feed. `first_seen_at desc` assumed every candidate was equally
+ * worth doing, which let rows that merely looked stale sit permanently in front of jobs that had no
+ * vector at all — and `match/sweep.ts` will not score a job that has none. So: jobs with no usable
+ * vector first (newest post first inside that group, since that is the one someone is waiting on),
+ * then the rest least-recently-checked first, which is a queue rather than a stack and cannot
+ * starve.
+ *
+ * `skipQueued: false` drops the `pgboss.job` check for scripts run without pg-boss.
  */
 export async function selectJobsToEmbed(
   db: Db,
@@ -107,19 +152,33 @@ export async function selectJobsToEmbed(
         or(
           isNull(jobEmbeddings.jobId),
           sql`${jobEmbeddings.model} is distinct from ${EMBEDDING_MODEL}`,
-          sql`${jobEmbeddings.updatedAt} < greatest(${jobs.updatedAt}, ${jobEnrichment.updatedAt})`,
+          sql`${jobEmbeddings.sourceKey} is distinct from (${EMBED_TEXT_VERSION}::text || ':' || ${jobs.contentHash})`,
+          sql`coalesce(${jobEmbeddings.checkedAt}, ${jobEmbeddings.updatedAt}) < ${jobEnrichment.updatedAt}`,
         ),
         skipQueued ? notAlreadyQueued(EMBED_JOB_QUEUE, sql`${jobs.id}`) : undefined,
       ),
     )
-    .orderBy(desc(jobs.firstSeenAt))
+    .orderBy(
+      sql`(${jobEmbeddings.jobId} is not null and ${jobEmbeddings.model} is not distinct from ${EMBEDDING_MODEL})`,
+      sql`coalesce(${jobEmbeddings.checkedAt}, ${jobEmbeddings.updatedAt}) asc nulls first`,
+      desc(jobs.firstSeenAt),
+      jobs.id,
+    )
     .limit(limit);
   return rows.map((r) => r.id);
 }
 
 /**
  * Profiles with something to embed (a title, a stack or a parsed CV) whose vector is missing, was
- * built with another model, or is older than the profile row or its newest parsed CV.
+ * built with another model, or has not been confirmed since the profile row or the newest parsed CV
+ * last moved.
+ *
+ * The job-side note above is the argument; this is the same defect and the same fix. A profile row
+ * is written for reasons the five embedded fields never see, and under the old
+ * `profile_embeddings.updated_at < greatest(...)` each of those armed the profile for ever;
+ * `checked_at` settles each one exactly once. It only went unnoticed because there are three
+ * profiles on staging and twenty slots a sweep. `source_key` here holds `EMBED_TEXT_VERSION` alone,
+ * since a profile has no post to fingerprint, and does the one job the job side's recipe half does.
  *
  * Seeded demo profiles are left out: the sweep must not spend the embedding budget on fixtures.
  * `includeDemo` is for a backfill run that wants the demo Brief scored on the same signals as a
@@ -147,12 +206,18 @@ export async function selectProfilesToEmbed(
         or(
           isNull(profileEmbeddings.profileId),
           sql`${profileEmbeddings.model} is distinct from ${EMBEDDING_MODEL}`,
-          sql`${profileEmbeddings.updatedAt} < greatest(${profiles.updatedAt}, coalesce(${cvParsedAt}, ${profiles.updatedAt}))`,
+          sql`${profileEmbeddings.sourceKey} is distinct from ${EMBED_TEXT_VERSION}`,
+          sql`coalesce(${profileEmbeddings.checkedAt}, ${profileEmbeddings.updatedAt}) < greatest(${profiles.updatedAt}, coalesce(${cvParsedAt}, ${profiles.updatedAt}))`,
         ),
         skipQueued ? notAlreadyQueued(EMBED_PROFILE_QUEUE, sql`${profiles.id}`) : undefined,
       ),
     )
-    .orderBy(desc(profiles.updatedAt))
+    .orderBy(
+      sql`(${profileEmbeddings.profileId} is not null and ${profileEmbeddings.model} is not distinct from ${EMBEDDING_MODEL})`,
+      sql`coalesce(${profileEmbeddings.checkedAt}, ${profileEmbeddings.updatedAt}) asc nulls first`,
+      desc(profiles.updatedAt),
+      profiles.id,
+    )
     .limit(limit);
   return rows.map((r) => r.id);
 }

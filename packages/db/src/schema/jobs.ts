@@ -306,6 +306,37 @@ export const jobEmbeddings = pgTable(
     model: text("model").notNull().default(EMBEDDING_MODEL),
     contentHash: text("content_hash").notNull(),
     embedding: embedding(),
+    /**
+     * Opaque string naming the recipe generation and the post this vector was last confirmed
+     * against: `EMBED_TEXT_VERSION`, a colon, and `jobs.content_hash`. The sweep compares it with
+     * `is distinct from`, exactly as `selectJobsToEnrich` compares `job_enrichment.content_hash`
+     * against `jobs.content_hash`.
+     *
+     * The post half answers "did the post move?" precisely, where `jobs.updated_at` cannot — the
+     * hourly liveness touch bumps that for every open job without changing a word. The recipe half
+     * keeps the promise `EMBED_TEXT_VERSION` makes, that bumping it re-embeds the corpus; the
+     * version is inside the stored `content_hash` too, but a sha256 is not something the selector
+     * can recompute in SQL. Text, so unlike a timestamp it survives the round trip through the
+     * driver intact.
+     *
+     * Null on rows written before migration 0011 that the backfill could not prove: those get one
+     * free re-check, which costs a hash and no model call.
+     */
+    sourceKey: text("source_key"),
+    /**
+     * When a run last confirmed this vector against its sources, whether it wrote a new vector or
+     * found the content hash unchanged. Read as `checked_at < job_enrichment.updated_at`, which is
+     * how a re-enrichment that rewrites the same five fields stops being a candidate for ever.
+     *
+     * **Always stamped from the database's own `now()`, never from a JS `Date`.** A `timestamptz`
+     * carries microseconds and a JS `Date` only milliseconds, so a timestamp that has been through
+     * the driver is a slightly *earlier* value than the one stored. Under `<` that is harmless —
+     * at worst one more free re-check — but it is why this is a watermark compared with `<` rather
+     * than an equality against the source timestamp, which such a row could never satisfy.
+     *
+     * Null on rows written before migration 0011 that the backfill could not prove.
+     */
+    checkedAt: timestamp("checked_at", { withTimezone: true }),
     ...timestamps(),
   },
   (t) => [index("job_embeddings_hnsw_idx").using("hnsw", t.embedding.op("halfvec_cosine_ops"))],
