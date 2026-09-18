@@ -3,7 +3,7 @@ import { relations } from "drizzle-orm";
 import { aiUsage } from "./ai";
 import { user } from "./auth";
 import { passes, payments, referrals } from "./billing";
-import { channels, deliveryLog } from "./delivery";
+import { channels, deliveryLog, telegramLinkTokens } from "./delivery";
 import { eligibilityEvidence, flags } from "./flags";
 import {
   companies,
@@ -25,6 +25,7 @@ export const userDomainRelations = relations(user, ({ one, many }) => ({
   passes: many(passes),
   payments: many(payments),
   channels: many(channels),
+  telegramLinkTokens: many(telegramLinkTokens),
 }));
 
 export const profilesRelations = relations(profiles, ({ one }) => ({
@@ -130,6 +131,10 @@ export const passesRelations = relations(passes, ({ one }) => ({
 
 export const channelsRelations = relations(channels, ({ one }) => ({
   user: one(user, { fields: [channels.userId], references: [user.id] }),
+}));
+
+export const telegramLinkTokensRelations = relations(telegramLinkTokens, ({ one }) => ({
+  user: one(user, { fields: [telegramLinkTokens.userId], references: [user.id] }),
 }));
 
 export const deliveryLogRelations = relations(deliveryLog, ({ one }) => ({

@@ -31,4 +31,13 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm typecheck
       - run: pnpm lint
+
+      # The same reason key is rendered twice by two different mechanisms: the Brief through
+      # next-intl from `apps/web/messages/en/brief.json`, and Telegram, email and push through
+      # `@pemby/core`'s own tables, because the worker and the bot cannot read a next-intl
+      # catalogue. Nothing else notices when the two drift, and drift would make one match read two
+      # different ways depending on where the user saw it.
+      - name: Reason strings match between core and the web messages
+        run: pnpm --filter @pemby/core check:reasons
+
       - run: pnpm build

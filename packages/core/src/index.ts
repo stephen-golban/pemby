@@ -8,6 +8,7 @@ export * from "./roles";
 export * from "./scoring";
 export * from "./near-miss";
 export * from "./entitlements";
+export * from "./delivery";
 export * from "./ai-contract";
 export * from "./profile";
 export {

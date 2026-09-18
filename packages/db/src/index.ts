@@ -34,6 +34,7 @@ export type Pass = typeof s.passes.$inferSelect;
 export type Payment = typeof s.payments.$inferSelect;
 export type Referral = typeof s.referrals.$inferSelect;
 export type Channel = typeof s.channels.$inferSelect;
+export type TelegramLinkToken = typeof s.telegramLinkTokens.$inferSelect;
 export type DeliveryLog = typeof s.deliveryLog.$inferSelect;
 export type CompanySourceHealth = typeof s.companySourceHealth.$inferSelect;
 
@@ -91,3 +92,39 @@ export {
   type RetireStaleMatchesParams,
   type ScoringNudges,
 } from "./queries/matching";
+
+export {
+  claimDelivery,
+  clearChannelDead,
+  consumeTelegramLinkToken,
+  countDeliveries,
+  CLAIM_EXPIRED_ERROR,
+  DEFAULT_MAX_DELIVERY_ATTEMPTS,
+  DEFAULT_MAX_DELIVERY_SKIPS,
+  DEFAULT_STALE_CLAIM_MS,
+  deleteExpiredTelegramLinkTokens,
+  deliveryPausedAt,
+  failDelivery,
+  LINK_TOKEN_TTL_MS,
+  markChannelDead,
+  MIN_STALE_CLAIM_MS,
+  markMatchDelivered,
+  mintTelegramLinkToken,
+  reclaimStaleDeliveries,
+  recordDeliverySent,
+  selectDeliverableChannels,
+  selectDueMatches,
+  setDeliveryPaused,
+  skipDelivery,
+  type ChannelType,
+  type ClaimDeliveryParams,
+  type DeliveryChannel,
+  type DeliveryPauseResult,
+  type DeliveryClaim,
+  type DueMatch,
+  type DueMatchesParams,
+  type FinishDeliveryParams,
+  type MintedLinkToken,
+  type RecordSentParams,
+  type RecordSentResult,
+} from "./queries/delivery";

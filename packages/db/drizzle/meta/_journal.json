@@ -85,6 +85,20 @@
       "when": 1789747138998,
       "tag": "0011_embedding_source_key",
       "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "7",
+      "when": 1789747238998,
+      "tag": "0012_delivery_claimed_status",
+      "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "7",
+      "when": 1789747284250,
+      "tag": "0013_delivery_kernel",
+      "breakpoints": true
     }
   ]
 }

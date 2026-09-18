@@ -175,4 +175,13 @@ export const channelType = pgEnum("channel_type", ["telegram", "email", "push"])
 
 export const deliveryKind = pgEnum("delivery_kind", ["match", "pass_reminder", "system"]);
 
-export const deliveryStatus = pgEnum("delivery_status", ["sent", "failed", "skipped"]);
+/**
+ * `claimed` is the exactly-once lock, added in migration 0012 alone (precedent: 0004, 0006).
+ *
+ * A dispatcher inserts a `claimed` row *before* it calls the provider, so the partial unique index
+ * on live rows (`delivery_log_match_channel_live_uq`) is what stops a second dispatcher from
+ * sending the same match on the same channel — not the `status = 'sent'` index, which can only
+ * ever notice the collision after both messages have gone out. See the header of
+ * `packages/db/src/queries/delivery.ts` for the full ordering and its failure mode.
+ */
+export const deliveryStatus = pgEnum("delivery_status", ["sent", "failed", "skipped", "claimed"]);

@@ -119,6 +119,21 @@ export const profiles = pgTable(
      */
     scoringNudges: jsonb("scoring_nudges").$type<Record<string, number>>().notNull().default({}),
 
+    /**
+     * When the user paused delivery on every channel (`/pause` in the bot, the switch in settings);
+     * null means delivery is running. `/resume` clears it.
+     *
+     * Here rather than on `channels` because the pause is one decision about the person, not three
+     * about their channels: PLAN D8 has the user pause Pemby, and a per-channel flag would let
+     * `/resume` restore a channel the user had switched off on purpose. `channels.enabled` stays
+     * the per-channel switch and this column is read alongside it — both must say yes.
+     *
+     * A timestamp rather than a boolean because "since when" is the question that gets asked: the
+     * settings page says how long delivery has been held, and the dispatcher can tell a pause from
+     * a column that was never written. `profiles` is 1:1 with `user` (`user_id` is unique), so one
+     * nullable column here is the whole of it.
+     */
+    deliveryPausedAt: timestamp("delivery_paused_at", { withTimezone: true }),
     referralCode: text("referral_code").unique(),
     onboardingCompletedAt: timestamp("onboarding_completed_at", { withTimezone: true }),
     /** Seeded demo data on staging. */
