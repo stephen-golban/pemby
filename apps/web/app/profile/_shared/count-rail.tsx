@@ -1,18 +1,49 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 import { MatchCounter, useCountryName } from "@/components/profile";
 import type { ProfileView } from "@/app/api/profile/_lib/view";
 import type { MatchCount } from "./use-profile";
+import panels from "./panels.module.css";
 import styles from "./rail.module.css";
 
 /**
- * The live count (PLAN D5), through the same teaser interface the landing page uses and therefore
- * green tier only — never yellow, for anonymous or free users.
+ * The way out of the profile and into the roles it describes (PLAN D6). It sits under the count
+ * because the count is what raises the question: "N roles hire from Moldova" is only worth reading
+ * if the roles themselves are one tap away. Deliberately not behind the same flag as the count —
+ * the doorway to the Brief is not a staging surface.
+ */
+export function BriefLink() {
+  const t = useTranslations("Onboarding.profile");
+  return (
+    <div className={styles.brief}>
+      <Link className={panels.primary} href="/brief">
+        {t("briefCta")}
+      </Link>
+      <p className={styles.note}>{t("briefNote")}</p>
+    </div>
+  );
+}
+
+/**
+ * The live count (PLAN D5), through the same teaser interface the landing page uses. Green tier
+ * only for an anonymous visitor, who has no profile to opt into yellow with; a signed-in caller
+ * gets whatever their `include_yellow` says (PLAN D2, D13 amended 2026-09-17).
  *
- * While a new number is being worked out the last one stays on screen and the whole line goes
- * quiet, so an edit never flashes a number that was never true; a count that has never been known
- * shows the dashed empty badge instead. Zero is a real answer and is written out as one.
+ * Two lines, never one. "N roles hire from {country}" is a hard claim, and once the yellow opt-in
+ * feeds the number it would be covering posts Pemby judges no more than likely. So the green count
+ * keeps that sentence to itself and the yellow count gets its own, weaker one underneath; the
+ * yellow line never borrows "hire from", and it is absent rather than zero when there is nothing
+ * likely to report, because "0 more look likely" is noise, not an answer.
+ *
+ * Zero green is the ordinary case on real data, so the pair is written for it: with nothing green
+ * the second line drops "more", which would otherwise be counting up from a number that is not
+ * there, and names what it is counting instead.
+ *
+ * While a new number is being worked out the last one stays on screen and both lines go quiet, so
+ * an edit never flashes a number that was never true; a count that has never been known shows the
+ * dashed empty badge instead. Zero is a real answer and is written out as one.
  */
 export function MatchCountLine({
   profile,
@@ -66,26 +97,61 @@ export function MatchCountLine({
     );
   }
 
-  const value = result?.count ?? null;
+  // Null only before the first answer arrives, which is the dashed-badge "checking" state.
+  const green = result?.greenCount ?? null;
+  const likely = result?.yellowCount ?? 0;
+  const showLikely = likely > 0;
+
+  const spoken = count.pending || green === null ? "" : announcement(t, green, likely, country);
+
   return (
     <div className={styles.line} aria-busy={count.pending}>
-      {/* Keyed on the number so a settled change replays the one authored moment on this screen. */}
-      <div key={value ?? "none"} className={styles.settle}>
+      {/* Keyed on both numbers so a settled change replays the one authored moment on this screen. */}
+      <div key={`${green ?? "none"}/${likely}`} className={styles.settle}>
         {/* `country`, never a pre-built label: MatchCounter owns the sentence for every surface
             that shows this number, so onboarding and the landing teaser cannot drift apart. */}
         <MatchCounter
           as="h2"
           id={headingId}
-          count={value}
+          count={green}
           country={country}
           pending={count.pending}
         />
+        {showLikely ? (
+          <p className={styles.likely} data-pending={count.pending}>
+            <span className={styles.likelyBadge}>{likely}</span>
+            <span className={styles.likelyLabel}>
+              {green === 0
+                ? t("likelyOnly", { count: likely })
+                : t("likelyMore", { count: likely })}
+            </span>
+          </p>
+        ) : null}
       </div>
-      {/* The shared sentence about what this number counts; it also sits under the landing teaser. */}
-      <p className={styles.note}>{teaser("counterNote", { country })}</p>
+      {/* One note for both lines. The green-only sentence is the landing teaser's, so the two
+          surfaces keep saying the same thing about the same number. */}
+      <p className={styles.note}>
+        {showLikely ? t("likelyNote") : teaser("counterNote", { country })}
+      </p>
       <p className="visually-hidden" role="status" aria-live="polite">
-        {count.pending || value === null ? "" : t("announce", { count: value, country })}
+        {spoken}
       </p>
     </div>
   );
+}
+
+/** Both lines in one utterance, so a screen reader hears the pair the way the page shows it. */
+function announcement(
+  t: ReturnType<typeof useTranslations<"Onboarding.counter">>,
+  green: number,
+  likely: number,
+  country: string,
+): string {
+  const first = t("announce", { count: green, country });
+  if (likely === 0) return first;
+  const second =
+    green === 0
+      ? t("announceLikelyOnly", { count: likely })
+      : t("announceLikelyMore", { count: likely });
+  return `${first} ${second}`;
 }

@@ -84,7 +84,6 @@
         "middle": "Middle",
         "senior": "Senior",
         "lead": "Lead",
-        "staff": "Staff",
         "principal": "Principal"
       },
       "levels": {
@@ -108,7 +107,12 @@
       "checking": "Checking which roles can hire you from {country}",
       "count": "{count, plural, one {role hires} other {roles hire}} from {country}",
       "sample": "{shown, plural, one {Here is one of them.} other {Here are # of them.}} Each was checked on the company's own careers page.",
-      "tier": "Hires from {country}",
+      "tier": {
+        "green": "Hires from {country}",
+        "yellow": "Likely for {country}",
+        "white": "Unclear for {country}",
+        "red": "Not open to {country}"
+      },
       "open": "Open the post",
       "openLabel": "Open the post for {title} at {company}",
       "reasons": {
@@ -116,7 +120,12 @@
         "worldwide-engagement": "The post says it's open worldwide to {engagement}.",
         "company-names-country": "The company's careers page names {country}; not confirmed for this role."
       },
-      "reasonFallback": "The post says where this role can be done, and {country} is included.",
+      "reasonFallback": {
+        "green": "The post says where this role can be done, and {country} is included.",
+        "yellow": "The post's wording suggests {country} is included without saying so outright.",
+        "white": "The post doesn't say which countries the role is open to.",
+        "red": "The post rules {country} out."
+      },
       "noneTitle": "roles from {country} right now",
       "noneBody": "Sign up to keep your profile and come back to it.",
       "unsupportedTitle": "Pemby doesn't cover {country} yet",

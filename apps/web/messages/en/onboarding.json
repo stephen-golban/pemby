@@ -149,6 +149,11 @@
     },
     "counter": {
       "announce": "{count, plural, =0 {No roles from {country} right now.} one {# role hires from {country}.} other {# roles hire from {country}.}}",
+      "likelyMore": "{count, plural, one {more looks likely} other {more look likely}}",
+      "likelyOnly": "{count, plural, one {role looks likely} other {roles look likely}}",
+      "likelyNote": "The first number is what the posts say outright; it can be zero. The rest only look likely from their wording.",
+      "announceLikelyMore": "{count, plural, one {# more looks likely.} other {# more look likely.}}",
+      "announceLikelyOnly": "{count, plural, one {# role looks likely.} other {# roles look likely.}}",
       "noCountryTitle": "Add the country you work from",
       "noCountryBody": "Every eligibility check runs on it, so there is nothing to count until it is set.",
       "unsupportedTitle": "Pemby doesn't cover {country} yet",
@@ -162,12 +167,15 @@
       "title": "Your profile is set",
       "body": "Pemby now knows which roles can legally hire you from where you live, and what you want to do.",
       "next": "Nothing is delivered yet — sending matches over Telegram, email and web push is still being built. Your profile is saved and you can change any of it whenever you like.",
-      "cta": "See your profile"
+      "cta": "See your Brief",
+      "profileCta": "See your profile"
     },
     "profile": {
       "title": "Your profile",
       "lead": "Everything Pemby matches on. Changes save as you make them, and take effect on the next match.",
-      "railLabel": "Profile summary"
+      "railLabel": "Profile summary",
+      "briefCta": "See your Brief",
+      "briefNote": "The roles that cleared every check, with the reason each one did."
     },
     "strength": {
       "title": "Profile strength",

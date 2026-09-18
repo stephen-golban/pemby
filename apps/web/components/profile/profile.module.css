@@ -211,13 +211,38 @@
   gap: var(--space-2);
   margin-block-start: var(--space-3);
   font-size: var(--text-label);
+  font-weight: var(--weight-mono-strong);
 }
 
+/*
+ * The tier swatch, always beside its words (DESIGN.md, "The Label Beside Every Colour Rule").
+ * Every tier names itself: nothing here falls back to the green fill, because painting an
+ * unrecognised tier green is the one mislabel PLAN D2 forbids.
+ */
 .swatch {
+  flex: none;
   inline-size: 12px;
   block-size: 12px;
   border-radius: var(--radius-full);
+  background: var(--color-line);
+}
+
+.swatch[data-tier="green"] {
   background: var(--color-tier-green);
+}
+
+.swatch[data-tier="yellow"] {
+  background: var(--color-tier-yellow);
+}
+
+/* White needs an edge or it disappears into the ground. */
+.swatch[data-tier="white"] {
+  border: 1.5px solid var(--color-line-strong);
+  background: var(--color-tier-white);
+}
+
+.swatch[data-tier="red"] {
+  background: var(--color-tier-red);
 }
 
 .reason {

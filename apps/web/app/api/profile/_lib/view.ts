@@ -27,7 +27,6 @@ export const SENIORITIES = [
   "middle",
   "senior",
   "lead",
-  "staff",
   "principal",
 ] as const satisfies readonly Seniority[];
 
@@ -174,7 +173,7 @@ export const PROFILE_LIMITS = {
  *
  *   residence country   20  the eligibility scope; with it empty nothing can match at all
  *   ways of working     15  the second half of the eligibility gate (`job_eligibility.way_of_working`)
- *   titles              15  the role-family gate (`lib/teaser/roles.ts`)
+ *   titles              15  the role-family gate (`compatibleFamilies` in @pemby/core)
  *   seniority           10  the seniority gate, within one level
  *   stack               10  the strongest scoring signal; 3+ entries score full, 1-2 score half
  *   citizenships         5  relocation and visa eligibility

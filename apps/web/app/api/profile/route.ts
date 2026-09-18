@@ -1,4 +1,5 @@
 import { appEnv } from "@/lib/env";
+import { enqueueProfileMatch } from "@/lib/queue/match";
 import { loadProfileView, patchProfile } from "./_lib/db";
 import { authorize, fail, isAnonymous, json } from "./_lib/http";
 import { parseProfilePatch } from "./_lib/validate";
@@ -63,5 +64,14 @@ export async function PATCH(request: Request): Promise<Response> {
     else throw error;
   }
   if (!saved) return fail("unauthenticated", 401);
+
+  // Every writable key except the display name is one the matcher reads — country, permits, ways of
+  // working, seniority, stack, dealbreakers, the salary floor — so a patch that touches any of them
+  // has changed which jobs can hire this person and the Brief has to be rebuilt. `displayName` is
+  // the one field no gate and no score component looks at, and it is the one people edit most
+  // idly. Awaited, not fired and forgotten: a serverless response can be the end of the process.
+  if (Object.keys(parsed.patch).some((key) => key !== "displayName")) {
+    await enqueueProfileMatch(auth.session.user.id, "profile-patch");
+  }
   return json(saved);
 }

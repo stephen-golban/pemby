@@ -65,12 +65,26 @@ export interface MatchCount {
 
 /** No ways of working accepted means nothing can match, which is what the route would also say. */
 function noWaysResult(country: string | null): TeaserResult {
-  return { country, countryName: null, count: 0, jobs: [], basis: "ok" };
+  return {
+    country,
+    countryName: null,
+    count: 0,
+    greenCount: 0,
+    yellowCount: 0,
+    jobs: [],
+    basis: "ok",
+  };
 }
 
 /**
  * The live match count (PLAN D5), through the same `TeaserSource` interface the landing teaser
- * uses and therefore green tier only — never yellow, for anonymous or free users.
+ * uses: green tier only for an anonymous visitor, plus yellow for a signed-in caller who has
+ * opted in (PLAN D2, D13 amended 2026-09-17 — the opt-in is free, not pass-only).
+ *
+ * The result carries `greenCount` and `yellowCount` beside the total, and the opt-in itself stays
+ * on the server. That is deliberate: the rail's two lines make two different claims, so the client
+ * renders the split the server actually used rather than re-deriving it from a profile flag it
+ * would have to be trusted to keep in step.
  *
  * The count follows the profile on screen, debounced: while the debounce or the request is in
  * flight the last known number stays put and the caller renders it quietly, so an edit never

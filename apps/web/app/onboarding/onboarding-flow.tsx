@@ -160,9 +160,13 @@ export function OnboardingFlow({
   const rail = (
     <aside className={styles.rail} aria-label={t("steps.label")}>
       {countEnabled ? <MatchCountLine profile={profile} count={count} headingId={countId} /> : null}
-      <p className={styles.position}>
-        {t("steps.position", { index: index + 1, total: STEPS.length })}
-      </p>
+      {/* "Step 1 of 3" beside a heading that says setup is over contradicts it; once the flow is
+          finished the ticked list is the whole story. */}
+      {finished ? null : (
+        <p className={styles.position}>
+          {t("steps.position", { index: index + 1, total: STEPS.length })}
+        </p>
+      )}
       <ol className={styles.stepList}>
         {STEPS.map((entry, i) => {
           const state = finished || i < index ? "done" : i === index ? "current" : "todo";
@@ -200,9 +204,14 @@ export function OnboardingFlow({
             </h1>
             <p className={styles.lead}>{t("done.body")}</p>
             <p className={styles.note}>{t("done.next")}</p>
+            {/* Someone who has just finished setup wants the roles, not the form they just filled
+                in, so the Brief is the primary action and the profile stays one tap away. */}
             <div className={styles.actions}>
-              <Link className={styles.primary} href="/profile">
+              <Link className={styles.primary} href="/brief">
                 {t("done.cta")}
+              </Link>
+              <Link className={styles.textButton} href="/profile">
+                {t("done.profileCta")}
               </Link>
               {finish.isPending ? (
                 <span className={styles.saving}>{t("actions.saving")}</span>

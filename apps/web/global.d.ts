@@ -1,4 +1,5 @@
 import type messages from "./messages/en.json";
+import type brief from "./messages/en/brief.json";
 import type cv from "./messages/en/cv.json";
 import type legal from "./messages/en/legal.json";
 import type onboarding from "./messages/en/onboarding.json";
@@ -12,6 +13,7 @@ declare module "next-intl" {
   interface AppConfig {
     Locale: Locale;
     Messages: typeof messages &
+      typeof brief &
       typeof cv &
       typeof legal &
       typeof onboarding &

@@ -19,8 +19,43 @@
   transition: opacity var(--duration-fast) var(--ease-out);
 }
 
+/*
+ * The two count lines settle as one block: the pair is a single answer, and animating the halves
+ * apart would invite reading the weaker one as newer news. DESIGN.md, "Signature motion" — the
+ * Operate variant, 320ms with no drift, because this is the number the person opened the page for.
+ */
 .settle {
+  display: grid;
+  gap: var(--space-2);
+  justify-items: start;
   animation: settle var(--duration-base) var(--ease-out) both;
+}
+
+/*
+ * Both rows hang their badge and their sentence on the block's own two columns, so the sentences
+ * start on one axis however many digits each badge happens to hold — otherwise a two-digit likely
+ * count pushes its line a few pixels off the count above it and the pair stops reading as one
+ * answer. Behind `@supports` because the flex rows below are correct on their own; only the shared
+ * axis is lost without subgrid.
+ */
+@supports (grid-template-columns: subgrid) {
+  .settle {
+    grid-template-columns: auto 1fr;
+    column-gap: var(--space-3);
+    justify-items: stretch;
+  }
+
+  .line .settle > * {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    align-items: center;
+  }
+
+  /* The badges keep their own width inside the shared track, so a single digit stays a circle. */
+  .line .settle > * > :first-child {
+    justify-self: start;
+  }
 }
 
 @keyframes settle {
@@ -40,6 +75,50 @@
   font-weight: var(--weight-title);
   line-height: 1.05;
   letter-spacing: -0.02em;
+}
+
+/*
+ * The likely line, under the count. It is the weaker claim, so it is softer on every axis at once:
+ * the count badge outlined instead of filled with ink, one step down the grotesk scale (24px -> 19px,
+ * the authored steps in DESIGN.md), and soft ink rather than ink. Tier colour is deliberately absent
+ * — a lone yellow dot with no green counterpart on the line above would read as decoration, and the
+ * words already carry the tier, which is what "never colour alone" asks for.
+ */
+.likely {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--color-ink-soft);
+}
+
+.likelyBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-inline-size: 30px;
+  block-size: 30px;
+  padding: 0 9px;
+  border: 1.5px solid var(--color-line);
+  border-radius: var(--radius-full);
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: var(--weight-title);
+  font-variant-numeric: tabular-nums;
+}
+
+.likelyLabel {
+  font-family: var(--font-display);
+  font-size: 1.1875rem;
+  font-weight: var(--weight-title);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+/* The Brief link: the primary control from panels.module.css, with its caption under it. */
+.brief {
+  display: grid;
+  gap: var(--space-3);
+  justify-items: start;
 }
 
 .note {

@@ -5,7 +5,7 @@ import { useId } from "react";
 import type { ProfileView } from "@/app/api/profile/_lib/view";
 import { DeletePanel, ExportPanel, SaveWorkPanel } from "./_shared/account";
 import { CountryListProvider } from "./_shared/countries";
-import { MatchCountLine } from "./_shared/count-rail";
+import { BriefLink, MatchCountLine } from "./_shared/count-rail";
 import { EligibilityRows, RoleRows, WaysRows } from "./_shared/rows";
 import { StrengthMeter } from "./_shared/strength";
 import { useMatchCount, useProfile } from "./_shared/use-profile";
@@ -87,6 +87,7 @@ export function ProfileClient({
           {countEnabled ? (
             <MatchCountLine profile={profile} count={count} headingId={countId} />
           ) : null}
+          <BriefLink />
           {profile.anonymous ? <SaveWorkPanel /> : null}
         </aside>
       </div>

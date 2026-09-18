@@ -29,7 +29,6 @@ const SENIORITIES = [
   "middle",
   "senior",
   "lead",
-  "staff",
   "principal",
 ] as const satisfies readonly Seniority[];
 const ENGLISH_LEVELS = [

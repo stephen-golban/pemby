@@ -7,6 +7,9 @@ import type { SendOptions } from "pg-boss";
 export const CV_EXTRACT_QUEUE = "cv.extract";
 export const CV_PARSE_QUEUE = "cv.parse";
 
+/** Queue name shared with apps/worker/src/match/queues.ts. See `./match.ts` for the only sender. */
+export const MATCH_PROFILE_QUEUE = "match.profile";
+
 type BossHandle = { boss: PgBoss; started: Promise<PgBoss> };
 
 const globalForQueue = globalThis as typeof globalThis & { __pembyQueue?: BossHandle };

@@ -1,3 +1,4 @@
+import { enqueueProfileMatch } from "@/lib/queue/match";
 import { completeOnboarding } from "../_lib/db";
 import { authorize, fail, isAnonymous, json } from "../_lib/http";
 
@@ -18,5 +19,11 @@ export async function POST(request: Request): Promise<Response> {
     else throw error;
   }
   if (!saved) return fail("unauthenticated", 401);
+
+  // The first Brief. `matchOneProfile` refuses a profile that has not finished onboarding (PLAN
+  // D5), so this stamp is the first moment a run can produce anything at all — before it, nothing
+  // the person did could have. A second call re-enqueues, which is harmless: the queue collapses it
+  // on the profile id and a re-run writes the same rows.
+  await enqueueProfileMatch(auth.session.user.id, "onboarding");
   return json(saved);
 }

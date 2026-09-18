@@ -1,0 +1,230 @@
+/*
+ * /brief: the same Operate shell as /profile — ledger on the left, a quiet rail on the right —
+ * with one object on it that lifts: the outlined paper card the Brief shows when nothing cleared
+ * the bar. Panels sit flat; the card is the thing you could pick up.
+ */
+
+.page {
+  min-block-size: 100dvh;
+  background: var(--color-ground);
+}
+
+.shell {
+  max-inline-size: calc(1100px + 2 * var(--gutter));
+  margin-inline: auto;
+  padding: var(--space-8) var(--gutter) var(--space-9);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+  gap: var(--space-7) var(--space-9);
+  align-items: start;
+}
+
+.main {
+  display: grid;
+  gap: var(--space-8);
+  min-inline-size: 0;
+}
+
+.intro {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.title {
+  max-inline-size: 16ch;
+  font-family: var(--font-display);
+  font-size: 2.125rem;
+  font-weight: var(--weight-title);
+  line-height: 0.92;
+  letter-spacing: var(--tracking-title);
+  text-wrap: balance;
+}
+
+.lead {
+  max-inline-size: 58ch;
+  font-size: var(--text-small);
+  line-height: 1.55;
+}
+
+.matches,
+.topic {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.topicTitle {
+  font-family: var(--font-display);
+  font-size: 1.625rem;
+  font-weight: var(--weight-title);
+  line-height: 1;
+  letter-spacing: var(--tracking-title);
+}
+
+.topicLead {
+  max-inline-size: 58ch;
+  margin-block-start: calc(-1 * var(--space-2));
+  font-size: var(--text-label);
+  line-height: 1.55;
+  color: var(--color-ink-soft);
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-block-start: 1px solid var(--color-line);
+}
+
+/* Honest silence ------------------------------------------------------- */
+
+/*
+ * The one object on this page (DESIGN.md, "Objects Lift, Panels Sit"). Outlined paper card, 30px
+ * corners, the Card shadow: the answer to "is there anything today" is a thing on the table, not
+ * an empty region of the page.
+ */
+.silence {
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-7) var(--space-6) var(--space-6);
+  border: 1.5px solid var(--color-line-strong);
+  border-radius: 30px;
+  background: var(--color-paper-card);
+  box-shadow: var(--shadow-card);
+}
+
+.silenceTitle {
+  max-inline-size: 18ch;
+  font-family: var(--font-display);
+  font-size: 1.8125rem;
+  font-weight: var(--weight-title);
+  line-height: 1;
+  letter-spacing: var(--tracking-title);
+  text-wrap: balance;
+}
+
+.silenceBody {
+  max-inline-size: 58ch;
+  font-size: var(--text-small);
+  line-height: 1.6;
+}
+
+.silenceLead {
+  padding-block-start: var(--space-3);
+  font-size: var(--text-label);
+  font-weight: var(--weight-mono-strong);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+
+/* Rail ----------------------------------------------------------------- */
+
+.rail {
+  position: sticky;
+  inset-block-start: var(--space-6);
+  display: grid;
+  gap: var(--space-7);
+  justify-items: start;
+}
+
+.count {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.countLabel {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: var(--weight-title);
+  line-height: 1.05;
+  letter-spacing: var(--tracking-title);
+  font-variant-numeric: tabular-nums;
+}
+
+.note {
+  max-inline-size: 42ch;
+  font-size: var(--text-label);
+  line-height: 1.5;
+  color: var(--color-ink-soft);
+}
+
+.railLink {
+  min-block-size: 44px;
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--text-label);
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
+}
+
+.textAction {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
+  cursor: pointer;
+}
+
+.alert {
+  max-inline-size: 58ch;
+  padding: 10px 14px;
+  border: 1px solid color-mix(in srgb, var(--color-tier-red) 55%, transparent);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-tier-red) 10%, var(--color-surface));
+  font-size: var(--text-small);
+  line-height: 1.5;
+}
+
+/*
+ * The page goes quiet while a new read is in flight; nothing disappears. Only the silence card is
+ * dimmed here — the ledger's rows dim themselves through `data-pending`
+ * (components/brief/brief.module.css), and dimming both would nest two opacity layers and
+ * multiply them, dropping the mono sub-text under the AA contrast bar.
+ */
+.layout[aria-busy="true"] .silence {
+  opacity: 0.75;
+  transition: opacity var(--duration-fast) var(--ease-out);
+}
+
+@media (max-width: 1000px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-7);
+  }
+
+  .rail {
+    position: static;
+    order: -1;
+    gap: var(--space-6);
+    inline-size: 100%;
+  }
+}
+
+@media (max-width: 720px) {
+  .shell {
+    padding-block-start: var(--space-5);
+  }
+
+  .title {
+    font-size: 1.8125rem;
+  }
+
+  .main {
+    gap: var(--space-7);
+  }
+
+  .silence {
+    padding: var(--space-6) var(--space-5) var(--space-5);
+    border-radius: var(--radius-xl);
+  }
+
+  .silenceTitle {
+    font-size: 1.5rem;
+  }
+}

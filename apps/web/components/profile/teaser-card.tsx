@@ -6,7 +6,10 @@ import type { ReactNode } from "react";
 import { MatchCounter } from "./match-counter";
 import styles from "./profile.module.css";
 
-// Green reasons only: the teaser never shows another tier (phase 06 item 4).
+// The three reason keys this surface has its own wording for. Phase 06 could stop there because
+// the teaser was green-only; phase 07 lets a signed-in caller opt into yellow (PLAN D13 amended
+// 2026-09-17), so anything else falls through to the sentence the engine already rendered rather
+// than to a green-shaped one.
 const GREEN_REASONS = ["country-named", "worldwide-engagement", "company-names-country"] as const;
 type GreenReason = (typeof GREEN_REASONS)[number];
 
@@ -14,13 +17,22 @@ function isGreenReason(key: string | null): key is GreenReason {
   return (GREEN_REASONS as readonly (string | null)[]).includes(key);
 }
 
-/** One green-tier job: role, company and place, the verdict with its words, and the reason. */
+/**
+ * One job from the teaser: role, company and place, the verdict with its words, and the reason.
+ *
+ * The verdict is the post's own tier, never assumed green: a yellow post says "likely", because
+ * labelling it "hires from {country}" would be the one thing this product must not get wrong
+ * (PLAN D2, DESIGN.md "The Label Beside Every Colour Rule"). The swatch carries the same tier and
+ * is decorative; the words carry the meaning on their own.
+ */
 export function TeaserCard({ job, countryLabel }: { job: TeaserJob; countryLabel: string }) {
   const t = useTranslations("Cv.teaser");
   const params = { engagement: "", ...job.reasonParams, country: countryLabel };
   const reason = isGreenReason(job.reasonKey)
     ? t(`reasons.${job.reasonKey}`, params)
-    : t("reasonFallback", { country: countryLabel });
+    : // `job_eligibility.reason` is the English the engine already wrote; rows from before
+      // migration 0008 carry no key, so it is the fallback rather than a generic line.
+      (job.reasonText ?? "") || t(`reasonFallback.${job.tier}`, { country: countryLabel });
 
   return (
     <li className={styles.job}>
@@ -28,8 +40,8 @@ export function TeaserCard({ job, countryLabel }: { job: TeaserJob; countryLabel
         <h4 className={styles.jobTitle}>{job.title}</h4>
         <p className={styles.jobMeta}>{[job.company, job.location].filter(Boolean).join(" · ")}</p>
         <p className={styles.verdict}>
-          <span className={styles.swatch} aria-hidden="true" />
-          {t("tier", { country: countryLabel })}
+          <span className={styles.swatch} data-tier={job.tier} aria-hidden="true" />
+          {t(`tier.${job.tier}`, { country: countryLabel })}
         </p>
         <p className={styles.reason}>{reason}</p>
       </div>
