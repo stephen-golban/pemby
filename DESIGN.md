@@ -379,6 +379,8 @@ The synthetic-content marker. Near-black at 86% with a cream 50% hairline and cr
 
 The one orchestrated motion. When the "Nothing today" card first scrolls into view from below the fold, its job chips drift in from scattered offsets and settle (1100ms, staggered 90ms), the group heads and stamp rise 10px, and the doodle dozes in. Transforms and opacity only, on `ease-out` `cubic-bezier(0.16, 1, 0.3, 1)`. It plays once and is skipped entirely under `prefers-reduced-motion`. Everything else is a state transition at `duration-fast` (160ms) or `duration-base` (320ms).
 
+Those numbers are the landing and marketing spec. **Operate surfaces run a faster variant:** `duration-base` (320ms), staggered 70ms, and no chip drift, on the same easing, still once only and still skipped under `prefers-reduced-motion`. The Brief's honest-silence card, the profile count line and the onboarding rail all animate the one thing the person opened the page to read, and holding a sentence that explains an empty Brief for over a second costs more than the moment is worth. Owner decision, 2026-09-17. The 1100ms settle stays the spec wherever the motion is the point rather than the delay.
+
 ## Do's and Don'ts
 
 ### Do:
