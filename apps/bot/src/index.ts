@@ -1,10 +1,35 @@
-import { createHash, timingSafeEqual } from "node:crypto";
-import { createServer } from "node:http";
-import type { ServerResponse } from "node:http";
-import { PrivateConfigError, loadPrivateConfig } from "@pemby/core/private-config";
+// The Telegram bot service: boot, wire, listen.
+//
+// Everything that can be wrong with a deployment is found here, before the server accepts a single
+// request. A missing environment variable, a private config that will not load and a bot token
+// Telegram rejects all exit 1, so a bad deploy fails its health check and Railway keeps serving
+// the previous one. The alternative — boot, then fail on the first real user's first message — is
+// how a broken deploy goes unnoticed for a day.
+//
+// No line in this service logs a chat id, a name, a message, an address or a token.
 
-const env = process.env.APP_ENV ?? "development";
-const port = Number(process.env.PORT ?? 3001);
+import { PrivateConfigError, loadPrivateConfig } from "@pemby/core/private-config";
+import { createDb } from "@pemby/db";
+import { createBot, publishCommandMenu } from "./bot";
+import { readBotEnv } from "./env";
+import { botLinks } from "./links";
+import { safeErrorLabel } from "./log";
+import { createBotServer } from "./server";
+import { createBotStore } from "./store-db";
+
+function die(detail: string): never {
+  console.error(`bot failed to start: ${detail}`);
+  process.exit(1);
+}
+
+const env = (() => {
+  try {
+    return readBotEnv();
+  } catch (error) {
+    // Every message `readBotEnv` throws names a variable and never quotes its value.
+    return die(error instanceof Error ? error.message : "invalid environment");
+  }
+})();
 
 // Load private config at boot so a bad token, ref or layout crashes the deploy instead of the
 // first update (docs/private-config.md). Log the version and counts only, never contents.
@@ -23,63 +48,37 @@ try {
   process.exit(1);
 }
 
-const SECRET_HEADER = "x-telegram-bot-api-secret-token";
-
-function digest(value: string): Buffer {
-  return createHash("sha256").update(value, "utf8").digest();
-}
-
-/**
- * Telegram sends the `secret_token` given to setWebhook in `X-Telegram-Bot-Api-Secret-Token`.
- * Both sides are hashed first so the comparison is constant-time and does not leak the length.
- */
-function checkWebhookSecret(
-  header: string | string[] | undefined,
-): "ok" | "denied" | "misconfigured" {
-  const expected = process.env.TELEGRAM_WEBHOOK_SECRET;
-  if (!expected) return "misconfigured";
-  if (typeof header !== "string" || header === "") return "denied";
-  return timingSafeEqual(digest(header), digest(expected)) ? "ok" : "denied";
-}
-
-function sendJson(res: ServerResponse, status: number, body: unknown): void {
-  res.writeHead(status, { "content-type": "application/json" });
-  res.end(JSON.stringify(body));
-}
-
-const server = createServer((req, res) => {
-  const path = new URL(req.url ?? "/", "http://localhost").pathname;
-
-  if (req.method === "GET" && path === "/health") {
-    sendJson(res, 200, { ok: true });
-    return;
-  }
-
-  if (req.method === "POST" && path === "/telegram/webhook") {
-    const check = checkWebhookSecret(req.headers[SECRET_HEADER]);
-    if (check !== "ok") {
-      // Discard the body unread; no details in the response.
-      req.resume();
-      sendJson(res, check === "misconfigured" ? 503 : 401, { ok: false });
-      return;
-    }
-    // Stub: drain the body without logging it (updates contain user data).
-    // grammY arrives in a later phase.
-    req.resume();
-    req.on("end", () => sendJson(res, 200, { ok: true }));
-    return;
-  }
-
-  sendJson(res, 404, { ok: false });
+const db = createDb(env.databaseUrl);
+const bot = createBot({
+  token: env.botToken,
+  store: createBotStore(db),
+  links: botLinks(env.appUrl),
 });
 
-server.listen(port, () => {
-  console.log(`bot listening on port ${port} (env: ${env})`);
+// `getMe`, once, at boot. grammY would otherwise do it lazily on the first webhook request, which
+// puts a network call to Telegram in front of the first person to press a button and hides a bad
+// token until then. `bot.init()` is idempotent, so the webhook middleware's own call is free.
+try {
+  await bot.init();
+  console.log("bot initialised against the Telegram API");
+} catch (error) {
+  die(`telegram api unreachable or token rejected (${safeErrorLabel(error)})`);
+}
+
+await publishCommandMenu(bot);
+
+// The webhook itself is **not** registered here, and must not be: see src/scripts/set-webhook.ts.
+const server = createBotServer({ bot, secretToken: env.webhookSecret });
+
+server.listen(env.port, () => {
+  console.log(`bot listening on port ${env.port} (env: ${env.appEnv})`);
 });
 
 function shutdown(signal: NodeJS.Signals): void {
   console.log(`bot received ${signal}, shutting down`);
-  server.close(() => process.exit(0));
+  server.close(() => {
+    void db.$client.end().finally(() => process.exit(0));
+  });
   setTimeout(() => process.exit(0), 10_000).unref();
 }
 
