@@ -12,6 +12,9 @@
     "company-evidence:once": "tsx src/scripts/company-evidence-once.ts",
     "enrich:once": "tsx src/scripts/enrich-once.ts",
     "cv:dev": "tsx src/scripts/cv-dev.ts",
+    "embed:once": "tsx src/scripts/embed-once.ts",
+    "match:once": "tsx src/scripts/match-once.ts",
+    "backfill:reasons": "tsx src/scripts/backfill-eligibility-reasons.ts",
     "typecheck": "tsc --noEmit",
     "lint": "eslint ."
   },

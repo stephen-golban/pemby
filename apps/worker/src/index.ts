@@ -14,6 +14,7 @@ import {
   startCompanyEvidenceWorkers,
 } from "./company-evidence";
 import { createCvQueues, readCvEnv, startCvWorkers } from "./cv";
+import { createEmbedQueues, readEmbedEnv, scheduleEmbedSweep, startEmbedWorkers } from "./embed";
 import { readWorkerEnv } from "./env";
 import {
   createEnrichQueues,
@@ -27,6 +28,7 @@ import {
   scheduleIngestJobs,
   startIngestWorkers,
 } from "./ingest/workers";
+import { createMatchQueues, readMatchEnv, scheduleMatchSweep, startMatchWorkers } from "./match";
 
 const appEnv = process.env.APP_ENV ?? "development";
 
@@ -81,12 +83,41 @@ try {
   process.exit(1);
 }
 
-// Phase 05 added two more sweep/handler pairs (enrich, company-evidence) on top of ingest's 7 ATS
-// queues plus 4 maintenance queues, all on this one Drizzle pool. Regular (non-transactional)
-// pg-boss handlers only borrow a pooled connection for their own queries, not for the job's whole
-// duration, so this is sized for default-env concurrency (ingest ~11 + enrich 2 + company-evidence
-// 2 = ~15) with headroom left for the sweep/maintenance queues and the boot company sync.
-const db = createDb(env.databaseUrl, { max: 20, application_name: "pemby-worker" });
+let embedEnv: ReturnType<typeof readEmbedEnv>;
+try {
+  embedEnv = readEmbedEnv();
+} catch (error) {
+  console.error(`embed env invalid: ${error instanceof Error ? error.message : "error"}`);
+  process.exit(1);
+}
+
+let matchEnv: ReturnType<typeof readMatchEnv>;
+try {
+  matchEnv = readMatchEnv();
+} catch (error) {
+  console.error(`match env invalid: ${error instanceof Error ? error.message : "error"}`);
+  process.exit(1);
+}
+
+// Every handler in this process shares this one Drizzle pool. Regular (non-transactional) pg-boss
+// handlers only borrow a pooled connection for their own queries, not for the job's whole duration,
+// so what this has to cover is the number of queries that can be *in flight* at once, not the
+// number of running jobs.
+//
+// Redone for phase 07 (embed and match), at default-env concurrency:
+//   ingest        ~11 (7 ATS queues: greenhouse, lever and ashby at 1, the rest at INGEST_CONCURRENCY 2)
+//   maintenance     4 (schedule-ingest, verify-live, sync-companies, source-health; all rare)
+//   enrich          2   company-evidence 2   cv 3 (extract 1 + parse 2, staging only)
+//   embed           3 (embed.job 2 + embed.profile 1)
+//   match           ~9 (match.job 2 x up to 4 batched reads per page + match.profile 1 + sweep 1)
+// which is ~34 if literally everything overlapped, against the 15 phase 05 sized for. The match
+// fan-out is the new shape here: it issues its per-page similarity, CV-domain and pass reads
+// concurrently, so one handler can hold several connections for a few milliseconds.
+//
+// 30 covers the realistic peak (a match fan-out running while ingest reads boards) with headroom;
+// the remainder queues inside node-postgres rather than failing, which is the right behaviour for
+// a burst of short reads. Raised from 20.
+const db = createDb(env.databaseUrl, { max: 30, application_name: "pemby-worker" });
 try {
   await db.$client.query("select 1");
   console.log("database connected");
@@ -97,14 +128,21 @@ try {
 
 // pg-boss keeps its tables in schema `pgboss`, which Drizzle migrations never touch.
 //
-// Phase 05 raised the number of registered `boss.work` calls to 15 (7 ATS + 4 ingest maintenance
-// queues + enrich.sweep/enrich.job + company-evidence.check/.sweep), each polling on its own
-// interval (10-60s). None of them run `transactional: true`, so pg-boss only borrows a pooled
-// connection for a fetch/complete/fail call, never for the whole handler run; max 10 stays enough
-// headroom for occasional overlap between polling loops.
+// Registered `boss.work` calls, each polling on its own interval (1-60 s), recounted for phase 07:
+//   7 ATS + 4 ingest maintenance                                        = 11
+//   enrich.sweep, enrich.job                                            =  2
+//   company-evidence.check, company-evidence.sweep                      =  2
+//   cv.extract, cv.cleanup, cv.parse (staging only)                     =  3
+//   embed.sweep, embed.job, embed.profile                               =  3
+//   match.sweep, match.job, match.profile                               =  3
+//                                                                        ---
+//                                                                         24
+// None of them run `transactional: true`, so pg-boss borrows a pooled connection for a
+// fetch/complete/fail call only, never for the whole handler run. 12 (raised from 10) keeps the
+// same roughly-one-connection-per-two-polling-loops headroom the count of 15 had.
 const boss = new PgBoss({
   connectionString: env.databaseUrl,
-  max: 10,
+  max: 12,
   application_name: "pemby-worker-queue",
 });
 boss.on("error", (error) => {
@@ -163,6 +201,30 @@ try {
   await createCvQueues(boss);
   await startCvWorkers({ boss, db, env: cvEnv });
   console.log(`cv: ${cvEnv.enabled ? "enabled" : "disabled"} anonTtlHours=${cvEnv.anonTtlHours}`);
+
+  // Phase 07 embeddings: embed.job, embed.profile and the embed.sweep cron. Model calls on the
+  // private ZDR key for profiles, the public key for posts; both under the daily cap.
+  //
+  // The match queues are created here, before the embed handlers start, and not in the match block
+  // below: a successful embed enqueues `match.job` / `match.profile` itself (a new vector is what
+  // makes a pair scoreable, see `embed/workers.ts`), and `boss.send` to a queue that does not exist
+  // yet throws. The handlers registered further down are what drain them.
+  await createEmbedQueues(boss);
+  await createMatchQueues(boss);
+  await startEmbedWorkers({ boss, db, env: embedEnv });
+  await scheduleEmbedSweep(boss, embedEnv);
+  console.log(
+    `embed: ${embedEnv.enabled ? "enabled" : "disabled"} sweepLimit=${embedEnv.sweepLimit} profileSweepLimit=${embedEnv.profileSweepLimit} concurrency=${embedEnv.concurrency}`,
+  );
+
+  // Phase 07 matcher: match.job, match.profile and the match.sweep cron. No model call ever
+  // (PLAN D18), so there is no ledger and no cap guard to hand it. The three queues themselves were
+  // created above, before the embed handlers that send to two of them.
+  await startMatchWorkers({ boss, db, env: matchEnv });
+  await scheduleMatchSweep(boss, matchEnv);
+  console.log(
+    `match: ${matchEnv.enabled ? "enabled" : "disabled"} sweepLimit=${matchEnv.sweepLimit} concurrency=${matchEnv.concurrency} profileJobLimit=${matchEnv.profileJobLimit}`,
+  );
 } catch (error) {
   console.error(
     `worker boot failed: ${error instanceof Error ? `${error.name}: ${error.message}` : "error"}`,

@@ -165,12 +165,17 @@ export async function loadCompanyEvidence(
   return out;
 }
 
-type JobText = Pick<
+export type JobText = Pick<
   LoadedJob,
   "title" | "companyName" | "locations" | "workplaceType" | "employmentType" | "rawText"
 >;
 
-function postOf(job: JobText): EnrichmentPost {
+/**
+ * The post as the engine reads it. Exported so an offline recompute (the eligibility-reason
+ * backfill) runs the *same* code path as enrichment rather than a second copy of it: a reason key
+ * derived from a drifted copy would be worse than no key at all.
+ */
+export function postOf(job: JobText): EnrichmentPost {
   return {
     title: job.title,
     company: job.companyName,
@@ -181,7 +186,8 @@ function postOf(job: JobText): EnrichmentPost {
   };
 }
 
-function rulesOf(job: JobText): RuleExtraction {
+/** The rules pass over the job text. Exported for the same reason as `postOf`. */
+export function rulesOf(job: JobText): RuleExtraction {
   return extractRuleSignals({
     title: job.title,
     locations: job.locations,
@@ -348,6 +354,11 @@ function eligibilityRowsOf(jobId: string, verdicts: readonly EngineVerdict[]): N
     wayOfWorking: toDbWay(v.wayOfWorking),
     tier: v.tier,
     reason: v.reason,
+    // The engine already knows the key and its params; `reason` is only their English rendering.
+    // Storing all three (migration 0008) lets the Brief and the teaser render a verdict through
+    // i18n instead of recovering the key with a regex over the English templates.
+    reasonKey: v.reasonKey,
+    reasonParams: v.reasonParams,
     evidence: v.evidence.map((e) => ({ source: String(e.source), excerpt: e.excerpt, url: e.url })),
     engineVersion: ENGINE_VERSION,
   }));
