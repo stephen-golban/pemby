@@ -107,7 +107,19 @@ None of this was visible from reading the diffs. Two blind adversarial reviewers
   comment and by whoever remembers. An earlier draft of this handoff said the two were "compared
   programmatically", which overstated an ad-hoc review step as an enforced guarantee; phase 08
   caught that and is adding the real checker and wiring it into CI. Until it lands, treat any edit
-  to either table as unguarded.
+  to any of these tables as unguarded — and note there are **four**, not two, with names that do
+  not all correspond:
+
+  | core table | web namespace | keys |
+  |---|---|---|
+  | `gates/reasons.ts` `GATE_REASONS` | `Brief.gateReasons` | 34 |
+  | `scoring/reasons.ts` `SCORE_REASONS` | `Brief.scoreReasons` | 13 |
+  | `eligibility/engine/reasons.ts` `ENGINE_REASONS` | `Brief.**eligibility**Reasons` | 40 |
+  | `programs/next-steps.ts` `PROGRAM_REASONS` | `Brief.programReasons` | 13 |
+
+  All four were clean on `main` at `a2623e9`, measured in both directions. The mismatched
+  `ENGINE_REASONS` → `eligibilityReasons` pair is exactly the mapping a checker-less edit gets
+  wrong. A one-sided key matters as much as a differing value.
   ICU plurals are deliberately excluded because the core renderer cannot produce them, so the two
   renderers would drift in a way no string diff would catch. Strings are phrased so grammatical
   number never arises; keep it that way.
