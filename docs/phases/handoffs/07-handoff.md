@@ -127,14 +127,22 @@ the same shape: correct in isolation, wrong in composition.
   touches the `matches` write path. Phase 08 reviewed it and assigned it to **phase 09** rather
   than bolting it onto a phase already at its commit gate.
 
-- **The CV parser extracts no domains.** 27 of 28 parsed CVs on staging have an empty `domains`
-  array. This keeps a third score component dark and makes PLAN D6's third reason bullet structurally
-  unreachable. It needs a `cv-parse` prompt change in `stephen-golban/pemby-private` and a new tag —
-  **owner approval required before any prompt push.** This is a phase 06 parse-quality gap, not a
-  coverage gap; more CV uploads will not fix it.
+- **~~The CV parser extracts no domains.~~ RETRACTED 2026-09-18 — this was wrong, and it was mine.**
+  The claim rested on "27 of 28 parsed CVs on staging have an empty `domains` array". Those 28 were
+  **seeded test fixtures averaging ~85 characters of extracted text**, and three of them never went
+  through the model at all (`parse_prompt_version = 'demo-v1'` is the seed's own marker for a
+  fabricated parse). The first real CV uploaded to staging — 8,251 characters, parsed by the
+  **unchanged** prompt 0.3.0 — returned **7 domains** and read years of experience correctly at 7.5.
+  The parser works. No prompt change is needed, and a change was stopped mid-edit before it pushed.
+  This is the handoff's own "shape all of these share" error committed by its author: *27 of 28 CVs
+  have empty domains* is a number about the fixtures, not a verdict on the parser. The diagnostic
+  that disproved it — group the CVs by prompt version and text length — cost about thirty seconds
+  and should have run before the conclusion was written down.
 - **`MIN_EVIDENCE_COMPONENTS` is 2.** A post listing one matching technology plus a decent embedding
-  similarity scores ~89/100 on two components. At 3, a match would effectively require the post to
-  name domains *and* the CV to have yielded some — so this and the CV-domain fix are one decision.
+  similarity scores ~89/100 on two components. At 3, a match would require a third component to
+  carry signal, which in practice means `domain` — and since the parser does populate domains from
+  a real CV (see the retraction above), that is reachable rather than blocked. Earlier drafts tied
+  this to a CV-parser fix; that coupling was based on the retracted claim and does not hold.
 - **No currency-rate source exists.** `GateInput.currencyRates` is honoured but nothing supplies it,
   so the salary gate now refuses (rather than silently passes) any cross-currency comparison.
   Measured blast radius: 7 of 32 profiles set a floor, and 86% of salaried jobs are USD, so roughly
