@@ -40,4 +40,13 @@ jobs:
       - name: Reason strings match between core and the web messages
         run: pnpm --filter @pemby/core check:reasons
 
+      # `senders/push.ts` imported `sendNotification` as a named export from `web-push`, which is
+      # CommonJS and builds its exports at runtime, so `cjs-module-lexer` never saw it and the
+      # import threw the moment the module loaded — taking the whole worker down at boot, before
+      # `DELIVER_ENABLED` was even read, not just delivery. `@types/web-push` declares the export,
+      # so typecheck passed, and the dispatcher's own checks stub the senders, so build never
+      # imports the real module either. This is the only gate that actually loads it.
+      - name: Deliver senders load
+        run: pnpm --filter @pemby/worker deliver:smoke
+
       - run: pnpm build
