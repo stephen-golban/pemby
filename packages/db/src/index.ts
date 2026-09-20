@@ -169,12 +169,14 @@ export {
   quarantineJob,
   recordFlagAction,
   recordFlagOutcome,
+  releaseJob,
   type ClaimFlagsParams,
   type CountIndependentFlagsParams,
   type EvidenceSource,
   type EvidenceTier,
   type EvidenceWayOfWorking,
   type FlagAction,
+  type FlagActor,
   type FlagEvidenceRow,
   type FlagField,
   type FlagReason,
@@ -200,11 +202,15 @@ export {
 } from "./queries/user-keys";
 
 export {
+  REVIEW_QUEUE_STATUSES,
   selectDeliveryFailures,
+  selectFlagForOwner,
   selectFlagsForReview,
   selectQuarantinedJobs,
   type DeliveryFailureRow,
   type FlagAutomationState,
+  type FlagReviewOrder,
+  type FlagReviewParams,
   type FlagReviewRow,
   type QuarantinedJobRow,
 } from "./queries/admin";

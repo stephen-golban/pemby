@@ -32,6 +32,21 @@ export const DELIVERY_STRINGS = {
   "button-flag": "Something's wrong",
   "button-back": "Back",
 
+  /**
+   * The tracker button on an already-sent Telegram card, after a state change edits it.
+   *
+   * **The whole label, with the column as a parameter** — not a suffix the caller concatenates onto
+   * `TRACKER_COLUMN_LABELS[column]`. The column name came from the watched table and the rest was a
+   * hand-written literal in the worker, which put half of a button a person taps outside this file
+   * and outside `check:reasons`. Composing it at the call site also hard-codes English word order
+   * and an em dash: a language that leads with the verb, or spells the separator differently,
+   * cannot be served by concatenation, and Russian is the next language (PLAN D22).
+   *
+   * `{column}` is an already-worded label from `TRACKER_COLUMN_LABELS`, resolved by the caller, the
+   * same way `MatchCard.wayOfWorking` is worded before it reaches the card.
+   */
+  "button-tracker": "{column} — open tracker",
+
   // "Not for me" picker (PLAN D6). One tap, no free text.
   "pass-label-location": "Location",
   "pass-label-salary": "Pay",

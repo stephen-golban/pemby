@@ -244,6 +244,16 @@ a Vertex endpoint can serve a schema.
 - **Codes are single-use and expire 10 minutes after issuance.**
 - Documented errors: `400 Invalid code_challenge_method`, `403 Invalid code or code_verifier`,
   `403 Authorization code expired`, `405 Method Not Allowed`.
+- **CORRECTED 2026-09-20 against the live endpoint. The documented status codes are wrong.** A
+  refused code answers **`400 {"error":{"message":"Invalid code","code":400}}`**, not 403 — and so
+  does a request with `code_challenge_method: "plain"`, because the code is validated first, so the
+  documented `400 Invalid code_challenge_method` is unreachable by that route. **Treat 400 and 403
+  identically at the exchange.** Order B mapped only 403, exactly as this table said, and its first
+  real run returned an unclassified failure. Anyone building from the documented table alone ships
+  that bug. `GET /api/v1/key` with a bad key does answer 401 as documented.
+- The three 403 reasons (code spent, code expired, verifier mismatch) are distinguishable only by
+  English message text, so they collapse to one code. Our own 600-second cookie expiry catches a
+  genuinely expired code first, which is a more honest answer than OpenRouter can give.
 - **Build against `{ key }` only.** Any further response field is UNVERIFIED — the OpenAPI route
   serves boilerplate and `openapi.yaml` returns HTML.
 - Deep links for the user to manage their own key: lowercase-hex SHA-256 of the key →
@@ -769,3 +779,97 @@ Two things that verification surfaced, which bind order A:
    `quota-exhausted` (offer the pass or the connect-your-key choice) and `no-profile` (send them to
    onboarding; telling an un-onboarded person their quota is spent sends them hunting a problem that
    does not exist).
+
+## Deployment blocker recorded 2026-09-20
+
+**Migration `0014` is not applied to staging, and `/settings` reads `user_ai_keys`.** The moment
+wave 2 ships to staging without the migration, `/settings` answers 500 — measured through the public
+proxy: `relation "user_ai_keys" does not exist`. The migration must be applied **before** the deploy
+that carries order B, not after. This is the ordinary additive migration path, but the ordering is
+not optional and no order applies it: the lead does.
+
+## Things wave 2 taught, for the next contract
+
+- **`apps/web/global.d.ts` is shared and was assigned to no order.** It types the i18n namespaces, so
+  every order adding one must edit it or its own typecheck fails. Orders A, C and E all edited it
+  concurrently and it merged cleanly — by luck, not design. **Assign it explicitly next time**, or
+  split the namespace declarations per file. All three orders reported it independently, which is
+  how a gap in an ownership map announces itself.
+
+- **Five orders in one worktree is a real coordination hazard, and it is the lead's doing.** Two
+  concrete instances: one order ran `pkill -f "next dev"` to stop its own server and would have
+  killed another order's; and Next's per-directory dev lock meant an order could not start a server
+  at all while another held `.next`, so it proved its change by running the SQL and the mapping
+  directly and said so rather than claiming an end-to-end run it could not get. Both were disclosed
+  voluntarily. **Next time: give each wave-2 order its own port and forbid pattern-matched process
+  kills**, or run UI orders in separate worktrees.
+
+- **Scratch files belong outside the repo, and `format:check` is what enforces it.** `pnpm format:check`
+  goes red on an untracked scratch file anywhere in the tree, which is exactly how a probe script
+  gets caught before it is committed. Do not add a broad `.prettierignore` escape for scratch paths.
+
+## The admin gate's one deliberate omission
+
+`isOwner` (`apps/web/lib/access/owner.ts:36`) checks: a session exists, it is **not** anonymous, it
+has an email, and that email is on `OWNER_ALLOWLIST_EMAILS` — **unconditionally**, never behind
+`ownerGateEnabled()`. Proven with the decisive control: one signed-in account, allowlist pointed at
+someone else, got **200** on `/api/profile`, `/onboarding`, `/app` and `/profile` (all guarded by
+`getProductAccess`) and **403** on all three admin routes.
+
+`emailVerified` is deliberately **not** a condition, because verification is enforced upstream at
+sign-up by `requireEmailVerification` (`apps/web/lib/auth/codes.ts:26`) and production's owner
+account predates that step, so checking it here risks locking the owner out where it matters most.
+
+**That makes the admin gate depend on a control in another file.** On any environment where sign-up
+is open — staging is one — the thing stopping someone claiming the owner's email address *is* email
+verification. If verification is ever disabled or bypassed on an open-sign-up environment, this gate
+silently weakens to "whoever can type the right address". Anyone touching `requireEmailVerification`
+needs to know that.
+
+`OWNER_ALLOWLIST_EMAILS` is now set on staging `web`. `OWNER_GATE` remains unset there, so staging
+product access stays open as intended and the allowlist affects `isOwner` alone.
+
+## Resource isolation: a rule the lead should have set before wave 2
+
+Five orders ran concurrently in one worktree on one machine with no port assignment, no naming
+convention and no instruction to check whether a resource was already in use. Two collisions
+followed, both disclosed voluntarily by the order that caused them:
+
+- `pkill -f "next dev"` to stop one's own dev server, which would have killed another order's.
+- A throwaway Postgres whose `pg_ctl start` **failed** (port already held). `psql` connected anyway,
+  to a **different session's** database, which was then dropped and rebuilt. The signal was there and
+  was misread: the first migration run failed with `type "ai_task" already exists` and reported 28
+  tables — a populated database at the pre-`0014` schema.
+
+**The rules, for any future wave:**
+
+1. **`psql` connecting is not evidence that your server started. `pg_ctl`'s exit code is.** Check it.
+   Then confirm ownership by reading `current_setting('data_directory')` back **off the server**,
+   rather than trusting the port.
+2. **An error that says "this already exists" is telling you whose it is.** Stop and look.
+3. **Never pattern-kill a process** (`pkill -f`) on a shared machine. Kill by the PID you started.
+4. Assign each concurrent order its own port range and a distinct data-directory name, in the order.
+5. Scratch lives outside the repo. `pnpm format:check` catches a stray file anywhere in the tree,
+   which is how a probe script gets caught before it is committed — do not add a `.prettierignore`
+   escape for it.
+
+A long scratchpad path is its own trap: a Unix socket path over 103 bytes makes `pg_ctl start` fail,
+and the failure is silent if nobody reads the exit code.
+
+## Residual risk after the wave-2 reviews, stated precisely
+
+The per-company cap on location reports bounds **depth**, not **reach**, and the distinction matters
+when writing the handoff. Measured with zero `matches` rows in the entire database:
+
+- One account, five postings of one company: `rows=1 sum=1` → **no downgrade.** One account is worth
+  exactly 1.00 against any one company, match or no match.
+- Two accounts, any company chosen from outside: `rows=2 sum=2` → **the tier steps down.**
+
+Before the `markApplied` hole, reaching a company at all required the matcher to have given that
+person a match on one of its jobs, so an attacker could only press on companies Pemby chose to show
+them. With any open job reachable, the two-account cost becomes **company-independent and
+targetable**. The per-company cap is what stops it being *one* account; it does nothing about *which*
+company, and it cannot — the target is chosen by the kit route, not by the tracker.
+
+So the honest statement of the residual risk is **"two accounts, any company"**, not "mitigated".
+Whoever closes the `markApplied` ownership check should re-measure this and update the sentence.

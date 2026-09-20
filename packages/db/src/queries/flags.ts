@@ -299,6 +299,49 @@ export async function claimFlagsToProcess(
  */
 export type TerminalFlagStatus = Exclude<FlagStatus, "open">;
 
+/**
+ * Who is writing the verdict. It is **not** a permission check — the route decides that — it is
+ * what selects the set of transitions below, so that "which states may this be written from" is
+ * answered by the kernel rather than by each caller.
+ */
+export type FlagActor = "automation" | "owner";
+
+/**
+ * **The whole of the legal state machine, and deliberately a closed table rather than a parameter.**
+ *
+ * The starting state is never something a caller passes: a caller says who it is, and this decides
+ * what that makes legal. So there is exactly one place to read to know what can happen to a flag,
+ * and a caller cannot invent a transition by supplying a `from` nobody considered.
+ *
+ * - `automation: ["open"]` — a rule may only resolve a flag it claimed. **Escalation is a one-way
+ *   door for the worker**: once a rule writes `needs_review` it has handed the flag to a person, and
+ *   no rule may take it back. Nor may a rule undo another rule's verdict. This is the restrictive
+ *   set *and* the default, so a caller that forgets to name itself gets the safe answer rather than
+ *   the permissive one.
+ * - `owner: ["open", "needs_review", "auto_resolved"]` — the review queue shows `needs_review` and
+ *   `open`, and the owner must be able to act on both. `auto_resolved` is there for one reason:
+ *   **undoing an automated tier downgrade.** When enough flags reach the engine's weight threshold
+ *   the rule records `auto_resolved / tier_downgraded` and the company's tier steps down; without
+ *   this value those flags are finished, the automatic withdrawal on `dismissed` can never fire for
+ *   the evidence that did the damage, and a wrongful downgrade is permanent through every path the
+ *   admin page has.
+ *
+ * **`dismissed` is a starting state for nobody, and that asymmetry is the point.** The direction
+ * this table forbids is a verdict *overwriting a human's judgement*; the direction it now allows is
+ * a human overruling the automation, which is the entire reason there is an owner in the loop.
+ * Dismissal cannot cause anything to be re-acted on: it is terminal, it withdraws evidence rather
+ * than adding any, and `claimFlagsToProcess` filters `status = 'open'`, so the automation still
+ * cannot reach a flag it has resolved.
+ */
+const VERDICT_FROM: Record<FlagActor, readonly FlagStatus[]> = {
+  automation: ["open"],
+  owner: ["open", "needs_review", "auto_resolved"],
+};
+
+/** The `where` half of the state machine: the states this actor may write a verdict from. */
+const verdictFrom = (by: FlagActor): SQL =>
+  sql`status = any(${sql.param([...VERDICT_FROM[by]])}::flag_status[])`;
+
 export interface RecordFlagActionParams {
   flagId: string;
   /** Never `open`: see `TerminalFlagStatus`. */
@@ -306,42 +349,37 @@ export interface RecordFlagActionParams {
   action: FlagAction;
   /** For the `merged` action: the job this one is a duplicate of. */
   duplicateOfJobId?: string | null;
+  /**
+   * Who is acting. Defaults to `automation`, which is the **restrictive** set — a rule that forgets
+   * to name itself cannot reach an escalated flag. The admin surface passes `"owner"` explicitly.
+   */
+  by?: FlagActor;
 }
 
 /**
- * Write the verdict on a claimed flag and release the claim.
+ * Write the verdict on a flag and release the claim, with no evidence attached.
  *
- * `where id = ... and status = 'open'` is the second half of the mutual exclusion: even if two
- * workers somehow both processed one flag, only one of them writes a verdict, and the loser can see
- * that it lost. **Returns whether it won**, where the phase contract's published signature said
- * `void` — a `void` update that matched nothing is the phase-08 failure exactly, a mechanism
- * reporting on the work it did rather than the outcome. Returning more breaks no caller.
+ * A thin wrapper over `recordFlagOutcome`, and thin on purpose: two writers would mean two copies of
+ * the state machine, and the first time somebody widened one and not the other the difference would
+ * be invisible until an owner could resolve a flag through one route and not the other. That is the
+ * gap this function existed in until order E hit it.
+ *
+ * Because it delegates, a `dismissed` verdict written here **also withdraws that flag's evidence**,
+ * which it did not before. That is the documented meaning of a dismissal — `countIndependentFlags`
+ * already stops counting a dismissed flag, and leaving its evidence pressing on the company's tier
+ * was the inconsistency, not the fix.
+ *
+ * **Returns whether it won**, where the phase contract's published signature said `void` — a `void`
+ * update that matched nothing is the phase-08 failure exactly, a mechanism reporting on the work it
+ * did rather than the outcome. Returning more breaks no caller.
  *
  * `resolved_at` is stamped only for the two statuses that really are resolutions. `needs_review`
  * means a human has not looked yet, and dating it as resolved would make the review queue's age
  * column meaningless.
  */
-export async function recordFlagAction(
-  db: Db,
-  { flagId, status, action, duplicateOfJobId }: RecordFlagActionParams,
-): Promise<boolean> {
-  assertTerminal(status);
-  const updated = await db.execute<{ id: string }>(sql`
-    update flags
-       set status = ${status}::flag_status,
-           action_taken = ${action}::flag_action,
-           duplicate_of_job_id = coalesce(${duplicateOfJobId ?? null}::uuid, duplicate_of_job_id),
-           resolved_at = case
-                           when ${status}::flag_status in ('auto_resolved', 'dismissed')
-                           then now() else resolved_at
-                         end,
-           processing_at = null,
-           updated_at = now()
-     where id = ${flagId}::uuid
-       and status = 'open'
-    returning id
-  `);
-  return updated.rows.length > 0;
+export async function recordFlagAction(db: Db, p: RecordFlagActionParams): Promise<boolean> {
+  const { actioned } = await recordFlagOutcome(db, p);
+  return actioned;
 }
 
 /**
@@ -428,8 +466,12 @@ function assertTerminal(status: FlagStatus): asserts status is TerminalFlagStatu
  * `eligibility_evidence.flag_id` exists so a row can be traced back to the flag that caused it
  * **and withdrawn when that flag is dismissed**, and until this function there was no withdrawal —
  * `countIndependentFlags` correctly stopped counting a dismissed flag while its evidence went on
- * pressing on the company's tier for ever. `recordFlagOutcome` calls this automatically on
- * `dismissed`; it is exported for the owner's admin surface, which dismisses flags by hand.
+ * pressing on the company's tier for ever.
+ *
+ * **`recordFlagOutcome` calls this automatically on `dismissed`, from either legal starting state,
+ * so the admin surface does not need it for an ordinary dismissal.** It stays exported for the one
+ * case that is not a dismissal: withdrawing what a flag contributed while leaving the verdict as it
+ * is — a flag that was correctly actioned but whose evidence was wrong.
  *
  * A delete rather than a soft flag, because the engine reads every non-`post` company row and has
  * no concept of a retracted one; adding that concept is an engine change, and the engine is not
@@ -451,7 +493,14 @@ export interface RecordFlagOutcomeParams extends RecordFlagActionParams {
 }
 
 export interface FlagOutcome {
-  /** False when another worker got to the flag first, in which case nothing else happened. */
+  /**
+   * False when nothing was written, in which case nothing else happened either. Two ways to get
+   * here, and the caller usually wants to tell them apart: another worker got to the flag first, or
+   * the transition was not legal for this actor (a rule reaching for an escalated flag or for one
+   * another rule resolved, or anybody reaching for one that has already been dismissed). Neither is
+   * an error — both mean "somebody else has already decided this" — so the surface should re-read
+   * the row rather than retry.
+   */
   actioned: boolean;
   /** False when the verdict was lost, or when this evidence row already existed. */
   evidenceInserted: boolean;
@@ -472,9 +521,14 @@ export interface FlagOutcome {
  * Two mechanisms, deliberately, because they fail differently. The unique index
  * (`eligibility_evidence_flag_subject_scope_uq`) is the durable guarantee and holds no matter who
  * writes or how many processes race. This statement is the ordering guarantee: the evidence insert
- * selects `from act`, so it writes **only if the verdict write won the `status = 'open'` race**,
- * and a worker that lost the flag to someone else cannot leave evidence behind for a verdict it did
- * not get to record.
+ * selects `from act`, so it writes **only if the verdict write won the race for a legal starting
+ * state**, and a caller that lost the flag to someone else — or that was never allowed to touch it
+ * — cannot leave evidence behind for a verdict it did not get to record.
+ *
+ * **Which starting states are legal is `VERDICT_FROM`, keyed on `by`.** A rule may resolve only a
+ * flag it claimed; the owner may also resolve one escalated to them and one a rule auto-resolved,
+ * which is how a wrongful tier downgrade is undone; nobody may touch one that has been dismissed.
+ * `by` defaults to `automation`, the restrictive set.
  *
  * One statement rather than `db.transaction`, because every helper here takes a `Db` and a Drizzle
  * transaction object is not one. Data-modifying CTEs run in a single snapshot and commit together,
@@ -487,7 +541,14 @@ export interface FlagOutcome {
  */
 export async function recordFlagOutcome(
   db: Db,
-  { flagId, status, action, duplicateOfJobId, evidence }: RecordFlagOutcomeParams,
+  {
+    flagId,
+    status,
+    action,
+    duplicateOfJobId,
+    evidence,
+    by = "automation",
+  }: RecordFlagOutcomeParams,
 ): Promise<FlagOutcome> {
   assertTerminal(status);
   if (evidence && status === "dismissed") {
@@ -510,7 +571,7 @@ export async function recordFlagOutcome(
              processing_at = null,
              updated_at = now()
        where id = ${flagId}::uuid
-         and status = 'open'
+         and ${verdictFrom(by)}
       returning id
     )`;
 
@@ -612,7 +673,14 @@ export async function countIndependentFlags(
 }
 
 /**
- * Hold a job out of every Brief and every send while a human looks at it (the `scam` rule).
+ * Hold a job out of every Brief, every send and every kit while a human looks at it (the `scam`
+ * rule).
+ *
+ * **This is reachable from a single flag**, and that is worth knowing before you read the rule that
+ * calls it: one `scam` tap from one signed-up account is enough, because a quarantine is meant to be
+ * cheap to apply and is not a verdict about the employer. What makes that acceptable is
+ * `releaseJob`, the inverse — without a way back, one tap would remove a real job from the product
+ * permanently and the only remedy would be an `UPDATE` against production.
  *
  * Only from `open`, and returns whether the status moved. A job that is already closed, merged or
  * quarantined is not re-decided by a flag: closing is terminal, merging is a decision about
@@ -629,6 +697,46 @@ export async function quarantineJob(db: Db, jobId: string): Promise<boolean> {
        set status = 'quarantined', updated_at = now()
      where id = ${jobId}::uuid
        and status = 'open'
+    returning id
+  `);
+  return updated.rows.length > 0;
+}
+
+/**
+ * Put a quarantined job back. The inverse of `quarantineJob`, and the reason a one-tap quarantine is
+ * an acceptable thing to have.
+ *
+ * **Only out of `quarantined`.** `closed` and `merged` are refused, and the distinction is the whole
+ * guard: releasing a quarantine is a *correction* — undoing something a single flag did — whereas
+ * moving a closed or merged job back to `open` is a *resurrection*, and each of those two statuses
+ * was earned by its own evidence. A post that a board stopped listing is not open again because
+ * somebody cleared a flag, and a duplicate is not a separate job again because the original was
+ * exonerated. Both return false rather than throwing: "it was not quarantined" is an outcome the
+ * caller should render, not an exception.
+ *
+ * **What it restores, and what it deliberately does not.** `quarantineJob` moves a job out of
+ * `open`, so this moves it back to `open` and touches nothing else. In particular it leaves
+ * `closed_at` alone: that column belongs to the close path, not the quarantine path, and clearing it
+ * here would erase the record of a close that really did happen.
+ *
+ * **On the "quarantined, then closed by the sweep" ordering** — measured, it cannot happen today.
+ * Both close paths in `apps/worker/src/ingest/ingest-board.ts` are guarded `status = 'open'`, so a
+ * quarantined job is invisible to the freshness sweep and simply ages in place. If a future path
+ * ever does close one, this refuses it, and that is the right answer: the job is then closed for a
+ * reason of its own and re-opening it is ingest's decision, made when the board lists it again, not
+ * something a flag release may assume.
+ *
+ * A released job is a normal open job again, which means the freshness gate applies to it as it does
+ * to every other: one quarantined long enough for `last_verified_live_at` to go stale will not
+ * reappear in a Brief until ingest verifies it live again. That is correct rather than a shortfall —
+ * the job has not been seen for as long as it was held.
+ */
+export async function releaseJob(db: Db, jobId: string): Promise<boolean> {
+  const updated = await db.execute<{ id: string }>(sql`
+    update jobs
+       set status = 'open', updated_at = now()
+     where id = ${jobId}::uuid
+       and status = 'quarantined'
     returning id
   `);
   return updated.rows.length > 0;
