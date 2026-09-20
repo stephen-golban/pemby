@@ -101,6 +101,16 @@ jobs:
       - name: User-key crypto and the 402 taxonomy
         run: pnpm --filter @pemby/ai check:user-key
 
+      # This is the only automated check behind the binding privacy rule (CLAUDE.md): personal
+      # data goes through the private OpenRouter key with zero data retention, and the public key
+      # only ever sees public job posts. It asserts the key routing per AI task, that the outgoing
+      # request body carries the ZDR `provider` settings, that the embedding body asks for the
+      # right dimensions, that a private `routing.json` can change models but never key classes,
+      # and that `runStructuredTask` meters, repairs, falls back and caps. Offline: it stubs
+      # `fetch`, so it needs no network and no real keys.
+      - name: Personal data only ever goes through the private ZDR key
+        run: pnpm --filter @pemby/ai check:zdr
+
       # **The gate that was missing.** Roughly 1,250 lines of hand-written SQL ship in
       # `packages/db/src/queries/` and until this step no gate connected to a database: `tsc`
       # typechecks a `sql` template's type and never its contents, so a query can join the wrong
