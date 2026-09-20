@@ -6,6 +6,22 @@ function under(pathname: string, prefix: string): boolean {
 }
 
 /**
+ * The owner's admin surface and its route handlers (phase 09).
+ *
+ * `isStagingAuthExempt` and `isPublicRoute` both short-circuit on this **before** consulting their
+ * lists, so no prefix added to either one can open `/admin` by accident — `/api/admin` sitting one
+ * character away from an `/api/...` exemption is exactly the kind of neighbour that gets swept in
+ * by a later edit. A guard that is a predicate cannot be undone by adding a line to a list.
+ *
+ * This is the outer filter only. Authorization is `getOwnerAccess` in `lib/access/owner.ts`, run
+ * again by every admin page and every admin route handler, and that is the authoritative check:
+ * the proxy's own owner gate is inert on staging, where `ownerGateEnabled()` is false.
+ */
+export function isAdminRoute(pathname: string): boolean {
+  return under(pathname, "/admin") || under(pathname, "/api/admin");
+}
+
+/**
  * The static files a PWA install and a push subscription need before anyone is signed in
  * (phase 08, PLAN D8).
  *
@@ -41,6 +57,7 @@ const PWA_FILES = new Set([
  * 405 — the writes are POST-only, so a link scanner cannot unsubscribe anyone by following it.
  */
 export function isStagingAuthExempt(pathname: string): boolean {
+  if (isAdminRoute(pathname)) return false;
   return (
     under(pathname, "/api/webhooks") ||
     under(pathname, "/api/auth") ||
@@ -71,6 +88,7 @@ const METADATA_IMAGE =
  * else is a product route.
  */
 export function isPublicRoute(pathname: string): boolean {
+  if (isAdminRoute(pathname)) return false;
   return (
     pathname === "/" ||
     under(pathname, "/pricing") ||

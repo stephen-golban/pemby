@@ -1,0 +1,437 @@
+/*
+ * /admin: five read-only panels and one write.
+ *
+ * Operate grammar, same as /profile, /brief and /settings — warm ground, hairline-ruled ledgers,
+ * uppercase mono label heads, outline pills, flat panels, nothing boxed and nothing tilted
+ * (DESIGN.md, "Do build Operate lists as hairline-ruled ledgers"). The shell is wider than
+ * /settings because these rows carry a name, a state and a time rather than one decision, and
+ * narrower than the landing container because none of them is a column of prose.
+ *
+ * No cards. A dashboard of equal boxes is the lazy container (and the one thing this page would
+ * reach for if nobody said not to): the panels are separated by space and a heading, and the rows
+ * inside them by hairlines.
+ */
+
+.page {
+  min-block-size: 100dvh;
+  background: var(--color-ground);
+}
+
+.shell {
+  max-inline-size: calc(1080px + 2 * var(--gutter));
+  margin-inline: auto;
+  padding: var(--space-8) var(--gutter) var(--space-9);
+}
+
+.column {
+  display: grid;
+  gap: var(--space-8);
+  min-inline-size: 0;
+}
+
+/* Intro ------------------------------------------------------------------ */
+
+.intro {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 2.125rem;
+  font-weight: var(--weight-title);
+  line-height: 0.92;
+  letter-spacing: var(--tracking-title);
+}
+
+.lead {
+  max-inline-size: 64ch;
+  font-size: var(--text-small);
+  line-height: 1.55;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-4);
+  align-items: center;
+  font-size: var(--text-label);
+  color: var(--color-ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Panels ----------------------------------------------------------------- */
+
+.panel {
+  display: grid;
+  gap: var(--space-4);
+  min-inline-size: 0;
+}
+
+/* More space above a heading than below it (DESIGN.md, the opened rhythm). */
+.panelHead {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.panelTitleRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-4);
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.panelTitle {
+  font-family: var(--font-display);
+  font-size: 1.625rem;
+  font-weight: var(--weight-title);
+  line-height: 1;
+  letter-spacing: var(--tracking-title);
+}
+
+.panelCount {
+  font-size: var(--text-label);
+  font-weight: var(--weight-mono-strong);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.panelLead,
+.footnote {
+  max-inline-size: 72ch;
+  font-size: var(--text-label);
+  line-height: 1.55;
+  color: var(--color-ink-soft);
+}
+
+/* Ledger ----------------------------------------------------------------- */
+
+.ledger {
+  display: grid;
+  border-block-start: 1px solid var(--color-line);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-3) var(--space-5);
+  align-items: start;
+  padding-block: var(--space-4);
+  border-block-end: 1px solid var(--color-line);
+}
+
+.rowBody {
+  display: grid;
+  gap: var(--space-2);
+  min-inline-size: 0;
+}
+
+.rowTitle {
+  font-family: var(--font-display);
+  font-size: 1.1875rem;
+  font-weight: var(--weight-title);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
+}
+
+/* The mono evidence line: every fact about the row, hairline-separated, wrapping freely. */
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--text-label);
+  line-height: 1.5;
+  color: var(--color-ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.facts li + li {
+  padding-inline-start: var(--space-3);
+  border-inline-start: 1px solid var(--color-line);
+}
+
+/* The one value in a row that is the answer rather than context. */
+.factStrong {
+  color: var(--color-ink);
+  font-weight: var(--weight-mono-strong);
+}
+
+.note {
+  max-inline-size: 72ch;
+  margin: 0;
+  padding: var(--space-3) 0 0;
+  font-size: var(--text-small);
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.noteLabel {
+  display: block;
+  margin-block-end: var(--space-1);
+  font-size: var(--text-label);
+  font-weight: var(--weight-mono-strong);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+
+.rowActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* Controls --------------------------------------------------------------- */
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: var(--weight-mono-strong);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+.pill:hover {
+  border-color: var(--color-ink);
+}
+
+.pill:disabled {
+  border-style: dashed;
+  color: var(--color-ink-soft);
+  cursor: not-allowed;
+}
+
+/* Tags ------------------------------------------------------------------- */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 4px 10px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  font-size: var(--text-label);
+  font-weight: var(--weight-mono-strong);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/*
+ * A state that needs the owner: the swatch carries no meaning on its own, so the word is always
+ * beside it (DESIGN.md, the label-beside-every-colour rule).
+ */
+.dot {
+  inline-size: 10px;
+  block-size: 10px;
+  border-radius: var(--radius-full);
+  background: var(--color-ink-soft);
+}
+
+.dot[data-tone="alert"] {
+  background: var(--color-tier-red);
+}
+
+.dot[data-tone="watch"] {
+  background: var(--color-tier-yellow);
+}
+
+.dot[data-tone="good"] {
+  background: var(--color-tier-green);
+}
+
+/*
+ * The synthetic-content marker (DESIGN.md, "EXAMPLE stamp"). Fixed colours in both themes on
+ * purpose: a seeded row sitting in a list of real ones has to read as seeded on every fill, and
+ * this page is the one place in the product where the two are deliberately mixed.
+ */
+.stamp {
+  padding: 3px 7px 2px;
+  border: 1px solid rgb(247 241 230 / 0.5);
+  border-radius: 5px;
+  background: rgb(20 17 13 / 0.86);
+  color: #f7f1e6;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Empty states ----------------------------------------------------------- */
+
+/*
+ * First-class, because two of these panels have no data on staging and cannot get any: a reader
+ * has to be able to tell "nothing happened" from "nothing is shown". The dashed rule is the
+ * system's "not yet", the same stroke the drop zone and the unavailable button use.
+ */
+.empty {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-5) 0;
+  border-block: 1px dashed var(--color-line);
+}
+
+.emptyTitle {
+  font-family: var(--font-display);
+  font-size: 1.1875rem;
+  font-weight: var(--weight-title);
+  letter-spacing: -0.02em;
+}
+
+.emptyBody {
+  max-inline-size: 72ch;
+  font-size: var(--text-label);
+  line-height: 1.55;
+  color: var(--color-ink-soft);
+}
+
+/* Spend ------------------------------------------------------------------ */
+
+.spendFigure {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  align-items: baseline;
+}
+
+.spendCap {
+  font-size: var(--text-small);
+  color: var(--color-ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+/* The spend meter and its number are `profile/_shared/panels.module.css`'s `.metric`, `.track` and
+ * `.fill`, imported rather than redeclared: the profile strength meter asks the same question in
+ * the same shape, and a second copy of three rules is how two meters start drifting apart.
+ */
+
+/* A three-column money ledger: the name, then two right-aligned numeric columns. */
+.numberRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 6rem 8rem;
+  gap: var(--space-3);
+  align-items: baseline;
+  padding-block: var(--space-3);
+  border-block-end: 1px solid var(--color-line);
+  font-size: var(--text-label);
+  font-variant-numeric: tabular-nums;
+}
+
+.numberHead {
+  font-weight: var(--weight-mono-strong);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+
+.numeric {
+  text-align: end;
+}
+
+.taskName {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: baseline;
+  overflow-wrap: anywhere;
+}
+
+/* Board totals: a tally line, not a row of equal boxes. */
+.tally {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  margin: 0;
+  padding: 0;
+  font-size: var(--text-label);
+  font-variant-numeric: tabular-nums;
+}
+
+.tally div {
+  display: flex;
+  gap: var(--space-2);
+  align-items: baseline;
+}
+
+.tally dt {
+  order: 2;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+
+.tally dd {
+  order: 1;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.3125rem;
+  font-weight: var(--weight-title);
+  letter-spacing: var(--tracking-title);
+}
+
+/* Error line ------------------------------------------------------------- */
+
+.error {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+  justify-content: space-between;
+  max-inline-size: 72ch;
+  padding: 10px 14px;
+  border: 1px solid color-mix(in srgb, var(--color-tier-red) 55%, transparent);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-tier-red) 10%, var(--color-surface));
+  font-size: var(--text-small);
+  line-height: 1.5;
+}
+
+/* The whole page is being re-read: rows dim rather than disappear. */
+.column[data-pending="true"] {
+  opacity: 0.62;
+  transition: opacity var(--duration-fast) var(--ease-out);
+}
+
+@media (max-width: 720px) {
+  .row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .rowActions {
+    justify-content: flex-start;
+  }
+
+  .numberRow {
+    grid-template-columns: minmax(0, 1fr) 4.5rem 6rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .column {
+    transition: none;
+  }
+}
