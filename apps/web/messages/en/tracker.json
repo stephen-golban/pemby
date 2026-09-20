@@ -1,0 +1,66 @@
+{
+  "Tracker": {
+    "meta": {
+      "title": "Applications"
+    },
+    "title": "Applications",
+    "lead": "Every job you saved or applied to, and where each one stands. Pemby keeps the record; you apply yourself.",
+    "columns": {
+      "saved": "Saved",
+      "applied": "Applied",
+      "interview": "Interview",
+      "offer": "Offer",
+      "rejected": "Rejected"
+    },
+    "states": {
+      "applied": "I applied",
+      "screening": "Screening call",
+      "interviewing": "Interviewing",
+      "offer": "Offer",
+      "rejected": "Rejected",
+      "withdrawn": "I withdrew",
+      "no_response": "No answer"
+    },
+    "row": {
+      "legend": "Where this one stands",
+      "openPost": "Open the post",
+      "appliedOn": "Applied {date}",
+      "savedNotApplied": "Not applied yet",
+      "lastChange": "Changed {date}",
+      "example": "Example"
+    },
+    "off": {
+      "title": "Off the board",
+      "lead": "Withdrawn, or nobody ever answered. Still yours, still countable, just not in a column."
+    },
+    "emptyColumn": "Nothing here yet.",
+    "status": {
+      "closed": "This post has closed.",
+      "quarantined": "This post is under review.",
+      "merged": "This post was merged into another."
+    },
+    "location": {
+      "question": "Rejected because of my location?",
+      "confirm": "Yes, it was my location",
+      "done": "You reported this one as a location rejection.",
+      "help": "Pemby files it as evidence about this company and your country, and weighs it against what the company's own pages say. It is not undoable, so only answer yes if they told you.",
+      "noCountry": "Your profile records no country, so there is nothing to file this against yet."
+    },
+    "empty": {
+      "title": "Nothing on the board yet",
+      "body": "Save a match on your Brief, or mark one applied, and it lands here. Telegram taps land here too.",
+      "cta": "Open your Brief"
+    },
+    "failed": "The board could not be read.",
+    "retry": "Try again",
+    "errors": {
+      "unauthenticated": "Sign in to see your applications.",
+      "forbidden": "This account cannot open the tracker.",
+      "invalid_request": "That change could not be read. Reload the page and try again.",
+      "job_not_found": "That job is no longer on your board.",
+      "not_applied": "That one is not marked rejected, so there is nothing to report.",
+      "unavailable": "Something went wrong saving that. Try again.",
+      "network": "Pemby could not be reached. Check your connection and try again."
+    }
+  }
+}

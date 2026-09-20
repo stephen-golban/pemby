@@ -10,6 +10,29 @@ export const CV_PARSE_QUEUE = "cv.parse";
 /** Queue name shared with apps/worker/src/match/queues.ts. See `./match.ts` for the only sender. */
 export const MATCH_PROFILE_QUEUE = "match.profile";
 
+/**
+ * Queue name shared with the worker's tracker module. Sender:
+ * `app/api/applications/_lib/sync.ts`.
+ *
+ * A tracker state change on the web has to reach the Telegram card the worker already sent, or the
+ * two ends disagree about whether a job is applied to — the bot writes the same database, so
+ * Telegram → web needs nothing, and this is the other direction. The worker reads
+ * `delivery_log.provider_message_id` and edits the sent card's markup.
+ *
+ * **This client does not create the queue.** It runs `createSchema: false` / `migrate: false` and
+ * owns no queue's policy (see `createHandle` below); the worker creates every queue at boot, and a
+ * queue's options are immutable after creation, so a second creator here would be at best a no-op
+ * and at worst a silent policy disagreement. Until the worker registers this name, a send is a
+ * no-op against a queue that does not exist — the correct failure, and one that costs the user
+ * nothing because `enqueueTrackerSync` never fails the write it follows.
+ */
+export const TRACKER_SYNC_QUEUE = "tracker.sync";
+
+/** The payload of one `tracker.sync` job. The worker resolves everything else from the match. */
+export interface TrackerSyncData {
+  matchId: string;
+}
+
 type BossHandle = { boss: PgBoss; started: Promise<PgBoss> };
 
 const globalForQueue = globalThis as typeof globalThis & { __pembyQueue?: BossHandle };

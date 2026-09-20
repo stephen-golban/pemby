@@ -113,6 +113,12 @@ export interface BotStore {
   /**
    * Move one match to a new state, folding a "Not for me" reason into the user's scoring nudges
    * (PLAN D6). False when the match is not this user's.
+   *
+   * **`applied` also writes the `applications` row** (PLAN D9, phase 09). The method keeps the name
+   * of what the person did — one tap on "I applied" — rather than gaining a second one for the
+   * second table, but the two writes are both part of it: before phase 09 this path moved
+   * `matches.state` alone, and the tracker's Applied column was consequently unreachable from
+   * Telegram. See the implementation for why the two are not in one transaction.
    */
   setMatchState(params: {
     userId: string;

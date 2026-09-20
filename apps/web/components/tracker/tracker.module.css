@@ -1,0 +1,198 @@
+/*
+ * The board (PLAN D9). Operate density on the landing's world, and nothing else: hairline rules,
+ * no zebra striping, no box around a cell, no tilt, no shadow. DESIGN.md names the tracker under
+ * the ledger rule, so the row grammar is the profile ledger's, imported rather than rebuilt —
+ * `app/profile/_shared/fields.tsx` owns the row, the label column, the outline pill and the
+ * editors, and this file only styles what a tracker row has that a profile row does not.
+ *
+ * A kanban of boxed cards in five vertical lanes is the category's reflex and it is wrong here
+ * twice over: it is boxed cells, which the design system rules out, and it puts four of five lanes
+ * off-screen at 390px on a surface whose whole job is to be scanned on a phone. Five ruled sections
+ * down the page say the same thing, in the same vocabulary as the Brief, at any width.
+ */
+
+.column {
+  display: grid;
+  gap: var(--space-3);
+}
+
+/*
+ * The section head: a count badge and an uppercase mono label. The count is the reason the head is
+ * worth reading — "Offer 0" is information on a tracker, which is why an empty column keeps its
+ * head instead of disappearing and leaving the board a different shape every week.
+ */
+.head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.badge {
+  display: inline-grid;
+  place-items: center;
+  min-inline-size: 30px;
+  block-size: 30px;
+  padding-inline: 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-ink);
+  color: var(--color-ground);
+  font-size: var(--text-label);
+  font-weight: var(--weight-mono-strong);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0;
+}
+
+.column[data-empty="true"] .badge {
+  background: transparent;
+  border: 1px solid var(--color-line);
+  color: var(--color-ink-soft);
+}
+
+.columnLabel {
+  font-size: var(--text-label);
+  font-weight: var(--weight-mono-strong);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.columnLead {
+  max-inline-size: 58ch;
+  margin-block-start: calc(-1 * var(--space-1));
+  font-size: var(--text-label);
+  line-height: 1.55;
+  color: var(--color-ink-soft);
+}
+
+.columnEmpty {
+  padding-block: var(--space-3);
+  border-block-start: 1px solid var(--color-line);
+  font-size: var(--text-label);
+  color: var(--color-ink-soft);
+}
+
+/* Row -------------------------------------------------------------------- */
+
+/*
+ * The value cell of one ledger row. `fields.tsx` gives it the label column, the rule and the pill;
+ * everything below is what a job row carries inside that cell.
+ */
+.job {
+  display: grid;
+  gap: var(--space-2);
+  min-inline-size: 0;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 1.1875rem;
+  font-weight: var(--weight-title);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-title);
+  color: inherit;
+  text-decoration: none;
+  text-underline-offset: 4px;
+  overflow-wrap: anywhere;
+}
+
+.title:hover {
+  text-decoration: underline;
+}
+
+.meta {
+  font-size: var(--text-label);
+  line-height: 1.5;
+  color: var(--color-ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+/* A post that has gone. The tracker says so rather than leaving a dead link looking alive. */
+.status {
+  font-size: var(--text-label);
+  line-height: 1.5;
+}
+
+/*
+ * The synthetic-content marker (DESIGN.md). A demo job is a fictional employer with a fictional
+ * post, and a row about one must never read as a real application. Fixed colours, as the stamp is
+ * everywhere else in this system: it reads the same on every fill and in both themes.
+ */
+.stamp {
+  justify-self: start;
+  padding: 6px 9px 5px;
+  border: 1px solid rgb(247 241 230 / 0.5);
+  border-radius: 7px;
+  background: rgb(20 17 13 / 0.86);
+  color: #f7f1e6;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+/* Location question ------------------------------------------------------ */
+
+.location {
+  display: grid;
+  gap: var(--space-2);
+  justify-items: start;
+  margin-block-start: var(--space-1);
+  padding-block-start: var(--space-3);
+  border-block-start: 1px solid var(--color-line);
+}
+
+.locationQuestion {
+  font-size: var(--text-label);
+  font-weight: var(--weight-mono-strong);
+  line-height: 1.5;
+}
+
+.locationHelp {
+  max-inline-size: 58ch;
+  font-size: var(--text-label);
+  line-height: 1.55;
+  color: var(--color-ink-soft);
+}
+
+/* The same outline pill as the ledger's, at row scale: transparent, hairline, mono, uppercase. */
+.locationAction {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: var(--weight-mono-strong);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+.locationAction:hover {
+  border-color: var(--color-ink);
+}
+
+.locationDone {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-label);
+  line-height: 1.5;
+  color: var(--color-ink-soft);
+}
+
+/*
+ * The one place on this page a tier colour appears, and it carries its words beside it, as every
+ * colour in this system does (DESIGN.md, "The Label Beside Every Colour Rule").
+ */
+.dot {
+  inline-size: 12px;
+  block-size: 12px;
+  border-radius: var(--radius-full);
+  background: var(--color-tier-red);
+  flex: none;
+}

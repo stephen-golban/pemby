@@ -35,6 +35,7 @@ import {
   matches,
   profiles,
   setDeliveryPaused,
+  upsertApplication,
   type ChannelDeadReason,
   type Db,
 } from "@pemby/db";
@@ -303,7 +304,7 @@ export function createBotStore(db: Db): BotStore {
     },
 
     async setMatchState({ userId, matchId, state, passReason }) {
-      return db.transaction(async (tx) => {
+      const jobId = await db.transaction(async (tx) => {
         const updated = await tx
           .update(matches)
           .set({
@@ -315,8 +316,8 @@ export function createBotStore(db: Db): BotStore {
           .returning({ jobId: matches.jobId });
 
         const jobId = updated[0]?.jobId;
-        if (jobId === undefined) return false;
-        if (state !== "passed" || passReason === null) return true;
+        if (jobId === undefined) return null;
+        if (state !== "passed" || passReason === null) return jobId;
 
         // PLAN D6: the one-tap reason tunes future scoring. The profile row is locked for the
         // read-modify-write because `scoring_nudges` is a jsonb map and two taps in the same
@@ -328,7 +329,7 @@ export function createBotStore(db: Db): BotStore {
           .limit(1)
           .for("update");
         const current = held[0];
-        if (!current) return true;
+        if (!current) return jobId;
 
         const facts = await tx
           .select({
@@ -346,7 +347,7 @@ export function createBotStore(db: Db): BotStore {
           .where(eq(jobs.id, jobId))
           .limit(1);
         const job = facts[0];
-        if (!job) return true;
+        if (!job) return jobId;
 
         const nudgeJob: NudgeJob = {
           companyId: job.companyId,
@@ -369,8 +370,37 @@ export function createBotStore(db: Db): BotStore {
           })
           .where(eq(profiles.userId, userId));
 
-        return true;
+        return jobId;
       });
+
+      if (jobId === null) return false;
+
+      /**
+       * "I applied" on a card writes the application row, not only `matches.state`.
+       *
+       * This is the defect the tracker was built on top of. Both "I applied" paths — this one and
+       * `apps/web/app/api/brief/_lib/db.ts`'s `setMatchState` — moved the match and stopped, so
+       * nothing in the product ever inserted an `applications` row and the tracker's Applied column
+       * had no source at all. A person could tap the button on every card they were sent and open
+       * the board to find it empty.
+       *
+       * `upsertApplication` is the kernel helper the web calls too; the bot could reach Drizzle
+       * directly here and deliberately does not, because a second implementation of this upsert is
+       * how the two surfaces come to disagree about what "applied" wrote.
+       *
+       * **Outside the transaction, and after it.** The helper takes a `Db` and not a transaction
+       * handle, so the alternative was to hand-write the insert here — trading a real, bounded
+       * failure for a duplicate of the one statement that must not be duplicated. The failure this
+       * leaves is a moved match with no application row, and it is not swallowed: it propagates to
+       * `bot.ts`'s error boundary, which answers the callback query and leaves the card's buttons in
+       * place, so the person can tap again and both writes are idempotent. Logging it and reporting
+       * success would rebuild the exact defect above.
+       */
+      if (state === "applied") {
+        await upsertApplication(db, { userId, jobId, matchId, state: "applied" });
+      }
+
+      return true;
     },
 
     /**

@@ -20,7 +20,8 @@ import {
   type WayOfWorking,
 } from "@pemby/core";
 import { createHash } from "node:crypto";
-import { getDb } from "@pemby/db";
+import { getDb, type Kit } from "@pemby/db";
+import { getTranslations } from "next-intl/server";
 import {
   ENGLISH_LEVELS,
   PAY_PERIODS,
@@ -352,6 +353,47 @@ export interface ChannelExportRow {
   created_at: Date;
 }
 
+export interface ApplicationExportRow {
+  job_id: string;
+  title: string;
+  company_name: string;
+  url: string;
+  state: string;
+  applied_at: Date;
+  rejected_for_location: boolean;
+  notes: string | null;
+  created_at: Date;
+  updated_at: Date;
+}
+
+export interface KitExportRow {
+  job_id: string;
+  title: string;
+  company_name: string;
+  url: string;
+  model: string;
+  prompt_version: string;
+  key_class: string;
+  cost_usd: string;
+  /** The generated body, exactly as it is stored. `Kit["content"]` is `KitContent`. */
+  content: Kit["content"];
+  created_at: Date;
+}
+
+export interface FlagExportRow {
+  job_id: string;
+  title: string;
+  company_name: string;
+  reason: string;
+  field: string | null;
+  country: string | null;
+  status: string;
+  action_taken: string | null;
+  note: string | null;
+  resolved_at: Date | null;
+  created_at: Date;
+}
+
 /** Lower-case hex SHA-256 of a value, truncated: enough to tell two rows apart, not enough to be one. */
 function fingerprint(value: string): string {
   return createHash("sha256").update(value).digest("hex").slice(0, 12);
@@ -403,19 +445,75 @@ function channelExport(row: ChannelExportRow) {
 }
 
 /**
- * Everything "Export my data" hands back: the profile as the product uses it, one entry per CV with
- * its metadata and the profile parsed out of it, and the delivery channels the account is reachable
- * on. Deliberately absent: `bucket_key` and any bucket URL (objects are private and no presigned URL
- * is ever handed to a browser), the raw extracted CV text, and push subscription keys (see
- * `channelExport`).
+ * A kit, as the export shows it (phase 09, PLAN D9): **the generated text in full, carrying its
+ * marking.** Owner decision, taken during the build, and the reasoning is worth keeping because the
+ * first draft of this function did the opposite.
  *
- * Deletion needs nothing added for phase 08: `channels.user_id` and `delivery_log.user_id` are both
- * `ON DELETE cascade` from `user.id` (`packages/db/src/schema/delivery.ts:41,88`, applied in
- * `packages/db/drizzle/0001_*.sql:434-435`), so `deleteUserAndCvRows` below already takes them.
+ * The case for omitting the body was that a kit's `content` is three things the person did not
+ * write — a model's prose about them, and, in `screeningAnswers[].question`, the employer's own
+ * wording from the post — and that Pemby is required to serve and store that prose marked as
+ * AI-generated (EU AI Act Art. 50(1) and 50(2), in application since 2026-08-02; the "assistive
+ * editing" carve-out does not reach a cover-letter generator). A JSON file people mail to themselves
+ * and leave in Downloads is where a marking is most likely to be lost.
+ *
+ * The decision went the other way, and it is the right one. GDPR Art. 15 and 20 are about the person
+ * receiving **their** data, and prose written about them from their own CV is their data on the
+ * ordinary reading; an export that hands back a metadata stub and a section count is a receipt, not
+ * portability. And the answer to "the marking gets lost" is to put the marking in the file rather
+ * than to withhold the content. The failure mode this feature most has to survive is a model stating
+ * something the person never said, and the export is one more place they can catch it.
+ *
+ * So the marking travels **immediately above the text it is about** — `aiGenerated` and
+ * `aiDisclosure` are the two keys before `content`, and `JSON.stringify` preserves that order, so a
+ * reader scrolling to a cover letter passes the disclosure to reach it. `model` and `promptVersion`
+ * sit with them, which is what makes the machine-readable half of Art. 50(2) specific rather than a
+ * bare boolean.
+ *
+ * `screeningAnswers[].question` stays. It is the employer's wording, but an answer with its question
+ * stripped is unusable, and the person read it in the post before they answered it.
+ *
+ * The disclosure goes through next-intl like every other string a person reads: the rest of this
+ * file is field names, which need no catalogue, and a sentence does.
+ */
+function kitExport(row: KitExportRow, aiDisclosure: string) {
+  return {
+    jobId: row.job_id,
+    jobTitle: row.title,
+    company: row.company_name,
+    jobUrl: row.url,
+    model: row.model,
+    promptVersion: row.prompt_version,
+    keyClass: row.key_class,
+    costUsd: row.cost_usd,
+    /** Art. 50(2), machine-readable. Always true: every kit in this table was model-generated. */
+    aiGenerated: true,
+    /** Art. 50(1), for a person. Immediately above `content`, and never separated from it. */
+    aiDisclosure,
+    content: row.content,
+    createdAt: row.created_at.toISOString(),
+  };
+}
+
+/**
+ * Everything "Export my data" hands back: the profile as the product uses it, one entry per CV with
+ * its metadata and the profile parsed out of it, the delivery channels the account is reachable on,
+ * and — added in phase 09 — the application tracker, the kits and the flags this person filed.
+ *
+ * Deliberately absent: `bucket_key` and any bucket URL (objects are private and no presigned URL
+ * is ever handed to a browser), the raw extracted CV text, and push subscription keys (see
+ * `channelExport`). A kit's generated body **is** in the file, carrying its AI marking — see
+ * `kitExport` for why that went the way it did.
+ *
+ * Deletion needs nothing added for phase 08 or 09: `channels.user_id`, `delivery_log.user_id`,
+ * `applications.user_id`, `kits.user_id` are all `ON DELETE cascade` from `user.id`, and
+ * `flags.user_id` is `ON DELETE set null` — the flag stays as evidence about a job, with the person
+ * detached from it — so `deleteUserAndCvRows` below already takes them. Nothing here changes it.
  */
 export async function loadExport(userId: string, anonymous: boolean) {
   const client = getDb().$client;
-  const [profile, cvs, account, channels] = await Promise.all([
+  const t = await getTranslations("Export");
+  const aiDisclosure = t("kitAiDisclosure");
+  const [profile, cvs, account, channels, applications, kits, flags] = await Promise.all([
     loadProfileView(userId, anonymous),
     client.query<CvExportRow>(
       `select id, source, file_name, mime_type, size_bytes, sha256,
@@ -435,6 +533,40 @@ export async function loadExport(userId: string, anonymous: boolean) {
       `select type::text as type, address, enabled, verified_at, dead_at, dead_reason,
               quiet_start_minute, quiet_end_minute, timezone, created_at
          from channels where user_id = $1 order by created_at`,
+      [userId],
+    ),
+    client.query<ApplicationExportRow>(
+      `select a.job_id, j.title, c.name as company_name, j.url,
+              a.state::text as state, a.applied_at, a.rejected_for_location, a.notes,
+              a.created_at, a.updated_at
+         from applications a
+         join jobs j on j.id = a.job_id
+         join companies c on c.id = j.company_id
+        where a.user_id = $1
+        order by a.applied_at`,
+      [userId],
+    ),
+    client.query<KitExportRow>(
+      `select k.job_id, j.title, c.name as company_name, j.url,
+              k.model, k.prompt_version, k.key_class::text as key_class, k.cost_usd::text as cost_usd,
+              k.content, k.created_at
+         from kits k
+         join jobs j on j.id = k.job_id
+         join companies c on c.id = j.company_id
+        where k.user_id = $1
+        order by k.created_at`,
+      [userId],
+    ),
+    client.query<FlagExportRow>(
+      `select f.job_id, j.title, c.name as company_name,
+              f.reason::text as reason, f.field::text as field, f.country,
+              f.status::text as status, f.action_taken::text as action_taken,
+              f.note, f.resolved_at, f.created_at
+         from flags f
+         join jobs j on j.id = f.job_id
+         join companies c on c.id = j.company_id
+        where f.user_id = $1
+        order by f.created_at`,
       [userId],
     ),
   ]);
@@ -470,6 +602,35 @@ export async function loadExport(userId: string, anonymous: boolean) {
       parsed: row.parsed,
     })),
     channels: channels.rows.map(channelExport),
+    applications: applications.rows.map((row) => ({
+      jobId: row.job_id,
+      jobTitle: row.title,
+      company: row.company_name,
+      jobUrl: row.url,
+      state: row.state,
+      appliedAt: row.applied_at.toISOString(),
+      rejectedForLocation: row.rejected_for_location,
+      notes: row.notes,
+      createdAt: row.created_at.toISOString(),
+      updatedAt: row.updated_at.toISOString(),
+    })),
+    kits: kits.rows.map((row) => kitExport(row, aiDisclosure)),
+    flags: flags.rows.map((row) => ({
+      jobId: row.job_id,
+      jobTitle: row.title,
+      company: row.company_name,
+      reason: row.reason,
+      field: row.field,
+      country: row.country,
+      status: row.status,
+      actionTaken: row.action_taken,
+      // The person's own words, and the only free text in a flag. It goes to the owner's review
+      // queue and nowhere else — never to a model, never into enrichment (PLAN section 6) — and it
+      // is theirs, so it goes out in their own export in full.
+      note: row.note,
+      resolvedAt: row.resolved_at?.toISOString() ?? null,
+      createdAt: row.created_at.toISOString(),
+    })),
   };
 }
 

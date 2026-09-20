@@ -1,0 +1,161 @@
+/*
+ * /tracker: the same Operate shell as /brief and /profile, without the rail. The board is the whole
+ * page and it wants the full measure — a sticky column of counts beside it would only repeat the
+ * five heads that are already down the left of the reader's eye.
+ *
+ * One object lifts: the outlined paper card the board shows when there is nothing on it. Everything
+ * else is flat and ruled (DESIGN.md, "Objects Lift, Panels Sit").
+ */
+
+.page {
+  min-block-size: 100dvh;
+  background: var(--color-ground);
+}
+
+.shell {
+  max-inline-size: calc(860px + 2 * var(--gutter));
+  margin-inline: auto;
+  padding: var(--space-8) var(--gutter) var(--space-9);
+}
+
+.layout {
+  display: grid;
+  gap: var(--space-7);
+  align-content: start;
+}
+
+.intro {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.title {
+  max-inline-size: 16ch;
+  font-family: var(--font-display);
+  font-size: 2.125rem;
+  font-weight: var(--weight-title);
+  line-height: 0.92;
+  letter-spacing: var(--tracking-title);
+  text-wrap: balance;
+}
+
+.lead {
+  max-inline-size: 58ch;
+  font-size: var(--text-small);
+  line-height: 1.55;
+}
+
+.board {
+  display: grid;
+  gap: var(--space-7);
+}
+
+/* Empty board ------------------------------------------------------------ */
+
+/*
+ * The one object on this page. Outlined paper card, 30px corners, the Card shadow — the same
+ * grammar as the Brief's honest-silence card, because it answers the same kind of question: not
+ * "an error occurred" but "here is what is true, and here is the one thing that changes it".
+ */
+.empty {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-4);
+  padding: var(--space-7) var(--space-6) var(--space-6);
+  border: 1.5px solid var(--color-line-strong);
+  border-radius: 30px;
+  background: var(--color-paper-card);
+  box-shadow: var(--shadow-card);
+}
+
+.emptyTitle {
+  max-inline-size: 18ch;
+  font-family: var(--font-display);
+  font-size: 1.8125rem;
+  font-weight: var(--weight-title);
+  line-height: 1;
+  letter-spacing: var(--tracking-title);
+  text-wrap: balance;
+}
+
+.emptyBody {
+  max-inline-size: 58ch;
+  font-size: var(--text-small);
+  line-height: 1.6;
+}
+
+.emptyAction {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-full);
+  font-size: var(--text-label);
+  font-weight: var(--weight-mono-strong);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+.emptyAction:hover {
+  border-color: var(--color-ink);
+}
+
+/* Feedback --------------------------------------------------------------- */
+
+.textAction {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
+  cursor: pointer;
+}
+
+.alert {
+  max-inline-size: 58ch;
+  padding: 10px 14px;
+  border: 1px solid color-mix(in srgb, var(--color-tier-red) 55%, transparent);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-tier-red) 10%, var(--color-surface));
+  font-size: var(--text-small);
+  line-height: 1.5;
+}
+
+/*
+ * The board goes quiet while a new read is in flight; nothing disappears and nothing moves. Only
+ * the empty card is dimmed here, for the reason the Brief gives: the ledger's own rows would nest a
+ * second opacity layer and multiply it, dropping the mono sub-text under the AA contrast bar.
+ */
+.layout[aria-busy="true"] .empty {
+  opacity: 0.75;
+  transition: opacity var(--duration-fast) var(--ease-out);
+}
+
+@media (max-width: 720px) {
+  .shell {
+    padding-block: var(--space-5) var(--space-8);
+  }
+
+  .title {
+    font-size: 1.8125rem;
+  }
+
+  .layout,
+  .board {
+    gap: var(--space-6);
+  }
+
+  .empty {
+    padding: var(--space-6) var(--space-5) var(--space-5);
+    border-radius: var(--radius-xl);
+  }
+
+  .emptyTitle {
+    font-size: 1.5rem;
+  }
+}
