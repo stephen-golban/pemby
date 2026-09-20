@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { useId } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import type { KitPageView } from "@/app/api/kit/_lib/view";
 import { AiDisclosure, ChoiceCard, DefaultsForm, KitSections } from "@/components/kit";
 import { isKeyFailure, isRetryable } from "../_shared/api";
@@ -26,7 +26,9 @@ import styles from "../kit.module.css";
  *   no CV             there is nothing to write from, and a letter invented out of a job post is
  *                     the one failure this feature must never have
  *   defaults unasked  the answers every form wants, asked here because here is where they are
- *                     first needed (PLAN D5)
+ *                     first needed (PLAN D5). Asked once, then kept on the page as a section that
+ *                     opens — they are reused on every kit, so they have to stay changeable, and
+ *                     this page is the only screen in the product that shows them
  *   quota spent       the two ways on, and only two: a pass, or your own OpenRouter account
  *   their key failed  what happened to **their** key, and the same two ways on. Pemby never
  *                     quietly pays instead (phase 09 contract)
@@ -43,10 +45,31 @@ export function KitClient({ initial }: { initial: KitPageView }) {
 
   const introId = useId();
   const defaultsId = useId();
+  const defaultsPanelId = useId();
   const draftId = useId();
 
   const { job, quota, defaults } = page;
   const quotaSpent = quota.limit !== null && quota.used >= quota.limit;
+
+  // The defaults, once they have been dealt with, are a section that opens rather than a section
+  // that is gone: they are reused on every kit this account ever writes and no other screen in the
+  // product shows them, so the only way to change them has to live here for good. Closed by
+  // default, because the reader came for the draft.
+  const defaultsAnswered = defaults.answeredAt !== null;
+  const [defaultsOpen, setDefaultsOpen] = useState(false);
+  const [confirmed, setConfirmed] = useState(false);
+  const changeRef = useRef<HTMLButtonElement>(null);
+  const confirmRef = useRef<HTMLButtonElement>(null);
+  const wasAnswered = useRef(defaultsAnswered);
+
+  // Confirming replaces the button the reader just pressed with the one that reopens the section,
+  // and a failed save puts the first one back. Either way the control under the keyboard is gone,
+  // so focus is moved to the control that took its place rather than dropped on the document.
+  useEffect(() => {
+    if (defaultsAnswered === wasAnswered.current) return;
+    wasAnswered.current = defaultsAnswered;
+    (defaultsAnswered ? changeRef : confirmRef).current?.focus();
+  }, [defaultsAnswered]);
 
   // What the reader is looking at: the draft arriving right now, the kit already stored, or
   // nothing. The live draft wins while a generation runs, so the page does not flicker back to an
@@ -56,8 +79,13 @@ export function KitClient({ initial }: { initial: KitPageView }) {
 
   // The gate, in the order the reader can act on it. `null` means the only thing left to decide is
   // whether there is allowance for another kit.
-  const gate =
-    page.blocker !== null ? page.blocker : defaults.answeredAt === null ? "defaults" : null;
+  //
+  // "defaults" ends when the person says it does — one tap on "Save and continue" — and not when
+  // one of the four rows happens to hold a value. Three of the four have an honest "nothing to
+  // say": someone may publish no links, and a yes/no nobody has touched is not a no. Releasing on
+  // the first field save meant answering one question retired the other three, and the server
+  // agrees with the page on this: `planKitRun` refuses with `defaults_missing` until the same tap.
+  const gate = page.blocker !== null ? page.blocker : defaultsAnswered ? null : "defaults";
 
   return (
     <div className={styles.column} data-pending={kit.pending}>
@@ -168,15 +196,67 @@ export function KitClient({ initial }: { initial: KitPageView }) {
           body={t("noCv.body")}
           actions={[{ label: t("noCv.action"), href: "/profile", primary: true }]}
         />
-      ) : gate === "defaults" ? (
+      ) : (
         <section className={styles.topic} aria-labelledby={defaultsId}>
-          <h2 id={defaultsId} className={styles.topicTitle}>
-            {t("defaults.title")}
-          </h2>
-          <p className={styles.topicLead}>{t("defaults.lead")}</p>
-          <DefaultsForm defaults={defaults} labelledBy={defaultsId} onChange={kit.saveDefaults} />
+          <div className={styles.topicHead}>
+            <h2 id={defaultsId} className={styles.topicTitle}>
+              {defaultsAnswered ? t("defaults.titleAnswered") : t("defaults.title")}
+            </h2>
+            {/* The permanent way back in. An inline disclosure, not a modal and not a second page:
+                the ledger opens where the reader is standing (DESIGN.md, Disclosure). */}
+            {defaultsAnswered ? (
+              <button
+                ref={changeRef}
+                type="button"
+                className={styles.pill}
+                aria-expanded={defaultsOpen}
+                aria-controls={defaultsPanelId}
+                onClick={() => setDefaultsOpen((open) => !open)}
+              >
+                {defaultsOpen ? t("defaults.hide") : t("defaults.change")}
+              </button>
+            ) : null}
+          </div>
+
+          <p className={styles.topicLead}>
+            {defaultsAnswered ? t("defaults.leadAnswered") : t("defaults.lead")}
+          </p>
+
+          {/* The button that was here is gone, so the news it carried is said out loud instead of
+              leaving a screen reader with a control that vanished (the pattern the Brief's
+              near-miss fixes use). */}
+          {defaultsAnswered && confirmed ? (
+            <p className={styles.startNote} role="status">
+              {t("defaults.saved")}
+            </p>
+          ) : null}
+
+          <div
+            id={defaultsPanelId}
+            className={styles.panel}
+            hidden={defaultsAnswered && !defaultsOpen}
+          >
+            <DefaultsForm defaults={defaults} labelledBy={defaultsId} onChange={kit.saveDefaults} />
+
+            {defaultsAnswered ? null : (
+              <div className={styles.start}>
+                <button
+                  ref={confirmRef}
+                  type="button"
+                  className={styles.primary}
+                  onClick={() => {
+                    setConfirmed(true);
+                    kit.confirmDefaults();
+                  }}
+                >
+                  {t("defaults.confirm")}
+                </button>
+                <p className={styles.startNote}>{t("defaults.confirmNote")}</p>
+              </div>
+            )}
+          </div>
         </section>
-      ) : null}
+      )}
 
       {gate === null || showSections ? (
         <section className={styles.topic} aria-labelledby={draftId}>

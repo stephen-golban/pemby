@@ -116,7 +116,10 @@ function isPublishableUrl(value: string): boolean {
   }
 }
 
-/** True once the person has been through the defaults form, however they answered it. */
+/**
+ * True once the person has said they are **done** with the defaults form, however much of it they
+ * filled in — not once one field happens to hold a value. See `answeredAt` in `./view.ts`.
+ */
 export function defaultsAnswered(defaults: ApplicationDefaultsView): boolean {
   return defaults.answeredAt !== null;
 }
@@ -179,6 +182,12 @@ function labelForLink(url: string): string {
  * A merge over the stored object rather than a replace of it: the column is shared with whatever a
  * later phase asks in context, and a route that overwrote the whole blob would silently drop a key
  * it had never heard of. Returns null when the account has no profile row.
+ *
+ * **`answeredAt` is stamped only when the patch carries `answered: true`.** Saving one of the four
+ * fields stores that field and nothing else. It used to stamp the date as well, which meant
+ * answering one question retired the whole form — the other three were then unreachable from any
+ * screen in the product, and every kit afterwards was written with them empty. A field a person
+ * edited and then walked away from is still kept; they are simply asked again.
  */
 export async function saveApplicationDefaults(
   userId: string,
@@ -205,7 +214,7 @@ export async function saveApplicationDefaults(
       patch.workAuthorization === undefined
         ? existing.workAuthorization
         : { ...existing.workAuthorization, ...patch.workAuthorization },
-    answeredAt: now.toISOString(),
+    answeredAt: patch.answered === true ? now.toISOString() : existing.answeredAt,
   };
 
   const saved = await client.query<{ application_defaults: unknown }>(

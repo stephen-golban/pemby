@@ -46,8 +46,15 @@
       "noQuestions": "This post asks no screening questions."
     },
     "defaults": {
-      "title": "Two or three answers first",
+      "title": "Four answers first",
+      "titleAnswered": "Your application answers",
       "lead": "Every application form asks these. Answer them once and every kit after this one uses them.",
+      "leadAnswered": "Every kit is written with these four. Change them here whenever they change.",
+      "change": "Change",
+      "hide": "Hide",
+      "confirm": "Save and continue",
+      "confirmNote": "Leave anything blank that you have no answer to. A blank one is left out of the draft rather than guessed at.",
+      "saved": "Saved. Every kit uses these from now on, and they stay on this page.",
       "unanswered": "Not answered",
       "notice": "Notice period",
       "noticeHelp": "How soon you could start.",
@@ -70,7 +77,7 @@
         "rightToWorkResidence": "Whether you are legally allowed to work in the country you live in.",
         "needsSponsorshipAbroad": "Whether a role in another country would need a visa or relocation support."
       },
-      "note": "These are saved on your profile and reused. You can change them here any time."
+      "note": "These are saved on your profile and reused. This page keeps them, so you can change them here any time."
     },
     "noProfile": {
       "title": "Finish your profile first",
@@ -102,7 +109,7 @@
       "job_not_found": "That post is closed or no longer in Pemby.",
       "no_profile": "Your profile isn't finished yet, so there is nothing to write from.",
       "no_cv": "Pemby needs your CV before it can draft anything.",
-      "defaults_missing": "Answer the questions above first; every kit uses them.",
+      "defaults_missing": "Save your application answers above first; every kit is written with them.",
       "quota_exhausted": "Your free kits for this month are used.",
       "key_unreadable": "Pemby can no longer read your stored OpenRouter key. Connect it again.",
       "key_credits": "Your OpenRouter account is out of credit.",

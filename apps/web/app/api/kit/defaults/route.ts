@@ -62,6 +62,13 @@ function parse(body: Record<string, unknown> | null): Parsed {
     patch.workAuthorization = answers;
   }
 
+  // The explicit "I am done with this form". Only the literal `true` is accepted: there is no
+  // un-answering, and a body that tried would be a client this route does not have.
+  if ("answered" in body) {
+    if (body.answered !== true) return { ok: false };
+    patch.answered = true;
+  }
+
   return Object.keys(patch).length > 0 ? { ok: true, patch } : { ok: false };
 }
 
@@ -79,11 +86,14 @@ function isPublishableUrl(value: string): boolean {
 }
 
 /**
- * Saves whichever of the three answers the request carries, and stamps `answeredAt`.
+ * Saves whichever of the four answers the request carries, and — only when it carries
+ * `answered: true` — stamps `answeredAt`.
  *
  * The stamp is what makes "no links and no notice period" a set of answers rather than a person who
  * has never been asked, so the page stops asking after the first time through even when every
- * answer was "nothing to say".
+ * answer was "nothing to say". It belongs to the person's own "Save and continue", not to a field
+ * save: one answer out of four is not an answered form, and treating it as one left the other
+ * three unreachable.
  */
 export async function PATCH(request: Request): Promise<Response> {
   const auth = await authorize(request);

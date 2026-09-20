@@ -23,7 +23,9 @@ import {
  *
  * **Saving the application defaults** is an ordinary optimistic mutation: it changes a value the
  * `["kit", jobId]` cache is already holding, so `optimisticUpdate` writes it in the same frame and
- * restores the snapshot on failure (docs/conventions.md, Optimistic UI).
+ * restores the snapshot on failure (docs/conventions.md, Optimistic UI). It has two callers with
+ * one code path: `saveDefaults` stores one of the four answers, and `confirmDefaults` says the
+ * form is dealt with. Only the second retires the first-time gate.
  *
  * **Generating** is optimistic too, and about the thing that is actually at stake. There is no kit
  * in the cache to write early — it does not exist until the model finishes — but the quota does,
@@ -66,18 +68,26 @@ export function useKit(jobId: string, initial: KitPageView) {
     mutationFn: patchDefaults,
     ...optimisticUpdate<KitPageView, ApplicationDefaultsPatch>(key, (previous, patch) => {
       const base = previous ?? initial;
+      // `answered` is the reader's decision, not one of their answers, so it is kept out of the
+      // view object and read on its own below.
+      const { answered, ...values } = patch;
       return {
         ...base,
         defaults: {
           ...base.defaults,
-          ...patch,
+          ...values,
           workAuthorization: {
             ...base.defaults.workAuthorization,
             ...(patch.workAuthorization ?? {}),
           },
-          // The server stamps the real instant; this only has to stop the form asking again in the
-          // frame between the tap and the answer.
-          answeredAt: base.defaults.answeredAt ?? new Date().toISOString(),
+          // Only "Save and continue" retires the form. A field save leaves `answeredAt` exactly as
+          // it was, so answering one question no longer counts as answering all four — the defect
+          // that made the other three unreachable for good. The server stamps the real instant;
+          // this only has to release the gate in the frame between the tap and the answer.
+          answeredAt:
+            answered === true && base.defaults.answeredAt === null
+              ? new Date().toISOString()
+              : base.defaults.answeredAt,
         },
       };
     }),
@@ -118,6 +128,14 @@ export function useKit(jobId: string, initial: KitPageView) {
     saveDefaults: (patch: ApplicationDefaultsPatch) => {
       setError(null);
       defaults.mutate(patch, { onError: (failure) => setError(errorCodeOf(failure)) });
+    },
+    /**
+     * "Save and continue": the form is dealt with, whatever is still blank. The one thing that
+     * releases the first-time gate, and the only writer of `answeredAt`.
+     */
+    confirmDefaults: () => {
+      setError(null);
+      defaults.mutate({ answered: true }, { onError: (failure) => setError(errorCodeOf(failure)) });
     },
     error,
     clearError: () => setError(null),

@@ -157,18 +157,32 @@ export interface ApplicationDefaultsView {
   links: string[];
   workAuthorization: Partial<Record<WorkAuthQuestion, boolean>>;
   /**
-   * ISO of the last time the person answered this form, or null if they never have.
+   * ISO of the last time the person said they were **done with this form**, or null if they never
+   * have. It is written by the "Save and continue" action alone, never by saving one field.
    *
    * Stored rather than inferred, because "no links and no notice period" is a legitimate set of
    * answers and is indistinguishable from never having been asked. Without it the page would ask
    * the same person the same questions before every kit.
+   *
+   * It is deliberately **not** "every question has a value". Three of the four have an honest
+   * "nothing to say", and inferring done-ness from the values would either nag somebody who has no
+   * links forever or need a per-question skip flag for a decision one tap already settles.
    */
   answeredAt: string | null;
 }
 
 export type ApplicationDefaultsPatch = Partial<
   Pick<ApplicationDefaultsView, "noticePeriod" | "links" | "workAuthorization">
->;
+> & {
+  /**
+   * The person pressed "Save and continue": the form is dealt with, however much of it they
+   * filled in. This is the only thing that stamps `answeredAt`.
+   *
+   * `true` and nothing else — there is no "un-answer". A form that could be reset to "never asked"
+   * would put a reader back behind a gate they have already passed.
+   */
+  answered?: true;
+};
 
 /** The one thing standing between this account and a kit, when there is one. */
 export const KIT_BLOCKERS = ["no_profile", "no_cv"] as const;

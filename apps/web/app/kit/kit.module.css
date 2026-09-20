@@ -154,6 +154,19 @@
   gap: var(--space-4);
 }
 
+/*
+ * A section title with its one secondary action beside it: the outline pill that opens the
+ * application answers again. The pill wraps under the title on a narrow screen rather than
+ * squeezing it, and keeps its 44px target there.
+ */
+.topicHead {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+  justify-content: space-between;
+}
+
 .topicTitle {
   font-family: var(--font-display);
   font-size: 1.625rem;
@@ -166,6 +179,23 @@
   max-inline-size: 58ch;
   font-size: var(--text-small);
   line-height: 1.55;
+}
+
+/*
+ * The disclosure panel holding the application answers.
+ *
+ * `hidden` has to be re-stated against the `display: grid`, because a display value on the element
+ * beats the user-agent rule for the attribute and the panel would stay on screen while claiming to
+ * be closed. It stays mounted either way: the button that controls it points at it with
+ * `aria-controls`, and a target that only exists while it is open is a promise the page breaks.
+ */
+.panel {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.panel[hidden] {
+  display: none;
 }
 
 .start {
