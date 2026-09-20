@@ -72,9 +72,13 @@ export function KitClient({ initial }: { initial: KitPageView }) {
   }, [defaultsAnswered]);
 
   // What the reader is looking at: the draft arriving right now, the kit already stored, or
-  // nothing. The live draft wins while a generation runs, so the page does not flicker back to an
-  // older kit between the last frame of the stream and the re-read that follows it.
-  const content = kit.draft ?? page.kit?.content ?? null;
+  // nothing. The live draft wins **while a generation is running, and only then**. It has to win
+  // for that whole stretch — `generating` stays true until the re-read that follows the stream has
+  // landed — so the page does not flicker back to an older kit between the last frame and that
+  // re-read. It must stop winning the instant the run is over: a frame left behind by a finished
+  // stream is not newer than the stored kit, it is a snapshot of the same kit taken too early, and
+  // letting it win is how a complete kit came to be shown permanently short of its last sentence.
+  const content = (kit.generating ? kit.draft : null) ?? page.kit?.content ?? null;
   const showSections = content !== null || kit.generating;
 
   // The gate, in the order the reader can act on it. `null` means the only thing left to decide is

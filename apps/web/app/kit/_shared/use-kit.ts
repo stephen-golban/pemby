@@ -38,8 +38,12 @@ import {
  * records, in `applications`, something the person already did in the employer's own form, which is
  * what puts the post on the tracker board. Nothing behind it submits anything (PLAN D9, D16).
  *
- * `draft` holds the partial content while a generation runs. It is cleared on failure, so a
- * half-written letter never sits on the page under an error message as though it were saved.
+ * `draft` holds the partial content **while a generation runs**, and only then. It is cleared when
+ * the run fails, so a half-written letter never sits on the page under an error message as though
+ * it were saved; and it is cleared when the run succeeds, because by then the stored kit is in the
+ * cache and a leftover frame of a finished stream is not a draft of anything. It was the missing
+ * half of that pair — a draft that outlived its generation and won over the stored kit forever —
+ * that left a complete kit displayed permanently short of its last sentence.
  */
 export function useKit(jobId: string, initial: KitPageView) {
   const key = kitKey(jobId);
@@ -56,7 +60,14 @@ export function useKit(jobId: string, initial: KitPageView) {
     mutationFn: async () => {
       const controller = new AbortController();
       abort.current = controller;
-      return streamKit(jobId, { onPartial: setDraft, signal: controller.signal });
+      const result = await streamKit(jobId, { onPartial: setDraft, signal: controller.signal });
+      // The last partial frame is not the last word. The route throttles partials to one every
+      // 100ms and the final one lands well inside that window, so the newest frame the browser
+      // holds is routinely a few characters short of what was written. `done` carries the row that
+      // was stored, which is the truth, so the draft is replaced by it rather than left trailing —
+      // and it stays on screen until the re-read below lands, so nothing flickers in between.
+      setDraft(result.kit.content);
+      return result;
     },
     ...optimisticUpdate<KitPageView, void>(key, (previous) => {
       const base = previous ?? initial;
@@ -114,7 +125,13 @@ export function useKit(jobId: string, initial: KitPageView) {
     write: () => {
       setError(null);
       setDraft(null);
+      // `optimisticUpdate` owns `onMutate`, `onError` and `onSettled`, so anything this page needs
+      // per call goes in the options handed to `mutate` (docs/conventions.md, Optimistic UI).
+      // Both of these run after the mutation has settled — which, because the helper's `onSettled`
+      // awaits `invalidateQueries`, is after the re-read has landed. By the time the draft is
+      // dropped the cache already holds the same kit, so nothing on screen changes.
       generate.mutate(undefined, {
+        onSuccess: () => setDraft(null),
         onError: (failure) => {
           setDraft(null);
           setError(errorCodeOf(failure));

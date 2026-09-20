@@ -38,7 +38,7 @@
 
 import { planKitRun, runKit } from "../../_lib/generate";
 import { authorize, fail, isUuid, statusFor } from "../../_lib/http";
-import type { KitStreamEvent } from "../../_lib/view";
+import type { KitContentView, KitStreamEvent } from "../../_lib/view";
 
 export const dynamic = "force-dynamic";
 /** Node, not edge: `@pemby/db` speaks to Postgres over `pg` and `@pemby/ai` reads the private config. */
@@ -82,20 +82,37 @@ export async function POST(
       send({ type: "disclosure", aiGenerated: true });
 
       let lastSentAt = 0;
+      // The newest frame the throttle swallowed, or null when the newest frame went out.
+      //
+      // The last `onPartial` of a generation is the one that matters and it is also the one the
+      // throttle is most likely to drop: tokens arrive roughly every 13ms, so the final frame
+      // almost always lands inside the 100ms window. Without this the live view stops 100ms short
+      // of the end and stays there until `done` arrives — a letter frozen mid-sentence for no
+      // reason other than the interval it happened to fall in.
+      let suppressed: Partial<KitContentView> | null = null;
       try {
         const result = await runKit(preflight.plan, {
           now,
           signal: request.signal,
           onPartial: (content) => {
             const at = Date.now();
-            if (at - lastSentAt < PARTIAL_INTERVAL_MS) return;
+            if (at - lastSentAt < PARTIAL_INTERVAL_MS) {
+              suppressed = content;
+              return;
+            }
             lastSentAt = at;
+            suppressed = null;
             send({ type: "partial", content });
           },
         });
 
-        if (result.ok) send({ type: "done", kit: result.kit, quota: result.quota });
-        else send({ type: "error", error: result.error });
+        if (result.ok) {
+          // The frame the throttle held back, before the one that supersedes it. `done` carries
+          // the stored kit and is what the page settles on, so this only closes the gap in the
+          // live view; it never decides what the reader ends up with.
+          if (suppressed !== null) send({ type: "partial", content: suppressed });
+          send({ type: "done", kit: result.kit, quota: result.quota });
+        } else send({ type: "error", error: result.error });
       } catch {
         // `runKit` turns every failure it understands into a code. Anything reaching here is a bug
         // or a dropped connection, and it is answered with a code rather than a stack: this stream

@@ -84,6 +84,13 @@ export const DEFAULT_ROUTING = {
     personalData: true,
     promptName: null,
   },
+  // No temperature: a cover letter is not an extraction task, and pinning it to 0 would buy a
+  // determinism nobody wants at the price of every letter reading the same. It does get a
+  // ceiling. `KIT_LIMITS` in `@pemby/core` bounds the three sections to roughly 25,000 characters
+  // — about 7,000 tokens — for a maximal legitimate kit, against the 775 output tokens a real one
+  // spent, so 8000 clears the worst honest case with headroom and still caps a model that has
+  // started looping. It also gives `estimateAttemptCost` a real ceiling for an attempt whose usage
+  // never came back, instead of the flat `DEFAULT_ESTIMATED_OUTPUT_TOKENS` a capless route takes.
   "application-kit": {
     model: "anthropic/claude-haiku-4.5",
     fallbackModels: [],
@@ -91,6 +98,7 @@ export const DEFAULT_ROUTING = {
     kind: "language",
     personalData: true,
     promptName: "application-kit",
+    params: { maxOutputTokens: 8000 },
   },
   "company-evidence": {
     model: "google/gemini-3.1-flash-lite",
