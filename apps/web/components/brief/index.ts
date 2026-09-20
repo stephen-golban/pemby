@@ -3,7 +3,7 @@
 export { FlagPicker, type FlagChoice } from "./flag-picker";
 export { HeldNote } from "./held-note";
 export { MatchRow, type MatchActions } from "./match-row";
-export { NearMissGroups } from "./near-miss-groups";
+export { NearMissGroups, type FixState } from "./near-miss-groups";
 export { PassPicker } from "./pass-picker";
 export { ProgramSteps } from "./program-steps";
 export { ShownSettings } from "./shown-settings";

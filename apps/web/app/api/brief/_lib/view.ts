@@ -165,6 +165,22 @@ export interface NearMissExample {
   demo: boolean;
 }
 
+/**
+ * The lowest score bar a person may set for themselves (owner decision 2026-09-19, amending
+ * PLAN D6), and the value the one-tap `score` fix writes.
+ *
+ * It is the near-miss band's own floor. Below it there is no `score` near miss left to open, so a
+ * lower bar would be a promise the matcher never wrote a row for. The number is already in the
+ * repo — `packages/db/drizzle/0014_user_ai_keys_flag_claim_score_floor.sql` and the `score_floor`
+ * column comment both state it — and it is deliberately **not** the configured match threshold,
+ * which is private config and never appears in this app.
+ *
+ * If a private config ever set `nearMissMin` above 65, this constant would not become wrong; the
+ * fix would simply open fewer rows, and `atFloorCount` below would already say so, because it is
+ * counted from the rows' real scores rather than assumed from the band.
+ */
+export const MIN_SCORE_FLOOR = 65;
+
 export interface NearMissGroupView {
   blocker: NearMissBlocker | null;
   count: number;
@@ -178,6 +194,18 @@ export interface NearMissGroupView {
    * setting does not touch, and counting it would promise posts the tap cannot deliver.
    */
   yellowCount: number;
+  /**
+   * How many of the group would reach the Brief if the reader dropped their score bar to
+   * `MIN_SCORE_FLOOR` — the only ones the `score` fix can deliver.
+   *
+   * The same honest-count discipline as `yellowCount`, and for the same reason: the pill must
+   * promise the number the tap delivers, not the size of the group it sits on. It is counted in
+   * SQL from each row's own `matches.score`, so a band that starts lower than 65 yields a count
+   * smaller than `count` rather than an over-promise.
+   *
+   * Zero on every group but `score`, where no such tap exists.
+   */
+  atFloorCount: number;
   examples: NearMissExample[];
 }
 
@@ -193,6 +221,13 @@ export interface BriefView {
   /** PLAN D13 amended 2026-09-17: every user may turn this on, not only pass holders. */
   includeYellow: boolean;
   hideNoSalary: boolean;
+  /**
+   * `profiles.score_floor`: this reader's own score bar, or null for the configured one.
+   *
+   * Null is not a number the client may substitute for. The configured threshold is private config
+   * and this app never learns it; null simply means "Pemby's bar", which is what the rail says.
+   */
+  scoreFloor: number | null;
   /** Live, canonical, in-window, due matches only. Everything else is not a match today. */
   matches: BriefMatchView[];
   held: HeldView;
@@ -220,4 +255,13 @@ export interface FlagBody {
 export interface PreferencesPatch {
   includeYellow?: boolean;
   hideNoSalary?: boolean;
+  /**
+   * The reader's own score bar. `null` hands the decision back to the configured threshold;
+   * a number is refused below `MIN_SCORE_FLOOR` or above 100 by the route.
+   *
+   * `undefined` (absent) means "leave it alone", and `null` means "clear it" — two different
+   * instructions, which is why `patchPreferences` cannot fold this into the `coalesce` the two
+   * booleans use.
+   */
+  scoreFloor?: number | null;
 }

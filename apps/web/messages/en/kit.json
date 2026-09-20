@@ -1,0 +1,119 @@
+{
+  "Kit": {
+    "meta": {
+      "title": "Application kit"
+    },
+    "back": "← Back to your Brief",
+    "eyebrow": "Application kit",
+    "example": "Example",
+    "openPost": "Open the post",
+    "applied": "I applied",
+    "appliedDone": "Applied — it's on your tracker",
+    "where": {
+      "at": "{company} · {location}",
+      "more": "{company} · {location} +{count} more",
+      "company": "{company}"
+    },
+    "disclosure": {
+      "label": "AI-generated",
+      "body": "A model wrote this draft from your profile, your CV and this post. Check every line before you use it, and change anything that isn't true of you. You send it yourself — Pemby never applies for you."
+    },
+    "quota": {
+      "used": "{used} of {limit} free kits used this month.",
+      "unlimited": "Your pass covers as many kits as you want.",
+      "ownKey": "Your own OpenRouter account is paying for these, so there is no monthly limit."
+    },
+    "draft": {
+      "title": "The draft",
+      "write": "Write the draft",
+      "writing": "Writing…",
+      "again": "Write it again",
+      "writeNote": "About twenty seconds. It appears as it is written.",
+      "againNote": "A second draft replaces nothing — the one you have stays saved, and this counts as another kit.",
+      "editNote": "Edit it in your own words before you send it. Nothing here is submitted anywhere."
+    },
+    "sections": {
+      "cvBullets": "CV bullets",
+      "coverLetter": "Cover letter",
+      "screeningAnswers": "Screening answers",
+      "bulletCount": "{count, plural, one {# bullet} other {# bullets}}",
+      "answerCount": "{count, plural, one {# answer} other {# answers}}",
+      "copy": "Copy",
+      "copyAnswer": "Copy",
+      "copied": "Copied",
+      "writing": "Writing…",
+      "notYet": "Not written yet.",
+      "noQuestions": "This post asks no screening questions."
+    },
+    "defaults": {
+      "title": "Two or three answers first",
+      "lead": "Every application form asks these. Answer them once and every kit after this one uses them.",
+      "unanswered": "Not answered",
+      "notice": "Notice period",
+      "noticeHelp": "How soon you could start.",
+      "noticeValues": {
+        "immediately": "Immediately",
+        "two_weeks": "Two weeks",
+        "one_month": "One month",
+        "two_months": "Two months",
+        "three_months": "Three months"
+      },
+      "links": "Links",
+      "linksHelp": "Full addresses, starting with https://. Portfolio, GitHub, LinkedIn.",
+      "linksPlaceholder": "https://",
+      "noLinks": "None",
+      "workAuth": {
+        "rightToWorkResidence": "Can work where you live",
+        "needsSponsorshipAbroad": "Needs sponsorship abroad"
+      },
+      "workAuthHelp": {
+        "rightToWorkResidence": "Whether you are legally allowed to work in the country you live in.",
+        "needsSponsorshipAbroad": "Whether a role in another country would need a visa or relocation support."
+      },
+      "note": "These are saved on your profile and reused. You can change them here any time."
+    },
+    "noProfile": {
+      "title": "Finish your profile first",
+      "body": "Pemby writes a draft from what it knows about you. There is nothing here yet, so there is nothing to write from.",
+      "action": "Finish onboarding"
+    },
+    "noCv": {
+      "title": "Pemby needs your CV",
+      "body": "The bullets and the letter come from your own CV, so that nothing in them is invented. Add one and come back to this post.",
+      "action": "Add your CV"
+    },
+    "spent": {
+      "title": "Your free kits for this month are used",
+      "body": "Free accounts get {limit} kits a calendar month. Two ways on: a pass covers as many as you want, or connect your own OpenRouter account and pay for your own model calls.",
+      "pass": "See passes",
+      "connect": "Connect OpenRouter"
+    },
+    "keyFailed": {
+      "title": "Your OpenRouter account couldn't pay for it",
+      "body": "Pemby did not write the draft on its own credits instead — your key is yours, and spending Pemby's without asking would be a decision made for you. Top the account up, connect a different key, or take a pass."
+    },
+    "tryAgain": "Try again",
+    "failed": "Pemby couldn't re-read this page.",
+    "retry": "Try again",
+    "errors": {
+      "unauthenticated": "Your session ended. Sign in again and this page comes back.",
+      "forbidden": "This account can't generate kits.",
+      "invalid_request": "Pemby couldn't read that. Try the same tap again.",
+      "job_not_found": "That post is closed or no longer in Pemby.",
+      "no_profile": "Your profile isn't finished yet, so there is nothing to write from.",
+      "no_cv": "Pemby needs your CV before it can draft anything.",
+      "defaults_missing": "Answer the questions above first; every kit uses them.",
+      "quota_exhausted": "Your free kits for this month are used.",
+      "key_unreadable": "Pemby can no longer read your stored OpenRouter key. Connect it again.",
+      "key_credits": "Your OpenRouter account is out of credit.",
+      "key_limit": "Your OpenRouter key has hit its own spending limit.",
+      "key_busy": "OpenRouter is holding your key's requests for a moment.",
+      "key_invalid": "OpenRouter refused your key. It may have been revoked there.",
+      "cap_reached": "Pemby's AI budget for today is spent. Nothing is lost — come back tomorrow.",
+      "model_failed": "The model didn't answer. Nothing was written and nothing was counted.",
+      "output_invalid": "The model answered with something Pemby couldn't use. Try once more.",
+      "unavailable": "Pemby couldn't finish that. Try again.",
+      "network": "No answer from Pemby. Check your connection and try again."
+    }
+  }
+}

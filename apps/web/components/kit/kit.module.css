@@ -1,0 +1,303 @@
+/*
+ * The application kit's disclosure, sections and choice cards.
+ *
+ * Operate density on the landing's world, exactly as the Brief has it (DESIGN.md): hairline-ruled
+ * ledger rows, outline-pill secondary actions — "Copy" is named in DESIGN.md as that case — mono for
+ * every sentence and the grotesk only for names and numbers. Nothing here tilts. The one thing that
+ * lifts on this page is the outlined paper card that carries a choice, which is the same object the
+ * Brief uses for honest silence.
+ */
+
+/* The Article 50 disclosure ---------------------------------------------- */
+
+/*
+ * Above the kit, not beside it and not under it. It is the first thing between the post's name and
+ * any generated sentence, so "at first exposure" is a fact about the layout rather than a promise.
+ * A hairline above and below, no fill, no icon: this is a statement of what follows, not a warning
+ * banner, and dressing it as an alert would teach people to dismiss it.
+ */
+.disclosure {
+  display: grid;
+  gap: var(--space-2);
+  padding-block: var(--space-4);
+  border-block: 1px solid var(--color-line);
+}
+
+.disclosureLabel {
+  font-size: var(--text-label);
+  font-weight: var(--weight-mono-strong);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.disclosureBody {
+  max-inline-size: 66ch;
+  font-size: var(--text-small);
+  line-height: 1.55;
+}
+
+/* One section of the kit ------------------------------------------------- */
+
+.sections {
+  display: grid;
+}
+
+.section {
+  display: grid;
+  gap: var(--space-3);
+  padding-block: var(--space-5);
+  border-block-end: 1px solid var(--color-line);
+}
+
+.sectionHead {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sectionName {
+  flex: 1 1 14ch;
+  font-family: var(--font-display);
+  font-size: 1.1875rem;
+  font-weight: var(--weight-title);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+
+.sectionCount {
+  margin-inline-start: 10px;
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--color-ink-soft);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: var(--weight-mono-strong);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+.pill:hover:not(:disabled):not([aria-disabled="true"]) {
+  border-color: var(--color-ink);
+}
+
+/* Dashed means "not yet", here as everywhere else in the system. */
+.pill:disabled,
+.pill[aria-disabled="true"] {
+  border-style: dashed;
+  color: var(--color-ink-soft);
+  cursor: not-allowed;
+}
+
+.small {
+  min-block-size: 32px;
+  padding: 0 11px;
+}
+
+/* A section with nothing in it yet. Dashed, because dashed is this system's "not yet". */
+.placeholder {
+  padding: var(--space-4) 0;
+  border-block-start: 1px dashed var(--color-line);
+  font-size: var(--text-small);
+  color: var(--color-ink-soft);
+}
+
+.bullets {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bullet {
+  padding-block: var(--space-3);
+  border-block-start: 1px solid var(--color-line);
+  font-size: var(--text-small);
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.letter {
+  max-inline-size: 70ch;
+  font-size: var(--text-small);
+  line-height: 1.7;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.answers {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.answer {
+  display: grid;
+  gap: var(--space-2);
+  padding-block: var(--space-4);
+  border-block-start: 1px solid var(--color-line);
+}
+
+.answerHead {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.question {
+  flex: 1 1 20ch;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: var(--weight-title);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
+}
+
+.answerBody {
+  max-inline-size: 70ch;
+  font-size: var(--text-small);
+  line-height: 1.65;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/*
+ * The writing caret: a solid ink block at the end of the text that is still arriving.
+ *
+ * A state indicator, not a flourish — the page's one authored moment is still the Brief's settle,
+ * and this says only "more is coming". Under `prefers-reduced-motion` it stops blinking and stays
+ * solid, which carries exactly the same meaning without the movement.
+ */
+.caret {
+  display: inline-block;
+  inline-size: 0.5em;
+  block-size: 1em;
+  margin-inline-start: 2px;
+  background: var(--color-ink);
+  vertical-align: text-bottom;
+  animation: caret 1s steps(2, jump-none) infinite;
+}
+
+@keyframes caret {
+  50% {
+    opacity: 0.15;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caret {
+    animation: none;
+  }
+}
+
+/* The choice card -------------------------------------------------------- */
+
+/*
+ * The outlined paper card, the same object the Brief's honest silence uses: a state that is an
+ * answer rather than an empty screen. It carries the two ways past a spent quota, the way back to
+ * onboarding, and the way past a key that stopped working.
+ */
+.choice {
+  display: grid;
+  gap: var(--space-4);
+  padding: clamp(24px, 4vw, 40px);
+  border: 1.5px solid var(--color-line-strong);
+  border-radius: var(--radius-xl);
+  background: var(--color-paper-card);
+  box-shadow: var(--shadow-card);
+}
+
+.choiceTitle {
+  max-inline-size: 22ch;
+  font-family: var(--font-display);
+  font-size: 1.625rem;
+  font-weight: var(--weight-title);
+  line-height: 1;
+  letter-spacing: var(--tracking-title);
+  text-wrap: balance;
+}
+
+.choiceBody {
+  max-inline-size: 58ch;
+  font-size: var(--text-small);
+  line-height: 1.6;
+}
+
+.choiceActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+  margin-block-start: var(--space-2);
+}
+
+.primary {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+  min-block-size: 44px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--color-ink);
+  color: var(--color-ground);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: var(--weight-title);
+  text-decoration: none;
+  cursor: pointer;
+  transition: translate var(--duration-fast) var(--ease-out);
+}
+
+.primary:hover:not(:disabled) {
+  translate: 0 -2px;
+}
+
+.primary:disabled {
+  cursor: progress;
+  opacity: 0.7;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .primary:hover:not(:disabled) {
+    translate: none;
+  }
+}
+
+/* The defaults ledger ---------------------------------------------------- */
+
+.defaults {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.defaultsNote {
+  max-inline-size: 58ch;
+  font-size: var(--text-label);
+  line-height: 1.5;
+  color: var(--color-ink-soft);
+}

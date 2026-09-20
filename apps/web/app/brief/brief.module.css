@@ -151,6 +151,17 @@
   color: var(--color-ink-soft);
 }
 
+/*
+ * The rail's three destinations as one short list. The rail's own `gap` separates blocks — the
+ * count, the settings ledger, this — and applying it between three single links spread them across
+ * the page (phase 08 had two and it already read loosely).
+ */
+.railLinks {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-1);
+}
+
 .railLink {
   min-block-size: 44px;
   display: inline-flex;

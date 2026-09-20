@@ -69,11 +69,18 @@ export function BriefClient({ initial }: { initial: BriefView }) {
     flag: (jobId: string, choice: FlagChoice) => brief.flagJob({ jobId, ...choice }),
   };
 
+  // One object, read by the fix pills and by the rail's switches, so the two can never disagree
+  // about which settings are currently in force.
+  const shown = {
+    includeYellow: data.includeYellow,
+    hideNoSalary: data.hideNoSalary,
+    scoreFloor: data.scoreFloor,
+  };
+
   const nearMisses = data.nearMisses.length > 0 && (
     <NearMissGroups
       groups={data.nearMisses}
-      includeYellow={data.includeYellow}
-      hideNoSalary={data.hideNoSalary}
+      state={shown}
       onFix={brief.setPreferences}
       settle={silent}
     />
@@ -206,23 +213,25 @@ export function BriefClient({ initial }: { initial: BriefView }) {
           <p className={styles.note}>{t("rail.note")}</p>
         </div>
 
-        <ShownSettings
-          includeYellow={data.includeYellow}
-          hideNoSalary={data.hideNoSalary}
-          country={country}
-          onChange={brief.setPreferences}
-        />
+        <ShownSettings {...shown} country={country} onChange={brief.setPreferences} />
 
-        <Link className={styles.railLink} href="/profile">
-          {t("rail.profile")}
-        </Link>
+        {/* The three places this page can send you. Grouped, because the rail's own gap is sized
+            for whole blocks and three links spaced that far apart read as three unfinished
+            sections rather than one short list.
 
-        {/* Phase 08: the second thing this rail can send you to change — not what reaches you, but
-            where it reaches you (PLAN D8). Same quiet link as its neighbour; its string lives in
-            the Settings namespace with the rest of that surface's copy. */}
-        <Link className={styles.railLink} href="/settings">
-          {settings("railLink")}
-        </Link>
+            `/tracker` is new in phase 09: the board reads `applications`, which "Apply" on a row
+            now writes, and without this link the page is reachable only by typing its address. */}
+        <nav className={styles.railLinks} aria-label={t("rail.links")}>
+          <Link className={styles.railLink} href="/profile">
+            {t("rail.profile")}
+          </Link>
+          <Link className={styles.railLink} href="/tracker">
+            {t("rail.tracker")}
+          </Link>
+          <Link className={styles.railLink} href="/settings">
+            {settings("railLink")}
+          </Link>
+        </nav>
       </aside>
     </div>
   );

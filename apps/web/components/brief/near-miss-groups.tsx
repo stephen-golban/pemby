@@ -2,28 +2,52 @@
 
 import { useTranslations } from "next-intl";
 import type { CSSProperties } from "react";
+import { MIN_SCORE_FLOOR } from "@/app/api/brief/_lib/view";
 import type { NearMissGroupView, PreferencesPatch } from "@/app/api/brief/_lib/view";
 import styles from "./brief.module.css";
+
+/** The settings a fix may flip, as the page currently has them. */
+export interface FixState {
+  includeYellow: boolean;
+  hideNoSalary: boolean;
+  /** `profiles.score_floor`; null means the configured threshold. */
+  scoreFloor: number | null;
+}
+
+type FixKind = "yellow" | "salary" | "score";
 
 /**
  * Which setting, if any, opens one group — and how many posts it would actually let through.
  *
- * Only two groups have a one-tap fix, because only two of them are blocked by a choice the reader
- * made rather than by the post itself. The yellow fix is offered against `yellowCount` rather than
- * the whole group: posts that are unclear or excluded never reach this page at all (PLAN D2), and
- * anything else in an `eligibility` group was blocked by something the yellow setting does not
- * touch, so counting it would promise posts the tap cannot deliver.
+ * Three groups have a one-tap fix, because three of them are blocked by a choice the reader made
+ * rather than by the post itself. Every one of them is offered against the number the tap
+ * **delivers**, never the size of the group it sits under:
+ *
+ *  - **yellow** against `yellowCount`. Posts that are unclear or excluded never reach this page at
+ *    all (PLAN D2), and anything else in an `eligibility` group was blocked by something the yellow
+ *    setting does not touch.
+ *  - **salary** against `count`. Every post in a `salary_missing` group is one the setting hides,
+ *    so here the group and the delivery are the same number.
+ *  - **score** against `atFloorCount`. Dropping the bar to its floor opens only the rows already
+ *    scoring at or above it; the read counts them from their own scores rather than assuming the
+ *    band starts there.
+ *
+ * The score fix is offered only while the bar is above its floor. Once it is at the floor the group
+ * that is left is the part no bar can reach, and offering a tap that moves nothing is the same
+ * over-promise in a different place.
  */
 function fixFor(
   group: NearMissGroupView,
-  includeYellow: boolean,
-  hideNoSalary: boolean,
-): { patch: PreferencesPatch; count: number; kind: "yellow" | "salary" } | null {
-  if (group.blocker === "eligibility" && !includeYellow && group.yellowCount > 0) {
+  state: FixState,
+): { patch: PreferencesPatch; count: number; kind: FixKind } | null {
+  if (group.blocker === "eligibility" && !state.includeYellow && group.yellowCount > 0) {
     return { patch: { includeYellow: true }, count: group.yellowCount, kind: "yellow" };
   }
-  if (group.blocker === "salary_missing" && hideNoSalary) {
+  if (group.blocker === "salary_missing" && state.hideNoSalary) {
     return { patch: { hideNoSalary: false }, count: group.count, kind: "salary" };
+  }
+  if (group.blocker === "score" && state.scoreFloor !== MIN_SCORE_FLOOR && group.atFloorCount > 0) {
+    return { patch: { scoreFloor: MIN_SCORE_FLOOR }, count: group.atFloorCount, kind: "score" };
   }
   return null;
 }
@@ -39,14 +63,12 @@ function fixFor(
  */
 export function NearMissGroups({
   groups,
-  includeYellow,
-  hideNoSalary,
+  state,
   onFix,
   settle,
 }: {
   groups: readonly NearMissGroupView[];
-  includeYellow: boolean;
-  hideNoSalary: boolean;
+  state: FixState;
   onFix: (patch: PreferencesPatch) => void;
   /** Plays the one authored moment on this page when the Brief is silent. */
   settle?: boolean;
@@ -56,13 +78,17 @@ export function NearMissGroups({
   return (
     <ul className={styles.groups} aria-label={t("nearMiss.groupLabel")} data-settle={settle}>
       {groups.map((group, index) => {
-        const fix = fixFor(group, includeYellow, hideNoSalary);
+        const fix = fixFor(group, state);
         const done =
-          group.blocker === "eligibility" && includeYellow
+          group.blocker === "eligibility" && state.includeYellow
             ? t("nearMiss.fixYellowDone")
-            : group.blocker === "salary_missing" && !hideNoSalary
+            : group.blocker === "salary_missing" && !state.hideNoSalary
               ? t("nearMiss.fixSalaryDone")
-              : null;
+              : // The score bar is at its floor and rows are still here: they are under the floor,
+                // not under a setting, so this says the bar is spent rather than offering a tap.
+                group.blocker === "score" && state.scoreFloor === MIN_SCORE_FLOOR
+                ? t("nearMiss.fixScoreDone")
+                : null;
         const hidden = Math.max(0, group.count - group.examples.length);
 
         return (
@@ -88,7 +114,9 @@ export function NearMissGroups({
                 <button type="button" className={styles.pill} onClick={() => onFix(fix.patch)}>
                   {fix.kind === "yellow"
                     ? t("nearMiss.fixYellow", { count: fix.count })
-                    : t("nearMiss.fixSalary", { count: fix.count })}
+                    : fix.kind === "salary"
+                      ? t("nearMiss.fixSalary", { count: fix.count })
+                      : t("nearMiss.fixScore", { count: fix.count })}
                 </button>
               ) : null}
             </div>

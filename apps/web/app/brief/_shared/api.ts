@@ -84,6 +84,6 @@ export function postFlag(body: FlagBody): Promise<{ flagged: boolean }> {
 
 export function patchPreferences(
   patch: PreferencesPatch,
-): Promise<{ includeYellow: boolean; hideNoSalary: boolean }> {
+): Promise<{ includeYellow: boolean; hideNoSalary: boolean; scoreFloor: number | null }> {
   return send("/api/brief/preferences", "PATCH", patch);
 }

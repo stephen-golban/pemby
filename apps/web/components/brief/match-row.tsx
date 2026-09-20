@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 import { useState } from "react";
 import type { BriefMatchView, MatchState, PassReason } from "@/app/api/brief/_lib/view";
 import { FlagPicker, type FlagChoice } from "./flag-picker";
@@ -136,6 +137,18 @@ export function MatchRow({
             />
           </svg>
         </a>
+
+        {/* The one thing to do before applying (PLAN D9): a draft of the bullets, the letter and
+            the answers, written for this post and edited by the person who sends it. A real link,
+            because it is a page with its own address that can be reopened and shared with nobody
+            but the reader. Nothing behind it submits anything. */}
+        <Link
+          className={styles.pill}
+          href={`/kit/${match.jobId}`}
+          aria-label={t("match.kitLabel", { title: match.title, company: match.company })}
+        >
+          {t("match.kit")}
+        </Link>
 
         <button
           type="button"

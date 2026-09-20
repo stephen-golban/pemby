@@ -328,6 +328,12 @@
   transition: border-color var(--duration-fast) var(--ease-out);
 }
 
+/* The pill is also worn by a link (the application-kit entry point), so it drops the underline
+   the global `a` rule would otherwise give it. */
+a.pill {
+  text-decoration: none;
+}
+
 .pill:hover:not(:disabled):not([aria-disabled="true"]) {
   border-color: var(--color-ink);
 }
