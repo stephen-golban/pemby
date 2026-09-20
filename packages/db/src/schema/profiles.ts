@@ -134,6 +134,22 @@ export const profiles = pgTable(
      * nullable column here is the whole of it.
      */
     deliveryPausedAt: timestamp("delivery_paused_at", { withTimezone: true }),
+
+    /**
+     * The user's own score bar, amending PLAN D6 (owner decision, 2026-09-19): the one-tap
+     * near-miss fix on the Brief lets a person lower the bar that turned a job into a near miss,
+     * for themselves and nobody else.
+     *
+     * **Null means "use the configured threshold"** — the private-config value, currently 75 on
+     * staging — so an untouched profile behaves exactly as it did before this column existed. That
+     * is why there is no DEFAULT: a default would bake today's threshold into 4 rows and make a
+     * later change to the configured value a no-op for everyone who had never touched the setting.
+     *
+     * Bounded below by the near-miss band's own floor (65) server-side. Below that there is no
+     * `score` near miss left to fix, so the tap would be offering a promotion the matcher never
+     * wrote a row for.
+     */
+    scoreFloor: smallint("score_floor"),
     referralCode: text("referral_code").unique(),
     onboardingCompletedAt: timestamp("onboarding_completed_at", { withTimezone: true }),
     /** Seeded demo data on staging. */

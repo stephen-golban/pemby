@@ -25,11 +25,16 @@ export type NewJobEligibility = typeof s.jobEligibility.$inferInsert;
 export type Match = typeof s.matches.$inferSelect;
 export type NewMatch = typeof s.matches.$inferInsert;
 export type Application = typeof s.applications.$inferSelect;
+export type NewApplication = typeof s.applications.$inferInsert;
 export type Flag = typeof s.flags.$inferSelect;
+export type NewFlag = typeof s.flags.$inferInsert;
 export type Kit = typeof s.kits.$inferSelect;
+export type NewKit = typeof s.kits.$inferInsert;
 export type AiUsage = typeof s.aiUsage.$inferSelect;
 export type NewAiUsage = typeof s.aiUsage.$inferInsert;
 export type AiCapAlert = typeof s.aiCapAlerts.$inferSelect;
+export type UserAiKey = typeof s.userAiKeys.$inferSelect;
+export type NewUserAiKey = typeof s.userAiKeys.$inferInsert;
 export type Pass = typeof s.passes.$inferSelect;
 export type Payment = typeof s.payments.$inferSelect;
 export type Referral = typeof s.referrals.$inferSelect;
@@ -128,3 +133,78 @@ export {
   type RecordSentParams,
   type RecordSentResult,
 } from "./queries/delivery";
+
+export {
+  countKitsThisMonth,
+  insertKit,
+  insertKitWithinQuota,
+  listKits,
+  selectKit,
+  selectKitById,
+  type KitInsertResult,
+  type KitQuotaParams,
+  type KitSummary,
+  type SelectKitByIdParams,
+  type SelectKitParams,
+} from "./queries/kits";
+
+export {
+  selectTracker,
+  setApplicationState,
+  upsertApplication,
+  type ApplicationState,
+  type SetApplicationStateParams,
+  type TrackerRow,
+} from "./queries/applications";
+
+export {
+  claimFlagsToProcess,
+  closeJob,
+  countIndependentFlags,
+  DEFAULT_FLAG_CLAIM_STALE_MS,
+  DEFAULT_MAX_FLAG_CLAIM_ATTEMPTS,
+  deleteFlagEvidence,
+  MIN_FLAG_CLAIM_ATTEMPTS,
+  MIN_FLAG_CLAIM_STALE_MS,
+  quarantineJob,
+  recordFlagAction,
+  recordFlagOutcome,
+  type ClaimFlagsParams,
+  type CountIndependentFlagsParams,
+  type EvidenceSource,
+  type EvidenceTier,
+  type EvidenceWayOfWorking,
+  type FlagAction,
+  type FlagEvidenceRow,
+  type FlagField,
+  type FlagReason,
+  type FlagStatus,
+  type FlagOutcome,
+  type FlagToProcess,
+  type IndependentFlagCount,
+  type JobStatus,
+  type RecordFlagActionParams,
+  type RecordFlagOutcomeParams,
+  type TerminalFlagStatus,
+} from "./queries/flags";
+
+export {
+  deleteUserAiKey,
+  loadUserAiKey,
+  markUserAiKeyUsed,
+  selectUserAiKeyStatus,
+  upsertUserAiKey,
+  type LoadedUserAiKey,
+  type UpsertUserAiKeyParams,
+  type UserAiKeyStatus,
+} from "./queries/user-keys";
+
+export {
+  selectDeliveryFailures,
+  selectFlagsForReview,
+  selectQuarantinedJobs,
+  type DeliveryFailureRow,
+  type FlagAutomationState,
+  type FlagReviewRow,
+  type QuarantinedJobRow,
+} from "./queries/admin";

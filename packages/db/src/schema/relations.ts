@@ -1,6 +1,6 @@
 // Relations for Drizzle's relational query API (`db.query.*`). No SQL is generated from these.
 import { relations } from "drizzle-orm";
-import { aiUsage } from "./ai";
+import { aiUsage, userAiKeys } from "./ai";
 import { user } from "./auth";
 import { passes, payments, referrals } from "./billing";
 import { channels, deliveryLog, telegramLinkTokens } from "./delivery";
@@ -26,6 +26,7 @@ export const userDomainRelations = relations(user, ({ one, many }) => ({
   payments: many(payments),
   channels: many(channels),
   telegramLinkTokens: many(telegramLinkTokens),
+  aiKey: one(userAiKeys),
 }));
 
 export const profilesRelations = relations(profiles, ({ one }) => ({
@@ -111,6 +112,10 @@ export const kitsRelations = relations(kits, ({ one }) => ({
   user: one(user, { fields: [kits.userId], references: [user.id] }),
   job: one(jobs, { fields: [kits.jobId], references: [jobs.id] }),
   match: one(matches, { fields: [kits.matchId], references: [matches.id] }),
+}));
+
+export const userAiKeysRelations = relations(userAiKeys, ({ one }) => ({
+  user: one(user, { fields: [userAiKeys.userId], references: [user.id] }),
 }));
 
 export const aiUsageRelations = relations(aiUsage, ({ one }) => ({

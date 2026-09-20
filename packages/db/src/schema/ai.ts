@@ -11,7 +11,7 @@ import {
   timestamp,
   uuid,
 } from "drizzle-orm/pg-core";
-import { createdAt, id } from "./_shared";
+import { createdAt, id, timestamps } from "./_shared";
 import { user } from "./auth";
 import { aiTask, keyClass } from "./enums";
 import { companies, jobs } from "./jobs";
@@ -84,4 +84,50 @@ export const aiCapAlerts = pgTable("ai_cap_alerts", {
   deliveredVia: text("delivered_via").$type<AiCapAlertChannel>(),
   /** Claims made for the day, the first included. */
   attempts: integer("attempts").notNull().default(1),
+});
+
+/**
+ * The user's own OpenRouter key, encrypted at rest (PLAN D17, phase 09).
+ *
+ * Here rather than on `profiles` because the row is a secret with its own lifecycle: it is written
+ * by one OAuth callback, read only by the server that makes a model call, and deleted the moment
+ * the user disconnects. A column on `profiles` would be loaded by every profile read in the
+ * product — onboarding, settings, the export — and a secret that rides along on unrelated reads is
+ * a secret that eventually gets logged.
+ *
+ * **There is no plaintext column and there must never be one.** `encrypted_key` holds base64 of
+ * `version(1) || iv(12) || authTag(16) || ciphertext`, produced by `encryptUserKey` in `@pemby/ai`
+ * (AES-256-GCM, a fresh 12-byte IV per encryption). The leading version byte is there now because
+ * adding it later is a migration; the auth tag means a tampered blob fails to decrypt rather than
+ * decrypting to something.
+ *
+ * `key_hash` is the lower-case hex SHA-256 of the key. It is **not** a credential and **not** a
+ * lookup key — it exists solely to build the two deep links that let the user manage their own key
+ * on OpenRouter (`/keys/<hash>`, `/logs?api_key_hash=<hash>`), which resolve only for the signed-in
+ * owner. Pemby cannot revoke a user's key; "disconnect" means deleting this row and sending them
+ * there. Nothing looks a row up by hash, so it carries no unique index: two different accounts
+ * connecting the same key is a fact about them, not a collision for us to police.
+ *
+ * `user_id` is unique — one connected account per user — and `ON DELETE cascade`. Cascade is the
+ * only correct option of the three: `restrict` would break `deleteUserAndCvRows` (which knows
+ * about `cv_files` and nothing else), and `set null` would leave an encrypted secret behind with
+ * nobody to attribute it to and no way to ever delete it.
+ *
+ * No `match_id`, so `retireStaleMatches` needs no new clause in its "safe to delete" predicate.
+ */
+export const userAiKeys = pgTable("user_ai_keys", {
+  id: id(),
+  userId: text("user_id")
+    .notNull()
+    .unique()
+    .references(() => user.id, { onDelete: "cascade" }),
+  /** base64 of `version(1) || iv(12) || authTag(16) || ciphertext`. Never a plaintext key. */
+  encryptedKey: text("encrypted_key").notNull(),
+  /** Lower-case hex SHA-256 of the key, for the user's own OpenRouter deep links. */
+  keyHash: text("key_hash").notNull(),
+  /** The label OpenRouter shows on the key, when it gave us one. Display only. */
+  label: text("label"),
+  /** When a model call last used this key. Null until the first one. */
+  lastUsedAt: timestamp("last_used_at", { withTimezone: true }),
+  ...timestamps(),
 });
