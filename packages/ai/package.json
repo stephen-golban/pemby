@@ -10,6 +10,7 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "check:zdr": "tsx scripts/check-zdr.ts",
+    "check:user-key": "tsx scripts/check-user-key.ts",
     "dry:zdr": "tsx scripts/dry-zdr.ts"
   },
   "dependencies": {

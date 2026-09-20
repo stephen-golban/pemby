@@ -47,8 +47,11 @@ export interface MatchProfileDeps {
    * inspected without being delivered anything.
    */
   includeUnonboarded?: boolean;
-  /** See `MatchJobDeps.testPassHolders`: the allowlist that makes `deliver_after` be `now`. */
-  testPassHolders?: readonly string[];
+  /**
+   * See `MatchJobDeps.testPassHolders`: the allowlist that makes `deliver_after` be `now`, and
+   * **required** since phase 09 for the reason argued there.
+   */
+  testPassHolders: readonly string[];
 }
 
 export type MatchProfileSkip =

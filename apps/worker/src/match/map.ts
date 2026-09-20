@@ -8,7 +8,7 @@ import {
   SENIORITY_DISTANCE,
   compatibleFamilies,
   deliverAfter,
-  entitlementsFor,
+  deliveryEntitlementsFor,
   fromDbSeniority,
   fromDbWay,
   isCountryCode,
@@ -217,16 +217,29 @@ interface UserSource {
  * `utcOffsetHours` is left null so core falls back to the country's own offset; the worker does no
  * time-zone database work of its own, exactly as `apps/web` does not.
  *
- * `allowedTiers` and the delivery window come from `entitlementsFor`, the one module that decides
- * them (PLAN section 5). The `passes` row is passed through even though that module does not
- * believe it before phase 10.
+ * `allowedTiers` and the delivery window come from `deliveryEntitlementsFor`, the one module that
+ * decides them (PLAN section 5). The `passes` row is passed through even though that module does
+ * not believe it before phase 10.
  *
  * `testPassHolders` has to be passed through too, and its absence here was a real defect: it is the
- * only thing that makes `entitlementsFor` answer `instant`, `deliverAfter` below is what writes
- * `matches.deliver_after`, and that column is the only thing `selectDueMatches` gates on. Without
- * it every row was written at `first_seen_at + 24h` whatever the dispatcher's allowlist said, so no
- * pass holder was ever delivered instantly — and the dispatcher, reading the same allowlist, then
- * judged the message not late and left the PLAN D13 disclosure off it.
+ * only thing that makes the entitlements module answer `instant`, `deliverAfter` below is what
+ * writes `matches.deliver_after`, and that column is the only thing `selectDueMatches` gates on.
+ * Without it every row was written at `first_seen_at + 24h` whatever the dispatcher's allowlist
+ * said, so no pass holder was ever delivered instantly — and the dispatcher, reading the same
+ * allowlist, then judged the message not late and left the PLAN D13 disclosure off it.
+ *
+ * Phase 09 closed that hole in core: `testPassHolders` is required there now. Two notes on what
+ * that means here.
+ *
+ *   - `deliveryEntitlementsFor`, not `entitlementsFor`. The kit quota is the other half of the
+ *     entitlements answer and it depends on whether the user has connected their own OpenRouter
+ *     key. The matcher does not read the user-key table and has no business reading it: delivery
+ *     timing does not depend on it. Asking the narrower question is what stops this file inventing
+ *     an `ownKeyConnected: false` that would be a lie for every user who has one.
+ *   - `extras.testPassHolders` is required, here and at every layer above: `MatchJobDeps`,
+ *     `MatchProfileDeps`, the two queue handlers and the `match:once` script. Asking the question
+ *     without it is a compile error the whole way out to the queue, which is the point — phase 08's
+ *     defect was not that a caller forgot, it was that the type let them.
  */
 export function userFacts(
   source: UserSource,
@@ -234,13 +247,22 @@ export function userFacts(
     domains: readonly string[];
     pass: ActivePass | null;
     now: Date;
-    testPassHolders?: readonly string[];
+    testPassHolders: readonly string[];
   },
 ): UserFacts | null {
   const country = coreCountry(source.residenceCountry);
   if (country === null) return null;
 
-  const entitlements = entitlementsFor({
+  // Unreachable from TypeScript now that the field is required at every layer, and kept anyway.
+  // `userFacts` is exported, `@pemby/worker` has no build step, and the one thing this guard is
+  // for — an allowlist that is silently absent — is the exact defect that made instant delivery not
+  // exist for a whole phase while every gate was green. Never `?? []`: an empty allowlist is a real
+  // answer meaning "nobody has a pass", and it is indistinguishable from a caller having forgotten.
+  if (extras.testPassHolders === undefined) {
+    throw new Error("[match] userFacts was called without testPassHolders");
+  }
+
+  const entitlements = deliveryEntitlementsFor({
     userId: source.userId,
     pass: extras.pass,
     includeYellow: source.includeYellow,
@@ -307,7 +329,7 @@ export const userFactsFromCandidate = (
     domains: readonly string[];
     pass: ActivePass | null;
     now: Date;
-    testPassHolders?: readonly string[];
+    testPassHolders: readonly string[];
   },
 ): UserFacts | null => userFacts(candidate, extras);
 
@@ -317,6 +339,6 @@ export const userFactsFromProfile = (
     domains: readonly string[];
     pass: ActivePass | null;
     now: Date;
-    testPassHolders?: readonly string[];
+    testPassHolders: readonly string[];
   },
 ): UserFacts | null => userFacts(profile, extras);

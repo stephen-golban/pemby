@@ -13,6 +13,7 @@
     "lint": "eslint .",
     "check:private-config": "tsx scripts/check-private-config.ts",
     "check:reasons": "tsx scripts/check-reasons.ts",
+    "check:kernel": "tsx scripts/check-kernel.ts",
     "rules:sample": "tsx scripts/rules-sample.ts",
     "engine:sample": "tsx scripts/engine-sample.ts"
   },

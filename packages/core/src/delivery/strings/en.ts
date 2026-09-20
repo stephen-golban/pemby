@@ -18,6 +18,10 @@
 // Nothing here says board, recruiter, recruitment, placement, get hired, guaranteed job,
 // auto-apply, scrape or beat the ATS, and nothing offers to write anyone's CV.
 
+// Type-only, and erased by `verbatimModuleSyntax`: `../../tracker` imports the labels below as a
+// value, so a runtime import in this direction would be a cycle.
+import type { TrackerColumn } from "../../tracker";
+
 export const DELIVERY_STRINGS = {
   // ---- Buttons on a match card -------------------------------------------------------------
   "button-apply": "Apply",
@@ -192,6 +196,26 @@ export const WAY_LABELS = {
   local: "Local",
   paid_program: "Paid program",
 } as const;
+
+/**
+ * The application tracker's column headings (phase 09). Twin of `Tracker.columns` in the web's
+ * `messages/en/tracker.json`, under the parity checker like every other table in this file.
+ *
+ * Here, in the table `check-reasons.ts` watches, and not in `../../tracker/index.ts` beside the
+ * mapping, for one reason: the web board and the Telegram card that the `tracker.sync` job edits
+ * render the same five headings through two different mechanisms, and phase 08 shipped two
+ * defects that were both a string copied out of a watched table. The mapping re-exports these.
+ *
+ * Wording is PLAN D16: the person applies, so nothing here says placement, recruiter or hired.
+ * "Interview" folds `screening` and `interviewing`; "Saved" is a job kept, not an application.
+ */
+export const TRACKER_COLUMN_LABELS = {
+  saved: "Saved",
+  applied: "Applied",
+  interview: "Interview",
+  offer: "Offer",
+  rejected: "Rejected",
+} as const satisfies Record<TrackerColumn, string>;
 
 export type WayLabelKey = keyof typeof WAY_LABELS;
 

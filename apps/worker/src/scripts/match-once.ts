@@ -180,7 +180,13 @@ try {
   const weights = await loadScoringWeights();
 
   if (jobArg !== undefined) {
-    const outcome = await matchOneJob({ db, weights, dryRun, includeUnonboarded }, jobArg);
+    const outcome = await matchOneJob(
+      // `testPassHolders` is required since phase 09, and the script reads the same
+      // `DELIVER_TEST_PASS_HOLDERS` the queue handler does (`readMatchEnv`), so a dry run's
+      // `deliver_after` matches what the real run would write instead of silently being 24h later.
+      { db, weights, dryRun, includeUnonboarded, testPassHolders: env.testPassHolders },
+      jobArg,
+    );
     console.log(`match:once dryRun=${dryRun}`);
     console.log(formatMatchJob(jobArg, outcome));
     if (outcome.kind === "matched") {
@@ -194,7 +200,7 @@ try {
   } else {
     const id = userArg !== undefined ? { userId: userArg } : { profileId: profileArg! };
     const outcome = await matchOneProfile(
-      { db, weights, jobLimit, dryRun, includeUnonboarded },
+      { db, weights, jobLimit, dryRun, includeUnonboarded, testPassHolders: env.testPassHolders },
       id,
     );
     console.log(`match:once dryRun=${dryRun} jobLimit=${jobLimit}`);

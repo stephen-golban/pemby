@@ -18,6 +18,7 @@
 // streamed responses, which is why an invalid streamed object goes through the repair path.
 import {
   APICallError,
+  StreamProviderError,
   generateText,
   isDeepEqualData,
   parsePartialJson,
@@ -148,6 +149,17 @@ export class AiCallError extends Error {
   readonly status: number | null;
   /** OpenRouter `error.metadata.error_type` when present, `timeout`, or `network`. */
   readonly errorType: string | null;
+  /**
+   * On a 402, which limit was hit, as a whitelisted token (`PAYMENT_LIMIT_SOURCES`). Carried on the
+   * error because the caller that has to decide — tell the user to top up, or wait and retry — is
+   * several frames above the response body. Read it through `paymentRequiredKindOf`.
+   */
+  readonly limitSource: PaymentLimitSource | null;
+  /**
+   * Parsed `Retry-After` in seconds, or null when the response carried none. Null is not "retry
+   * now": a caller with no duration backs off on its own schedule.
+   */
+  readonly retryAfter: number | null;
   readonly attemptedModels: readonly string[];
 
   constructor(task: AiTask, model: string, failure: Failure, attemptedModels: readonly string[]) {
@@ -161,6 +173,8 @@ export class AiCallError extends Error {
     this.model = model;
     this.status = failure.status;
     this.errorType = failure.errorType;
+    this.limitSource = failure.limitSource;
+    this.retryAfter = failure.retryAfter;
     this.attemptedModels = [...attemptedModels];
   }
 }
@@ -210,6 +224,24 @@ export class AiPromptMissingError extends Error {
 export interface Failure {
   status: number | null;
   errorType: string | null;
+  /**
+   * OpenRouter's `error.metadata.limit_source` on a 402, as a **whitelisted enum token** — not a
+   * free-text passthrough. See `PAYMENT_LIMIT_SOURCES`.
+   */
+  limitSource: PaymentLimitSource | null;
+  /**
+   * `Retry-After` in **seconds**, parsed, when the response carried one.
+   *
+   * A number, never the header string: `Retry-After` is an integer or an HTTP date, so there is no
+   * free-text risk, but a caller handed `"Mon, 21 Sep 2026 12:00:00 GMT"` will do arithmetic on it.
+   * `null` means the response said nothing — which is not "retry now": the only retryable payment
+   * failure is `in-flight`, and a caller with no duration should back off on its own schedule
+   * rather than hot-loop against someone's own key.
+   *
+   * **A mid-stream failure always has `null` here.** `StreamProviderError` carries the provider's
+   * error payload and no response headers: the headers belonged to the 200 that opened the stream.
+   */
+  retryAfter: number | null;
 }
 
 const SAFE_TOKEN = /^[a-z][a-z0-9_]{0,63}$/;
@@ -218,11 +250,78 @@ function safeToken(value: unknown): string | null {
   return typeof value === "string" && SAFE_TOKEN.test(value) ? value : null;
 }
 
-/** Status and error type only; the rest of an SDK error can hold request or response content. */
+/**
+ * 402 is not one condition, and until phase 09 nothing here could tell the three apart.
+ *
+ * | `limit_source`                 | Meaning                                  | Retry? |
+ * |--------------------------------|------------------------------------------|--------|
+ * | `openrouter_credits`           | The balance cannot cover the request     | No     |
+ * | `openrouter_key_limit`         | The key's own cap is exhausted           | No     |
+ * | `openrouter_in_flight_budget`  | Transient; sends `Retry-After`           | **Yes**|
+ *
+ * The third one can fire with a healthy positive balance, which is why "402 means out of money" is
+ * wrong and why a user connecting their own key would otherwise be told to top up an account that
+ * is fine. No SDK retries a 402 on its own, `ai@7` included: the decision is the caller's.
+ *
+ * The list is closed on purpose. `limit_source` is not personal data, but a value copied out of a
+ * response body into a log or `pgboss.job.output` is a free-text passthrough whatever it is called
+ * today, so an unknown value is dropped exactly as an unrecognised `error_type` is.
+ */
+export const PAYMENT_LIMIT_SOURCES = [
+  "openrouter_credits",
+  "openrouter_key_limit",
+  "openrouter_in_flight_budget",
+] as const;
+export type PaymentLimitSource = (typeof PAYMENT_LIMIT_SOURCES)[number];
+
+/** What the caller decides with: whose money ran out, and whether waiting can help. */
+export type PaymentRequiredKind = "credits" | "key-limit" | "in-flight";
+
+const PAYMENT_REQUIRED_KIND: Record<PaymentLimitSource, PaymentRequiredKind> = {
+  openrouter_credits: "credits",
+  openrouter_key_limit: "key-limit",
+  openrouter_in_flight_budget: "in-flight",
+};
+
+function limitSource(value: unknown): PaymentLimitSource | null {
+  return typeof value === "string" && (PAYMENT_LIMIT_SOURCES as readonly string[]).includes(value)
+    ? (value as PaymentLimitSource)
+    : null;
+}
+
+/** A day. A `Retry-After` beyond this is a provider bug, not a wait a job should honour. */
+const MAX_RETRY_AFTER_SECONDS = 86_400;
+
+/**
+ * `Retry-After` as whole seconds, from either RFC 9110 form: a delay in seconds, or an HTTP date.
+ * Anything else — absent, unparsable, negative, absurd — is `null`, never a guess.
+ */
+function retryAfterOf(headers: Record<string, string> | undefined, now: number): number | null {
+  const raw = headers?.["retry-after"] ?? headers?.["Retry-After"];
+  if (typeof raw !== "string" || raw.trim() === "") return null;
+  const value = raw.trim();
+
+  const seconds = /^\d+$/.test(value) ? Number(value) : (Date.parse(value) - now) / 1000;
+  if (!Number.isFinite(seconds)) return null;
+  const whole = Math.ceil(seconds);
+  if (whole < 0 || whole > MAX_RETRY_AFTER_SECONDS) return null;
+  return whole;
+}
+
+/**
+ * The shape of OpenRouter's error body, reduced to the four fields that are safe to read. Shared
+ * by both describers so the streamed path and the HTTP path cannot read different fields.
+ */
+type ErrorBody = {
+  code?: unknown;
+  type?: unknown;
+  metadata?: { error_type?: unknown; limit_source?: unknown };
+};
+
+/** Status, error type and 402 limit source only; the rest of an SDK error can hold content. */
 export function describeFailure(error: unknown): Failure {
   if (APICallError.isInstance(error)) {
     // Failed responses parse to `{ error: {...} }`; a 200 carrying an error passes the inner object.
-    type ErrorBody = { code?: unknown; type?: unknown; metadata?: { error_type?: unknown } };
     const data = (error.data ?? {}) as ErrorBody & { error?: ErrorBody };
     const body: ErrorBody = data.error ?? data;
     const code = typeof body.code === "number" ? body.code : null;
@@ -233,12 +332,14 @@ export function describeFailure(error: unknown): Failure {
         safeToken(body.metadata?.error_type) ??
         safeToken(body.type) ??
         (status === null ? "network" : null),
+      limitSource: limitSource(body.metadata?.limit_source),
+      retryAfter: retryAfterOf(error.responseHeaders, Date.now()),
     };
   }
   if (error instanceof Error && (error.name === "TimeoutError" || error.name === "AbortError")) {
-    return { status: null, errorType: "timeout" };
+    return { status: null, errorType: "timeout", limitSource: null, retryAfter: null };
   }
-  return { status: null, errorType: "network" };
+  return { status: null, errorType: "network", limitSource: null, retryAfter: null };
 }
 
 /**
@@ -246,10 +347,38 @@ export function describeFailure(error: unknown): Failure {
  * in an SSE chunk after the stream started. Only the numeric code and error type are read.
  */
 function describeStreamFailure(error: unknown): Failure {
+  // **This branch is the production path, and the order matters.** A provider error raised after
+  // the response stream has started reaches `result.stream`'s `error` part as a
+  // `StreamProviderError` — which is an `Error` and is **not** an `APICallError`, so delegating on
+  // `instanceof Error` sent every mid-stream 402 through `describeFailure`, out the bottom as
+  // `{status: null, errorType: "network"}`, and a user whose credits ran out mid-generation was
+  // told the network failed. Verified against the real object built by `ai@7.0.101` through the
+  // real provider: `name` is `AI_StreamProviderError`, `APICallError.isInstance` is `false`,
+  // `statusCode` is the HTTP-equivalent code, and `data` holds OpenRouter's own error payload —
+  // already unwrapped from its `{ error: ... }` envelope, though the `?? body` below tolerates
+  // either. There are no response headers on this path, so `retryAfter` is null by construction.
+  if (StreamProviderError.isInstance(error)) {
+    const payload = (error.data ?? {}) as ErrorBody & { error?: ErrorBody };
+    const body: ErrorBody = payload.error ?? payload;
+    const code = typeof body.code === "number" ? body.code : null;
+    const status = typeof error.statusCode === "number" ? error.statusCode : code;
+    return {
+      status,
+      errorType:
+        safeToken(body.metadata?.error_type) ??
+        safeToken(body.type) ??
+        (status === null ? "network" : null),
+      limitSource: limitSource(body.metadata?.limit_source),
+      retryAfter: null,
+    };
+  }
   if (error instanceof Error || typeof error !== "object" || error === null) {
     return describeFailure(error);
   }
-  type ErrorBody = { code?: unknown; type?: unknown; metadata?: { error_type?: unknown } };
+  // A bare `{ code, message, metadata }` object. Not a shape the SDK produces today; kept as a
+  // tolerant fallback for a raw payload read straight off the wire, and deliberately not asserted
+  // in `scripts/check-user-key.ts` — a check against a fixture of a shape nothing produces is how
+  // the branch above went wrong in the first place.
   const body = error as ErrorBody;
   const status = typeof body.code === "number" ? body.code : null;
   return {
@@ -258,7 +387,30 @@ function describeStreamFailure(error: unknown): Failure {
       safeToken(body.metadata?.error_type) ??
       safeToken(body.type) ??
       (status === null ? "network" : null),
+    limitSource: limitSource(body.metadata?.limit_source),
+    retryAfter: null,
   };
+}
+
+/**
+ * Which kind of 402 this is, or `null` when it is not a classified payment failure.
+ *
+ * Accepts what a caller will actually be holding: the `AiCallError` this module throws, a raw
+ * `APICallError` from the SDK, or the bare `{ code, message, metadata }` object OpenRouter sends in
+ * an SSE chunk **after** a streaming request has already returned 200 — on that path the failure
+ * never arrives as an HTTP status at all, which is why `describeStreamFailure` exists.
+ *
+ * `null` means "not a 402 we can name", which includes a 402 whose `limit_source` is absent or is a
+ * value not on the whitelist. It does not mean "safe to retry": only `"in-flight"` is retryable,
+ * and every other outcome, `null` included, is the caller's cue to stop and say why.
+ */
+export function paymentRequiredKindOf(error: unknown): PaymentRequiredKind | null {
+  const failure =
+    error instanceof AiCallError
+      ? { status: error.status, limitSource: error.limitSource }
+      : describeStreamFailure(error);
+  if (failure.status !== 402 || failure.limitSource === null) return null;
+  return PAYMENT_REQUIRED_KIND[failure.limitSource];
 }
 
 function openRouterProviderName(metadata: ProviderMetadata | undefined): string | null {
@@ -599,7 +751,9 @@ async function prepareRun<T>(options: StructuredTaskOptions<T>) {
       const estimate = failure.status === null ? estimateFor(model, messages) : null;
       return {
         ok: false,
-        failure: aborted ? { status: null, errorType: "aborted" } : failure,
+        failure: aborted
+          ? { status: null, errorType: "aborted", limitSource: null, retryAfter: null }
+          : failure,
         aborted,
         estimate,
         latencyMs: Math.round(performance.now() - t0),
@@ -607,8 +761,27 @@ async function prepareRun<T>(options: StructuredTaskOptions<T>) {
     }
   };
 
+  /**
+   * The first attempt that failed with a **classified** payment failure, across the streamed
+   * attempt and every model in the fallback chain.
+   *
+   * Kept because `AiCallError` is otherwise built from the *last* failure, and the last failure is
+   * rarely the informative one: `model1 -> 402 openrouter_credits` then `model2 -> 429` threw a 429,
+   * so a user who is genuinely out of credits was told the service was busy and asked to try again,
+   * which it will never satisfy. The first classified 402 is the actionable truth about the whole
+   * chain — every subsequent model is paid for out of the same empty balance.
+   */
+  let paymentFailure: { model: string; failure: Failure } | null = null;
+
   /** Records a failed attempt; rethrows the caller's abort after the row is written. */
   const recordFailure = async (model: string, attempt: Extract<Attempt, { ok: false }>) => {
+    if (
+      paymentFailure === null &&
+      attempt.failure.status === 402 &&
+      attempt.failure.limitSource !== null
+    ) {
+      paymentFailure = { model, failure: attempt.failure };
+    }
     await record({
       model,
       outcome: "error",
@@ -740,12 +913,17 @@ async function prepareRun<T>(options: StructuredTaskOptions<T>) {
 
     const aborted = callerSignal?.aborted === true;
     const failure: Failure = aborted
-      ? { status: null, errorType: "aborted" }
+      ? { status: null, errorType: "aborted", limitSource: null, retryAfter: null }
       : callbackError
-        ? { status: null, errorType: "callback" }
+        ? { status: null, errorType: "callback", limitSource: null, retryAfter: null }
         : streamError
           ? describeStreamFailure(streamError.error)
-          : { status: null, errorType: timeout.aborted ? "timeout" : "network" };
+          : {
+              status: null,
+              errorType: timeout.aborted ? "timeout" : "network",
+              limitSource: null,
+              retryAfter: null,
+            };
     // A request that got no usage back may still be billed; once text arrived it certainly is.
     const estimate =
       failure.status === null || text.length > 0 ? estimateFor(model, messages) : null;
@@ -827,7 +1005,13 @@ async function prepareRun<T>(options: StructuredTaskOptions<T>) {
       return success(repair, repairCheck.data, "repaired");
     }
 
-    const last = lastFailure ?? { model: route.model, failure: { status: null, errorType: null } };
+    // The first classified payment failure wins over the last failure of any kind: see the note on
+    // `paymentFailure`. `attemptedModels` still lists everything that was tried.
+    const last = paymentFailure ??
+      lastFailure ?? {
+        model: route.model,
+        failure: { status: null, errorType: null, limitSource: null, retryAfter: null },
+      };
     throw new AiCallError(task, last.model, last.failure, attemptedModels);
   };
 

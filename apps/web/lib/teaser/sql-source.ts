@@ -31,9 +31,9 @@ import {
   SENIORITY_DISTANCE,
   TARGET_COUNTRIES,
   WAYS_OF_WORKING,
+  allowedTiersFor,
   compatibleFamilies,
   countryName,
-  entitlementsFor,
   evaluateGates,
   scoreMatch,
   toDbSeniority,
@@ -397,15 +397,16 @@ export const sqlTeaserSource: TeaserSource = {
     const now = new Date();
 
     // The entitlements module is the one place that turns the yellow opt-in into a tier list
-    // (PLAN D13 amended 2026-09-17), so the teaser asks it rather than deciding for itself. No
-    // pass is read: this surface never differentiates on one, and a free plan is the safe floor.
+    // (PLAN D13 amended 2026-09-17), so the teaser asks it rather than deciding for itself.
     // `allowedTiers` never holds white or red, and `evaluateGates` strips them again anyway.
-    const { allowedTiers } = entitlementsFor({
-      userId: "",
-      pass: null,
-      includeYellow: input.includeYellow,
-      now,
-    });
+    //
+    // `allowedTiersFor`, not `entitlementsFor`: this surface is logged out. It has no user id, no
+    // pass row and no pass allowlist, and it used to pass `userId: ""` with neither of the other
+    // two to get at one field of the answer. Phase 09 made `testPassHolders` required — the field
+    // whose absence made instant delivery not exist — and a required field a caller cannot
+    // honestly supply is a field that gets faked with `[]`, which would have compiled and read as
+    // deliberate. So the tier-only question is its own function and the teaser asks that one.
+    const allowedTiers = allowedTiersFor({ includeYellow: input.includeYellow });
 
     const [weights, { rows }] = await Promise.all([
       loadScoringWeights(),

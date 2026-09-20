@@ -14,7 +14,7 @@
 //      nothing is the only shape that both holds and releases; `maxSkips` is the kernel's backstop
 //      for this ordering being got wrong, not the mechanism.
 //
-//   2. **Entitlements** (`entitlementsFor`, and nothing else). Its `deliveryMode` is the single
+//   2. **Entitlements** (`deliveryEntitlementsFor`, and nothing else). Its `deliveryMode` is the single
 //      source of the free-vs-pass split, and the only thing that sets `late` on the card and on the
 //      `delivery_log` row. This module never reads `passes` to make that decision, never spells 24
 //      anywhere, and never recomputes `deliver_after` — the matcher wrote that column from the
@@ -44,7 +44,12 @@
 // **Logs carry names and counts.** Never an address, a chat id, an endpoint, a user id, a title or
 // a company. Errors go through `safeErrorLabel` before they are logged *or* thrown, because pg-boss
 // persists a thrown value into `pgboss.job.output`.
-import { entitlementsFor, isWithinQuietHours, nextReleaseAt, FRESHNESS_HOURS } from "@pemby/core";
+import {
+  deliveryEntitlementsFor,
+  isWithinQuietHours,
+  nextReleaseAt,
+  FRESHNESS_HOURS,
+} from "@pemby/core";
 import type { ChannelType, DeliveryChannel, DueMatch } from "@pemby/db";
 import { safeErrorLabel } from "../cv/workers";
 import { delayHoursOf, toMatchCard } from "./card";
@@ -235,7 +240,12 @@ async function sendOne(
     return;
   }
 
-  const entitlements = entitlementsFor({
+  // `deliveryEntitlementsFor`, not `entitlementsFor`: the only field read below is `deliveryMode`,
+  // and the kit quota — the other half of the full answer — depends on whether this user has
+  // connected their own OpenRouter key, which the dispatcher does not read and does not need.
+  // Delivery timing does not depend on it. The narrower question is the honest one to ask, and it
+  // means this file never invents an `ownKeyConnected` value to satisfy a type.
+  const entitlements = deliveryEntitlementsFor({
     userId: row.userId,
     pass: entitlementInput.pass,
     includeYellow: entitlementInput.includeYellow,
@@ -250,7 +260,7 @@ async function sendOne(
   // takes both to be true for the note to belong on the message.
   //
   //   - It is an **upsell**: "A pass sends matches the moment they appear." Only someone without a
-  //     pass should ever be shown it, so `entitlementsFor` is one half — and it is asked here and
+  //     pass should ever be shown it, so the entitlements module is one half — and it is asked here and
   //     nowhere else, exactly as the contract requires.
   //   - It is a **disclosure**: "This post went up {hours}h ago." That is a statement about this
   //     particular message, and the card prints `Math.round(delayHours)`. So the second half is

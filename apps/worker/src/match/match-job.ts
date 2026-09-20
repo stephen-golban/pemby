@@ -56,12 +56,18 @@ export interface MatchJobDeps {
    */
   includeUnonboarded?: boolean;
   /**
-   * Until phase 10, the user ids `entitlementsFor` treats as pass holders
+   * Until phase 10, the user ids the entitlements module treats as pass holders
    * (`DELIVER_TEST_PASS_HOLDERS`). It reaches `deliverAfter`, so it is what makes a pass holder's
-   * `matches.deliver_after` be `now` instead of `first_seen_at + 24h`. Optional so the debugging
-   * script keeps compiling; the queue handler always passes it.
+   * `matches.deliver_after` be `now` instead of `first_seen_at + 24h`.
+   *
+   * **Required** since phase 09. It was optional "so the debugging script keeps compiling", and
+   * that convenience is exactly the defect: an omitted allowlist is indistinguishable from an empty
+   * one, every user resolves to the free plan, and instant delivery silently does not exist. The
+   * script passes `readMatchEnv().testPassHolders`, which is what the queue handler passes too, so
+   * nothing had to be invented to make this required — and omitting it is now a compile error here
+   * rather than a wrong `deliver_after` on staging.
    */
-  testPassHolders?: readonly string[];
+  testPassHolders: readonly string[];
 }
 
 export type MatchJobSkip =

@@ -67,8 +67,12 @@ export {
   AiCallError,
   AiOutputInvalidError,
   AiPromptMissingError,
+  PAYMENT_LIMIT_SOURCES,
+  paymentRequiredKindOf,
   runStreamingStructuredTask,
   runStructuredTask,
+  type PaymentLimitSource,
+  type PaymentRequiredKind,
   type RouteOverride,
   type StreamingPartialMeta,
   type StreamingStructuredTaskOptions,
@@ -77,6 +81,15 @@ export {
   type StructuredTaskOptions,
   type StructuredTaskResult,
 } from "./structured";
+export { UserKeyError, type UserKeyErrorReason } from "./errors";
+export {
+  USER_KEY_SECRET_VAR,
+  USER_KEY_VERSION,
+  assertUserKeySecret,
+  decryptUserKey,
+  encryptUserKey,
+  userKeyHash,
+} from "./user-key";
 export {
   estimateAttemptCost,
   estimateCostUsd,
