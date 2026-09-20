@@ -1,4 +1,5 @@
 // Enrichment queues. `enrich.job` carries one job id; `enrich.sweep` finds jobs to enqueue.
+import type { FlagField } from "@pemby/db";
 import type { PgBoss, Queue } from "pg-boss";
 
 export const ENRICH_JOB_QUEUE = "enrich.job";
@@ -9,6 +10,27 @@ export const ENRICH_SWEEP_CRON = "*/20 * * * *";
 
 export interface EnrichJobData {
   jobId: string;
+  /**
+   * Skip the content-hash short circuit. Set only by a `wrong_details` flag re-run.
+   *
+   * Without it a flag-triggered re-send is a **no-op**: `computeEnrichment` returns
+   * `skipped: "up-to-date"` whenever the stored enrichment's hash matches the post's, and a post's
+   * text has not changed because someone reported it. The sweep never sets this — its whole
+   * selector is "the hash moved", so forcing would spend a model call on every job every pass.
+   */
+  force?: boolean;
+  /**
+   * The `flags` row this run answers, if any. Present only on a flag re-run; the handler writes the
+   * flag's verdict when the run finishes, comparing the reported field before and after.
+   */
+  flagId?: string;
+  /**
+   * Fixed picker values from a `wrong_details` flag. **Never free text** — see `./hints.ts`, which
+   * is the only thing that may build one, and the kernel's `claimFlagsToProcess`, which never loads
+   * `flags.note`. `value` is null when the surface recorded the field but not a value, which the
+   * Telegram path always does.
+   */
+  hints?: { field: FlagField; value: string | null }[];
 }
 
 /**

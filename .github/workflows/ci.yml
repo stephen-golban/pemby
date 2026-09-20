@@ -17,6 +17,36 @@ jobs:
     name: Typecheck, lint, build
     runs-on: ubuntu-latest
     timeout-minutes: 15
+
+    # Postgres **18** with pgvector, and both halves are load-bearing:
+    #   - `uuidv7()` is a PostgreSQL 18 built-in and every table's primary key defaults to it, so
+    #     migration 0001 fails outright on 17 (`function uuidv7() does not exist`). Measured, not
+    #     assumed: a 17.11 cluster refused it and an 18.6 cluster applied all 15 migrations.
+    #   - `0000_enable_pgvector.sql` is `CREATE EXTENSION vector`, so the stock `postgres:18` image
+    #     is not enough; `pgvector/pgvector:pg18` is the same image with the extension installed.
+    # Pinned by digest-free tag on purpose: the tag tracks upstream patch releases of Postgres 18,
+    # which is what staging does too, and pinning a digest here would freeze CI on a Postgres that
+    # production has moved past.
+    services:
+      postgres:
+        image: pgvector/pgvector:pg18
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: pemby_ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+
+    env:
+      # The service is on localhost and holds nothing but what the step below writes. `check:sql`
+      # refuses to run against a database that already has job postings, so this can never be
+      # pointed at staging by editing one variable.
+      DATABASE_URL: postgres://postgres:postgres@127.0.0.1:5432/pemby_ci
+
     steps:
       - uses: actions/checkout@v7
 
@@ -31,6 +61,13 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm typecheck
       - run: pnpm lint
+
+      # `format:check` is in `package.json` and in `docs/conventions.md` and was **not** in CI, so a
+      # file could be committed unformatted and nothing noticed. That is not hypothetical: a wave-1
+      # commit on the phase-09 branch put an unformatted file in, and `format:check` stayed red
+      # through eight green gates and two blind reviews without anyone finding out. Here beside lint
+      # because it is fast and fails cheaply.
+      - run: pnpm format:check
 
       # The same reason key is rendered twice by two different mechanisms: the Brief through
       # next-intl from `apps/web/messages/en/brief.json`, and Telegram, email and push through
@@ -48,5 +85,36 @@ jobs:
       # imports the real module either. This is the only gate that actually loads it.
       - name: Deliver senders load
         run: pnpm --filter @pemby/worker deliver:smoke
+
+      # The phase-09 domain kernel, executed in process: entitlements, the kit quota boundary, the
+      # kit content bounds, the model input builder and the tracker mapping. Pure functions with
+      # hand-written inputs — no database, no network, no model. It says the logic answers correctly,
+      # which is not the same as the feature working, and its own header says so.
+      - name: Core kernel answers
+        run: pnpm --filter @pemby/core check:kernel
+
+      # The user-key codec and the 402 taxonomy, driven through the **real** AI SDK and the real
+      # OpenRouter provider with a scripted `fetch`. It exists in this shape because the first
+      # version asserted the mid-stream 402 case against a hand-built object, which classified
+      # correctly while production classified every mid-stream 402 as a network error. No network,
+      # no real keys, no model call.
+      - name: User-key crypto and the 402 taxonomy
+        run: pnpm --filter @pemby/ai check:user-key
+
+      # **The gate that was missing.** Roughly 1,250 lines of hand-written SQL ship in
+      # `packages/db/src/queries/` and until this step no gate connected to a database: `tsc`
+      # typechecks a `sql` template's type and never its contents, so a query can join the wrong
+      # table, be syntactically wrong, or drop `profiles.is_demo = false` and stay green through
+      # typecheck, lint and build. Three wave-1 defects — the `for update` over-locking, the
+      # kit-quota race and the flag-evidence double-insert — were found only because a reviewer
+      # stood up a database and ran the SQL by hand.
+      #
+      # Not a test suite and no test runner (PLAN D24): one script, real rows, `ok`/`FAIL` lines and
+      # an exit code, in the same style as the four `check:*` steps above. It cleans up after itself.
+      - name: Apply the migrations
+        run: pnpm --filter @pemby/db migrate
+
+      - name: Query helpers against a real Postgres
+        run: pnpm --filter @pemby/worker check:sql
 
       - run: pnpm build

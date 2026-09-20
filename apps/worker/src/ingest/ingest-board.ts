@@ -26,14 +26,25 @@ const { companies, companySourceHealth, jobs } = schema;
 const DETAIL_MAX_AGE_MS = 7 * 24 * 3600 * 1000;
 /** A Retry-After up to this long is waited out in the handler; longer ones go to queue backoff. */
 const MAX_INLINE_RETRY_AFTER_MS = 2 * 60 * 1000;
-/** Close-safety guard (see `decideClosing`). */
-const SUSPECT_MIN_OPEN = 3;
-const SUSPECT_MISSING_SHARE = 0.8;
+/**
+ * Close-safety guard (see `decideClosing`). **Exported** because `./job-live.ts` applies the same
+ * test to a single posting: two copies of "what makes a board read look false" would drift, and the
+ * per-job path exists precisely so one person's report can close a posting.
+ */
+export const SUSPECT_MIN_OPEN = 3;
+export const SUSPECT_MISSING_SHARE = 0.8;
 const SUSPECT_CONFIRM_AFTER_MS = 3600 * 1000;
-/** Consecutive `board-not-found` reads before the board is disabled and its jobs closed. */
-const NOT_FOUND_DISABLE_AFTER = 3;
-/** ...and the streak must span at least this long. */
-const NOT_FOUND_MIN_SPAN_MS = 24 * 3600 * 1000;
+/**
+ * Consecutive `board-not-found` reads before the board is disabled and its jobs closed, and the
+ * span that streak must cover.
+ *
+ * **Exported for the same reason as the suspect constants**: `./job-live.ts` asks whether one
+ * posting's 404 may be believed, and it must ask it at the bar the bulk path already uses. A second
+ * number would mean the board-wide path demands three reads over a day while one person's report
+ * acts on the first.
+ */
+export const NOT_FOUND_DISABLE_AFTER = 3;
+export const NOT_FOUND_MIN_SPAN_MS = 24 * 3600 * 1000;
 /** Vendor-wide breaker: this share of a vendor's enabled boards not-found in the last hour... */
 const VENDOR_NOT_FOUND_SHARE = 0.3;
 /** ...counted only once at least this many boards are affected (one board is not an outage). */
@@ -301,7 +312,12 @@ function jobColumns(item: KeptJob, ats: AtsKind, now: Date) {
 
 const STALE_CANONICAL_MS = 12 * 3600 * 1000;
 
-async function promoteMergedJobs(
+/**
+ * Exported for `check:sql`, which drives this against real rows rather than re-typing its two
+ * UPDATEs into a fixture. The statements here are the ones that decide whether a quarantine can be
+ * undone with nobody deciding it, and `tsc` cannot see inside either of them.
+ */
+export async function promoteMergedJobs(
   tx: Tx,
   companyId: string,
   ats: AtsKind,
@@ -359,27 +375,55 @@ async function promoteMergedJobs(
         (!row.canonicalVerifiedAt ||
           now.getTime() - row.canonicalVerifiedAt.getTime() > STALE_CANONICAL_MS);
       if (!stale) continue;
-      // Swap: the stale canonical is merged into this job, guarded so a concurrent change wins.
+
+      // Swap: this copy takes the stale canonical's place, and the canonical is merged into it.
+      //
+      // **Promote first, and guarded.** The two halves have different standing and it matters which
+      // is which, so that nobody later reads this comment as evidence of a bug that was happening.
+      //
+      // The `status` predicate is **defensive, and no current writer can reach past it.** The
+      // promote used to have none, which made it the one status write in this file that could move
+      // a job out of `quarantined` with nobody deciding it. But the SELECT above already filters
+      // `status = 'merged'`, and nothing in the codebase moves a job `merged -> quarantined`:
+      // `dedupeJob` and `quarantineJob` both require `status = 'open'`. So reaching it needs a
+      // concurrent writer that does not exist today. It is a latent hazard, not a demonstrated
+      // one — it could not be made to fail — and the guard is here because every sibling write has
+      // one (the demote below on `open`, the promote at the top of this function on `merged`, both
+      // close paths on `open`) and because the next writer should not have to rediscover why.
+      //
+      // The **ordering** is a fix for a real problem. With the demote first, a guarded promote that
+      // matched nothing left the canonical demoted and **no open job in the group at all**. In this
+      // order, a promote that matches nothing changes nothing and the loop moves on.
+      //
+      const promoted = await tx
+        .update(jobs)
+        .set({ status: "open", duplicateOfJobId: null, closedAt: null })
+        .where(and(eq(jobs.id, row.id), eq(jobs.status, "merged")))
+        .returning({ id: jobs.id });
+      if (promoted.length === 0) continue;
+
       const demoted = await tx
         .update(jobs)
         .set({ status: "merged", duplicateOfJobId: row.id })
         .where(and(eq(jobs.id, row.canonicalId), eq(jobs.status, "open")))
         .returning({ id: jobs.id });
-      if (demoted.length === 0) continue;
-      await tx
-        .update(jobs)
-        .set({ status: "open", duplicateOfJobId: null, closedAt: null })
-        .where(eq(jobs.id, row.id));
-      await tx
-        .update(jobs)
-        .set({ duplicateOfJobId: row.id })
-        .where(
-          and(
-            eq(jobs.duplicateOfJobId, row.canonicalId),
-            ne(jobs.id, row.id),
-            eq(jobs.status, "merged"),
-          ),
-        );
+
+      // A demote that matched nothing means the canonical changed under us, and the group now holds
+      // two open jobs for one moment. That is recoverable and is recovered: `row.id` goes into
+      // `toDedupe` below, and `dedupeJob` re-merges the group at the end of the board write. The
+      // siblings are only re-pointed when the swap actually happened.
+      if (demoted.length > 0) {
+        await tx
+          .update(jobs)
+          .set({ duplicateOfJobId: row.id })
+          .where(
+            and(
+              eq(jobs.duplicateOfJobId, row.canonicalId),
+              ne(jobs.id, row.id),
+              eq(jobs.status, "merged"),
+            ),
+          );
+      }
       promotedIds.push(row.id);
     }
   }

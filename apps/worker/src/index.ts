@@ -29,6 +29,7 @@ import {
   scheduleEnrichSweep,
   startEnrichWorkers,
 } from "./enrich";
+import { createFlagQueues, readFlagsEnv, scheduleFlagSweep, startFlagWorkers } from "./flags";
 import {
   createIngestQueues,
   runCompanySync,
@@ -36,6 +37,12 @@ import {
   startIngestWorkers,
 } from "./ingest/workers";
 import { createMatchQueues, readMatchEnv, scheduleMatchSweep, startMatchWorkers } from "./match";
+import {
+  createTrackerQueues,
+  describeTrackerEnv,
+  readTrackerEnv,
+  startTrackerWorkers,
+} from "./tracker";
 
 const appEnv = process.env.APP_ENV ?? "development";
 
@@ -111,6 +118,22 @@ try {
   deliverEnv = readDeliverEnv();
 } catch (error) {
   console.error(`deliver env invalid: ${error instanceof Error ? error.message : "error"}`);
+  process.exit(1);
+}
+
+let flagsEnv: ReturnType<typeof readFlagsEnv>;
+try {
+  flagsEnv = readFlagsEnv();
+} catch (error) {
+  console.error(`flags env invalid: ${error instanceof Error ? error.message : "error"}`);
+  process.exit(1);
+}
+
+let trackerEnv: ReturnType<typeof readTrackerEnv>;
+try {
+  trackerEnv = readTrackerEnv();
+} catch (error) {
+  console.error(`tracker env invalid: ${error instanceof Error ? error.message : "error"}`);
   process.exit(1);
 }
 
@@ -190,6 +213,15 @@ process.on("SIGINT", (s) => void shutdown(s));
 let deps: Parameters<typeof runCompanySync>[0];
 try {
   await boss.start();
+
+  // `tracker.sync` is created first, before anything else, because its **sender is another
+  // service**. `apps/web` runs its pg-boss client with `createSchema: false` and `migrate: false`,
+  // so it can send and cannot create, and a send to a queue that does not exist is silently
+  // dropped. Every other queue in this file is created before the handler that sends to it starts
+  // (the note below on the embed/match pair is the same rule); this one has to be created before
+  // the *web app* starts, which in practice means as early as this process can manage.
+  await createTrackerQueues(boss);
+
   await createIngestQueues(boss);
   const { version } = await loadPrivateConfig();
   await scheduleIngestJobs(boss, env, version.id);
@@ -257,6 +289,28 @@ try {
   const deliverChannels = await startDeliverWorkers({ boss, db, env: deliverEnv });
   await scheduleDeliverSweep(boss, deliverEnv);
   console.log(describeDeliverEnv(deliverEnv, deliverChannels));
+
+  // Phase 09 flag rules: flags.process and the flags.sweep cron (PLAN section 6).
+  //
+  // Registered **last of the queue-creating blocks**, and that is the ordering rule this file has
+  // followed since phase 07: a handler must not start before the queues it sends to exist. A flag
+  // rule sends to `enrich.job` (a forced re-enrichment for "wrong details") and to
+  // `company-evidence.check` (a re-check for "doesn't hire from my country"), both created above.
+  // Putting this block earlier would boot green and throw on the first flag of either reason.
+  //
+  // `http` is the process's one ATS client, shared with ingestion so the per-host rate limits hold
+  // across both: the "closed or fake" rule reads a real board.
+  await createFlagQueues(boss);
+  await startFlagWorkers({ boss, db, env: flagsEnv, http: deps.http });
+  await scheduleFlagSweep(boss, flagsEnv);
+  console.log(
+    `flags: ${flagsEnv.enabled ? "enabled" : "disabled"} sweepLimit=${flagsEnv.sweepLimit} concurrency=${flagsEnv.concurrency} staleClaimMin=${flagsEnv.staleClaimMs / 60_000} maxAttempts=${flagsEnv.maxAttempts} reweighLimit=${flagsEnv.reweighLimit}`,
+  );
+
+  // Phase 09 tracker sync: the handler for the queue created at the top of this block. No sweep —
+  // a person moving a card is the only thing that creates this work.
+  await startTrackerWorkers({ boss, db, env: trackerEnv });
+  console.log(describeTrackerEnv(trackerEnv));
 } catch (error) {
   console.error(
     `worker boot failed: ${error instanceof Error ? `${error.name}: ${error.message}` : "error"}`,

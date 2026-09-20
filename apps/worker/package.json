@@ -16,6 +16,8 @@
     "match:once": "tsx src/scripts/match-once.ts",
     "deliver:once": "tsx src/deliver/deliver-once.ts",
     "deliver:smoke": "tsx src/deliver/smoke.ts",
+    "check:sql": "tsx src/scripts/check-db-sql.ts",
+    "flags:once": "tsx src/scripts/flags-once.ts",
     "backfill:reasons": "tsx src/scripts/backfill-eligibility-reasons.ts",
     "typecheck": "tsc --noEmit",
     "lint": "eslint ."

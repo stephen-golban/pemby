@@ -27,6 +27,7 @@ import {
   sampleSlotAvailable,
   writeEnrichment,
 } from "./enrich-job";
+import { resolveFlagRun, snapshotEnrichmentField } from "./flag-followup";
 import type { EnrichEnv } from "./env";
 import {
   ENRICH_JOB_QUEUE,
@@ -194,14 +195,19 @@ export async function startEnrichWorkers(deps: EnrichWorkerDeps): Promise<void> 
     { batchSize: 1, localConcurrency: env.concurrency, pollingIntervalSeconds: 10 },
     async ([job]) => {
       if (!job) return;
-      const { jobId } = job.data;
+      const { jobId, force, flagId, hints } = job.data;
       const started = Date.now();
+      // A flag re-run names one field; the "before" reading has to be taken before the write.
+      const flagField = hints?.[0]?.field ?? null;
+      const before =
+        flagId && flagField ? await snapshotEnrichmentField(db, jobId, flagField) : null;
       try {
         if (
           env.sampleMaxJobs !== null &&
           !(await sampleSlotAvailable(db, env.sampleMaxJobs, jobId))
         ) {
           console.log(`enrich job=${jobId} skipped: sample-limit`);
+          if (flagId) await resolveFlagRun(db, flagId, "not-run");
           return;
         }
         const result = await computeEnrichment(
@@ -209,20 +215,37 @@ export async function startEnrichWorkers(deps: EnrichWorkerDeps): Promise<void> 
             db,
             ledger,
             capGuard,
-            runLabel: env.sampleMaxJobs !== null ? "sample" : "sweep",
+            runLabel: env.sampleMaxJobs !== null ? "sample" : flagId ? "flag" : "sweep",
             abortSignal: job.signal,
           },
           jobId,
+          {
+            ...(force ? { force: true } : {}),
+            ...(hints && hints.length > 0 ? { hints } : {}),
+          },
         );
         if (result.kind === "skipped") {
           console.log(`enrich job=${jobId} skipped: ${result.reason}`);
+          // A flag whose re-run never happened has not been answered. `not-found`, `not-open`,
+          // `demo` and `duplicate` are all facts a human should see rather than verdicts a rule
+          // may write, and `up-to-date` here would mean `force` was lost on the way.
+          if (flagId) await resolveFlagRun(db, flagId, "not-run");
           return;
         }
         const c = result.value;
         const written = await writeEnrichment(db, c);
         if (written.skipped) {
           console.log(`enrich job=${jobId} not written: ${written.skipped}`);
+          if (flagId) await resolveFlagRun(db, flagId, "not-run");
           return;
+        }
+        if (flagId && flagField) {
+          const after = await snapshotEnrichmentField(db, jobId, flagField);
+          const moved = after !== before;
+          const outcome = await resolveFlagRun(db, flagId, moved ? "changed" : "unchanged");
+          console.log(
+            `enrich job=${jobId} flag=${flagId} field=${flagField} moved=${moved} actioned=${outcome}`,
+          );
         }
         const tiers = c.verdicts.reduce<Record<string, number>>((acc, v) => {
           acc[v.tier] = (acc[v.tier] ?? 0) + 1;
@@ -235,7 +258,11 @@ export async function startEnrichWorkers(deps: EnrichWorkerDeps): Promise<void> 
         if (error instanceof DailyCapReachedError) {
           // Nothing was sent. Alert once per UTC day and run the job again after 00:00 UTC.
           const alert = await alertCapReached(db, error, error.day);
-          await boss.send(ENRICH_JOB_QUEUE, { jobId } satisfies EnrichJobData, {
+          // `job.data` verbatim, not `{ jobId }`: dropping `force` here would turn tomorrow's
+          // re-run into `skipped: "up-to-date"`, and dropping `flagId` would leave a flag claimed
+          // with nothing on the way to answer it. This queue is `standard`, so the send is accepted
+          // while the current job is still active — which is why it is `standard`.
+          await boss.send(ENRICH_JOB_QUEUE, job.data, {
             startAfter: error.retryAt,
             singletonKey: jobId,
           });
@@ -246,8 +273,10 @@ export async function startEnrichWorkers(deps: EnrichWorkerDeps): Promise<void> 
         }
         if (error instanceof AiOutputInvalidError) {
           // Not retried: the same post and prompt fail the same way. The sweep backs off from
-          // this job for 7 days once its last two attempts are invalid.
+          // this job for 7 days once its last two attempts are invalid. A flag waiting on this run
+          // is answered now rather than left claimed, because nothing further is coming.
           console.warn(`enrich job=${jobId} invalid output: ${describeEnrichError(error)}`);
+          if (flagId) await resolveFlagRun(db, flagId, "not-run");
           return;
         }
         if (!job.signal.aborted) {

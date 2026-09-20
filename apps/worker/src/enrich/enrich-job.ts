@@ -33,6 +33,7 @@ import {
 } from "@pemby/core";
 import { schema, type Db, type NewEligibilityEvidence, type NewJobEligibility } from "@pemby/db";
 import { and, asc, eq, gt, isNull, sql } from "drizzle-orm";
+import { renderHints, type EnrichmentHint } from "./hints";
 
 const { companies, eligibilityEvidence, jobEligibility, jobEnrichment, jobs } = schema;
 
@@ -205,7 +206,17 @@ export function rulesOf(job: JobText): RuleExtraction {
 export async function computeEnrichment(
   deps: EnrichDeps,
   jobId: string,
-  options: { force?: boolean } = {},
+  /**
+   * `force` skips the content-hash short circuit. A flag-triggered re-run **must** pass it: the
+   * job's text has not changed because someone reported it, so without `force` the whole run is
+   * `skipped: "up-to-date"` and nothing happens.
+   *
+   * `hints` are the fixed picker values from a `wrong_details` flag, rendered by `./hints.ts` and
+   * appended after everything `buildEnrichmentInput` produces — so the input's section offsets are
+   * untouched and a quote from the hint verifies against no section and is dropped. Public post
+   * text on the public key; free text never gets here (see `./hints.ts`).
+   */
+  options: { force?: boolean; hints?: readonly EnrichmentHint[] } = {},
 ): Promise<ComputeResult> {
   const job = await loadJob(deps.db, jobId);
   const skip = (reason: SkipReason): ComputeResult => ({ kind: "skipped", jobId, reason });
@@ -223,7 +234,7 @@ export async function computeEnrichment(
   const ai = await runStructuredTask({
     task: "job-enrichment",
     schema: jobEnrichmentOutputSchema,
-    input: buildEnrichmentInput(post).text,
+    input: buildEnrichmentInput(post).text + renderHints(options.hints ?? []),
     ledger: deps.ledger,
     capGuard: deps.capGuard,
     context: { jobId: job.id, companyId: job.companyId, runLabel: deps.runLabel ?? null },
