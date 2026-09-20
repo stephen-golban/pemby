@@ -1,18 +1,19 @@
 {
   "Settings": {
     "meta": {
-      "title": "Delivery"
+      "title": "Settings"
     },
-    "title": "Delivery",
-    "lead": "Where your matches arrive, and when. Pemby sends them; you apply yourself.",
+    "title": "Settings",
+    "lead": "How matches reach you, when they arrive, and whose credits pay for your application kits.",
     "channels": "Channels",
     "when": "When",
+    "ai": "Your own AI key",
     "on": "On",
     "off": "Off",
     "footnote": "A match goes out once on every channel that is on. Nothing else is ever sent from here.",
     "toBrief": "Open your Brief",
     "toProfile": "Change what you're matched on",
-    "railLink": "Delivery",
+    "railLink": "Settings",
     "anonymous": {
       "title": "Delivery needs an account",
       "body": "This session disappears with your CV after 24 hours, so there is nowhere to send anything yet. Create an account and Pemby can reach you on Telegram, by email, or on this browser.",
@@ -95,6 +96,52 @@
       "unavailable": "That didn't save. Try again.",
       "network": "No connection, so nothing was changed.",
       "push_refused": "This browser didn't allow notifications, so nothing was changed."
+    },
+    "aiFootnote": "Pemby pays for three application kits a month. Connect your OpenRouter account and your kits are paid from your own credits instead, with no monthly limit. Pemby stores the key encrypted and uses it only for your kits.",
+    "openrouter": {
+      "label": "OpenRouter",
+      "help": "Pemby pays for your kits: three a month. Connecting your own account lifts that limit.",
+      "helpConnected": "Your kits are paid from your OpenRouter credits. If your key can't pay, Pemby says so and stops — it never falls back to its own key.",
+      "connected": "Connected",
+      "notConnected": "Not connected",
+      "connect": "Connect",
+      "opening": "Opening OpenRouter",
+      "disconnect": "Disconnect",
+      "check": "Check",
+      "checking": "Checking",
+      "checkedOk": "OpenRouter answered for this key: it works.",
+      "justConnected": "Connected. Your kits are paid from your own credits from now on.",
+      "justNow": "just now",
+      "since": "Connected {when}.",
+      "lastUsed": "Last used {when}.",
+      "neverUsed": "Not used yet.",
+      "named": "OpenRouter calls it {label}.",
+      "manageLead": "Pemby holds this key to pay for your kits. Pemby cannot revoke it — only you can, on your own OpenRouter account.",
+      "manage": "Manage this key at OpenRouter",
+      "revokeLead": "Pemby has deleted its copy of your key. The key itself is still live on your OpenRouter account, and Pemby cannot revoke it — remove it there yourself.",
+      "revoke": "Remove this key at OpenRouter",
+      "revokeDone": "Done",
+      "revokeNote": "This link is built from the key's fingerprint, which Pemby no longer stores. Close this panel and the link is gone; the key is still listed on your OpenRouter keys page.",
+      "strandedKey": "If OpenRouter made a key before this failed, Pemby did not keep it. Remove it yourself:",
+      "keysPage": "your OpenRouter keys"
+    },
+    "openrouterErrors": {
+      "unauthenticated": "You've been signed out. Sign in and try again.",
+      "forbidden": "This account can't connect an OpenRouter key.",
+      "secret_unavailable": "Connecting an OpenRouter account isn't configured in this environment yet.",
+      "not_connected": "There's no OpenRouter key on this account.",
+      "key_undecryptable": "Pemby can't read the stored key any more. Disconnect, then connect again.",
+      "key_rejected": "OpenRouter no longer recognises this key — it was removed there. Connect again to make a new one.",
+      "credits_exhausted": "Your OpenRouter account is out of credits. Top it up, then check again.",
+      "key_limit_reached": "This key has reached its own spending limit. Raise the limit at OpenRouter, or connect again to make a new key.",
+      "in_flight_retry": "OpenRouter is holding requests on this key for a moment. Check again shortly.",
+      "no_code": "OpenRouter sent you back without an approval, so nothing was connected.",
+      "start_expired": "That took longer than ten minutes, so the approval had expired. Start again.",
+      "state_mismatch": "That approval didn't match the one this browser started, so nothing was connected. Start again.",
+      "code_rejected": "OpenRouter refused the approval — it had expired, or it had already been used. Start again.",
+      "exchange_failed": "OpenRouter didn't return a key, so nothing was connected.",
+      "unavailable": "That didn't work. Try again.",
+      "network": "No connection, so nothing was changed."
     }
   }
 }

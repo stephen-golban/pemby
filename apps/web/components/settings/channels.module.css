@@ -21,6 +21,22 @@
   color: var(--color-ink-soft);
 }
 
+/*
+ * A link inside a note. The note is already `ink-soft`, so the link takes the full `ink` and its
+ * underline sits off the baseline rather than through the descenders — the same treatment as
+ * `panels.module.css`'s text link, kept here because this one is inline in a sentence rather than
+ * standing on its own.
+ */
+.inlineLink {
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.inlineLink:hover {
+  text-decoration-thickness: 2px;
+}
+
 /* Quiet hours ------------------------------------------------------------ */
 
 .window {
