@@ -1,88 +1,226 @@
 /*
- * Shared grammar for the landing sections below the band: one container, one heading voice,
- * one rhythm. More space above a heading (--rhythm-section) than below it (--rhythm-heading-body).
+ * Shared grammar for the landing sections on the white sheet: one container, one heading voice,
+ * one rhythm, and the handful of atoms every section is built from — the white card at 24px
+ * radius, the solid accent tile, the black pill, the outlined pill, and the synthetic-content
+ * stamp. Nothing here is page-specific: no tilt, no rotation, no flourishes.
+ *
+ * More space above a heading (--rhythm-section) than below it (--rhythm-heading-body).
  */
 
 .section {
   max-inline-size: calc(var(--content-max) + 2 * var(--gutter));
   margin-inline: auto;
   padding: var(--rhythm-section) var(--gutter) 0;
-  scroll-margin-block-start: calc(var(--space-7) - var(--rhythm-section));
+  scroll-margin-block-start: var(--space-6);
 }
 
 .title {
-  max-inline-size: 15em;
-  font-family: var(--font-display);
+  max-inline-size: 18ch;
   font-size: var(--text-section);
   font-weight: var(--weight-display);
-  line-height: 0.92;
+  line-height: 0.95;
   letter-spacing: var(--tracking-display);
   text-wrap: balance;
   color: var(--color-ink);
 }
 
 .intro {
-  max-inline-size: 58ch;
+  max-inline-size: 62ch;
   margin-block-start: var(--rhythm-heading-body);
-  font-size: var(--text-small);
-  line-height: var(--leading-body);
+  font-size: var(--text-lead);
+  line-height: 1.5;
+  color: var(--color-ink-soft);
   text-wrap: pretty;
 }
 
-/* The unmissable synthetic-content marker, the same stamp the band's cards carry. */
-.example {
+/*
+ * The synthetic-content marker. Fixed colours in both themes on purpose: it has to read the same
+ * everywhere, or it stops being unmissable.
+ */
+.stamp {
   display: inline-block;
-  padding: 6px 9px 5px;
-  border: 1px solid rgb(247 241 230 / 0.5);
-  border-radius: 7px;
-  background: rgb(20 17 13 / 0.86);
-  color: #f7f1e6;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: var(--tracking-label);
+  padding: 4px 10px 3px;
+  border-radius: var(--radius-pill);
+  background: #0b0b0b;
+  color: #ffffff;
+  font-size: var(--text-micro);
+  font-weight: var(--weight-title);
+  line-height: 1.35;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
-.textLink {
-  font-weight: var(--weight-mono-strong);
-  text-decoration: underline;
+/* The white card every block on the sheet is built from. */
+.card {
+  padding: var(--space-6);
+  border-radius: var(--radius-card);
+  background: var(--color-card);
+  box-shadow: var(--shadow-card);
 }
 
-/* A pill-shaped action link in the display face. */
-.action {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  min-block-size: 52px;
-  padding: 0 24px;
-  border-radius: var(--radius-full);
+/* The solid accent tile. It always carries a mark, and a yellow one carries a near-black mark. */
+.tile {
+  display: grid;
+  place-items: center;
+  flex: none;
+  inline-size: 56px;
+  block-size: 56px;
+  border-radius: var(--radius-tile);
+}
+
+.tile[data-accent="green"] {
+  background: var(--color-accent-green);
+  color: var(--color-on-accent-green);
+}
+
+.tile[data-accent="yellow"] {
+  background: var(--color-accent-yellow);
+  color: var(--color-on-accent-yellow);
+}
+
+.tile[data-accent="blue"] {
+  background: var(--color-accent-blue);
+  color: var(--color-on-accent-blue);
+}
+
+.tile[data-accent="red"] {
+  background: var(--color-accent-red);
+  color: var(--color-on-accent-red);
+}
+
+.tile[data-accent="ink"] {
   background: var(--color-ink);
   color: var(--color-ground);
-  font-family: var(--font-display);
-  font-size: 1.1875rem;
+}
+
+/* An unclear verdict has no fill to stand on, so it is drawn with an edge instead. */
+.tile[data-accent="white"] {
+  border: 2px solid var(--color-line-strong);
+  background: var(--color-tier-white);
+  color: var(--color-ink);
+}
+
+.tileMark {
+  inline-size: 28px;
+  block-size: 28px;
+}
+
+/* The filled black pill: the one act in a section. */
+.action {
+  display: inline-flex;
+  gap: var(--space-2);
+  align-items: center;
+  justify-content: center;
+  min-block-size: 52px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--color-ink);
+  color: var(--color-ground);
+  font-family: inherit;
+  font-size: var(--text-body);
   font-weight: var(--weight-title);
-  letter-spacing: -0.01em;
   text-decoration: none;
-  transition: transform var(--duration-fast) var(--ease-out);
+  cursor: pointer;
+  transition: opacity var(--duration-fast) var(--ease-out);
 }
 
 .action:hover {
-  transform: translateY(-2px);
+  opacity: 0.86;
 }
 
-.action svg {
-  inline-size: 18px;
-  block-size: 18px;
+.actionArrow {
+  flex: none;
+  inline-size: 30px;
+  block-size: 12px;
+  transition: translate var(--duration-fast) var(--ease-out);
+}
+
+.action:hover .actionArrow {
+  translate: 3px 0;
+}
+
+/* The outlined pill: the quieter of the two link shapes. */
+.outline {
+  display: inline-flex;
+  gap: var(--space-2);
+  align-items: center;
+  justify-content: center;
+  min-block-size: 46px;
+  padding: 0 20px;
+  border: 1.5px solid var(--color-line-strong);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--color-ink);
+  font-family: inherit;
+  font-size: var(--text-small);
+  font-weight: var(--weight-title);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--duration-fast) var(--ease-out);
+}
+
+.outline:hover {
+  background: var(--color-surface);
+}
+
+.textLink {
+  font-weight: var(--weight-medium);
+  text-decoration: underline;
+}
+
+/* A light grey tag pill: a reason, a fact, a criterion. */
+.tag {
+  padding: 7px 13px;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  font-size: var(--text-label);
+  font-weight: var(--weight-medium);
+  line-height: 1.35;
+  color: var(--color-ink);
+}
+
+/* The tinted tier pill, so a verdict is a tile, a tint and a word — never a colour alone. */
+.tierPill {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  font-size: var(--text-label);
+  font-weight: var(--weight-title);
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
+.tierPill[data-tier="green"] {
+  background: var(--color-tier-green-soft);
+  color: var(--color-on-tier-green-soft);
+}
+
+.tierPill[data-tier="yellow"] {
+  background: var(--color-tier-yellow-soft);
+  color: var(--color-on-tier-yellow-soft);
+}
+
+.tierPill[data-tier="white"] {
+  border: 1px solid var(--color-line);
+  background: var(--color-tier-white-soft);
+  color: var(--color-on-tier-white-soft);
+}
+
+.tierPill[data-tier="red"] {
+  background: var(--color-tier-red-soft);
+  color: var(--color-on-tier-red-soft);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .action {
+  .action,
+  .actionArrow,
+  .outline {
     transition: none;
   }
 
-  .action:hover {
-    transform: none;
+  .action:hover .actionArrow {
+    translate: none;
   }
 }

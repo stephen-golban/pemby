@@ -1,52 +1,60 @@
 /*
- * Legal pages: Read mode inside the landing system. Same ground, ink, grotesk and mono; no field,
- * no cards, no tilt. Body stays monospace (the system's paragraph voice) with a looser leading and
- * a 70ch measure so long sections stay comfortable.
+ * The legal documents: the Read surface of the app world.
+ *
+ * Comprehension first. The title is set at poster scale in the same heavy grotesk as everything
+ * else, the table of contents is a white card at 24px radius that follows the reader down the
+ * page, and the document itself runs at a 68-character measure with generous leading so a long
+ * section stays comfortable in a second language. No accent colour arrives here: on a Read surface
+ * a solid fill would mark one paragraph as more important than another, and none of them is.
  */
 
 .page {
-  min-height: 100dvh;
   display: flex;
   flex-direction: column;
+  min-block-size: 100dvh;
   overflow-x: clip;
   background: var(--color-ground);
 }
 
 .main {
   flex: 1;
-  padding: clamp(56px, 9vw, 120px) var(--gutter) clamp(72px, 10vw, 150px);
+  padding: var(--rhythm-lead) var(--gutter) var(--rhythm-section);
 }
 
 .layout,
 .head {
-  --toc-width: 15.5rem;
-  --toc-gap: clamp(48px, 6vw, 96px);
-  --measure: 70ch;
+  --toc-width: 16rem;
+  --toc-gap: clamp(40px, 5vw, 80px);
+  --measure: 68ch;
 
-  margin-inline: auto;
   max-inline-size: calc(var(--toc-width) + var(--toc-gap) + var(--measure));
+  margin-inline: auto;
 }
 
-.head {
-  padding-inline-start: calc(var(--toc-width) + var(--toc-gap));
-}
+/* The title runs from the page edge, across both columns: it is the poster, not a column head. */
 
 .title {
-  max-inline-size: 12em;
-  font-family: var(--font-display);
-  font-size: clamp(2.75rem, 1.7rem + 3.4vw, 4.75rem);
-  font-weight: var(--weight-display);
-  line-height: 0.92;
-  letter-spacing: -0.03em;
+  max-inline-size: 16ch;
+  font-size: var(--text-display);
+  font-weight: var(--weight-heavy);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
   text-wrap: balance;
 }
 
 .effective {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 34px;
   margin-block-start: var(--space-5);
+  padding: 0 14px;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
   font-size: var(--text-label);
+  font-weight: var(--weight-medium);
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
-  color: var(--color-ink-soft);
+  color: var(--color-ink);
 }
 
 .layout {
@@ -54,17 +62,20 @@
   grid-template-columns: var(--toc-width) minmax(0, var(--measure));
   column-gap: var(--toc-gap);
   align-items: start;
-  margin-block-start: clamp(48px, 7vw, 88px);
+  margin-block-start: var(--rhythm-sub-action);
 }
 
-/* Table of contents: a sticky side list on wide screens, a disclosure on narrow ones. */
+/* Wayfinding: a sticky card on wide screens, a disclosure on narrow ones. */
 
 .tocSide {
   position: sticky;
-  inset-block-start: var(--space-6);
-  max-block-size: calc(100dvh - 2 * var(--space-6));
+  inset-block-start: var(--space-5);
+  max-block-size: calc(100dvh - 2 * var(--space-5));
   overflow-y: auto;
-  padding-inline-end: var(--space-2);
+  padding: var(--space-5);
+  border-radius: var(--radius-card);
+  background: var(--color-card);
+  box-shadow: var(--shadow-card);
   scrollbar-width: thin;
   scrollbar-color: var(--color-line) transparent;
 }
@@ -72,6 +83,7 @@
 .tocTitle {
   margin-block-end: var(--space-3);
   font-size: var(--text-label);
+  font-weight: var(--weight-title);
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
   color: var(--color-ink-soft);
@@ -87,12 +99,14 @@
 
 .tocLink {
   display: block;
-  padding: 5px 0;
-  font-size: 0.875rem;
+  padding: 6px 0;
+  font-size: var(--text-small);
+  font-weight: var(--weight-medium);
   line-height: 1.4;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.012em;
   color: var(--color-ink-soft);
   text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-out);
 }
 
 /* Touch screens, and the inline disclosure on narrow ones, get 44px targets. */
@@ -114,14 +128,15 @@
   display: none;
 }
 
-/* The document */
+/* The document ---------------------------------------------------------- */
 
 .prose {
   grid-column: 2;
   min-inline-size: 0;
-  font-size: var(--text-body);
-  line-height: 1.75;
-  letter-spacing: -0.01em;
+  font-size: 1.0625rem;
+  font-weight: var(--weight-body);
+  line-height: 1.7;
+  letter-spacing: -0.006em;
   color: var(--color-ink);
   text-wrap: pretty;
 }
@@ -132,29 +147,42 @@
 
 .prose p,
 .prose ul,
-.prose ol {
-  margin-block: 0 1.1em;
+.prose ol,
+.prose blockquote {
+  margin-block: 0 1.15em;
 }
 
+/*
+ * The opening paragraph carries the document's summary, so it is set a step larger: --text-lead,
+ * which rises above the prose base from tablet up and meets it at the narrowest widths.
+ */
 .prose > p:first-child {
-  font-size: 1.0625rem;
+  font-size: var(--text-lead);
+  line-height: 1.6;
 }
 
 .prose ul,
 .prose ol {
-  padding-inline-start: 1.4em;
+  padding-inline-start: 1.35em;
 }
 
 .prose li + li {
-  margin-block-start: 0.45em;
+  margin-block-start: 0.5em;
 }
 
 .prose li::marker {
   color: var(--color-ink-soft);
+  font-weight: var(--weight-medium);
 }
 
 .prose strong {
-  font-weight: 600;
+  font-weight: var(--weight-title);
+}
+
+.prose blockquote {
+  padding-inline-start: var(--space-5);
+  border-inline-start: 2px solid var(--color-line-strong);
+  color: var(--color-ink-soft);
 }
 
 .prose a {
@@ -172,13 +200,20 @@
   margin-block: 3.25rem 1rem;
   padding-block-start: 2rem;
   border-block-start: 1px solid var(--color-line);
-  font-family: var(--font-display);
-  font-size: 1.625rem;
-  font-weight: var(--weight-title);
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  font-size: 1.75rem;
+  font-weight: var(--weight-heavy);
+  line-height: 1.12;
+  letter-spacing: var(--tracking-title);
   text-wrap: balance;
   scroll-margin-block-start: var(--space-5);
+}
+
+.prose h3 {
+  margin-block: 2rem 0.75rem;
+  font-size: var(--text-row);
+  font-weight: var(--weight-heavy);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
 .anchor {
@@ -200,8 +235,8 @@
 }
 
 .anchor:hover {
+  background: var(--color-surface);
   color: var(--color-ink);
-  background: color-mix(in srgb, var(--color-ink) 7%, transparent);
 }
 
 .anchorIcon {
@@ -215,18 +250,22 @@
   }
 }
 
-/* Tables */
+/* Tables ---------------------------------------------------------------- */
 
 .tableWrap {
-  margin-block: 1.5em 1.75em;
+  margin-block: 1.75em 2em;
   overflow-x: auto;
+  padding: var(--space-5) var(--space-5) var(--space-2);
+  border-radius: var(--radius-card);
+  background: var(--color-card);
+  box-shadow: var(--shadow-card);
 }
 
 .table {
   inline-size: 100%;
   border-collapse: collapse;
-  font-size: 0.875rem;
-  line-height: 1.5;
+  font-size: var(--text-small);
+  line-height: 1.55;
   text-align: start;
 }
 
@@ -234,8 +273,8 @@
   padding: 0 var(--space-4) var(--space-3) 0;
   border-block-end: 1.5px solid var(--color-line-strong);
   font-size: var(--text-label);
-  font-weight: var(--weight-mono-strong);
-  letter-spacing: 0.06em;
+  font-weight: var(--weight-title);
+  letter-spacing: var(--tracking-label);
   text-align: start;
   text-transform: uppercase;
   vertical-align: bottom;
@@ -247,19 +286,24 @@
   vertical-align: top;
 }
 
-.table td:first-child {
-  font-weight: var(--weight-mono-strong);
+.table tr:last-child td {
+  border-block-end: 0;
 }
 
+.table td:first-child {
+  font-weight: var(--weight-medium);
+}
+
+/* Narrow ---------------------------------------------------------------- */
+
 @media (max-width: 1023px) {
-  .head {
-    padding-inline-start: 0;
+  .head,
+  .layout {
     max-inline-size: var(--measure);
   }
 
   .layout {
     display: block;
-    max-inline-size: var(--measure);
   }
 
   .tocSide {
@@ -268,21 +312,21 @@
 
   .tocInline {
     display: block;
-    margin-block-end: clamp(40px, 8vw, 64px);
-    border: 1px solid var(--color-line);
-    border-radius: var(--radius-md);
+    margin-block-end: clamp(36px, 7vw, 56px);
+    border-radius: var(--radius-lg);
     background: var(--color-surface);
   }
 
   .tocSummary {
     display: flex;
+    gap: var(--space-4);
     align-items: center;
     justify-content: space-between;
-    gap: var(--space-4);
-    min-block-size: 48px;
-    padding: var(--space-3) var(--space-4);
+    min-block-size: 52px;
+    padding: var(--space-3) var(--space-5);
     border-radius: inherit;
     font-size: var(--text-label);
+    font-weight: var(--weight-title);
     letter-spacing: var(--tracking-label);
     text-transform: uppercase;
     list-style: none;
@@ -310,12 +354,20 @@
   }
 
   .tocInline .tocList {
-    padding: 0 var(--space-4) var(--space-4);
+    padding: 0 var(--space-5) var(--space-4);
+  }
+
+  .prose {
+    grid-column: auto;
   }
 }
 
 /* Phones: tables stack into labelled rows instead of scrolling sideways. */
 @media (max-width: 639px) {
+  .tableWrap {
+    padding: var(--space-4) var(--space-5);
+  }
+
   .table thead {
     position: absolute;
     inline-size: 1px;
@@ -333,12 +385,12 @@
   }
 
   .table tr {
-    padding-block: var(--space-3);
+    padding-block: var(--space-4);
     border-block-end: 1px solid var(--color-line);
   }
 
-  .table tr:first-child {
-    border-block-start: 1.5px solid var(--color-line-strong);
+  .table tr:last-child {
+    border-block-end: 0;
   }
 
   .table td {
@@ -349,24 +401,28 @@
   .table td + td::before {
     content: attr(data-label);
     display: block;
+    margin-block-start: var(--space-2);
     font-size: 0.75rem;
-    font-weight: var(--weight-mono-strong);
-    letter-spacing: 0.06em;
+    font-weight: var(--weight-title);
+    letter-spacing: var(--tracking-label);
     text-transform: uppercase;
     color: var(--color-ink-soft);
   }
 
   .prose {
-    line-height: 1.7;
+    font-size: 1rem;
   }
 
   .h2 {
-    font-size: 1.4375rem;
+    margin-block: 2.5rem 0.875rem;
+    padding-block-start: 1.5rem;
+    font-size: 1.5rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .anchor,
+  .tocLink,
   .tocSummary::after {
     transition: none;
   }

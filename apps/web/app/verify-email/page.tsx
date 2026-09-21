@@ -3,6 +3,8 @@ import { getTranslations } from "next-intl/server";
 import { headers } from "next/headers";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { AuthShell, ArrowMark, CheckMark, MailMark } from "@/components/auth";
+import styles from "@/components/auth/auth.module.css";
 import { ResendVerificationForm } from "@/components/auth-form";
 import { AFTER_VERIFY_PATH } from "@/lib/auth/codes";
 import { getSession } from "@/lib/auth/session";
@@ -28,11 +30,19 @@ export default async function VerifyEmailPage({
   if (error) {
     const expired = error === "TOKEN_EXPIRED";
     return (
-      <main>
-        <h1>{expired ? t("expiredHeading") : t("invalidHeading")}</h1>
-        <p>{expired ? t("expired") : t("invalid")}</p>
+      <AuthShell
+        accent="yellow"
+        mark={<MailMark className={styles.tileMark} />}
+        headline={expired ? t("expiredHeading") : t("invalidHeading")}
+        lead={expired ? t("expired") : t("invalid")}
+      >
         <ResendVerificationForm />
-      </main>
+        <p className={styles.footRow}>
+          <Link className={styles.quiet} href="/sign-in">
+            {t("page.backToSignIn")}
+          </Link>
+        </p>
+      </AuthShell>
     );
   }
 
@@ -43,12 +53,18 @@ export default async function VerifyEmailPage({
 
   // Reached without a fresh sign-in, e.g. a link opened again after the email was confirmed.
   return (
-    <main>
-      <h1>{t("verifiedHeading")}</h1>
-      <p>{t("verified")}</p>
-      <p>
-        <Link href="/sign-in">{t("signIn")}</Link>
-      </p>
-    </main>
+    <AuthShell
+      accent="green"
+      mark={<CheckMark className={styles.tileMark} />}
+      headline={t("verifiedHeading")}
+      lead={t("verified")}
+    >
+      <h2 className={styles.cardTitle}>{t("page.verify.nextTitle")}</h2>
+      <p className={styles.cardBody}>{t("page.verify.nextBody")}</p>
+      <Link className={styles.primary} href="/sign-in">
+        {t("signIn")}
+        <ArrowMark className={styles.arrow} />
+      </Link>
+    </AuthShell>
   );
 }

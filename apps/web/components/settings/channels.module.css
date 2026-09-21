@@ -1,108 +1,451 @@
 /*
- * What the channels ledger needs beyond the row grammar it borrows from
- * `app/profile/_shared/fields.module.css`: the state line, the quieter note under it, the time
- * inputs, and the block that shows a minted Telegram link once.
+ * The delivery screen's cards, tiles, rows and switches.
  *
- * Nothing new is invented here. Same hairlines, same mono, same outline pill, same tokens
- * (DESIGN.md, Operate surfaces: the ledger at working density with every flourish removed).
+ * Same hand as `/brief`: white cards at 24px radius with one soft wide shadow on the white sheet,
+ * a solid accent rounded square at the left of every row carrying that channel's own mark, heavy
+ * near-black for the thing being decided, warm grey for everything that explains it, and one
+ * outline pill that is a real `switch` and says its state in a word. Colour is a fill and never a
+ * wash behind a sentence; the only tinted block is the one that reports a failure, which is tinted
+ * so it is not a red edge alone.
+ *
+ * This stylesheet stands on its own. It borrows nothing from the profile ledger any more — the two
+ * surfaces answer different questions, and a row here holds a switch rather than an editor.
  */
 
-.state {
-  font-size: var(--text-small);
-  line-height: 1.5;
+/* The card ------------------------------------------------------------- */
+
+.card {
+  display: grid;
+  gap: var(--space-5);
+  padding: var(--space-6);
+  border-radius: var(--radius-card);
+  background: var(--color-card);
+  color: var(--color-on-card);
+  box-shadow: var(--shadow-card);
+  animation: settle var(--duration-base) var(--ease-out) both;
+  animation-delay: calc(var(--settle-index, 0) * 60ms);
 }
 
-/* A fact the person did not choose: a blocked bot, a browser that cannot do this, other devices. */
-.note {
-  max-inline-size: 58ch;
-  margin-block-start: var(--space-2);
+/* The stack settles once, one card after another, and nothing loops. */
+@keyframes settle {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.cardHead {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.cardTitle {
+  font-size: var(--text-heading);
+  font-weight: var(--weight-heavy);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-title);
+}
+
+.cardNote {
+  max-inline-size: 66ch;
+  font-size: var(--text-small);
+  line-height: 1.5;
+  color: var(--color-ink-soft);
+}
+
+.footnote {
+  max-inline-size: 66ch;
   font-size: var(--text-label);
   line-height: 1.5;
   color: var(--color-ink-soft);
 }
 
-/* Quiet hours ------------------------------------------------------------ */
-
-.window {
-  font-variant-numeric: tabular-nums;
+/* A card whose subject earns a tile of its own: the quiet window, the hold. */
+.cardHeadRow {
+  display: flex;
+  gap: var(--space-4);
+  align-items: center;
 }
 
-.zone {
-  margin-inline-start: var(--space-3);
-  color: var(--color-ink-soft);
+.cardActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
 }
 
-.timeLabel {
-  font-size: var(--text-label);
-  font-weight: var(--weight-mono-strong);
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
-  color: var(--color-ink-soft);
-}
+/* One channel ---------------------------------------------------------- */
 
-/* Matches `.select` / `.text` / `.number` in fields.module.css; a time field is the same object. */
-.time {
-  min-block-size: 44px;
-  padding: 0 12px;
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-sm);
-  background: var(--color-ground);
-  color: var(--color-ink);
-  font-family: var(--font-mono);
-  font-size: var(--text-small);
-  font-variant-numeric: tabular-nums;
-}
-
-.time:hover {
-  border-color: var(--color-ink);
-}
-
-/*
- * The full-width slot under a row's three columns. `1 / -1` rather than a nested element, so the
- * panel is a grid item of the row itself and starts at the label's own left edge instead of at the
- * value column's — a long URL indented into the middle of the ledger reads as debris.
- */
-.full {
-  grid-column: 1 / -1;
+.rows {
+  display: grid;
   margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) minmax(0, auto);
+  grid-template-areas:
+    "tile head action"
+    "tile body action"
+    "full full full";
+  row-gap: var(--space-2);
+  column-gap: var(--space-5);
+  align-items: start;
+  padding-block: var(--space-5);
+}
+
+.row:first-child {
+  padding-block-start: 0;
+}
+
+.row:last-child {
+  padding-block-end: 0;
+}
+
+.row + .row {
+  border-block-start: 1px solid var(--color-line);
+}
+
+.tile {
+  display: grid;
+  place-items: center;
+  align-self: start;
+  inline-size: 56px;
+  block-size: 56px;
+  border-radius: var(--radius-tile);
+}
+
+.tile[data-accent="blue"] {
+  background: var(--color-accent-blue);
+  color: var(--color-on-accent-blue);
+}
+
+.tile[data-accent="green"] {
+  background: var(--color-accent-green);
+  color: var(--color-on-accent-green);
+}
+
+/* White on #FFC629 is 1.57:1, so a yellow tile always carries a near-black mark. */
+.tile[data-accent="yellow"] {
+  background: var(--color-accent-yellow);
+  color: var(--color-on-accent-yellow);
+}
+
+.tile[data-accent="red"] {
+  background: var(--color-accent-red);
+  color: var(--color-on-accent-red);
+}
+
+.tile[data-accent="ink"] {
+  background: var(--color-ink);
+  color: var(--color-ground);
+}
+
+.row > .tile {
+  grid-area: tile;
+}
+
+.tileMark {
+  inline-size: 28px;
+  block-size: 28px;
+}
+
+.name {
+  grid-area: head;
+  align-self: center;
+  font-size: var(--text-row);
+  font-weight: var(--weight-heavy);
+  line-height: 1.15;
+  letter-spacing: -0.024em;
+}
+
+.body {
+  grid-area: body;
+  display: grid;
+  gap: var(--space-2);
   min-inline-size: 0;
 }
 
-/* Telegram link ---------------------------------------------------------- */
+/* What the row reads right now: "Connected", "Off in this browser", the mailbox it writes to. */
+.state {
+  font-size: var(--text-small);
+  font-weight: var(--weight-medium);
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.help {
+  max-inline-size: 58ch;
+  font-size: var(--text-label);
+  line-height: 1.5;
+  color: var(--color-ink-soft);
+}
 
 /*
- * The one-time link. A paper panel rather than a card: it sits flat, like every other panel
- * (DESIGN.md, "Objects lift, panels sit"), and it is inside a ledger row, so it must not float
- * above the rules around it.
+ * A fact the person did not choose: a blocked bot, a browser that cannot do this, other devices
+ * still subscribed. Tinted rather than quiet, because none of it is advice.
+ */
+.note {
+  max-inline-size: 58ch;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  font-size: var(--text-label);
+  line-height: 1.5;
+  color: var(--color-ink);
+}
+
+/* Something the system broke off on its own; red is the blocker colour and only ever that. */
+.note[data-dead="true"] {
+  background: var(--color-tier-red-soft);
+  color: var(--color-on-tier-red-soft);
+}
+
+.action {
+  grid-area: action;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* The full-width slot under the three columns, for the one thing that does not fit beside a label:
+   the minted Telegram link, which is a long URL people read and copy by hand. */
+.full {
+  grid-area: full;
+  min-inline-size: 0;
+  margin-block-start: var(--space-3);
+}
+
+/* Acts ----------------------------------------------------------------- */
+
+/* On is filled, off is outlined: the state is a shape as well as a word. */
+.switch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  min-inline-size: 76px;
+  min-block-size: 44px;
+  padding: 0 18px;
+  border: 1.5px solid var(--color-line-strong);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--color-ink);
+  font-family: inherit;
+  font-size: var(--text-label);
+  font-weight: var(--weight-title);
+  cursor: pointer;
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+}
+
+.switch[aria-checked="true"] {
+  background: var(--color-ink);
+  color: var(--color-ground);
+}
+
+.switch:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* The outlined pill: everything that is an act but not the act. */
+.pill {
+  display: inline-flex;
+  gap: var(--space-2);
+  align-items: center;
+  justify-content: center;
+  min-block-size: 44px;
+  padding: 0 18px;
+  border: 1.5px solid var(--color-line-strong);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--color-ink);
+  font-family: inherit;
+  font-size: var(--text-label);
+  font-weight: var(--weight-title);
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--duration-fast) var(--ease-out);
+}
+
+.pill:hover:not(:disabled) {
+  background: var(--color-surface);
+}
+
+.pill:disabled {
+  cursor: progress;
+  opacity: 0.6;
+}
+
+/* The one filled black pill a card is allowed. */
+.primary {
+  display: inline-flex;
+  gap: var(--space-2);
+  align-items: center;
+  justify-content: center;
+  min-block-size: 48px;
+  padding: 0 22px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--color-ink);
+  color: var(--color-ground);
+  font-family: inherit;
+  font-size: var(--text-small);
+  font-weight: var(--weight-title);
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity var(--duration-fast) var(--ease-out);
+}
+
+.primary:hover {
+  opacity: 0.86;
+}
+
+/* Quiet hours ---------------------------------------------------------- */
+
+.quiet {
+  display: grid;
+  gap: var(--space-4);
+}
+
+/* The window as it stands, at the size of a decision rather than of a form value. */
+.window {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-3);
+  align-items: baseline;
+}
+
+.windowValue {
+  font-size: var(--text-title);
+  font-weight: var(--weight-heavy);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.windowZone {
+  font-size: var(--text-small);
+  font-weight: var(--weight-medium);
+  color: var(--color-ink-soft);
+}
+
+.windowEmpty {
+  font-size: var(--text-title);
+  font-weight: var(--weight-heavy);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--color-ink-soft);
+}
+
+.fieldset {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-4);
+  align-items: flex-end;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.fieldset:disabled .field {
+  opacity: 0.55;
+}
+
+.field {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.fieldLabel {
+  font-size: var(--text-label);
+  font-weight: var(--weight-title);
+  line-height: 1.3;
+}
+
+/* Time and zone as fully-rounded white pills with a soft shadow, like every other input here. */
+.time,
+.zone {
+  min-block-size: 48px;
+  padding: 0 18px;
+  border: 1.5px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: var(--color-card);
+  color: var(--color-ink);
+  font-family: inherit;
+  font-size: var(--text-small);
+  font-weight: var(--weight-medium);
+  font-variant-numeric: tabular-nums;
+  box-shadow: var(--shadow-soft);
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+.zone {
+  max-inline-size: 16rem;
+}
+
+.time:hover,
+.zone:hover {
+  border-color: var(--color-ink);
+}
+
+.quietActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.clash {
+  max-inline-size: 58ch;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  background: var(--color-tier-red-soft);
+  color: var(--color-on-tier-red-soft);
+  font-size: var(--text-label);
+  line-height: 1.5;
+}
+
+/* Telegram link -------------------------------------------------------- */
+
+/*
+ * The minted link, shown once. It sits inside a card, so it is a flat block on the card's own
+ * surface rather than a second shadowed object floating on top of one.
  */
 .link {
   display: grid;
   gap: var(--space-3);
   justify-items: start;
-  max-inline-size: 42rem;
-  margin-block-start: var(--space-2);
-  padding: var(--space-4);
-  border: 1px solid var(--color-line);
+  max-inline-size: 44rem;
+  padding: var(--space-5);
   border-radius: var(--radius-lg);
   background: var(--color-surface);
 }
 
 .linkLead {
-  max-inline-size: 52ch;
+  max-inline-size: 54ch;
   font-size: var(--text-small);
   line-height: 1.5;
 }
 
-/*
- * The URL itself. It is long, it is a credential, and it is meant to be copied by hand onto a
- * phone, so it wraps at any character rather than pushing the ledger sideways.
- */
+/* A long credential, meant to be copied by hand onto a phone: it wraps rather than pushing the
+   card sideways, and selects whole. */
 .linkUrl {
   inline-size: 100%;
-  padding: 10px 12px;
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-sm);
-  background: var(--color-ground);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--color-card);
   font-size: var(--text-label);
   line-height: 1.6;
   overflow-wrap: anywhere;
@@ -115,14 +458,115 @@
   gap: var(--space-2);
 }
 
-/* Pause ------------------------------------------------------------------ */
-
-.pauseAction {
-  margin-block-start: var(--space-2);
+.linkNote {
+  max-inline-size: 54ch;
+  font-size: var(--text-label);
+  line-height: 1.5;
+  color: var(--color-ink-soft);
 }
 
-@media (max-width: 720px) {
+/* Hold everything ------------------------------------------------------ */
+
+.pause {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  gap: var(--space-3) var(--space-5);
+  align-items: start;
+  padding: var(--space-6);
+  border-radius: var(--radius-card);
+  background: var(--color-card);
+  color: var(--color-on-card);
+  box-shadow: var(--shadow-card);
+  animation: settle var(--duration-base) var(--ease-out) both;
+  animation-delay: calc(var(--settle-index, 0) * 60ms);
+}
+
+.pauseBody {
+  display: grid;
+  gap: var(--space-3);
+  justify-items: start;
+}
+
+.pauseTitle {
+  font-size: var(--text-heading);
+  font-weight: var(--weight-heavy);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-title);
+}
+
+.pauseNote {
+  max-inline-size: 62ch;
+  font-size: var(--text-small);
+  line-height: 1.5;
+  color: var(--color-ink-soft);
+}
+
+/* While delivery is held that sentence is the page's answer, so it takes full ink. */
+.pause[data-paused="true"] .pauseNote {
+  color: var(--color-ink);
+}
+
+/* Narrow ---------------------------------------------------------------- */
+
+@media (max-width: 760px) {
+  .card,
+  .pause {
+    padding: var(--space-5);
+  }
+
+  .row {
+    grid-template-columns: 48px minmax(0, 1fr);
+    grid-template-areas:
+      "tile head"
+      "body body"
+      "action action"
+      "full full";
+    column-gap: var(--space-4);
+  }
+
+  .tile {
+    inline-size: 48px;
+    block-size: 48px;
+  }
+
+  .tileMark {
+    inline-size: 24px;
+    block-size: 24px;
+  }
+
+  .action {
+    justify-content: flex-start;
+    padding-block-start: var(--space-3);
+  }
+
+  .pause {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .link {
-    padding: var(--space-3);
+    padding: var(--space-4);
+  }
+
+  .zone {
+    max-inline-size: none;
+  }
+
+  .field {
+    flex: 1 1 10rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .pause {
+    animation: none;
+  }
+
+  .switch,
+  .pill,
+  .primary,
+  .time,
+  .zone {
+    transition: none;
   }
 }

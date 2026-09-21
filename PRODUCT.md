@@ -128,12 +128,22 @@ eligibility accuracy check (D19); whether any local Moldovan board grants writte
 ## Brand Commitments
 
 - Name: Pemby. Domain: pemby.app.
-- **desertant.com is a binding visual reference**, described in `docs/research/05-design-reference-desertant.md`
-  with screenshots in `docs/research/desertant/`. It wins over generated direction where they conflict.
-  What the owner values there: a warm off-white paper canvas with near-black ink and no pure white or
-  pure black; a tight heavy grotesk against mono micro-labels; muted earthy accents rather than
-  saturation; texture instead of gradients; physical, playful objects; evidence-first copy with
-  footnoted methodology and admitted weaknesses.
+- **desertant.com is released, not binding (2026-09-21).** It was the founding visual reference, and
+  its research notes remain in `docs/research/05-design-reference-desertant.md` with screenshots in
+  `docs/research/desertant/` as historical context. The owner has released it, and it no longer wins
+  over, or binds, design work.
+- **Visual direction (2026-09-21), owner-pinned:** the binding visual record is the pair of approved
+  comps, `.impeccable/mocks/pin-landing.png` (marketing) and `.impeccable/mocks/pin-brief.png` (the
+  signed-in app), together with the world written out here. Both comps are ours, generated for this
+  project, and their JSON sidecars carry the owner's approval. The image the owner first pinned was
+  a third-party job-board page: it is held locally and deliberately not published, so these two
+  comps and this paragraph are the whole durable reference. The world: a pure white sheet on
+  near-black bands, one heavy geometric grotesk at poster scale, flat saturated yellow, red, blue and
+  green used as solid tiles rather than tints, fully-rounded black pill buttons and pill inputs, white
+  cards at a large radius with soft wide shadows, and flat vector illustration on marketing surfaces
+  only. What did not carry over from that reference: its statistics, company logos, search field and
+  employer affordances, all replaced by Pemby's own truth. Earlier candidate worlds — themed
+  directions and a warm Things/Craft/Bear rendition — were considered and declined by the owner.
 - Voice: short, declarative, concrete. Sentence case. Numbers do the persuading, and caveats are stated
   rather than hidden. No hype adjectives, no exclamation marks.
 - **Founder story, with the owner's consent (D30):** the landing page and launch posts may say that

@@ -1,7 +1,8 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import type { ProgramNextStep } from "@pemby/core/programs";
+import { useTranslations } from "next-intl";
+import { ArrowMark } from "./marks";
 import { useReasonText } from "./reasons";
 import styles from "./brief.module.css";
 
@@ -9,9 +10,9 @@ import styles from "./brief.module.css";
  * A junior's real next step when the Brief is silent (PLAN D7, D11): the programs calendar,
  * rendered from the keys `nextProgramSteps` returns rather than from any sentence built here.
  *
- * A window the source has not published yet is marked "expected" with a dashed badge — dashed
- * means "not yet" in this system — and the reason lines say in words that the date is inferred
- * from past years. Nothing is presented as confirmed that the program has not confirmed.
+ * A window the source has not published yet is marked "expected" with an outlined pill rather than
+ * a filled one, and the reason lines say in words that the date is inferred from past years.
+ * Nothing is presented as confirmed that the program has not confirmed.
  */
 export function ProgramSteps({ steps }: { steps: readonly ProgramNextStep[] }) {
   const t = useTranslations("Brief");
@@ -31,33 +32,27 @@ export function ProgramSteps({ steps }: { steps: readonly ProgramNextStep[] }) {
                   : t("programs.expected")}
             </span>
           </div>
+
           <p className={styles.reason}>{reason.program(step.headline)}</p>
-          <ul className={styles.points}>
+
+          <ul className={styles.tags}>
             {step.detail.map((line, index) => (
-              <li key={`${line.key}-${index}`} className={styles.point}>
+              <li key={`${line.key}-${index}`} className={styles.tag}>
                 {reason.program(line)}
               </li>
             ))}
           </ul>
+
           {step.sourceUrl ? (
             <a
-              className={styles.apply}
+              className={styles.outlinePill}
               href={step.sourceUrl}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={t("programs.sourceLabel", { program: step.programName })}
             >
               {t("programs.source")}
-              <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-                <path
-                  d="M6 3.5h6.5V10M12.5 3.5 4 12"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <ArrowMark className={styles.applyArrow} />
             </a>
           ) : null}
         </li>

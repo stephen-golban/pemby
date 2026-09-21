@@ -333,15 +333,18 @@ export function CvDrop({
             ref={trigger}
             type="button"
             className={zone.trigger}
-            // The caption sits inside the button for the bigger target, so the name is set
-            // explicitly and the caption stays the description.
+            // The prompt inside the pill is the whole name; the caption under it stays the
+            // description, so the accessible name does not grow with the file formats.
             aria-label={tDrop("title")}
             aria-describedby={captionId}
             onFocus={human.warm}
             onClick={() => input.current?.click()}
           >
-            <IdleFace captionId={captionId} dragging={dragging} />
+            <IdleFace dragging={dragging} />
           </button>
+          <p id={captionId} className={zone.caption}>
+            {tDrop("caption")}
+          </p>
           {idleError ? (
             <p className={styles.error} role="alert">
               {t(`errors.${idleError}`)}

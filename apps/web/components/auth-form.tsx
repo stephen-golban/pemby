@@ -2,8 +2,10 @@
 
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-import type { FormEvent } from "react";
+import { useId, useState } from "react";
+import type { FormEvent, ReactNode } from "react";
+import { ArrowMark } from "@/components/auth";
+import styles from "@/components/auth/auth.module.css";
 import { authClient } from "@/lib/auth/client";
 import {
   EMAIL_NOT_VERIFIED,
@@ -24,14 +26,36 @@ function failureFor(error: { code?: string | undefined; status?: number } | null
  * Email and password form for /sign-in and /sign-up. Sign-up ends in a "check your email" state:
  * the account is usable once the link in the email is opened (on any device), which also claims
  * the anonymous session's data. Signing in from an anonymous session claims its data at once.
+ *
+ * Drawn as the rest of the world draws a form: a label in heavy ink over a fully-rounded white
+ * pill input, one filled black pill to act with, and anything that went wrong stated above the
+ * button in a tinted block that is announced. Every field has a real `<label for>`, and a field a
+ * failure is about is marked `aria-invalid` and pointed at its message with `aria-describedby`, so
+ * the error is not carried by a red edge alone.
  */
-export function AuthForm({ mode }: { mode: "sign-in" | "sign-up" }) {
+export function AuthForm({
+  mode,
+  children,
+}: {
+  mode: "sign-in" | "sign-up";
+  /**
+   * The other ways in, drawn under the form inside the same card. A slot rather than markup on the
+   * page, because once the next step is in the inbox they are wrong: nobody who has just created an
+   * account wants "continue without an account" underneath the sentence telling them to open it.
+   */
+  children?: ReactNode;
+}) {
   const t = useTranslations("Auth");
   const router = useRouter();
   const [pending, setPending] = useState(false);
   const [failure, setFailure] = useState<Failure>(null);
   // Set when the next step is in the inbox: after sign-up, or a sign-in refused as unverified.
   const [awaiting, setAwaiting] = useState<{ email: string; reason: "signedUp" | "unverified" }>();
+
+  const emailId = useId();
+  const passwordId = useId();
+  const hintId = useId();
+  const failureId = useId();
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -68,54 +92,85 @@ export function AuthForm({ mode }: { mode: "sign-in" | "sign-up" }) {
 
   if (awaiting) {
     return (
-      <section aria-live="polite">
-        {awaiting.reason === "signedUp" ? (
-          <>
-            <h2>{t("checkEmailHeading")}</h2>
-            <p>{t("checkEmail", { email: awaiting.email })}</p>
-          </>
-        ) : (
-          <>
-            <h2>{t("notVerifiedHeading")}</h2>
-            <p>{t("notVerified")}</p>
-          </>
-        )}
+      <section className={styles.form} aria-live="polite">
+        <h2 className={styles.cardTitle}>
+          {awaiting.reason === "signedUp" ? t("checkEmailHeading") : t("notVerifiedHeading")}
+        </h2>
+        <p className={styles.cardBody}>
+          {awaiting.reason === "signedUp"
+            ? t("checkEmail", { email: awaiting.email })
+            : t("notVerified")}
+        </p>
         <ResendVerificationButton email={awaiting.email} />
       </section>
     );
   }
 
   return (
-    <form onSubmit={onSubmit}>
-      <p>
-        <label>
-          {t("email")} <input name="email" type="email" autoComplete="email" required />
-        </label>
-      </p>
-      <p>
-        <label>
-          {t("password")}{" "}
+    <>
+      <form className={styles.form} onSubmit={onSubmit}>
+        <div className={styles.field}>
+          <label className={styles.label} htmlFor={emailId}>
+            {t("email")}
+          </label>
           <input
+            id={emailId}
+            className={styles.input}
+            name="email"
+            type="email"
+            autoComplete="email"
+            aria-invalid={failure !== null || undefined}
+            aria-describedby={failure ? failureId : undefined}
+            required
+          />
+        </div>
+
+        <div className={styles.field}>
+          <label className={styles.label} htmlFor={passwordId}>
+            {t("password")}
+          </label>
+          <input
+            id={passwordId}
+            className={styles.input}
             name="password"
             type="password"
             autoComplete={mode === "sign-up" ? "new-password" : "current-password"}
             minLength={8}
+            aria-invalid={failure !== null || undefined}
+            aria-describedby={
+              [mode === "sign-up" ? hintId : null, failure ? failureId : null]
+                .filter(Boolean)
+                .join(" ") || undefined
+            }
             required
           />
-        </label>
-        {mode === "sign-up" ? <small> {t("passwordHint")}</small> : null}
-      </p>
-      {failure ? <p role="alert">{t(failure)}</p> : null}
-      <button type="submit" disabled={pending}>
-        {mode === "sign-up"
-          ? pending
-            ? t("signingUp")
-            : t("signUp")
-          : pending
-            ? t("signingIn")
-            : t("signIn")}
-      </button>
-    </form>
+          {mode === "sign-up" ? (
+            <p id={hintId} className={styles.hint}>
+              {t("passwordHint")}
+            </p>
+          ) : null}
+        </div>
+
+        {failure ? (
+          <p id={failureId} className={styles.alert} role="alert">
+            {t(failure)}
+          </p>
+        ) : null}
+
+        <button type="submit" className={styles.primary} disabled={pending}>
+          {mode === "sign-up"
+            ? pending
+              ? t("signingUp")
+              : t("signUp")
+            : pending
+              ? t("signingIn")
+              : t("signIn")}
+          {pending ? null : <ArrowMark className={styles.arrow} />}
+        </button>
+      </form>
+
+      {children}
+    </>
   );
 }
 
@@ -137,9 +192,24 @@ function useResendVerification() {
 
 function ResendOutcome({ state }: { state: ResendState }) {
   const t = useTranslations("Auth");
-  if (state === "sent") return <span role="status"> {t("resent")}</span>;
-  if (state === "failed") return <span role="alert"> {t("resendFailed")}</span>;
-  if (state === "rateLimited") return <span role="alert"> {t("rateLimited")}</span>;
+  if (state === "sent")
+    return (
+      <p className={styles.status} role="status">
+        {t("resent")}
+      </p>
+    );
+  if (state === "failed")
+    return (
+      <p className={styles.alert} role="alert">
+        {t("resendFailed")}
+      </p>
+    );
+  if (state === "rateLimited")
+    return (
+      <p className={styles.alert} role="alert">
+        {t("rateLimited")}
+      </p>
+    );
   return null;
 }
 
@@ -147,12 +217,17 @@ function ResendVerificationButton({ email }: { email: string }) {
   const t = useTranslations("Auth");
   const { state, resend } = useResendVerification();
   return (
-    <p>
-      <button type="button" onClick={() => resend(email)} disabled={state === "sending"}>
+    <div className={styles.actions}>
+      <ResendOutcome state={state} />
+      <button
+        type="button"
+        className={styles.secondary}
+        onClick={() => resend(email)}
+        disabled={state === "sending"}
+      >
         {state === "sending" ? t("resending") : t("resend")}
       </button>
-      <ResendOutcome state={state} />
-    </p>
+    </div>
   );
 }
 
@@ -160,25 +235,34 @@ function ResendVerificationButton({ email }: { email: string }) {
 export function ResendVerificationForm() {
   const t = useTranslations("Auth");
   const { state, resend } = useResendVerification();
+  const emailId = useId();
   return (
     <form
+      className={styles.form}
       onSubmit={(event) => {
         event.preventDefault();
         const email = String(new FormData(event.currentTarget).get("email") ?? "");
         if (email) void resend(email);
       }}
     >
-      <p>
-        <label>
-          {t("email")} <input name="email" type="email" autoComplete="email" required />
+      <div className={styles.field}>
+        <label className={styles.label} htmlFor={emailId}>
+          {t("email")}
         </label>
-      </p>
-      <p>
-        <button type="submit" disabled={state === "sending"}>
-          {state === "sending" ? t("resending") : t("resend")}
-        </button>
-        <ResendOutcome state={state} />
-      </p>
+        <input
+          id={emailId}
+          className={styles.input}
+          name="email"
+          type="email"
+          autoComplete="email"
+          required
+        />
+      </div>
+      <ResendOutcome state={state} />
+      <button type="submit" className={styles.primary} disabled={state === "sending"}>
+        {state === "sending" ? t("resending") : t("resend")}
+        {state === "sending" ? null : <ArrowMark className={styles.arrow} />}
+      </button>
     </form>
   );
 }
@@ -189,6 +273,8 @@ type RequestState = "idle" | "sending" | "sent" | "failed" | "rateLimited";
 export function ResetPasswordRequestForm() {
   const t = useTranslations("Auth");
   const [state, setState] = useState<RequestState>("idle");
+  const emailId = useId();
+  const failureId = useId();
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -201,18 +287,39 @@ export function ResetPasswordRequestForm() {
     setState(error ? (error.status === 429 ? "rateLimited" : "failed") : "sent");
   }
 
-  if (state === "sent") return <p role="status">{t("resetLinkSent")}</p>;
-  return (
-    <form onSubmit={onSubmit}>
-      <p>
-        <label>
-          {t("email")} <input name="email" type="email" autoComplete="email" required />
-        </label>
+  if (state === "sent")
+    return (
+      <p className={styles.status} role="status">
+        {t("resetLinkSent")}
       </p>
-      {state === "failed" ? <p role="alert">{t("resetLinkFailed")}</p> : null}
-      {state === "rateLimited" ? <p role="alert">{t("rateLimited")}</p> : null}
-      <button type="submit" disabled={state === "sending"}>
+    );
+
+  const failed = state === "failed" || state === "rateLimited";
+  return (
+    <form className={styles.form} onSubmit={onSubmit}>
+      <div className={styles.field}>
+        <label className={styles.label} htmlFor={emailId}>
+          {t("email")}
+        </label>
+        <input
+          id={emailId}
+          className={styles.input}
+          name="email"
+          type="email"
+          autoComplete="email"
+          aria-invalid={failed || undefined}
+          aria-describedby={failed ? failureId : undefined}
+          required
+        />
+      </div>
+      {failed ? (
+        <p id={failureId} className={styles.alert} role="alert">
+          {state === "rateLimited" ? t("rateLimited") : t("resetLinkFailed")}
+        </p>
+      ) : null}
+      <button type="submit" className={styles.primary} disabled={state === "sending"}>
         {state === "sending" ? t("sendingResetLink") : t("sendResetLink")}
+        {state === "sending" ? null : <ArrowMark className={styles.arrow} />}
       </button>
     </form>
   );
@@ -223,6 +330,9 @@ export function SetNewPasswordForm({ token }: { token: string }) {
   const t = useTranslations("Auth");
   const router = useRouter();
   const [state, setState] = useState<"idle" | "saving" | "done" | "failed">("idle");
+  const passwordId = useId();
+  const hintId = useId();
+  const failureId = useId();
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -234,36 +344,47 @@ export function SetNewPasswordForm({ token }: { token: string }) {
 
   if (state === "done") {
     return (
-      <section aria-live="polite">
-        <h2>{t("resetDoneHeading")}</h2>
-        <p>{t("resetDone")}</p>
-        <p>
-          <button type="button" onClick={() => router.push("/sign-in")}>
-            {t("signIn")}
-          </button>
-        </p>
+      <section className={styles.form} aria-live="polite">
+        <h2 className={styles.cardTitle}>{t("resetDoneHeading")}</h2>
+        <p className={styles.cardBody}>{t("resetDone")}</p>
+        <button type="button" className={styles.primary} onClick={() => router.push("/sign-in")}>
+          {t("signIn")}
+          <ArrowMark className={styles.arrow} />
+        </button>
       </section>
     );
   }
 
+  const failed = state === "failed";
   return (
-    <form onSubmit={onSubmit}>
-      <p>
-        <label>
-          {t("newPassword")}{" "}
-          <input
-            name="password"
-            type="password"
-            autoComplete="new-password"
-            minLength={8}
-            required
-          />
+    <form className={styles.form} onSubmit={onSubmit}>
+      <div className={styles.field}>
+        <label className={styles.label} htmlFor={passwordId}>
+          {t("newPassword")}
         </label>
-        <small> {t("passwordHint")}</small>
-      </p>
-      {state === "failed" ? <p role="alert">{t("resetLinkInvalid")}</p> : null}
-      <button type="submit" disabled={state === "saving"}>
+        <input
+          id={passwordId}
+          className={styles.input}
+          name="password"
+          type="password"
+          autoComplete="new-password"
+          minLength={8}
+          aria-invalid={failed || undefined}
+          aria-describedby={[hintId, failed ? failureId : null].filter(Boolean).join(" ")}
+          required
+        />
+        <p id={hintId} className={styles.hint}>
+          {t("passwordHint")}
+        </p>
+      </div>
+      {failed ? (
+        <p id={failureId} className={styles.alert} role="alert">
+          {t("resetLinkInvalid")}
+        </p>
+      ) : null}
+      <button type="submit" className={styles.primary} disabled={state === "saving"}>
         {state === "saving" ? t("savingNewPassword") : t("setNewPassword")}
+        {state === "saving" ? null : <ArrowMark className={styles.arrow} />}
       </button>
     </form>
   );
@@ -290,12 +411,17 @@ export function ContinueAnonymouslyButton() {
   }
 
   return (
-    <p>
-      <button type="button" onClick={onClick} disabled={pending}>
+    <div className={styles.actions}>
+      {failure ? (
+        <p className={styles.alert} role="alert">
+          {t(failure)}
+        </p>
+      ) : null}
+      <button type="button" className={styles.secondary} onClick={onClick} disabled={pending}>
         {pending ? t("startingAnonymous") : t("continueAnonymously")}
       </button>
-      {failure ? <span role="alert"> {t(failure)}</span> : null}
-    </p>
+      <p className={styles.hint}>{t("anonymousHelp")}</p>
+    </div>
   );
 }
 
@@ -305,6 +431,7 @@ export function SignOutButton() {
   return (
     <button
       type="button"
+      className={styles.secondary}
       onClick={async () => {
         await authClient.signOut();
         router.push("/sign-in");

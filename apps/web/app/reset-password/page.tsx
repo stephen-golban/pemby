@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import Link from "next/link";
+import { AuthShell, KeyMark, MailMark } from "@/components/auth";
+import styles from "@/components/auth/auth.module.css";
 import { ResetPasswordRequestForm, SetNewPasswordForm } from "@/components/auth-form";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -22,18 +25,30 @@ export default async function ResetPasswordPage({
 
   if (typeof token === "string" && token) {
     return (
-      <main>
-        <h1>{t("resetTitle")}</h1>
+      <AuthShell
+        accent="blue"
+        mark={<KeyMark className={styles.tileMark} />}
+        headline={t("resetTitle")}
+        lead={t("page.reset.setLead")}
+      >
         <SetNewPasswordForm token={token} />
-      </main>
+      </AuthShell>
     );
   }
 
   return (
-    <main>
-      <h1>{error ? t("resetLinkInvalidHeading") : t("resetRequestHeading")}</h1>
-      <p>{error ? t("resetLinkInvalid") : t("resetRequest")}</p>
+    <AuthShell
+      accent="yellow"
+      mark={<MailMark className={styles.tileMark} />}
+      headline={error ? t("resetLinkInvalidHeading") : t("resetRequestHeading")}
+      lead={error ? t("resetLinkInvalid") : t("resetRequest")}
+    >
       <ResetPasswordRequestForm />
-    </main>
+      <p className={styles.footRow}>
+        <Link className={styles.quiet} href="/sign-in">
+          {t("page.backToSignIn")}
+        </Link>
+      </p>
+    </AuthShell>
   );
 }

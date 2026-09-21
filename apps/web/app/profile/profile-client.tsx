@@ -15,6 +15,10 @@ import styles from "./profile.module.css";
  * `/profile` — everything the three onboarding steps collected, editable for good, plus the
  * profile strength meter, the data export and account deletion.
  *
+ * One statement at poster scale, then the three topics as white cards with their names on the
+ * sheet above them, and a rail carrying the live count, the way through to the Brief and the
+ * profile's strength.
+ *
  * The rows are the same components onboarding uses, so a field cannot mean one thing during setup
  * and another afterwards. There is no Save button: every edit saves optimistically and rolls back
  * with its reason (`use-profile.ts`).
@@ -42,13 +46,14 @@ export function ProfileClient({
 
   return (
     <CountryListProvider codes={countryCodes}>
+      {/* The statement stands above both columns, so a narrow screen reads it before the rail. */}
+      <header className={styles.intro}>
+        <h1 className={styles.title}>{t("title")}</h1>
+        <p className={styles.lead}>{t("lead")}</p>
+      </header>
+
       <div className={styles.layout}>
         <div className={styles.main}>
-          <header className={styles.intro}>
-            <h1 className={styles.title}>{t("title")}</h1>
-            <p className={styles.lead}>{t("lead")}</p>
-          </header>
-
           {error ? (
             <p className={styles.alert} role="alert">
               {errors(error)}
@@ -76,19 +81,22 @@ export function ProfileClient({
             <RoleRows profile={profile} save={save} labelledBy={roleId} />
           </section>
 
+          {/* Every account-level card together, at the foot of the column the work is in. */}
           <div className={styles.account}>
+            {profile.anonymous ? <SaveWorkPanel /> : null}
             <ExportPanel />
             <DeletePanel anonymous={profile.anonymous} />
           </div>
         </div>
 
+        {/* The count first: it is the number the page was opened for, and the way through to the
+            roles behind it sits directly under it. The strength meter is the follow-up question. */}
         <aside className={styles.rail} aria-label={t("railLabel")}>
-          <StrengthMeter profile={profile} />
           {countEnabled ? (
             <MatchCountLine profile={profile} count={count} headingId={countId} />
           ) : null}
           <BriefLink />
-          {profile.anonymous ? <SaveWorkPanel /> : null}
+          <StrengthMeter profile={profile} />
         </aside>
       </div>
     </CountryListProvider>

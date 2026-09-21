@@ -1,275 +1,83 @@
 /*
- * The band. Card tilt is a landing-page flourish and lives only here (brief correction 7);
- * app screens never rotate cards.
+ * Example matches: four white cards on the sheet, stacked evenly with clear gaps. No tilt, no
+ * photography, nothing layered — layering is a hero move, and these cards are being read.
  */
 
-.band {
-  --band-overlap: 40px;
-
-  position: relative;
-  isolation: isolate;
-  margin-block-start: calc(var(--rhythm-action-field) - var(--band-overlap));
-  padding: 0 var(--gutter) 56px;
-}
-
-/* The field: a full-bleed surface that shows above the card row's gaps, between the cards,
-   at both sides and well below them (brief correction 6). */
-.field {
-  position: absolute;
-  inset: var(--band-overlap) 0 0;
-  z-index: -1;
-  border-radius: var(--radius-field) var(--radius-field) 0 0;
-  background: var(--color-field);
-}
-
 .cards {
-  display: flex;
-  justify-content: center;
-  gap: clamp(20px, 2.1vw, 32px);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-5);
+  margin: 0;
+  margin-block-start: var(--rhythm-sub-action);
   padding: 0;
   list-style: none;
 }
 
 .card {
-  --tilt: 0deg;
-
-  /* Every measurement inside a card is in container units, so the composition scales as one
-     piece: a card 280px wide is the 320px card at 7/8 scale, never a reflowed one. */
-  container-type: inline-size;
-  flex: 0 1 320px;
-  min-inline-size: 272px;
-  aspect-ratio: 320 / 424;
-  transform: rotate(var(--tilt));
-  border-radius: 30px;
-  box-shadow: var(--shadow-card);
-}
-
-.card:nth-child(1) {
-  --tilt: -5.5deg;
-}
-
-.card:nth-child(2) {
-  --tilt: -1.5deg;
-
-  translate: 0 -6px;
-}
-
-.card:nth-child(3) {
-  --tilt: 3deg;
-}
-
-.card:nth-child(4) {
-  --tilt: 5.7deg;
-}
-
-.cardInner {
-  position: relative;
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+  justify-items: start;
   block-size: 100%;
-  overflow: hidden;
-  padding: var(--card-pad-top, 13.75cqi) 7.5cqi 0 10cqi;
-  border-radius: inherit;
-  background: var(--card-fill);
-  color: var(--card-ink);
+  animation: settle var(--duration-base) var(--ease-out) both;
 }
 
-.plum {
-  --card-fill: var(--color-plum);
-  --card-ink: var(--color-on-plum);
-  --card-chip: var(--color-plum-chip);
+@keyframes settle {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
-.ochre {
-  --card-pad-top: 13.125cqi;
-  --card-fill: var(--color-ochre);
-  --card-ink: var(--color-on-ochre);
-  --card-chip: var(--color-ochre-chip);
-}
-
-.inkblue {
-  --card-fill: var(--color-inkblue);
-  --card-ink: var(--color-on-inkblue);
-  --card-chip: var(--color-inkblue-chip);
-}
-
-.silence {
-  --card-fill: var(--color-paper-card);
-  --card-ink: var(--color-ink);
-}
-
-.silence .cardInner {
-  padding: 21.875cqi 11.25cqi 0;
-  border: 1.5px solid var(--color-line-strong);
+.head {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  justify-content: space-between;
+  inline-size: 100%;
 }
 
 .role {
-  position: relative;
-  z-index: 1;
-  font-family: var(--font-display);
-  font-size: 10.625cqi;
-  font-weight: var(--weight-title);
-  line-height: var(--leading-title);
-  letter-spacing: var(--tracking-title);
+  font-size: var(--text-subhead);
+  font-weight: var(--weight-heavy);
+  line-height: 1.12;
+  letter-spacing: -0.028em;
   text-wrap: balance;
 }
 
 .meta {
-  position: relative;
-  z-index: 1;
-  margin-block-start: 2.5cqi;
-  font-size: 4.375cqi;
-  line-height: 1.4;
-  letter-spacing: -0.02em;
-  white-space: nowrap;
+  font-size: var(--text-small);
+  line-height: 1.45;
+  color: var(--color-ink-soft);
 }
 
 .criteria {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  gap: 2.5cqi;
-  margin-block-start: 6.875cqi;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.criterion {
-  display: flex;
-  align-items: center;
-  gap: 3.125cqi;
-  font-size: 4.375cqi;
-  line-height: 1.35;
-  white-space: nowrap;
-}
-
-.tick {
-  flex: none;
-  inline-size: 4.7cqi;
-  block-size: 4.7cqi;
-}
-
-.tickBox {
-  fill: var(--card-ink);
-}
-
-.tickMark {
-  stroke: var(--card-fill);
-}
-
-/* The photo takes the lower part of the card and starts below the text block, so no role,
-   company or criterion row ever sits over the image. */
-.photo {
-  position: absolute;
-  inset: auto 0 0;
-  block-size: 50%;
-  mask-image: linear-gradient(to bottom, transparent 0%, #000 34%);
-}
-
-.photo img {
-  object-fit: cover;
-  object-position: center top;
-}
-
-.silenceBody {
-  margin-block-start: 4.375cqi;
-  max-inline-size: 16em;
-  font-size: 4.6875cqi;
-  line-height: 1.5;
-}
-
-.doodle {
-  position: absolute;
-  inset-inline-start: 36.875cqi;
-  inset-block-start: 65.625cqi;
-  inline-size: 47.5cqi;
-  block-size: auto;
-}
-
-.doodleDark {
-  display: none;
-}
-
-:global(:root[data-theme="dark"]) .doodleLight {
-  display: none;
-}
-
-:global(:root[data-theme="dark"]) .doodleDark {
-  display: block;
-}
-
-@media (prefers-color-scheme: dark) {
-  :global(:root:not([data-theme="light"])) .doodleLight {
-    display: none;
-  }
-
-  :global(:root:not([data-theme="light"])) .doodleDark {
-    display: block;
-  }
-}
-
-/* Bottom-left stamp stack: the EXAMPLE marker above the eligibility tag (brief correction 4). */
-.stamps {
-  position: absolute;
-  inset-inline-start: 6.875cqi;
-  inset-block-end: var(--tag-bottom, 6.25cqi);
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1.875cqi;
-}
-
-.tag {
-  padding: 2.8cqi 3.75cqi 2.5cqi;
-  border-radius: 3.125cqi;
-  background: var(--card-chip);
-  color: var(--color-on-chip);
-  font-size: 4.375cqi;
-  font-weight: var(--weight-mono-strong);
-  line-height: 1;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-}
-
-.example {
-  padding: 1.875cqi 2.8cqi 1.5cqi;
-  border: 1px solid rgb(247 241 230 / 0.5);
-  border-radius: 2.2cqi;
-  background: rgb(20 17 13 / 0.86);
-  color: #f7f1e6;
-  font-size: max(0.75rem, 3.75cqi);
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
+/* The honest silence sits in the same row as an answer, not as a gap. */
+.silence .meta {
+  max-inline-size: 22ch;
 }
 
 .footnote {
-  margin-block-start: 56px;
-  color: var(--color-on-field);
+  margin-block-start: var(--space-5);
   font-size: var(--text-label);
-  font-weight: var(--weight-mono-strong);
   line-height: 1.5;
-  letter-spacing: 0.12em;
-  text-align: center;
-  text-transform: uppercase;
+  color: var(--color-ink-soft);
 }
 
-@media (max-width: 1180px) {
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 320px));
-    gap: 40px 28px;
-  }
-}
-
-@media (max-width: 680px) {
-  .cards {
-    grid-template-columns: minmax(0, 320px);
-  }
-
-  .card:nth-child(n) {
-    --tilt: 0deg;
-
-    translate: none;
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    animation: none;
   }
 }

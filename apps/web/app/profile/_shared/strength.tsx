@@ -7,6 +7,7 @@ import {
   profileStrength,
   type ProfileView,
 } from "@/app/api/profile/_lib/view";
+import { BlockerMark } from "@/components/brief/marks";
 import { fieldAnchor } from "./rows";
 import styles from "./panels.module.css";
 
@@ -37,9 +38,16 @@ export function StrengthMeter({ profile }: { profile: ProfileView }) {
       className={styles.panel}
       aria-labelledby="profile-strength-title"
     >
-      <h2 id="profile-strength-title" className={styles.panelTitle}>
-        {t("title")}
-      </h2>
+      {/* Ink, not a tier colour: how much of the profile is answered is not an eligibility
+          verdict, and the target is the Brief's own mark for "close, but under the bar". */}
+      <div className={styles.head}>
+        <span className={styles.tile} data-accent="ink">
+          <BlockerMark blocker="score" className={styles.tileMark} />
+        </span>
+        <h2 id="profile-strength-title" className={styles.panelTitle}>
+          {t("title")}
+        </h2>
+      </div>
       {gaps.length === 0 ? (
         <p className={styles.settled}>{t("complete")}</p>
       ) : (

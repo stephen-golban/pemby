@@ -1,91 +1,142 @@
+/*
+ * The CV drop, idle: a fully-rounded white pill with a soft wide shadow, carrying the file prompt,
+ * a hairline divider, the country, and one solid-black circular button at the end. The whole
+ * pill is the control — one tab stop, one target — and the circle is the mark on it, not a second
+ * button. The caption stands under the pill rather than inside it, so the pill keeps its height.
+ *
+ * The same markup is used by the working drop, by the stand-in and by the streaming placeholder,
+ * so nothing below the pill moves as one is swapped for another.
+ */
+
 .zone {
-  position: relative;
-  border: 1.5px dashed var(--color-line);
-  border-radius: var(--radius-xl);
-  background: var(--color-surface);
-  box-shadow: var(--shadow-soft);
-  transition:
-    border-color var(--duration-fast) var(--ease-out),
-    background-color var(--duration-fast) var(--ease-out),
-    transform var(--duration-base) var(--ease-out);
+  display: grid;
+  gap: var(--space-3);
+  justify-items: start;
+  inline-size: 100%;
 }
 
-.zone[data-mode="idle"]:hover {
-  border-color: color-mix(in srgb, var(--color-ink) 55%, transparent);
-}
-
-.zone[data-mode="dragging"] {
-  border-style: solid;
-  border-color: var(--color-ink);
-  background: color-mix(in srgb, var(--color-ochre) 18%, var(--color-surface));
-  transform: scale(1.012);
-}
+/* The pill -------------------------------------------------------------- */
 
 .trigger {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  gap: var(--space-5);
   inline-size: 100%;
-  min-block-size: 156px;
-  padding: 20px var(--space-5) 24px;
-  border: 0;
-  border-radius: inherit;
-  background: transparent;
+  min-block-size: 84px;
+  padding: var(--space-2) var(--space-2) var(--space-2) var(--space-6);
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-pill);
+  background: var(--color-card);
+  box-shadow: var(--shadow-card);
   color: var(--color-ink);
   font: inherit;
+  text-align: start;
   cursor: pointer;
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.trigger:disabled {
+  cursor: default;
+}
+
+.zone[data-mode="idle"] .trigger:hover {
+  box-shadow: var(--shadow-pop);
+}
+
+.zone[data-mode="dragging"] .trigger {
+  border-color: var(--color-line-strong);
+  box-shadow: var(--shadow-pop);
 }
 
 .trigger:focus-visible {
-  outline: 2px solid var(--color-focus);
-  outline-offset: 4px;
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+/* The file prompt: the loudest thing in the pill. */
+.title {
+  min-inline-size: 0;
+  font-size: var(--text-row);
+  font-weight: var(--weight-medium);
+  line-height: 1.2;
+  letter-spacing: -0.018em;
+  overflow-wrap: anywhere;
+}
+
+.divider {
+  flex: none;
+  inline-size: 1px;
+  block-size: 32px;
+  background: var(--color-line);
+}
+
+/* The country Pemby checks a role against, in the world's secondary grey. */
+.country {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+  overflow: hidden;
+  font-size: var(--text-small);
+  font-weight: var(--weight-body);
+  line-height: 1.3;
+  color: var(--color-ink-soft);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* The solid black circle at the end of the pill. Drawn, not clickable: the pill is the button. */
+.go {
+  display: grid;
+  place-items: center;
+  flex: none;
+  margin-inline-start: auto;
+  inline-size: 64px;
+  block-size: 64px;
+  border-radius: var(--radius-pill);
+  background: var(--color-ink);
+  color: var(--color-ground);
+  transition: translate var(--duration-fast) var(--ease-out);
+}
+
+.zone[data-mode="idle"] .trigger:hover .go,
+.zone[data-mode="dragging"] .go {
+  translate: 0 -2px;
 }
 
 .glyph {
-  inline-size: 34px;
-  block-size: 34px;
-  transition: transform var(--duration-base) var(--ease-out);
+  inline-size: 26px;
+  block-size: 26px;
 }
 
-.zone[data-mode="idle"]:hover .glyph,
-.zone[data-mode="dragging"] .glyph {
-  transform: translateY(-3px);
-}
-
-.title {
-  margin-block-start: 12px;
-  font-family: var(--font-display);
-  font-size: var(--text-title);
-  font-weight: var(--weight-title);
-  line-height: 1;
-  letter-spacing: var(--tracking-title);
-}
+/* Under the pill --------------------------------------------------------- */
 
 .caption {
-  margin-block-start: 5px;
-  font-family: var(--font-mono);
-  font-size: 0.875rem;
+  max-inline-size: 62ch;
+  padding-inline: var(--space-4);
+  font-size: var(--text-label);
   line-height: 1.5;
-  color: var(--color-ink);
-  text-wrap: balance;
+  color: var(--color-ink-soft);
+  text-wrap: pretty;
 }
 
+/* The stand-in's answer, where CV reading is not switched on ------------- */
+
 .pending {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0;
-  min-block-size: 156px;
-  justify-content: center;
-  padding: 22px var(--space-6);
-  text-align: center;
+  display: grid;
+  gap: var(--space-3);
+  justify-items: start;
+  inline-size: 100%;
+  padding: var(--space-6);
+  border-radius: var(--radius-card);
+  background: var(--color-card);
+  box-shadow: var(--shadow-card);
 }
 
 .pendingTitle {
-  font-family: var(--font-display);
-  font-size: 1.75rem;
-  font-weight: var(--weight-title);
-  line-height: 1.05;
+  font-size: var(--text-subhead);
+  font-weight: var(--weight-heavy);
+  line-height: 1.12;
   letter-spacing: var(--tracking-title);
 }
 
@@ -93,43 +144,99 @@
   outline: none;
 }
 
+.pendingBody {
+  max-inline-size: 56ch;
+  font-size: var(--text-small);
+  line-height: 1.5;
+  color: var(--color-ink-soft);
+}
+
 .pendingActions {
   display: flex;
   flex-wrap: wrap;
+  gap: var(--space-3);
   align-items: center;
-  justify-content: center;
-  gap: var(--space-2) var(--space-5);
-  margin-block-start: var(--space-3);
-  font-family: var(--font-mono);
-  font-size: var(--text-small);
 }
 
 .link {
-  font-weight: var(--weight-mono-strong);
-  text-decoration: underline;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: 46px;
+  padding: 0 20px;
+  border-radius: var(--radius-pill);
+  background: var(--color-ink);
+  color: var(--color-ground);
+  font-size: var(--text-small);
+  font-weight: var(--weight-title);
+  text-decoration: none;
+  transition: opacity var(--duration-fast) var(--ease-out);
+}
+
+.link:hover {
+  opacity: 0.86;
 }
 
 .back {
-  padding: 4px 10px;
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: 46px;
+  padding: 0 20px;
+  border: 1.5px solid var(--color-line-strong);
+  border-radius: var(--radius-pill);
   background: transparent;
   color: var(--color-ink);
-  font: inherit;
+  font-family: inherit;
+  font-size: var(--text-small);
+  font-weight: var(--weight-title);
   cursor: pointer;
+  transition: background-color var(--duration-fast) var(--ease-out);
 }
 
 .back:hover {
-  border-color: var(--color-ink);
+  background: var(--color-surface);
+}
+
+/*
+ * Narrow: the pill tightens but keeps all four parts. The country is the point of the pill, and a
+ * divider with nothing after it is worse than no divider, so neither is dropped.
+ */
+@media (max-width: 560px) {
+  .trigger {
+    gap: var(--space-3);
+    min-block-size: 72px;
+    padding-inline-start: var(--space-5);
+  }
+
+  .title {
+    font-size: var(--text-body);
+  }
+
+  .divider {
+    block-size: 26px;
+  }
+
+  .go {
+    inline-size: 56px;
+    block-size: 56px;
+  }
+
+  .caption {
+    padding-inline: 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .zone,
-  .glyph {
+  .trigger,
+  .go,
+  .link,
+  .back {
     transition: none;
   }
 
-  .zone[data-mode="dragging"] {
-    transform: none;
+  .zone[data-mode="idle"] .trigger:hover .go,
+  .zone[data-mode="dragging"] .go {
+    translate: none;
   }
 }

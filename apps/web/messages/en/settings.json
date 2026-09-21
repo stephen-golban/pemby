@@ -65,6 +65,7 @@
       "from": "From",
       "until": "Until",
       "zone": "Time zone",
+      "useBrowserZone": "Use this browser’s zone ({zone})",
       "clear": "No quiet hours",
       "sameTime": "Pick two different times.",
       "wraps": "This window runs overnight and ends at {until} the next morning."

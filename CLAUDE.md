@@ -38,7 +38,10 @@ build step, and are listed in `transpilePackages` in `apps/web/next.config.ts`.
   build and a real run (browser for UI, curl or a script for APIs and workers). Only exception: `eval/`.
 - **Optimistic UI.** Every user mutation updates the screen at once and rolls back on failure
   (TanStack Query `onMutate` + rollback, or React `useOptimistic`).
-- **Design only through the `impeccable` skill.** desertant.com is the binding brand reference.
+- **Design only through the `impeccable` skill.** The binding reference is the two approved comps,
+  `.impeccable/mocks/pin-landing.png` and `.impeccable/mocks/pin-brief.png`, plus the world written
+  out in PRODUCT.md. desertant.com was released on 2026-09-21 and no longer binds; the image the
+  owner first pinned is third-party, held locally and never published.
 - **Never use Higgsfield.** Images come from Codex CLI (see `docs/phases/_COMMON.md`).
 - **Wording (PLAN D16).** Pemby is "AI job-matching software; you apply yourself". Never say job
   board, recruiter, recruitment, placement, get hired, guaranteed job, auto-apply, scrape, beat the

@@ -1,42 +1,513 @@
-/* Landing page: first-viewport hero. Rhythm comes from the shared tokens. */
+/*
+ * The landing page's shell and first viewport.
+ *
+ * The page is a pure white sheet with generously rounded corners standing on a near-black band.
+ * The band shows at the top, behind the top bar and the hero, and again at the foot, where the
+ * shared footer supplies it. The sheet is drawn as two white blocks with no gap between them —
+ * the crown that carries the top bar, and the hero — so the banner landmark can stay outside
+ * `main` while the two still read as one continuous sheet.
+ */
 
 .page {
   min-height: 100dvh;
   overflow-x: clip;
+  background: var(--color-band);
+}
+
+/* The black margin around the sheet. */
+.crown,
+.hero {
+  margin-inline: clamp(10px, 1.4vw, 26px);
   background: var(--color-ground);
 }
 
+.crown {
+  border-radius: var(--radius-band) var(--radius-band) 0 0;
+}
+
 .hero {
-  display: flex;
-  flex-direction: column;
+  border-radius: 0 0 var(--radius-band) var(--radius-band);
+}
+
+/* The hero ------------------------------------------------------------- */
+
+.heroInner {
+  /*
+   * The comp splits the sheet down the middle: the headline owns the left half, and the right half
+   * is the whole of the showcase — figure at the left of it, verdict card flush to the outer gutter.
+   */
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-6);
   align-items: center;
-  padding: var(--rhythm-lead) var(--gutter) 0;
-  text-align: center;
+  max-inline-size: var(--content-max);
+  margin-inline: auto;
+  padding: var(--rhythm-lead) var(--gutter) clamp(40px, 5vw, 76px);
+}
+
+.lead {
+  display: grid;
+  justify-items: start;
+  min-inline-size: 0;
 }
 
 .headline {
-  max-inline-size: 7.4em;
-  font-family: var(--font-display);
+  /* The column is the measure: the arrow pill has to stay on the first line. */
+  max-inline-size: none;
   font-size: var(--text-display);
   font-weight: var(--weight-display);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
-  text-wrap: balance;
   color: var(--color-ink);
 }
 
-.subline {
-  max-inline-size: 680px;
-  margin-block-start: var(--rhythm-headline-sub);
-  font-family: var(--font-mono);
-  font-size: var(--text-small);
-  letter-spacing: -0.01em;
-  line-height: var(--leading-body);
+/*
+ * The outlined pill with the long right arrow, set at the end of the headline's first line, as the
+ * comp sets it.
+ *
+ * It is floated rather than left in the text run. An inline pill carries the space before it, and
+ * on a narrow sheet those few pixels are enough to push the pill onto the next line, where it opens
+ * a hole in the middle of the sentence — "Only the jobs / [arrow] that can / actually hire you".
+ * Floated to the end of the line, it takes whatever room is left there and the phrase stays whole at
+ * every width. It is shorter than the line box, so it never reaches into the line below.
+ */
+.jump {
+  float: inline-end;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 1.85em;
+  block-size: 0.72em;
+  margin-block-start: 0.14em;
+  margin-inline-start: 0.2em;
+  border: 1.5px solid var(--color-line-strong);
+  border-radius: var(--radius-pill);
   color: var(--color-ink);
+  text-decoration: none;
+  transition: background-color var(--duration-fast) var(--ease-out);
+}
+
+.jump:hover {
+  background: var(--color-surface);
+}
+
+.jumpArrow {
+  inline-size: 60%;
+  block-size: auto;
+  transition: translate var(--duration-fast) var(--ease-out);
+}
+
+.jump:hover .jumpArrow {
+  translate: 3px 0;
+}
+
+.subline {
+  max-inline-size: 42ch;
+  margin-block-start: var(--rhythm-headline-sub);
+  font-size: var(--text-lead);
+  font-weight: var(--weight-body);
+  line-height: 1.45;
+  color: var(--color-ink-soft);
   text-wrap: pretty;
 }
 
 .action {
-  inline-size: min(100%, 560px);
+  inline-size: min(100%, 620px);
   margin-block-start: var(--rhythm-sub-action);
+}
+
+/*
+ * The right half: the figure with two white cards layered over it and over each other.
+ *
+ * The geometry is the comp's, held as ratios of this column so the three colour blocks keep reading
+ * as the sheet widens. The figure sits at the left of the column and the verdict card takes the
+ * rest, so the red panel is clear of it at every width past about 1160 (see `.verdictCard`).
+ * The foot of the column is padding the Today card hangs into: the card has to cross the figure's
+ * lower third, because that is where the drawing is cut off, and a cut edge left showing reads as
+ * an unfinished shape.
+ */
+.showcase {
+  position: relative;
+  min-inline-size: 0;
+  /*
+   * Room under the figure for the Today card to hang into. The card is placed from the top (see
+   * `.todayCard`), so this only has to be deep enough to hold it: roughly its own height less the
+   * part of it that is already over the figure.
+   */
+  padding-block-end: calc(285px - 19%);
+}
+
+.figure {
+  inline-size: 67%;
+  max-inline-size: 440px;
+  block-size: auto;
+  margin-inline: 0 auto;
+}
+
+.card {
+  position: absolute;
+  display: grid;
+  gap: var(--space-3);
+  border-radius: var(--radius-card);
+  background: var(--color-card);
+  box-shadow: var(--shadow-pop);
+  animation: settle var(--duration-base) var(--ease-out) both;
+}
+
+@keyframes settle {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/*
+ * Both cards are placed from the top of the column, in fractions of its width — never from its
+ * bottom. A card's own height does not change with the viewport but the figure's does, so a card
+ * hung from the bottom drifts across the drawing as the sheet narrows, and at around 1100 the
+ * verdict card lands on the first role in the Today card.
+ */
+.verdictCard {
+  /* In front of the Today card, the way the comp layers them, so its EXAMPLE stamp is never lost. */
+  z-index: 1;
+  inset-block-start: 0;
+  /*
+   * The stamp closes the card rather than opening it (see `.stamp`), which costs a row. The row is
+   * paid for here: the card is tightened and hung 2% higher, so its foot lands where it landed
+   * before and the clearance over the Today card's first role is unchanged at every width.
+   */
+  margin-block-start: 11%;
+  inset-inline-end: 0;
+  /*
+   * 185px is the width at which the body still sets in two lines, so the card is one height at
+   * every width and the layering is decided once. Below it the body takes a third line and the
+   * card grows past the Today card's first role around 1100. The old head row was already taking
+   * that much: its tile and stamp did not fit in 35% of a 1100px column and ate the card's right
+   * padding to get it. Between 1100 and about 1160 the floor wins over 35% and the card reaches a
+   * little further over the red panel's right edge than it does at wider sheets.
+   */
+  inline-size: clamp(185px, 35%, 232px);
+  gap: var(--space-2);
+  padding: var(--space-5) var(--space-5) var(--space-4);
+  animation-delay: 120ms;
+}
+
+/*
+ * 44% of the column down: the figure is 67% of its width and 0.94 as tall as it is wide, and the
+ * drawing's foot is cut dead flat at 73% of that height — 46% of the column. The card crosses that
+ * cut at every width. It starts a sixth of the way in, so the blue disc at the figure's foot stays
+ * in the open, and it runs past the figure's right edge, so the cut is covered end to end.
+ */
+.todayCard {
+  inset-block-start: 0;
+  margin-block-start: 44%;
+  inset-inline-start: 16%;
+  inline-size: min(84%, 512px);
+  padding: var(--space-5) var(--space-5) var(--space-4);
+  animation-delay: 200ms;
+}
+
+.tile {
+  display: grid;
+  place-items: center;
+  inline-size: 52px;
+  block-size: 52px;
+  border-radius: var(--radius-tile);
+}
+
+.tile[data-accent="green"] {
+  background: var(--color-tier-green);
+  color: var(--color-on-accent-green);
+}
+
+.tile[data-accent="yellow"] {
+  background: var(--color-tier-yellow);
+  color: var(--color-on-accent-yellow);
+}
+
+.tileMark {
+  inline-size: 26px;
+  block-size: 26px;
+}
+
+.cardTitle {
+  max-inline-size: 14ch;
+  font-size: var(--text-row);
+  font-weight: var(--weight-heavy);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-title);
+}
+
+.cardBody {
+  font-size: var(--text-label);
+  line-height: 1.45;
+  color: var(--color-ink-soft);
+}
+
+/*
+ * The synthetic-content marker. Fixed colours in both themes on purpose: it has to read the same
+ * everywhere, or it stops being unmissable. It follows the content it qualifies -- a label set
+ * ahead of the claim reads as a heading for it, not as a caveat on it.
+ */
+.stamp {
+  justify-self: start;
+  padding: 4px 10px 3px;
+  border-radius: var(--radius-pill);
+  background: #0b0b0b;
+  color: #ffffff;
+  font-size: var(--text-micro);
+  font-weight: var(--weight-title);
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* The stamp sits beside the title, not out at the end: the verdict card covers that corner. */
+.todayHead {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  padding-block-end: var(--space-3);
+  border-block-end: 1px solid var(--color-line);
+}
+
+.todayTitle {
+  font-size: var(--text-row);
+  font-weight: var(--weight-heavy);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-title);
+}
+
+.roles {
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.role {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.roleName {
+  display: block;
+  font-size: var(--text-small);
+  font-weight: var(--weight-title);
+  line-height: 1.25;
+}
+
+.roleMeta {
+  display: block;
+  margin-block-start: 2px;
+  font-size: var(--text-label);
+  line-height: 1.35;
+  color: var(--color-ink-soft);
+}
+
+.reasons {
+  display: inline-flex;
+  gap: var(--space-2);
+  align-items: center;
+  justify-self: end;
+  min-block-size: 40px;
+  font-size: var(--text-label);
+  font-weight: var(--weight-medium);
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.reasons:hover {
+  text-decoration: underline;
+}
+
+.reasonsArrow {
+  inline-size: 30px;
+  block-size: 12px;
+  transition: translate var(--duration-fast) var(--ease-out);
+}
+
+.reasons:hover .reasonsArrow {
+  translate: 3px 0;
+}
+
+/* The three facts, on the black band under the sheet ------------------- */
+
+.facts {
+  max-inline-size: var(--content-max);
+  margin-inline: auto;
+  padding: clamp(28px, 3.4vw, 48px) var(--gutter) clamp(32px, 4vw, 56px);
+  color: var(--color-on-band);
+}
+
+.factList {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-5) var(--space-7);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fact {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  gap: var(--space-4);
+  align-items: center;
+}
+
+.factTile {
+  display: grid;
+  place-items: center;
+  inline-size: 64px;
+  block-size: 64px;
+  border-radius: var(--radius-tile);
+}
+
+.factTile[data-accent="yellow"] {
+  background: var(--color-accent-yellow);
+  color: var(--color-on-accent-yellow);
+}
+
+.factTile[data-accent="red"] {
+  background: var(--color-accent-red);
+  color: var(--color-on-accent-red);
+}
+
+.factTile[data-accent="blue"] {
+  background: var(--color-accent-blue);
+  color: var(--color-on-accent-blue);
+}
+
+.factMark {
+  inline-size: 30px;
+  block-size: 30px;
+}
+
+.factTitle {
+  display: block;
+  font-size: var(--text-row);
+  font-weight: var(--weight-heavy);
+  line-height: 1.12;
+  letter-spacing: var(--tracking-title);
+}
+
+.factBody {
+  display: block;
+  max-inline-size: 30ch;
+  margin-block-start: 3px;
+  font-size: var(--text-label);
+  line-height: 1.4;
+  color: rgb(255 255 255 / 0.74);
+}
+
+/* The rest of the page, back on the white sheet ------------------------ */
+
+.body {
+  border-radius: var(--radius-band) var(--radius-band) 0 0;
+  background: var(--color-ground);
+}
+
+/* Narrow --------------------------------------------------------------- */
+
+/*
+ * Dark is a token swap, but a flat illustration drawn with black outlines on white loses those
+ * outlines against a dark sheet. A faint light halo gives the black shapes their edge back; the
+ * artwork itself is untouched.
+ */
+@media (prefers-color-scheme: dark) {
+  :global(:root:not([data-theme="light"])) .figure {
+    filter: drop-shadow(0 0 1px rgb(245 245 245 / 0.62)) drop-shadow(0 0 7px rgb(245 245 245 / 0.2));
+  }
+}
+
+:global(:root[data-theme="dark"]) .figure {
+  filter: drop-shadow(0 0 1px rgb(245 245 245 / 0.62)) drop-shadow(0 0 7px rgb(245 245 245 / 0.2));
+}
+
+@media (max-width: 1080px) {
+  .heroInner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-6);
+  }
+
+  .headline,
+  .subline {
+    max-inline-size: 22ch;
+  }
+
+  .subline {
+    max-inline-size: 52ch;
+  }
+
+  .showcase {
+    inline-size: min(100%, 560px);
+    padding-block-start: var(--space-4);
+  }
+
+  .figure {
+    inline-size: 62%;
+  }
+}
+
+@media (max-width: 860px) {
+  .factList {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-5);
+  }
+}
+
+@media (max-width: 640px) {
+  /* A phone line is barely wider than the words: the pill has to give up room to stay on line one. */
+  .jump {
+    inline-size: 1.65em;
+    margin-inline-start: 0.12em;
+  }
+
+  .showcase {
+    display: grid;
+    gap: var(--space-4);
+    padding: 0;
+  }
+
+  .figure {
+    inline-size: 60%;
+    margin-inline: auto 0;
+  }
+
+  /* Layering is a wide-screen move; on a phone the cards stand in a plain stack. */
+  .card {
+    position: static;
+    inline-size: 100%;
+    max-inline-size: none;
+  }
+
+  .fact {
+    grid-template-columns: 56px minmax(0, 1fr);
+  }
+
+  .factTile {
+    inline-size: 56px;
+    block-size: 56px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    animation: none;
+  }
+
+  .jump,
+  .jumpArrow,
+  .reasonsArrow {
+    transition: none;
+  }
 }

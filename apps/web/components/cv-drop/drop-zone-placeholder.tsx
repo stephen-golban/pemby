@@ -1,14 +1,16 @@
+import { useTranslations } from "next-intl";
 import { useId } from "react";
 import zone from "@/components/landing/drop-zone.module.css";
 import { IdleFace } from "./idle-face";
 
 /**
- * What the slot shows while the server decides whether the CV drop is on: the idle zone exactly as
- * it will be, laid out from the same markup, so the colour band under the page's primary action
- * does not move when the real zone arrives. The button is inert and the zone is marked busy, so the
- * few milliseconds it is on screen cannot swallow a click or a keystroke.
+ * What the slot shows while the server decides whether the CV drop is on: the idle pill exactly as
+ * it will be, laid out from the same markup, so nothing under the page's primary action moves when
+ * the real one arrives. The pill is inert and the zone is marked busy, so the few milliseconds it
+ * is on screen cannot swallow a click or a keystroke.
  */
 export function DropZonePlaceholder({ className }: { className?: string }) {
+  const t = useTranslations("Landing.drop");
   const captionId = useId();
   return (
     <div
@@ -23,8 +25,11 @@ export function DropZonePlaceholder({ className }: { className?: string }) {
         tabIndex={-1}
         aria-describedby={captionId}
       >
-        <IdleFace captionId={captionId} />
+        <IdleFace />
       </button>
+      <p id={captionId} className={zone.caption}>
+        {t("caption")}
+      </p>
     </div>
   );
 }

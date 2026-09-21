@@ -1,87 +1,143 @@
 /*
- * /onboarding: Operate density inside the landing system. Same ground, type, radii and hairline
- * ledger rows; every flourish removed. Two columns — the topic on the left, the count and the step
- * ledger on the right — collapsing to one, with the count pinned above the topic on narrow screens
- * so an edit's consequence is never scrolled off.
+ * /onboarding: three steps on the white sheet, in the Brief's own world at working density.
+ *
+ * One statement per step at poster scale with nothing above it, then the step's rows as a single
+ * white card at 24px radius, and a rail carrying the live count and the ticked step list as cards
+ * of their own. The count is pinned beside the rows on a wide screen and above them on a narrow
+ * one, so the consequence of an edit is never scrolled off.
  */
 
 .page {
+  display: flex;
+  flex-direction: column;
   min-block-size: 100dvh;
   background: var(--color-ground);
 }
 
 .shell {
-  max-inline-size: calc(1100px + 2 * var(--gutter));
+  flex: 1 1 auto;
+  inline-size: 100%;
+  max-inline-size: var(--content-max);
   margin-inline: auto;
-  padding: var(--space-8) var(--gutter) var(--space-9);
+  padding: var(--rhythm-lead) var(--gutter) var(--space-8);
 }
+
+/* The statement ---------------------------------------------------------- */
+
+.intro {
+  display: grid;
+  gap: var(--rhythm-headline-sub);
+  margin-block-end: var(--rhythm-sub-action);
+}
+
+/*
+ * `width: fit-content` is not cosmetic: the heading takes focus programmatically on every step
+ * change, and a block box would paint the ring across the whole page and read as a stray input.
+ * It sits on the heading rather than on `:focus-visible` so focus never shifts the layout.
+ */
+.title {
+  inline-size: fit-content;
+  max-inline-size: 17ch;
+  font-size: var(--text-display);
+  font-weight: var(--weight-heavy);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  text-wrap: balance;
+}
+
+.title:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 8px;
+}
+
+.lead {
+  max-inline-size: 72ch;
+  font-size: var(--text-lead);
+  font-weight: var(--weight-body);
+  line-height: 1.4;
+  color: var(--color-ink-soft);
+}
+
+/* The two columns -------------------------------------------------------- */
 
 .layout {
   display: grid;
   grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
-  gap: var(--space-7) var(--space-9);
+  gap: var(--space-6) var(--space-7);
   align-items: start;
 }
 
 .main {
   display: grid;
   gap: var(--space-5);
+  min-inline-size: 0;
+}
+
+/* The card the last step leaves behind: setup is over, and here is where to go next. */
+.done {
+  display: grid;
+  gap: var(--space-4);
   justify-items: start;
+  padding: var(--space-6);
+  border-radius: var(--radius-card);
+  background: var(--color-card);
+  box-shadow: var(--shadow-card);
 }
 
-/*
- * `width: fit-content` is not cosmetic: the heading takes focus programmatically on every step
- * change, and a block box would paint the ring across the whole column and read as a stray input.
- * It sits on the heading rather than on `:focus-visible` so focus never shifts the layout.
- */
-.title {
-  inline-size: fit-content;
-  max-inline-size: 20ch;
-  font-family: var(--font-display);
-  font-size: 2.125rem;
-  font-weight: var(--weight-title);
-  line-height: 0.92;
-  letter-spacing: var(--tracking-title);
-  text-wrap: balance;
+.doneHead {
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
 }
 
-.title:focus-visible {
-  outline: 2px solid var(--color-focus);
-  outline-offset: 6px;
+/* Ink, not green: a finished setup is progress, and green in this world is an eligibility word. */
+.doneTile {
+  display: grid;
+  place-items: center;
+  flex: none;
+  inline-size: 44px;
+  block-size: 44px;
+  border-radius: var(--radius-tile);
+  background: var(--color-ink);
+  color: var(--color-ground);
 }
 
-.lead {
-  max-inline-size: 58ch;
-  font-size: var(--text-small);
+.doneMark {
+  inline-size: 22px;
+  block-size: 22px;
+}
+
+.doneBody {
+  max-inline-size: 64ch;
+  font-size: var(--text-body);
   line-height: 1.55;
-}
-
-.note {
-  max-inline-size: 58ch;
-  font-size: var(--text-label);
-  line-height: 1.5;
-  color: var(--color-ink-soft);
-}
-
-.main > dl {
-  inline-size: 100%;
 }
 
 /* Rail ------------------------------------------------------------------- */
 
 .rail {
   position: sticky;
-  inset-block-start: var(--space-6);
+  inset-block-start: var(--space-5);
   display: grid;
   gap: var(--space-5);
   justify-items: start;
+  min-inline-size: 0;
+}
+
+.steps {
+  display: grid;
+  gap: var(--space-4);
+  inline-size: 100%;
+  padding: var(--space-6);
+  border-radius: var(--radius-card);
+  background: var(--color-card);
+  box-shadow: var(--shadow-card);
 }
 
 .position {
   font-size: var(--text-label);
-  font-weight: var(--weight-mono-strong);
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
+  font-weight: var(--weight-title);
+  line-height: 1.35;
   color: var(--color-ink-soft);
 }
 
@@ -99,45 +155,48 @@
   gap: var(--space-3);
   align-items: center;
   font-size: var(--text-small);
+  font-weight: var(--weight-medium);
   color: var(--color-ink-soft);
 }
 
-.step[data-state="current"] {
-  color: var(--color-ink);
-}
-
+.step[data-state="current"],
 .step[data-state="done"] {
   color: var(--color-ink);
 }
 
+.step[data-state="current"] {
+  font-weight: var(--weight-title);
+}
+
 /*
- * The mark vocabulary of the CV panel's step ledger: a filled ticked square for a step that is
- * done, an outlined one for the step in progress, dashed for a step not reached.
+ * A rounded square for each step, in the world's tile shape at rail scale: filled ink with its
+ * tick once the step is done, outlined in ink-strong for the step in progress, a plain line for
+ * one not reached. Nothing here is dashed — a dashed edge is the print-ledger habit this world
+ * refuses, and it appears on no other surface. The state is a shape, and the visually-hidden
+ * word beside it says it outright.
  */
 .stepMark {
-  flex: none;
   display: grid;
   place-items: center;
-  inline-size: 20px;
-  block-size: 20px;
-  border: 1.5px dashed var(--color-line);
-  border-radius: var(--radius-sm);
+  flex: none;
+  inline-size: 26px;
+  block-size: 26px;
+  border: 2px solid var(--color-line);
+  border-radius: 9px;
   color: var(--color-ground);
 }
 
 .stepMark svg {
-  inline-size: 13px;
-  block-size: 13px;
+  inline-size: 15px;
+  block-size: 15px;
   visibility: hidden;
 }
 
 .step[data-state="current"] .stepMark {
-  border-style: solid;
-  border-color: var(--color-ink);
+  border-color: var(--color-line-strong);
 }
 
 .step[data-state="done"] .stepMark {
-  border-style: solid;
   border-color: var(--color-ink);
   background: var(--color-ink);
 }
@@ -157,43 +216,87 @@
   flex-wrap: wrap;
   gap: var(--space-3) var(--space-5);
   align-items: center;
-  margin-block-start: var(--space-3);
 }
 
+/* The one filled black pill on the step. */
 .primary {
   display: inline-flex;
+  gap: var(--space-2);
   align-items: center;
   justify-content: center;
-  block-size: 52px;
+  min-block-size: 52px;
   padding: 0 24px;
   border: 0;
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-pill);
   background: var(--color-ink);
   color: var(--color-ground);
-  font-family: var(--font-display);
-  font-size: 1.1875rem;
+  font-family: inherit;
+  font-size: var(--text-body);
   font-weight: var(--weight-title);
-  letter-spacing: -0.02em;
   text-decoration: none;
   cursor: pointer;
-  transition: transform var(--duration-fast) var(--ease-out);
+  transition: opacity var(--duration-fast) var(--ease-out);
 }
 
 .primary:hover {
-  transform: translateY(-2px);
+  opacity: 0.86;
 }
 
+.arrow {
+  flex: none;
+  inline-size: 18px;
+  block-size: 18px;
+  transition: translate var(--duration-fast) var(--ease-out);
+}
+
+.primary:hover .arrow,
+.outlinePill:hover .arrow {
+  translate: 3px 0;
+}
+
+/* The outlined pill: the quieter way on from a finished setup. */
+.outlinePill {
+  display: inline-flex;
+  gap: var(--space-2);
+  align-items: center;
+  justify-content: center;
+  min-block-size: 48px;
+  padding: 0 20px;
+  border: 1.5px solid var(--color-line-strong);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--color-ink);
+  font-family: inherit;
+  font-size: var(--text-small);
+  font-weight: var(--weight-title);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--duration-fast) var(--ease-out);
+}
+
+.outlinePill:hover {
+  background: var(--color-surface);
+}
+
+/* Skipping and going back are quiet text actions, as on the Brief. */
 .textButton {
+  display: inline-flex;
+  align-items: center;
   min-block-size: 44px;
   padding: 0;
   border: 0;
-  background: transparent;
-  color: var(--color-ink);
-  font-family: var(--font-mono);
-  font-size: var(--text-small);
-  text-decoration: underline;
-  text-underline-offset: 0.22em;
+  background: none;
+  color: var(--color-ink-soft);
+  font-family: inherit;
+  font-size: var(--text-label);
+  font-weight: var(--weight-medium);
   cursor: pointer;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.textButton:hover {
+  color: var(--color-ink);
+  text-decoration: underline;
 }
 
 .saving {
@@ -202,11 +305,11 @@
 }
 
 .alert {
-  max-inline-size: 58ch;
-  padding: 10px 14px;
-  border: 1px solid color-mix(in srgb, var(--color-tier-red) 55%, transparent);
-  border-radius: var(--radius-md);
-  background: color-mix(in srgb, var(--color-tier-red) 10%, var(--color-surface));
+  max-inline-size: 68ch;
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-lg);
+  background: var(--color-tier-red-soft);
+  color: var(--color-on-tier-red-soft);
   font-size: var(--text-small);
   line-height: 1.5;
 }
@@ -214,36 +317,38 @@
 @media (max-width: 1000px) {
   .layout {
     grid-template-columns: minmax(0, 1fr);
-    gap: var(--space-6);
+    gap: var(--space-5);
   }
 
   /*
-   * Above the topic, and not sticky. The rail carries the count, the step ledger and (for a
-   * visitor who has not signed up) the save-your-work card, which on a phone is tall enough that
-   * pinning it painted an opaque band over the rows being edited.
+   * Above the rows, and not sticky. The rail carries the count, the step list and (for a visitor
+   * who has not signed up) the save-your-work card, which on a phone is tall enough that pinning
+   * it painted a card over the rows being edited.
    */
   .rail {
     position: static;
     order: -1;
-    gap: var(--space-4);
     inline-size: 100%;
-    padding-block-end: var(--space-4);
-    border-block-end: 1px solid var(--color-line);
   }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 760px) {
   .shell {
-    padding-block-start: var(--space-5);
+    padding-block-start: var(--space-7);
+    padding-block-end: var(--space-7);
   }
 
-  .title {
-    font-size: 1.8125rem;
+  .done,
+  .steps {
+    padding: var(--space-5);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .primary:hover {
-    transform: none;
+  .primary,
+  .outlinePill,
+  .textButton,
+  .arrow {
+    transition: none;
   }
 }

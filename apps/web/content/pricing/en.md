@@ -6,9 +6,9 @@ Source copy for `/pricing`. Each line is `key`, then the English string. Keys fo
 
 ## Hero
 
-- `hero.eyebrow`: Pricing
 - `hero.title`: Free to start. A pass when you want matches the moment they appear.
 - `hero.lede`: Pemby is AI job-matching software. It finds jobs that can hire you from your country and sends them to you. You apply yourself.
+- `hero.seePasses`: See the passes
 - `hero.noteOneTime`: Free costs nothing. A pass is a one-time payment: no auto-renew, no subscription to cancel.
 
 ## Free vs Pass
@@ -87,6 +87,13 @@ Source copy for `/pricing`. Each line is `key`, then the English string. Keys fo
 - `how.stack.body`: Buy a new pass before your current one ends and the new days are added to the end. You lose no time.
 - `how.reminder.title`: A reminder before it ends
 - `how.reminder.body`: We remind you 5 days before your pass ends. When it ends, your account returns to Free. Your profile, matches and kits stay.
+
+## What is covered
+
+> The heading over the three trust mechanics below: the no-match guarantee, the pause and the
+> refund window. It names what is covered and promises nothing about jobs, interviews or offers.
+
+- `promises.title`: What is covered
 
 ## Refunds
 

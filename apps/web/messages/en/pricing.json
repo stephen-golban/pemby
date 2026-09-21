@@ -3,6 +3,7 @@
     "hero": {
       "title": "Free to start. A pass when you want matches the moment they appear.",
       "lede": "Pemby is AI job-matching software. It finds jobs that can hire you from your country and sends them to you. You apply yourself.",
+      "seePasses": "See the passes",
       "noteOneTime": "Free costs nothing. A pass is a one-time payment: no auto-renew, no subscription to cancel."
     },
     "compare": {
@@ -99,6 +100,9 @@
         "reminder": "Reminder, 5 days left",
         "free": "Free again"
       }
+    },
+    "promises": {
+      "title": "What is covered"
     },
     "refunds": {
       "title": "14-day refunds",

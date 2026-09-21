@@ -9,11 +9,12 @@ import styles from "./fields.module.css";
 /**
  * The editable ledger shared by `/onboarding` and `/profile`.
  *
- * Same grammar as the CV panel's read-only ledger (`components/profile/profile.module.css`): an
- * uppercase mono label in a fixed column, the value beside it, hairline rules between rows and no
- * box around anything. The difference is a third column holding one outline pill that opens the
- * editor **in the row** — no modal, no drawer, no separate edit page (Operate: a modal for a task
- * that needs neither interruption nor protected focus is a lapse).
+ * One white card at 24px radius holding the topic's rows: the field's name in warm grey, the
+ * answer under it in ink, hairline rules between rows and no box around a value. Same grammar as
+ * the CV panel's read-only ledger (`components/profile/profile.module.css`). The difference is a
+ * second column holding one pill that opens the editor **in the row** — no modal, no drawer, no
+ * separate edit page (Operate: a modal for a task that needs neither interruption nor protected
+ * focus is a lapse).
  *
  * Every editor below is uncontrolled while it is open and commits on "Done" or on Enter, so an
  * optimistic save happens once per edit rather than once per keystroke.
@@ -95,7 +96,7 @@ export function FieldRow({
   );
 }
 
-/** Values read as a wrapped list of chips; the same chip as `components/profile`. */
+/** Values read as a wrapped list of grey tag pills; the same chip as `components/profile`. */
 export function ValueChips({ values, label }: { values: readonly string[]; label: string }) {
   return (
     <ul className={styles.chips} aria-label={label}>

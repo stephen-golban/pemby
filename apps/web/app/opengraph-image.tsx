@@ -1,19 +1,20 @@
 import { ImageResponse } from "next/og";
-import { groteskFont, monoFont } from "./_og/brand-fonts";
+import { groteskBodyFont, groteskFont } from "./_og/brand-fonts";
 import { seoT } from "./_og/seo-translator";
 
-// Colours from packages/ui/src/tokens.css (Satori cannot read CSS custom properties).
-const GROUND = "#faf6f0";
-const INK = "#14110d";
-const FIELD = "#2b3323";
-const ON_FIELD = "#f7f1e6";
+// Colours from packages/ui/src/tokens.css (Satori cannot read CSS custom properties): the white
+// sheet, the ink on it, and the near-black band it stands on.
+const GROUND = "#ffffff";
+const INK = "#101010";
+const BAND = "#0b0b0b";
+const ON_BAND = "#ffffff";
 
 export const alt = seoT("image.alt");
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default async function Image() {
-  const fonts = await Promise.all([groteskFont(), monoFont()]);
+  const fonts = await Promise.all([groteskFont(), groteskBodyFont()]);
   return new ImageResponse(
     <div
       style={{
@@ -23,7 +24,7 @@ export default async function Image() {
         flexDirection: "column",
         background: GROUND,
         color: INK,
-        fontFamily: "Rethink Sans",
+        fontFamily: "Hanken Grotesk",
       }}
     >
       <div
@@ -62,7 +63,7 @@ export default async function Image() {
         </div>
       </div>
 
-      {/* The olive field band from the landing page, rounded at its top corners. */}
+      {/* The near-black band from the landing page, rounded at its top corners. */}
       <div
         style={{
           display: "flex",
@@ -70,14 +71,13 @@ export default async function Image() {
           justifyContent: "space-between",
           height: 132,
           padding: "0 72px",
-          background: FIELD,
-          color: ON_FIELD,
+          background: BAND,
+          color: ON_BAND,
           borderTopLeftRadius: 64,
           borderTopRightRadius: 64,
-          fontFamily: "Source Code Pro",
           fontWeight: 500,
           fontSize: 26,
-          letterSpacing: 0.4,
+          letterSpacing: -0.2,
         }}
       >
         <div style={{ display: "flex" }}>{seoT("image.line")}</div>

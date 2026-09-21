@@ -1,469 +1,604 @@
 /*
- * The Brief's rows, groups and pickers. Operate density on the landing's world: hairline-ruled
- * ledger rows, outline-pill secondary actions, mono for every sentence of evidence and the
- * grotesk only for names and numbers. Nothing here tilts and nothing here lifts — on this page the
- * one object that lifts is the honest-silence card (brief.module.css in app/brief).
+ * The Brief's cards, tiles, pills and pickers.
+ *
+ * Every block on this page is a white card at 24px radius with one soft wide shadow, standing on
+ * the white sheet. Colour arrives as a solid fill — a tier tile, a blocker tile, a black pill — and
+ * never as a wash behind a sentence. The one exception is the eligibility pill, which is tinted on
+ * purpose so a verdict is carried by a tile, a tint and a word rather than by a colour.
  */
 
-/* One match ------------------------------------------------------------ */
+/* The card ------------------------------------------------------------- */
 
-.row {
+.card {
+  position: relative;
   display: grid;
-  gap: var(--space-2);
-  padding-block: var(--space-5);
-  border-block-end: 1px solid var(--color-line);
+  grid-template-columns: 56px minmax(0, 1fr) minmax(0, 190px);
+  grid-template-areas:
+    "tile head aside"
+    "tile body aside"
+    "tile foot aside";
+  row-gap: var(--space-3);
+  column-gap: var(--space-5);
+  padding: var(--space-6);
+  border-radius: var(--radius-card);
+  background: var(--color-card);
+  box-shadow: var(--shadow-card);
 }
 
-/*
- * The one place a pending read is drawn. `app/brief/brief.module.css` deliberately does NOT dim
- * `.list` as well: nested opacity multiplies, and two 0.62 layers put the mono sub-text under the
- * AA contrast bar while a refetch is in flight.
- */
-.row[data-pending="true"] {
-  opacity: 0.75;
+/* The one authored moment: the stack settles once, one card after another, and nothing loops. */
+.card,
+.held,
+.nearMiss,
+.program,
+.settings {
+  animation: settle var(--duration-base) var(--ease-out) both;
+  animation-delay: calc(var(--settle-index, 0) * 60ms);
+}
+
+@keyframes settle {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* A read in flight goes quiet; nothing disappears. */
+.card[data-pending="true"] {
+  opacity: 0.78;
   transition: opacity var(--duration-fast) var(--ease-out);
 }
 
-/* Handled rows stay legible but stop competing with the ones still open. */
-.row[data-state="applied"],
-.row[data-state="passed"] {
-  opacity: 0.78;
+/* Handled cards stay legible but stop competing with the ones still open. */
+.card[data-state="applied"],
+.card[data-state="passed"] {
+  box-shadow: var(--shadow-soft);
+  opacity: 0.82;
 }
 
-.head {
-  display: flex;
-  gap: var(--space-4);
-  align-items: baseline;
-  justify-content: space-between;
-}
-
-.headMain {
-  flex: 1 1 auto;
+.body {
+  grid-area: body;
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
   min-inline-size: 0;
 }
 
+.aside {
+  grid-area: aside;
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+  justify-items: end;
+  text-align: end;
+}
+
 .name {
+  grid-area: head;
+  align-self: center;
   overflow-wrap: anywhere;
-  font-family: var(--font-display);
-  font-size: 1.1875rem;
-  font-weight: var(--weight-title);
-  line-height: 1.1;
-  letter-spacing: -0.025em;
+  font-size: var(--text-subhead);
+  font-weight: var(--weight-heavy);
+  line-height: 1.12;
+  letter-spacing: -0.028em;
+  text-wrap: balance;
 }
 
 .meta {
-  margin-block-start: 4px;
-  font-size: var(--text-label);
-  color: var(--color-ink-soft);
-}
-
-/* The score is evidence, so it is mono and quiet, not a hero number. */
-.score {
-  flex: none;
-  font-size: var(--text-label);
-  font-weight: var(--weight-mono-strong);
-  font-variant-numeric: tabular-nums;
-  color: var(--color-ink-soft);
-}
-
-/*
- * The synthetic-content marker (DESIGN.md). Fixed colours in both themes on purpose: it has to
- * read the same everywhere, or it stops being unmissable.
- */
-.stamp {
-  justify-self: start;
-  padding: 6px 9px 5px;
-  border: 1px solid rgb(247 241 230 / 0.5);
-  border-radius: 7px;
-  background: rgb(20 17 13 / 0.86);
-  color: #f7f1e6;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
-}
-
-/* Tier verdict: the colour never carries the meaning on its own. */
-.verdict {
   display: flex;
-  gap: var(--space-2);
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-3);
   align-items: center;
-  margin-block-start: var(--space-2);
-  font-size: var(--text-label);
-  font-weight: var(--weight-mono-strong);
 }
 
-.swatch {
-  flex: none;
-  inline-size: 14px;
-  block-size: 14px;
-  border-radius: var(--radius-full);
-}
-
-.swatch[data-tier="green"] {
-  background: var(--color-tier-green);
-}
-
-.swatch[data-tier="yellow"] {
-  background: var(--color-tier-yellow);
-}
-
-/* White is drawn with an edge, or it disappears into the ground. */
-.swatch[data-tier="white"] {
-  border: 1.5px solid var(--color-line-strong);
-  background: var(--color-tier-white);
-}
-
-.swatch[data-tier="red"] {
-  background: var(--color-tier-red);
-}
-
-/* The eligibility line: the one sentence that answers "can this company pay me where I live". */
-.reason {
-  max-inline-size: 62ch;
+.company {
   font-size: var(--text-small);
-  line-height: 1.55;
-}
-
-.verified {
-  font-size: var(--text-label);
+  font-weight: var(--weight-medium);
+  line-height: 1.3;
   color: var(--color-ink-soft);
 }
 
-.way {
-  font-size: var(--text-label);
+/* The eligibility sentence: the one line that answers "can this company pay me where I live". */
+.reason {
+  max-inline-size: 66ch;
+  font-size: var(--text-small);
+  line-height: 1.5;
   color: var(--color-ink-soft);
 }
 
-.groupLabel {
-  margin-block-start: var(--space-2);
-  font-size: var(--text-label);
-  font-weight: var(--weight-mono-strong);
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
-  color: var(--color-ink-soft);
-}
-
-.points {
-  display: grid;
-  gap: 4px;
+/* Why it fits, as light grey tag pills. */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-/*
- * A criterion that is met is a filled mark, never an empty box (DESIGN.md, match card anatomy).
- * Drawn in CSS rather than with a glyph so it inherits the ink and never falls back to an emoji.
- */
-.point {
-  display: grid;
-  grid-template-columns: 10px minmax(0, 1fr);
-  gap: var(--space-3);
-  align-items: baseline;
-  max-inline-size: 62ch;
-  font-size: var(--text-small);
-  line-height: 1.55;
-}
-
-.point::before {
-  content: "";
-  inline-size: 8px;
-  block-size: 8px;
-  border-radius: 2px;
-  background: var(--color-ink);
-  translate: 0 -1px;
-}
-
-.gap {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: var(--space-3);
-  align-items: baseline;
-  max-inline-size: 62ch;
-  margin-block-start: var(--space-2);
-  font-size: var(--text-small);
-  line-height: 1.55;
-}
-
-/* Solid, not dashed: dashed means "drop here" or "not yet" in this system (DESIGN.md, Shapes),
-   and a gap is a fact about the post, not a pending state. The held note and the expected
-   program badge below keep the dashed stroke, which is what it is for. */
-.gapLabel {
-  padding: 3px 8px;
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-sm);
+.tag {
+  padding: 7px 13px;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
   font-size: var(--text-label);
-  font-weight: var(--weight-mono-strong);
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
+  font-weight: var(--weight-medium);
+  line-height: 1.35;
+  color: var(--color-ink);
+}
+
+/* The one thing it is short. */
+.gap {
+  max-inline-size: 66ch;
+  font-size: var(--text-small);
+  line-height: 1.5;
   color: var(--color-ink-soft);
+}
+
+.gapLabel {
+  font-weight: var(--weight-title);
+  color: var(--color-ink-soft);
+}
+
+.gapLabel::after {
+  content: " — ";
+}
+
+/*
+ * The foot line is the card's third row, not the last line of `.body`: it follows the aside in the
+ * DOM so the acts are tabbed first, and sits back under the body here so nothing moves. The card's
+ * row-gap is the body's own gap, so the line keeps its spacing exactly.
+ */
+.footMeta {
+  grid-area: foot;
+  min-inline-size: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: var(--text-label);
+  line-height: 1.5;
+  color: var(--color-ink-soft);
+}
+
+/* inline-block so a hover underline on the action stops at its own word, not at the separator. */
+.footDot::before {
+  content: "·";
+  display: inline-block;
+  margin-inline: var(--space-2);
+  color: var(--color-ink-soft);
+}
+
+/*
+ * The wrapper the separator rides on. `::before` content counts towards the computed accessible
+ * name of the element that carries it, so the dot may never sit on the button itself.
+ */
+.footAction {
+  display: inline-flex;
+  align-items: center;
 }
 
 .settled {
-  max-inline-size: 58ch;
+  max-inline-size: 60ch;
   font-size: var(--text-label);
   line-height: 1.5;
   color: var(--color-ink-soft);
 }
 
-/* The 24-hour-late note ------------------------------------------------ */
-
 /*
- * Dashed, because in this system a dashed stroke means "not yet" (DESIGN.md, Shapes), and this is
- * the note that stroke was specified for. It sits flat: nothing is being held in your hand here.
- * `data-lead` is the same note at reading density, for the days when it is the whole answer and
- * there is no ledger above it to lean on.
+ * The synthetic-content marker. Fixed colours in both themes on purpose: it has to read the same
+ * everywhere, or it stops being unmissable.
  */
-.heldNote {
-  display: grid;
-  gap: var(--space-2);
-  justify-items: start;
-  padding: var(--space-4) var(--space-5);
-  border: 1px dashed var(--color-line);
-  border-radius: var(--radius-lg);
-}
-
-.heldNote[data-lead="true"] {
-  gap: var(--space-3);
-  padding: var(--space-6) var(--space-5) var(--space-5);
-  border-width: 1.5px;
-  border-radius: var(--radius-xl);
-  background: var(--color-paper-card);
-}
-
-.heldTitle {
-  font-family: var(--font-display);
-  font-size: 1.1875rem;
+.stamp {
+  padding: 4px 10px 3px;
+  border-radius: var(--radius-pill);
+  background: #0b0b0b;
+  color: #ffffff;
+  font-size: var(--text-micro);
   font-weight: var(--weight-title);
-  line-height: 1.1;
-  letter-spacing: -0.025em;
-  font-variant-numeric: tabular-nums;
-}
-
-.heldNote[data-lead="true"] .heldTitle {
-  font-size: 1.5rem;
-  line-height: 1.05;
-  letter-spacing: var(--tracking-title);
-}
-
-.heldBody {
-  max-inline-size: 58ch;
-  font-size: var(--text-label);
-  line-height: 1.55;
-  color: var(--color-ink-soft);
-}
-
-/* As the page's answer this sentence is body-critical, so it takes full ink. */
-.heldNote[data-lead="true"] .heldBody {
-  font-size: var(--text-small);
-  line-height: 1.6;
-  color: var(--color-ink);
-}
-
-.heldLink {
-  display: inline-flex;
-  align-items: center;
-  min-block-size: 44px;
-  font-size: var(--text-label);
-  text-decoration: underline;
-  text-underline-offset: 0.22em;
-}
-
-/* Actions -------------------------------------------------------------- */
-
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-3);
-  align-items: center;
-  margin-block-start: var(--space-3);
-}
-
-.apply {
-  display: inline-flex;
-  gap: 6px;
-  align-items: center;
-  justify-content: center;
-  min-block-size: 44px;
-  padding: 0 18px;
-  border-radius: var(--radius-full);
-  background: var(--color-ink);
-  color: var(--color-ground);
-  font-family: var(--font-display);
-  font-size: 1rem;
-  font-weight: var(--weight-title);
-  text-decoration: none;
-  transition:
-    translate var(--duration-fast) var(--ease-out),
-    background-color var(--duration-fast) var(--ease-out);
-}
-
-.apply:hover {
-  translate: 0 -2px;
-}
-
-.apply svg {
-  inline-size: 14px;
-  block-size: 14px;
-}
-
-.pill {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-block-size: 44px;
-  padding: 0 16px;
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-full);
-  background: transparent;
-  color: var(--color-ink);
-  font-family: var(--font-mono);
-  font-size: var(--text-label);
-  font-weight: var(--weight-mono-strong);
-  letter-spacing: var(--tracking-label);
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  text-align: center;
-  cursor: pointer;
-  transition: border-color var(--duration-fast) var(--ease-out);
+  white-space: nowrap;
 }
 
-.pill:hover:not(:disabled):not([aria-disabled="true"]) {
-  border-color: var(--color-ink);
-}
+/* The tier: a tile, a tint and a word ---------------------------------- */
 
-/* A pressed switch or a saved row reads as chosen without leaving the outline vocabulary. */
-.pill[aria-pressed="true"],
-.pill[role="switch"][aria-checked="true"] {
-  border-color: var(--color-ink);
-  border-width: 1.5px;
-}
-
-/* Dashed means "not yet" here too: the action is spent, not broken. */
-.pill:disabled,
-.pill[aria-disabled="true"] {
-  border-style: dashed;
-  color: var(--color-ink-soft);
-  cursor: not-allowed;
-}
-
-/* Pickers -------------------------------------------------------------- */
-
-/*
- * One-tap pickers, inline rather than in a dialog: neither of them needs protected focus, and a
- * modal over the row hides the post you are deciding about.
- */
-.picker {
+.tierTile {
+  grid-area: tile;
   display: grid;
-  gap: var(--space-3);
-  justify-items: start;
-  margin-block-start: var(--space-3);
-  padding: var(--space-4);
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-lg);
-  background: var(--color-surface);
+  place-items: center;
+  align-self: start;
+  inline-size: 56px;
+  block-size: 56px;
+  border-radius: var(--radius-tile);
 }
 
-.pickerTitle {
-  font-family: var(--font-display);
-  font-size: 1.1875rem;
-  font-weight: var(--weight-title);
-  letter-spacing: -0.02em;
+.tierTileMark {
+  inline-size: 28px;
+  block-size: 28px;
 }
 
-.pickerNote {
-  max-inline-size: 52ch;
+.tierTile[data-tier="green"] {
+  background: var(--color-tier-green);
+  color: var(--color-on-accent-green);
+}
+
+.tierTile[data-tier="yellow"] {
+  background: var(--color-tier-yellow);
+  color: var(--color-on-accent-yellow);
+}
+
+/* An unclear verdict has no fill to stand on, so it is drawn with an edge instead. */
+.tierTile[data-tier="white"] {
+  border: 2px solid var(--color-line-strong);
+  background: var(--color-tier-white);
+  color: var(--color-ink);
+}
+
+.tierTile[data-tier="red"] {
+  background: var(--color-tier-red);
+  color: var(--color-on-accent-red);
+}
+
+.tierPill {
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
   font-size: var(--text-label);
-  line-height: 1.5;
-  color: var(--color-ink-soft);
+  font-weight: var(--weight-title);
+  line-height: 1.35;
+  white-space: nowrap;
 }
 
-.options {
+.tierPill[data-tier="green"] {
+  background: var(--color-tier-green-soft);
+  color: var(--color-on-tier-green-soft);
+}
+
+.tierPill[data-tier="yellow"] {
+  background: var(--color-tier-yellow-soft);
+  color: var(--color-on-tier-yellow-soft);
+}
+
+.tierPill[data-tier="white"] {
+  border: 1px solid var(--color-line);
+  background: var(--color-tier-white-soft);
+  color: var(--color-on-tier-white-soft);
+}
+
+.tierPill[data-tier="red"] {
+  background: var(--color-tier-red-soft);
+  color: var(--color-on-tier-red-soft);
+}
+
+/* The permanent legend at the foot of the page. */
+.legend {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-2);
-}
-
-.options .pill {
-  background: var(--color-ground);
-}
-
-/*
- * "Cancel" and "Back": the way out of a picker, and deliberately the quietest control in it — an
- * underlined word rather than a third pill, so the options stay the only things that look tappable.
- * Still a 44px target.
- */
-.textAction {
-  display: inline-flex;
-  align-items: center;
-  min-block-size: 44px;
-  padding: 0;
-  border: 0;
-  background: none;
-  color: var(--color-ink);
-  font-family: var(--font-mono);
-  font-size: var(--text-label);
-  text-decoration: underline;
-  text-underline-offset: 0.22em;
-  cursor: pointer;
-}
-
-/* Near-miss groups ----------------------------------------------------- */
-
-.groups {
-  display: grid;
-  gap: 0;
+  gap: var(--space-3) var(--space-6);
   margin: 0;
   padding: 0;
   list-style: none;
-  border-block-start: 1px solid var(--color-line);
 }
 
-.group {
-  display: grid;
-  gap: var(--space-3);
-  padding-block: var(--space-4);
-  border-block-end: 1px solid var(--color-line);
-}
-
-.groupHead {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-3);
-  align-items: center;
-}
-
-.badge {
+.legendItem {
   display: inline-flex;
+  gap: var(--space-2);
   align-items: center;
-  justify-content: center;
+  font-size: var(--text-label);
+  font-weight: var(--weight-medium);
+  color: var(--color-ink-soft);
+}
+
+.legendTile {
+  display: grid;
+  place-items: center;
   flex: none;
-  min-inline-size: 30px;
-  block-size: 30px;
-  padding: 0 9px;
-  border-radius: var(--radius-full);
-  background: var(--color-ink);
-  color: var(--color-ground);
-  font-family: var(--font-display);
-  font-size: 0.9375rem;
-  font-weight: var(--weight-title);
+  inline-size: 24px;
+  block-size: 24px;
+  border-radius: 8px;
+}
+
+.legendTile[data-tier="green"] {
+  background: var(--color-tier-green);
+  color: var(--color-on-accent-green);
+}
+
+.legendTile[data-tier="yellow"] {
+  background: var(--color-tier-yellow);
+  color: var(--color-on-accent-yellow);
+}
+
+.legendTile[data-tier="white"] {
+  border: 1.5px solid var(--color-line-strong);
+  background: var(--color-tier-white);
+  color: var(--color-ink);
+}
+
+.legendMark {
+  inline-size: 15px;
+  block-size: 15px;
+}
+
+/* The score and the act ------------------------------------------------ */
+
+.score {
+  display: grid;
+  justify-items: end;
+}
+
+.scoreValue {
+  font-size: var(--text-score);
+  font-weight: var(--weight-heavy);
+  line-height: 0.9;
+  letter-spacing: -0.045em;
   font-variant-numeric: tabular-nums;
 }
 
-.groupName {
-  flex: 1 1 14ch;
-  font-family: var(--font-display);
-  font-size: 1.1875rem;
-  font-weight: var(--weight-title);
-  line-height: 1.1;
-  letter-spacing: -0.025em;
+.scoreUnit {
+  margin-block-start: var(--space-1);
+  font-size: var(--text-label);
+  font-weight: var(--weight-medium);
+  line-height: 1.2;
+  color: var(--color-ink-soft);
 }
 
-.groupNote {
-  max-inline-size: 58ch;
-  font-size: var(--text-label);
-  line-height: 1.5;
+/* The one filled black pill on a card. */
+.apply {
+  display: inline-flex;
+  gap: var(--space-2);
+  align-items: center;
+  justify-content: center;
+  inline-size: 100%;
+  min-block-size: 48px;
+  padding: 0 20px;
+  border-radius: var(--radius-pill);
+  background: var(--color-ink);
+  color: var(--color-ground);
+  font-size: var(--text-body);
+  font-weight: var(--weight-title);
+  text-align: center;
+  text-decoration: none;
+  transition: opacity var(--duration-fast) var(--ease-out);
+}
+
+.apply:hover {
+  opacity: 0.86;
+}
+
+.applyArrow {
+  flex: none;
+  inline-size: 18px;
+  block-size: 18px;
+  transition: translate var(--duration-fast) var(--ease-out);
+}
+
+.apply:hover .applyArrow,
+.outlinePill:hover .applyArrow {
+  translate: 3px 0;
+}
+
+/* The outlined pill with the long right arrow: the quieter of the two link shapes. */
+.outlinePill {
+  display: inline-flex;
+  gap: var(--space-2);
+  align-items: center;
+  justify-content: center;
+  min-block-size: 46px;
+  padding: 0 20px;
+  border: 1.5px solid var(--color-line-strong);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--color-ink);
+  font-size: var(--text-small);
+  font-weight: var(--weight-title);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--duration-fast) var(--ease-out);
+}
+
+.outlinePill:hover {
+  background: var(--color-surface);
+}
+
+/* Quiet text actions: the ways of saying no, and the way out of a picker. */
+.quietRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.quietAction {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 40px;
+  padding: 0;
+  border: 0;
+  background: none;
   color: var(--color-ink-soft);
+  font-family: inherit;
+  font-size: var(--text-label);
+  font-weight: var(--weight-medium);
+  line-height: 1.4;
+  text-align: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.quietAction:hover:not([aria-disabled="true"]) {
+  color: var(--color-ink);
+  text-decoration: underline;
+}
+
+.quietAction[aria-pressed="true"] {
+  color: var(--color-ink);
+  font-weight: var(--weight-title);
+}
+
+.quietAction[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.quietDivider::before {
+  content: "";
+  inline-size: 1px;
+  block-size: 14px;
+  margin-inline: var(--space-3);
+  background: var(--color-line);
+}
+
+/* Near misses ---------------------------------------------------------- */
+
+.nearMiss {
+  display: grid;
+  grid-template-columns: minmax(0, auto) minmax(0, 1fr);
+  gap: var(--space-5) var(--space-7);
+  align-items: start;
+  padding: var(--space-6);
+  border-radius: var(--radius-card);
+  background: var(--color-card);
+  box-shadow: var(--shadow-card);
+}
+
+.nearMissTitle {
+  max-inline-size: 14ch;
+  font-size: var(--text-title);
+  font-weight: var(--weight-heavy);
+  line-height: 1;
+  letter-spacing: var(--tracking-title);
+}
+
+.blockers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: var(--space-5) var(--space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.blocker {
+  display: grid;
+  grid-template-columns: 48px auto minmax(0, 1fr);
+  grid-template-areas:
+    "tile count name"
+    "detail detail detail";
+  gap: var(--space-2) var(--space-3);
+  align-items: center;
+  align-content: start;
+}
+
+.nearMiss[data-settle="true"] .blocker {
+  animation: settle var(--duration-base) var(--ease-out) both;
+  animation-delay: calc(var(--settle-index, 0) * 70ms);
+}
+
+.blockerTile,
+.heldTile {
+  display: grid;
+  place-items: center;
+  align-self: start;
+  flex: none;
+  inline-size: 48px;
+  block-size: 48px;
+  border-radius: var(--radius-tile);
+}
+
+/* Only the near-miss tile belongs to a named area; the held card has no area template. */
+.blockerTile {
+  grid-area: tile;
+}
+
+.heldTile {
+  inline-size: 56px;
+  block-size: 56px;
+}
+
+.blockerTile[data-accent="red"],
+.heldTile[data-accent="red"] {
+  background: var(--color-accent-red);
+  color: var(--color-on-accent-red);
+}
+
+.blockerTile[data-accent="blue"],
+.heldTile[data-accent="blue"] {
+  background: var(--color-accent-blue);
+  color: var(--color-on-accent-blue);
+}
+
+.blockerTile[data-accent="yellow"],
+.heldTile[data-accent="yellow"] {
+  background: var(--color-accent-yellow);
+  color: var(--color-on-accent-yellow);
+}
+
+.blockerTile[data-accent="ink"],
+.heldTile[data-accent="ink"] {
+  background: var(--color-ink);
+  color: var(--color-ground);
+}
+
+.blockerMark {
+  inline-size: 24px;
+  block-size: 24px;
+}
+
+.blockerCount {
+  grid-area: count;
+  align-self: start;
+  font-size: var(--text-figure);
+  font-weight: var(--weight-heavy);
+  line-height: 1;
+  letter-spacing: -0.045em;
+  font-variant-numeric: tabular-nums;
+}
+
+.blockerName {
+  grid-area: name;
+  align-self: start;
+  font-size: var(--text-label);
+  font-weight: var(--weight-medium);
+  line-height: 1.35;
+  color: var(--color-ink-soft);
+}
+
+.blockerDetail {
+  grid-area: detail;
+  display: grid;
+  gap: var(--space-2);
+  justify-items: start;
+}
+
+.blockerNote {
+  max-inline-size: 42ch;
+  font-size: var(--text-label);
+  line-height: 1.45;
+  color: var(--color-ink-soft);
+}
+
+/* The one-tap fix: a compact filled pill, because it is an action and not a note. */
+.fix {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 40px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--color-ink);
+  color: var(--color-ground);
+  font-family: inherit;
+  font-size: var(--text-label);
+  font-weight: var(--weight-title);
+  text-align: start;
+  cursor: pointer;
+  transition: opacity var(--duration-fast) var(--ease-out);
+}
+
+.fix:hover {
+  opacity: 0.86;
 }
 
 .chips {
@@ -476,32 +611,30 @@
 }
 
 .chip {
-  padding: 8px 12px;
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-sm);
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: baseline;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
   background: var(--color-surface);
   font-size: var(--text-label);
+  line-height: 1.35;
 }
 
 .chipDetail {
-  margin-inline-start: 8px;
   color: var(--color-ink-soft);
 }
 
-/*
- * The EXAMPLE stamp at chip scale. Same fixed colours as `.stamp` and for the same reason: a
- * seeded post in a list of real ones has to read as seeded on every fill and in both themes.
- */
+/* The EXAMPLE stamp at chip scale, in the same fixed colours and for the same reason. */
 .chipStamp {
-  margin-inline-start: 8px;
-  padding: 3px 6px 2px;
-  border: 1px solid rgb(247 241 230 / 0.5);
-  border-radius: 5px;
-  background: rgb(20 17 13 / 0.86);
-  color: #f7f1e6;
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: var(--tracking-label);
+  padding: 2px 7px 1px;
+  border-radius: var(--radius-pill);
+  background: #0b0b0b;
+  color: #ffffff;
+  font-size: var(--text-micro);
+  font-weight: var(--weight-title);
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   white-space: nowrap;
 }
@@ -512,86 +645,200 @@
   color: var(--color-ink-soft);
 }
 
+/* The 24-hour-late card ------------------------------------------------ */
+
+.held {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  gap: var(--space-5);
+  align-items: start;
+  padding: var(--space-6);
+  border-radius: var(--radius-card);
+  background: var(--color-card);
+  box-shadow: var(--shadow-card);
+}
+
+.held[data-lead="true"] {
+  padding: var(--space-7) var(--space-6);
+}
+
+.heldBodyWrap {
+  display: grid;
+  gap: var(--space-3);
+  justify-items: start;
+}
+
+.heldTitle {
+  font-size: var(--text-heading);
+  font-weight: var(--weight-heavy);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-title);
+  font-variant-numeric: tabular-nums;
+}
+
+.heldBody {
+  max-inline-size: 64ch;
+  font-size: var(--text-small);
+  line-height: 1.5;
+  color: var(--color-ink-soft);
+}
+
+/* As the page's whole answer this sentence is body-critical, so it takes full ink. */
+.held[data-lead="true"] .heldBody:first-of-type {
+  color: var(--color-ink);
+}
+
+/* Pickers -------------------------------------------------------------- */
+
+/*
+ * One-tap pickers, inline rather than in a dialog: neither of them needs protected focus, and a
+ * modal over the card hides the post you are deciding about.
+ */
+.picker {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: var(--space-3);
+  justify-items: start;
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.pickerTitle {
+  font-size: var(--text-row);
+  font-weight: var(--weight-heavy);
+  line-height: 1.15;
+  letter-spacing: -0.024em;
+}
+
+.pickerNote {
+  max-inline-size: 56ch;
+  font-size: var(--text-label);
+  line-height: 1.45;
+  color: var(--color-ink-soft);
+}
+
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.optionPill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: 44px;
+  padding: 0 18px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: var(--color-card);
+  color: var(--color-ink);
+  font-family: inherit;
+  font-size: var(--text-label);
+  font-weight: var(--weight-medium);
+  text-align: center;
+  cursor: pointer;
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+.optionPill:hover:not(:disabled) {
+  border-color: var(--color-ink);
+}
+
+.optionPill:disabled {
+  color: var(--color-ink-soft);
+  cursor: not-allowed;
+}
+
 /* Programs ------------------------------------------------------------- */
 
 .programs {
   display: grid;
-  gap: 0;
+  gap: var(--space-4);
   margin: 0;
   padding: 0;
   list-style: none;
-  border-block-start: 1px solid var(--color-line);
 }
 
 .program {
   display: grid;
-  gap: var(--space-2);
-  padding-block: var(--space-4);
-  border-block-end: 1px solid var(--color-line);
+  gap: var(--space-3);
+  justify-items: start;
+  padding: var(--space-6);
+  border-radius: var(--radius-card);
+  background: var(--color-card);
+  box-shadow: var(--shadow-card);
 }
 
 .programHead {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-3);
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
-}
-
-.programName {
-  font-family: var(--font-display);
-  font-size: 1.1875rem;
-  font-weight: var(--weight-title);
-  letter-spacing: -0.025em;
-}
-
-.status {
-  padding: 4px 10px;
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-sm);
-  font-size: var(--text-label);
-  font-weight: var(--weight-mono-strong);
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
-  color: var(--color-ink-soft);
-}
-
-/* Dashed means "not yet" in this system: a date the source has not published. */
-.status[data-expected="true"] {
-  border-style: dashed;
-}
-
-.program .apply {
-  justify-self: start;
-  margin-block-start: var(--space-2);
-  background: transparent;
-  border: 1px solid var(--color-line);
-  color: var(--color-ink);
-  font-family: var(--font-mono);
-  font-size: var(--text-label);
-  font-weight: var(--weight-mono-strong);
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
-}
-
-.program .apply:hover {
-  border-color: var(--color-ink);
-}
-
-/* Rail settings -------------------------------------------------------- */
-
-.settings {
-  display: grid;
-  gap: var(--space-3);
   inline-size: 100%;
 }
 
-.settingsTitle {
+.programName {
+  font-size: var(--text-subhead);
+  font-weight: var(--weight-heavy);
+  line-height: 1.12;
+  letter-spacing: -0.028em;
+}
+
+.status {
+  padding: 7px 15px;
+  border-radius: var(--radius-pill);
+  background: var(--color-ink);
+  color: var(--color-ground);
   font-size: var(--text-label);
-  font-weight: var(--weight-mono-strong);
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
+  font-weight: var(--weight-title);
+  line-height: 1.3;
+}
+
+/* A date the source has not published yet is outlined, not filled. */
+.status[data-expected="true"] {
+  border: 1.5px solid var(--color-line-strong);
+  padding: 5.5px 13.5px;
+  background: transparent;
+  color: var(--color-ink);
+}
+
+/* What you're shown ---------------------------------------------------- */
+
+.settings {
+  display: grid;
+  gap: var(--space-5);
+  padding: var(--space-6);
+  border-radius: var(--radius-card);
+  background: var(--color-card);
+  box-shadow: var(--shadow-card);
+}
+
+.settingsHead {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.settingsTitle {
+  font-size: var(--text-subhead);
+  font-weight: var(--weight-heavy);
+  line-height: 1.12;
+  letter-spacing: -0.028em;
+}
+
+.settingsNote {
+  max-inline-size: 72ch;
+  font-size: var(--text-small);
+  line-height: 1.5;
   color: var(--color-ink-soft);
+}
+
+.settingsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-4) var(--space-7);
 }
 
 .setting {
@@ -599,12 +846,8 @@
   gap: var(--space-4);
   align-items: flex-start;
   justify-content: space-between;
-  padding-block: var(--space-3);
+  padding-block-start: var(--space-4);
   border-block-start: 1px solid var(--color-line);
-}
-
-.setting:last-child {
-  border-block-end: 1px solid var(--color-line);
 }
 
 .settingText {
@@ -613,65 +856,170 @@
 
 .settingName {
   font-size: var(--text-small);
-  line-height: 1.4;
+  font-weight: var(--weight-title);
+  line-height: 1.35;
 }
 
 .settingHelp {
-  max-inline-size: 38ch;
-  margin-block-start: 4px;
+  max-inline-size: 44ch;
+  margin-block-start: var(--space-1);
   font-size: var(--text-label);
-  line-height: 1.5;
+  line-height: 1.45;
   color: var(--color-ink-soft);
 }
 
-.setting .pill {
+/* On is filled, off is outlined: the state is a shape as well as a word. */
+.switch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   flex: none;
-  min-inline-size: 72px;
+  min-inline-size: 76px;
+  min-block-size: 44px;
+  padding: 0 18px;
+  border: 1.5px solid var(--color-line-strong);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--color-ink);
+  font-family: inherit;
+  font-size: var(--text-label);
+  font-weight: var(--weight-title);
+  cursor: pointer;
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
 }
 
-/*
- * The one authored moment on this page (DESIGN.md, "the honest-silence settle"), kept to the card
- * it belongs to and kept short: this is an Operate screen, and nobody should wait to read why
- * their Brief is empty. Groups rise once, staggered; nothing else on the page moves.
- */
-.groups[data-settle="true"] .group {
-  animation: settle var(--duration-base) var(--ease-out) both;
-  animation-delay: calc(var(--settle-index, 0) * 70ms);
+.switch[aria-checked="true"] {
+  background: var(--color-ink);
+  color: var(--color-ground);
 }
 
-@keyframes settle {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
+.settingsLinks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Narrow ---------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .nearMiss {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-5);
   }
-  to {
-    opacity: 1;
-    transform: none;
+
+  .nearMissTitle {
+    max-inline-size: none;
   }
 }
 
-@media (max-width: 560px) {
-  .actions .apply,
-  .actions .pill {
+@media (max-width: 760px) {
+  .card {
+    grid-template-columns: 48px minmax(0, 1fr);
+    grid-template-areas:
+      "tile head"
+      "body body"
+      "aside aside"
+      "foot foot";
+    row-gap: var(--space-3);
+    column-gap: var(--space-4);
+    padding: var(--space-5);
+  }
+
+  .tierTile {
+    inline-size: 48px;
+    block-size: 48px;
+  }
+
+  .tierTileMark {
+    inline-size: 24px;
+    block-size: 24px;
+  }
+
+  /* The act moves under the decision and reads left to right, score first. */
+  .aside {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3) var(--space-4);
+    align-items: center;
+    justify-content: flex-start;
+    padding-block-start: var(--space-4);
+    border-block-start: 1px solid var(--color-line);
+    text-align: start;
+  }
+
+  .score {
+    display: flex;
+    gap: var(--space-2);
+    align-items: baseline;
+  }
+
+  .scoreUnit {
+    margin-block-start: 0;
+  }
+
+  .apply {
+    inline-size: auto;
     flex: 1 1 auto;
   }
 
-  .gap {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 6px;
+  .quietRow {
+    flex: 1 1 100%;
+    justify-content: flex-start;
   }
 
-  .gapLabel {
-    justify-self: start;
+  .footMeta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .footDot::before {
+    content: none;
+  }
+
+  .held {
+    grid-template-columns: minmax(0, 1fr);
+    padding: var(--space-5);
+  }
+
+  .held[data-lead="true"] {
+    padding: var(--space-6) var(--space-5);
+  }
+
+  .nearMiss,
+  .program,
+  .settings {
+    padding: var(--space-5);
+  }
+
+  .blockers {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .settingsList {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .groups[data-settle="true"] .group {
+  .card,
+  .held,
+  .nearMiss,
+  .program,
+  .settings,
+  .nearMiss[data-settle="true"] .blocker {
     animation: none;
   }
 
-  .apply:hover {
-    translate: none;
+  .apply,
+  .applyArrow,
+  .outlinePill,
+  .quietAction,
+  .fix,
+  .optionPill,
+  .switch {
+    transition: none;
   }
 }

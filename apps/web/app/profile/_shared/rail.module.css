@@ -1,13 +1,22 @@
 /*
- * The count line. The counter itself is `components/profile/match-counter.tsx`; what belongs here
- * is the quiet pending state and the one settled-change moment, neither of which the shared
- * component owns.
+ * The live-count card and the way out of the profile.
+ *
+ * Both are white cards at 24px radius with a soft wide shadow, the same object the Brief stacks on
+ * its sheet. The counter itself is `components/profile/match-counter.tsx`; what belongs here is
+ * the card around it, the quiet pending state and the one settled-change moment, none of which the
+ * shared component owns.
  */
 
-.line {
+.line,
+.brief {
   display: grid;
-  gap: var(--space-3);
+  gap: var(--space-4);
   justify-items: start;
+  inline-size: 100%;
+  padding: var(--space-6);
+  border-radius: var(--radius-card);
+  background: var(--color-card);
+  box-shadow: var(--shadow-card);
 }
 
 /*
@@ -15,53 +24,27 @@
  * dims, so an edit never flashes a count that was never true. `data-pending` is set by MatchCounter.
  */
 .line :global([data-pending="true"]) {
-  opacity: 0.5;
+  opacity: 0.55;
   transition: opacity var(--duration-fast) var(--ease-out);
 }
 
 /*
  * The two count lines settle as one block: the pair is a single answer, and animating the halves
- * apart would invite reading the weaker one as newer news. DESIGN.md, "Signature motion" — the
- * Operate variant, 320ms with no drift, because this is the number the person opened the page for.
+ * apart would invite reading the weaker one as newer news. The Operate variant of the world's one
+ * authored moment — short, no drift — because this is the number the person opened the page for.
  */
 .settle {
   display: grid;
-  gap: var(--space-2);
+  gap: var(--space-4);
   justify-items: start;
+  inline-size: 100%;
   animation: settle var(--duration-base) var(--ease-out) both;
-}
-
-/*
- * Both rows hang their badge and their sentence on the block's own two columns, so the sentences
- * start on one axis however many digits each badge happens to hold — otherwise a two-digit likely
- * count pushes its line a few pixels off the count above it and the pair stops reading as one
- * answer. Behind `@supports` because the flex rows below are correct on their own; only the shared
- * axis is lost without subgrid.
- */
-@supports (grid-template-columns: subgrid) {
-  .settle {
-    grid-template-columns: auto 1fr;
-    column-gap: var(--space-3);
-    justify-items: stretch;
-  }
-
-  .line .settle > * {
-    display: grid;
-    grid-column: 1 / -1;
-    grid-template-columns: subgrid;
-    align-items: center;
-  }
-
-  /* The badges keep their own width inside the shared track, so a single digit stays a circle. */
-  .line .settle > * > :first-child {
-    justify-self: start;
-  }
 }
 
 @keyframes settle {
   from {
     opacity: 0;
-    transform: translateY(4px);
+    transform: translateY(6px);
   }
   to {
     opacity: 1;
@@ -70,89 +53,87 @@
 }
 
 .quiet {
-  font-family: var(--font-display);
-  font-size: 1.3125rem;
-  font-weight: var(--weight-title);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
+  font-size: var(--text-subhead);
+  font-weight: var(--weight-heavy);
+  line-height: 1.12;
+  letter-spacing: var(--tracking-title);
 }
 
 /*
- * The likely line, under the count. It is the weaker claim, so it is softer on every axis at once:
- * the count badge outlined instead of filled with ink, one step down the grotesk scale (24px -> 19px,
- * the authored steps in DESIGN.md), and soft ink rather than ink. Tier colour is deliberately absent
- * — a lone yellow dot with no green counterpart on the line above would read as decoration, and the
- * words already carry the tier, which is what "never colour alone" asks for.
+ * The likely line, under the count and hairlined off from it. It is the weaker claim, so it is
+ * softer on every axis at once: a smaller numeral, soft ink rather than ink, and its own sentence
+ * which never borrows "hire from". Tier colour is deliberately absent — a lone yellow tile with no
+ * green counterpart on the line above would read as decoration, and the words already carry the
+ * tier, which is what "never colour alone" asks for.
  */
 .likely {
   display: flex;
-  align-items: center;
   gap: var(--space-3);
+  align-items: baseline;
+  inline-size: 100%;
+  padding-block-start: var(--space-4);
+  border-block-start: 1px solid var(--color-line);
   color: var(--color-ink-soft);
 }
 
 .likelyBadge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-inline-size: 30px;
-  block-size: 30px;
-  padding: 0 9px;
-  border: 1.5px solid var(--color-line);
-  border-radius: var(--radius-full);
-  font-family: var(--font-display);
-  font-size: 0.9375rem;
-  font-weight: var(--weight-title);
+  font-size: var(--text-title);
+  font-weight: var(--weight-heavy);
+  line-height: 1;
+  letter-spacing: -0.04em;
   font-variant-numeric: tabular-nums;
 }
 
 .likelyLabel {
-  font-family: var(--font-display);
-  font-size: 1.1875rem;
+  font-size: var(--text-row);
   font-weight: var(--weight-title);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-}
-
-/* The Brief link: the primary control from panels.module.css, with its caption under it. */
-.brief {
-  display: grid;
-  gap: var(--space-3);
-  justify-items: start;
+  line-height: 1.15;
+  letter-spacing: -0.024em;
 }
 
 .note {
-  max-inline-size: 42ch;
+  max-inline-size: 48ch;
   font-size: var(--text-label);
   line-height: 1.5;
   color: var(--color-ink-soft);
 }
 
+/* The outlined pill: the way to ask for the count again after it failed. */
 .pill {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-block-size: 44px;
-  padding: 0 16px;
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-full);
+  min-block-size: 46px;
+  padding: 0 20px;
+  border: 1.5px solid var(--color-line-strong);
+  border-radius: var(--radius-pill);
   background: transparent;
   color: var(--color-ink);
-  font-family: var(--font-mono);
-  font-size: var(--text-label);
-  font-weight: var(--weight-mono-strong);
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
+  font-family: inherit;
+  font-size: var(--text-small);
+  font-weight: var(--weight-title);
   cursor: pointer;
-  transition: border-color var(--duration-fast) var(--ease-out);
+  transition: background-color var(--duration-fast) var(--ease-out);
 }
 
 .pill:hover {
-  border-color: var(--color-ink);
+  background: var(--color-surface);
+}
+
+@media (max-width: 720px) {
+  .line,
+  .brief {
+    padding: var(--space-5);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .settle {
     animation: none;
+  }
+
+  .line :global([data-pending="true"]),
+  .pill {
+    transition: none;
   }
 }

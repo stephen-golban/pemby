@@ -1,42 +1,30 @@
 import { getTranslations } from "next-intl/server";
-import s from "./sections.module.css";
 import styles from "./trust.module.css";
+import { TileMark, type Mark } from "./marks";
+import s from "./sections.module.css";
 
 const ROWS = [
-  { key: "b2b", tier: "green" },
-  { key: "eor", tier: "yellow" },
-  { key: "visa", tier: "white" },
-  { key: "local", tier: "red" },
-] as const;
+  { key: "b2b", tier: "green", mark: "check" },
+  { key: "eor", tier: "yellow", mark: "tilde" },
+  { key: "visa", tier: "white", mark: "question" },
+  { key: "local", tier: "red", mark: "cross" },
+] as const satisfies readonly { key: string; tier: string; mark: Mark }[];
 
-const TIERS = ["green", "yellow", "white", "red"] as const;
+const TIERS = [
+  { key: "green", mark: "check" },
+  { key: "yellow", mark: "tilde" },
+  { key: "white", mark: "question" },
+  { key: "red", mark: "cross" },
+] as const satisfies readonly { key: string; mark: Mark }[];
+
 const LOG = ["one", "two", "three"] as const;
-
-/** A loose hand-drawn double underline, the kind of mark a person leaves on a printout. Decorative only. */
-function HandUnderline() {
-  return (
-    <svg className={styles.underline} viewBox="0 0 62 13" aria-hidden="true" focusable="false">
-      <path
-        d="M2.5 5.6c9.8-2.3 30.4-3.9 57.2-1.6"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-      <path
-        d="M9 10.4c13.6-1.9 29.7-2.2 43.5-.9"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
 
 /**
  * Why a match can be trusted: eligibility per country and per way of working with the reason
- * shown, and live re-verification at the source. Both specimens are labelled examples.
+ * shown, and live re-verification at the source.
+ *
+ * A verdict is never a colour: every row carries a tier tile with its own mark, a tinted tier pill
+ * and the pill's word. Red is a blocker colour only. Both specimens are labelled examples.
  */
 export async function Trust() {
   const t = await getTranslations("Landing.trust");
@@ -49,10 +37,10 @@ export async function Trust() {
       <p className={s.intro}>{t("intro")}</p>
 
       <div className={styles.eligibility}>
-        <figure className={styles.panel}>
+        <figure className={`${s.card} ${styles.panel}`}>
           <figcaption className={styles.caption}>
-            <span className={s.example}>{t("example")}</span>
-            <span>{t("tableCaption")}</span>
+            <span className={s.stamp}>{t("example")}</span>
+            <span className={styles.captionText}>{t("tableCaption")}</span>
           </figcaption>
           <table className={styles.table}>
             <thead>
@@ -63,13 +51,17 @@ export async function Trust() {
               </tr>
             </thead>
             <tbody>
-              {ROWS.map(({ key, tier }) => (
+              {ROWS.map(({ key, tier, mark }) => (
                 <tr key={key}>
                   <th scope="row">{t(`rows.${key}.way`)}</th>
                   <td>
-                    <span className={styles.verdict} data-tier={tier}>
-                      <span className={styles.swatch} aria-hidden="true" />
-                      {t(`rows.${key}.verdict`)}
+                    <span className={styles.verdict}>
+                      <span className={`${s.tile} ${styles.rowTile}`} data-accent={tier}>
+                        <TileMark mark={mark} className={styles.rowMark} />
+                      </span>
+                      <span className={s.tierPill} data-tier={tier}>
+                        {t(`rows.${key}.verdict`)}
+                      </span>
                     </span>
                   </td>
                   <td className={styles.reason}>{t(`rows.${key}.reason`)}</td>
@@ -79,16 +71,20 @@ export async function Trust() {
           </table>
         </figure>
 
-        <div className={styles.tiers}>
+        <div className={`${s.card} ${styles.tiers}`}>
           <h3 className={styles.tiersTitle}>{t("tiersTitle")}</h3>
           <dl className={styles.tierList}>
-            {TIERS.map((tier) => (
-              <div key={tier} className={styles.tierRow}>
-                <dt className={styles.verdict} data-tier={tier}>
-                  <span className={styles.swatch} aria-hidden="true" />
-                  {t(`tiers.${tier}.name`)}
+            {TIERS.map(({ key, mark }) => (
+              <div key={key} className={styles.tierRow}>
+                <dt className={styles.tierName}>
+                  <span className={`${s.tile} ${styles.rowTile}`} data-accent={key}>
+                    <TileMark mark={mark} className={styles.rowMark} />
+                  </span>
+                  <span className={s.tierPill} data-tier={key}>
+                    {t(`tiers.${key}.name`)}
+                  </span>
                 </dt>
-                <dd>{t(`tiers.${tier}.who`)}</dd>
+                <dd className={styles.tierWho}>{t(`tiers.${key}.who`)}</dd>
               </div>
             ))}
           </dl>
@@ -100,10 +96,10 @@ export async function Trust() {
           <h3 className={styles.liveTitle}>{t("liveTitle")}</h3>
           <p className={styles.liveBody}>{t("liveBody")}</p>
         </div>
-        <figure className={styles.log}>
+        <figure className={`${s.card} ${styles.log}`}>
           <figcaption className={styles.caption}>
-            <span className={s.example}>{t("example")}</span>
-            <span>{t("logCaption")}</span>
+            <span className={s.stamp}>{t("example")}</span>
+            <span className={styles.captionText}>{t("logCaption")}</span>
           </figcaption>
           <ol className={styles.logList}>
             {LOG.map((entry) => (
@@ -113,10 +109,7 @@ export async function Trust() {
                 data-closed={entry === "three" || undefined}
               >
                 <span className={styles.logTime}>{t(`log.${entry}.time`)}</span>
-                <span className={styles.logState}>
-                  {t(`log.${entry}.state`)}
-                  {entry === "three" ? <HandUnderline /> : null}
-                </span>
+                <span className={styles.logState}>{t(`log.${entry}.state`)}</span>
                 <span className={styles.logNote}>{t(`log.${entry}.note`)}</span>
               </li>
             ))}

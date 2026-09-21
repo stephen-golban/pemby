@@ -5,79 +5,150 @@
  * `data-theme` on <html> is an explicit choice (set by the toggle and the init script);
  * without it, `prefers-color-scheme` decides.
  *
- * Nothing landing-only lives here: no rotation, no tilt, no page flourishes.
+ * The world: a pure white sheet, near-black bands, one heavy geometric grotesk at every size, and
+ * four flat saturated accents used as solid fills — never as tints, never as gradients. The only
+ * sanctioned tint is the eligibility pill, which exists so a verdict is never colour alone.
+ *
+ * Nothing page-specific lives here: no rotation, no tilt, no flourishes.
  */
 
 :root {
   color-scheme: light;
 
-  /* Colour: surfaces and ink */
-  --color-ground: #faf6f0;
-  --color-surface: #f4eee4;
-  --color-ink: #14110d;
-  --color-ink-soft: #3b342b;
-  --color-line: rgb(20 17 13 / 0.28);
-  --color-line-strong: #14110d;
-  --color-focus: #2c4a5e;
-  --color-selection: #efcf8f;
+  /* Colour: the sheet and what sits on it */
+  --color-ground: #ffffff;
+  --color-surface: #f2f2f3;
+  --color-ink: #101010;
+  --color-ink-soft: #6e6e73;
+  --color-line: rgb(16 16 16 / 0.12);
+  --color-line-strong: #101010;
+  --color-focus: #1b6bff;
+  --color-selection: #ffe9a8;
 
-  /* Colour: the deep field and what sits on it */
-  --color-field: #2b3323;
-  --color-on-field: #f7f1e6;
+  /* Colour: the near-black band the sheet sits on, and the type that goes on it */
+  --color-band: #0b0b0b;
+  --color-on-band: #ffffff;
 
-  /* Colour: earthy card fills, their type, and their tinted chips */
-  --color-plum: #875a70;
-  --color-on-plum: #f7f1e6;
-  --color-plum-chip: #d4b3c3;
-  --color-ochre: #d6a24a;
-  --color-on-ochre: #14110d;
-  --color-ochre-chip: #ebc07c;
-  --color-inkblue: #2c4a5e;
-  --color-on-inkblue: #f7f1e6;
-  --color-inkblue-chip: #bfd4e6;
-  --color-paper-card: #fbf8f2;
-  --color-on-chip: #14110d;
+  /* Colour: the white card, its radius and shadow live below */
+  --color-card: #ffffff;
+  --color-on-card: #101010;
 
-  /* Colour: eligibility tiers (D2). Always paired with a text label, never colour alone. */
-  --color-tier-green: #56733c;
-  --color-tier-yellow: #d1a432;
-  --color-tier-white: #fbf8f2;
-  --color-tier-red: #a54a3b;
+  /*
+   * Colour: the four accents. Solid fills only — an accent is the whole of a tile, a numeral or a
+   * button, never a wash behind text. The paired `on-` value is what may be drawn inside it and is
+   * the one that clears 3:1 against that fill.
+   */
+  --color-accent-yellow: #ffc629;
+  --color-on-accent-yellow: #101010;
+  --color-accent-red: #f03a3f;
+  --color-on-accent-red: #ffffff;
+  --color-accent-blue: #1b6bff;
+  --color-on-accent-blue: #ffffff;
+  --color-accent-green: #17a35b;
+  --color-on-accent-green: #ffffff;
 
-  /* Type families. The app sets --font-grotesk-src and --font-mono-src through next/font. */
-  --font-display: var(--font-grotesk-src), "Rethink Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-mono-src), "Source Code Pro", ui-monospace, "SFMono-Regular", monospace;
+  /*
+   * Colour: eligibility tiers (PLAN D2). Never colour alone — a tier is a tile with its own marker,
+   * a tinted pill, and the pill's words. Red is a blocker colour only: white and red posts never
+   * reach a reader, so no verdict is ever drawn in it.
+   */
+  --color-tier-green: #17a35b;
+  --color-tier-green-soft: #dff5e9;
+  --color-on-tier-green-soft: #0b6b3a;
+  --color-tier-yellow: #ffc629;
+  --color-tier-yellow-soft: #fff0c9;
+  --color-on-tier-yellow-soft: #6b4a00;
+  --color-tier-white: #ffffff;
+  --color-tier-white-soft: #f2f2f3;
+  --color-on-tier-white-soft: #45454a;
+  --color-tier-red: #f03a3f;
+  --color-tier-red-soft: #ffe2e3;
+  --color-on-tier-red-soft: #a01216;
 
-  /* Type scale */
-  --text-display: clamp(3.25rem, 1.2rem + 5.4vw, 6.3125rem);
-  --text-section: clamp(2.5rem, 1.1rem + 3.6vw, 4.75rem);
+  /*
+   * Deprecated, kept defined so the routes that have not had their pass yet still build and still
+   * read. They are aliases into the new world, not the old warm palette. Each of the four remaining
+   * route work orders retires the names its own modules use.
+   */
+  --color-field: #0b0b0b; /* deprecated: use --color-band */
+  --color-on-field: #ffffff; /* deprecated: use --color-on-band */
+  --color-paper-card: #ffffff; /* deprecated: use --color-card */
+  --color-plum: #1b6bff; /* deprecated: use --color-accent-blue */
+  --color-on-plum: #ffffff; /* deprecated */
+  --color-plum-chip: #e3ebff; /* deprecated */
+  --color-ochre: #ffc629; /* deprecated: use --color-accent-yellow */
+  --color-on-ochre: #101010; /* deprecated */
+  --color-ochre-chip: #fff0c9; /* deprecated */
+  --color-inkblue: #101010; /* deprecated: use --color-ink */
+  --color-on-inkblue: #ffffff; /* deprecated */
+  --color-inkblue-chip: #f2f2f3; /* deprecated */
+  --color-on-chip: #101010; /* deprecated: use --color-ink */
+
+  /*
+   * Type. One family everywhere: the app sets --font-grotesk-src through next/font. No serif and no
+   * monospace anywhere in this world, so --font-mono is an alias kept only until the routes that
+   * still name it have had their pass.
+   */
+  --font-display: var(--font-grotesk-src), "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-display); /* deprecated: there is no monospace in this world */
+
+  /*
+   * Type scale: poster display, then a short working ladder. One ramp for the whole product —
+   * a surface picks a step, it never invents one. If a size is not on this list, it is wrong.
+   *
+   * --text-display is the ceiling: nothing may exceed 4.75rem, on any surface, at any viewport.
+   * --text-micro is the floor: nothing may go below 0.6875rem. Anything smaller snaps up to it.
+   *
+   * Descending, by the size each step reaches at its widest:
+   *   display → score → section → figure → title → heading → subhead → row → lead → body →
+   *   small → label → micro
+   *
+   * Two of those are numerals rather than words: --text-score for a single headline figure, and
+   * --text-figure for the large counts that sit beside body copy. They are declared next to the
+   * heading step they match in size.
+   */
+  --text-display: clamp(2.75rem, 1rem + 4.4vw, 4.75rem);
+  --text-section: clamp(2rem, 1rem + 2.6vw, 3.25rem); /* major section headings */
+  --text-score: clamp(2.5rem, 1.5rem + 2.4vw, 3.75rem); /* the one headline numeral */
+  --text-figure: clamp(1.75rem, 1.3rem + 1.2vw, 2.5rem); /* large counts */
   --text-title: 2.125rem;
-  --text-heading: 1.8125rem;
+  --text-heading: 1.625rem;
+  --text-subhead: clamp(1.25rem, 1.05rem + 0.5vw, 1.5rem); /* card and panel sub-heads */
+  --text-row: 1.3125rem;
+  --text-lead: clamp(1rem, 0.92rem + 0.28vw, 1.1875rem); /* the sub-line under a poster statement */
   --text-body: 1rem;
   --text-small: 0.9375rem;
-  --text-label: 0.8125rem;
-  --leading-display: 0.84;
-  --leading-title: 0.88;
-  --leading-body: 1.6;
-  --tracking-display: -0.024em;
-  --tracking-title: -0.035em;
-  --tracking-label: 0.14em;
+  --text-label: 0.8125rem; /* uppercase labels, with --tracking-label */
+  --text-micro: 0.6875rem; /* the floor of the ramp */
+  --leading-display: 0.95;
+  --leading-title: 1.02;
+  --leading-body: 1.55;
+  --tracking-display: -0.035em;
+  --tracking-title: -0.028em;
+  --tracking-label: 0.08em;
+  --weight-heavy: 800;
   --weight-display: 800;
   --weight-title: 700;
+  --weight-medium: 500;
   --weight-body: 400;
-  --weight-mono-strong: 500;
+  --weight-mono-strong: 500; /* deprecated: use --weight-medium */
 
-  /* Radii */
-  --radius-sm: 8px;
-  --radius-md: 12px;
+  /* Radii: rounded squares for tiles, 24px for cards, fully rounded for every pill */
+  --radius-sm: 10px;
+  --radius-tile: 14px;
+  --radius-md: 14px;
   --radius-lg: 20px;
-  --radius-xl: 28px;
-  --radius-field: 64px;
+  --radius-card: 24px;
+  --radius-xl: 24px;
+  --radius-band: 32px;
+  --radius-field: 32px; /* deprecated: use --radius-band */
+  --radius-pill: 999px;
   --radius-full: 999px;
 
-  /* Shadows: offset and soft, warm-tinted */
-  --shadow-soft: 0 1px 2px rgb(20 17 13 / 0.04), 0 10px 30px -18px rgb(20 17 13 / 0.18);
-  --shadow-card: 0 2px 6px rgb(20 17 13 / 0.12), 0 34px 60px -24px rgb(20 17 13 / 0.55);
+  /* Shadows: soft, wide and diffuse. Nothing here is a hard offset. */
+  --shadow-soft: 0 1px 2px rgb(16 16 16 / 0.04), 0 8px 24px -12px rgb(16 16 16 / 0.12);
+  --shadow-card: 0 1px 2px rgb(16 16 16 / 0.04), 0 18px 48px -16px rgb(16 16 16 / 0.18);
+  --shadow-pop: 0 2px 4px rgb(16 16 16 / 0.06), 0 28px 64px -20px rgb(16 16 16 / 0.24);
 
   /* Spacing scale */
   --space-1: 4px;
@@ -89,29 +160,19 @@
   --space-7: 48px;
   --space-8: 64px;
   --space-9: 96px;
-  --gutter: clamp(16px, 3.4vw, 52px);
+  --gutter: clamp(20px, 3.4vw, 52px);
   --content-max: 1344px;
 
-  /* Vertical rhythm (brief correction 1): the named gaps of the first viewport */
-  /* The named values hold at the comp's 1536x1024 frame and ease down on shorter or narrower
-     viewports, so the band still shows in the first viewport from 1280 to 1600 wide. */
-  --rhythm-top: clamp(16px, 2.6vw, 40px); /* above the top bar */
-  --rhythm-lead: clamp(64px, min(14.65vh, 10vw), 150px); /* top bar to headline */
-  --rhythm-headline-sub: clamp(28px, min(5.47vh, 3.65vw), 56px); /* headline to sub-line */
-  --rhythm-sub-action: clamp(40px, min(7.8vh, 5.2vw), 80px); /* sub-line to primary action */
-  --rhythm-action-field: clamp(
-    72px,
-    min(12.7vh, 8.5vw),
-    130px
-  ); /* primary action to colour field */
-  --rhythm-section: clamp(88px, 9.8vw, 150px); /* between sections */
-  --rhythm-heading-body: clamp(
-    24px,
-    2.35vw,
-    36px
-  ); /* section heading to its body: less than the space above it */
+  /* Vertical rhythm: the named gaps of a page opening. */
+  --rhythm-top: clamp(16px, 2.2vw, 32px); /* above the top bar */
+  --rhythm-lead: clamp(40px, min(8vh, 6vw), 88px); /* top bar to headline */
+  --rhythm-headline-sub: clamp(12px, 1.2vw, 20px); /* headline to sub-line */
+  --rhythm-sub-action: clamp(28px, min(4.4vh, 3vw), 48px); /* sub-line to the first card */
+  --rhythm-action-field: clamp(48px, min(9vh, 6vw), 96px); /* content to a colour band */
+  --rhythm-section: clamp(56px, 6vw, 96px); /* between sections */
+  --rhythm-heading-body: clamp(16px, 1.6vw, 24px); /* section heading to its body */
 
-  /* Motion */
+  /* Motion: short and confident, and zeroed wherever reduced motion is asked for. */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --duration-fast: 160ms;
   --duration-base: 320ms;
@@ -120,63 +181,105 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     color-scheme: dark;
-    --color-ground: #191510;
-    --color-surface: #221d17;
-    --color-ink: #f7f1e6;
-    --color-ink-soft: #ddd4c6;
-    --color-line: rgb(247 241 230 / 0.34);
-    --color-line-strong: #f7f1e6;
-    --color-focus: #efcf8f;
-    --color-selection: #6a4658;
-    --color-field: #272d20;
-    --color-on-field: #f7f1e6;
-    --color-plum: #6a4658;
-    --color-on-plum: #f7f1e6;
-    --color-plum-chip: #3f2a35;
-    --color-ochre: #b98a3a;
-    --color-on-ochre: #14110d;
-    --color-ochre-chip: #5a4219;
-    --color-inkblue: #22394a;
-    --color-on-inkblue: #f7f1e6;
-    --color-inkblue-chip: #152532;
-    --color-paper-card: #211c16;
-    --color-on-chip: #f7f1e6;
-    --color-tier-green: #86a468;
-    --color-tier-yellow: #dcb452;
-    --color-tier-white: #2c261f;
-    --color-tier-red: #c86a57;
-    --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.3), 0 10px 30px -18px rgb(0 0 0 / 0.6);
-    --shadow-card: 0 2px 6px rgb(0 0 0 / 0.35), 0 34px 60px -24px rgb(0 0 0 / 0.8);
+    --color-ground: #131316;
+    --color-surface: #1f1f23;
+    --color-ink: #f5f5f5;
+    --color-ink-soft: #a1a1a8;
+    --color-line: rgb(245 245 245 / 0.16);
+    --color-line-strong: #f5f5f5;
+    --color-focus: #4d8bff;
+    --color-selection: #4a3a06;
+    --color-band: #08080a;
+    --color-on-band: #f5f5f5;
+    --color-card: #1b1b1f;
+    --color-on-card: #f5f5f5;
+    --color-accent-yellow: #ffc629;
+    --color-on-accent-yellow: #0b0b0b;
+    --color-accent-red: #ff4e52;
+    --color-on-accent-red: #0b0b0b;
+    --color-accent-blue: #4d8bff;
+    --color-on-accent-blue: #0b0b0b;
+    --color-accent-green: #22c06b;
+    --color-on-accent-green: #0b0b0b;
+    --color-tier-green: #22c06b;
+    --color-tier-green-soft: #0f3a24;
+    --color-on-tier-green-soft: #6fe0a4;
+    --color-tier-yellow: #ffc629;
+    --color-tier-yellow-soft: #3a2e06;
+    --color-on-tier-yellow-soft: #ffd466;
+    --color-tier-white: #1b1b1f;
+    --color-tier-white-soft: #232326;
+    --color-on-tier-white-soft: #c3c3c9;
+    --color-tier-red: #ff4e52;
+    --color-tier-red-soft: #3d1416;
+    --color-on-tier-red-soft: #ff9b9d;
+    --color-field: #08080a;
+    --color-on-field: #f5f5f5;
+    --color-paper-card: #1b1b1f;
+    --color-plum: #4d8bff;
+    --color-on-plum: #0b0b0b;
+    --color-plum-chip: #16243f;
+    --color-ochre: #ffc629;
+    --color-on-ochre: #0b0b0b;
+    --color-ochre-chip: #3a2e06;
+    --color-inkblue: #f5f5f5;
+    --color-on-inkblue: #0b0b0b;
+    --color-inkblue-chip: #232326;
+    --color-on-chip: #f5f5f5;
+    --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.5), 0 8px 24px -12px rgb(0 0 0 / 0.7);
+    --shadow-card: 0 1px 2px rgb(0 0 0 / 0.5), 0 18px 48px -16px rgb(0 0 0 / 0.8);
+    --shadow-pop: 0 2px 4px rgb(0 0 0 / 0.55), 0 28px 64px -20px rgb(0 0 0 / 0.85);
   }
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --color-ground: #191510;
-  --color-surface: #221d17;
-  --color-ink: #f7f1e6;
-  --color-ink-soft: #ddd4c6;
-  --color-line: rgb(247 241 230 / 0.34);
-  --color-line-strong: #f7f1e6;
-  --color-focus: #efcf8f;
-  --color-selection: #6a4658;
-  --color-field: #272d20;
-  --color-on-field: #f7f1e6;
-  --color-plum: #6a4658;
-  --color-on-plum: #f7f1e6;
-  --color-plum-chip: #3f2a35;
-  --color-ochre: #b98a3a;
-  --color-on-ochre: #14110d;
-  --color-ochre-chip: #5a4219;
-  --color-inkblue: #22394a;
-  --color-on-inkblue: #f7f1e6;
-  --color-inkblue-chip: #152532;
-  --color-paper-card: #211c16;
-  --color-on-chip: #f7f1e6;
-  --color-tier-green: #86a468;
-  --color-tier-yellow: #dcb452;
-  --color-tier-white: #2c261f;
-  --color-tier-red: #c86a57;
-  --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.3), 0 10px 30px -18px rgb(0 0 0 / 0.6);
-  --shadow-card: 0 2px 6px rgb(0 0 0 / 0.35), 0 34px 60px -24px rgb(0 0 0 / 0.8);
+  --color-ground: #131316;
+  --color-surface: #1f1f23;
+  --color-ink: #f5f5f5;
+  --color-ink-soft: #a1a1a8;
+  --color-line: rgb(245 245 245 / 0.16);
+  --color-line-strong: #f5f5f5;
+  --color-focus: #4d8bff;
+  --color-selection: #4a3a06;
+  --color-band: #08080a;
+  --color-on-band: #f5f5f5;
+  --color-card: #1b1b1f;
+  --color-on-card: #f5f5f5;
+  --color-accent-yellow: #ffc629;
+  --color-on-accent-yellow: #0b0b0b;
+  --color-accent-red: #ff4e52;
+  --color-on-accent-red: #0b0b0b;
+  --color-accent-blue: #4d8bff;
+  --color-on-accent-blue: #0b0b0b;
+  --color-accent-green: #22c06b;
+  --color-on-accent-green: #0b0b0b;
+  --color-tier-green: #22c06b;
+  --color-tier-green-soft: #0f3a24;
+  --color-on-tier-green-soft: #6fe0a4;
+  --color-tier-yellow: #ffc629;
+  --color-tier-yellow-soft: #3a2e06;
+  --color-on-tier-yellow-soft: #ffd466;
+  --color-tier-white: #1b1b1f;
+  --color-tier-white-soft: #232326;
+  --color-on-tier-white-soft: #c3c3c9;
+  --color-tier-red: #ff4e52;
+  --color-tier-red-soft: #3d1416;
+  --color-on-tier-red-soft: #ff9b9d;
+  --color-field: #08080a;
+  --color-on-field: #f5f5f5;
+  --color-paper-card: #1b1b1f;
+  --color-plum: #4d8bff;
+  --color-on-plum: #0b0b0b;
+  --color-plum-chip: #16243f;
+  --color-ochre: #ffc629;
+  --color-on-ochre: #0b0b0b;
+  --color-ochre-chip: #3a2e06;
+  --color-inkblue: #f5f5f5;
+  --color-on-inkblue: #0b0b0b;
+  --color-inkblue-chip: #232326;
+  --color-on-chip: #f5f5f5;
+  --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.5), 0 8px 24px -12px rgb(0 0 0 / 0.7);
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.5), 0 18px 48px -16px rgb(0 0 0 / 0.8);
+  --shadow-pop: 0 2px 4px rgb(0 0 0 / 0.55), 0 28px 64px -20px rgb(0 0 0 / 0.85);
 }

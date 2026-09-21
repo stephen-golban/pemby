@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { ArrowMark, BlockerMark } from "./marks";
 import styles from "./brief.module.css";
 
 /** Under this, "in about 0h" would be the honest arithmetic and the wrong sentence. */
@@ -9,18 +10,16 @@ const SOON_MS = 60 * 60 * 1000;
 
 /**
  * What a free account is told about the matches Pemby has found and is not due to deliver yet
- * (PLAN D13: every free match arrives 24h after the post was first seen, on every channel, and
- * this page is a channel).
+ * (PLAN D13: every free match arrives 24h after the post was first seen, on every channel, and this
+ * page is a channel).
  *
  * A count and a time, and nothing else. The role, the company, the reasons and the link are the
- * thing being held back, so printing them here under a "held until" caption would deliver the
- * match through the web while the product claimed it had not — which is what this note replaced.
- * What the person gets instead is the part that is actually useful while waiting: that something
- * is coming, and when.
+ * thing being held back, so printing them here under a "held until" caption would deliver the match
+ * through the web while the product claimed it had not.
  *
- * Drawn with a dashed outline, which is what "not yet" is drawn as in this system (DESIGN.md,
- * Shapes: the 24-hour-late note is one of the three things that stroke belongs to). `lead` is the
- * denser reading, for the days when this note is the page's whole answer.
+ * Drawn as a white card with a solid yellow tile and a clock on it — the same vocabulary the
+ * freshness blocker uses, because it is the same fact: something is waiting on a clock. `lead` is
+ * the denser reading, for the days when this card is the page's whole answer.
  */
 export function HeldNote({
   count,
@@ -50,13 +49,22 @@ export function HeldNote({
         : t("body", { hours: Math.round(remaining / SOON_MS) });
 
   return (
-    <section className={styles.heldNote} data-lead={lead} aria-label={t("label")}>
-      <h2 className={styles.heldTitle}>{t("title", { count })}</h2>
-      <p className={styles.heldBody}>{body}</p>
-      <p className={styles.heldBody}>{t("pass")}</p>
-      <Link className={styles.heldLink} href="/pricing">
-        {t("passLink")}
-      </Link>
+    <section className={styles.held} data-lead={lead} aria-label={t("label")}>
+      <span className={styles.heldTile} data-accent="yellow">
+        <BlockerMark blocker="freshness" className={styles.blockerMark} />
+      </span>
+
+      <div className={styles.heldBodyWrap}>
+        {/* On the days this card is the page's whole answer the headline above it already says
+            how many are waiting, so the card does not say it twice. */}
+        {lead ? null : <h2 className={styles.heldTitle}>{t("title", { count })}</h2>}
+        <p className={styles.heldBody}>{body}</p>
+        <p className={styles.heldBody}>{t("pass")}</p>
+        <Link className={styles.outlinePill} href="/pricing">
+          {t("passLink")}
+          <ArrowMark className={styles.applyArrow} />
+        </Link>
+      </div>
     </section>
   );
 }

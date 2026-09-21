@@ -3,7 +3,7 @@
 import { useEffect, useId, useRef, useState } from "react";
 import styles from "./site-header.module.css";
 
-type NavItem = { href: string; label: string };
+type NavItem = { href: string; label: string; current?: boolean };
 
 type SiteNavProps = {
   /** Accessible name of the navigation landmark. */
@@ -67,7 +67,12 @@ export function SiteNav({ label, menuLabel, items }: SiteNavProps) {
       <ul id={listId} className={styles.navList}>
         {items.map((item) => (
           <li key={item.href}>
-            <a className={styles.navLink} href={item.href} onClick={() => setOpen(false)}>
+            <a
+              className={styles.navLink}
+              href={item.href}
+              aria-current={item.current ? "page" : undefined}
+              onClick={() => setOpen(false)}
+            >
               {item.label}
             </a>
           </li>

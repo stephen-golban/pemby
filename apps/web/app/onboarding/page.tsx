@@ -34,9 +34,19 @@ export default async function OnboardingPage() {
   // The teaser behind the live count is a phase 06 staging surface (contract, flow step 7).
   const countEnabled = process.env.CV_DROP_ENABLED === "true" && appEnv() !== "production";
 
+  // A signed-in screen navigates between the product's own destinations, not the marketing ones.
+  // None is marked current: setup is not one of the four, and claiming one would be a lie.
+  const nav = await getTranslations("Brief.nav");
+  const destinations = [
+    { href: "/brief", label: nav("brief") },
+    { href: "/profile", label: nav("profile") },
+    { href: "/settings", label: nav("settings") },
+    { href: "/pricing", label: nav("passes") },
+  ];
+
   return (
     <div className={styles.page}>
-      <SiteHeader />
+      <SiteHeader nav={destinations} />
       <main className={styles.shell}>
         <OnboardingFlow
           initial={profile}

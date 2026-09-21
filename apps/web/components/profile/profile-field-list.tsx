@@ -63,7 +63,7 @@ function isLevel(value: unknown): value is EnglishLevel {
 /**
  * The parsed profile as a hairline-ruled ledger: an uppercase mono label beside each value.
  *
- * `streaming`: fields the CV reader has not reached yet show a dashed "not yet" slot, so rows keep
+ * `streaming`: fields the CV reader has not reached yet show a ruled "not yet" slot, so rows keep
  * their place and each value arrives in its own row without the list jumping. `complete`: a field
  * the CV does not state says so plainly. Values that arrive animate in once (none under reduced
  * motion). Reused by onboarding and the profile page; `fields` picks and orders the rows, and

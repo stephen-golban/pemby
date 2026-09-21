@@ -1,154 +1,168 @@
-/* Telegram: one wide ink-blue panel with a channel post leaning out of it. */
+/*
+ * The public channel: one near-black band on the white sheet, with the example post standing on it
+ * as a white card. The band is the same near-black the page sits on, so it reads as the sheet being
+ * cut away rather than as a new colour.
+ */
 
 .panel {
   display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
   gap: var(--space-7);
   align-items: center;
-  padding: 72px 72px 72px 64px;
-  border-radius: 44px;
-  background: var(--color-inkblue);
-  color: var(--color-on-inkblue);
+  margin-block-start: var(--rhythm-sub-action);
+  padding: clamp(36px, 4.4vw, 64px);
+  border-radius: var(--radius-band);
+  background: var(--color-band);
+  color: var(--color-on-band);
+}
+
+.copy {
+  min-inline-size: 0;
 }
 
 .title {
-  max-inline-size: 12em;
-  font-family: var(--font-display);
-  font-size: clamp(2.25rem, 1.2rem + 2.6vw, 3.75rem);
+  max-inline-size: 16ch;
+  font-size: var(--text-section);
   font-weight: var(--weight-display);
-  line-height: 0.94;
+  line-height: 0.96;
   letter-spacing: var(--tracking-display);
   text-wrap: balance;
 }
 
 .body {
   max-inline-size: 46ch;
-  margin-block-start: var(--space-6);
+  margin-block-start: var(--space-5);
   font-size: var(--text-small);
-  line-height: var(--leading-body);
+  line-height: 1.55;
+  color: rgb(255 255 255 / 0.76);
 }
 
+/* On the band the pill inverts: white fill, near-black text. */
 .action {
   display: inline-flex;
+  gap: var(--space-2);
   align-items: center;
-  gap: 10px;
   min-block-size: 52px;
   margin-block-start: var(--space-6);
   padding: 0 24px;
-  border-radius: var(--radius-full);
-  background: var(--color-on-inkblue);
-  color: #14110d;
-  font-family: var(--font-display);
-  font-size: 1.1875rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-on-band);
+  color: var(--color-band);
+  font-size: var(--text-body);
   font-weight: var(--weight-title);
-  letter-spacing: -0.01em;
   text-decoration: none;
-  transition: transform var(--duration-fast) var(--ease-out);
+  transition: opacity var(--duration-fast) var(--ease-out);
 }
 
 .action:hover {
-  transform: translateY(-2px);
+  opacity: 0.86;
 }
 
 .action:focus-visible {
-  outline-color: var(--color-on-inkblue);
+  outline-color: var(--color-on-band);
 }
 
-.action svg {
-  inline-size: 18px;
-  block-size: 18px;
+.actionArrow {
+  flex: none;
+  inline-size: 30px;
+  block-size: 12px;
+  transition: translate var(--duration-fast) var(--ease-out);
 }
+
+.action:hover .actionArrow {
+  translate: 3px 0;
+}
+
+/* The post ------------------------------------------------------------- */
 
 .post {
+  display: grid;
+  gap: var(--space-3);
+  justify-items: start;
   justify-self: end;
-  inline-size: min(100%, 380px);
-  margin: -120px 0 -120px;
-  padding: 24px 26px 22px;
-  border-radius: 26px 26px 26px 8px;
-  background: var(--color-paper-card);
-  color: var(--color-ink);
-  box-shadow: var(--shadow-card);
-  font-size: var(--text-label);
-  line-height: 1.45;
-  rotate: 3deg;
+  inline-size: min(100%, 400px);
+  margin: 0;
+  padding: var(--space-5);
+  border-radius: var(--radius-card);
+  background: var(--color-card);
+  color: var(--color-on-card);
+  box-shadow: var(--shadow-pop);
 }
 
 .postHead {
   display: flex;
-  justify-content: space-between;
   gap: var(--space-3);
+  align-items: center;
+  justify-content: space-between;
+  inline-size: 100%;
+  padding-block-end: var(--space-3);
+  border-block-end: 1px solid var(--color-line);
+  font-size: var(--text-label);
 }
 
 .channel {
-  font-weight: 600;
+  font-weight: var(--weight-title);
+}
+
+.time {
+  color: var(--color-ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.postBody {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  gap: var(--space-4);
+  align-items: center;
+  inline-size: 100%;
 }
 
 .role {
-  margin-block-start: var(--space-4);
-  font-family: var(--font-display);
-  font-size: 1.75rem;
-  font-weight: var(--weight-title);
-  line-height: 1;
-  letter-spacing: var(--tracking-title);
+  font-size: var(--text-row);
+  font-weight: var(--weight-heavy);
+  line-height: 1.1;
+  letter-spacing: -0.024em;
 }
 
 .company {
-  margin-block-start: 4px;
+  margin-block-start: 2px;
   font-size: var(--text-small);
+  color: var(--color-ink-soft);
 }
 
-.facts {
-  display: grid;
-  gap: 6px;
-  margin-block-start: var(--space-4);
-  padding: 0;
-  list-style: none;
-}
-
-.green {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: var(--weight-mono-strong);
-}
-
-.swatch {
-  flex: none;
-  inline-size: 12px;
-  block-size: 12px;
-  border-radius: 50%;
-  background: var(--color-tier-green);
+.ways {
+  font-size: var(--text-label);
+  line-height: 1.4;
+  color: var(--color-ink-soft);
 }
 
 .late {
-  margin-block-start: var(--space-4);
+  inline-size: 100%;
   padding-block-start: var(--space-3);
-  border-block-start: 1px dashed var(--color-line);
-}
-
-.stamp {
-  margin-block-start: var(--space-4);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .action {
-    transition: none;
-  }
-
-  .action:hover {
-    transform: none;
-  }
+  border-block-start: 1px solid var(--color-line);
+  font-size: var(--text-label);
+  line-height: 1.4;
+  color: var(--color-ink-soft);
 }
 
 @media (max-width: 1000px) {
   .panel {
     grid-template-columns: minmax(0, 1fr);
-    padding: 48px 28px;
+    gap: var(--space-6);
   }
 
   .post {
     justify-self: start;
-    margin: 0;
-    rotate: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .action,
+  .actionArrow {
+    transition: none;
+  }
+
+  .action:hover .actionArrow {
+    translate: none;
   }
 }

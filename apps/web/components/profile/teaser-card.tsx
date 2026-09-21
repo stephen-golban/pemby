@@ -3,6 +3,7 @@
 import type { TeaserJob, TeaserResult } from "@/lib/teaser";
 import { useTranslations } from "next-intl";
 import type { ReactNode } from "react";
+import { ArrowMark, TierMark } from "@/components/brief/marks";
 import { MatchCounter } from "./match-counter";
 import styles from "./profile.module.css";
 
@@ -22,8 +23,9 @@ function isGreenReason(key: string | null): key is GreenReason {
  *
  * The verdict is the post's own tier, never assumed green: a yellow post says "likely", because
  * labelling it "hires from {country}" would be the one thing this product must not get wrong
- * (PLAN D2, DESIGN.md "The Label Beside Every Colour Rule"). The swatch carries the same tier and
- * is decorative; the words carry the meaning on their own.
+ * (PLAN D2). It is never colour alone — a solid tier tile carrying that tier's own marker, a
+ * tinted tier pill, and the tier's words in it — which is the Brief's own grammar, so a post reads
+ * the same here as it will there.
  */
 export function TeaserCard({ job, countryLabel }: { job: TeaserJob; countryLabel: string }) {
   const t = useTranslations("Cv.teaser");
@@ -36,34 +38,32 @@ export function TeaserCard({ job, countryLabel }: { job: TeaserJob; countryLabel
 
   return (
     <li className={styles.job}>
+      {/* The tile carries the tier's own marker, so the verdict survives a reader who cannot tell
+          the fills apart; the tinted pill beside the company says it in words. */}
+      <span className={styles.jobTile} data-tier={job.tier}>
+        <TierMark tier={job.tier} className={styles.jobMark} />
+      </span>
+
       <div className={styles.jobMain}>
         <h4 className={styles.jobTitle}>{job.title}</h4>
-        <p className={styles.jobMeta}>{[job.company, job.location].filter(Boolean).join(" · ")}</p>
-        <p className={styles.verdict}>
-          <span className={styles.swatch} data-tier={job.tier} aria-hidden="true" />
-          {t(`tier.${job.tier}`, { country: countryLabel })}
+        <p className={styles.jobMeta}>
+          <span>{[job.company, job.location].filter(Boolean).join(" · ")}</span>
+          <span className={styles.tierPill} data-tier={job.tier}>
+            {t(`tier.${job.tier}`, { country: countryLabel })}
+          </span>
         </p>
         <p className={styles.reason}>{reason}</p>
+        <a
+          className={styles.open}
+          href={job.url}
+          rel="noopener noreferrer nofollow"
+          target="_blank"
+          aria-label={t("openLabel", { title: job.title, company: job.company })}
+        >
+          {t("open")}
+          <ArrowMark className={styles.openArrow} />
+        </a>
       </div>
-      <a
-        className={styles.open}
-        href={job.url}
-        rel="noopener noreferrer nofollow"
-        target="_blank"
-        aria-label={t("openLabel", { title: job.title, company: job.company })}
-      >
-        {t("open")}
-        <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-          <path
-            d="M6 3.5h6.5V10M12.5 3.5 4 12"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.6"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </a>
     </li>
   );
 }

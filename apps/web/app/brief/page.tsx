@@ -28,10 +28,19 @@ export default async function BriefPage() {
   if (access.status === "forbidden") forbidden();
 
   const brief = await loadBrief(access.session.user.id);
+  const t = await getTranslations("Brief.nav");
+
+  // A signed-in screen navigates between the product's own destinations, not the marketing ones.
+  const nav = [
+    { href: "/brief", label: t("brief"), current: true },
+    { href: "/profile", label: t("profile") },
+    { href: "/settings", label: t("settings") },
+    { href: "/pricing", label: t("passes") },
+  ];
 
   return (
     <div className={styles.page}>
-      <SiteHeader />
+      <SiteHeader nav={nav} />
       <main className={styles.shell}>
         <BriefClient initial={brief} />
       </main>

@@ -14,12 +14,18 @@ import { fieldAnchor } from "@/app/profile/_shared/rows";
 import { EligibilityRows, RoleRows, WaysRows, type RowsProps } from "@/app/profile/_shared/rows";
 import { useMatchCount, useProfile } from "@/app/profile/_shared/use-profile";
 import type { ProfileClientError } from "@/app/profile/_shared/api";
+import { ArrowMark } from "@/components/brief/marks";
+import { StepMark } from "@/components/profile/marks";
 import styles from "./onboarding.module.css";
 
 /**
  * The three steps of PLAN D5: eligibility, ways of working, role and money. One topic per step,
  * every row already answered from the CV, one action to accept the lot, and a live count beside
  * them that moves with every edit.
+ *
+ * The step's question is the page's one statement, set at poster scale with nothing above it; its
+ * rows are a single white card under it, and the rail beside them holds the count and the ticked
+ * step list as cards of their own. Nothing on this screen is an illustration.
  *
  * Accepting a step writes the values on screen back to the profile. That matters because a row can
  * be showing a value the parse job put in the CV but not yet in `profiles` (`loadProfileView`
@@ -160,63 +166,70 @@ export function OnboardingFlow({
   const rail = (
     <aside className={styles.rail} aria-label={t("steps.label")}>
       {countEnabled ? <MatchCountLine profile={profile} count={count} headingId={countId} /> : null}
-      {/* "Step 1 of 3" beside a heading that says setup is over contradicts it; once the flow is
-          finished the ticked list is the whole story. */}
-      {finished ? null : (
-        <p className={styles.position}>
-          {t("steps.position", { index: index + 1, total: STEPS.length })}
-        </p>
-      )}
-      <ol className={styles.stepList}>
-        {STEPS.map((entry, i) => {
-          const state = finished || i < index ? "done" : i === index ? "current" : "todo";
-          return (
-            <li key={entry.key} className={styles.step} data-state={state}>
-              <span className={styles.stepMark} aria-hidden="true">
-                <svg viewBox="0 0 16 16" focusable="false">
-                  <path
-                    d="M3 8.5 6.2 11.5 13 4.8"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </span>
-              <span className={styles.stepName}>{t(`steps.${entry.key}`)}</span>
-              <span className="visually-hidden">{t(`steps.${state}`)}</span>
-            </li>
-          );
-        })}
-      </ol>
-      {profile.anonymous ? <SaveWorkPanel /> : null}
+      <div className={styles.steps}>
+        {/* "Step 1 of 3" beside a heading that says setup is over contradicts it; once the flow is
+            finished the ticked list is the whole story. */}
+        {finished ? null : (
+          <p className={styles.position}>
+            {t("steps.position", { index: index + 1, total: STEPS.length })}
+          </p>
+        )}
+        <ol className={styles.stepList}>
+          {STEPS.map((entry, i) => {
+            const state = finished || i < index ? "done" : i === index ? "current" : "todo";
+            return (
+              <li key={entry.key} className={styles.step} data-state={state}>
+                <span className={styles.stepMark} aria-hidden="true">
+                  <StepMark />
+                </span>
+                <span className={styles.stepName}>{t(`steps.${entry.key}`)}</span>
+                <span className="visually-hidden">{t(`steps.${state}`)}</span>
+              </li>
+            );
+          })}
+        </ol>
+      </div>
     </aside>
   );
 
   if (finished) {
     return (
       <CountryListProvider codes={countryCodes}>
+        <header className={styles.intro}>
+          <h1 ref={heading} id={headingId} tabIndex={-1} className={styles.title}>
+            {t("done.title")}
+          </h1>
+          <p className={styles.lead}>{t("done.body")}</p>
+        </header>
         <div className={styles.layout}>
           <section className={styles.main} aria-labelledby={headingId}>
-            <h1 ref={heading} id={headingId} tabIndex={-1} className={styles.title}>
-              {t("done.title")}
-            </h1>
-            <p className={styles.lead}>{t("done.body")}</p>
-            <p className={styles.note}>{t("done.next")}</p>
-            {/* Someone who has just finished setup wants the roles, not the form they just filled
-                in, so the Brief is the primary action and the profile stays one tap away. */}
-            <div className={styles.actions}>
-              <Link className={styles.primary} href="/brief">
-                {t("done.cta")}
-              </Link>
-              <Link className={styles.textButton} href="/profile">
-                {t("done.profileCta")}
-              </Link>
-              {finish.isPending ? (
-                <span className={styles.saving}>{t("actions.saving")}</span>
-              ) : null}
+            {/* The statement above already says setup is over, so the card says the one thing
+                left to say: nothing is delivered yet, and here is where the roles are. */}
+            <div className={styles.done}>
+              <div className={styles.doneHead}>
+                <span className={styles.doneTile}>
+                  <StepMark className={styles.doneMark} />
+                </span>
+                <p className={styles.doneBody}>{t("done.next")}</p>
+              </div>
+              {/* Someone who has just finished setup wants the roles, not the form they just
+                  filled in, so the Brief is the primary action and the profile stays one tap
+                  away. */}
+              <div className={styles.actions}>
+                <Link className={styles.primary} href="/brief">
+                  {t("done.cta")}
+                  <ArrowMark className={styles.arrow} />
+                </Link>
+                <Link className={styles.outlinePill} href="/profile">
+                  {t("done.profileCta")}
+                  <ArrowMark className={styles.arrow} />
+                </Link>
+                {finish.isPending ? (
+                  <span className={styles.saving}>{t("actions.saving")}</span>
+                ) : null}
+              </div>
             </div>
+            {profile.anonymous ? <SaveWorkPanel /> : null}
           </section>
           {rail}
         </div>
@@ -228,13 +241,15 @@ export function OnboardingFlow({
 
   return (
     <CountryListProvider codes={countryCodes}>
+      <header className={styles.intro}>
+        <h1 ref={heading} id={headingId} tabIndex={-1} className={styles.title}>
+          {t(`step.${step.key}.title`)}
+        </h1>
+        <p className={styles.lead}>{t(`step.${step.key}.lead`)}</p>
+      </header>
+
       <div className={styles.layout}>
         <section className={styles.main} aria-labelledby={headingId}>
-          <h1 ref={heading} id={headingId} tabIndex={-1} className={styles.title}>
-            {t(`step.${step.key}.title`)}
-          </h1>
-          <p className={styles.lead}>{t(`step.${step.key}.lead`)}</p>
-
           <Rows profile={profile} save={save} labelledBy={headingId} />
 
           {blocked ? (
@@ -256,6 +271,7 @@ export function OnboardingFlow({
           <div className={styles.actions}>
             <button type="button" className={styles.primary} onClick={accept}>
               {index === STEPS.length - 1 ? t("actions.finish") : t("actions.next")}
+              <ArrowMark className={styles.arrow} />
             </button>
             {step.skippable ? (
               <button type="button" className={styles.textButton} onClick={skip}>
@@ -268,6 +284,10 @@ export function OnboardingFlow({
               </button>
             ) : null}
           </div>
+
+          {/* The 24-hour notice sits with the work it is about, under the step being filled in, so
+              a narrow screen reaches the rows before it rather than after it. */}
+          {profile.anonymous ? <SaveWorkPanel /> : null}
         </section>
         {rail}
       </div>

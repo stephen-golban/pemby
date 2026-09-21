@@ -34,9 +34,18 @@ export default async function SettingsPage() {
 
   const settings = anonymous ? null : await loadChannelSettings(access.session.user.id);
 
+  // A signed-in screen navigates between the product's own destinations, not the marketing ones.
+  const t = await getTranslations("Brief.nav");
+  const nav = [
+    { href: "/brief", label: t("brief") },
+    { href: "/profile", label: t("profile") },
+    { href: "/settings", label: t("settings"), current: true },
+    { href: "/pricing", label: t("passes") },
+  ];
+
   return (
     <div className={styles.page}>
-      <SiteHeader />
+      <SiteHeader nav={nav} />
       <main className={styles.shell}>
         <SettingsClient
           initial={settings}

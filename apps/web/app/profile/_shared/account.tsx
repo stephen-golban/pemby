@@ -6,6 +6,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { DELETE_CONFIRMATION } from "@/app/api/profile/_lib/view";
+import { ArrowMark, BlockerMark } from "@/components/brief/marks";
+import { DownloadMark } from "@/components/profile/marks";
 import { EXPORT_PATH, errorCodeOf, postAccountDelete, type ProfileClientError } from "./api";
 import styles from "./panels.module.css";
 
@@ -14,9 +16,14 @@ export function ExportPanel() {
   const t = useTranslations("Onboarding.data");
   return (
     <section id="profile-export" className={styles.panel} aria-labelledby="profile-export-title">
-      <h2 id="profile-export-title" className={styles.panelTitle}>
-        {t("title")}
-      </h2>
+      <div className={styles.head}>
+        <span className={styles.tile} data-accent="blue">
+          <DownloadMark className={styles.tileMark} />
+        </span>
+        <h2 id="profile-export-title" className={styles.panelTitle}>
+          {t("title")}
+        </h2>
+      </div>
       <p className={styles.body}>{t("body")}</p>
       <ul className={styles.plainList}>
         <li>{t("includesProfile")}</li>
@@ -27,6 +34,7 @@ export function ExportPanel() {
       {/* A plain download: the route answers with Content-Disposition, so no script is involved. */}
       <a className={styles.pill} href={EXPORT_PATH} download>
         {t("cta")}
+        <DownloadMark className={styles.arrow} />
       </a>
     </section>
   );
@@ -73,9 +81,16 @@ export function DeletePanel({ anonymous }: { anonymous: boolean }) {
 
   return (
     <section id="profile-delete" className={styles.card} aria-labelledby="profile-delete-title">
-      <h2 id="profile-delete-title" className={styles.cardTitle}>
-        {t("title")}
-      </h2>
+      {/* Red, and only here: in this world red is the colour of a blocker, never of a verdict, and
+          this is the one act on the surface that cannot be undone. */}
+      <div className={styles.head}>
+        <span className={styles.tile} data-accent="red">
+          <BlockerMark blocker="dealbreaker" className={styles.tileMark} />
+        </span>
+        <h2 id="profile-delete-title" className={styles.cardTitle}>
+          {t("title")}
+        </h2>
+      </div>
       <p className={styles.body}>{anonymous ? t("bodyAnonymous") : t("body")}</p>
       <ul className={styles.plainList}>
         <li>{t("removesProfile")}</li>
@@ -123,13 +138,21 @@ export function SaveWorkPanel() {
   const t = useTranslations("Cv.save");
   return (
     <section id="profile-save" className={styles.card} aria-labelledby="profile-save-title">
-      <h2 id="profile-save-title" className={styles.cardTitle}>
-        {t("title")}
-      </h2>
+      {/* The clock, as on the Brief's held card: it is the same fact, something waiting on a
+          deadline, so it is drawn the same way. */}
+      <div className={styles.head}>
+        <span className={styles.tile} data-accent="yellow">
+          <BlockerMark blocker="freshness" className={styles.tileMark} />
+        </span>
+        <h2 id="profile-save-title" className={styles.cardTitle}>
+          {t("title")}
+        </h2>
+      </div>
       <p className={styles.body}>{t("body")}</p>
       <div className={styles.cardActions}>
         <Link className={styles.primary} href="/sign-up">
           {t("cta")}
+          <ArrowMark className={styles.arrow} />
         </Link>
         <Link className={styles.textLink} href="/sign-in">
           {t("signIn")}

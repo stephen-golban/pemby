@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import { LongArrow, TileMark } from "./marks";
 import s from "./sections.module.css";
 import styles from "./telegram-channel.module.css";
 
@@ -23,36 +24,31 @@ export async function TelegramChannel() {
             target="_blank"
           >
             {t("link")}
-            <svg viewBox="0 0 18 18" aria-hidden="true" focusable="false">
-              <path
-                d="M5 13 13 5M6.5 5H13v6.5"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <LongArrow className={styles.actionArrow} />
           </a>
         </div>
 
         <figure className={styles.post}>
           <div className={styles.postHead}>
             <span className={styles.channel}>{t("channel")}</span>
-            <span>{t("time")}</span>
+            <span className={styles.time}>{t("time")}</span>
           </div>
-          <p className={styles.role}>{t("role")}</p>
-          <p className={styles.company}>{t("company")}</p>
-          <ul className={styles.facts}>
-            <li className={styles.green}>
-              <span className={styles.swatch} aria-hidden="true" />
-              {t("hires")}
-            </li>
-            <li>{t("ways")}</li>
-          </ul>
+          <div className={styles.postBody}>
+            <span className={s.tile} data-accent="green">
+              <TileMark mark="check" className={s.tileMark} />
+            </span>
+            <div>
+              <p className={styles.role}>{t("role")}</p>
+              <p className={styles.company}>{t("company")}</p>
+            </div>
+          </div>
+          <p className={s.tierPill} data-tier="green">
+            {t("hires")}
+          </p>
+          <p className={styles.ways}>{t("ways")}</p>
           <p className={styles.late}>{t("late")}</p>
-          <figcaption className={styles.stamp}>
-            <span className={s.example}>{t("example")}</span>
+          <figcaption>
+            <span className={s.stamp}>{t("example")}</span>
           </figcaption>
         </figure>
       </div>

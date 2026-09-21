@@ -1,9 +1,10 @@
 /*
- * /unsubscribe: one decision on an otherwise empty page.
+ * /unsubscribe: one decision on an otherwise empty sheet.
  *
  * An Operate surface reached from an inbox, by someone who may have no session and no intention of
- * getting one, so it carries the outlined paper card the design reserves for a decision and
- * nothing else — no rail, no ledger, no second action competing with the first.
+ * getting one. It carries one white card at 24px radius with the world's soft wide shadow, one
+ * filled black pill, and nothing that argues with it: no accent, no second action at the same
+ * weight, no persuasion.
  */
 
 .page {
@@ -18,56 +19,58 @@
   inline-size: 100%;
   max-inline-size: calc(640px + 2 * var(--gutter));
   margin-inline: auto;
-  padding: var(--space-8) var(--gutter) var(--space-9);
+  padding: var(--rhythm-lead) var(--gutter) var(--rhythm-section);
 }
 
 .card {
   display: grid;
   gap: var(--space-5);
-  background: var(--color-paper-card);
-  border: 1.5px solid var(--color-line-strong);
-  /* 30px is the card corner of DESIGN.md; there is no `--radius-card` token to reach for. */
-  border-radius: 30px;
   padding: var(--space-7) var(--space-6) var(--space-6);
+  border-radius: var(--radius-card);
+  background: var(--color-card);
+  color: var(--color-on-card);
+  box-shadow: var(--shadow-card);
 }
 
 .title {
   max-inline-size: 18ch;
-  font-family: var(--font-display);
-  font-size: 2.125rem;
-  font-weight: var(--weight-title);
-  line-height: 0.92;
+  font-size: var(--text-section);
+  font-weight: var(--weight-heavy);
+  line-height: var(--leading-title);
   letter-spacing: var(--tracking-title);
   text-wrap: balance;
 }
 
 .lead {
-  max-inline-size: 58ch;
+  max-inline-size: 56ch;
   font-size: var(--text-small);
   line-height: 1.6;
   color: var(--color-ink-soft);
+  text-wrap: pretty;
 }
 
-/* The one primary action: ink pill, 52px, ground-coloured grotesk label. */
+/* The one filled black pill on the page. */
 .confirm {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   justify-self: start;
   min-block-size: 52px;
-  padding-inline: var(--space-5);
+  padding-inline: 26px;
   border: 0;
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-pill);
   background: var(--color-ink);
   color: var(--color-ground);
-  font-family: var(--font-display);
-  font-size: 1.1875rem;
+  font-family: inherit;
+  font-size: 1.0625rem;
   font-weight: var(--weight-title);
+  letter-spacing: -0.012em;
   cursor: pointer;
-  transition:
-    transform var(--duration-fast) var(--ease-out),
-    opacity var(--duration-fast) var(--ease-out);
+  transition: opacity var(--duration-fast) var(--ease-out);
 }
 
 .confirm:hover:not(:disabled) {
-  transform: translateY(-2px);
+  opacity: 0.86;
 }
 
 .confirm:disabled {
@@ -75,34 +78,53 @@
   opacity: 0.6;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .confirm {
-    transition: none;
-  }
-
-  .confirm:hover:not(:disabled) {
-    transform: none;
-  }
-}
-
 .error {
+  max-inline-size: 56ch;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  background: var(--color-tier-red-soft);
+  color: var(--color-on-tier-red-soft);
   font-size: var(--text-small);
-  color: var(--color-tier-red);
+  line-height: 1.5;
 }
 
-/* The two ways out, as the ledger's hairline-ruled row of quiet links. */
+/* The two ways out, as quiet links under a hairline. */
 .links {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2) var(--space-5);
-  border-block-start: 1px solid var(--color-line);
   padding-block-start: var(--space-5);
+  border-block-start: 1px solid var(--color-line);
   font-size: var(--text-label);
+  font-weight: var(--weight-medium);
 }
 
 .links a {
-  min-block-size: 44px;
   display: inline-flex;
   align-items: center;
+  min-block-size: 44px;
+  color: var(--color-ink-soft);
   text-decoration: underline;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.links a:hover {
+  color: var(--color-ink);
+}
+
+@media (max-width: 639px) {
+  .card {
+    padding: var(--space-6) var(--space-5);
+  }
+
+  .confirm {
+    inline-size: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .confirm,
+  .links a {
+    transition: none;
+  }
 }

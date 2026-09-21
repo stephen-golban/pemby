@@ -3,8 +3,9 @@
 import { useSyncExternalStore } from "react";
 import { useTranslations } from "next-intl";
 import { isStandalone, pushAvailability, type PushAvailability } from "@/app/settings/_shared/push";
-import fields from "@/app/profile/_shared/fields.module.css";
 import { ChannelRow, Switch } from "./channel-row";
+import styles from "./channels.module.css";
+import { BellMark } from "./marks";
 
 /**
  * The push row, which is the only one of the three that is about *this browser* rather than about
@@ -102,19 +103,21 @@ export function PushRow({
   return (
     <ChannelRow
       id="settings-push"
+      accent="green"
+      mark={<BellMark className={styles.tileMark} />}
       label={t("label")}
       state={state}
       help={t("help")}
       note={lines.length > 0 ? lines.join(" ") : undefined}
       action={
-        <div className={fields.addRow}>
+        <>
           {control ? <Switch on={on} labelledBy="settings-push" onChange={onChange} /> : null}
           {elsewhere > 0 ? (
-            <button type="button" className={fields.pill} onClick={onForgetDevices}>
+            <button type="button" className={styles.pill} onClick={onForgetDevices}>
               {t("forget")}
             </button>
           ) : null}
-        </div>
+        </>
       }
     />
   );

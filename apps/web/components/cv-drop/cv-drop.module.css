@@ -1,36 +1,35 @@
 /*
- * CV drop: the idle zone (drop-zone.module.css) grows in place into a working panel. Operate
- * density inside the landing's world - same ground, type and radii, hairline-ruled sections,
- * outline-pill secondary actions, nothing tilted and nothing nested in a second card.
+ * CV drop: the idle pill (drop-zone.module.css) grows in place into a working white card at 24px
+ * radius with one soft wide shadow — the same card the Brief is built from. Inside it the density
+ * is the product's, not the poster's: hairline-ruled sections, a black pill for the one act,
+ * outlined pills for the alternatives, and quiet underlined text for the way out.
  */
 
 .zone[data-mode="active"] {
+  display: block;
   inline-size: min(100%, 760px);
-  border-style: solid;
-  border-color: color-mix(in srgb, var(--color-ink) 32%, transparent);
+  border-radius: var(--radius-card);
+  background: var(--color-card);
+  box-shadow: var(--shadow-card);
   text-align: start;
 }
 
 .idle {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  gap: var(--space-3);
+  justify-items: start;
+  inline-size: 100%;
 }
 
-.choose {
-  margin-block-start: 6px;
-  font-family: var(--font-mono);
-  font-size: var(--text-label);
-  text-decoration: underline;
-  text-underline-offset: 0.22em;
-}
-
+/* A refusal the visitor has to read: red is the blocker colour, and it is never a verdict. */
 .error {
-  margin: var(--space-3) var(--space-5) var(--space-5);
-  padding: 10px 14px;
-  border: 1px solid color-mix(in srgb, var(--color-tier-red) 55%, transparent);
-  border-radius: var(--radius-md);
-  background: color-mix(in srgb, var(--color-tier-red) 10%, var(--color-surface));
+  max-inline-size: 62ch;
+  padding: 10px 16px;
+  border-radius: var(--radius-lg);
+  background: var(--color-tier-red-soft);
+  color: var(--color-on-tier-red-soft);
   font-size: var(--text-small);
+  font-weight: var(--weight-medium);
   line-height: 1.5;
 }
 
@@ -38,7 +37,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
-  padding: var(--space-5) var(--space-6) var(--space-6);
+  padding: var(--space-6);
 }
 
 /* File row ------------------------------------------------------------- */
@@ -49,6 +48,18 @@
   gap: var(--space-3);
 }
 
+/* The file itself, as a solid blue tile with a white line mark. */
+.fileGlyph {
+  display: grid;
+  place-items: center;
+  flex: none;
+  inline-size: 40px;
+  block-size: 40px;
+  border-radius: var(--radius-tile);
+  background: var(--color-accent-blue);
+  color: var(--color-on-accent-blue);
+}
+
 .fileGlyph svg {
   inline-size: 22px;
   block-size: 22px;
@@ -57,35 +68,36 @@
 .fileName {
   overflow: hidden;
   font-size: var(--text-small);
+  font-weight: var(--weight-medium);
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
+/* The outlined pill: every secondary act on this card. */
 .pill {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-block-size: 44px;
-  padding: 0 16px;
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-full);
+  padding: 0 18px;
+  border: 1.5px solid var(--color-line-strong);
+  border-radius: var(--radius-pill);
   background: transparent;
   color: var(--color-ink);
-  font-family: var(--font-mono);
+  font-family: inherit;
   font-size: var(--text-label);
-  font-weight: var(--weight-mono-strong);
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
+  font-weight: var(--weight-title);
   cursor: pointer;
-  transition: border-color var(--duration-fast) var(--ease-out);
+  transition: background-color var(--duration-fast) var(--ease-out);
 }
 
 .fileRow .pill {
+  flex: none;
   margin-inline-start: auto;
 }
 
 .pill:hover {
-  border-color: var(--color-ink);
+  background: var(--color-surface);
 }
 
 /* Steps ---------------------------------------------------------------- */
@@ -105,39 +117,41 @@
   gap: var(--space-2);
 }
 
+/*
+ * The same tile the rest of the product uses for a verdict: a solid fill once it is settled, and a
+ * 2px solid edge while it is not. Nothing here is dashed — a dashed edge is the print-ledger habit
+ * this world refuses, and it appears on no other surface. The words next to the marks say the same
+ * thing, so the shapes are never the only carrier.
+ */
 .stepMark {
   display: grid;
   place-items: center;
-  inline-size: 20px;
-  block-size: 20px;
-  border: 1.5px dashed var(--color-line);
-  border-radius: var(--radius-sm);
+  flex: none;
+  inline-size: 24px;
+  block-size: 24px;
+  border: 2px solid var(--color-line);
+  border-radius: 8px;
   color: var(--color-ground);
 }
 
 .stepMark svg {
-  inline-size: 13px;
-  block-size: 13px;
+  inline-size: 14px;
+  block-size: 14px;
 }
 
 .step[data-state="done"] .stepMark {
-  border-style: solid;
   border-color: var(--color-ink);
   background: var(--color-ink);
 }
 
 .step[data-state="current"] .stepMark {
-  border-style: solid;
-  border-color: var(--color-ink);
+  border-color: var(--color-line-strong);
   animation: breathe 1.6s ease-in-out infinite;
 }
 
 .stepLabel {
-  font-family: var(--font-mono);
   font-size: var(--text-label);
-  font-weight: var(--weight-mono-strong);
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
+  font-weight: var(--weight-medium);
 }
 
 .step[data-state="pending"] .stepLabel {
@@ -157,29 +171,28 @@
 /* Panel text ----------------------------------------------------------- */
 
 .panelTitle {
-  /* The grotesk "heading" step, tight per the Tight Display Rule; `fit-content` keeps the
-     programmatic focus ring around the words instead of the whole panel width. */
-  inline-size: fit-content;
-  font-family: var(--font-display);
-  font-size: var(--text-heading);
-  font-weight: var(--weight-title);
-  line-height: 0.95;
+  font-size: var(--text-subhead);
+  font-weight: var(--weight-heavy);
+  line-height: 1.12;
   letter-spacing: var(--tracking-title);
 }
 
-.panelTitle:focus {
-  outline: none;
-}
-
+/*
+ * Focus is moved here when the card takes over from the pill, so a screen reader lands on the new
+ * heading and reads it. The heading is not in the tab order, so this is never focus the visitor
+ * aimed at, and nothing is painted for it — the same as `.pendingTitle` in the stand-in. A blue ring
+ * boxed around the words belongs to no part of this world and reads as an error, not a position.
+ */
+.panelTitle:focus,
 .panelTitle:focus-visible {
-  outline: 2px solid var(--color-focus);
-  outline-offset: 4px;
+  outline: none;
 }
 
 .lead {
   max-inline-size: 58ch;
   font-size: var(--text-small);
   line-height: 1.5;
+  color: var(--color-ink-soft);
 }
 
 .note {
@@ -191,8 +204,9 @@
 .notice {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: var(--space-3);
-  padding-block-start: var(--space-4);
+  padding-block-start: var(--space-5);
   border-block-start: 1px solid var(--color-line);
   font-size: var(--text-small);
   line-height: 1.5;
@@ -202,7 +216,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--space-3) var(--space-5);
+  gap: var(--space-3) var(--space-4);
 }
 
 /* Paste fallback ------------------------------------------------------- */
@@ -210,27 +224,32 @@
 .paste {
   display: grid;
   gap: var(--space-2);
+  justify-items: start;
+  inline-size: 100%;
 }
 
 .pasteLabel {
   font-size: var(--text-label);
-  font-weight: var(--weight-mono-strong);
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
+  font-weight: var(--weight-title);
   color: var(--color-ink-soft);
 }
 
 .textarea {
   inline-size: 100%;
-  padding: 12px 14px;
+  padding: 14px 16px;
   border: 1.5px solid var(--color-line);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   background: var(--color-ground);
   color: var(--color-ink);
-  font-family: var(--font-mono);
+  font-family: inherit;
   font-size: var(--text-small);
   line-height: 1.6;
   resize: vertical;
+}
+
+.textarea:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
 }
 
 .pasteHint {
@@ -248,37 +267,37 @@
 
 /* Actions -------------------------------------------------------------- */
 
+/* The one filled black pill on the card. */
 .primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  block-size: 52px;
-  padding: 0 24px;
+  min-block-size: 48px;
+  padding: 0 22px;
   border: 0;
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-pill);
   background: var(--color-ink);
   color: var(--color-ground);
-  font-family: var(--font-display);
-  font-size: 1.1875rem;
+  font-family: inherit;
+  font-size: var(--text-body);
   font-weight: var(--weight-title);
-  letter-spacing: -0.02em;
   text-decoration: none;
   cursor: pointer;
-  transition: transform var(--duration-fast) var(--ease-out);
+  transition: opacity var(--duration-fast) var(--ease-out);
 }
 
 .primary:hover {
-  transform: translateY(-2px);
+  opacity: 0.86;
 }
 
 .primary:disabled {
-  opacity: 0.55;
+  opacity: 0.5;
   cursor: not-allowed;
-  transform: none;
 }
 
 .textLink {
   font-size: var(--text-small);
+  font-weight: var(--weight-medium);
   text-decoration: underline;
 }
 
@@ -289,11 +308,12 @@
   border: 0;
   background: transparent;
   color: var(--color-ink-soft);
-  font-family: var(--font-mono);
+  font-family: inherit;
   font-size: var(--text-label);
   text-decoration: underline;
   text-underline-offset: 0.22em;
   cursor: pointer;
+  transition: color var(--duration-fast) var(--ease-out);
 }
 
 .quiet:hover {
@@ -310,16 +330,17 @@
 }
 
 .saveTitle {
-  font-family: var(--font-display);
-  font-size: 1.3125rem;
-  font-weight: var(--weight-title);
-  letter-spacing: -0.02em;
+  font-size: var(--text-row);
+  font-weight: var(--weight-heavy);
+  line-height: 1.15;
+  letter-spacing: -0.024em;
 }
 
 .saveBody {
   max-inline-size: 58ch;
   font-size: var(--text-small);
   line-height: 1.5;
+  color: var(--color-ink-soft);
 }
 
 /* Turnstile ------------------------------------------------------------ */
@@ -333,14 +354,18 @@
   padding: 0 var(--space-6) var(--space-5);
 }
 
+.zone[data-mode="active"] .human[data-interactive="true"] {
+  padding-block-start: 0;
+}
+
 @media (max-width: 560px) {
   .panel {
     gap: var(--space-4);
-    padding: var(--space-4) var(--space-4) var(--space-5);
+    padding: var(--space-5) var(--space-4);
   }
 
-  .error {
-    margin: 0 var(--space-4) var(--space-4);
+  .human[data-interactive="true"] {
+    padding: 0 var(--space-4) var(--space-4);
   }
 }
 
@@ -349,11 +374,9 @@
     animation: none;
   }
 
-  .primary {
+  .primary,
+  .pill,
+  .quiet {
     transition: none;
-  }
-
-  .primary:hover {
-    transform: none;
   }
 }

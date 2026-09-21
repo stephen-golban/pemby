@@ -2,36 +2,43 @@
 
 import type { ReactNode } from "react";
 import { useTranslations } from "next-intl";
-import fields from "@/app/profile/_shared/fields.module.css";
 import styles from "./channels.module.css";
 
 /**
- * One line of the channels ledger.
+ * One channel, as a row inside the channels card.
  *
- * The same row grammar as `/profile` and `/onboarding`, from the same stylesheet rather than a copy
- * of it: an uppercase mono label in a fixed column, the state beside it, the action last, hairline
- * rules between rows and no box around anything. The difference is what the third column holds — a
- * switch, or a connect action — rather than an editor pill, so this is its own component and not a
- * `FieldRow` bent into shape.
+ * Laid out like a match card on `/brief`, because it is the same object at a smaller scale: a solid
+ * accent rounded square at the far left carrying the channel's own mark, then the channel's name in
+ * heavy ink with what it reads right now beneath it and one quiet line explaining what it is for,
+ * then the act at the right end. Hairlines separate the rows; there is no box around any of them,
+ * because the card is the box.
  */
 export function ChannelRow({
   id,
+  accent,
+  mark,
   label,
   state,
   help,
   note,
+  dead,
   action,
   full,
 }: {
-  /** Put on the label cell so the row's switch can point at it instead of repeating the word. */
+  /** Put on the name so the row's switch can point at it instead of repeating the word. */
   id: string;
+  accent: "blue" | "green" | "yellow" | "red" | "ink";
+  /** The white line mark drawn inside the tile. Decorative: the name says the same thing. */
+  mark: ReactNode;
   label: string;
-  /** What the row reads: "Connected", "Off", the mailbox it writes to. */
+  /** What the row reads: "Connected", "Off in this browser", the mailbox it writes to. */
   state: ReactNode;
   /** One quiet line under the state, always shown: this is a page of decisions, not a form. */
   help?: ReactNode;
   /** Something that went wrong on its own, or a limit of this device. Stands out from `help`. */
   note?: ReactNode;
+  /** True when the note reports a channel the system broke off, which is drawn in the blocker tint. */
+  dead?: boolean;
   action?: ReactNode;
   /**
    * Rendered under the three columns, across all of them. For the one thing a settings row
@@ -41,25 +48,33 @@ export function ChannelRow({
   full?: ReactNode;
 }) {
   return (
-    <div className={fields.row}>
-      <dt id={id} className={fields.label}>
+    <li className={styles.row}>
+      <span className={styles.tile} data-accent={accent}>
+        {mark}
+      </span>
+      <h3 id={id} className={styles.name}>
         {label}
-      </dt>
-      <dd className={fields.value}>
+      </h3>
+      <div className={styles.body}>
         <p className={styles.state}>{state}</p>
-        {help ? <p className={fields.help}>{help}</p> : null}
-        {note ? <p className={styles.note}>{note}</p> : null}
-      </dd>
-      <dd className={fields.action}>{action}</dd>
-      {full ? <dd className={styles.full}>{full}</dd> : null}
-    </div>
+        {help ? <p className={styles.help}>{help}</p> : null}
+        {note ? (
+          <p className={styles.note} data-dead={dead || undefined}>
+            {note}
+          </p>
+        ) : null}
+      </div>
+      {action ? <div className={styles.action}>{action}</div> : null}
+      {full ? <div className={styles.full}>{full}</div> : null}
+    </li>
   );
 }
 
 /**
- * The on/off control, as the Brief's `ShownSettings` draws it: an outline pill that is a real
- * `switch`, reading its own state in words. A pill that said only "On" would leave a screen reader
- * and a colour-blind reader guessing whether that is the state or the action.
+ * The on/off control, as `/brief`'s `ShownSettings` draws it: an outline pill that is a real
+ * `switch`, reading its own state in words and filling with solid ink when it is on. A pill that
+ * said only "On" would leave a screen reader and a colour-blind reader guessing whether that is the
+ * state or the action.
  */
 export function Switch({
   on,
@@ -79,7 +94,7 @@ export function Switch({
       role="switch"
       aria-checked={on}
       aria-labelledby={labelledBy}
-      className={fields.pill}
+      className={styles.switch}
       disabled={busy}
       onClick={() => onChange(!on)}
     >

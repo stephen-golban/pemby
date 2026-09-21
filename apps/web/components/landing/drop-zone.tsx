@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { useEffect, useId, useRef, useState } from "react";
 import type { DragEvent } from "react";
 import { CvDrop } from "@/components/cv-drop/cv-drop";
+import { IdleFace } from "@/components/cv-drop/idle-face";
 import styles from "./drop-zone.module.css";
 
 const TELEGRAM_URL = "https://t.me/pemby_jobs";
@@ -91,7 +92,7 @@ function StandInDropZone({ className }: { className?: string }) {
           <p ref={pendingHeading} tabIndex={-1} className={styles.pendingTitle}>
             {t("pendingTitle")}
           </p>
-          <p className={styles.caption}>{t("pendingBody")}</p>
+          <p className={styles.pendingBody}>{t("pendingBody")}</p>
           <div className={styles.pendingActions}>
             <a
               className={styles.link}
@@ -114,28 +115,23 @@ function StandInDropZone({ className }: { className?: string }) {
           </div>
         </div>
       ) : (
-        <button
-          ref={trigger}
-          type="button"
-          className={styles.trigger}
-          aria-describedby={captionId}
-          onClick={() => setMode("pending")}
-        >
-          <svg className={styles.glyph} viewBox="0 0 32 32" aria-hidden="true" focusable="false">
-            <path
-              d="M16 20V5m0 0-6.5 6.5M16 5l6.5 6.5M5 18.5V25a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2v-6.5"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.4"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-          <span className={styles.title}>{mode === "dragging" ? t("dragging") : t("title")}</span>
-          <span id={captionId} className={styles.caption}>
+        <>
+          <button
+            ref={trigger}
+            type="button"
+            className={styles.trigger}
+            // The prompt inside the pill is the whole name; the caption below stays the
+            // description, so the accessible name does not grow with the file formats.
+            aria-label={t("title")}
+            aria-describedby={captionId}
+            onClick={() => setMode("pending")}
+          >
+            <IdleFace dragging={mode === "dragging"} />
+          </button>
+          <p id={captionId} className={styles.caption}>
             {t("caption")}
-          </span>
-        </button>
+          </p>
+        </>
       )}
     </div>
   );

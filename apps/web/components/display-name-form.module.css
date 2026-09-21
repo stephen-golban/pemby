@@ -1,0 +1,95 @@
+/*
+ * The display-name form on /app. Small, but it is a product screen, so it wears the same world as
+ * the rest: a white card at 24px radius with a soft wide shadow, a fully-rounded white input and
+ * one filled black pill. Errors take the tinted red the app uses everywhere else.
+ */
+
+.card {
+  display: grid;
+  gap: var(--space-4);
+  justify-items: start;
+  inline-size: 100%;
+  max-inline-size: 560px;
+  margin-block: var(--space-5);
+  padding: var(--space-6);
+  border-radius: var(--radius-card);
+  background: var(--color-card);
+  box-shadow: var(--shadow-card);
+}
+
+.current {
+  font-size: var(--text-small);
+  line-height: 1.5;
+  color: var(--color-ink-soft);
+}
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: flex-end;
+  inline-size: 100%;
+}
+
+.label {
+  display: grid;
+  gap: var(--space-2);
+  font-size: var(--text-label);
+  font-weight: var(--weight-medium);
+  color: var(--color-ink-soft);
+}
+
+.input {
+  inline-size: min(20rem, 100%);
+  min-block-size: 48px;
+  padding: 0 16px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: var(--color-card);
+  color: var(--color-ink);
+  font-family: inherit;
+  font-size: var(--text-body);
+  font-weight: var(--weight-medium);
+}
+
+.input:hover {
+  border-color: var(--color-ink);
+}
+
+.submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: 48px;
+  padding: 0 22px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--color-ink);
+  color: var(--color-ground);
+  font-family: inherit;
+  font-size: var(--text-body);
+  font-weight: var(--weight-title);
+  cursor: pointer;
+  transition: opacity var(--duration-fast) var(--ease-out);
+}
+
+.submit:hover {
+  opacity: 0.86;
+}
+
+.error {
+  max-inline-size: 64ch;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  background: var(--color-tier-red-soft);
+  color: var(--color-on-tier-red-soft);
+  font-size: var(--text-small);
+  line-height: 1.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .input,
+  .submit {
+    transition: none;
+  }
+}

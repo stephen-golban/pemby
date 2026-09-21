@@ -6,6 +6,7 @@ import { useState } from "react";
 import type { FormEvent } from "react";
 import { optimisticUpdate } from "@/lib/optimistic";
 import type { ProfileResponse } from "@/lib/profile";
+import styles from "./display-name-form.module.css";
 
 const profileKey = ["profile"] as const;
 
@@ -48,22 +49,31 @@ export function DisplayNameForm({ initial }: { initial: ProfileResponse }) {
 
   const name = profile.data.displayName;
   return (
-    <section>
-      <p>{name ? t("displayNameCurrent", { name }) : t("displayNameEmpty")}</p>
-      <form onSubmit={onSubmit}>
-        <label>
-          {t("displayNameLabel")}{" "}
+    <section className={styles.card}>
+      <p className={styles.current}>
+        {name ? t("displayNameCurrent", { name }) : t("displayNameEmpty")}
+      </p>
+      <form className={styles.form} onSubmit={onSubmit}>
+        <label className={styles.label}>
+          {t("displayNameLabel")}
           <input
+            className={styles.input}
             name="displayName"
             value={draft}
             onChange={(event) => setDraft(event.target.value)}
             maxLength={80}
             required
           />
-        </label>{" "}
-        <button type="submit">{save.isPending ? t("saving") : t("save")}</button>
+        </label>
+        <button type="submit" className={styles.submit}>
+          {save.isPending ? t("saving") : t("save")}
+        </button>
       </form>
-      {save.isError ? <p role="alert">{t("saveFailed")}</p> : null}
+      {save.isError ? (
+        <p className={styles.error} role="alert">
+          {t("saveFailed")}
+        </p>
+      ) : null}
     </section>
   );
 }

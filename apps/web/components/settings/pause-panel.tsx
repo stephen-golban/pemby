@@ -1,15 +1,17 @@
 "use client";
 
 import { useFormatter, useNow, useTranslations } from "next-intl";
-import panels from "@/app/profile/_shared/panels.module.css";
 import styles from "./channels.module.css";
+import { PauseMark, ResumeMark } from "./marks";
 
 /**
  * "Hold everything" (PLAN D8): one switch across every channel at once.
  *
- * In the outlined paper card rather than in the ledger, for the reason `/profile` puts export and
- * deletion there: it is a decision about the whole product, not one setting among several, and it
- * is the thing someone reaches for when a match has just arrived at a bad moment.
+ * Its own white card at the foot of the page rather than a row in the channels one, for the reason
+ * `/profile` puts export and deletion apart: it is a decision about the whole product, not one
+ * setting among several, and it is the thing someone reaches for when a match has just arrived at a
+ * bad moment. Its tile is near-black while delivery is running and the blocker red while it is
+ * held, so the state is a colour, a mark and a sentence rather than any one of them.
  *
  * `profiles.delivery_paused_at` is a timestamp and not a flag, so the card can say how long
  * delivery has been held. That matters: a hold nobody remembers setting is how a person concludes
@@ -42,24 +44,35 @@ export function PausePanel({
   const justNow = paused && now.getTime() - new Date(pausedAt).getTime() < 60_000;
 
   return (
-    <section className={panels.card} aria-labelledby="settings-pause-title">
-      <h2 id="settings-pause-title" className={panels.cardTitle}>
-        {paused ? t("heldTitle") : t("title")}
-      </h2>
-      <p className={panels.body}>
-        {!paused
-          ? t("body")
-          : justNow
-            ? t("heldBodyJustNow")
-            : t("heldBody", { since: format.relativeTime(new Date(pausedAt), now) })}
-      </p>
-      <div className={styles.pauseAction}>
+    <section
+      className={styles.pause}
+      data-paused={paused || undefined}
+      aria-labelledby="settings-pause-title"
+    >
+      <span className={styles.tile} data-accent={paused ? "red" : "ink"}>
+        {paused ? (
+          <ResumeMark className={styles.tileMark} />
+        ) : (
+          <PauseMark className={styles.tileMark} />
+        )}
+      </span>
+      <div className={styles.pauseBody}>
+        <h2 id="settings-pause-title" className={styles.pauseTitle}>
+          {paused ? t("heldTitle") : t("title")}
+        </h2>
+        <p className={styles.pauseNote}>
+          {!paused
+            ? t("body")
+            : justNow
+              ? t("heldBodyJustNow")
+              : t("heldBody", { since: format.relativeTime(new Date(pausedAt), now) })}
+        </p>
         {/* A button whose label is the action, not a switch: "Hold delivery" and "Start again" are
             two different sentences, and a `switch` is meant to carry its state in `aria-checked`
             under one unchanging label. The heading above already says which state this is in. */}
         <button
           type="button"
-          className={paused ? panels.primary : panels.pill}
+          className={paused ? styles.primary : styles.pill}
           onClick={() => onChange(!paused)}
         >
           {paused ? t("resume") : t("hold")}

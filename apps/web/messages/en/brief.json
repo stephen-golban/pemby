@@ -4,6 +4,19 @@
       "title": "Your Brief"
     },
     "title": "Your Brief",
+    "nav": {
+      "brief": "Brief",
+      "profile": "Profile",
+      "settings": "Settings",
+      "passes": "Passes"
+    },
+    "headline": {
+      "matches": "{count, plural, =1 {One role can hire you from {country} today.} =2 {Two roles can hire you from {country} today.} =3 {Three roles can hire you from {country} today.} =4 {Four roles can hire you from {country} today.} =5 {Five roles can hire you from {country} today.} =6 {Six roles can hire you from {country} today.} =7 {Seven roles can hire you from {country} today.} =8 {Eight roles can hire you from {country} today.} =9 {Nine roles can hire you from {country} today.} other {# roles can hire you from {country} today.}}",
+      "matchesNoCountry": "{count, plural, =1 {One role can hire you today.} =2 {Two roles can hire you today.} =3 {Three roles can hire you today.} =4 {Four roles can hire you today.} =5 {Five roles can hire you today.} =6 {Six roles can hire you today.} =7 {Seven roles can hire you today.} =8 {Eight roles can hire you today.} =9 {Nine roles can hire you today.} other {# roles can hire you today.}}",
+      "held": "{count, plural, =1 {One match is on its way to you.} =2 {Two matches are on their way to you.} =3 {Three matches are on their way to you.} other {# matches are on their way to you.}}",
+      "silence": "Nothing cleared the bar today."
+    },
+    "subline": "{date} · every role verified live on the company's own board within the last {hours}h",
     "lead": "Roles that can hire you from {country}, each one seen live on the company's own board. You apply yourself — Pemby never applies for anyone.",
     "leadNoCountry": "Roles that can hire you, each one seen live on the company's own board. You apply yourself — Pemby never applies for anyone.",
     "yourCountry": "your country",
@@ -11,10 +24,7 @@
     "failed": "Your Brief didn't load.",
     "retry": "Try again",
     "rail": {
-      "label": "What you're being shown",
-      "count": "{count, plural, =0 {Nothing on the table} one {# match} other {# matches}}",
       "note": "Only posts that clear every check and score at least 80 reach this page. There is no feed behind it.",
-      "held": "{count, plural, one {# more is waiting on the 24-hour delay.} other {# more are waiting on the 24-hour delay.}}",
       "settings": "What you're shown",
       "yellow": "Likely matches",
       "yellowHelp": "Posts whose wording suggests {country} is included without saying so outright. They always stay labelled as likely.",
@@ -28,6 +38,7 @@
       "listLabel": "Your matches",
       "score": "{score}",
       "scoreLabel": "Match score {score} out of 100",
+      "scoreUnit": "match score",
       "meta": "{company} · {location}",
       "metaMore": "{company} · {location} +{count} more",
       "metaNoLocation": "{company}",
@@ -58,11 +69,9 @@
     "sections": {
       "handled": "Already handled",
       "handledLead": "What you applied to or passed on. It stays here so the same post doesn't come back around.",
-      "nearMiss": "Near misses",
-      "nearMissLead": "Each of these failed on one thing. Where a setting of yours is the one thing, the fix is one tap."
+      "nearMiss": "Near misses"
     },
     "silence": {
-      "title": "Nothing cleared the bar today.",
       "body": "Of everything Pemby checked, nothing both fits you and can hire you from {country}. That is the honest answer, and it is what this page says instead of filling itself.",
       "bodyNoCountry": "Of everything Pemby checked, nothing both fits you and can hire you. That is the honest answer, and it is what this page says instead of filling itself.",
       "empty": "Nothing came close either. Pemby keeps re-checking every open post; the next match reaches you on Telegram, email or web push without you opening this page.",

@@ -7,10 +7,10 @@ const STEPS = ["upload", "read", "profile", "roles"] as const;
 export type CvStep = (typeof STEPS)[number];
 
 /**
- * Where the CV has got to, as four ledger steps. Done steps carry the filled ticked square that
- * DESIGN.md reserves for a criterion that is met; the step in progress is outlined; steps not
- * reached yet are dashed ("not yet"). The words, not the shapes, carry the state for a screen
- * reader: every item names its own state.
+ * Where the CV has got to, as four steps. A done step carries the filled ticked tile the product
+ * reserves for a criterion that is met; the step in progress carries the same tile with the world's
+ * 2px solid edge and no fill; a step not reached yet carries that edge in the hairline grey. The
+ * words, not the shapes, carry the state for a screen reader: every item names its own state.
  */
 export function ProgressSteps({ current }: { current: number }) {
   const t = useTranslations("Cv.steps");

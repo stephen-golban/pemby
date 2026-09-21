@@ -27,9 +27,18 @@ export default async function ProfilePage() {
   const profile = await loadProfileView(access.session.user.id, anonymous);
   const countEnabled = process.env.CV_DROP_ENABLED === "true" && appEnv() !== "production";
 
+  // A signed-in screen navigates between the product's own destinations, not the marketing ones.
+  const nav = await getTranslations("Brief.nav");
+  const destinations = [
+    { href: "/brief", label: nav("brief") },
+    { href: "/profile", label: nav("profile"), current: true },
+    { href: "/settings", label: nav("settings") },
+    { href: "/pricing", label: nav("passes") },
+  ];
+
   return (
     <div className={styles.page}>
-      <SiteHeader />
+      <SiteHeader nav={destinations} />
       <main className={styles.shell}>
         <ProfileClient initial={profile} countryCodes={COUNTRY_CODES} countEnabled={countEnabled} />
       </main>

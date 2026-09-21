@@ -53,14 +53,14 @@ export function Picker({
       <p className={styles.pickerTitle}>{title}</p>
       <div className={styles.options}>{children}</div>
       {note ? <p className={styles.pickerNote}>{note}</p> : null}
-      <button type="button" className={styles.textAction} onClick={onClose}>
+      <button type="button" className={styles.quietAction} onClick={onClose}>
         {closeLabel}
       </button>
     </div>
   );
 }
 
-/** One option in a picker: an outline pill, the Operate secondary action of DESIGN.md. */
+/** One option in a picker: a fully-rounded white pill on the panel's recessed ground. */
 export function Option({
   label,
   onSelect,
@@ -71,7 +71,7 @@ export function Option({
   disabled?: boolean;
 }) {
   return (
-    <button type="button" className={styles.pill} onClick={onSelect} disabled={disabled}>
+    <button type="button" className={styles.optionPill} onClick={onSelect} disabled={disabled}>
       {label}
     </button>
   );

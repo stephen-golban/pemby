@@ -1,32 +1,41 @@
 /*
- * Shared profile pieces: the parsed-CV ledger, chips, the match counter and the teaser rows.
- * Operate density on the landing's world: hairline-ruled rows, no boxes around cells, no tilt.
+ * The shared profile pieces: the parsed-CV ledger, chips, the live count and the teaser rows.
+ *
+ * Same hand as the Brief. One family at every size, no monospace and no uppercase label columns;
+ * values in ink and their names in warm grey; grey tag pills for lists; solid tier tiles carrying
+ * the Brief's own markers, with the tinted tier pill and its word beside them, so a verdict is
+ * never colour alone. These pieces are rendered inside somebody else's card — the CV panel, the
+ * onboarding rail — so nothing here paints a card of its own.
  */
+
+/* The ledger ----------------------------------------------------------- */
 
 .ledger {
   display: grid;
   margin: 0;
-  border-block-start: 1px solid var(--color-line);
 }
 
 .row {
   display: grid;
-  grid-template-columns: 9rem minmax(0, 1fr);
-  gap: 2px var(--space-5);
-  align-items: baseline;
-  padding-block: var(--space-3);
-  border-block-end: 1px solid var(--color-line);
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-1);
+  padding-block: var(--space-4);
+  border-block-start: 1px solid var(--color-line);
+}
+
+.row:first-child {
+  border-block-start: 0;
+  padding-block-start: 0;
 }
 
 .row:has(.action) {
-  grid-template-columns: 9rem minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) auto;
 }
 
 .label {
   font-size: var(--text-label);
-  font-weight: var(--weight-mono-strong);
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
+  font-weight: var(--weight-medium);
+  line-height: 1.4;
   color: var(--color-ink-soft);
 }
 
@@ -34,33 +43,53 @@
 .action {
   margin: 0;
   min-inline-size: 0;
-  font-size: var(--text-small);
+  font-size: var(--text-body);
+  font-weight: var(--weight-medium);
   line-height: 1.5;
 }
 
-.name {
-  font-family: var(--font-display);
-  font-size: 1.3125rem;
-  font-weight: var(--weight-title);
-  letter-spacing: -0.02em;
+.row:has(.action) .label,
+.row:has(.action) .value {
+  grid-column: 1;
 }
 
+.action {
+  grid-row: 1 / span 2;
+  grid-column: 2;
+  align-self: center;
+}
+
+.name {
+  font-size: var(--text-row);
+  font-weight: var(--weight-heavy);
+  line-height: 1.15;
+  letter-spacing: var(--tracking-title);
+}
+
+/*
+ * A value the reader has not been given yet keeps its place rather than collapsing the row. The
+ * rule under it is solid, like every other rule in this world: a dashed or dotted edge is the
+ * print-ledger habit the direction refuses, and it appears on no other surface.
+ */
 .slot {
   display: inline-block;
   min-inline-size: 96px;
-  border-block-end: 1.5px dashed var(--color-line);
-  font-size: var(--text-label);
+  border-block-end: 2px solid var(--color-line);
+  font-size: var(--text-small);
+  font-weight: var(--weight-body);
   color: var(--color-ink-soft);
 }
 
 .missing {
-  font-size: var(--text-label);
+  font-size: var(--text-small);
+  font-weight: var(--weight-body);
   color: var(--color-ink-soft);
 }
 
 .aside {
   margin-inline-start: var(--space-2);
-  font-size: var(--text-label);
+  font-size: var(--text-small);
+  font-weight: var(--weight-body);
   color: var(--color-ink-soft);
 }
 
@@ -85,210 +114,248 @@
   color: var(--color-ink-soft);
 }
 
-.chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.chip {
-  padding: 5px 10px;
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-sm);
-  background: var(--color-ground);
-  font-size: var(--text-label);
-}
-
-.chipDetail {
-  margin-inline-start: 6px;
-  color: var(--color-ink-soft);
-}
-
 .links {
   display: grid;
-  gap: 2px;
+  gap: var(--space-1);
+  font-size: var(--text-small);
 }
 
 .linkKind {
-  font-size: var(--text-label);
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
+  font-weight: var(--weight-title);
   color: var(--color-ink-soft);
 }
 
-/* Match counter -------------------------------------------------------- */
-
-.counter {
+/* Chips: the Brief's grey tag pill, at the same size and weight. */
+.chips {
   display: flex;
-  align-items: center;
-  gap: var(--space-3);
+  flex-wrap: wrap;
+  gap: var(--space-2);
 }
 
-.badge {
+.chip {
   display: inline-flex;
+  gap: 6px;
+  align-items: baseline;
+  padding: 7px 13px;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  font-size: var(--text-label);
+  font-weight: var(--weight-medium);
+  line-height: 1.35;
+  color: var(--color-ink);
+}
+
+.chipDetail {
+  color: var(--color-ink-soft);
+}
+
+/* The live count ------------------------------------------------------- */
+
+/*
+ * The number the reader opened the page for, drawn the way the Brief draws a count: a very large
+ * heavy numeral with its sentence beside it. The sentence carries no digits of its own — the
+ * message is "roles hire from Moldova" — so the numeral is the only place the count is said, and
+ * it is read out in full to a screen reader by the line the caller keeps beside it.
+ */
+.counter {
+  display: flex;
+  gap: var(--space-4);
   align-items: center;
-  justify-content: center;
-  min-inline-size: 34px;
-  block-size: 34px;
-  padding: 0 10px;
-  border: 1.5px solid transparent;
-  border-radius: var(--radius-full);
-  background: var(--color-ink);
-  color: var(--color-ground);
-  font-family: var(--font-display);
-  font-size: 1.0625rem;
-  font-weight: var(--weight-title);
+}
+
+.counterValue {
+  flex: none;
+  font-size: var(--text-score);
+  font-weight: var(--weight-heavy);
+  line-height: 0.88;
+  letter-spacing: -0.045em;
   font-variant-numeric: tabular-nums;
 }
 
-.badge[data-empty="true"] {
-  border-color: var(--color-line);
-  border-style: dashed;
-  background: transparent;
+/* Nothing counted yet: the slot keeps its width so the sentence does not jump when it arrives. */
+.counterValue[data-empty="true"] {
+  min-inline-size: 42px;
+  border-block-end: 2px solid var(--color-line);
 }
 
 .counterLabel {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: var(--weight-title);
-  line-height: 1.05;
+  font-size: var(--text-subhead);
+  font-weight: var(--weight-heavy);
+  line-height: 1.1;
   letter-spacing: var(--tracking-title);
+  text-wrap: balance;
 }
 
 .quietTitle {
-  font-family: var(--font-display);
-  font-size: 1.3125rem;
-  font-weight: var(--weight-title);
-  letter-spacing: -0.02em;
+  font-size: var(--text-subhead);
+  font-weight: var(--weight-heavy);
+  line-height: 1.12;
+  letter-spacing: var(--tracking-title);
 }
 
-/* Teaser --------------------------------------------------------------- */
+/* The teaser ----------------------------------------------------------- */
 
 .teaser {
   display: grid;
-  gap: var(--space-3);
-  padding-block-start: var(--space-5);
-  border-block-start: 1px solid var(--color-line);
+  gap: var(--space-4);
 }
 
 .note {
-  font-size: var(--text-label);
+  max-inline-size: 64ch;
+  font-size: var(--text-small);
   line-height: 1.5;
   color: var(--color-ink-soft);
 }
 
+.jobs {
+  display: grid;
+  gap: var(--space-4);
+}
+
+/* One post, read left to right: the verdict, then the role, then the way out to the post itself. */
 .job {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-3) var(--space-5);
-  align-items: flex-start;
-  justify-content: space-between;
-  padding-block: var(--space-4);
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: var(--space-3) var(--space-4);
+  align-items: start;
+  padding-block-start: var(--space-4);
   border-block-start: 1px solid var(--color-line);
 }
 
+.jobTile {
+  display: grid;
+  place-items: center;
+  inline-size: 44px;
+  block-size: 44px;
+  border-radius: var(--radius-tile);
+}
+
+.jobTile[data-tier="green"] {
+  background: var(--color-tier-green);
+  color: var(--color-on-accent-green);
+}
+
+.jobTile[data-tier="yellow"] {
+  background: var(--color-tier-yellow);
+  color: var(--color-on-accent-yellow);
+}
+
+/* An unclear verdict has no fill to stand on, so it is drawn with an edge instead. */
+.jobTile[data-tier="white"] {
+  border: 2px solid var(--color-line-strong);
+  background: var(--color-tier-white);
+  color: var(--color-ink);
+}
+
+.jobTile[data-tier="red"] {
+  background: var(--color-tier-red);
+  color: var(--color-on-accent-red);
+}
+
+.jobMark {
+  inline-size: 22px;
+  block-size: 22px;
+}
+
 .jobMain {
+  display: grid;
+  gap: var(--space-2);
   min-inline-size: 0;
 }
 
 .jobTitle {
-  font-family: var(--font-display);
-  font-size: 1.1875rem;
-  font-weight: var(--weight-title);
-  line-height: 1.1;
-  letter-spacing: -0.025em;
+  font-size: var(--text-row);
+  font-weight: var(--weight-heavy);
+  line-height: 1.12;
+  letter-spacing: -0.028em;
+  overflow-wrap: anywhere;
 }
 
 .jobMeta {
-  margin-block-start: 4px;
-  font-size: var(--text-label);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-3);
+  align-items: center;
+  font-size: var(--text-small);
+  font-weight: var(--weight-medium);
   color: var(--color-ink-soft);
 }
 
-.verdict {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  margin-block-start: var(--space-3);
+/* The tinted tier pill: the verdict in words, never the tile's colour on its own. */
+.tierPill {
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
   font-size: var(--text-label);
-  font-weight: var(--weight-mono-strong);
+  font-weight: var(--weight-title);
+  line-height: 1.35;
+  white-space: nowrap;
 }
 
-/*
- * The tier swatch, always beside its words (DESIGN.md, "The Label Beside Every Colour Rule").
- * Every tier names itself: nothing here falls back to the green fill, because painting an
- * unrecognised tier green is the one mislabel PLAN D2 forbids.
- */
-.swatch {
-  flex: none;
-  inline-size: 12px;
-  block-size: 12px;
-  border-radius: var(--radius-full);
-  background: var(--color-line);
+.tierPill[data-tier="green"] {
+  background: var(--color-tier-green-soft);
+  color: var(--color-on-tier-green-soft);
 }
 
-.swatch[data-tier="green"] {
-  background: var(--color-tier-green);
+.tierPill[data-tier="yellow"] {
+  background: var(--color-tier-yellow-soft);
+  color: var(--color-on-tier-yellow-soft);
 }
 
-.swatch[data-tier="yellow"] {
-  background: var(--color-tier-yellow);
+.tierPill[data-tier="white"] {
+  border: 1px solid var(--color-line);
+  background: var(--color-tier-white-soft);
+  color: var(--color-on-tier-white-soft);
 }
 
-/* White needs an edge or it disappears into the ground. */
-.swatch[data-tier="white"] {
-  border: 1.5px solid var(--color-line-strong);
-  background: var(--color-tier-white);
-}
-
-.swatch[data-tier="red"] {
-  background: var(--color-tier-red);
+.tierPill[data-tier="red"] {
+  background: var(--color-tier-red-soft);
+  color: var(--color-on-tier-red-soft);
 }
 
 .reason {
-  max-inline-size: 58ch;
-  margin-block-start: 6px;
+  max-inline-size: 64ch;
   font-size: var(--text-small);
   line-height: 1.5;
+  color: var(--color-ink-soft);
 }
 
-.open {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  min-block-size: 44px;
-  font-size: var(--text-label);
-  white-space: nowrap;
-  text-decoration: underline;
-  text-underline-offset: 0.22em;
-}
-
-.open svg {
-  inline-size: 14px;
-  block-size: 14px;
-}
-
+/* The outlined pill with the long right arrow: the quieter of the two link shapes. */
+.open,
 .pill {
   display: inline-flex;
+  gap: var(--space-2);
   align-items: center;
   justify-content: center;
-  align-self: start;
+  justify-self: start;
   min-block-size: 44px;
-  padding: 0 16px;
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-full);
+  padding: 0 18px;
+  border: 1.5px solid var(--color-line-strong);
+  border-radius: var(--radius-pill);
   background: transparent;
   color: var(--color-ink);
-  font-family: var(--font-mono);
+  font-family: inherit;
   font-size: var(--text-label);
-  font-weight: var(--weight-mono-strong);
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
+  font-weight: var(--weight-title);
+  white-space: nowrap;
+  text-decoration: none;
   cursor: pointer;
+  transition: background-color var(--duration-fast) var(--ease-out);
 }
 
+.open:hover,
 .pill:hover {
-  border-color: var(--color-ink);
+  background: var(--color-surface);
+}
+
+.openArrow {
+  flex: none;
+  inline-size: 16px;
+  block-size: 16px;
+  transition: translate var(--duration-fast) var(--ease-out);
+}
+
+.open:hover .openArrow {
+  translate: 3px 0;
 }
 
 /* A value that has just been read arrives once, calmly. */
@@ -308,37 +375,28 @@
 }
 
 @media (max-width: 560px) {
-  .row {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 4px;
+  .counter {
+    gap: var(--space-3);
   }
 
-  /* Stacked rows: the label sits on its own line and the action stays beside the value's first
-     line, not centred against wrapped help text under it. */
-  .row:has(.action) {
-    grid-template-columns: minmax(0, 1fr) auto;
+  .job {
+    grid-template-columns: 40px minmax(0, 1fr);
   }
 
-  .row:has(.action) .label {
-    grid-column: 1 / -1;
-  }
-
-  .row:has(.action) .value {
-    grid-column: 1;
-  }
-
-  .row:has(.action) .action {
-    grid-column: 2;
-    align-self: start;
-  }
-
-  .counterLabel {
-    font-size: 1.3125rem;
+  .jobTile {
+    inline-size: 40px;
+    block-size: 40px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .arrive {
     animation: none;
+  }
+
+  .open,
+  .openArrow,
+  .pill {
+    transition: none;
   }
 }

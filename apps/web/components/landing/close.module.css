@@ -1,30 +1,33 @@
-/* The close mirrors the hero: centred, large, the drop zone, then one last line. */
+/* The close mirrors the hero: centred, poster scale, the drop pill, then one last line. */
 
 .close {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-block-start: calc(var(--rhythm-section) + var(--space-8));
+  padding-block-start: calc(var(--rhythm-section) + var(--space-7));
   text-align: center;
 }
 
 .title {
-  max-inline-size: 9em;
-  font-family: var(--font-display);
+  max-inline-size: 14ch;
   font-size: var(--text-display);
   font-weight: var(--weight-display);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   text-wrap: balance;
+  color: var(--color-ink);
 }
 
 .action {
-  inline-size: min(100%, 560px);
+  inline-size: min(100%, 620px);
   margin-block-start: var(--rhythm-sub-action);
+  justify-items: center;
+  text-align: start;
 }
 
 .last {
   margin-block-start: var(--space-6);
   font-size: var(--text-small);
-  line-height: var(--leading-body);
+  line-height: 1.55;
+  color: var(--color-ink-soft);
 }

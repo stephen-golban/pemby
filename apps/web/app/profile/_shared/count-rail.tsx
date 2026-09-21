@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { ArrowMark } from "@/components/brief/marks";
 import { MatchCounter, useCountryName } from "@/components/profile";
 import type { ProfileView } from "@/app/api/profile/_lib/view";
 import type { MatchCount } from "./use-profile";
@@ -21,6 +22,7 @@ export function BriefLink() {
     <div className={styles.brief}>
       <Link className={panels.primary} href="/brief">
         {t("briefCta")}
+        <ArrowMark className={panels.arrow} />
       </Link>
       <p className={styles.note}>{t("briefNote")}</p>
       {/* Phase 08: the other way out of the profile — where those roles are sent (PLAN D8). A quiet
@@ -50,7 +52,7 @@ export function BriefLink() {
  *
  * While a new number is being worked out the last one stays on screen and both lines go quiet, so
  * an edit never flashes a number that was never true; a count that has never been known shows the
- * dashed empty badge instead. Zero is a real answer and is written out as one.
+ * empty badge instead. Zero is a real answer and is written out as one.
  */
 export function MatchCountLine({
   profile,
@@ -104,7 +106,7 @@ export function MatchCountLine({
     );
   }
 
-  // Null only before the first answer arrives, which is the dashed-badge "checking" state.
+  // Null only before the first answer arrives, which is the empty-badge "checking" state.
   const green = result?.greenCount ?? null;
   const likely = result?.yellowCount ?? 0;
   const showLikely = likely > 0;

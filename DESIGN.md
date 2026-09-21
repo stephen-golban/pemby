@@ -1,411 +1,586 @@
 ---
 name: Pemby
-description: AI job-matching software; you apply yourself. Warm ground, heavy grotesk, mono prose, earthy cards on a deep olive field.
+description: AI job-matching software; you apply yourself. A pure white sheet on near-black bands, one heavy grotesk at every size, four flat accents used only as solid fills.
 colors:
-  ground: "#faf6f0"
-  surface: "#f4eee4"
-  ink: "#14110d"
-  ink-soft: "#3b342b"
-  line: "rgb(20 17 13 / 0.28)"
-  line-strong: "#14110d"
-  focus: "#2c4a5e"
-  selection: "#efcf8f"
-  field: "#2b3323"
-  on-field: "#f7f1e6"
-  plum: "#875a70"
-  on-plum: "#f7f1e6"
-  plum-chip: "#d4b3c3"
-  ochre: "#d6a24a"
-  on-ochre: "#14110d"
-  ochre-chip: "#ebc07c"
-  inkblue: "#2c4a5e"
-  on-inkblue: "#f7f1e6"
-  inkblue-chip: "#bfd4e6"
-  paper-card: "#fbf8f2"
-  on-chip: "#14110d"
-  tier-green: "#56733c"
-  tier-yellow: "#d1a432"
-  tier-white: "#fbf8f2"
-  tier-red: "#a54a3b"
-  ground-dark: "#191510"
-  surface-dark: "#221d17"
-  ink-dark: "#f7f1e6"
-  ink-soft-dark: "#ddd4c6"
-  line-dark: "rgb(247 241 230 / 0.34)"
-  line-strong-dark: "#f7f1e6"
-  focus-dark: "#efcf8f"
-  selection-dark: "#6a4658"
-  field-dark: "#272d20"
-  plum-dark: "#6a4658"
-  plum-chip-dark: "#3f2a35"
-  ochre-dark: "#b98a3a"
-  ochre-chip-dark: "#5a4219"
-  inkblue-dark: "#22394a"
-  inkblue-chip-dark: "#152532"
-  paper-card-dark: "#211c16"
-  on-chip-dark: "#f7f1e6"
-  tier-green-dark: "#86a468"
-  tier-yellow-dark: "#dcb452"
-  tier-white-dark: "#2c261f"
-  tier-red-dark: "#c86a57"
+  ground: "#ffffff"
+  surface: "#f2f2f3"
+  ink: "#101010"
+  ink-soft: "#6e6e73"
+  line: "rgb(16 16 16 / 0.12)"
+  line-strong: "#101010"
+  focus: "#1b6bff"
+  selection: "#ffe9a8"
+  band: "#0b0b0b"
+  on-band: "#ffffff"
+  card: "#ffffff"
+  on-card: "#101010"
+  accent-yellow: "#ffc629"
+  on-accent-yellow: "#101010"
+  accent-red: "#f03a3f"
+  on-accent-red: "#ffffff"
+  accent-blue: "#1b6bff"
+  on-accent-blue: "#ffffff"
+  accent-green: "#17a35b"
+  on-accent-green: "#ffffff"
+  tier-green: "#17a35b"
+  tier-green-soft: "#dff5e9"
+  on-tier-green-soft: "#0b6b3a"
+  tier-yellow: "#ffc629"
+  tier-yellow-soft: "#fff0c9"
+  on-tier-yellow-soft: "#6b4a00"
+  tier-white: "#ffffff"
+  tier-white-soft: "#f2f2f3"
+  on-tier-white-soft: "#45454a"
+  tier-red: "#f03a3f"
+  tier-red-soft: "#ffe2e3"
+  on-tier-red-soft: "#a01216"
+  ground-dark: "#131316"
+  surface-dark: "#1f1f23"
+  ink-dark: "#f5f5f5"
+  ink-soft-dark: "#a1a1a8"
+  line-dark: "rgb(245 245 245 / 0.16)"
+  line-strong-dark: "#f5f5f5"
+  focus-dark: "#4d8bff"
+  selection-dark: "#4a3a06"
+  band-dark: "#08080a"
+  on-band-dark: "#f5f5f5"
+  card-dark: "#1b1b1f"
+  on-card-dark: "#f5f5f5"
+  accent-yellow-dark: "#ffc629"
+  on-accent-yellow-dark: "#0b0b0b"
+  accent-red-dark: "#ff4e52"
+  on-accent-red-dark: "#0b0b0b"
+  accent-blue-dark: "#4d8bff"
+  on-accent-blue-dark: "#0b0b0b"
+  accent-green-dark: "#22c06b"
+  on-accent-green-dark: "#0b0b0b"
+  tier-green-dark: "#22c06b"
+  tier-green-soft-dark: "#0f3a24"
+  on-tier-green-soft-dark: "#6fe0a4"
+  tier-yellow-dark: "#ffc629"
+  tier-yellow-soft-dark: "#3a2e06"
+  on-tier-yellow-soft-dark: "#ffd466"
+  tier-white-dark: "#1b1b1f"
+  tier-white-soft-dark: "#232326"
+  on-tier-white-soft-dark: "#c3c3c9"
+  tier-red-dark: "#ff4e52"
+  tier-red-soft-dark: "#3d1416"
+  on-tier-red-soft-dark: "#ff9b9d"
 typography:
   display:
-    fontFamily: "Rethink Sans, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(3.25rem, 1.2rem + 5.4vw, 6.3125rem)"
+    fontFamily: "Hanken Grotesk, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(2.75rem, 1rem + 4.4vw, 4.75rem)"
     fontWeight: 800
-    lineHeight: 0.84
-    letterSpacing: "-0.024em"
-  headline:
-    fontFamily: "Rethink Sans, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(2.5rem, 1.1rem + 3.6vw, 4.75rem)"
-    fontWeight: 800
-    lineHeight: 0.92
-    letterSpacing: "-0.024em"
-  title:
-    fontFamily: "Rethink Sans, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "2.125rem"
-    fontWeight: 700
-    lineHeight: 0.88
+    lineHeight: 0.95
     letterSpacing: "-0.035em"
-  heading:
-    fontFamily: "Rethink Sans, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "1.8125rem"
+  score:
+    fontFamily: "Hanken Grotesk, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(2.5rem, 1.5rem + 2.4vw, 3.75rem)"
+    fontWeight: 800
+    lineHeight: 0.9
+    letterSpacing: "-0.045em"
+    fontFeature: "tabular-nums"
+  section:
+    fontFamily: "Hanken Grotesk, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(2rem, 1rem + 2.6vw, 3.25rem)"
+    fontWeight: 800
+    lineHeight: 0.95
+    letterSpacing: "-0.035em"
+  figure:
+    fontFamily: "Hanken Grotesk, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(1.75rem, 1.3rem + 1.2vw, 2.5rem)"
     fontWeight: 800
     lineHeight: 1
-    letterSpacing: "-0.035em"
+    letterSpacing: "-0.045em"
+    fontFeature: "tabular-nums"
+  title:
+    fontFamily: "Hanken Grotesk, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "2.125rem"
+    fontWeight: 800
+    lineHeight: 1.02
+    letterSpacing: "-0.028em"
+  heading:
+    fontFamily: "Hanken Grotesk, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "1.625rem"
+    fontWeight: 800
+    lineHeight: 1.1
+    letterSpacing: "-0.028em"
+  subhead:
+    fontFamily: "Hanken Grotesk, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(1.25rem, 1.05rem + 0.5vw, 1.5rem)"
+    fontWeight: 800
+    lineHeight: 1.12
+    letterSpacing: "-0.028em"
+  row:
+    fontFamily: "Hanken Grotesk, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "1.3125rem"
+    fontWeight: 800
+    lineHeight: 1.1
+    letterSpacing: "-0.028em"
+  lead:
+    fontFamily: "Hanken Grotesk, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(1rem, 0.92rem + 0.28vw, 1.1875rem)"
+    fontWeight: 400
+    lineHeight: 1.45
+    letterSpacing: "normal"
   body:
-    fontFamily: "Source Code Pro, ui-monospace, SFMono-Regular, monospace"
+    fontFamily: "Hanken Grotesk, ui-sans-serif, system-ui, sans-serif"
     fontSize: "1rem"
     fontWeight: 400
-    lineHeight: 1.6
-  body-small:
-    fontFamily: "Source Code Pro, ui-monospace, SFMono-Regular, monospace"
+    lineHeight: 1.55
+    letterSpacing: "normal"
+  small:
+    fontFamily: "Hanken Grotesk, ui-sans-serif, system-ui, sans-serif"
     fontSize: "0.9375rem"
     fontWeight: 400
-    lineHeight: 1.6
+    lineHeight: 1.5
+    letterSpacing: "normal"
   label:
-    fontFamily: "Source Code Pro, ui-monospace, SFMono-Regular, monospace"
+    fontFamily: "Hanken Grotesk, ui-sans-serif, system-ui, sans-serif"
     fontSize: "0.8125rem"
     fontWeight: 500
-    lineHeight: 1.5
-    letterSpacing: "0.14em"
+    lineHeight: 1.35
+    letterSpacing: "0.08em"
+  micro:
+    fontFamily: "Hanken Grotesk, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "0.6875rem"
+    fontWeight: 700
+    lineHeight: 1.35
+    letterSpacing: "0.06em"
 rounded:
-  sm: "8px"
-  md: "12px"
+  sm: "10px"
+  tile: "14px"
+  md: "14px"
   lg: "20px"
-  xl: "28px"
-  card: "30px"
-  field: "64px"
-  full: "999px"
+  card: "24px"
+  xl: "24px"
+  band: "32px"
+  pill: "999px"
 spacing:
-  "1": "4px"
-  "2": "8px"
-  "3": "12px"
-  "4": "16px"
-  "5": "24px"
-  "6": "32px"
-  "7": "48px"
-  "8": "64px"
-  "9": "96px"
-  gutter: "clamp(16px, 3.4vw, 52px)"
-  content-max: "1344px"
-  rhythm-top: "clamp(16px, 2.6vw, 40px)"
-  rhythm-lead: "clamp(64px, min(14.65vh, 10vw), 150px)"
-  rhythm-headline-sub: "clamp(28px, min(5.47vh, 3.65vw), 56px)"
-  rhythm-sub-action: "clamp(40px, min(7.8vh, 5.2vw), 80px)"
-  rhythm-action-field: "clamp(72px, min(12.7vh, 8.5vw), 130px)"
-  rhythm-section: "clamp(88px, 9.8vw, 150px)"
-  rhythm-heading-body: "clamp(24px, 2.35vw, 36px)"
+  1: "4px"
+  2: "8px"
+  3: "12px"
+  4: "16px"
+  5: "24px"
+  6: "32px"
+  7: "48px"
+  8: "64px"
+  9: "96px"
+  gutter: "clamp(20px, 3.4vw, 52px)"
 components:
+  card:
+    backgroundColor: "{colors.card}"
+    textColor: "{colors.on-card}"
+    rounded: "{rounded.card}"
+    padding: "32px"
+  band:
+    backgroundColor: "{colors.band}"
+    textColor: "{colors.on-band}"
+    rounded: "{rounded.band}"
+    padding: "64px 32px 48px"
+  tier-tile-green:
+    backgroundColor: "{colors.tier-green}"
+    textColor: "{colors.on-accent-green}"
+    rounded: "{rounded.tile}"
+    size: "56px"
+  tier-tile-yellow:
+    backgroundColor: "{colors.tier-yellow}"
+    textColor: "{colors.on-accent-yellow}"
+    rounded: "{rounded.tile}"
+    size: "56px"
+  tier-tile-white:
+    backgroundColor: "{colors.tier-white}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.tile}"
+    size: "56px"
+  tier-pill-green:
+    backgroundColor: "{colors.tier-green-soft}"
+    textColor: "{colors.on-tier-green-soft}"
+    typography: "{typography.label}"
+    rounded: "{rounded.pill}"
+    padding: "5px 12px"
+  tier-pill-yellow:
+    backgroundColor: "{colors.tier-yellow-soft}"
+    textColor: "{colors.on-tier-yellow-soft}"
+    typography: "{typography.label}"
+    rounded: "{rounded.pill}"
+    padding: "5px 12px"
+  tier-pill-white:
+    backgroundColor: "{colors.tier-white-soft}"
+    textColor: "{colors.on-tier-white-soft}"
+    typography: "{typography.label}"
+    rounded: "{rounded.pill}"
+    padding: "5px 12px"
+  tag:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.pill}"
+    padding: "7px 13px"
   button-primary:
     backgroundColor: "{colors.ink}"
     textColor: "{colors.ground}"
-    rounded: "{rounded.full}"
+    rounded: "{rounded.pill}"
     padding: "0 24px"
     height: "52px"
-  button-on-color:
-    backgroundColor: "{colors.on-inkblue}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.full}"
-    padding: "0 24px"
-    height: "52px"
-  button-outline-pill:
-    backgroundColor: "transparent"
-    textColor: "{colors.ink}"
-    typography: "{typography.label}"
-    rounded: "{rounded.full}"
-    padding: "7px 14px"
-  button-icon:
-    backgroundColor: "transparent"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.full}"
-    size: "44px"
-  drop-zone:
-    backgroundColor: "{colors.surface}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.xl}"
-    padding: "20px 24px 24px"
-    height: "156px"
-    width: "560px"
-  card-plum:
-    backgroundColor: "{colors.plum}"
-    textColor: "{colors.on-plum}"
-    rounded: "{rounded.card}"
-    padding: "36px 32px 32px"
-  card-ochre:
-    backgroundColor: "{colors.ochre}"
-    textColor: "{colors.on-ochre}"
-    rounded: "{rounded.card}"
-    padding: "36px 32px 32px"
-  card-inkblue:
-    backgroundColor: "{colors.inkblue}"
-    textColor: "{colors.on-inkblue}"
-    rounded: "{rounded.card}"
-    padding: "36px 32px 32px"
-  card-paper:
-    backgroundColor: "{colors.paper-card}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.card}"
-    padding: "44px 44px 36px"
-  panel-surface:
-    backgroundColor: "{colors.surface}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.xl}"
-    padding: "28px 32px 12px"
-  chip-job:
-    backgroundColor: "{colors.surface}"
-    textColor: "{colors.ink}"
-    typography: "{typography.label}"
-    rounded: "{rounded.sm}"
-    padding: "8px 12px"
-  tag-card:
-    backgroundColor: "{colors.plum-chip}"
-    textColor: "{colors.on-chip}"
-    typography: "{typography.label}"
-    rounded: "{rounded.sm}"
-  count-badge:
+  button-primary-hover:
     backgroundColor: "{colors.ink}"
     textColor: "{colors.ground}"
-    typography: "{typography.label}"
-    rounded: "{rounded.full}"
-    height: "30px"
-  stamp-example:
-    backgroundColor: "rgb(20 17 13 / 0.86)"
-    textColor: "#f7f1e6"
-    rounded: "7px"
-    padding: "6px 9px 5px"
-  nav-link:
+  button-outline:
+    backgroundColor: "transparent"
     textColor: "{colors.ink}"
-    typography: "{typography.body}"
+    rounded: "{rounded.pill}"
+    padding: "0 20px"
+    height: "46px"
+  button-outline-hover:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.ink}"
+  button-compact:
+    backgroundColor: "{colors.ink}"
+    textColor: "{colors.ground}"
+    rounded: "{rounded.pill}"
+    padding: "0 16px"
+    height: "40px"
+  input:
+    backgroundColor: "{colors.card}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.pill}"
+    padding: "0 22px"
+    height: "56px"
+  option-pill:
+    backgroundColor: "{colors.card}"
+    textColor: "{colors.ink}"
+    typography: "{typography.label}"
+    rounded: "{rounded.pill}"
+    padding: "0 18px"
     height: "44px"
-  field-band:
-    backgroundColor: "{colors.field}"
-    textColor: "{colors.on-field}"
-    rounded: "{rounded.field}"
+  picker-panel:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.lg}"
+    padding: "24px"
+  stamp:
+    backgroundColor: "#0b0b0b"
+    textColor: "#ffffff"
+    typography: "{typography.micro}"
+    rounded: "{rounded.pill}"
+    padding: "4px 10px 3px"
+  theme-toggle:
+    backgroundColor: "{colors.ink}"
+    textColor: "{colors.ground}"
+    rounded: "{rounded.pill}"
+    size: "44px"
 ---
 
 # Design System: Pemby
 
 ## Overview
 
-**Creative North Star: "The Few Cards on the Table"**
+**Creative North Star: "The White Sheet on the Black Band"**
 
-Pemby sends a handful of matches, never a feed, and the visual system is built to look like that: a flat, warm off-white ground, a heavy friendly grotesk set big and tight, monospace for every sentence of evidence, and a small number of physical, earthy-coloured cards that carry the reason each job can hire you. One deep olive field anchors the lower part of a page and closes every page as the footer. The family resemblance to desertant.com is deliberate and binding; its specific signatures (grain-stippled hero words, full-bleed product carousel, top-right tag pill, its exact cream) are not ours.
+Pemby is one pure white sheet with generously rounded corners, standing on a near-black band that
+shows above it and under it. Everything the product has to say is set on that sheet in a single
+heavy geometric grotesk, at poster scale where it matters and never below the ramp's floor.
+Colour arrives as a solid block — a tile, a numeral, a filled pill — and never as a wash behind a
+sentence. The one sanctioned tint in the whole system is the eligibility pill, and it exists so a
+verdict is never carried by colour alone.
 
-Density is low on Persuade surfaces and deliberately opened: the owner's spacing instruction set a generous vertical rhythm, so at least a third of a first viewport is empty ground and there is always more space above a heading than below it. Operate surfaces (onboarding, the Brief, the tracker) keep the same ground, type, colours, radii and ruled-ledger lists, but at working density and with every flourish removed.
+The register is flat, saturated and confident, with nothing ornamental in it. There is no second
+typeface: no serif and no monospace at any size or weight. Depth is a single soft, wide, diffuse
+shadow under a white card, never a hard offset. The sheet's geometry is the layout: a wide content
+measure, a fluid gutter, and named vertical rhythm gaps that give a page opening its shape. Flat
+vector illustration appears on marketing surfaces only; the signed-in app carries none.
 
-The ground is never pure white and ink is never pure black, and the ground carries no paper, newsprint or printed-document texture. Light and dark are the same design; dark is a token swap only. The lockup is the wordmark alone, with no symbol.
+Dark mode is a token swap and nothing else — the same names, deeper values, the same shapes. A
+surface that is written against tokens is already correct in dark.
 
 **Key Characteristics:**
 
-- Warm flat ground (never #fff) and warm near-black ink (never #000); no textures, no gradients as decoration.
-- Rethink Sans for headlines, role names, buttons and numbers; Source Code Pro for all prose, rows, tags and labels.
-- Three earthy card fills (plum, ochre, ink-blue) plus an outlined paper card, each with its own tinted chip.
-- Very large soft radii (30px cards, 64px field corners) and deep diffuse warm shadows.
-- Landing-only flourishes: card tilt, loose hand-drawn marks, colour-graded photographic cards.
-- Eligibility tiers are always a colour dot plus a text label, never colour alone.
-- Every demonstration carries an unmissable EXAMPLE stamp.
+- Pure white sheet, near-black bands, 24px cards, 32px band corners, fully-rounded pills.
+- One family (Hanken Grotesk) at 800 / 700 / 500 / 400; no serif, no mono, anywhere.
+- Four flat accents used as solid fills only; the tinted tier pill is the single exception.
+- Eligibility is always tile + marker + tinted pill + word, never colour alone.
+- Soft wide diffuse shadows; nothing dashed, nothing dotted, no hard offsets.
 
 ## Colors
 
-A warm, low-saturation palette: cream and brown-black neutrals, one deep olive field, and three muted earthy accents that only appear as whole surfaces, never as thin decoration.
+A white ground, near-black ink and band, and four flat saturated accents that are only ever used at
+full strength as a whole shape.
 
 ### Primary
 
-- **Deep Olive Field** (`field`): the one large colour surface per page. Full-bleed, large top corners, carrying the match cards on the landing band, the passes on /pricing, and the footer on every page. Type on it is always `on-field` cream in both themes. In dark it deepens to `field-dark` (owner decision 2026-09-17: "Keep #272d20", over the contract's #1e2419).
+- **Poster Ink** (`ink`): the near-black everything is set in, and the fill of every filled pill,
+  status chip and circular theme button. Its paired text colour is the ground.
+- **Stage Black** (`band`): the band the sheet stands on — behind the top bar on the landing hero
+  and under the footer everywhere. Type on it is `on-band`, always.
 
 ### Secondary
 
-- **Muted Plum** (`plum`): a card fill with cream type. Light value darkened from the contract's #8d6076 so cream type on it clears WCAG AA. Chip: `plum-chip`.
-- **Warm Ochre** (`ochre`): a card fill with ink type; the highlighted pass and the recommended plan. Also the tint for "Pass" columns (30% into `paper-card`) and the drag-over state of the drop zone (18% into `surface`). Chip: `ochre-chip`.
-- **Ink Blue** (`inkblue`): a card fill with cream type; the Telegram panel; the current segment on the pass timeline. It doubles as the light-theme `focus` colour and the global `accent-color` for native controls. Chip: `inkblue-chip`.
+- **Signal Yellow** (`accent-yellow`): the "implied" eligibility tier, the freshness and salary
+  blockers, and a marketing fact tile.
+- **Blocker Red** (`accent-red` / `tier-red`): blockers and errors only.
+- **Action Blue** (`accent-blue`): the focus ring, the form accent colour, and the
+  way-of-working / seniority / score blockers.
+- **Clear Green** (`accent-green` / `tier-green`): the "says your country" eligibility tier and its
+  tile.
 
 ### Tertiary
 
-- **Eligibility tiers** (`tier-green`, `tier-yellow`, `tier-white`, `tier-red`): green "hires from your country", yellow "likely", white "unclear" (drawn with a `line-strong` edge), red "excluded". Used as 12-14px round swatches beside a mono label, and red as the hand-drawn "closed" underline. Never used as a fill for large areas and never without the label.
+- **Tier tints** (`tier-*-soft` with their paired `on-tier-*-soft`): the only tinted fills in the
+  system, reserved for the eligibility pill and the page-level alert.
 
 ### Neutral
 
-- **Warm Ground** (`ground`): the page background everywhere; also the text colour on ink buttons and count badges.
-- **Raised Cream** (`surface`): panels, the drop zone, job chips, the kit list, the re-check log.
-- **Paper Card** (`paper-card`): the outlined "honest silence" card, message previews, the compare table body. In light it is a hair lighter than ground; in dark it lifts slightly above it.
-- **Warm Ink** (`ink`): all body and heading type, primary button fill, strong rules.
-- **Soft Ink** (`ink-soft`): secondary notes, table column heads, table-of-contents links, list markers. Used on pricing and legal; body-critical text stays `ink`.
-- **Hairline** (`line`): 1px row rules, dashed drop-zone outline, menu borders. **Strong Line** (`line-strong`): 1.5px outlines on paper cards, compare tables and outline pills.
-- **Selection** (`selection`): text selection only. **Focus** (`focus`): the 2px focus ring.
+- **Sheet White** (`ground`, `card`): the page and every card on it.
+- **Recessed Grey** (`surface`): tag pills, the open picker panel, an editing row, and the outlined
+  pill's hover.
+- **Warm Grey** (`ink-soft`): secondary sentences, field names, meta lines, quiet actions.
+- **Hairline** (`line`) and **Edge** (`line-strong`): the 1px rule between rows, and the
+  1.5–2px solid edge on outlined pills, switches and the white tier tile.
+- **Focus Blue** (`focus`) and **Highlight** (`selection`): the 3px focus outline, and text
+  selection.
 
 ### Named Rules
 
-**The Token Swap Rule.** Dark mode changes token values and nothing else: same copy, same content, same spacing, same components. A component that needs a dark-only override (the doodle's inverted artwork is the one exception) is a defect.
+**The Solid Fill Rule.** An accent is the whole of a tile, a numeral or a button. It is never a
+wash behind text, never a tint, never a gradient. The one exception is the eligibility pill.
 
-**The Whole Surface Rule.** Plum, ochre and ink-blue appear as whole card or panel fills with their paired `on-*` ink, never as text colour, borders, icons or accents on the ground.
+**The Never Colour Alone Rule.** An eligibility verdict is always four things at once: a solid tier
+tile, the tier's own authored single-stroke marker inside it, a tinted pill, and the tier's word.
+Any one of them alone is a colour code and is not allowed to stand for the verdict.
 
-**The Label Beside Every Colour Rule.** A tier colour always sits beside its words. Colour alone never carries eligibility.
+**The Red Is A Blocker Rule.** Red means blocked, ruled out or errored. It is never an eligibility
+verdict: the excluded tier is never shown in the product, and its mark exists only so the
+vocabulary is complete.
+
+**The Near-Black On Yellow Rule.** White on `#ffc629` is 1.57:1 and fails. Anything drawn inside a
+yellow fill takes `on-accent-yellow` (near-black). Every accent's paired `on-` colour is the one
+that clears 3:1 against that fill; no other pairing is sanctioned.
+
+**The Token Swap Rule.** Dark mode changes values, never names and never shapes. If a surface names
+a raw colour instead of a token, it is wrong — with one sanctioned exception: the synthetic-content
+stamp is hard-coded `#0b0b0b` on `#ffffff` in both themes so it reads identically everywhere.
 
 ## Typography
 
-**Display Font:** Rethink Sans (with ui-sans-serif, system-ui), weights 600, 700, 800 loaded
-**Body Font:** Source Code Pro (with ui-monospace, SFMono-Regular), weights 400, 500, 600 loaded
-**Label/Mono Font:** Source Code Pro, uppercase with wide tracking
+**Display Font:** Hanken Grotesk (with ui-sans-serif, system-ui, sans-serif)
+**Body Font:** Hanken Grotesk — the same family
+**Label/Mono Font:** none. There is no second face in this world.
 
-**Character:** A tight, heavy, friendly grotesk with a big x-height against a quiet monospace. The grotesk makes claims; the mono shows the evidence.
+**Character:** One heavy geometric grotesk with a large x-height, loaded through `next/font/google`
+at 400 / 500 / 700 / 800. Display and section headings run at 800 with tight negative tracking;
+body runs at 400 with generous leading. The contrast in the system is weight and scale, never
+family.
 
 ### Hierarchy
 
-- **Display** (800, fluid to 101px, line-height 0.84, -0.024em): the landing headline and the closing headline. One per page, centred, balanced to two lines.
-- **Headline** (800, fluid to 76px, 0.92, -0.024em): section titles, max about 15em wide. Page heroes on pricing and legal use the same voice at up to 88px and 76px.
-- **Title** (700, 34px, 0.88, -0.035em): step titles, drop-zone title, plan names. Smaller grotesk titles in the build step down through 29, 26, 24, 21 and 19px for card roles, group labels, FAQ questions and table row heads.
-- **Heading** (800, 29px, 1, -0.035em): the wordmark in the top bar (56px in the footer).
-- **Body** (400, 16px, 1.6): legal prose (measure 70ch), about text.
-- **Body small** (400, 15px, 1.6): the default paragraph size on Persuade surfaces: sub-lines, section intros (58ch), step bodies, table cells.
-- **Label** (500, 13px, 0.14em, uppercase): table heads, footer group heads, card tags, the EXAMPLE stamp (600, 12px). Plain 13px mono without caps carries footnotes, message previews and chips.
+Thirteen steps, descending. Two of them are numerals rather than words.
+
+- **Display** (800, `clamp(2.75rem, 1rem + 4.4vw, 4.75rem)`, 0.95): the one poster statement at the
+  top of a page. The ceiling of the ramp.
+- **Score** (800, `clamp(2.5rem, 1.5rem + 2.4vw, 3.75rem)`, 0.9, tabular): the single headline
+  numeral on a match card.
+- **Section** (800, `clamp(2rem, 1rem + 2.6vw, 3.25rem)`, 0.95): major section headings on the
+  marketing sheet.
+- **Figure** (800, `clamp(1.75rem, 1.3rem + 1.2vw, 2.5rem)`, 1, tabular): large counts beside body
+  copy, such as the near-miss blocker counts.
+- **Title** (800, 2.125rem, 1.02): a card that is the whole answer of its block.
+- **Heading** (800, 1.625rem, 1.1): the wordmark, section titles inside the app, card titles.
+- **Subhead** (800, `clamp(1.25rem, 1.05rem + 0.5vw, 1.5rem)`, 1.12): card and panel sub-heads — a
+  role name, a programme name, a settings title.
+- **Row** (800, 1.3125rem, 1.1): the title of a small layered card or a fact.
+- **Lead** (400, `clamp(1rem, 0.92rem + 0.28vw, 1.1875rem)`, 1.45): the sub-line under a poster
+  statement.
+- **Body** (400, 1rem, 1.55): running prose. Measures run 60–72ch.
+- **Small** (400, 0.9375rem, 1.5): secondary sentences, reasons, notes.
+- **Label** (500, 0.8125rem, 1.35, tracking 0.08em where uppercase): tags, pills, meta lines,
+  legends.
+- **Micro** (700, 0.6875rem, tracking 0.06em, uppercase): the synthetic-content stamp. The floor of
+  the ramp.
 
 ### Named Rules
 
-**The Two Voices Rule.** Grotesk for claims, names, numbers and button labels; mono for every sentence, row, tag and footnote. Never set a paragraph in the grotesk or a headline in mono.
+**The Closed Ramp Rule.** A surface picks a step; it never invents one. If a size is not on the
+thirteen-step list, it is wrong. `display` is a hard ceiling — nothing exceeds 4.75rem on any
+surface at any viewport — and `micro` is a hard floor: anything smaller snaps up to 0.6875rem.
 
-**The Sentence Case Rule.** Every headline, title and button is sentence case. Uppercase belongs only to small mono labels.
-
-**The Tight Display Rule.** Grotesk sizes above 24px carry negative tracking (-0.015em to -0.035em) and line-height under 1.
+**The One Family Rule.** One typeface everywhere, at 800 / 700 / 500 / 400. No serif and no
+monospace at any size, in any component, including code-ish content such as dates and counts;
+numerals take `font-variant-numeric: tabular-nums` instead.
 
 ## Layout
 
-Content sits in a centred container of `content-max` plus two `gutter`s. Section grammar is shared: each section is padded by `rhythm-section` above, the heading sits over its intro with `rhythm-heading-body` between (always less than the space above), and passages alternate between an asymmetric two-column split (5fr/7fr, 7fr/5fr, 8fr/4fr, 6fr/5fr) and a single centred column.
+One centred column at `--content-max` (1344px) with a fluid `--gutter`
+(`clamp(20px, 3.4vw, 52px)`). Spacing is a nine-step scale (4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 /
+96px); cards are padded at 32px and drop to 24px below 760px.
 
-The first viewport follows the opened rhythm, the owner's explicit instruction: `rhythm-top` above the top bar, `rhythm-lead` of empty ground to the headline, `rhythm-headline-sub`, `rhythm-sub-action`, then `rhythm-action-field` down to the colour field. These values hold at 1536x1024 and ease down on shorter or narrower viewports.
+Vertical rhythm is named rather than numbered, so a page opening has the same shape everywhere:
+`--rhythm-top` above the top bar, `--rhythm-lead` from the bar to the headline,
+`--rhythm-headline-sub` from the headline to its sub-line, `--rhythm-sub-action` from the sub-line
+to the first card, `--rhythm-action-field` from content to a colour band, `--rhythm-section`
+between sections, and `--rhythm-heading-body` from a section heading to its body. More space above
+a heading than below it, always.
 
-Lists and tables are ledgers: rows divided by 1px `line` rules, generous row padding (12-18px), no zebra striping, no boxed cells. This is the pattern Operate screens should use for the Brief, near-miss groups and the tracker.
+Breakpoints as built: 1080px (the landing hero drops from two columns to one), 900px (the near-miss
+card stacks), 860px (the top bar becomes a disclosure and the fact list stacks), 760px (app cards
+reflow and lose their aside column), 640px (the hero's layered cards become a plain stack), 430px
+and 359px (the top bar closes ranks, and below 359 the CTA pill steps out rather than cutting the
+wordmark).
 
-Spacing uses the 4-8-12-16-24-32-48-64-96 scale. Responsive behaviour collapses two-column splits to one column between 820 and 1100px, turns the match band from a row of four into a 2-up grid below 1180px and a single column below 680px, and replaces the nav with a disclosure menu below 720px. All interactive targets are at least 44px tall; primary actions are 52px.
-
-### Named Rules
-
-**The Opened Rhythm Rule.** More ground, not less. At least a third of a Persuade first viewport is empty ground, and the space above a heading always exceeds the space below it.
+Layering is a wide-screen move only: the landing hero's cards overlap the illustration above 640px
+and stand in a plain stack below it.
 
 ## Elevation & Depth
 
-A hybrid: surfaces are flat and tonal (ground, surface, paper-card) and borders do most of the separating, while physical objects (cards, the drop zone, menus, message previews) lift off with warm, diffuse, downward shadows. No hard offset shadows, no glow, no blur-glass.
+Depth is a soft, wide, diffuse shadow under a white card on a white sheet, plus the tonal step from
+the white sheet to the near-black band. Nothing in this system uses a hard offset shadow, and
+nothing is raised by an outline where a shadow would do.
 
 ### Shadow Vocabulary
 
-- **Soft** (`box-shadow: 0 1px 2px rgb(20 17 13 / 0.04), 0 10px 30px -18px rgb(20 17 13 / 0.18)`): the drop zone, the mobile menu panel, small preview cards and message bubbles.
-- **Card** (`box-shadow: 0 2px 6px rgb(20 17 13 / 0.12), 0 34px 60px -24px rgb(20 17 13 / 0.55)`): the colour cards, the honest-silence card, pass cards, the Telegram post, the re-check log.
-- In dark both shadows swap to black at higher opacity (0.3/0.6 and 0.35/0.8).
+- **Soft** (`0 1px 2px rgb(16 16 16 / 0.04), 0 8px 24px -12px rgb(16 16 16 / 0.12)`): inputs, and a
+  card whose work is done (applied, passed).
+- **Card** (`0 1px 2px rgb(16 16 16 / 0.04), 0 18px 48px -16px rgb(16 16 16 / 0.18)`): the default
+  for every white card and the top bar's dropped nav panel.
+- **Pop** (`0 2px 4px rgb(16 16 16 / 0.06), 0 28px 64px -20px rgb(16 16 16 / 0.24)`): the landing
+  hero's two layered cards, which float over an illustration.
+
+In dark the same three names carry heavier black values (up to 0.85 alpha), because a shadow on a
+near-black ground has to work harder.
 
 ### Named Rules
 
-**The Objects Lift, Panels Sit Rule.** A shadow means "this is a thing you could pick up": a match, a pass, a message. Panels, tables and page sections sit flat on the ground.
+**The No Hard Offset Rule.** Every shadow is soft, wide and centred-ish. A hard offset shadow is
+not part of this world at any size or colour.
+
+**The Settle Rule.** The one authored motion is `settle`: a card fades up 12–14px once, staggered
+60–70ms per item, `--duration-base` (320ms) on `--ease-out`
+(`cubic-bezier(0.16, 1, 0.3, 1)`). Nothing loops. State transitions run at `--duration-fast`
+(160ms). Every animation and transition is disabled under `prefers-reduced-motion`.
 
 ## Shapes
 
-Soft, generous, rounded forms. Every card-sized object uses a 30px corner (34px on the single large specimen card, 44px on the wide Telegram panel); panels, the drop zone and logs use 28px; small tiles and inner lists use 20px; chips and badges use 8px; actions, pills, toggles and count badges are fully round. The deep field takes 64px corners (top corners only when it runs to the page edge, like the band and the footer). Message previews have one tight corner (22/22/22/6px, 26/26/26/8px) to read as a chat bubble.
+Rounded squares and full pills, nothing square-cornered. Tiles are 14px rounded squares at 48 /
+52 / 56 / 64px (24px with an 8px radius in the legend). Cards are 24px. The sheet's own corners and
+the footer's top corners are 32px. Every button, input, tag, chip, status and pill is fully rounded
+(999px).
 
-Borders are 1px hairlines for rules and 1.5px for outlines. Dashed strokes mean "drop here" or "not yet": the drop-zone outline, the file slot, the unavailable buy button, the 24-hour-late note.
+Strokes are solid and come in three weights: a 1px hairline rule between rows, a 1.5px edge on
+outlined pills, switches and outlined status chips, and a 2px edge on the white tier tile, which
+has no fill to stand on. Illustration is flat vector with black outlines, on marketing surfaces
+only; in dark it carries a faint light halo so its outlines survive the ground swap.
 
-Loose hand-drawn marks (the sleeping-face doodle, the closure underline) and colour-graded photographs masked into the lower half of a card belong to the landing page only.
+**The No Dash Rule.** Nothing in this world is dashed or dotted — not a border, not a rule, not a
+drop target, not a "not yet" state. A dashed edge is a print-ledger habit this world refuses; the
+unreached state is drawn with a lighter solid edge or a quieter fill instead.
 
 ## Components
 
 ### Buttons
 
-Round, heavy, and short-worded.
+- **Shape:** fully rounded (999px) in every variant.
+- **Primary (the black pill):** solid `ink` fill, `ground` text, weight 700, body size, 52px tall
+  in a section and 56px in a form, 48px on a card, 40px for the compact one-tap fix. One per block:
+  a section or a card has a single filled black pill.
+- **Hover / Focus:** hover drops opacity to 0.86 over 160ms; a trailing long arrow translates 3px.
+  Focus is the page-wide 3px `focus` outline at 2px offset — the pill keeps its own 999px radius
+  under the ring rather than the global 4px.
+- **Outlined pill:** transparent with a 1.5px `line-strong` edge, `ink` text, small size, 46px tall;
+  hover fills with `surface`. This is the quieter of the two link shapes.
+- **Quiet action:** no box at all — `ink-soft` text at label size, 40px target, underlining and
+  going full `ink` on hover. The way of saying no.
 
-- **Shape:** fully round pill (999px), 52px tall.
-- **Primary:** ink fill with ground-coloured grotesk label (700, 19px), 24px side padding, optional 18px arrow glyph after the label.
-- **On colour:** on a coloured panel the pill inverts to the panel's `on-*` cream with ink type.
-- **Hover / Focus:** hover lifts 2px (`duration-fast`, `ease-out`); focus is the global 2px `focus` ring, offset 3px (on colour and on the field the ring takes the surface's ink colour). Reduced motion removes the lift.
-- **Outline pill:** 1-1.5px `line` or `line-strong` border, transparent, mono label 13px weight 500 (the near-miss "fix", "Copy", "Start over"). Hover strengthens the border to ink. This is the right secondary action for Operate screens.
-- **Icon button:** 44px round, transparent; hover fills with ink at 8%. The theme toggle rotates its icon 180 degrees on theme change.
-- **Unavailable:** dashed currentColor border, `cursor: not-allowed`, with plain words saying why ("Not on sale yet").
+### Chips
 
-### Chips and tags
-
-- **Job chip:** `surface` fill, inset 1px `line`, 8px corners, 13px mono. Used for near-miss job names.
-- **Card tag:** the card's own tinted chip colour, uppercase mono 500, sitting bottom-left on a colour card.
-- **Count badge:** 30px ink circle with ground numerals, tabular figures.
-- **Tier verdict:** 14px round swatch plus a mono 500 label, never wrapped.
+- **Tag pill:** `surface` fill, `ink` text, label size at weight 500, 7px/13px padding, fully
+  rounded. A reason, a fact, a criterion.
+- **Option pill:** `card` fill with a 1px `line` edge, 44px tall; hover darkens the edge to `ink`;
+  disabled goes `ink-soft`.
+- **Status chip:** solid `ink` fill with `ground` text; a date the source has not published yet is
+  outlined at 1.5px instead of filled.
 
 ### Cards / Containers
 
-- **Corner Style:** 30px for colour and pass cards; 28px for panels.
-- **Background:** one of plum, ochre, ink-blue with paired `on-*` ink; or `paper-card` with a 1.5px `line-strong` outline for neutral or "nothing today" states.
-- **Shadow Strategy:** Card shadow for objects; panels are flat (see Elevation & Depth).
-- **Internal Padding:** 36px 32px 32px on pass cards, 44px on the specimen card; landing match cards scale every measurement in container units so the card shrinks as one piece.
-- **Match card anatomy:** grotesk role name, mono meta line, a list of criteria each led by a filled ticked square in the card's ink, the tier tag and EXAMPLE stamp stacked bottom-left. Ticks are always filled: a criterion that is met never renders as an empty box.
+- **Corner Style:** 24px.
+- **Background:** `card` (white in light, `#1b1b1f` in dark) on the `ground` sheet.
+- **Shadow Strategy:** `shadow-card` at rest; `shadow-soft` once the card's work is done (and
+  opacity 0.82); `shadow-pop` only for the hero's layered cards.
+- **Border:** none. A card is a shadow and a radius, not an outline.
+- **Internal Padding:** 32px, 24px below 760px; 48px/32px where a card is the page's whole answer.
+- **Pending:** a card in flight dims to 0.78 opacity. Nothing disappears, and only one opacity layer
+  is ever applied at a time.
 
-### Drop zone
+### Inputs / Fields
 
-The primary action of the product. A 560px-max `surface` panel, 28px corners, 1.5px dashed `line` outline, soft shadow, a 34px upload glyph, a grotesk title and a mono caption. Hover darkens the outline to ink 55% and lifts the glyph 3px; dragging turns the outline solid ink, tints the fill with ochre and scales to 1.012. After a drop it switches optimistically to a pending state with a text link and an outline-pill "back" action.
-
-### Ledger tables and lists
-
-Mono 15px rows separated by 1px `line` rules; uppercase label heads; grotesk 19px row heads where a row has a name. On narrow screens rows stack into grids and the head row hides. Legal tables use a 1.5px `line-strong` rule under the head. Near-miss groups: count badge, grotesk group label, outline-pill fix, then wrapped job chips under a hairline.
-
-### Disclosure (FAQ and mobile table of contents)
-
-Full-width rows divided by hairlines, grotesk question at 21px, a plus icon whose vertical stroke collapses (scaleY to 0) when open, so it reads as a minus.
+- **Style:** fully-rounded white pill, 56px tall, 22px side padding, 1.5px `line` edge, `soft`
+  shadow, body size at weight 500. Placeholder in `ink-soft`.
+- **Focus:** the global 3px `focus` ring at 2px offset.
+- **Hover / Error:** hover darkens the edge to `ink`; `aria-invalid` turns it `tier-red`.
+- **Switch:** a pill, not a track — outlined 1.5px when off, solid `ink` with `ground` text when on,
+  76×44px minimum. The state is a shape and a word, not just a colour.
 
 ### Navigation
 
-- **Top bar:** wordmark left at 29px/800; mono 16px links right with 22px gaps, underline on hover, 44px targets; theme toggle at the far right.
-- **Mobile (below 720px):** an outline pill "Menu" button opens a panel below the bar: ground fill, 20px corners, `line` border, soft shadow, stacked 52px rows with hairlines. The icon morphs from bars to a cross.
-- **Footer:** the deep field with 64px top corners closes every page; 56px wordmark, uppercase mono group heads, 44px link rows in cream.
+- Top bar in a three-column grid: wordmark at heading size and weight 800 on the left, destinations
+  centred, actions right. Links are `ink-soft` at body size / weight 500, going full `ink` on hover
+  and weight 700 with `aria-current="page"`. The right side carries the marketing CTA black pill
+  (marketing surfaces only) and a 44px solid-black circular theme button. Below 860px the
+  destinations collapse behind a 44px black circular disclosure and drop as a white 24px card with
+  `shadow-card`.
+- Footer: the near-black band with 32px top corners, `on-band` type throughout, wordmark at title
+  size, taglines at 0.74 opacity.
 
-### EXAMPLE stamp
+### The Eligibility Verdict (signature)
 
-The synthetic-content marker. Near-black at 86% with a cream 50% hairline and cream uppercase mono 600 text, 7px corners. It is a fixed-colour stamp that reads the same on every fill and in both themes. Every invented company, role, reason, timestamp or message carries one, placed where it cannot be missed.
+A match card leads with a 56px solid tier tile (48px below 760px) carrying that tier's authored
+single-stroke SVG marker at 2.4 stroke width, round caps: a check for a post that names your
+country (green), an "approximately" tilde for one that only implies it (yellow), a question mark for
+one that says nothing (white, drawn with a 2px edge because it has no fill to stand on). Beside the
+company sits the tinted tier pill carrying the verdict in words. A permanent legend at the foot of
+the page teaches all three tiers with their marks, whether or not the day has matches. Markers are
+`aria-hidden`; the words always carry the same information.
 
-### Signature motion: the honest-silence settle
+### The Score (signature)
 
-The one orchestrated motion. When the "Nothing today" card first scrolls into view from below the fold, its job chips drift in from scattered offsets and settle (1100ms, staggered 90ms), the group heads and stamp rise 10px, and the doodle dozes in. Transforms and opacity only, on `ease-out` `cubic-bezier(0.16, 1, 0.3, 1)`. It plays once and is skipped entirely under `prefers-reduced-motion`. Everything else is a state transition at `duration-fast` (160ms) or `duration-base` (320ms).
+One right-aligned numeral per card at the `score` step, weight 800, `-0.045em` tracking, tabular
+figures, with its unit beneath in `ink-soft` label type. On narrow widths it turns to a baseline row
+beside the act.
 
-Those numbers are the landing and marketing spec. **Operate surfaces run a faster variant:** `duration-base` (320ms), staggered 70ms, and no chip drift, on the same easing, still once only and still skipped under `prefers-reduced-motion`. The Brief's honest-silence card, the profile count line and the onboarding rail all animate the one thing the person opened the page to read, and holding a sentence that explains an empty Brief for over a second costs more than the moment is worth. Owner decision, 2026-09-17. The 1100ms settle stays the spec wherever the motion is the point rather than the delay.
+### The Synthetic-Content Stamp (signature)
+
+A micro uppercase pill in fixed `#0b0b0b` / `#ffffff` in both themes, 0.06em tracking, marking
+example content. Fixed on purpose: it has to read identically everywhere or it stops being
+unmissable.
 
 ## Do's and Don'ts
 
 ### Do:
 
-- **Do** use `ground` for every page background and `ink` for body-critical text in both themes; keep all body text, captions and footnotes at WCAG 2.2 AA contrast.
-- **Do** ship light and dark from the same markup by swapping tokens only.
-- **Do** set headlines, names, numbers and buttons in Rethink Sans, and every sentence, row, tag and footnote in Source Code Pro.
-- **Do** show matches, passes and messages as 30px-corner cards with a paired `on-*` ink and the Card shadow.
-- **Do** build Operate lists (the Brief, near misses, the tracker) as hairline-ruled ledgers with outline-pill secondary actions and flat, untilted cards.
-- **Do** pair every tier colour with its label and reason.
-- **Do** mark every demonstration with the EXAMPLE stamp.
-- **Do** keep hit targets at 44px or taller and the focus ring visible at 2px.
-- **Do** keep the opened rhythm: more space above a heading than below it, and a third of a Persuade first viewport as empty ground.
-- **Do** honour `prefers-reduced-motion` by removing lifts, scales and the settle animation.
-- **Do** use the wordmark alone as the lockup.
+- **Do** build every block as a white 24px card with `shadow-card` on the white sheet.
+- **Do** use an accent as a whole shape — a tile, a numeral, a filled pill — at full strength.
+- **Do** give every solid tile a marker; a tile is never decoration.
+- **Do** draw an eligibility verdict as tile + marker + tinted pill + word, all four, always.
+- **Do** put a near-black mark on a yellow fill (white on `#ffc629` is 1.57:1).
+- **Do** pick a step from the thirteen-step ramp; `--text-display` is the ceiling and
+  `--text-micro` is the floor.
+- **Do** write against token names so dark mode is a value swap and nothing else.
+- **Do** keep one filled black pill per block, with the outlined pill or a quiet text action for
+  everything quieter.
+- **Do** zero every animation and transition under `prefers-reduced-motion`.
 
 ### Don't:
 
-- **Don't** use pure white (#fff) or pure black (#000) surfaces or type, or add paper, grain or newsprint texture to the ground.
-- **Don't** rotate cards, add hand-drawn marks or put photographs in cards outside the landing page; app screens never tilt, because tilt hurts scanning and keyboard use in dense lists.
-- **Don't** add a second orchestrated motion to a page; the settle is the signature.
-- **Don't** use plum, ochre or ink-blue as text, border or icon colours on the ground.
-- **Don't** convey eligibility by colour alone.
-- **Don't** create a dark-only layout, copy or spacing change.
-- **Don't** add a brand symbol beside the wordmark.
-- **Don't** use hard offset shadows, glows or glass blur.
-- **Don't** set small mono labels in sentence case or headlines in uppercase.
-- **Don't** borrow desertant's own signatures: grain-stippled hero words, a full-bleed product carousel, a tag pill in a card's top-right corner, or its exact cream.
+- **Don't** use an accent as a tint or a wash behind a sentence. The tier pill is the only tinted
+  fill in the system.
+- **Don't** use red for an eligibility verdict. Red is a blocker colour only, and the excluded tier
+  is never shown.
+- **Don't** use any dashed or dotted edge, anywhere, for any state.
+- **Don't** use a hard offset shadow; this is not a neobrutalist world.
+- **Don't** introduce a second typeface — no serif, no monospace, at any size or weight.
+- **Don't** invent a type size, exceed 4.75rem, or go below 0.6875rem.
+- **Don't** use the deprecated legacy token names (`--color-field`, `--color-paper-card`,
+  `--color-plum`, `--color-ochre`, `--color-inkblue`, their `-chip` and `on-` pairs,
+  `--color-on-chip`, `--font-mono`, `--radius-field`, `--radius-full`,
+  `--weight-mono-strong`). They are aliases into this world kept only so untouched routes still
+  build, and they are being retired route by route.
+- **Don't** put a square corner on a button, input, tag or tile.
+- **Don't** put flat vector illustration on a signed-in app surface; it is a marketing device.

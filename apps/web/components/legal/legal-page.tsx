@@ -72,7 +72,7 @@ export async function LegalPage({ doc }: { doc: LegalDocument }) {
 
   return (
     <div className={styles.page}>
-      <SiteHeader />
+      <SiteHeader cta />
       <main id="main" className={styles.main}>
         <header className={styles.head}>
           <h1 className={styles.title}>{title}</h1>
