@@ -86,7 +86,7 @@ export interface MatchCandidateJobParams {
   residenceCountry: string;
   /** The user's ways of working, most wanted first; a tie inside a tier breaks on this order. */
   waysOfWorking: readonly DbWayOfWorking[];
-  /** Usually `["green"]`, or `["green","yellow"]` for a pass holder who opted in (PLAN D2). */
+  /** Usually `["green"]`, or `["green","yellow"]` for a user who opted in (PLAN D2, D13). */
   allowedTiers: readonly EligibilityTier[];
   /** PLAN D10 families the user is open to. `null` means no role gate. */
   roleFamilies: readonly string[] | null;

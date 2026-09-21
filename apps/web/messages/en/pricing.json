@@ -38,6 +38,7 @@
         },
         "yellow": {
           "feature": "Yellow matches: likely hires from your country",
+          "free": "Optional, you turn it on",
           "pass": "Optional, you turn it on"
         },
         "guarantee": {
@@ -71,7 +72,7 @@
         "duration": "180 days of access",
         "perMonth": "$18 once, $3 a month"
       },
-      "includes": "Instant delivery, unlimited kits, yellow matches if you want them, and the no-match guarantee.",
+      "includes": "Instant delivery, unlimited kits and the no-match guarantee.",
       "oneTime": "One-time payment. No auto-renew."
     },
     "cta": {

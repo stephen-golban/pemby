@@ -52,9 +52,9 @@ Three mechanisms a neighboring product could not truthfully copy today:
 
 1. **Eligibility per country and per way of working, with the reason shown.** Tiers: green "hires from
    your country", yellow "likely", white "unclear", red "excluded"; every label carries its reason and
-   its evidence. Free users see green only; pass holders can opt into yellow; red is never shown. No
-   existing board models this, and none of the major ATS job-board APIs has a "countries we hire from"
-   field (D2, research 01 §2, research 02).
+   its evidence. Any user can opt into yellow; white and red are never shown. No existing board models
+   this, and none of the major ATS job-board APIs has a "countries we hire from" field (D2, research
+   01 §2, research 02).
 2. **Verified live.** Every open job is re-checked on the company's own ATS board at least every 12
    hours, and a dead job is closed and pulled from Briefs, so ghost and stale postings drop out
    (research 01 top-7 item 1).
@@ -81,7 +81,7 @@ freelance, local, and paid programs (D3).
 - Money: one-time passes, no subscriptions and no auto-renew — $5 for 1 month, $10 for 3 months
   (highlighted), $18 for 6 months; renewals stack on remaining time (D12). Free tier: CV parse,
   onboarding, Brief with near misses, all matches delivered 24h late on every channel, 3 application
-  kits per month. Pass: instant delivery, unlimited kits, yellow matches opt-in, the Chrome extension
+  kits per month, yellow matches opt-in. Pass: instant delivery, unlimited kits, the Chrome extension
   when it ships (D13). Trust mechanics: zero matches in any 14-day stretch of an active pass adds 14
   days automatically; "Landed a role?" pauses the pass; the published refund window is 14 days until a
   provider is chosen (D14).

@@ -18,7 +18,7 @@ const COMPARE_ROWS = [
   { key: "delivery", free: "text", pass: "text" },
   { key: "kits", free: "text", pass: "text" },
   { key: "green", free: "yes", pass: "yes" },
-  { key: "yellow", free: "no", pass: "text" },
+  { key: "yellow", free: "text", pass: "text" },
   { key: "guarantee", free: "no", pass: "yes" },
 ] as const satisfies readonly { key: string; free: Cell; pass: Cell }[];
 

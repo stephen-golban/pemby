@@ -91,7 +91,7 @@ export const profiles = pgTable(
     minRateCurrency: text("min_rate_currency"),
     minRatePeriod: payPeriod("min_rate_period"),
     hideNoSalary: boolean("hide_no_salary").notNull().default(false),
-    /** Pass holders may opt into yellow matches (PLAN D2, D13). */
+    /** Any user may opt into yellow matches (PLAN D2, D13 amended 2026-09-17). */
     includeYellow: boolean("include_yellow").notNull().default(false),
 
     // Asked later, in context.

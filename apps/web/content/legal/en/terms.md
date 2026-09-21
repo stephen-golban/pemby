@@ -58,13 +58,13 @@ The free tier includes:
 - your Brief, including near misses and what blocked them;
 - every match, delivered 24 hours after the job first appeared, on every channel you turn on. These messages say that they are late;
 - 3 application kits per calendar month;
-- matches marked green, "hires from your country".
+- matches marked green, "hires from your country";
+- the option to also receive yellow matches, where the post suggests the employer likely hires from your country.
 
 A pass adds:
 
 - instant delivery of matches;
-- unlimited application kits, subject to the fair use rules in section 13;
-- the option to also receive yellow matches, where the post suggests the employer likely hires from your country.
+- unlimited application kits, subject to the fair use rules in section 13.
 
 We may add features to passes later. We will not remove a feature listed above from a pass you have already bought while that pass runs.
 

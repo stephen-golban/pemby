@@ -26,7 +26,7 @@ Source copy for `/pricing`. Each line is `key`, then the English string. Keys fo
 | `compare.rows.delivery`   | Match delivery on Telegram, email and web push                | 24 hours after the job appears | The moment it appears    |
 | `compare.rows.kits`       | Application kits: CV bullets, cover letter, screening answers | 3 per month                    | Unlimited                |
 | `compare.rows.green`      | Green matches: hires from your country                        | Yes                            | Yes                      |
-| `compare.rows.yellow`     | Yellow matches: likely hires from your country                | No                             | Optional, you turn it on |
+| `compare.rows.yellow`     | Yellow matches: likely hires from your country                | Optional, you turn it on       | Optional, you turn it on |
 | `compare.rows.guarantee`  | No-match guarantee                                            | No                             | Yes                      |
 
 - `compare.freeNote`: Free matches arrive 24 hours late, and each late message says so.
@@ -65,7 +65,7 @@ Source copy for `/pricing`. Each line is `key`, then the English string. Keys fo
 
 ### Shared pass lines
 
-- `passes.includes`: Instant delivery, unlimited kits, yellow matches if you want them, and the no-match guarantee.
+- `passes.includes`: Instant delivery, unlimited kits and the no-match guarantee.
 - `passes.oneTime`: One-time payment. No auto-renew.
 
 ## Pass buttons
